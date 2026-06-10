@@ -19,25 +19,25 @@
 
 The prior papers in this series built a language model architecture with exact arithmetic (VDR-1 through VDR-4), scoped knowledge bases with constraints and provenance (VDR-5), 333 deterministic primitives invoked through compact command tokens (VDR-6, VDR-8), a complete model lifecycle as KB operations (VDR-7), runtime data primitives for working memory (VDR-8), universal dotted-path addressing (VDR-8), and session snapshots with disposable cloning (VDR-8). Each paper added a capability. None of them specified how those capabilities compose into multi-step inference processes.
 
-This paper specifies Orchestrated Inference — the pattern by which the language model uses its tools to conduct structured investigations that produce traceable, quantified conclusions. The language model does not reason. It orchestrates. It selects and sequences exact tools — Prolog for logical deduction, Python for numerical computation, pure primitives for data manipulation, operational primitives for external data acquisition — in a loop that produces inferences neither the language model nor any single tool could produce alone.
+This paper specifies Orchestrated Inference,  the pattern by which the language model uses its tools to conduct structured investigations that produce traceable, quantified conclusions. The language model does not reason. It orchestrates. It selects and sequences exact tools,  Prolog for logical deduction, Python for numerical computation, pure primitives for data manipulation, operational primitives for external data acquisition,  in a loop that produces inferences neither the language model nor any single tool could produce alone.
 
 The paper defines the orchestrated inference loop (assess → formalize → execute → store → assess), inference notebooks as standard KB schemas for housing investigations, four inference modes (deductive, inductive, abductive, analogical) with their characteristic tool signatures, external data integration patterns for bringing real-world data into the exact system, and inference provenance that gives every conclusion a complete, queryable derivation chain with exact confidence scores.
 
-The central claim is precise: the language model predicts tokens; the tools compute and deduce; the composition produces structured inferences; the KB records everything. Orchestrated Inference is not artificial reasoning. It is a reasoning exoskeleton — external structure that compensates for the language model's computational unreliability while leveraging its strength at pattern recognition, intent mapping, and natural language formalization.
+The central claim is precise: the language model predicts tokens; the tools compute and deduce; the composition produces structured inferences; the KB records everything. Orchestrated Inference is not artificial reasoning. It is a reasoning exoskeleton,  external structure that compensates for the language model's computational unreliability while leveraging its strength at pattern recognition, intent mapping, and natural language formalization.
 
 ---
 
 ## 1. What Orchestrated Inference Is and Is Not
 
-![Fig. 1: VDR-9 Identity Card — 333 primitives, 4 inference modes, the orchestrated loop, and notebook schema.](./figures/vdr9_01_identity_card.png)
+![Fig. 1: VDR-9 Identity Card,  333 primitives, 4 inference modes, the orchestrated loop, and notebook schema.](./figures/vdr9_01_identity_card.png)
 
 ### 1.1 What It Is
 
 Orchestrated Inference is a pattern of tool composition. The language model recognizes what kind of problem it faces, translates the problem's structure into formal representations, dispatches exact tools to compute and deduce, stores results in the KB, assesses the new state, and repeats. Each step is small. Each step uses the right tool for that step's job. The composition of steps produces a structured inference that is traceable from conclusion back to raw evidence.
 
-The language model's contribution is orchestration — deciding what to do next, what formalism to use, what data to gather, when to backtrack, when to conclude. This is pattern recognition over structured state. It is what language models do well.
+The language model's contribution is orchestration,  deciding what to do next, what formalism to use, what data to gather, when to backtrack, when to conclude. This is pattern recognition over structured state. It is what language models do well.
 
-The tools' contribution is computation and deduction — sorting lists, computing exact statistics, evaluating Prolog queries, executing Python scripts, fetching external data. These are deterministic operations. They produce the same output from the same input every time. They are what tools do well.
+The tools' contribution is computation and deduction,  sorting lists, computing exact statistics, evaluating Prolog queries, executing Python scripts, fetching external data. These are deterministic operations. They produce the same output from the same input every time. They are what tools do well.
 
 Neither the language model nor the tools can conduct a multi-step investigation alone. The language model cannot reliably sort a list, compute a correlation coefficient, or evaluate a logical rule chain. The tools cannot recognize that a latency spike might be caused by a database connection leak, or that a research question requires gathering evidence from multiple sources before ranking hypotheses. The composition covers what each component lacks.
 
@@ -45,27 +45,27 @@ Neither the language model nor the tools can conduct a multi-step investigation 
 
 Orchestrated Inference does not make the language model smarter. The language model still predicts tokens. It still hallucinates. It still makes errors in judgment. What the pattern does is reduce the impact of those errors and amplify the value of correct judgments.
 
-When the language model correctly identifies that a problem needs transitive closure over a dependency graph, the Prolog engine computes it exactly. When the language model incorrectly identifies the wrong approach, the exact tools produce an exact wrong answer from wrong premises — but the provenance chain shows exactly what happened, the constraints may catch the error, and the backtracking mechanism provides recovery.
+When the language model correctly identifies that a problem needs transitive closure over a dependency graph, the Prolog engine computes it exactly. When the language model incorrectly identifies the wrong approach, the exact tools produce an exact wrong answer from wrong premises,  but the provenance chain shows exactly what happened, the constraints may catch the error, and the backtracking mechanism provides recovery.
 
-Orchestrated Inference does not guarantee correct conclusions. Deductive conclusions from correct premises are guaranteed by Prolog. But the premises might be wrong — the language model chose bad rules. The evidence might be incomplete — the language model did not query the right source. The inductive scoring might be flawed — the language model's weighting criteria might miss the actual cause. The paper specifies how these failure modes are detectable through the provenance chain, not how they are prevented. Prevention is the language model's responsibility. Detection is the system's.
+Orchestrated Inference does not guarantee correct conclusions. Deductive conclusions from correct premises are guaranteed by Prolog. But the premises might be wrong,  the language model chose bad rules. The evidence might be incomplete,  the language model did not query the right source. The inductive scoring might be flawed,  the language model's weighting criteria might miss the actual cause. The paper specifies how these failure modes are detectable through the provenance chain, not how they are prevented. Prevention is the language model's responsibility. Detection is the system's.
 
 ---
 
 ## 2. The Orchestrated Inference Loop
 
-![Fig. 2: The Orchestrated Inference Loop — Five phases cycling until termination, with branch, backtrack, and conclude exits.](./figures/vdr9_02_inference_loop.png)
+![Fig. 2: The Orchestrated Inference Loop,  Five phases cycling until termination, with branch, backtrack, and conclude exits.](./figures/vdr9_02_inference_loop.png)
 
 ### 2.1 The Five Phases
 
 The loop has five phases that cycle until termination:
 
-**Assess.** The language model reads the current state — the problem statement, the evidence gathered so far, the KB contents, the data primitive states (counters, queues, stacks, LRU caches), the pending goals — and determines what kind of step is needed next. This is the pattern-matching phase. The language model examines structured state and decides: do I need more evidence? Should I formalize a hypothesis? Should I query Prolog? Should I write Python? Should I backtrack? Should I conclude?
+**Assess.** The language model reads the current state,  the problem statement, the evidence gathered so far, the KB contents, the data primitive states (counters, queues, stacks, LRU caches), the pending goals,  and determines what kind of step is needed next. This is the pattern-matching phase. The language model examines structured state and decides: do I need more evidence? Should I formalize a hypothesis? Should I query Prolog? Should I write Python? Should I backtrack? Should I conclude?
 
-**Formalize.** The language model translates the needed step into an executable form. If logical deduction is needed, it writes Prolog rules and asserts facts. If numerical analysis is needed, it writes a Python script. If data transformation is needed, it assembles a chain of pure primitive invocations. If external data is needed, it constructs the appropriate operational command. The formalization is the creative act — a small, targeted program for one step of the inference.
+**Formalize.** The language model translates the needed step into an executable form. If logical deduction is needed, it writes Prolog rules and asserts facts. If numerical analysis is needed, it writes a Python script. If data transformation is needed, it assembles a chain of pure primitive invocations. If external data is needed, it constructs the appropriate operational command. The formalization is the creative act,  a small, targeted program for one step of the inference.
 
 **Execute.** The system runs the formalized step. Prolog evaluates the query. Python runs in the sandbox. The primitive computes. The external API returns data. Execution is deterministic (for pure operations) or logged and grant-gated (for operational ones). The language model does not execute. The tools do.
 
-**Store.** The result goes into a KB location — a working data binding, an LRU entry, a Prolog fact, a counter update, a ring buffer write. The result is now addressable by dotted path, persistent within the session, and available for subsequent steps. Storage includes provenance: what tool produced this result, from what inputs, at what turn.
+**Store.** The result goes into a KB location,  a working data binding, an LRU entry, a Prolog fact, a counter update, a ring buffer write. The result is now addressable by dotted path, persistent within the session, and available for subsequent steps. Storage includes provenance: what tool produced this result, from what inputs, at what turn.
 
 **Assess again.** The loop returns to the assessment phase. The language model reads the new state, including the result just stored, and determines the next step.
 
@@ -77,7 +77,7 @@ The loop terminates under four conditions:
 
 **Budget exhaustion.** Every inference notebook has resource budgets tracked by counters: maximum steps, maximum external queries, maximum Python executions, maximum wall-clock time. When a budget counter reaches its limit, the loop transitions to conclude with whatever partial findings exist, or to halt if no meaningful conclusion is possible.
 
-**Stall detection.** A counter tracks how many loop iterations have passed since the last new piece of evidence was stored. If this counter exceeds a configurable threshold (default 5), the loop has stalled — it is consuming resources without making progress. Stall triggers either a backtrack (try a different approach) or a forced conclusion.
+**Stall detection.** A counter tracks how many loop iterations have passed since the last new piece of evidence was stored. If this counter exceeds a configurable threshold (default 5), the loop has stalled,  it is consuming resources without making progress. Stall triggers either a backtrack (try a different approach) or a forced conclusion.
 
 **User intervention.** The user can cancel an investigation, redirect it, or request a premature conclusion at any time. User commands override loop state.
 
@@ -121,7 +121,7 @@ When the language model completes a step without new evidence, it increments the
 CMD: counter_inc(root.inference.notebook_001.steps_since_evidence)
 ```
 
-The budget system is not imposed externally. It is part of the notebook KB, governed by the same constraint system that governs everything else in the VDR-LLM-Prolog architecture. The language model can query its own budget, plan accordingly, and make trade-offs — spend the remaining query budget on one comprehensive Prometheus query or several targeted ones.
+The budget system is not imposed externally. It is part of the notebook KB, governed by the same constraint system that governs everything else in the VDR-LLM-Prolog architecture. The language model can query its own budget, plan accordingly, and make trade-offs,  spend the remaining query budget on one comprehensive Prometheus query or several targeted ones.
 
 ### 2.4 Backtracking
 
@@ -146,7 +146,7 @@ Before formalizing a new approach, the language model checks the LRU:
 ```
 CMD: lru_contains(root.inference.notebook_001.attempted_steps, 
     "network_saturation") → false
-// Not tried yet — proceed
+// Not tried yet,  proceed
 ```
 
 This prevents the loop from revisiting failed approaches. The LRU holds a bounded history of what was tried and why it was abandoned. The stack holds the current path with branch points for backtracking. Together they give the loop memory of its own exploration.
@@ -162,17 +162,17 @@ CMD: KB_ASSERT(root.inference.notebook_001.children,
 
 The child notebook inherits the parent's persistent facts (through KB scoping) but gets its own data primitives and its own budget allocation drawn from the parent's remaining budget. The child investigates its sub-problem independently and returns its conclusion to the parent. The parent's loop resumes at the assessment phase with the child's conclusion available as a new fact.
 
-![Fig. 6: Budget Consumption — Steps, queries, and scripts consumed over iterations. Threshold lines show constraint triggers.](./figures/vdr9_06_budget_consumption.png)
+![Fig. 6: Budget Consumption,  Steps, queries, and scripts consumed over iterations. Threshold lines show constraint triggers.](./figures/vdr9_06_budget_consumption.png)
 
 ---
 
 ## 3. Inference Notebooks
 
-![Fig. 8: Notebook KB Nesting — Persistent knowledge, live data primitives, and structural metadata in one KB subtree.](./figures/vdr9_08_notebook_nesting.png)
+![Fig. 8: Notebook KB Nesting,  Persistent knowledge, live data primitives, and structural metadata in one KB subtree.](./figures/vdr9_08_notebook_nesting.png)
 
 ### 3.1 What a Notebook Is
 
-An inference notebook is not a new data structure. It is a KB subtree with a declared schema — specific facts, rules, data primitives, and constraints that collectively house one inference process. The notebook uses the existing KB struct from VDR-8 without modification.
+An inference notebook is not a new data structure. It is a KB subtree with a declared schema,  specific facts, rules, data primitives, and constraints that collectively house one inference process. The notebook uses the existing KB struct from VDR-8 without modification.
 
 The notebook is the unit of inference. One investigation, one notebook. The notebook holds the problem statement, the plan, the evidence gathered, the intermediate results, the rules written, the conclusions reached, and the full trace of how each conclusion was derived. When the investigation is complete, the notebook is archived as a permanent record.
 
@@ -250,15 +250,15 @@ A notebook passes through four states:
 
 **Concluded.** The investigation has reached one or more conclusions. The conclusions are asserted as persistent facts with full provenance. The data primitives preserve their final state. The lock is released. The notebook remains queryable.
 
-**Halted.** The investigation stopped without a conclusion — budget exhaustion, unrecoverable error, user cancellation. Partial findings are preserved. The halt reason is recorded. The notebook remains queryable.
+**Halted.** The investigation stopped without a conclusion,  budget exhaustion, unrecoverable error, user cancellation. Partial findings are preserved. The halt reason is recorded. The notebook remains queryable.
 
 **Archived.** The notebook is frozen. All state is preserved read-only. The notebook is moved under root.archive.inference but remains fully queryable. This is the permanent record.
 
 ### 3.4 Notebook Templates
 
-Common investigation types have pre-defined templates — standard schemas with appropriate data primitives, constraints, initial step queues, and pre-loaded Prolog rules. The language model instantiates a template and customizes it for the specific problem.
+Common investigation types have pre-defined templates,  standard schemas with appropriate data primitives, constraints, initial step queues, and pre-loaded Prolog rules. The language model instantiates a template and customizes it for the specific problem.
 
-Templates are themselves KBs stored under root.templates.inference. They are not special — they are ordinary KBs whose facts describe the schema for a type of investigation. Creating a notebook from a template is a KB copy operation that populates the new notebook's structure.
+Templates are themselves KBs stored under root.templates.inference. They are not special,  they are ordinary KBs whose facts describe the schema for a type of investigation. Creating a notebook from a template is a KB copy operation that populates the new notebook's structure.
 
 Available templates and their specifications are detailed in the appendix tables.
 
@@ -270,7 +270,7 @@ Available templates and their specifications are detailed in the appendix tables
 
 Given premises and rules, derive what must be true.
 
-The language model asserts known facts and writes Prolog rules that encode logical relationships. Prolog evaluates queries against the facts and rules, producing conclusions that follow necessarily from the premises. The conclusions are guaranteed correct if the premises and rules are correct — the Prolog engine's unification and backtracking are exact.
+The language model asserts known facts and writes Prolog rules that encode logical relationships. Prolog evaluates queries against the facts and rules, producing conclusions that follow necessarily from the premises. The conclusions are guaranteed correct if the premises and rules are correct,  the Prolog engine's unification and backtracking are exact.
 
 **Characteristic tool signature:**
 
@@ -303,7 +303,7 @@ The conclusion is exact. If the premises are true, saturation is a necessary con
 
 Given observations, propose what hypothesis best explains or characterizes the data.
 
-The language model gathers evidence from multiple sources, asserts observations as facts, writes Prolog rules that score hypotheses by how much evidence supports each one, and ranks candidates. The conclusions are probable, not certain — they depend on the evidence being representative and the scoring criteria being appropriate.
+The language model gathers evidence from multiple sources, asserts observations as facts, writes Prolog rules that score hypotheses by how much evidence supports each one, and ranks candidates. The conclusions are probable, not certain,  they depend on the evidence being representative and the scoring criteria being appropriate.
 
 **Characteristic tool signature:**
 
@@ -332,7 +332,7 @@ CMD: PURE_FN list_sort_by_key(Scores, key(second), descending)
 
 Given an observation, infer the most likely cause.
 
-This is diagnosis — working backward from symptoms to explanations. The language model writes Prolog rules encoding causal relationships (if X then Y), asserts the observed symptoms, and queries for which causes could produce the observed effects. It then gathers discriminating evidence to narrow the candidates, re-queries, and ranks by explanation completeness.
+This is diagnosis,  working backward from symptoms to explanations. The language model writes Prolog rules encoding causal relationships (if X then Y), asserts the observed symptoms, and queries for which causes could produce the observed effects. It then gathers discriminating evidence to narrow the candidates, re-queries, and ranks by explanation completeness.
 
 **Characteristic tool signature:**
 
@@ -358,13 +358,13 @@ CMD: KB_ASSERT(root.inference.notebook,
 
 It queries for possible causes, gets two candidates, then writes Python to pull Prometheus data and compute cross-correlation between the latency series and database connection count series. The correlation result (an exact VDR fraction) discriminates between hypotheses. It asserts the correlation as evidence and re-queries. One cause now has more evidence. The causal chain is recorded.
 
-**Confidence propagation:** Abductive confidence is based on explanation completeness — what fraction of the observed symptoms does the leading hypothesis explain? If the hypothesis explains 4 out of 5 symptoms with evidence from reliable sources, the confidence reflects that coverage. Abductive inference also tracks alternative explanations and their scores, because a "best explanation" with a close second is less confident than one that dominates.
+**Confidence propagation:** Abductive confidence is based on explanation completeness,  what fraction of the observed symptoms does the leading hypothesis explain? If the hypothesis explains 4 out of 5 symptoms with evidence from reliable sources, the confidence reflects that coverage. Abductive inference also tracks alternative explanations and their scores, because a "best explanation" with a close second is less confident than one that dominates.
 
 ### 4.4 Analogical Inference
 
 Given a known domain and an unfamiliar domain, identify structural parallels and transfer conclusions.
 
-The language model writes Prolog facts describing the structure of a well-understood domain and the partial structure of an unfamiliar domain. It writes rules that match structural patterns — if domain A has the relationship R(X, Y) and domain B has entities X' and Y' that map to X and Y, then R(X', Y') is hypothesized in domain B. The strength of the analogy is the fraction of source-domain relationships that have matching target-domain counterparts.
+The language model writes Prolog facts describing the structure of a well-understood domain and the partial structure of an unfamiliar domain. It writes rules that match structural patterns,  if domain A has the relationship R(X, Y) and domain B has entities X' and Y' that map to X and Y, then R(X', Y') is hypothesized in domain B. The strength of the analogy is the fraction of source-domain relationships that have matching target-domain counterparts.
 
 **Characteristic tool signature:**
 
@@ -374,37 +374,37 @@ Prolog structural matching → analogy strength score →
 transferred conclusions with degraded confidence
 ```
 
-**Example:** The language model knows how circuit breaker patterns work in electrical engineering (overload triggers break, break isolates fault, system continues with reduced capacity). A software system is exhibiting similar behavior — high load causes a component to stop accepting requests, which isolates the failing service. The language model writes both structures as Prolog facts, writes matching rules, and queries for the structural correspondence. The analogy suggests that the software system has an implicit circuit breaker and will auto-recover when load drops — a transferred conclusion from the electrical domain.
+**Example:** The language model knows how circuit breaker patterns work in electrical engineering (overload triggers break, break isolates fault, system continues with reduced capacity). A software system is exhibiting similar behavior,  high load causes a component to stop accepting requests, which isolates the failing service. The language model writes both structures as Prolog facts, writes matching rules, and queries for the structural correspondence. The analogy suggests that the software system has an implicit circuit breaker and will auto-recover when load drops,  a transferred conclusion from the electrical domain.
 
-**Confidence propagation:** Analogical confidence is the product of the analogy strength (matched relationships / total relationships) and the source domain confidence. A strong analogy (90% structural match) from a well-established domain (95/100 confidence) produces transferred conclusions at 85.5/100. A weak analogy (50% match) produces conclusions at 47.5/100 — speculative, not actionable without verification.
+**Confidence propagation:** Analogical confidence is the product of the analogy strength (matched relationships / total relationships) and the source domain confidence. A strong analogy (90% structural match) from a well-established domain (95/100 confidence) produces transferred conclusions at 85.5/100. A weak analogy (50% match) produces conclusions at 47.5/100,  speculative, not actionable without verification.
 
 ### 4.5 Mode Composition
 
 Real investigations use multiple modes. A typical incident investigation starts with abductive inference (what could cause these symptoms?), gathers evidence using operational primitives, uses inductive inference to rank hypotheses by evidence fit, then uses deductive inference to derive the implications of the leading hypothesis (if the cause is X, then action Y should fix it). The modes compose naturally because they all operate on the same KB, use the same tools, and produce facts in the same format.
 
-The language model selects modes based on the assessment phase's reading of the current state. If there are symptoms without explanation, it defaults to abductive. If there are observations without patterns, it defaults to inductive. If there are premises and rules ready to evaluate, it defaults to deductive. If there is a well-understood domain and an unfamiliar parallel, it defaults to analogical. Mode selection is a pattern-matching task — exactly what the language model is good at.
+The language model selects modes based on the assessment phase's reading of the current state. If there are symptoms without explanation, it defaults to abductive. If there are observations without patterns, it defaults to inductive. If there are premises and rules ready to evaluate, it defaults to deductive. If there is a well-understood domain and an unfamiliar parallel, it defaults to analogical. Mode selection is a pattern-matching task,  exactly what the language model is good at.
 
 ---
 
 ## 5. External Data Integration
 
-![Fig. 5: Evidence Source Confidence Spectrum — From LLM (30/100) to exact VDR computation (1/1). Spacing reveals clustering.](./figures/vdr9_05_source_confidence_spectrum.png)
+![Fig. 5: Evidence Source Confidence Spectrum,  From LLM (30/100) to exact VDR computation (1/1). Spacing reveals clustering.](./figures/vdr9_05_source_confidence_spectrum.png)
 
 ### 5.1 The Integration Pipeline
 
-Orchestrated inference rarely operates on data already in the KB. It needs external data — monitoring metrics, API responses, database query results, file contents, search results. The standard pipeline for integrating external data has six stages:
+Orchestrated inference rarely operates on data already in the KB. It needs external data,  monitoring metrics, API responses, database query results, file contents, search results. The standard pipeline for integrating external data has six stages:
 
 **Acquire.** An operational primitive retrieves raw data from an external source. This is grant-gated and logged per VDR-6.
 
 **Parse.** Pure primitives extract structure from the raw response. parse_json for JSON APIs, parse_csv for tabular data, string_split for log files.
 
-**Convert.** Pure primitives convert external values to exact VDR types. This is the conversion boundary — the point where approximate external data enters the exact internal system. The conversion is declared and logged.
+**Convert.** Pure primitives convert external values to exact VDR types. This is the conversion boundary,  the point where approximate external data enters the exact internal system. The conversion is declared and logged.
 
 **Store.** KB_ASSERT places the structured, converted data at a dotted path in the inference notebook.
 
 **Index.** Data primitives make the data accessible for fast lookup. lru_push for recent findings, ring_write for rolling time series windows, bitset_set for tracking which sources have been checked.
 
-**Process.** Pure primitives or Python scripts perform analytical operations — statistical summaries, sorting, filtering, correlation — producing derived values that are stored back into the KB.
+**Process.** Pure primitives or Python scripts perform analytical operations,  statistical summaries, sorting, filtering, correlation,  producing derived values that are stored back into the KB.
 
 ### 5.2 Prometheus Integration Example
 
@@ -461,7 +461,7 @@ CMD: lru_push(root.inference.notebook.findings, "latency_profile",
     "mean 4200ms, spike onset at 14:27, 38 minutes above threshold")
 ```
 
-Every value that entered the system from Prometheus is now an exact VDR fraction. Every subsequent operation on this data — statistical analysis, Prolog reasoning, Python correlation — operates on exact values. The conversion boundary is recorded. The provenance chain from raw Prometheus response to computed statistic is complete.
+Every value that entered the system from Prometheus is now an exact VDR fraction. Every subsequent operation on this data,  statistical analysis, Prolog reasoning, Python correlation,  operates on exact values. The conversion boundary is recorded. The provenance chain from raw Prometheus response to computed statistic is complete.
 
 ### 5.3 The Conversion Boundary
 
@@ -479,7 +479,7 @@ CMD: KB_ASSERT(root.inference.notebook.conversion_boundary,
         turn(47))))
 ```
 
-For terminating decimals, the conversion is exact (max_error = 0/1). For repeating decimals or values with declared precision limits, the max_error is bounded and recorded. The conversion boundary ensures that the provenance chain never silently introduces approximation — every point where external imprecision enters is declared.
+For terminating decimals, the conversion is exact (max_error = 0/1). For repeating decimals or values with declared precision limits, the max_error is bounded and recorded. The conversion boundary ensures that the provenance chain never silently introduces approximation,  every point where external imprecision enters is declared.
 
 ### 5.4 Multi-Source Correlation
 
@@ -525,11 +525,11 @@ The external data has been acquired, parsed, converted to exact fractions, corre
 
 ## 6. Inference Provenance
 
-![Fig. 7: Confidence Threshold Regions — Five action bands from unreliable (<40) to high (>95), with example conclusions placed at their exact scores.](./figures/vdr9_07_confidence_regions.png)
+![Fig. 7: Confidence Threshold Regions,  Five action bands from unreliable (<40) to high (>95), with example conclusions placed at their exact scores.](./figures/vdr9_07_confidence_regions.png)
 
 ### 6.1 What Provenance Means for Inference
 
-Every conclusion produced by orchestrated inference carries a complete derivation chain. This is not new — VDR-5 specified provenance for all KB facts. What VDR-9 specifies is the provenance schema specific to multi-step inference processes, where the derivation chain passes through multiple tools, multiple inference modes, and multiple sources.
+Every conclusion produced by orchestrated inference carries a complete derivation chain. This is not new,  VDR-5 specified provenance for all KB facts. What VDR-9 specifies is the provenance schema specific to multi-step inference processes, where the derivation chain passes through multiple tools, multiple inference modes, and multiple sources.
 
 ### 6.2 Conclusion Record
 
@@ -586,9 +586,9 @@ Confidence is an exact VDR fraction computed from the provenance chain according
 
 **Multi-mode chains:** When modes compose (abductive generates hypothesis, deductive derives implication, inductive scores against evidence), the overall confidence is the minimum across mode transitions. Each mode junction is a potential weakness.
 
-All confidence computations use exact VDR fractions. The confidence of a conclusion is not a vague label ("high," "medium," "low") — it is a fraction like 92/100, computed from declared rules, traceable to specific evidence confidences, and exactly reproducible by replaying the computation.
+All confidence computations use exact VDR fractions. The confidence of a conclusion is not a vague label ("high," "medium," "low"),  it is a fraction like 92/100, computed from declared rules, traceable to specific evidence confidences, and exactly reproducible by replaying the computation.
 
-![Fig. 3: Confidence Propagation — Exact VDR fractions degrading through a multi-mode chain. LLM assessment is the weakest link.](./figures/vdr9_03_confidence_propagation.png)
+![Fig. 3: Confidence Propagation,  Exact VDR fractions degrading through a multi-mode chain. LLM assessment is the weakest link.](./figures/vdr9_03_confidence_propagation.png)
 
 ### 6.4 Challenging a Conclusion
 
@@ -617,7 +617,7 @@ If the rules account for rollback (a rolled-back deployment can still leave arti
 
 This section traces a complete orchestrated inference through all phases, showing every command token, every mode transition, and every data primitive interaction.
 
-![Fig. 4: SRE Investigation Convergence — Evidence count rises, hypotheses narrow, confidence reaches goal in 7 iterations.](./figures/vdr9_04_sre_convergence.png)
+![Fig. 4: SRE Investigation Convergence,  Evidence count rises, hypotheses narrow, confidence reaches goal in 7 iterations.](./figures/vdr9_04_sre_convergence.png)
 
 ### 7.1 Setup
 
@@ -678,7 +678,7 @@ CMD: counter_inc(root.inference.incident_002.steps_executed)
 
 **Formalize:** Construct the Prometheus query URL.
 
-**Execute:** Fetch, parse, convert, store, index, process — the full pipeline from Section 5.2.
+**Execute:** Fetch, parse, convert, store, index, process,  the full pipeline from Section 5.2.
 
 **Store:** Latency time series at root.inference.incident_002.timeseries.latency_p99. Statistics at root.inference.incident_002.stats. Finding in LRU.
 
@@ -790,7 +790,7 @@ CMD: KB_QUERY(root.inference.incident_002.reasoning,
 → Causes = [upstream_timeout, deployment_regression]
 ```
 
-Only two match — dependency_failure needs a health_check_failing fact (not yet gathered), resource_exhaustion needs a resource_near_limit fact (not yet gathered). Prolog tells the language model what it can conclude now and implicitly what's missing.
+Only two match,  dependency_failure needs a health_check_failing fact (not yet gathered), resource_exhaustion needs a resource_near_limit fact (not yet gathered). Prolog tells the language model what it can conclude now and implicitly what's missing.
 
 **Store:**
 
@@ -836,7 +836,7 @@ CMD: KB_ASSERT(root.inference.incident_002.evidence,
 CMD: counter_inc(root.inference.incident_002.evidence_count)
 CMD: counter_reset(root.inference.incident_002.steps_since_evidence)
 CMD: lru_push(root.inference.incident_002.findings, "correlation",
-    "DB connections correlate 94% with 3-min lead. Request rate: 12% — not traffic.")
+    "DB connections correlate 94% with 3-min lead. Request rate: 12%,  not traffic.")
 ```
 
 ### 7.7 Loop Iteration 6: Targeted Probe (Mode: Abductive, Refined)
@@ -1137,7 +1137,7 @@ CMD: bitset_to_list(root.inference.research_mem.themes_covered)
 → [0,1,2,3,5,6,7]  // themes 4, 8, 9 uncovered
 ```
 
-The conclusion includes the coverage gap — the survey is explicit about what it did not find.
+The conclusion includes the coverage gap,  the survey is explicit about what it did not find.
 
 ---
 
@@ -1217,11 +1217,11 @@ CMD: counter_inc(root.inference.speech_ren.objections_addressed)
 CMD: queue_push(root.inference.speech_ren.argument_order,
     "hook: energy cost impact on household budgets")
 CMD: queue_push(root.inference.speech_ren.argument_order,
-    "claim: cost_decline — strongest data point first")
+    "claim: cost_decline,  strongest data point first")
 CMD: queue_push(root.inference.speech_ren.argument_order,
-    "claim: job_creation — economic benefits")
+    "claim: job_creation,  economic benefits")
 CMD: queue_push(root.inference.speech_ren.argument_order,
-    "preempt: intermittency — battery storage rebuttal")
+    "preempt: intermittency,  battery storage rebuttal")
 CMD: queue_push(root.inference.speech_ren.argument_order,
     "close: economic and environmental convergence")
 ```
@@ -1315,7 +1315,7 @@ CMD: KB_QUERY(root.inference.email_001.analysis,
 → Unanswered = [("testing timeline?","Sarah"), ("who owns compat layer?","Lisa")]
 ```
 
-**Conclude:** One resolved decision, one contested proposal with two objections, two unanswered questions. Every conclusion traces to specific message numbers. The analysis is structural, not summarization — it was derived from Prolog rules applied to parsed facts, not from the language model's pattern-matched impression of the thread.
+**Conclude:** One resolved decision, one contested proposal with two objections, two unanswered questions. Every conclusion traces to specific message numbers. The analysis is structural, not summarization,  it was derived from Prolog rules applied to parsed facts, not from the language model's pattern-matched impression of the thread.
 
 ---
 
@@ -1325,29 +1325,29 @@ CMD: KB_QUERY(root.inference.email_001.analysis,
 
 The language model performs five tasks in orchestrated inference:
 
-**Intent recognition.** It reads the problem and determines what kind of investigation is needed — debugging, research, decision-making, diagnosis. This is pattern matching over natural language.
+**Intent recognition.** It reads the problem and determines what kind of investigation is needed,  debugging, research, decision-making, diagnosis. This is pattern matching over natural language.
 
 **Mode selection.** It assesses the current state and determines which inference mode (deductive, inductive, abductive, analogical) is appropriate for the next step. This is pattern matching over structured state.
 
-**Formalization.** It translates problem structure into formal representations — Prolog rules, Python scripts, primitive chains. This is the creative act. The language model decides what rules to write, what to query, what script to construct. This is where the language model's training on code, logic, and domain knowledge contributes most.
+**Formalization.** It translates problem structure into formal representations,  Prolog rules, Python scripts, primitive chains. This is the creative act. The language model decides what rules to write, what to query, what script to construct. This is where the language model's training on code, logic, and domain knowledge contributes most.
 
-**Assessment.** It reads results from the KB and determines what they mean — does this evidence support the hypothesis? Is the investigation stalled? Should we backtrack? This is judgment over structured data.
+**Assessment.** It reads results from the KB and determines what they mean,  does this evidence support the hypothesis? Is the investigation stalled? Should we backtrack? This is judgment over structured data.
 
-**Framing.** It generates natural language to present results to the user. This is text generation — the language model's native capability.
+**Framing.** It generates natural language to present results to the user. This is text generation,  the language model's native capability.
 
 ### 12.2 What the Language Model Does Not Do
 
 The language model does not sort lists, compute statistics, evaluate logical rules, execute code, fetch external data, or perform any deterministic computation. Every one of these operations is delegated to a tool that performs it correctly.
 
-The language model does not hold the complete investigation state in its context window. Intermediate results are in the KB at dotted paths. The investigation path is on a stack. Recent findings are in an LRU. Progress is tracked by counters and bitsets. The language model reads these structures at each assessment phase — it does not need to remember them from earlier turns.
+The language model does not hold the complete investigation state in its context window. Intermediate results are in the KB at dotted paths. The investigation path is on a stack. Recent findings are in an LRU. Progress is tracked by counters and bitsets. The language model reads these structures at each assessment phase,  it does not need to remember them from earlier turns.
 
-The language model does not guarantee that its formalizations are correct. It might write Prolog rules that do not capture the domain accurately. It might select the wrong inference mode. It might miss relevant evidence. These are the failure modes of orchestrated inference, and they are detectable — not preventable — through the provenance chain.
+The language model does not guarantee that its formalizations are correct. It might write Prolog rules that do not capture the domain accurately. It might select the wrong inference mode. It might miss relevant evidence. These are the failure modes of orchestrated inference, and they are detectable,  not preventable,  through the provenance chain.
 
 ### 12.3 The Exoskeleton Metaphor
 
-A physical exoskeleton does not replace the wearer's muscles. It amplifies them. The wearer decides to walk — the exoskeleton provides the force. The wearer decides to grip — the exoskeleton provides the strength.
+A physical exoskeleton does not replace the wearer's muscles. It amplifies them. The wearer decides to walk,  the exoskeleton provides the force. The wearer decides to grip,  the exoskeleton provides the strength.
 
-Orchestrated Inference is a reasoning exoskeleton. The language model decides what to investigate — the tools provide the computation. The language model decides what rules to write — Prolog provides the deduction. The language model decides what data to gather — the operational primitives provide the access. The language model decides how to present results — the KB provides the exact data.
+Orchestrated Inference is a reasoning exoskeleton. The language model decides what to investigate,  the tools provide the computation. The language model decides what rules to write,  Prolog provides the deduction. The language model decides what data to gather,  the operational primitives provide the access. The language model decides how to present results,  the KB provides the exact data.
 
 The exoskeleton does not think. The language model does not compute. Together they produce structured inferences that are traceable, reproducible, quantified, and inspectable. The composition is greater than either component alone. The boundary between them is clear and maintained.
 
@@ -1357,7 +1357,7 @@ The exoskeleton does not think. The language model does not compute. Together th
 
 **F1.** If any deductive conclusion produced by Prolog does not follow necessarily from the asserted premises and rules, the Prolog engine has a bug. Testable by independent verification of the derivation.
 
-**F2.** If any inference notebook's provenance chain has a gap — a conclusion that references evidence not present in the notebook KB — the provenance tracking is incomplete.
+**F2.** If any inference notebook's provenance chain has a gap,  a conclusion that references evidence not present in the notebook KB,  the provenance tracking is incomplete.
 
 **F3.** If the confidence score propagated through a multi-step inference does not match the declared propagation rules applied to the input confidence scores, the confidence computation is wrong. Testable by exact VDR fraction comparison.
 
@@ -1375,9 +1375,9 @@ The exoskeleton does not think. The language model does not compute. Together th
 
 The eight prior papers built a system that can compute exactly, store knowledge in scoped KBs, execute deterministic primitives through command tokens, manage its own lifecycle, and maintain runtime working memory with session-level snapshots and cloning.
 
-VDR-9 specifies how those capabilities compose into structured inference. The orchestrated inference loop cycles through assess, formalize, execute, store, and assess again — the language model selecting and sequencing exact tools that collectively produce traceable conclusions. Inference notebooks house investigations as standard KB schemas with data primitives for working memory, Prolog rules for logical structure, and provenance records for traceability. Four inference modes — deductive, inductive, abductive, analogical — have characteristic tool signatures that compose naturally for complex investigations. External data enters through a declared pipeline with conversion boundary tracking. Every conclusion carries an exact confidence score computed from declared propagation rules.
+VDR-9 specifies how those capabilities compose into structured inference. The orchestrated inference loop cycles through assess, formalize, execute, store, and assess again,  the language model selecting and sequencing exact tools that collectively produce traceable conclusions. Inference notebooks house investigations as standard KB schemas with data primitives for working memory, Prolog rules for logical structure, and provenance records for traceability. Four inference modes,  deductive, inductive, abductive, analogical,  have characteristic tool signatures that compose naturally for complex investigations. External data enters through a declared pipeline with conversion boundary tracking. Every conclusion carries an exact confidence score computed from declared propagation rules.
 
-The language model does not reason. It orchestrates tools that compute and deduce. The orchestration is pattern recognition — deciding what to do next based on the current state. The computation and deduction are deterministic — exact tools producing exact results. The composition produces inferences that are inspectable at every step, challengeable at any conclusion, and reproducible by replaying the notebook.
+The language model does not reason. It orchestrates tools that compute and deduce. The orchestration is pattern recognition,  deciding what to do next based on the current state. The computation and deduction are deterministic,  exact tools producing exact results. The composition produces inferences that are inspectable at every step, challengeable at any conclusion, and reproducible by replaying the notebook.
 
 Orchestrated Inference does not make the language model smarter. It makes its outputs more trustworthy by externalizing computation to exact tools, recording every step with provenance, quantifying confidence with exact fractions, and providing recovery through backtracking, budgets, and the entire session management infrastructure.
 
@@ -1394,7 +1394,7 @@ The system can now investigate.
 **Registry:** [@HOWL-VDR-9-2026]
 **Status:** Specification complete
 **Domain:** Applied Philosophy / Systems Architecture / Structured Inference
-**Central Result:** Orchestrated Inference — a specified pattern for multi-step, multi-tool, multi-mode inference with exact provenance, quantified confidence, and full traceability. The language model orchestrates; the tools compute and deduce; the KB records everything.
+**Central Result:** Orchestrated Inference,  a specified pattern for multi-step, multi-tool, multi-mode inference with exact provenance, quantified confidence, and full traceability. The language model orchestrates; the tools compute and deduce; the KB records everything.
 **Foundation:** VDR-1 through VDR-8, MATH-3, MATH-4
 **Key Claim:** The language model does not reason. It orchestrates a reasoning process using exact tools. The composition produces structured inferences that are traceable, reproducible, quantified, and inspectable. Orchestrated Inference is a reasoning exoskeleton, not artificial reasoning.
 **Falsification:** Seven specific criteria testable by provenance chain verification, exact confidence comparison, budget enforcement testing, and contradiction detection.
@@ -1412,8 +1412,8 @@ The system can now investigate.
 
 | State | Description | Entry Condition | LLM Action | Tool Action |
 |-------|-------------|----------------|-----------|-------------|
-| assess | Evaluate current evidence and determine next step | Loop start, or after store completes | Read KB state, data primitives, pending goals | None — LLM only |
-| formalize | Translate needed step into executable form | Assessment identifies a gap or next action | Write Prolog rules, Python script, or primitive chain | None — LLM only |
+| assess | Evaluate current evidence and determine next step | Loop start, or after store completes | Read KB state, data primitives, pending goals | None,  LLM only |
+| formalize | Translate needed step into executable form | Assessment identifies a gap or next action | Write Prolog rules, Python script, or primitive chain | None,  LLM only |
 | execute | Run the formalized step | Formalization complete | Issue command tokens | Tools execute deterministically |
 | store | Persist results into KB and data primitives | Execution returns results | Issue KB_ASSERT, lru_push, counter_inc, etc. | KB and primitives update |
 | branch | Spawn sub-investigation | Assessment identifies separable sub-problem | Create child notebook, delegate | Child loop starts |
@@ -1436,8 +1436,8 @@ The system can now investigate.
 | store | assess | Result stored, ready for next assessment | stored(location, value_summary) |
 | branch | assess | Child notebook returns result | branch_returned(child_path, result) |
 | backtrack | assess | Alternative loaded from stack | backtracked(abandoned_path, new_path) |
-| conclude | (terminal) | — | conclusion(fact, confidence, derivation_ref) |
-| halt | (terminal) | — | halted(reason, partial_findings_ref) |
+| conclude | (terminal) |,  | conclusion(fact, confidence, derivation_ref) |
+| halt | (terminal) |,  | halted(reason, partial_findings_ref) |
 
 ### A.3 Loop Invariants
 
@@ -1477,7 +1477,7 @@ The system can now investigate.
 | stack | investigation_path | Current exploration path with backtrack points | 15 |
 | lru | findings | Recent discoveries for cross-reference | 30 |
 | lru | attempted_steps | Steps already tried to prevent duplicate work | 50 |
-| lock | investigation_active | Coordination signal | — |
+| lock | investigation_active | Coordination signal |,  |
 | bitset | evidence_gathered | Which sources or dimensions checked | task-dependent |
 
 ### B.3 Optional Fields
@@ -1508,7 +1508,7 @@ The system can now investigate.
 
 ## Appendix C: Inference Mode Tool Signatures
 
-### C.1 Deductive Mode — Detailed Tool Chain
+### C.1 Deductive Mode,  Detailed Tool Chain
 
 | Step | Tool Category | Specific Tools | Input | Output | Confidence Effect |
 |------|-------------|---------------|-------|--------|------------------|
@@ -1518,7 +1518,7 @@ The system can now investigate.
 | 4. Verify | Pure primitives | constraint_check | Derived facts | Constraint status | fraction(1,1) if all pass |
 | 5. Chain | KB operations | depends_on query | Conclusion | Full derivation chain | Weakest link in chain |
 
-### C.2 Inductive Mode — Detailed Tool Chain
+### C.2 Inductive Mode,  Detailed Tool Chain
 
 | Step | Tool Category | Specific Tools | Input | Output | Confidence Effect |
 |------|-------------|---------------|-------|--------|------------------|
@@ -1529,7 +1529,7 @@ The system can now investigate.
 | 5. Assess coverage | Pure primitives | bitset_count, vdr_div | Evidence dimensions checked | Coverage fraction | Coverage × source confidence |
 | 6. Report | KB operations | KB_ASSERT | Top hypotheses with scores | Ranked conclusions | Composite of evidence and coverage |
 
-### C.3 Abductive Mode — Detailed Tool Chain
+### C.3 Abductive Mode,  Detailed Tool Chain
 
 | Step | Tool Category | Specific Tools | Input | Output | Confidence Effect |
 |------|-------------|---------------|-------|--------|------------------|
@@ -1541,7 +1541,7 @@ The system can now investigate.
 | 6. Compute correlations | Python + pure | ENV_EXEC, stat_mean, vdr_div | Time series data | Correlation scores | Exact fraction |
 | 7. Rank by evidence fit | Pure + KB | list_sort_by_key, KB_ASSERT | Causes + correlation scores | Best explanation | Product of evidence scores |
 
-### C.4 Analogical Mode — Detailed Tool Chain
+### C.4 Analogical Mode,  Detailed Tool Chain
 
 | Step | Tool Category | Specific Tools | Input | Output | Confidence Effect |
 |------|-------------|---------------|-------|--------|------------------|
@@ -1656,7 +1656,7 @@ constraint("evidence_freshness", operational, active,
 |-----------|------------------|-------------------|---------|-----------|
 | Exact VDR computation | Any inputs | fraction(1, 1) | Fixed | Math is exact |
 | Prolog derivation (all premises exact) | C₁, C₂, ..., Cₙ | min(C₁, ..., Cₙ) | Weakest link | Conclusion is only as strong as weakest premise |
-| Prolog derivation (mixed premises) | C₁, C₂, ..., Cₙ | min(C₁, ..., Cₙ) | Weakest link | Same — derivation doesn't strengthen inputs |
+| Prolog derivation (mixed premises) | C₁, C₂, ..., Cₙ | min(C₁, ..., Cₙ) | Weakest link | Same,  derivation doesn't strengthen inputs |
 | Evidence gathering (single source) | Source confidence Cs | Cs | Inherited | Data carries its source's reliability |
 | Evidence gathering (multiple sources agree) | C₁, C₂, ..., Cₙ | 1 - ∏(1 - Cᵢ) | Independent confirmation | Multiple sources agreeing increases confidence |
 | Evidence gathering (sources conflict) | C₁, C₂, ..., Cₙ | max(Cᵢ) - conflict_penalty | Penalized best | Conflict degrades even the strongest source |
@@ -1664,8 +1664,8 @@ constraint("evidence_freshness", operational, active,
 | Abductive ranking | Best_explanation_evidence / total_evidence | evidence_ratio × min(Cᵢ) | Coverage weighted | Explanation covers fraction of observations |
 | Analogical transfer | Analogy_strength × source_confidence | strength × Csource | Product | Weaker analogy degrades transferred knowledge |
 | Python computation | Input data confidence | min(inputs) × fraction(95, 100) | Degraded weakest link | Script could have bugs |
-| LLM assessment step | — | fraction(30, 100) | Fixed floor | LLM judgment is unreliable |
-| User-provided correction | — | fraction(70, 100) | Fixed | User might be wrong but probably right |
+| LLM assessment step |,  | fraction(30, 100) | Fixed floor | LLM judgment is unreliable |
+| User-provided correction |,  | fraction(70, 100) | Fixed | User might be wrong but probably right |
 
 ### E.2 Confidence Computation Examples
 
@@ -1682,10 +1682,10 @@ constraint("evidence_freshness", operational, active,
 
 | Confidence Range | Label | Appropriate Action |
 |-----------------|-------|-------------------|
-| 95/100 — 1/1 | High | Act on conclusion directly |
-| 80/100 — 94/100 | Moderate | Act with monitoring, note uncertainty |
-| 60/100 — 79/100 | Low | Gather more evidence before acting |
-| 40/100 — 59/100 | Speculative | Present as hypothesis, not conclusion |
+| 95/100,  1/1 | High | Act on conclusion directly |
+| 80/100,  94/100 | Moderate | Act with monitoring, note uncertainty |
+| 60/100,  79/100 | Low | Gather more evidence before acting |
+| 40/100,  59/100 | Speculative | Present as hypothesis, not conclusion |
 | < 40/100 | Unreliable | Do not present as conclusion, flag for investigation |
 
 These thresholds are configurable via constraints on the inference notebook.
@@ -1716,21 +1716,21 @@ These thresholds are configurable via constraints on the inference notebook.
 | 4 | Check for alternative approaches at branch point | KB_QUERY on unexplored alternatives | May find untried hypotheses or methods |
 | 5a | Alternative found: push new approach, transition to formalize | stack_push, transition | New direction established |
 | 5b | No alternative: pop again (recursive backtrack) | stack_pop | Walk further back |
-| 5c | Stack empty: transition to halt | — | No more options |
+| 5c | Stack empty: transition to halt |,  | No more options |
 | 6 | Log backtrack event | KB_ASSERT | Backtrack provenance recorded |
 
 ### F.3 Backtrack State Preservation
 
 | State Component | Preserved on Backtrack | Discarded on Backtrack | Rationale |
 |----------------|----------------------|----------------------|-----------|
-| Evidence facts (confirmed) | Yes | — | Confirmed evidence is still valid |
-| Evidence facts (speculative) | — | Yes | Speculation specific to abandoned path |
-| Prolog rules (general domain) | Yes | — | Domain knowledge transcends paths |
-| Prolog rules (path-specific) | — | Yes (retracted) | Rules specific to abandoned hypothesis |
-| Data primitive states | Partially — counters preserved, path-specific LRU entries expire | Path-specific entries | General progress preserved, path-specific context cleared |
-| External data (already fetched) | Yes | — | Don't re-fetch, reuse from KB |
+| Evidence facts (confirmed) | Yes |,  | Confirmed evidence is still valid |
+| Evidence facts (speculative) |,  | Yes | Speculation specific to abandoned path |
+| Prolog rules (general domain) | Yes |,  | Domain knowledge transcends paths |
+| Prolog rules (path-specific) |,  | Yes (retracted) | Rules specific to abandoned hypothesis |
+| Data primitive states | Partially,  counters preserved, path-specific LRU entries expire | Path-specific entries | General progress preserved, path-specific context cleared |
+| External data (already fetched) | Yes |,  | Don't re-fetch, reuse from KB |
 | Step queue | Cleared | Yes | Old plan is invalid |
-| Findings LRU | Preserved | — | Past findings may inform new path |
+| Findings LRU | Preserved |,  | Past findings may inform new path |
 
 ---
 
@@ -1740,10 +1740,10 @@ These thresholds are configurable via constraints on the inference notebook.
 
 | Field | Pre-populated Value | User Provides |
 |-------|-------------------|---------------|
-| inference_type | abductive | — |
-| goal | root_cause(_, _) fact asserted with confidence > 80/100 | — |
+| inference_type | abductive |,  |
+| goal | root_cause(_, _) fact asserted with confidence > 80/100 |,  |
 | initial step_queue | [1. pull alerting metric, 2. pull correlated metrics, 3. check recent deployments, 4. check dependency health, 5. formalize causal hypotheses, 6. test leading hypothesis, 7. confirm root cause, 8. write remediation plan, 9. write prevention rules] | Symptom description |
-| data primitives | counter(queries_issued, max=20), counter(hypotheses_tested), lru(findings, 30), lru(sources, 20), bitset(dependencies_checked, N), lock(investigating), queue(remediation_steps, 10), ring(metric_snapshots, 60) | — |
+| data primitives | counter(queries_issued, max=20), counter(hypotheses_tested), lru(findings, 30), lru(sources, 20), bitset(dependencies_checked, N), lock(investigating), queue(remediation_steps, 10), ring(metric_snapshots, 60) |,  |
 | Prolog preloaded | General SRE causal rules from root.ops.sre_rules | Incident-specific symptoms |
 | external sources | Prometheus, deployment API, dependency health endpoints | Source URLs |
 | constraints | query_budget < 20, max_steps < 50, evidence_freshness < 15min | Override if needed |
@@ -1752,44 +1752,44 @@ These thresholds are configurable via constraints on the inference notebook.
 
 | Field | Pre-populated Value | User Provides |
 |-------|-------------------|---------------|
-| inference_type | abductive | — |
+| inference_type | abductive |,  |
 | goal | root_cause(_, _) and fix_verified(true) | Failing test or error description |
-| initial step_queue | [1. reproduce failure, 2. check recent failures for pattern, 3. map dependency graph, 4. trace execution path, 5. identify divergence, 6. formalize hypothesis, 7. write fix, 8. verify fix, 9. write regression test] | — |
-| data primitives | lru(recent_failures, 20), stack(undo_stack, 10), stack(fix_steps, 10), bitset(resolved_bugs, 50), lock(editing_module), counter(retry_count, max=3) | — |
+| initial step_queue | [1. reproduce failure, 2. check recent failures for pattern, 3. map dependency graph, 4. trace execution path, 5. identify divergence, 6. formalize hypothesis, 7. write fix, 8. verify fix, 9. write regression test] |,  |
+| data primitives | lru(recent_failures, 20), stack(undo_stack, 10), stack(fix_steps, 10), bitset(resolved_bugs, 50), lock(editing_module), counter(retry_count, max=3) |,  |
 | Prolog preloaded | Code dependency rules if available, code smell rules | Code-specific facts |
 | external sources | Source files, test runner, debugger output | File paths, test commands |
-| constraints | retry_count < 3 per approach, editing_lock required before code changes | — |
+| constraints | retry_count < 3 per approach, editing_lock required before code changes |,  |
 
 ### G.3 Template: Research Compilation
 
 | Field | Pre-populated Value | User Provides |
 |-------|-------------------|---------------|
-| inference_type | inductive | — |
+| inference_type | inductive |,  |
 | goal | ranked_approaches(_, _) with evidence coverage > 70/100 | Research question |
-| initial step_queue | [1. broad search, 2. categorize findings, 3. deep dive per category, 4. score by evidence quality, 5. identify gaps, 6. fill gaps with targeted search, 7. rank and synthesize] | — |
-| data primitives | lru(papers, 50), counter(papers_found), counter(papers_analyzed), queue(to_analyze, 30), bitset(themes_covered, 10), ring(methodology_notes, 20), lock(analysis_active) | — |
+| initial step_queue | [1. broad search, 2. categorize findings, 3. deep dive per category, 4. score by evidence quality, 5. identify gaps, 6. fill gaps with targeted search, 7. rank and synthesize] |,  |
+| data primitives | lru(papers, 50), counter(papers_found), counter(papers_analyzed), queue(to_analyze, 30), bitset(themes_covered, 10), ring(methodology_notes, 20), lock(analysis_active) |,  |
 | external sources | Web search, academic APIs | Topic keywords |
-| constraints | minimum 3 peer-reviewed sources per major claim, evidence_coverage > 7/10 | — |
+| constraints | minimum 3 peer-reviewed sources per major claim, evidence_coverage > 7/10 |,  |
 
 ### G.4 Template: Decision Matrix
 
 | Field | Pre-populated Value | User Provides |
 |-------|-------------------|---------------|
-| inference_type | deductive | — |
+| inference_type | deductive |,  |
 | goal | ranked_options(_, _) with sensitivity_analysis_complete | Options and criteria |
-| initial step_queue | [1. collect criteria and weights, 2. verify weights sum to 1, 3. score each option, 4. compute weighted totals, 5. sensitivity analysis, 6. present with robustness assessment] | — |
-| data primitives | counter(options_scored), counter(criteria_count), ring(discussion_points, 20), lru(data_sources, 10) | — |
-| constraints | weights_sum_to_one (axiom), all_options_scored_on_all_criteria | — |
+| initial step_queue | [1. collect criteria and weights, 2. verify weights sum to 1, 3. score each option, 4. compute weighted totals, 5. sensitivity analysis, 6. present with robustness assessment] |,  |
+| data primitives | counter(options_scored), counter(criteria_count), ring(discussion_points, 20), lru(data_sources, 10) |,  |
+| constraints | weights_sum_to_one (axiom), all_options_scored_on_all_criteria |,  |
 
 ### G.5 Template: Argument Construction
 
 | Field | Pre-populated Value | User Provides |
 |-------|-------------------|---------------|
-| inference_type | deductive + inductive | — |
+| inference_type | deductive + inductive |,  |
 | goal | argument_structure_valid and unsupported_claims = 0 | Thesis/position |
-| initial step_queue | [1. state thesis, 2. search for supporting evidence, 3. formalize argument structure, 4. check for unsupported claims, 5. search for counter-arguments, 6. prepare rebuttals, 7. order for persuasive flow, 8. generate text following structure] | — |
-| data primitives | queue(argument_order, 20), lru(sources, 30), counter(unsupported_claims), counter(counter_arguments_addressed), bitset(evidence_dimensions, 10) | — |
-| constraints | every claim has source with strength > peer_reviewed, every known objection has a rebuttal | — |
+| initial step_queue | [1. state thesis, 2. search for supporting evidence, 3. formalize argument structure, 4. check for unsupported claims, 5. search for counter-arguments, 6. prepare rebuttals, 7. order for persuasive flow, 8. generate text following structure] |,  |
+| data primitives | queue(argument_order, 20), lru(sources, 30), counter(unsupported_claims), counter(counter_arguments_addressed), bitset(evidence_dimensions, 10) |,  |
+| constraints | every claim has source with strength > peer_reviewed, every known objection has a rebuttal |,  |
 
 ---
 
@@ -1799,10 +1799,10 @@ These thresholds are configurable via constraints on the inference notebook.
 
 | Type | Detection Method | Example | Resolution Strategy |
 |------|-----------------|---------|-------------------|
-| Direct factual | Two facts assert different values for same predicate and args | bob_age(32) and bob_age(59) in same scope | Check provenance — which source is more reliable |
-| Logical | Prolog derives both P and not(P) | reachable(a,d) and not(reachable(a,d)) | Rules are inconsistent — inspect rule set |
+| Direct factual | Two facts assert different values for same predicate and args | bob_age(32) and bob_age(59) in same scope | Check provenance,  which source is more reliable |
+| Logical | Prolog derives both P and not(P) | reachable(a,d) and not(reachable(a,d)) | Rules are inconsistent,  inspect rule set |
 | Statistical | Two evidence sources give significantly different values | Source A: error_rate 1%, Source B: error_rate 15% | Investigate measurement methodology difference |
-| Temporal | Fact was true at time T1 but false at time T2 | server_status(healthy) at 14:00, server_status(down) at 14:30 | Not a contradiction — state changed. Record transition. |
+| Temporal | Fact was true at time T1 but false at time T2 | server_status(healthy) at 14:00, server_status(down) at 14:30 | Not a contradiction,  state changed. Record transition. |
 | Cross-notebook | Two notebooks reach opposite conclusions from overlapping evidence | Notebook A: cause is DB. Notebook B: cause is network. | Compare evidence sets and reasoning chains |
 
 ### H.2 Contradiction Detection Rules
@@ -1838,8 +1838,8 @@ Rule: cross_notebook_contradiction(Conclusion1, Notebook1, Conclusion2, Notebook
 | Strategy | When To Use | Procedure | Outcome |
 |----------|-----------|-----------|---------|
 | Source reliability | Different sources disagree | Compare provenance weights, trust higher | Weaker source's fact downgraded |
-| Temporal resolution | Values changed over time | Assert both with timestamps, mark transition | Not a contradiction — state change |
-| Scope separation | Facts true in different contexts | Verify facts belong to different scope KBs | Not a contradiction — different contexts |
+| Temporal resolution | Values changed over time | Assert both with timestamps, mark transition | Not a contradiction,  state change |
+| Scope separation | Facts true in different contexts | Verify facts belong to different scope KBs | Not a contradiction,  different contexts |
 | Evidence gathering | Insufficient data to resolve | Acquire additional evidence to discriminate | One side gains support |
 | Rule revision | Logical rules produce contradiction | Inspect rule set for over-broad rules | Rule modified or retracted |
 | Confidence degradation | Cannot resolve | Degrade confidence of both conclusions | Both marked as uncertain |
@@ -1957,13 +1957,13 @@ All allocations are exact VDR fractions of the remaining integer budget. The par
 
 | Primitive | SRE | Bug Fix | Architecture | Speech | Email | Research | Decision | Worldbuild | Teaching | Data Quality | Planning |
 |-----------|-----|---------|-------------|--------|-------|----------|----------|-----------|---------|-------------|----------|
-| lru | findings, sources | recent_failures, fixes | — | sources | key_statements | papers, sources | data_sources | recent_events | student_answers | findings | — |
+| lru | findings, sources | recent_failures, fixes |,  | sources | key_statements | papers, sources | data_sources | recent_events | student_answers | findings |,  |
 | counter | queries, hypotheses | failures, retries | scored | unsupported_claims | messages, proposals | found, analyzed | criteria | violations, chapters | steps | tasks |
-| lock | investigating | editing | — | — | — | analysis_active | — | timeline | — | active | deployment_gate |
-| queue | remediation | — | options | argument_order | — | to_analyze | — | — | — | check_queue | task_queue |
-| stack | investigation_path | undo, fix_steps | — | — | — | — | — | plot_threads | hints | investigation_path | blocked |
-| ring | metric_snapshots | — | — | — | — | methodology_notes | discussion | — | — | — | daily_progress |
-| bitset | deps_checked | resolved | — | evidence_dims | processed | themes | — | characters | concepts | sources_cleared | milestones |
+| lock | investigating | editing |,  |,  |,  | analysis_active |,  | timeline |,  | active | deployment_gate |
+| queue | remediation |,  | options | argument_order |,  | to_analyze |,  |,  |,  | check_queue | task_queue |
+| stack | investigation_path | undo, fix_steps |,  |,  |,  |,  |,  | plot_threads | hints | investigation_path | blocked |
+| ring | metric_snapshots |,  |,  |,  |,  | methodology_notes | discussion |,  |,  |,  | daily_progress |
+| bitset | deps_checked | resolved |,  | evidence_dims | processed | themes |,  | characters | concepts | sources_cleared | milestones |
 
 ### K.3 Average Inference Complexity by Domain
 
@@ -1989,8 +1989,8 @@ All allocations are exact VDR fractions of the remaining integer budget. The par
 
 | Scenario | Mechanism | State Preserved | State Lost |
 |----------|-----------|----------------|-----------|
-| Notebook active, session saved | session_snapshot captures all notebook data primitives | Counters, queues, stacks, LRUs, bitsets, locks, investigation state | Nothing — full capture |
-| Notebook active, session reset | All live state cleared | KB facts, rules, constraints (persistent) | All data primitive states — investigation progress lost |
+| Notebook active, session saved | session_snapshot captures all notebook data primitives | Counters, queues, stacks, LRUs, bitsets, locks, investigation state | Nothing,  full capture |
+| Notebook active, session reset | All live state cleared | KB facts, rules, constraints (persistent) | All data primitive states,  investigation progress lost |
 | Notebook concluded, session saved | Conclusion is persistent KB fact, notebook archived | Conclusion, evidence, provenance | Live data primitives (no longer needed) |
 | Notebook active, clone killed | Persistent KB assertions survive | Committed evidence and conclusions | In-progress investigation state |
 
@@ -2000,14 +2000,14 @@ Orchestrated inference in a disposable clone follows a specific pattern:
 
 | Phase | Action | Persistent? | Survives Kill? |
 |-------|--------|------------|----------------|
-| 1. Receive task | Read problem from persistent KB | — | — |
+| 1. Receive task | Read problem from persistent KB |,  |,  |
 | 2. Create notebook | KB structure is persistent, data primitives are live | Mixed | KB yes, primitives no |
 | 3. Investigate | Assert evidence, write rules, execute tools | Evidence facts: persistent | Yes |
 | 4. Conclude | Assert conclusion with provenance | Conclusion: persistent | Yes |
-| 5. Clone killed | Live state destroyed | — | Conclusion survives |
-| 6. New clone | Reads conclusion from persistent KB | — | — |
+| 5. Clone killed | Live state destroyed |,  | Conclusion survives |
+| 6. New clone | Reads conclusion from persistent KB |,  |,  |
 
-The key insight: the notebook's persistent facts (evidence, rules, conclusions) survive clone recycling. The live state (counters, queues, investigation path) does not. A new clone can pick up where the old one left off by reading the persistent facts — but it loses the investigation's working memory.
+The key insight: the notebook's persistent facts (evidence, rules, conclusions) survive clone recycling. The live state (counters, queues, investigation path) does not. A new clone can pick up where the old one left off by reading the persistent facts,  but it loses the investigation's working memory.
 
 For long investigations that might span multiple clone lifetimes, the LLM should periodically promote critical live state to persistent facts:
 
@@ -2028,7 +2028,7 @@ Multiple notebooks can be active simultaneously in different scope branches. Iso
 |--------|----------------------|----------------------|
 | Fact visibility | Child sees parent's facts (inheritance) | Not visible unless mounted or cross-queried |
 | Data primitive visibility | Child can read parent's primitives (inheritance) | Not visible |
-| Lock coordination | Parent lock visible to child — useful for mutual exclusion | Not visible — independent |
+| Lock coordination | Parent lock visible to child,  useful for mutual exclusion | Not visible,  independent |
 | Evidence sharing | Natural through inheritance | Requires explicit KB_ASSERT to shared KB or mount |
 | Contradiction detection | Automatic within scope | Requires cross_notebook_contradiction query |
 | Budget | Child draws from parent's budget | Independent budgets |
@@ -2047,7 +2047,7 @@ Multiple notebooks can be active simultaneously in different scope branches. Iso
 | Over-confident conclusion | LLM concludes too early with insufficient evidence | Low evidence_count relative to problem complexity | Minimum evidence constraint on conclude transition |
 | Infinite loop | LLM keeps gathering evidence without converging | Stall counter exceeds threshold | Stall constraint forces backtrack or conclude |
 | Wrong hypothesis ranking | Inductive scoring uses bad criteria | Leading hypothesis contradicted by subsequent evidence | Backtrack trigger on contradictory evidence |
-| Premature backtrack | LLM abandons a correct path due to one confusing data point | Correct path appears in attempted_steps LRU | Budget management — don't exhaust budget on first path |
+| Premature backtrack | LLM abandons a correct path due to one confusing data point | Correct path appears in attempted_steps LRU | Budget management,  don't exhaust budget on first path |
 | Script bugs | LLM writes Python with errors | Script returns error or nonsensical results | try_catch in execution, error logged, alternative approach |
 | Path reference error | LLM uses wrong dotted path | Command token validation catches non-existent path | Error logged in lru(recent_command_errors), LLM adjusts |
 | Evidence misinterpretation | LLM asserts wrong Prolog fact from correct raw data | Downstream Prolog derivation contradicts other evidence | Contradiction detection, provenance trace to misinterpretation |
@@ -2115,7 +2115,7 @@ Multiple notebooks can be active simultaneously in different scope branches. Iso
 | Existing tests | 705 | VDR-1–4 | No |
 | Planned tests | 1221 | VDR-6–8 | No |
 
-VDR-9 adds no new primitives, no new struct fields, and no new modules. It specifies patterns of use, not new capabilities. Test additions come from testing the inference notebook schema, loop invariants, confidence propagation, and contradiction detection — estimated at 80-120 additional tests.
+VDR-9 adds no new primitives, no new struct fields, and no new modules. It specifies patterns of use, not new capabilities. Test additions come from testing the inference notebook schema, loop invariants, confidence propagation, and contradiction detection,  estimated at 80-120 additional tests.
 
 ---
 

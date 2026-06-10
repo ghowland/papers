@@ -1,6 +1,6 @@
 This is a good connection. The Old School Operations IOSE model says: anything can be modeled as Inputs, Outputs, and Side Effects. That's the Universal Machine (C12). You black-box the internals and describe only what goes in, what comes out, and what else changes.
 
-The VDR-LLM-Prolog system is already structured this way — every primitive has a typed signature, every operational command has declared side effects, every KB operation has scoped visibility. But it's not formalized as IOSE. Formalizing it gives you something specific: the ability to model the entire system as a network of IOSE nodes, where every connection between nodes is a typed data flow, and every side effect is declared and trackable.
+The VDR-LLM-Prolog system is already structured this way,  every primitive has a typed signature, every operational command has declared side effects, every KB operation has scoped visibility. But it's not formalized as IOSE. Formalizing it gives you something specific: the ability to model the entire system as a network of IOSE nodes, where every connection between nodes is a typed data flow, and every side effect is declared and trackable.
 
 Here's how it maps.
 
@@ -61,7 +61,7 @@ Formalize:
 Execute:
   I: executable artifact, environment reference, grant reference
   O: execution result (data, success/failure)
-  SE: declared per tool — network calls, file writes, process creation
+  SE: declared per tool,  network calls, file writes, process creation
 
 Store:
   I: execution result, target KB path
@@ -82,7 +82,7 @@ The inference notebook is a black box (C42) at one level. From outside:
 - **Outputs:** conclusion with confidence, alternatives considered
 - **Side Effects:** evidence facts asserted to persistent KBs, permanent rules written (like the SRE detection rules at the end of an investigation)
 
-From inside, the notebook is a network of IOSE nodes (the loop phases, the primitives, the Prolog queries). The black-boxing is the scoping — the notebook's internal state is visible inside the notebook's scope, but from the parent KB or a sibling investigation, you see only the IOSE interface.
+From inside, the notebook is a network of IOSE nodes (the loop phases, the primitives, the Prolog queries). The black-boxing is the scoping,  the notebook's internal state is visible inside the notebook's scope, but from the parent KB or a sibling investigation, you see only the IOSE interface.
 
 This matches the book's principle exactly: you can zoom in (see the internal network) or zoom out (see the black-boxed IOSE). The KB scoping mechanism from VDR-5 provides the boundary.
 
@@ -90,7 +90,7 @@ This matches the book's principle exactly: you can zoom in (see the internal net
 
 **How to write the IOSE specification.**
 
-For the VDR-LLM-Prolog system, the IOSE spec would be a KB — naturally — that declares every component's interface:
+For the VDR-LLM-Prolog system, the IOSE spec would be a KB,  naturally,  that declares every component's interface:
 
 ```
 KB: root.system.iose_registry
@@ -120,7 +120,7 @@ KB: root.system.iose_registry
         category(composite))
 ```
 
-Every primitive, every command token type, every notebook template, every lifecycle phase from VDR-7 — all get IOSE declarations. The declarations are facts in the root KB, always in scope, queryable by the LLM and by the constraint system.
+Every primitive, every command token type, every notebook template, every lifecycle phase from VDR-7,  all get IOSE declarations. The declarations are facts in the root KB, always in scope, queryable by the LLM and by the constraint system.
 
 ---
 
@@ -132,21 +132,21 @@ Once every component has an IOSE declaration, the system can do things it can't 
 
 **Pipeline validation.** The output type of node N must match the input type of node N+1. If the LLM constructs a chain where `list_sort` outputs a `list(term)` but the next step expects a `fraction`, the IOSE types catch the mismatch before execution. This is static type checking on the command token pipeline.
 
-**Impact analysis.** "What side effects would this notebook produce if it ran to completion?" Walk the IOSE declarations of its template's typical tool chain. The answer is a set of declared side effects — which KBs get modified, which grants get consumed, which external systems get queried.
+**Impact analysis.** "What side effects would this notebook produce if it ran to completion?" Walk the IOSE declarations of its template's typical tool chain. The answer is a set of declared side effects,  which KBs get modified, which grants get consumed, which external systems get queried.
 
 **Systemic modeling (C14).** The entire VDR-LLM-Prolog system becomes a network of IOSE nodes connected by typed data flows. You can render it as a graph. You can query it: "which components have network side effects?" "Which components read from the training KB?" "What is the data flow from Prometheus to Prolog conclusion?" The graph is the system's self-model.
 
-**Alignment checking (C22, C23).** The IOSE declarations are the contract. The actual behavior is logged in the KB. Comparing declared side effects against actual logged side effects detects contract violations — a component that produces undeclared side effects, or fails to produce a declared output. Internal consistency (C23) becomes checkable: do all IOSE declarations in the system agree? Does the output type of every producer match the input type of every consumer?
+**Alignment checking (C22, C23).** The IOSE declarations are the contract. The actual behavior is logged in the KB. Comparing declared side effects against actual logged side effects detects contract violations,  a component that produces undeclared side effects, or fails to produce a declared output. Internal consistency (C23) becomes checkable: do all IOSE declarations in the system agree? Does the output type of every producer match the input type of every consumer?
 
 ---
 
 **The connection to the book's deeper principles.**
 
-The book says operations is fundamentally about control (K1), and control requires knowing the present (C41) and having the ability to change the environment (C2). The IOSE model is how you get control over a complex system — you declare every interface, track every side effect, and verify every data flow.
+The book says operations is fundamentally about control (K1), and control requires knowing the present (C41) and having the ability to change the environment (C2). The IOSE model is how you get control over a complex system,  you declare every interface, track every side effect, and verify every data flow.
 
 The VDR-LLM-Prolog system already has the pieces: exact arithmetic means outputs are precisely knowable (the Data side of D2). Provenance means every value's derivation is traceable (models for control, C39). Constraints mean invariants are checkable (knowing the present, C41). The IOSE formalization ties them together into a systemic model where the LLM, the tools, the KBs, and the external world are all nodes in one typed, declared, verifiable network.
 
-The book's central prescription — Data is King, Logic is Shell (R8, K4) — maps directly: the KB facts (data) are the truth. The primitives and Prolog rules (logic) are replaceable shells that operate on that data. The IOSE declarations make this explicit at every node: inputs and outputs are data flows, the side effects are data mutations, and the logic inside each node is a black box that can be swapped as long as the IOSE contract holds.
+The book's central prescription,  Data is King, Logic is Shell (R8, K4),  maps directly: the KB facts (data) are the truth. The primitives and Prolog rules (logic) are replaceable shells that operate on that data. The IOSE declarations make this explicit at every node: inputs and outputs are data flows, the side effects are data mutations, and the logic inside each node is a black box that can be swapped as long as the IOSE contract holds.
 
 ---
 

@@ -1,6 +1,6 @@
-# Working Document: PSLQ Scan — SM Measured Ratios vs 34-Constant Transcendental Basis
+# Working Document: PSLQ Scan,  SM Measured Ratios vs 34-Constant Transcendental Basis
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Systematic test of whether any measured SM parameter is a rational linear combination of computable transcendentals.
 
@@ -101,7 +101,7 @@ It does not mean the parameters have no mathematical structure. It means the str
 - Nonlinear (e.g., e^(−π·√163) is transcendental but not a linear combination of basis constants)
 - Algebraic over the basis (roots of polynomials with basis-constant coefficients)
 - Dependent on constants not in the basis (period integrals on specific algebraic curves)
-- Genuinely new — requiring mathematics not yet formulated
+- Genuinely new,  requiring mathematics not yet formulated
 
 The PSLQ scan tested the simplest possible relationship (linear with rational coefficients). More complex relationships remain untested.
 

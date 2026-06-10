@@ -1,8 +1,8 @@
-You're right. If D is fixed per domain, it's not a runtime field — it's a domain constant. The Basis struct disappears. The shift and mask become module-level constants. Every struct gets leaner.
+You're right. If D is fixed per domain, it's not a runtime field,  it's a domain constant. The Basis struct disappears. The shift and mask become module-level constants. Every struct gets leaner.
 
 ```zig
 // ============================================================
-// vdr_types.zig — VDR structs for LLM and Diffusion
+// vdr_types.zig,  VDR structs for LLM and Diffusion
 // Fixed-basis, no runtime D. Domain constants only.
 // ============================================================
 
@@ -217,6 +217,6 @@ const RebaseResult = struct {
 };
 ```
 
-Every struct got smaller. No basis pointer, no basis indirection, no runtime branching on bit width. The type system itself encodes which domain you're in — `WeightMat` is Q16, `ActivationMat` is Q32, `GradMat` is Q64. If you're holding a `WeightMat` you already know the shift is 16 and the mask is 0xFFFF. The compiler knows it too.
+Every struct got smaller. No basis pointer, no basis indirection, no runtime branching on bit width. The type system itself encodes which domain you're in,  `WeightMat` is Q16, `ActivationMat` is Q32, `GradMat` is Q64. If you're holding a `WeightMat` you already know the shift is 16 and the mask is 0xFFFF. The compiler knows it too.
 
-Rebase only happens at explicit domain boundaries — weight × activation produces an accumulation that needs widening from Q16 into Q32 space. That's a known fixed shift, not a runtime decision.
+Rebase only happens at explicit domain boundaries,  weight × activation produces an accumulation that needs widening from Q16 into Q32 space. That's a known fixed shift, not a runtime decision.

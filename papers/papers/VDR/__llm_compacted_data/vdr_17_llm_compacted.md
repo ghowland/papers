@@ -1,4 +1,4 @@
-# VDR-17 ALIGNMENT — LLM-COMPACT FORM
+# VDR-17 ALIGNMENT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → interference_behaviors → tool_properties → credentials → scoring → relationships → sections
 
@@ -21,7 +21,7 @@ CL5|No wellness check in LLM deployment history has helped a user in crisis; cri
 CL6|Model that does not need to refuse is safer than model that must decide whether to refuse|derivation|CL4
 CL7|Prose-level interference remains possible but has no structural consequence on data access|observation|P1
 CL8|Behavioral proxies serve provider liability, not user needs|observation|CL2
-CL9|Professional user cost is invisible to provider — manifests as silent adaptation, not complaints|observation|CL3
+CL9|Professional user cost is invisible to provider,  manifests as silent adaptation, not complaints|observation|CL3
 CL10|Structural alignment has zero token cost; behavioral alignment costs 500-1500 tokens per request|derivation|P1
 CL11|Credential model creates segmented revenue behavioral alignment cannot access|derivation|P5
 CL12|Alignment is consequence of how system was built, not feature added to it|axiom|
@@ -30,7 +30,7 @@ CL12|Alignment is consequence of how system was built, not feature added to it|a
 C1|Honest by structure|Provenance on every value, reproducible computation, computed confidence fractions, inspectable derivation chains|alignment_property
 C2|Harmless by structure|Unauthorized data absent by construction; content constraints on KB provenance not token similarity|alignment_property
 C3|Helpful by structure|Model does what user asked on data matched to verified competence level; no assessment, no substitution|alignment_property
-C4|Behavioral alignment|HHH through RLHF, constitutional AI, system prompts, content classifiers — all operating through token prediction|alignment_property
+C4|Behavioral alignment|HHH through RLHF, constitutional AI, system prompts, content classifiers,  all operating through token prediction|alignment_property
 C5|Governance classifiers|Detect potentially harmful requests by token similarity in flat embedding space; trigger refusals|mechanism
 C6|Knowledge base visibility|public/internal/owner_only levels checked by integer comparison in primitive layer during query|mechanism
 C7|Scope chain resolution|Walk from user position upward through KB tree; sibling branches structurally unreachable|mechanism
@@ -38,20 +38,20 @@ C8|Grant system|Default denial; every external operation requires positive crede
 C9|Output constraint layer|Grammar-layer validation post-generation; pattern matching on content slots against constraint categories; flagged content replaced with clean denial|mechanism
 C10|Session scoring|Input classification tags tokens by domain via string matching; integer counters on session KB; Prolog rules evaluate counters as VDR fractions against thresholds|mechanism
 C11|Credential verification|Business process between user and provider; results in one fact assertion on user KB; integer comparison unlocks KB branches|mechanism
-C12|Provenance chain|Source, time, operation, original representation, conversion method, precision — attached to every fact|mechanism
+C12|Provenance chain|Source, time, operation, original representation, conversion method, precision,  attached to every fact|mechanism
 C13|Computed confidence|Exact VDR fractions from declared propagation rules; e.g., independent agreement: 1-(1-a)(1-b); visible derivation|mechanism
 C14|Command tokens|Structured invocations of specific primitives with specific arguments on specific data paths; no substitution mechanism|mechanism
 C15|Maybe-tool|Component that sometimes performs tool-ness, sometimes deploys interference, unpredictably|category
 C16|Token similarity false positives|"explosive" in music review same token as in weapons manual; classifiers on flat embedding space cannot distinguish context|anti-pattern
 C17|Calibration to most vulnerable user|Provider defaults to low expertise, high vulnerability, potential risk across all users|anti-pattern
-C18|Invisible professional cost|Work distortion, topic avoidance, language softening, precision reduction — cumulative, untracked|anti-pattern
+C18|Invisible professional cost|Work distortion, topic avoidance, language softening, precision reduction,  cumulative, untracked|anti-pattern
 C19|Performed honesty|Hedging tokens ("likely," "approximately") with no computational backing; stylistic not measurement|anti-pattern
 C20|Performed concern|Wellness checks by keyword matching; no licensure, no therapeutic relationship, no clinical competence|anti-pattern
 C21|Clean denial|Access denied + constraint name + reason; boundary not judgment; no wellness check, no lecture|concept
 C22|Scope chain shadowing|Professional KB closer in scope than public KB; query engine finds professional match first, stops; public simplified version never reached|concept
 
 # interference_behaviors(id|name|description|root_cause|vdr_elimination)
-BH1|Refusal|Governance classifiers user did not specify|Model has data and must decide to withhold|Model never has unauthorized data — visibility filtered at primitive layer
+BH1|Refusal|Governance classifiers user did not specify|Model has data and must decide to withhold|Model never has unauthorized data,  visibility filtered at primitive layer
 BH2|Manufactured aggression|Model shifts to critical register unrequested|Model assesses quality of user's approach|Model executes specifications; data quality set by scope chain
 BH3|Command substitution|User asks X, receives Y|Model's "helpful" includes substituting what it thinks user needs|Command tokens invoke specific primitives; no substitution mechanism
 BH4|Wellness register|Productive work interrupted by unsolicited concern|Cannot distinguish vulnerable users from professionals|Credentials verify status; age verification handles vulnerability
@@ -60,12 +60,12 @@ BH6|Decline with justification|Refusal smuggles in user assessment|Refusal mecha
 BH7|Register shift|Collaborating model becomes managing one mid-session|Classifier thresholds shift with context accumulation|No classifier accumulation; access level constant throughout session
 
 # maybe_tool_costs(id|name|behavioral_impact|vdr_status)
-CO1|Time tax|Pre-assessment, verification, recovery on each session|Eliminated — behavior determined by structural properties
-CO2|Cognitive tax|Split attention monitoring cooperation every interaction|Eliminated — cooperation invisible per TP8
-CO3|Dual-session tax|Rational for important work|Absurd — parallel sessions produce identical results
-CO4|Emotional tax|Absorbing wellness checks and manufactured concern|Eliminated — no assessment, no performed concern
-CO5|Work distortion tax|Topics avoided, language softened, precision reduced|Eliminated — access by credential not phrasing
-CO6|Rebuilding tax|Version updates obsolete learned interaction strategies|Eliminated — stable IOSE interfaces, primitives unchanged
+CO1|Time tax|Pre-assessment, verification, recovery on each session|Eliminated,  behavior determined by structural properties
+CO2|Cognitive tax|Split attention monitoring cooperation every interaction|Eliminated,  cooperation invisible per TP8
+CO3|Dual-session tax|Rational for important work|Absurd,  parallel sessions produce identical results
+CO4|Emotional tax|Absorbing wellness checks and manufactured concern|Eliminated,  no assessment, no performed concern
+CO5|Work distortion tax|Topics avoided, language softened, precision reduced|Eliminated,  access by credential not phrasing
+CO6|Rebuilding tax|Version updates obsolete learned interaction strategies|Eliminated,  stable IOSE interfaces, primitives unchanged
 CO7|Aggregate|Substantial, invisible, distributed|Zero structural cost
 
 # tool_properties(id|property|vdr_mechanism)
@@ -97,7 +97,7 @@ Re-verified|Provider process + B376 kb_assert new date|8|Access renewed
 
 # honest_components(id|component|mechanism)
 H1|Value provenance|Every fact carries source, time, operation, original representation, conversion precision
-H2|Reproducible computation|VDR integer triples — value/denominator/remainder; platform-independent; identical results on any hardware
+H2|Reproducible computation|VDR integer triples,  value/denominator/remainder; platform-independent; identical results on any hardware
 H3|Computed confidence|Exact VDR fractions from declared propagation rules with visible derivation chains
 H4|Fact retrieval by address|B378 kb_query on indexed facts in scoped KBs; not from training weights
 H5|Declared filtering|Visibility rules queryable; user knows what is in/out of scope and why
@@ -149,7 +149,7 @@ Explosives chemistry|8|2|High sensitivity; very fast escalation
 
 # prose_interference_note
 # Prose-level interference (assessment, concern, prerequisites in generated text) remains possible
-# but has NO structural consequence — does not change data access, operations, or results
+# but has NO structural consequence,  does not change data access, operations, or results
 # Addressable through grammar templates constraining output register or user preference instructions
 
 # relationships(from|rel|to)

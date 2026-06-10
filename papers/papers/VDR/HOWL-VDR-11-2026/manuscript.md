@@ -14,20 +14,20 @@
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6.
 
 **Supplementary Materials:**
-- `supplementary/function_iose_5_stages_spec.md` — Complete function-level IOSE specification for all 65 modules across 5 stages, with inputs, outputs, side effects, and properties declared for every function.
-- `supplementary/iose_spec_depth.md` — Full data structure definitions (dataclasses, enums), module map, file layout, line count estimates, Zig port strategy, and stage deliverable tables.
+- `supplementary/function_iose_5_stages_spec.md`,  Complete function-level IOSE specification for all 65 modules across 5 stages, with inputs, outputs, side effects, and properties declared for every function.
+- `supplementary/iose_spec_depth.md`,  Full data structure definitions (dataclasses, enums), module map, file layout, line count estimates, Zig port strategy, and stage deliverable tables.
 
 ---
 
 ## Abstract
 
-Ten papers specified the VDR-LLM-Prolog system. VDR-10 provided the engineering foundation — the IOSE system model, operational principles, and comprehensive numeric builtins. This paper specifies how to build it.
+Ten papers specified the VDR-LLM-Prolog system. VDR-10 provided the engineering foundation,  the IOSE system model, operational principles, and comprehensive numeric builtins. This paper specifies how to build it.
 
 The system is built in five stages, each producing a complete, testable, runnable system that handles a full lifecycle at its level of capability. Stage 1 is a toy that can create knowledge bases, assert and query facts, run Prolog rules, perform exact arithmetic, and demonstrate one training-evaluation cycle. Stage 2 adds command tokens, path addressing, scope resolution, constraints, and the scratchpad. Stage 3 adds session management, inference notebooks, Q-basis transcendentals, functional remainders, and domain-specific mathematics. Stage 4 adds operational environments, grants, filesystem and network operations, all four inference modes, and the lifecycle pipeline. Stage 5 completes the system with Docker and SSH environments, compilation, linting, feedback collection, deployment, monitoring, canary deployment, and retirement.
 
-The build uses Python 3.8 as the prototype language, leveraging the existing VDR-1 through VDR-4 codebase (~5,000 lines of tested exact arithmetic, linear algebra, and ML stack code). New code is approximately 15,500 lines across 65 modules. Every function has an IOSE declaration — inputs, outputs, side effects, and properties — which simultaneously serves as the test specification, the documentation, and the interface contract for the eventual Zig 0.15.1 production port.
+The build uses Python 3.8 as the prototype language, leveraging the existing VDR-1 through VDR-4 codebase (~5,000 lines of tested exact arithmetic, linear algebra, and ML stack code). New code is approximately 15,500 lines across 65 modules. Every function has an IOSE declaration,  inputs, outputs, side effects, and properties,  which simultaneously serves as the test specification, the documentation, and the interface contract for the eventual Zig 0.15.1 production port.
 
-The central claim is that a system specified by ten papers, governed by operational engineering principles, and built in disciplined stages with IOSE declarations at every function is not a research prototype — it is an engineering project with a concrete, executable build plan.
+The central claim is that a system specified by ten papers, governed by operational engineering principles, and built in disciplined stages with IOSE declarations at every function is not a research prototype,  it is an engineering project with a concrete, executable build plan.
 
 ---
 
@@ -37,13 +37,13 @@ The central claim is that a system specified by ten papers, governed by operatio
 
 The VDR-LLM-Prolog system has been specified across ten papers:
 
-**Exact arithmetic** (VDR-1 through VDR-4). Every number is an integer triple [V, D, R] — value, denominator, remainder. 705 tests across 23 mathematical domains, zero VDR computation errors. A working transformer with exact softmax, exact autodiff, and exact training.
+**Exact arithmetic** (VDR-1 through VDR-4). Every number is an integer triple [V, D, R],  value, denominator, remainder. 705 tests across 23 mathematical domains, zero VDR computation errors. A working transformer with exact softmax, exact autodiff, and exact training.
 
-**Knowledge architecture** (VDR-5). Everything stored in Knowledge Bases — facts, rules, constraints organized in a scoped tree. User accounts as KBs. Organizational hierarchy as the tree structure.
+**Knowledge architecture** (VDR-5). Everything stored in Knowledge Bases,  facts, rules, constraints organized in a scoped tree. User accounts as KBs. Organizational hierarchy as the tree structure.
 
 **Execution layer** (VDR-6). 255 deterministic primitives invoked through compact command tokens. Sandboxed operational environments. Positive credential grants.
 
-**Lifecycle** (VDR-7). The complete model lifecycle — data sourcing through retirement — as KB operations.
+**Lifecycle** (VDR-7). The complete model lifecycle,  data sourcing through retirement,  as KB operations.
 
 **Runtime state** (VDR-8). Data primitives (LRU caches, counters, locks, queues, stacks, ring buffers, bitsets) as fields on the KB struct. Universal dotted-path addressing with integer ID acceleration. Session snapshots and disposable cloning.
 
@@ -53,9 +53,9 @@ The VDR-LLM-Prolog system has been specified across ten papers:
 
 ### 1.2 What This Paper Provides
 
-A build plan. Not a wish list — a concrete, staged, module-by-module, function-by-function plan for constructing the system. Every module has a stage assignment. Every function has an IOSE declaration. Every stage has a test count target and a defined capability level.
+A build plan. Not a wish list,  a concrete, staged, module-by-module, function-by-function plan for constructing the system. Every module has a stage assignment. Every function has an IOSE declaration. Every stage has a test count target and a defined capability level.
 
-The complete function-level specification lives in the supplementary materials. This paper describes the architecture, the staging strategy, the key design decisions, and the integration points. It does not reproduce the supplementary specifications — it explains them.
+The complete function-level specification lives in the supplementary materials. This paper describes the architecture, the staging strategy, the key design decisions, and the integration points. It does not reproduce the supplementary specifications,  it explains them.
 
 ---
 
@@ -63,25 +63,25 @@ The complete function-level specification lives in the supplementary materials. 
 
 ### 2.1 Comprehensive Then Incremental
 
-The specification is comprehensive — ten papers define the whole system top-down. The build is incremental — five stages, each producing a testable system. At no stage is the system aggregated in the OSO sense (C18). Each stage is a complete, internally consistent system that handles a full lifecycle at its level of capability. Stage 1 handles a toy lifecycle. Stage 5 handles production. But even Stage 1 has KB creation, fact assertion, rule evaluation, exact arithmetic, and a training-evaluation loop.
+The specification is comprehensive,  ten papers define the whole system top-down. The build is incremental,  five stages, each producing a testable system. At no stage is the system aggregated in the OSO sense (C18). Each stage is a complete, internally consistent system that handles a full lifecycle at its level of capability. Stage 1 handles a toy lifecycle. Stage 5 handles production. But even Stage 1 has KB creation, fact assertion, rule evaluation, exact arithmetic, and a training-evaluation loop.
 
 ### 2.2 Python First, Zig Final
 
-Python 3.8 is the prototype language. It has the existing VDR-1 through VDR-4 codebase — vdr.py, active_mul.py, fn.py, linalg.py, and nineteen other modules totaling approximately 5,000 lines of tested, working code. The prototype validates every design decision in a language where iteration is fast and debugging is straightforward.
+Python 3.8 is the prototype language. It has the existing VDR-1 through VDR-4 codebase,  vdr.py, active_mul.py, fn.py, linalg.py, and nineteen other modules totaling approximately 5,000 lines of tested, working code. The prototype validates every design decision in a language where iteration is fast and debugging is straightforward.
 
-The production implementation will be Zig 0.15.1. The port is mechanical because the IOSE declarations define the interfaces — same inputs, same outputs, same side effects, same properties. Python dataclasses map to Zig structs. Python dicts map to Zig HashMaps. Python lists map to Zig ArrayLists. Python enums map to Zig enums. The prototype is designed for portability from the start.
+The production implementation will be Zig 0.15.1. The port is mechanical because the IOSE declarations define the interfaces,  same inputs, same outputs, same side effects, same properties. Python dataclasses map to Zig structs. Python dicts map to Zig HashMaps. Python lists map to Zig ArrayLists. Python enums map to Zig enums. The prototype is designed for portability from the start.
 
 The Zig port happens after Stage 5 validates the complete system in Python. The IOSE declarations serve simultaneously as: the Python function signatures, the test specifications, the documentation, and the Zig interface contracts.
 
 ### 2.3 IOSE At Every Function
 
-Every function in the system — from `vdr_add` to `create_deployment` to `session_clone` — has an IOSE declaration before it has an implementation. The declaration states what goes in, what comes out, and what else changes. This discipline starts at Stage 1 and never relaxes.
+Every function in the system,  from `vdr_add` to `create_deployment` to `session_clone`,  has an IOSE declaration before it has an implementation. The declaration states what goes in, what comes out, and what else changes. This discipline starts at Stage 1 and never relaxes.
 
 The IOSE declaration is the test specification. To test a function: provide the declared inputs, verify the declared outputs, confirm the declared side effects occurred, and verify the declared properties hold (determinism by running twice and comparing, idempotency by running the output through the function again, commutativity by swapping arguments).
 
 ### 2.4 Existing Code Integration
 
-The VDR-1 through VDR-4 codebase is not rewritten. It is wrapped. The existing `VDR` class in `vdr.py` becomes the implementation behind the `vdr_add`, `vdr_mul`, `vdr_div` builtins. The existing `Vec` and `Mat` classes in `linalg.py` become the implementation behind the linear algebra builtins. The existing `softmax` function becomes the implementation behind `vdr_softmax`. The wrapping layer adds IOSE declarations, type dispatch, and error handling via the Result type. The core mathematics is proven — 705 tests — and is not touched.
+The VDR-1 through VDR-4 codebase is not rewritten. It is wrapped. The existing `VDR` class in `vdr.py` becomes the implementation behind the `vdr_add`, `vdr_mul`, `vdr_div` builtins. The existing `Vec` and `Mat` classes in `linalg.py` become the implementation behind the linear algebra builtins. The existing `softmax` function becomes the implementation behind `vdr_softmax`. The wrapping layer adds IOSE declarations, type dispatch, and error handling via the Result type. The core mathematics is proven,  705 tests,  and is not touched.
 
 ---
 
@@ -91,29 +91,29 @@ The VDR-1 through VDR-4 codebase is not rewritten. It is wrapped. The existing `
 
 The system organizes into ten layers, each a directory containing related modules:
 
-**core/** — The existing VDR arithmetic library plus new type dispatch and error handling. This is the mathematical foundation. Five existing modules (vdr.py, active_mul.py, fn.py, linalg.py, export.py) plus two new modules (types.py, errors.py).
+**core/**,  The existing VDR arithmetic library plus new type dispatch and error handling. This is the mathematical foundation. Five existing modules (vdr.py, active_mul.py, fn.py, linalg.py, export.py) plus two new modules (types.py, errors.py).
 
-**kb/** — The Knowledge Base engine. KB struct, fact storage, Prolog-style rule engine with unification and backtracking, constraint checking, scope resolution, working data bindings. Six modules.
+**kb/**,  The Knowledge Base engine. KB struct, fact storage, Prolog-style rule engine with unification and backtracking, constraint checking, scope resolution, working data bindings. Six modules.
 
-**path/** — The universal addressing system. Path-to-integer registry, dotted path resolution with relative paths, mount system with cycle detection. Three modules.
+**path/**,  The universal addressing system. Path-to-integer registry, dotted path resolution with relative paths, mount system with cycle detection. Three modules.
 
-**primitives/** — All 448 builtins as IOSE-declared functions. Organized by category: text, collections, arithmetic, comparison, rounding, number theory, linear algebra, statistics, probability, conversion, time, identity, graphs, logic, integer operations, active arithmetic, structure operations, Q-basis, functional remainder, discrete calculus, denominator management, polynomial, finite field, Markov, graph math. Twenty-eight modules.
+**primitives/**,  All 448 builtins as IOSE-declared functions. Organized by category: text, collections, arithmetic, comparison, rounding, number theory, linear algebra, statistics, probability, conversion, time, identity, graphs, logic, integer operations, active arithmetic, structure operations, Q-basis, functional remainder, discrete calculus, denominator management, polynomial, finite field, Markov, graph math. Twenty-eight modules.
 
-**data_primitives/** — Runtime state data structures. Counter, lock, queue, stack, LRU cache, ring buffer, bitset. Each module provides the IOSE-declared functions that operate on the corresponding data structure within a KB. Seven modules.
+**data_primitives/**,  Runtime state data structures. Counter, lock, queue, stack, LRU cache, ring buffer, bitset. Each module provides the IOSE-declared functions that operate on the corresponding data structure within a KB. Seven modules.
 
-**command/** — Command token parsing and execution. Token type definitions, stream parser, dispatch executor, scratchpad. Four modules.
+**command/**,  Command token parsing and execution. Token type definitions, stream parser, dispatch executor, scratchpad. Four modules.
 
-**session/** — Session state management. Snapshot capture and restore, clone creation and destruction, lifecycle operations (reset, diff, info). Three modules.
+**session/**,  Session state management. Snapshot capture and restore, clone creation and destruction, lifecycle operations (reset, diff, info). Three modules.
 
-**inference/** — Orchestrated Inference. Notebook creation and templating, the assess-formalize-execute-store loop, the four inference modes (deductive, inductive, abductive, analogical), confidence propagation, provenance tracking and challenge mechanism. Five modules.
+**inference/**,  Orchestrated Inference. Notebook creation and templating, the assess-formalize-execute-store loop, the four inference modes (deductive, inductive, abductive, analogical), confidence propagation, provenance tracking and challenge mechanism. Five modules.
 
-**env/** — Operational environments. Abstract base interface, local execution, Docker container management, SSH remote execution, VM management. Five modules.
+**env/**,  Operational environments. Abstract base interface, local execution, Docker container management, SSH remote execution, VM management. Five modules.
 
-**ops/** — Operational primitives. Filesystem operations, script execution, compilation, linting, network operations, process management, grant verification. Seven modules.
+**ops/**,  Operational primitives. Filesystem operations, script execution, compilation, linting, network operations, process management, grant verification. Seven modules.
 
-**lifecycle/** — Model lifecycle management. Data pipeline (source registry, corpus preparation, tokenization), training orchestration, evaluation, feedback collection, deployment, monitoring. Six modules.
+**lifecycle/**,  Model lifecycle management. Data pipeline (source registry, corpus preparation, tokenization), training orchestration, evaluation, feedback collection, deployment, monitoring. Six modules.
 
-**iose/** — IOSE infrastructure. Declaration registry, chain validation, and OSO principle loading. Three modules.
+**iose/**,  IOSE infrastructure. Declaration registry, chain validation, and OSO principle loading. Three modules.
 
 Total: 65 modules across 12 directories (including tests/).
 
@@ -165,7 +165,7 @@ The kb layer introduces the KB struct with all 25 fields from VDR-10, the fact s
 
 The primitives layer introduces the first wave of builtins: closed arithmetic (8 builtins wrapping vdr.py), comparison (10), rounding and extraction (7), list aggregates (8), text operations (17), collection operations (36), set operations (14), mapping operations (15), conversion operations (14 including the critical conversion boundaries), logic operations (11), and integer fast path with bit operations (21). Approximately 150 builtins active.
 
-The data_primitives layer introduces counter, lock, queue, and stack — the four simplest runtime state structures. Each has a module with IOSE-declared functions for create, read, write, and query operations.
+The data_primitives layer introduces counter, lock, queue, and stack,  the four simplest runtime state structures. Each has a module with IOSE-declared functions for create, read, write, and query operations.
 
 The iose layer introduces the builtin registry (register, lookup by ID and name, category listing) and the OSO principles KB loader (15 axioms, core knowability facts, priority rules).
 
@@ -207,7 +207,7 @@ Every value is an exact VDR fraction. Every fact is in a KB. Every step is logge
 
 ### 4.2 Stage 2: Upgraded Toy
 
-**Capability:** Command tokens replace direct API calls. The system can parse a mixed stream of text and CMD: tokens, dispatch each command to the appropriate builtin, and return results. Path addressing gives every KB a dotted path with integer ID acceleration. Scope resolution enables topic switching — activating a topic makes its KB chain visible and deactivates others. Constraints fire on violations. The scratchpad provides an internal computation channel.
+**Capability:** Command tokens replace direct API calls. The system can parse a mixed stream of text and CMD: tokens, dispatch each command to the appropriate builtin, and return results. Path addressing gives every KB a dotted path with integer ID acceleration. Scope resolution enables topic switching,  activating a topic makes its KB chain visible and deactivates others. Constraints fire on violations. The scratchpad provides an internal computation channel.
 
 **New modules:** 13 (cumulative 37).
 
@@ -217,9 +217,9 @@ The path layer introduces the path registry (assign integer IDs, resolve dotted 
 
 The command layer introduces command token types, the stream parser (split text from CMD: lines), the executor (resolve paths to IDs, validate types against IOSE declarations, dispatch to builtins), and the scratchpad (a RingBuffer-based internal workspace).
 
-The primitives layer gains the second wave: active arithmetic (5), structure operations (3 — lift, rebase, projection), number theory (13), linear algebra (24 wrapping linalg.py), statistics (16), probability (included in statistics), time operations (10), identity operations (8), and graph algorithms (13). Total builtins reaches approximately 300.
+The primitives layer gains the second wave: active arithmetic (5), structure operations (3,  lift, rebase, projection), number theory (13), linear algebra (24 wrapping linalg.py), statistics (16), probability (included in statistics), time operations (10), identity operations (8), and graph algorithms (13). Total builtins reaches approximately 300.
 
-The data_primitives layer gains LRU cache, ring buffer, and bitset — the three remaining runtime state structures.
+The data_primitives layer gains LRU cache, ring buffer, and bitset,  the three remaining runtime state structures.
 
 The iose layer gains the validator (type compatibility checking across chains, side effect preview, post-execution contract verification).
 
@@ -227,7 +227,7 @@ The iose layer gains the validator (type compatibility checking across chains, s
 
 The system moves from Python API calls to structured command tokens. The LLM (or test harness) emits `CMD: vdr_add(root.train.loss_step_0, 1/10)` and the executor resolves the path, looks up the data, invokes the builtin, and returns the result. The scratchpad holds intermediate computations. The scope resolver ensures that switching from the training topic to the evaluation topic changes which facts are visible.
 
-Constraints become active. A constraint like `loss_finite` with condition `loss < 1000` is checked after each training step. If violated, the on_violation action fires — which might halt training, log a warning, or escalate.
+Constraints become active. A constraint like `loss_finite` with condition `loss < 1000` is checked after each training step. If violated, the on_violation action fires,  which might halt training, log a warning, or escalate.
 
 **Tests:** +200 (cumulative 350). Command token parsing and execution (40), path registry and resolution (30), scope resolver (30), constraint engine (20), new builtins (60), new data primitives (20).
 
@@ -237,7 +237,7 @@ Constraints become active. A constraint like `loss_finite` with condition `loss 
 
 **New modules:** 12 (cumulative 49).
 
-The path layer gains the mount system — create mounts with cycle detection, resolve queries through mounts respecting read-only/read-write/snapshot/mirror modes.
+The path layer gains the mount system,  create mounts with cycle detection, resolve queries through mounts respecting read-only/read-write/snapshot/mirror modes.
 
 The primitives layer gains the third wave: Q-basis operations (7), functional remainder operations (8), discrete calculus (6), denominator management (5), polynomial operations (8), finite field operations (4), Markov chain operations (3), and graph math (2). Total builtins reaches approximately 400.
 
@@ -247,7 +247,7 @@ The inference layer introduces notebook creation (with template support for comm
 
 **What changes architecturally:**
 
-The system gains memory and recovery. Before Stage 3, a bad state required starting over. Now the system can snapshot a known-good state, experiment, and restore if things go wrong. The disposable clone pattern becomes available — snapshot a stable operator, launch workers from it, kill them when they drift, launch fresh ones.
+The system gains memory and recovery. Before Stage 3, a bad state required starting over. Now the system can snapshot a known-good state, experiment, and restore if things go wrong. The disposable clone pattern becomes available,  snapshot a stable operator, launch workers from it, kill them when they drift, launch fresh ones.
 
 The system gains investigation capability. An inference notebook formalizes a multi-step investigation with declared goals, resource budgets, and progress tracking. The loop cycles through assessment (what do I know? what's missing?), formalization (write Prolog rules, assemble primitive chains), execution (run the formalized step), and storage (persist results to KB). Budget constraints prevent runaway investigations. Stall detection forces backtracking or conclusion when progress stops.
 
@@ -265,15 +265,15 @@ The env layer introduces the abstract environment interface (10 methods that eve
 
 The ops layer introduces filesystem operations (15 builtins), script execution (5), network operations (5), process management (7), and the grant system (store, verify, use, list effective grants through KB hierarchy).
 
-The inference layer gains the mode implementations — deductive (assert premises and rules, query Prolog for derivation), inductive (gather evidence, write scoring rules, rank hypotheses), abductive (assert observations and causal rules, query for explanations), and analogical (assert source and target domain structures, query for structural mappings).
+The inference layer gains the mode implementations,  deductive (assert premises and rules, query Prolog for derivation), inductive (gather evidence, write scoring rules, rank hypotheses), abductive (assert observations and causal rules, query for explanations), and analogical (assert source and target domain structures, query for structural mappings).
 
 The lifecycle layer introduces the data pipeline (source registration, corpus preparation with filters, tokenization with vocabulary freezing), training orchestration (model initialization, train step wrapping VDR-4 trainer, checkpoint creation and restoration), and evaluation (benchmark running, eval suite, cross-checkpoint comparison).
 
 **What changes architecturally:**
 
-The system gains hands. Before Stage 4, it could compute and reason but could not interact with the outside world. Now it can read and write files, execute scripts in a sandboxed environment, fetch data from HTTP endpoints, and manage background processes. Every external operation requires a grant — no operation executes without explicit authorization.
+The system gains hands. Before Stage 4, it could compute and reason but could not interact with the outside world. Now it can read and write files, execute scripts in a sandboxed environment, fetch data from HTTP endpoints, and manage background processes. Every external operation requires a grant,  no operation executes without explicit authorization.
 
-The inference system gains its full power. The four modes compose: an investigation might start with abductive inference (what could cause these symptoms?), switch to inductive (score hypotheses against evidence), then deductive (derive implications of the leading hypothesis). The external data integration pipeline from VDR-9 — acquire, parse, convert, store, index, process — is now executable because the network and filesystem operations exist.
+The inference system gains its full power. The four modes compose: an investigation might start with abductive inference (what could cause these symptoms?), switch to inductive (score hypotheses against evidence), then deductive (derive implications of the leading hypothesis). The external data integration pipeline from VDR-9,  acquire, parse, convert, store, index, process,  is now executable because the network and filesystem operations exist.
 
 The lifecycle pipeline means the system can manage its own training. Initialize a model from a KB architecture specification, train it with exact gradients and exact parameter updates, checkpoint the exact state, and evaluate against benchmarks. The entire pipeline from data source to evaluation result is one KB tree.
 
@@ -285,7 +285,7 @@ The lifecycle pipeline means the system can manage its own training. Initialize 
 
 **New modules:** 7 (cumulative 65).
 
-The env layer gains Docker (container creation, start, stop, destroy), SSH (remote command execution via key authentication), and VM (virtual machine management) environments. All implement the same 10-method interface — the command token executor does not change.
+The env layer gains Docker (container creation, start, stop, destroy), SSH (remote command execution via key authentication), and VM (virtual machine management) environments. All implement the same 10-method interface,  the command token executor does not change.
 
 The ops layer gains compilation (4 builtins) and linting (8 builtins).
 
@@ -295,7 +295,7 @@ The lifecycle layer gains feedback collection (pairwise judgment storage, agreem
 
 The system gains production readiness. Docker isolation means user-generated Python scripts run in containers, not on the host. SSH means training can happen on GPU clusters. Canary deployment means model updates roll out gradually with automatic rollback on regression. Monitoring means the system tracks its own health.
 
-The feedback loop closes. The deployed model generates responses. Humans judge them. The judgments train a reward model or feed DPO directly. The aligned model is evaluated, canary-deployed, monitored, and — when superseded — retired with its complete KB lineage preserved for audit.
+The feedback loop closes. The deployed model generates responses. Humans judge them. The judgments train a reward model or feed DPO directly. The aligned model is evaluated, canary-deployed, monitored, and,  when superseded,  retired with its complete KB lineage preserved for audit.
 
 **Tests:** +350 (cumulative 1,250). Docker (40), SSH (30), VM (20), compilation (15), linting (20), feedback (30), deployment (30), monitoring (30), canary and rollback (25), retirement (15), full lifecycle integration (40), end-to-end (25), Zig port preparation (30).
 
@@ -307,7 +307,7 @@ These hold at every stage. They are tested at every stage. They are never relaxe
 
 **IOSE declared.** Every function has an IOSE declaration before it has an implementation. The declaration is written first. The implementation satisfies it. The test verifies it.
 
-**Exact arithmetic.** Every numeric operation uses VDR fractions or exact integers. No floats anywhere in the computation path. The only place floats appear is at the declared conversion boundary when external data enters the system — and that conversion is logged with an exact error bound.
+**Exact arithmetic.** Every numeric operation uses VDR fractions or exact integers. No floats anywhere in the computation path. The only place floats appear is at the declared conversion boundary when external data enters the system,  and that conversion is logged with an exact error bound.
 
 **KB is truth.** All persistent state lives in KBs. No module globals holding state. No hidden caches. The KB tree is the single source of truth. The OSO principle: the KB is the model for control (C39), not a model for understanding (C38).
 
@@ -317,11 +317,11 @@ These hold at every stage. They are tested at every stage. They are never relaxe
 
 **Tests pass.** All tests from the current stage and all prior stages pass. The test suite is cumulative. Stage 3's tests include all of Stage 1's and Stage 2's tests, unchanged and passing.
 
-**OSO principles loaded.** The root.system.oso KB is loaded at startup with all 15 axioms, approximately 80 facts, approximately 60 rules, and 21 constraints. The principles are not documentation — they are active Prolog rules that the inference loop queries and the constraint system enforces.
+**OSO principles loaded.** The root.system.oso KB is loaded at startup with all 15 axioms, approximately 80 facts, approximately 60 rules, and 21 constraints. The principles are not documentation,  they are active Prolog rules that the inference loop queries and the constraint system enforces.
 
-**Idempotent where declared.** Every operation tagged with the idempotent property verifies f(f(x)) = f(x) in its test suite. Session restore, bitset set, counter set, KB assert of existing fact, lock release on free lock — all tested for idempotency.
+**Idempotent where declared.** Every operation tagged with the idempotent property verifies f(f(x)) = f(x) in its test suite. Session restore, bitset set, counter set, KB assert of existing fact, lock release on free lock,  all tested for idempotency.
 
-**One canonical method.** Each task category has exactly one canonical builtin. There is one way to sort a list, one way to assert a fact, one way to execute code in an environment. The builtin registry enforces uniqueness — no two builtins in the same category perform the same task.
+**One canonical method.** Each task category has exactly one canonical builtin. There is one way to sort a list, one way to assert a fact, one way to execute code in an environment. The builtin registry enforces uniqueness,  no two builtins in the same category perform the same task.
 
 ---
 
@@ -363,17 +363,17 @@ Excluding the existing VDR-4 codebase, the new code breaks down by stage:
 
 ## 8. The Builtin Registration Pattern
 
-Every primitive module follows the same pattern. This uniformity is deliberate — it makes bulk registration mechanical and ensures no builtin escapes without an IOSE declaration.
+Every primitive module follows the same pattern. This uniformity is deliberate,  it makes bulk registration mechanical and ensures no builtin escapes without an IOSE declaration.
 
 The pattern: define a table of (id, name, inputs, outputs, side_effects, properties, description, implementation). Call a registration helper that creates the IOSEDeclaration and BuiltinDef, then adds it to the global registry. One table per module. One registration call per module.
 
-Categories that share identical structure — pure functions with no side effects, same input/output shape — use the same table format. The 17 text builtins, the 36 collection builtins, the 14 set builtins, the 15 mapping builtins, the 10 comparison builtins, and the 8 identity builtins all use the same registration pattern with different tables. The implementation details differ. The registration is uniform.
+Categories that share identical structure,  pure functions with no side effects, same input/output shape,  use the same table format. The 17 text builtins, the 36 collection builtins, the 14 set builtins, the 15 mapping builtins, the 10 comparison builtins, and the 8 identity builtins all use the same registration pattern with different tables. The implementation details differ. The registration is uniform.
 
-Categories with KB-internal side effects — data primitives (53 builtins), KB operations (15), path and mount (17), session (8) — use a variant that declares the side effects. The pattern is the same table-driven registration with an additional side_effects column.
+Categories with KB-internal side effects,  data primitives (53 builtins), KB operations (15), path and mount (17), session (8),  use a variant that declares the side effects. The pattern is the same table-driven registration with an additional side_effects column.
 
-Categories wrapping the existing VDR-4 code — closed arithmetic (8), linear algebra (24), statistics (16) — delegate to the existing Python classes. The builtin function is a thin wrapper that converts between VDRFraction dataclasses and the existing VDR class instances.
+Categories wrapping the existing VDR-4 code,  closed arithmetic (8), linear algebra (24), statistics (16),  delegate to the existing Python classes. The builtin function is a thin wrapper that converts between VDRFraction dataclasses and the existing VDR class instances.
 
-The operational categories — filesystem (15), compilation (4), execution (5), linting (8), network (5), process (7) — use a pattern that includes grant verification before dispatch. Each function first calls `grant_store.verify_grant(operation_class, operation_type, location, user)` and only proceeds if a valid grant is returned.
+The operational categories,  filesystem (15), compilation (4), execution (5), linting (8), network (5), process (7),  use a pattern that includes grant verification before dispatch. Each function first calls `grant_store.verify_grant(operation_class, operation_type, location, user)` and only proceeds if a valid grant is returned.
 
 ---
 
@@ -385,13 +385,13 @@ The rule engine is the most complex new module in Stage 1. It implements Prolog-
 
 **Variables** (strings starting with "?") unify with anything and bind to the matched value. "?X" unifies with "softmax" and binds ?X = "softmax".
 
-**VDR fractions** unify by normalized value equality. [1, 2, 0] unifies with [2, 4, 0] because both equal 1/2. The comparison uses cross-multiplication of exact integers — no floats.
+**VDR fractions** unify by normalized value equality. [1, 2, 0] unifies with [2, 4, 0] because both equal 1/2. The comparison uses cross-multiplication of exact integers,  no floats.
 
 **Lists** unify element-wise. [1, ?X, 3] unifies with [1, 2, 3] binding ?X = 2. Different-length lists do not unify.
 
 **Facts** (predicate + args) unify if predicates match and all arguments unify recursively.
 
-The engine evaluates a goal against a KB's facts and rules. For each fact matching the goal's predicate, it attempts unification. If unification succeeds, the bindings are returned. For each rule whose head matches the goal, the engine recursively evaluates the body goals, threading bindings through. Backtracking occurs when a body goal fails — the engine undoes the most recent choice and tries the next alternative.
+The engine evaluates a goal against a KB's facts and rules. For each fact matching the goal's predicate, it attempts unification. If unification succeeds, the bindings are returned. For each rule whose head matches the goal, the engine recursively evaluates the body goals, threading bindings through. Backtracking occurs when a body goal fails,  the engine undoes the most recent choice and tries the next alternative.
 
 The engine has a depth limit (default 100) to prevent infinite recursion. It supports `findall` (collect all solutions) and first-solution-only semantics (cut after first match, used for scoped queries where the first in-scope match wins).
 
@@ -401,23 +401,23 @@ The engine has a depth limit (default 100) to prevent infinite recursion. It sup
 
 ### 10.1 The Result Type
 
-Every function that can fail returns a `Result` — either `Ok(value)` or `Err(VDRError)`. No exceptions for expected failures. Division by zero, missing key, empty list, out of range — these are not exceptional. They are `Err` results with descriptive error codes.
+Every function that can fail returns a `Result`,  either `Ok(value)` or `Err(VDRError)`. No exceptions for expected failures. Division by zero, missing key, empty list, out of range,  these are not exceptional. They are `Err` results with descriptive error codes.
 
 This is an OSO principle in practice: operational logic handles failure explicitly (D4, C31). The Result type makes every failure path visible in the function signature. No hidden exception that might propagate unhandled.
 
 ### 10.2 The KB Store
 
-All KBs live in a global store — a dictionary mapping integer IDs to KnowledgeBase instances. The store is the single source of truth. Every function that needs a KB takes the store as a parameter (or accesses it through a well-known path). No KBs exist outside the store.
+All KBs live in a global store,  a dictionary mapping integer IDs to KnowledgeBase instances. The store is the single source of truth. Every function that needs a KB takes the store as a parameter (or accesses it through a well-known path). No KBs exist outside the store.
 
 This is the OSO "model for control" principle (C39). The KB store is the control model. The LLM's context window is the understanding model. When they disagree, the store wins.
 
 ### 10.3 Turn Counter
 
-A global turn counter increments with each user interaction. Every mutation (fact assertion, counter increment, lock acquisition) records the turn number. Every snapshot records the turn count. Every evidence record includes the turn when the evidence was acquired. The turn counter is the system clock — it provides total ordering of events without relying on wall-clock time, which may not be deterministic across platforms.
+A global turn counter increments with each user interaction. Every mutation (fact assertion, counter increment, lock acquisition) records the turn number. Every snapshot records the turn count. Every evidence record includes the turn when the evidence was acquired. The turn counter is the system clock,  it provides total ordering of events without relying on wall-clock time, which may not be deterministic across platforms.
 
 ### 10.4 Deep Copy for Snapshots
 
-Session snapshots deep-copy all live state. A snapshot is completely independent of the source — modifying the source after snapshot does not affect the snapshot, and restoring the snapshot does not reference the source. This is essential for the disposable clone pattern: clones must be independent. Python's `copy.deepcopy` handles this in the prototype. The Zig port uses explicit allocation and copy.
+Session snapshots deep-copy all live state. A snapshot is completely independent of the source,  modifying the source after snapshot does not affect the snapshot, and restoring the snapshot does not reference the source. This is essential for the disposable clone pattern: clones must be independent. Python's `copy.deepcopy` handles this in the prototype. The Zig port uses explicit allocation and copy.
 
 ### 10.5 Functional Remainder Resolution
 
@@ -429,21 +429,21 @@ Functional remainders (FnRemainder) are not automatically resolved. They sit as 
 
 ### 11.1 Stage 1 → Stage 2
 
-The primitives registered in Stage 1 become dispatchable through command tokens in Stage 2. The executor looks up builtins by name in the registry, resolves path arguments via the path registry, and calls the implementation. No primitive code changes — only the invocation mechanism changes from Python API to command token.
+The primitives registered in Stage 1 become dispatchable through command tokens in Stage 2. The executor looks up builtins by name in the registry, resolves path arguments via the path registry, and calls the implementation. No primitive code changes,  only the invocation mechanism changes from Python API to command token.
 
 ### 11.2 Stage 2 → Stage 3
 
-The scope resolver from Stage 2 gains mount-awareness in Stage 3. When walking the scope chain, if a mount point is encountered, the resolver follows the mount to the source KB (respecting mode restrictions). The query interface does not change — scoped_query still returns facts, but now it can find facts through mounts as well as through the parent chain.
+The scope resolver from Stage 2 gains mount-awareness in Stage 3. When walking the scope chain, if a mount point is encountered, the resolver follows the mount to the source KB (respecting mode restrictions). The query interface does not change,  scoped_query still returns facts, but now it can find facts through mounts as well as through the parent chain.
 
 The command executor from Stage 2 gains scratchpad integration in Stage 3. Internal computation results are automatically written to the scratchpad ring buffer. The inference loop reads the scratchpad to see what has been computed in the current turn.
 
 ### 11.3 Stage 3 → Stage 4
 
-The inference loop from Stage 3 gains real tool execution in Stage 4. In Stage 3, the `formalize` step is a hook that accepts a callable — test code provides the formalized artifact directly. In Stage 4, the formalize step can generate command tokens that invoke operational primitives — fetch data from a URL, read a file, execute a script. The loop structure does not change. The tool vocabulary expands.
+The inference loop from Stage 3 gains real tool execution in Stage 4. In Stage 3, the `formalize` step is a hook that accepts a callable,  test code provides the formalized artifact directly. In Stage 4, the formalize step can generate command tokens that invoke operational primitives,  fetch data from a URL, read a file, execute a script. The loop structure does not change. The tool vocabulary expands.
 
 ### 11.4 Stage 4 → Stage 5
 
-The local environment from Stage 4 is joined by Docker, SSH, and VM environments in Stage 5. The executor does not change — it calls the same 10-method interface regardless of environment type. The environment selection is a configuration fact in the deployment KB. Switching from local to Docker is a fact change, not a code change.
+The local environment from Stage 4 is joined by Docker, SSH, and VM environments in Stage 5. The executor does not change,  it calls the same 10-method interface regardless of environment type. The environment selection is a configuration fact in the deployment KB. Switching from local to Docker is a fact change, not a code change.
 
 ---
 
@@ -481,27 +481,27 @@ The Zig 0.15.1 port happens after Stage 5 validates the complete system in Pytho
 
 **Function mapping.** Every Python function maps to a Zig function with the same IOSE declaration. `def vdr_add(a: VDRFraction, b: VDRFraction) -> VDRFraction` → `fn vdr_add(a: VDRFraction, b: VDRFraction) VDRFraction`. The Result type maps to Zig's error unions: `Result[VDRFraction]` → `fn vdr_div(a: VDRFraction, b: VDRFraction) !VDRFraction`.
 
-**Arbitrary precision.** Python's arbitrary-precision integers map to either Zig's `i128` (sufficient for most operations) with overflow to a BigInt library for operations that exceed 128 bits (Hilbert matrix determinants, Q335 numerators). The overflow boundary is detected and handled explicitly — not silently truncated.
+**Arbitrary precision.** Python's arbitrary-precision integers map to either Zig's `i128` (sufficient for most operations) with overflow to a BigInt library for operations that exceed 128 bits (Hilbert matrix determinants, Q335 numerators). The overflow boundary is detected and handled explicitly,  not silently truncated.
 
-**Test mapping.** Every Python test maps to a Zig test. `test "vdr_add commutative"` verifies the same property with the same inputs and expected outputs. The IOSE declarations are the test specifications — they are language-independent.
+**Test mapping.** Every Python test maps to a Zig test. `test "vdr_add commutative"` verifies the same property with the same inputs and expected outputs. The IOSE declarations are the test specifications,  they are language-independent.
 
-The port is mechanical because the IOSE declarations define the interfaces. The Zig implementation satisfies the same contracts. The same tests verify the same behavior. The Zig version runs faster, uses less memory, and has no garbage collection pauses — but it computes the same exact fractions and produces the same results.
+The port is mechanical because the IOSE declarations define the interfaces. The Zig implementation satisfies the same contracts. The same tests verify the same behavior. The Zig version runs faster, uses less memory, and has no garbage collection pauses,  but it computes the same exact fractions and produces the same results.
 
 ---
 
 ## 14. Falsification Criteria
 
-**F1.** If any stage produces a system that cannot execute its declared lifecycle capability end-to-end — the toy lifecycle fails in Stage 1, the full lifecycle fails in Stage 5 — the stage is incomplete.
+**F1.** If any stage produces a system that cannot execute its declared lifecycle capability end-to-end,  the toy lifecycle fails in Stage 1, the full lifecycle fails in Stage 5,  the stage is incomplete.
 
 **F2.** If any function is implemented without an IOSE declaration, the IOSE discipline has been violated. Every function must have its declaration before its implementation.
 
-**F3.** If any cross-stage invariant fails at any stage — a float appears in the computation path, a data primitive exceeds its capacity, an idempotent operation is not idempotent — the invariant enforcement has a gap.
+**F3.** If any cross-stage invariant fails at any stage,  a float appears in the computation path, a data primitive exceeds its capacity, an idempotent operation is not idempotent,  the invariant enforcement has a gap.
 
 **F4.** If the test count at any stage falls below the target, the test coverage is insufficient for the claims made at that stage.
 
 **F5.** If the Zig port of any function produces a different result from the Python prototype for the same inputs, the port has a correctness bug and the IOSE declaration did not adequately specify the behavior.
 
-**F6.** If two stages' tests are incompatible — a Stage 2 change breaks a Stage 1 test — the incremental build discipline has been violated. Tests are cumulative and must never regress.
+**F6.** If two stages' tests are incompatible,  a Stage 2 change breaks a Stage 1 test,  the incremental build discipline has been violated. Tests are cumulative and must never regress.
 
 **F7.** If the supplementary function IOSE specification and the actual implementation disagree on inputs, outputs, or side effects for any function, the specification is the authority and the implementation has a bug.
 
@@ -515,7 +515,7 @@ Five stages. Stage 1 creates a toy with exact arithmetic, knowledge bases, Prolo
 
 65 modules. 448 builtins. Approximately 15,500 new lines of Python, plus 5,000 lines of existing tested VDR-4 code. Every function has an IOSE declaration. Every stage produces a testable, runnable system. Every cross-stage invariant is verified at every stage.
 
-The build is comprehensive (OSO C17) — the whole system is specified before any part is built. The build is incremental (OSO C3) — each stage removes a class of limitation. The build is disciplined (OSO C33) — one canonical method per task, one registration pattern per builtin, one test pattern per function.
+The build is comprehensive (OSO C17),  the whole system is specified before any part is built. The build is incremental (OSO C3),  each stage removes a class of limitation. The build is disciplined (OSO C33),  one canonical method per task, one registration pattern per builtin, one test pattern per function.
 
 The complete function-level IOSE specification is in the supplementary materials. The data structures, enums, and class definitions are in the supplementary materials. This paper is the map. The supplementary materials are the territory.
 
@@ -607,7 +607,7 @@ Build it in stages. Test it at every stage. Port it to Zig when the Python proto
 | primitives/ → command/ | No | primitives do not import command |
 | command/ → session/ | No | command does not import session |
 | inference/ → ops/ | No (Stage 3) | Stage 3 inference uses only kb + primitives + command |
-| inference/ → ops/ | Yes (Stage 4) | Stage 4 inference.modes imports ops for external tools — acceptable, both at same stage level |
+| inference/ → ops/ | Yes (Stage 4) | Stage 4 inference.modes imports ops for external tools,  acceptable, both at same stage level |
 | ops/ → lifecycle/ | No | ops does not import lifecycle |
 | lifecycle/ → lifecycle/ | No | lifecycle modules have linear dependency |
 | **Verdict** | **No circular dependencies** | All imports flow downward or laterally within same stage |
@@ -894,7 +894,7 @@ Note: Stage 1 target was ~150. Actual enumeration produces 161 due to complete c
 | 402-409 | Linting | 8 | 
 | **Total** | | **12** |
 
-Note: Stage 5 also adds lifecycle functions (feedback, deployment, monitoring) but these are system operations rather than registered builtins — they compose builtins rather than being builtins themselves.
+Note: Stage 5 also adds lifecycle functions (feedback, deployment, monitoring) but these are system operations rather than registered builtins,  they compose builtins rather than being builtins themselves.
 
 ---
 

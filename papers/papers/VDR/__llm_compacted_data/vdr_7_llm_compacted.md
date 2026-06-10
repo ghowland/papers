@@ -1,4 +1,4 @@
-# COMPLETE LIFECYCLE TECHNICAL SPECIFICATION — LLM-COMPACT FORM
+# COMPLETE LIFECYCLE TECHNICAL SPECIFICATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → 12 phases → cross-phase → UI-as-API → incremental path → relationships → sections
 
@@ -6,7 +6,7 @@
 P1|Lifecycle is KB operations|Every phase produces queryable KBs, operates under declared constraints, stores results with provenance
 P2|System is both API and generator|Serves structured data through KB endpoints and generates text through LLM; command tokens bridge the two
 P3|UI is API to KB layer|Every UI action maps to KB operation; every UI element renders KB data; no separate backend
-P4|Everything is the same kind of thing|Data source, checkpoint, deployment, feedback — all KBs with facts/rules/constraints/provenance; same operations on all
+P4|Everything is the same kind of thing|Data source, checkpoint, deployment, feedback,  all KBs with facts/rules/constraints/provenance; same operations on all
 P5|Build incrementally by accretion|Each phase adds KBs that connect to existing tree; turn on phases you need, turn off ones you don't
 
 # lifecycle_phases(id|phase|num|input|output|key_constraint)
@@ -28,11 +28,11 @@ PD01|Data sourcing|Source types: public corpus, licensed dataset, synthetic gene
 PD02|Corpus preparation|Pipeline: extraction→language filter→quality filter→dedup→PII removal→formatting→train/val/test split; each step logged with input/output/dropped counts; every document traces back to source article via KB fact
 PD03|Tokenization|Vocabulary KB (BPE/unigram/wordpiece): token_to_id, id_to_token, merge rules, special tokens; tokenize/detokenize are pure primitives; roundtrip property verified on test split; tokenized corpus KB tracks total tokens, max sequence length, UNK rate
 PD04|Model initialization|Architecture KB: num_layers, hidden_dim, num_heads, ff_dim, vocab_size, activation, softmax_type/depth, positional encoding; init KB: method (xavier_rational), seed, timestamp; parameter KB per layer with exact VDR fraction matrices; all seedable and reproducible
-PD05|Pre-training|Training config KB: optimizer, LR, momentum, batch_size, total_steps, warmup, schedule, gradient_clip, checkpoint/eval intervals; training run KB: step log (loss, LR, grad_norm, duration per step), checkpoints as child KBs; LR at every step is exact fraction; denominator management via Q-basis reprojection when budget exceeded — logged with exact error bound
+PD05|Pre-training|Training config KB: optimizer, LR, momentum, batch_size, total_steps, warmup, schedule, gradient_clip, checkpoint/eval intervals; training run KB: step log (loss, LR, grad_norm, duration per step), checkpoints as child KBs; LR at every step is exact fraction; denominator management via Q-basis reprojection when budget exceeded,  logged with exact error bound
 PD06|Fine-tuning|Structurally identical to pre-training with different corpus, lower LR, optionally frozen layers; multi-stage fine-tuning: instruction→domain→safety, each stage child KB of previous; full lineage queryable
 PD07|Human feedback|Collection types: pairwise preference, rating, binary, correction, annotation, free-form; every judgment is KB fact with annotator, timestamp, confidence, time_spent, model version, generation params; reward model trained on preferences; RLHF (PPO with KL penalty) or DPO (direct preference optimization) as alternative alignment methods
 PD08|Evaluation|Eval suite KB with children per benchmark; each result KB has exact scores (fractions from count ratios), model version, timestamp, environment; safety eval with per-category breakdown; cross-model comparison via lineage queries; VDR-specific benchmarks: arithmetic accuracy, denominator health, provenance completeness, softmax exactness
-PD09|Deployment|Deployment config KB: checkpoint, environment, API config, rate limits, defaults; API is thin layer over KB — every endpoint maps to KB operation; system serves both structured data (API mode) and text (generator mode); same grants and constraints govern both
+PD09|Deployment|Deployment config KB: checkpoint, environment, API config, rate limits, defaults; API is thin layer over KB,  every endpoint maps to KB operation; system serves both structured data (API mode) and text (generator mode); same grants and constraints govern both
 PD10|Monitoring|Monitoring KB: per-minute aggregates (requests, latency, errors, safety flags); watches for spikes; user interaction logging as KB facts (queryable for analysis); drift detection against deployment baseline
 PD11|Update|Update types: full retrain, fine-tune, LoRA adapter, constraint update, safety patch, KB content update; every update versioned with rollback target; canary deployment: percentage-based traffic split with auto-rollback on criterion violation; all promotion/rollback decisions logged as KB facts
 PD12|Retirement|Retirement KB: model, timestamp, reason, successor, archive location, retention period; all KBs archived (weights, config, logs, eval results, anonymized feedback, deployment config, monitoring summaries); archived model frozen but queryable; retention per legal/org policy
@@ -54,7 +54,7 @@ VA6|Mixed precision (fp16/fp32)|Single precision: exact VDR fractions|One precis
 FB1|Collection types|Pairwise preference, rating (1-5), binary (accept/reject), correction, annotation (multi-label), free-form comment
 FB2|Judgment provenance|Every judgment: annotator ID, timestamp, confidence, time_spent, model version, generation params, prompt, responses
 FB3|Quality tracking|Per-annotator: agreement with majority, response time, self-consistency, calibration, coverage; all as exact fractions
-FB4|Agreement metrics|Cohen's/Fleiss' kappa, Krippendorff's alpha — all computable as exact VDR fractions from integer counts
+FB4|Agreement metrics|Cohen's/Fleiss' kappa, Krippendorff's alpha,  all computable as exact VDR fractions from integer counts
 FB5|Reward model|Trained on preferences; linear reward head on base model; accuracy on held-out verified above random
 FB6|RLHF|PPO with KL penalty against reference model; KL coefficient, PPO clip, epochs as exact fractions; KL-bounded constraint
 FB7|DPO|Alternative to RLHF; trains directly on preferences without reward model; beta temperature parameter; fewer moving parts
@@ -63,7 +63,7 @@ FB7|DPO|Alternative to RLHF; trains directly on preferences without reward model
 DA1|POST /generate|Forward pass → KB records request, response, provenance
 DA2|GET /model/info|KB_QUERY(deployment_kb, model facts)
 DA3|GET /model/constraints|KB_QUERY(deployment_kb, active constraints)
-DA4|GET /kb/{name}|DIRECT_OUTPUT(kb://name) — owner only
+DA4|GET /kb/{name}|DIRECT_OUTPUT(kb://name),  owner only
 DA5|POST /feedback|KB_ASSERT(feedback_kb, judgment)
 DA6|GET /metrics|KB_QUERY(monitoring_kb, current metrics)
 DA7|POST /admin/deploy|VERSION_CREATE + CTX_ACTIVATE on deployment KB
@@ -215,7 +215,7 @@ phase_outputs: each phase produces KBs that feed next phase
 kb_types: ~30 new types introduced across 12 phases; ~60 total in system
 alignment_methods: RLHF (reward model + PPO) | DPO (direct preference optimization, no reward model)
 canary: percentage-based traffic split with auto-rollback on criterion violation
-reprojection: declared precision decision — round to Q-basis, log exact error bound
+reprojection: declared precision decision,  round to Q-basis, log exact error bound
 claim_types: design_thesis | structural | engineering
 rel_types: feeds | gates | informs | updates | eventually_feeds | controls | distinguishes_from | adapt | trained_on | uses | alternative_to | implements | enables | queries | invokes | expose
 new_modules: 4 (data_pipeline.py, training_lifecycle.py, feedback.py, deployment.py); total 34

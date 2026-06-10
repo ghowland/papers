@@ -1,6 +1,6 @@
-# Working Document: sin²θ_W from 3/8 at GUT Scale — Running with Integer Coefficients
+# Working Document: sin²θ_W from 3/8 at GUT Scale,  Running with Integer Coefficients
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Complete state capture for future session pickup
 
@@ -25,7 +25,7 @@ Starting from sin²θ_W = 3/8 at the scale where α₁ = α₂ (SU(5) charge cou
 
 Force α₁ = α₂ = α₃ at one scale. Two equations (α_EM and α₃ at M_Z), two unknowns (α_GUT⁻¹ and L = ln(M_GUT/M_Z)/(2π)).
 
-**Result:** sin²θ_W(M_Z) = 0.2076. PDG: 0.23122. **Miss: −10.2%.** The SM particle content doesn't produce unification — same wall as the gap ratio.
+**Result:** sin²θ_W(M_Z) = 0.2076. PDG: 0.23122. **Miss: −10.2%.** The SM particle content doesn't produce unification,  same wall as the gap ratio.
 
 ### Version 2: The Linear Formula
 
@@ -35,7 +35,7 @@ Key identity: the denominator coefficient 5·B₁ + 3·B₂ vanishes exactly, wh
 
 5·(109/40) + 3·(−109/24) = 109·(1/8 − 1/8) = 0
 
-This is not dynamical — it's a consequence of α_EM⁻¹ = (5/3)·α₁⁻¹ + α₂⁻¹. The denominator in sin²θ_W is proportional to α_EM⁻¹ regardless of L.
+This is not dynamical,  it's a consequence of α_EM⁻¹ = (5/3)·α₁⁻¹ + α₂⁻¹. The denominator in sin²θ_W is proportional to α_EM⁻¹ regardless of L.
 
 **Result: sin²θ_W is exactly linear in L_X:**
 
@@ -45,7 +45,7 @@ where L_X = ln(μ_X/M_Z)/(2π) and μ_X is the α₁ = α₂ crossing scale.
 
 ### Version 3: What L_X reproduces the measurement?
 
-L_X = 4.049 gives sin²θ_W = 0.23122, corresponding to μ_X = 10^13.01 GeV. At this crossing scale, if α₃ also unified there, α_s(M_Z) would be 0.071 — 40% below measured 0.1180. The gap ratio problem again.
+L_X = 4.049 gives sin²θ_W = 0.23122, corresponding to μ_X = 10^13.01 GeV. At this crossing scale, if α₃ also unified there, α_s(M_Z) would be 0.071,  40% below measured 0.1180. The gap ratio problem again.
 
 ---
 
@@ -67,8 +67,8 @@ The number 109 appears as b₁ − b₂ in natural units (specifically, 109/15 =
 
 The formula sin²θ_W = 3/8 − (109/72)·L/α_EM⁻¹ has one free parameter: L_X, the log-distance from M_Z to the α₁ = α₂ crossing scale. L_X is not determined by SM physics alone. Determining it requires either:
 
-(a) A measurement of sin²θ_W (circular — that's what we're trying to derive)
-(b) A measurement of α_s plus forced three-way unification (gives 10% miss — SM doesn't unify)
+(a) A measurement of sin²θ_W (circular,  that's what we're trying to derive)
+(b) A measurement of α_s plus forced three-way unification (gives 10% miss,  SM doesn't unify)
 (c) Knowledge of the GUT-scale physics that determines the crossing scale (beyond SM)
 
 The 3/8 is real structure from SU(5) charge counting. The running coefficient 109/72 is real structure from SM particle counting. But the crossing scale encodes physics beyond the SM. Without it, sin²θ_W(M_Z) is not derivable from 3/8 + SM running alone.
@@ -79,9 +79,9 @@ The 3/8 is real structure from SU(5) charge counting. The running coefficient 10
 
 ## IV. WHAT WOULD UNBLOCK THIS
 
-(a) If the complete GUT particle content were known, the crossing scale would be determined and sin²θ_W(M_Z) would follow from 3/8 + running. This is the standard GUT prediction — it works in SUSY SU(5) where the three couplings do approximately unify.
+(a) If the complete GUT particle content were known, the crossing scale would be determined and sin²θ_W(M_Z) would follow from 3/8 + running. This is the standard GUT prediction,  it works in SUSY SU(5) where the three couplings do approximately unify.
 
-(b) If a second integer relation determined L_X — for example, if L_X = some rational multiple of α_EM⁻¹ — then sin²θ_W would be fully determined by integers. No such relation is currently known.
+(b) If a second integer relation determined L_X,  for example, if L_X = some rational multiple of α_EM⁻¹,  then sin²θ_W would be fully determined by integers. No such relation is currently known.
 
 (c) If the gap ratio could be derived from integer structure (predicting 1.395 from counting), that would simultaneously determine the crossing scale and sin²θ_W. This is equivalent to knowing the complete particle content.
 
@@ -110,7 +110,7 @@ At L_X = 4.049 (PDG-matching):
 
 ## VI. SCRIPT
 
-`sin2tw_from_gut.py` — in /home/claude/. Not in outputs (notebook entry).
+`sin2tw_from_gut.py`,  in /home/claude/. Not in outputs (notebook entry).
 
 ---
 
@@ -122,7 +122,7 @@ At L_X = 4.049 (PDG-matching):
 - Linear running formula, vanishing denominator identity
 - Crossing scale, alpha_1 = alpha_2, L_X parameter
 - Blocked by: crossing scale not determined in SM
-- Same wall as gap ratio — incomplete particle content
+- Same wall as gap ratio,  incomplete particle content
 
 ---
 

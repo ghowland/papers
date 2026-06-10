@@ -19,9 +19,9 @@
 | R7 | Four levels classify all values | Level 0 = pure geometry/math (π, ζ(3), Bessel zeros). Level 1 = group theory/structural (betas, Casimirs, QED rationals). Level 2 = measured/observational (α⁻¹, sin²θ_W, masses, H₀). Level 3 = derived/predicted (α from a_e, Koide m_τ, Ω_DM from integers). Every value node carries its level. Level 1 law applied to Level 2 measurement produces Level 3 prediction. | Every value |
 | R8 | Exact rational arithmetic throughout | Fraction is the primary numeric type. mpf only at the irrational boundary (π, √, exp, log). Float only for display. Q335 = 2³³⁵ basis for transcendentals at 100+ digits. No floating point in the derivation chain. | Every computation |
 | R9 | No hardcoded physics constants | Every numerical value consumed by a derivation is read from a versioned value node in the pool by key. Zero physics numbers in executable code. The formula structure lives in the function; the numbers live in the pool. | Every derivation |
-| R10 | Every claim backed by experiment with passing comparisons | No assertion without a runnable DATA-6 experiment producing the claimed number, with comparisons evaluated by the runner. Console output is not evidence — result JSON with provenance is evidence. | Every paper |
+| R10 | Every claim backed by experiment with passing comparisons | No assertion without a runnable DATA-6 experiment producing the claimed number, with comparisons evaluated by the runner. Console output is not evidence,  result JSON with provenance is evidence. | Every paper |
 | R11 | Append-only versioning | All versioned keys follow `canonical_name_vN`. Version 0 is initial registration. New understanding means new version. Old versions are never modified or deleted. Changed data means lost data. | Every node |
-| R12 | Falsification is structural | Every program carries kill switches — specific measurements that would falsify the thesis. Every experiment carries comparisons with PASS/FAIL/INFO status. FAIL is data, not a bug. Negative results are findings, not failures. | Every program, every experiment |
+| R12 | Falsification is structural | Every program carries kill switches,  specific measurements that would falsify the thesis. Every experiment carries comparisons with PASS/FAIL/INFO status. FAIL is data, not a bug. Negative results are findings, not failures. | Every program, every experiment |
 
 ---
 
@@ -64,7 +64,7 @@ The beta function is not specific to one domain. It IS the transformation law. T
 | Standing wave | Spatial pattern, nodes and antinodes | Eigenfunction of the Hamiltonian | Hydrogen atom orbitals |
 | Vortex (HOWL term) | Circulation of energy, resistance to disruption, quantized structure | Topologically stable field configuration | The electron as a stable vortex in the Dirac field |
 
-These are three names for one thing. The connection to inertia: the vortex resists acceleration because redistributing a circulating energy pattern requires work. More energy in the vortex = more resistance = more mass. This is why mass IS inertia — the vortex description makes the identity obvious.
+These are three names for one thing. The connection to inertia: the vortex resists acceleration because redistributing a circulating energy pattern requires work. More energy in the vortex = more resistance = more mass. This is why mass IS inertia,  the vortex description makes the identity obvious.
 
 ---
 
@@ -111,7 +111,7 @@ These are three names for one thing. The connection to inertia: the vortex resis
 | **1. Review** | Read prior transcripts, check pool state with `data6.py search` and `data6.py info`, identify what exists and what's missing | Pool state inventory, gap list | No code until review is complete |
 | **2. Plan** | Design the experiment: derivations, value nodes, comparisons, expected results (including expected failures) | Written plan with tables | State the physics question and what each outcome means |
 | **3. Agreement** | Present the plan. Wait for explicit agreement. Identify pitfalls. Check for key collisions, convention traps. | Explicit agreement from human | Never write code before agreement |
-| **4. Code** | Write: (a) value node JSON, (b) experiment JSON, (c) derivation functions, (d) registry additions. All in chat. | Pasteable code blocks | Targeted work only — no changes beyond what's requested |
+| **4. Code** | Write: (a) value node JSON, (b) experiment JSON, (c) derivation functions, (d) registry additions. All in chat. | Pasteable code blocks | Targeted work only,  no changes beyond what's requested |
 | **5. Run** | Human runs `data6.py run experiment_name_v0`. Paste output. Fix bugs if any. | Experiment result | Fix only what's broken. Preserve working code. |
 | **6. Report** | Write full experiment report: results table, what passes mean, what failures mean, what survives, what's ruled out, forward path | Report in chat | Negative results get full reports. FAIL is a finding. |
 | **7. Paper** | After all experiments complete: paper → appendix tables → 20 diagram candidates → top 8 selected → diagram script | Paper, appendices, script | Paper is written AFTER experiments, not before |
@@ -137,7 +137,7 @@ These are three names for one thing. The connection to inertia: the vortex resis
 
 | Field | Required | Content |
 |---|---|---|
-| `key` | yes | `experiment_name_v0` — must NOT contain the substring `_run` |
+| `key` | yes | `experiment_name_v0`,  must NOT contain the substring `_run` |
 | `canonical` | yes | `experiment_name` without version |
 | `node_type` | yes | `"experiment"` |
 | `description` | yes | What the experiment tests. Include speculation warnings where appropriate. |
@@ -148,9 +148,9 @@ These are three names for one thing. The connection to inertia: the vortex resis
 | `comparisons` | yes | List of checks: label, output_key, match_mode, expected/lo/hi |
 | `diagrams` | optional | Rendering specs for `data6.py diagram` |
 
-**Comparison modes:** `exact` (Fraction equality), `digits` (N-digit string match), `range` (lo ≤ value ≤ hi), `miss_pct` (always INFO — reports miss%), `bool` (boolean equality).
+**Comparison modes:** `exact` (Fraction equality), `digits` (N-digit string match), `range` (lo ≤ value ≤ hi), `miss_pct` (always INFO,  reports miss%), `bool` (boolean equality).
 
-**Status values:** PASS, FAIL, INFO, SKIP. Zero FAIL = complete. Any FAIL = partial. INFO is informational — records the number, does not judge.
+**Status values:** PASS, FAIL, INFO, SKIP. Zero FAIL = complete. Any FAIL = partial. INFO is informational,  records the number, does not judge.
 
 ---
 

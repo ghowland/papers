@@ -1,4 +1,4 @@
-# VDR Complete System — Mechanical Reference
+# VDR Complete System,  Mechanical Reference
 
 ## Layer 0: The Triple
 
@@ -12,13 +12,13 @@ Everything builds from one data structure. A VDR object is an ordered triple **[
 
 **Atomic:** a single integer r. Example: [3, 7, 2] means (3 + 2)/7 = 5/7.
 
-**Composite:** an integer base r plus a finite ordered list of child VDR triples. r + X₁ + X₂ + ... Each child is itself a full VDR object. Recursion happens only through R — V and D are always integers, never nested.
+**Composite:** an integer base r plus a finite ordered list of child VDR triples. r + X₁ + X₂ + ... Each child is itself a full VDR object. Recursion happens only through R,  V and D are always integers, never nested.
 
-**Functional:** a Python callable f(depth) → VDR with a name string. Stored in R. Expanded via resolve(). Returns an exact VDR at any requested depth. This is how VDR handles square roots, trig, exp, log — every depth gives a complete exact rational, not an approximation of a limit.
+**Functional:** a Python callable f(depth) → VDR with a name string. Stored in R. Expanded via resolve(). Returns an exact VDR at any requested depth. This is how VDR handles square roots, trig, exp, log,  every depth gives a complete exact rational, not an approximation of a limit.
 
 Every valid VDR object has finite depth, finite branching, finite total node count.
 
-**Denominator-sensitive completion:** R is interpreted within the parent's D frame — divided by D, not added externally. [3, 7, 1] means (3 + 1)/7 = 4/7, not 3/7 + 1.
+**Denominator-sensitive completion:** R is interpreted within the parent's D frame,  divided by D, not added externally. [3, 7, 1] means (3 + 1)/7 = 4/7, not 3/7 + 1.
 
 **Scalar projection:** Π([V, D, R]) = (V + Π(R)) / D. Recursive evaluation for comparison with conventional numbers.
 
@@ -80,7 +80,7 @@ Properties: identity at k=1, negation at k=−1, multiplicative composition (lif
 
 *Closed rebase:* if V·B/D is an integer, result is [V·B/D, B, 0]. Clean.
 
-*Active rebase:* if V·B/D is not an integer, compute N = V·B, then Q, S = divmod(N, D). Result: [Q, B, [S, D, 0] + lift(R, B)]. The [S, D, 0] term is the *mismatch witness* — the exact part the target denominator couldn't absorb.
+*Active rebase:* if V·B/D is not an integer, compute N = V·B, then Q, S = divmod(N, D). Result: [Q, B, [S, D, 0] + lift(R, B)]. The [S, D, 0] term is the *mismatch witness*,  the exact part the target denominator couldn't absorb.
 
 *Same-D rebase:* B = D gives identity.
 
@@ -100,7 +100,7 @@ Rebase preserves value equality, not structural equality. Deterministic, finite,
 
 **Negation:** -[V, D, R] = [-V, D, -R]. Remainder negation negates base and all children recursively.
 
-## Layer 5: The divmod Rule — D Never Explodes
+## Layer 5: The divmod Rule,  D Never Explodes
 
 This is the operational rule that governs the entire system. When any operation would produce a larger denominator, you divmod and put the overflow in R.
 
@@ -108,13 +108,13 @@ This is the operational rule that governs the entire system. When any operation 
 
 A = [p₁, 2³³⁵, 0], B = [p₂, 2³³⁵, 0].
 
-Product p₁·p₂ is a big integer. Naive result would be [p₁·p₂, 2⁶⁷⁰, 0] — D explosion. Never do this.
+Product p₁·p₂ is a big integer. Naive result would be [p₁·p₂, 2⁶⁷⁰, 0],  D explosion. Never do this.
 
 Q, S = divmod(p₁ · p₂, 2³³⁵)
 
 Result: [Q, 2³³⁵, [S, 2³³⁵, 0]].
 
-D stays at 2³³⁵. V absorbed what fit. R caught what didn't — exactly, zero loss. Verify: Π = (Q + S/2³³⁵) / 2³³⁵ = (Q·2³³⁵ + S) / 2⁶⁷⁰ = p₁·p₂ / 2⁶⁷⁰. Same value. D never changed.
+D stays at 2³³⁵. V absorbed what fit. R caught what didn't,  exactly, zero loss. Verify: Π = (Q + S/2³³⁵) / 2³³⁵ = (Q·2³³⁵ + S) / 2⁶⁷⁰ = p₁·p₂ / 2⁶⁷⁰. Same value. D never changed.
 
 **Division works the same way.** Multiply by reciprocal, divmod back into the frame. Odd denominators go into R via divmod.
 
@@ -124,7 +124,7 @@ D stays at 2³³⁵. V absorbed what fit. R caught what didn't — exactly, zero
 
 A Python callable stored in R that returns a VDR at any requested depth.
 
-**Newton-Raphson:** √2 via x_{n+1} = (x + 2/x)/2. Each depth is an exact rational. Depth 7 gives ~150 fraction digits. Depth 10 gives >100 correct digits. Quadratic convergence — digits double per step. The residual x² − 2 is an exact inspectable rational. You know precisely how far from √2 you are.
+**Newton-Raphson:** √2 via x_{n+1} = (x + 2/x)/2. Each depth is an exact rational. Depth 7 gives ~150 fraction digits. Depth 10 gives >100 correct digits. Quadratic convergence,  digits double per step. The residual x² − 2 is an exact inspectable rational. You know precisely how far from √2 you are.
 
 **Taylor series:** exp(x) = Σxⁿ/n!, sin(x), cos(x), ln(1+x), arctan(x). Each partial sum is an exact rational. Super-geometric convergence for exp/sin/cos (~35 terms for 100 digits at x=1/2). Geometric for ln and arctan.
 
@@ -134,7 +134,7 @@ exp/sin/cos at x=1/2: ~35 terms. √n Newton: ~8 steps. ₂F₁ hypergeometric a
 
 **Semantics:** each depth is a complete exact value, not an approximation of a limit. No convergence criterion inside VDR. The function returns a VDR; that VDR is exact; deeper calls return more refined exact values.
 
-**The precision knob:** by default resolve fully. But you can choose depth for performance. Depth 5 for ~30 digits. Depth 10 for ~100. Depth 20 for ~200. You know exactly where the approximation lives and how large it is. It doesn't compound through chains — rational ops on the resolved value are exact.
+**The precision knob:** by default resolve fully. But you can choose depth for performance. Depth 5 for ~30 digits. Depth 10 for ~100. Depth 20 for ~200. You know exactly where the approximation lives and how large it is. It doesn't compound through chains,  rational ops on the resolved value are exact.
 
 ## Layer 7: Q335 Basis
 
@@ -170,9 +170,9 @@ FFT butterfly: 4 multiplies + 4 add/sub, depth +1 per stage.
 
 How each constant gets computed to arbitrary precision.
 
-**Integer pair principle:** truncate a convergent rational series at N terms. Result is exact Fraction p/q. Truncation error bounded by next term. Not float approximation — exact rational differing from true value by known bounded amount.
+**Integer pair principle:** truncate a convergent rational series at N terms. Result is exact Fraction p/q. Truncation error bounded by next term. Not float approximation,  exact rational differing from true value by known bounded amount.
 
-**Borwein acceleration:** replaces linear convergence with geometric 3⁻ⁿ for all Dirichlet eta/zeta values. ζ(5) goes from 10,000 terms for 20 digits to 210 terms for 100 digits. Universal rate — same 210 terms works for ζ(7), ζ(9), any s. Coefficients d_k are finite sums of rational terms. ~22,000 Fraction operations on ~500-digit numbers. Minutes.
+**Borwein acceleration:** replaces linear convergence with geometric 3⁻ⁿ for all Dirichlet eta/zeta values. ζ(5) goes from 10,000 terms for 20 digits to 210 terms for 100 digits. Universal rate,  same 210 terms works for ζ(7), ζ(9), any s. Coefficients d_k are finite sums of rational terms. ~22,000 Fraction operations on ~500-digit numbers. Minutes.
 
 **Elliptic integrals as integer pairs:** K(k) at rational k = (π/2) × ₂F₁(1/2, 1/2; 1; k²). Every coefficient rational. Recurrence t_{n+1}/t_n = [(2n+1)/(2n+2)]² × k². Product of two integer pairs is an integer pair. Six values computed: K and E at k² = 1/2, 3/4, 1/4.
 
@@ -180,7 +180,7 @@ How each constant gets computed to arbitrary precision.
 
 **Extended basis:** ~29 constants. Original 17 from MATH-2 + 6 elliptic + 3 accelerated odd zeta + 3 Clausen functions.
 
-**PSLQ target:** Laporta's 6 finite 4-loop master integrals at 4800 digits. ~50–100 candidate constants at 5000+ digits. Not yet performed — method and feasibility established.
+**PSLQ target:** Laporta's 6 finite 4-loop master integrals at 4800 digits. ~50–100 candidate constants at 5000+ digits. Not yet performed,  method and feasibility established.
 
 ## Layer 9: Gaussian Elimination
 
@@ -188,9 +188,9 @@ The enabler for n×n domains. O(n³) replaces cofactor expansion's O(n!).
 
 3×3: 17 ops for determinant, 39 for inverse. 10×10: 550 det, 1100 inverse. 50×50: 63,750 det, 127,500 inverse. Cofactor is impractical at n=10, impossible at n=20.
 
-**Hilbert matrix pivot growth — where float dies, VDR doesn't:**
+**Hilbert matrix pivot growth,  where float dies, VDR doesn't:**
 
-H₃: float error ~10⁻¹⁶. H₅: ~10⁻⁹. H₈: ~10⁴ (wrong sign possible). H₁₀: meaningless. H₂₀: impossible. H₃₀: impossible. VDR computes H₃₀ routinely — determinant denominator ~400 digits, numerator always 1. Condition number is irrelevant to exact arithmetic.
+H₃: float error ~10⁻¹⁶. H₅: ~10⁻⁹. H₈: ~10⁴ (wrong sign possible). H₁₀: meaningless. H₂₀: impossible. H₃₀: impossible. VDR computes H₃₀ routinely,  determinant denominator ~400 digits, numerator always 1. Condition number is irrelevant to exact arithmetic.
 
 ## Layer 10: Linear Algebra
 
@@ -224,7 +224,7 @@ H₃: float error ~10⁻¹⁶. H₅: ~10⁻⁹. H₈: ~10⁴ (wrong sign possibl
 
 ## Layer 12: Normalization Fix (Library TODO)
 
-Newton on perfect squares (√4, √9) produces correct values but in unreduced form — 2k/k for large k. Structural comparison to [2, 1, 0] fails. Value equality holds. Zero arithmetic impact. Fix: when R is zero or value-equivalent to zero, GCD-reduce unconditionally. Affects 4/37 tests in VDR-26, some tests in VDR-28 normalization presentation. We solve this when we build the library.
+Newton on perfect squares (√4, √9) produces correct values but in unreduced form,  2k/k for large k. Structural comparison to [2, 1, 0] fails. Value equality holds. Zero arithmetic impact. Fix: when R is zero or value-equivalent to zero, GCD-reduce unconditionally. Affects 4/37 tests in VDR-26, some tests in VDR-28 normalization presentation. We solve this when we build the library.
 
 ## Layer 13: Physical Domains (VDR-13)
 
@@ -234,7 +234,7 @@ Newton on perfect squares (√4, √9) produces correct values but in unreduced 
 
 **Float comparison across all:** float gives ≈ correct ± 10⁻⁹ to 10⁻¹⁶ depending on domain and chain length. VDR gives exact structural equality. Every conservation law that should hold exactly, holds exactly.
 
-**Q335 tree depth vs flat denominator explosion:** crossover at ~step 10 of logistic map. At step 30: flat denominator ~10⁹ digits, Q335 tree 6,120 digits — ~163,000× compression. Tree grows linearly (one ~102-digit level per step). Flat grows exponentially.
+**Q335 tree depth vs flat denominator explosion:** crossover at ~step 10 of logistic map. At step 30: flat denominator ~10⁹ digits, Q335 tree 6,120 digits,  ~163,000× compression. Tree grows linearly (one ~102-digit level per step). Flat grows exponentially.
 
 ## Layer 14: Diffusion Zero-Drift (VDR-26)
 
@@ -256,7 +256,7 @@ Diffusion models are sequential arithmetic chains. Forward: xₜ = √ᾱₜ·x�
 
 35 domains across 12 categories sharing the same sequential chain pattern:
 
-Autoregressive generation (speech, music, protein, time-series). Normalizing flows (exact invertibility). Kalman filtering (exact symmetry, positive definiteness). Financial computation (associative multiplication for risk aggregation, exact Greeks via finite difference). Control systems (PID arithmetic windup = 0). Physics simulation (exact conservation). Cryptography (exact finite field — float categorically excluded). Geodesy (exact Helmert roundtrip). Game theory (Shapley sums exactly to v(N)). Signal processing (exact DFT roundtrip). Quantum computing (exact normalization, Born rule).
+Autoregressive generation (speech, music, protein, time-series). Normalizing flows (exact invertibility). Kalman filtering (exact symmetry, positive definiteness). Financial computation (associative multiplication for risk aggregation, exact Greeks via finite difference). Control systems (PID arithmetic windup = 0). Physics simulation (exact conservation). Cryptography (exact finite field,  float categorically excluded). Geodesy (exact Helmert roundtrip). Game theory (Shapley sums exactly to v(N)). Signal processing (exact DFT roundtrip). Quantum computing (exact normalization, Born rule).
 
 **10 float failure categories all eliminated:** accumulation, cancellation, non-associativity, platform dependence, overflow/underflow, denormals, non-reproducibility, symmetry breaking, conservation drift, false convergence.
 
@@ -278,9 +278,9 @@ Autoregressive generation (speech, music, protein, time-series). Normalizing flo
 
 **VDR is categorically different:** [1, 3, 0] is exact. Three integers. Zero truncation.
 
-## Layer 17: Boundaries — Honest and Complete
+## Layer 17: Boundaries,  Honest and Complete
 
-**Chaotic dynamics:** exact representation has exponential cost. Logistic map r=4: denominator digits ≈ 2ⁿ after n steps. Information-theoretic — Lyapunov exponent ln(2) forces it. Float hides this by silent truncation. VDR exposes it honestly. Periodic orbits on rationals are free (bounded denominators).
+**Chaotic dynamics:** exact representation has exponential cost. Logistic map r=4: denominator digits ≈ 2ⁿ after n steps. Information-theoretic,  Lyapunov exponent ln(2) forces it. Float hides this by silent truncation. VDR exposes it honestly. Periodic orbits on rationals are free (bounded denominators).
 
 **No native irrationals or complex numbers:** functional remainders produce exact rationals approaching irrationals. Complex extension is engineering work, not mathematical obstacle.
 
@@ -290,8 +290,8 @@ Autoregressive generation (speech, music, protein, time-series). Normalizing flo
 
 **Computational cost:** ~50–200× float per operation. Practical path: VDR for validation providing exact ground truth to verify float on larger systems.
 
-**Nothing is computationally impossible for VDR.** Every transcendental function with a known convergent series is reachable. Every numerically known constant is representable. The only constraint is computational cost — shared by all arithmetic systems. VDR makes costs visible and honest. Float silently produces garbage.
+**Nothing is computationally impossible for VDR.** Every transcendental function with a known convergent series is reachable. Every numerically known constant is representable. The only constraint is computational cost,  shared by all arithmetic systems. VDR makes costs visible and honest. Float silently produces garbage.
 
 ## Cumulative Validation
 
-921 tests. 38 domains. 903 passed. 18 failed — all 18 test-design errors (wrong expected values, tight thresholds, normalization presentation, precision frame mismatch). Zero VDR computation errors. The system remains falsifiable: any test producing an incorrect exact rational from correct inputs would falsify VDR. 921 tests have not produced one.
+921 tests. 38 domains. 903 passed. 18 failed,  all 18 test-design errors (wrong expected values, tight thresholds, normalization presentation, precision frame mismatch). Zero VDR computation errors. The system remains falsifiable: any test producing an incorrect exact rational from correct inputs would falsify VDR. 921 tests have not produced one.

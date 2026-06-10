@@ -2,7 +2,7 @@ Let's trace a concrete scenario. The monitoring watch fires: API latency P99 has
 
 **Step 1: Pull Prometheus data.**
 
-The LLM issues an operational command to query Prometheus. This is a net_fetch to the Prometheus HTTP API — it's already covered by VDR-6's network primitives with a grant.
+The LLM issues an operational command to query Prometheus. This is a net_fetch to the Prometheus HTTP API,  it's already covered by VDR-6's network primitives with a grant.
 
 ```
 CMD: lock_acquire(root.ops.incident_002.investigating, holder: "latency_spike")
@@ -17,7 +17,7 @@ CMD: counter_inc(root.ops.incident_002.queries_issued)
 
 **Step 2: Unwrap the JSON into structured data.**
 
-The raw response is Prometheus JSON — nested, with metadata. The LLM uses pure primitives to extract the time series:
+The raw response is Prometheus JSON,  nested, with metadata. The LLM uses pure primitives to extract the time series:
 
 ```
 CMD: PURE_FN parse_json(root.ops.incident_002.raw_latency) 
@@ -57,7 +57,7 @@ CMD: PURE_FN for_each(exact_series, fn(point,
 
 **Step 4: Time series operations with builtins.**
 
-Now the LLM does the analysis with pure primitives — no token prediction arithmetic:
+Now the LLM does the analysis with pure primitives,  no token prediction arithmetic:
 
 ```
 // Extract just the latency values from the pairs
@@ -77,7 +77,7 @@ CMD: KB_ASSERT(root.ops.incident_002.stats,
 CMD: KB_ASSERT(root.ops.incident_002.stats,
     binding("max_latency_ms", fraction(12400, 1)))
 
-// Find the spike onset — first point above 2x baseline
+// Find the spike onset,  first point above 2x baseline
 CMD: PURE_FN list_filter(exact_series, 
     predicate(fn(pair, pair[1] > fraction(4000, 1)))) → spike_points
 CMD: PURE_FN list_head(spike_points) → [timestamp(1747400400), fraction(4100, 1)]
@@ -160,7 +160,7 @@ CMD: KB_ASSERT(root.ops.incident_002.correlation,
     binding("correlation_strength", fraction(94, 100)))
 ```
 
-Database connections spiked 3 minutes before latency went up. Request rate barely correlates — this isn't a traffic spike. CPU correlates moderately — it's a symptom, not the cause.
+Database connections spiked 3 minutes before latency went up. Request rate barely correlates,  this isn't a traffic spike. CPU correlates moderately,  it's a symptom, not the cause.
 
 **Step 7: Prolog deduces from the processed data.**
 
@@ -230,7 +230,7 @@ CMD: KB_ASSERT(root.ops.incident_002.db_state,
     binding("connection_saturation", fraction(99, 100)))
 
 CMD: lru_push(root.ops.incident_002.findings, "db_saturation",
-    "99% connection saturation — 153 idle-in-transaction hogging the pool")
+    "99% connection saturation,  153 idle-in-transaction hogging the pool")
 ```
 
 153 idle-in-transaction connections. Something is opening transactions and not closing them.
@@ -322,6 +322,6 @@ CMD: lock_release(root.ops.incident_002.investigating)
 
 The complete flow was: Prometheus (raw data) → parse_json (structure) → dict/list primitives (extract) → VDR arithmetic (exact time series) → Python (cross-correlation) → store in KB (working memory) → Prolog (causal deduction) → back to Prometheus (drill down) → Python (query analysis) → Prolog (full chain) → permanent rules (prevention).
 
-Six Prometheus queries, each parsed by builtins, converted to exact fractions, analyzed by a mix of pure primitives and Python, stored at KB paths, reasoned over by Prolog. The LLM never did arithmetic. It never guessed at correlations. It orchestrated exact tools in a logical sequence, and every intermediate result — every time series, every correlation coefficient, every connection count — is in the KB at a dotted path, queryable, exact, and traceable.
+Six Prometheus queries, each parsed by builtins, converted to exact fractions, analyzed by a mix of pure primitives and Python, stored at KB paths, reasoned over by Prolog. The LLM never did arithmetic. It never guessed at correlations. It orchestrated exact tools in a logical sequence, and every intermediate result,  every time series, every correlation coefficient, every connection count,  is in the KB at a dotted path, queryable, exact, and traceable.
 
-The trick is that the Prometheus data enters as raw JSON, becomes structured data through command token primitives, becomes exact fractions through VDR conversion, becomes working memory through KB storage, becomes evidence through Prolog assertion, and becomes conclusions through Prolog deduction. Each transformation is one or two command tokens. The data moves through the system getting progressively more structured and meaningful at each stage, and nothing is lost — every intermediate form is at a KB path if you need to inspect it.
+The trick is that the Prometheus data enters as raw JSON, becomes structured data through command token primitives, becomes exact fractions through VDR conversion, becomes working memory through KB storage, becomes evidence through Prolog assertion, and becomes conclusions through Prolog deduction. Each transformation is one or two command tokens. The data moves through the system getting progressively more structured and meaningful at each stage, and nothing is lost,  every intermediate form is at a KB path if you need to inspect it.

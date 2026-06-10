@@ -1,4 +1,4 @@
-# HOWL-VDR-35-2026 — LLM-COMPACT FORM
+# HOWL-VDR-35-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: problem → type_system → core_instruction → softmax → kb_on_gpu → prolog_gpu → grammars → sessions → safety → universal_cycle → runners → server → confidence → api → implementation → testing → deployment → comparison → energy
 
@@ -11,11 +11,11 @@ PR3|integer eliminates all|integers cannot be NaN/Inf/subnormal; addition associ
 TS1|Q16|2^16=65536|8 bytes (i32 value + i16 remainder + i16 padding)|1.53×10⁻⁵|primary operational: weights, activations, attention scores, gradients, optimizer state
 TS2|Q32|2^32|16 bytes (i64 value + i32 R0 + i32 R1)|2.33×10⁻¹⁰|intermediate precision: long-sequence accumulation, values >1.0 at full precision
 TS3|Q335|2^335|240 bytes (6×i64 limbs + 4 remainder levels)|~10⁻¹⁰¹|high-precision transcendental computation; remainder depth fixed at 4 (beyond R3 truncated, R3 tells exactly how much left)
-# denominator never stored — compile-time constant; compiler tracks Q-basis per register/pointer; no implicit conversions; explicit reproject required
+# denominator never stored,  compile-time constant; compiler tracks Q-basis per register/pointer; no implicit conversions; explicit reproject required
 
 # core_instruction(id|description)
 CI1|widening multiply: i16×i16→i32 (Q16); shift right by 16: quotient=new V; mask low 16: remainder=R0
-CI2|on H100: INT8 tensor cores deliver 3,958 TOPS vs FP16 1,979 TFLOPS — integer path 2× float on same silicon
+CI2|on H100: INT8 tensor cores deliver 3,958 TOPS vs FP16 1,979 TFLOPS,  integer path 2× float on same silicon
 CI3|eliminates: entire float pipeline, FP4-FP64 type hierarchy, conversion functions, mixed-precision orchestration, Transformer Engine, SFU for transcendentals, NaN/Inf/subnormal branches, warp divergence from data-dependent special cases
 
 # softmax(id|aspect|description)
@@ -36,7 +36,7 @@ PG2|structural equivalence|parallel database join where comparison operator is i
 PG3|depth-first search|sequential within a branch; independent branches parallel across SMs; depth limit 100
 
 # grammar_gpu(id|aspect|description)
-GR1|structural tokens|measured: Python ~40%, JSON ~55%, tables ~65%, prose+data ~30%, pipe-delimited ~80% — all predicted through full forward passes in conventional systems
+GR1|structural tokens|measured: Python ~40%, JSON ~55%, tables ~65%, prose+data ~30%, pipe-delimited ~80%,  all predicted through full forward passes in conventional systems
 GR2|replacement|template declares typed slots; grammar fills structural bytes via memcpy + integer-to-string; LLM fills content slots only
 GR3|guarantees|syntactic correctness by construction; JSON cannot be malformed; grammars persist in KBs, inherit through tree, zero cost per reuse
 
@@ -73,7 +73,7 @@ EL2|L2|~8 command + ~10 prose framing|LLM recognizes stored rule applies, emits 
 EL3|L3|0|Prolog rule fires during Phase 0 without LLM; grammar renders from KB
 
 # runners(id|type|input|behavior|freshness)
-RN1|poller|synthetic "poll cycle N" on timer (default 60s)|fires triage rules against KB state; zero LLM if rules handle all|fresh stream each cycle — no attention degradation
+RN1|poller|synthetic "poll cycle N" on timer (default 60s)|fires triage rules against KB state; zero LLM if rules handle all|fresh stream each cycle,  no attention degradation
 RN2|processor|persistent external connection (Prometheus, deploy pipeline, etc.)|compacts data into KB facts; known patterns L3, novel L1; reconnect with exponential backoff 1s→60s cap|recycles at 200-turn threshold: snapshot→kill→clone→restore connection
 RN3|internal|scheduled computation (rolling averages, trends, coverage gaps)|KB queries + exact VDR arithmetic + KB assertions; zero LLM unless novel pattern|periodic schedule
 RN4|batch|tasks from KB queue|clones parent per task for isolation; merges results back; up to max_concurrent clones|clone-per-task; corrupt task affects only its clone
@@ -392,11 +392,11 @@ X|Test Count Summary|BP1-BP6
 # Q16/Q32/Q335: fixed-denominator VDR types at D=2^16/2^32/2^335; denominator is compile-time constant, never stored
 # divmod: shift+mask when D is power-of-two; zero logic gates in silicon
 # quadratic softmax surrogate: (shifted)²/Σ(shifted)²; sums to D exactly; integer multiply+divide, no SFU
-# SFU: Special Function Unit — GPU transcendental hardware, 32 ops/SM/cycle; eliminated by VDR
-# FRU: Functional Remainder Unit — per-QIU sequencer for exact transcendental evaluation on dedicated ASIC
-# KB: knowledge base — 256-byte struct at integer address; 26 fields; tree with lexical scoping
-# COW: copy-on-write — clone shares parent pages until first write triggers page copy
-# L1/L2/L3: execution levels — full LLM (50-500 tok) / LLM+rule (~8 tok) / pure Prolog (0 tok)
+# SFU: Special Function Unit,  GPU transcendental hardware, 32 ops/SM/cycle; eliminated by VDR
+# FRU: Functional Remainder Unit,  per-QIU sequencer for exact transcendental evaluation on dedicated ASIC
+# KB: knowledge base,  256-byte struct at integer address; 26 fields; tree with lexical scoping
+# COW: copy-on-write,  clone shares parent pages until first write triggers page copy
+# L1/L2/L3: execution levels,  full LLM (50-500 tok) / LLM+rule (~8 tok) / pure Prolog (0 tok)
 # universal cycle: Phase 0 (pre-LLM rules) → Phase 1 (context assembly) → Phase 2 (generation+dispatch) → Phase 3 (post-cycle counters)
 # runner: autonomous execution loop; poller (timer), processor (persistent connection+recycle), internal (scheduled compute), batch (clone-per-task)
 # grant: positive credential with class/target/uses/expiry; default denial; all terminal states permanent

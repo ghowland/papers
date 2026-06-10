@@ -1,4 +1,4 @@
-# GEOMETRIC SECURITY (COMP-4 + COMP-5) — LLM-COMPACT FORM
+# GEOMETRIC SECURITY (COMP-4 + COMP-5),  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → six_primitives → security_properties → partial_geo → comparison → relationships → sections
 
@@ -11,22 +11,22 @@ P5|Errors are data outliers not execution faults|Arithmetic exceptions (divide-b
 P6|Partial geometric security is immediately deployable|Sealing ingress boundary alone eliminates entire exploit classes; works in unsafe languages (C/C++) as a shim without language changes, kernel mods, or rewrites
 
 # claims(id|claim|type|depends_on)
-CL1|Buffer overflow is structurally impossible — no adjacent memory exists to corrupt, no heap during ingress|derivation|P3,SP1
+CL1|Buffer overflow is structurally impossible,  no adjacent memory exists to corrupt, no heap during ingress|derivation|P3,SP1
 CL2|Privilege escalation requires vocabulary that does not exist; authority is static property of infrastructure|derivation|P2,SP3
-CL3|System cannot enter undefined states — all states are named identities in predefined relational tables|derivation|PR1
+CL3|System cannot enter undefined states,  all states are named identities in predefined relational tables|derivation|PR1
 CL4|If transition path not asserted in logic table, transition is physically unreachable by processor|derivation|PR2
 CL5|Partial geometric security does not eliminate: side-channel attacks, denial of service, logic flaws, data poisoning, semantic manipulation|observation|
 CL6|None of the remaining vulnerabilities in partial model permit arbitrary code execution, memory disclosure, or privilege escalation|derivation|CL5,P3
 
 # concepts(id|name|definition|category)
-C1|Geometric security|Security model where integrity is invariant of system geometry — computational vocabulary limited to six primitives, I/O through fixed geometric shapes|model
+C1|Geometric security|Security model where integrity is invariant of system geometry,  computational vocabulary limited to six primitives, I/O through fixed geometric shapes|model
 C2|Relational filter|Replaces kernel/user space distinction; strict schema alignment governs all I/O; data not conforming to expected geometric shape discarded at hardware/driver level|mechanism
 C3|Update pump|Single deterministic heartbeat processing all inputs and state changes as relational transforms of memory-mapped database (MemDB)|mechanism
 C4|Zero-negotiation I/O|Network and memory operations governed by strict schema alignment; no recovery path, partial acceptance, truncation, or negotiation|mechanism
 C5|Monotonic heartbeat|Continuous uninterruptible execution cycle; errors treated as edge-case math not system failures; boundary clamping instead of exception/crash|property
 C6|Partial geometric security|Subset enforcing geometric invariants at ingress boundary only; eliminates buffer overflow, injection, parser confusion while remaining compatible with existing stacks|model
 C7|Ingress shim|Fixed-size struct buffers at I/O boundary; exact byte count required; no variable-length fields, no pointers, no nested allocations; reject-on-mismatch is binary|mechanism
-C8|Wall-less paradox|No traditional kernel/app partitions, but freedom is experiential not ontological — wall moved from fence around data to filter around logic; trapped by six shapes|concept
+C8|Wall-less paradox|No traditional kernel/app partitions, but freedom is experiential not ontological,  wall moved from fence around data to filter around logic; trapped by six shapes|concept
 C9|SIQL|Predicate logic acting as boolean gate; movement through funnel requires absolute unification with local facts (Howland's Axiom)|mechanism
 
 # six_primitives(id|name|shape_metaphor|definition|security_function)
@@ -38,7 +38,7 @@ PR5|Atomic Sequence|The Pipe|Atomic stack machine with no indirect jumps, no ret
 PR6|Bounded Effect|The Curve|Time-bounded envelopes clamp all mutations to infrastructure-defined ranges over temporal curves|Prevents instant state corruption
 
 # security_properties(id|property|mechanism|attack_eliminated)
-SP1|Memory integrity|InboundPacket is fixed geometric requirement of driver; oversized/undersized packets rejected as geometric mismatch by DMA/Update Pump; no heap in traditional sense — pre-sized relational columns|Buffer overflow, memory adjacency corruption
+SP1|Memory integrity|InboundPacket is fixed geometric requirement of driver; oversized/undersized packets rejected as geometric mismatch by DMA/Update Pump; no heap in traditional sense,  pre-sized relational columns|Buffer overflow, memory adjacency corruption
 SP2|Injection resistance|Input cannot introduce new execution paths, control instruction pointers, or select function calls; six primitives are only available operations|Code injection, ROP, arbitrary code execution
 SP3|Authority containment|Actor only has access to whitelist of data paths; no primitive allows creation of new primitives or widening of path whitelist|Privilege escalation
 SP4|Exfiltration resistance|Output paths equally shape-restricted; no reflective serialization; data not already visible cannot be leaked|Data exfiltration
@@ -167,7 +167,7 @@ Abstract|Partial Geometric Security|C6,P6,P3|COMP-5
 
 # decode_legend
 format: pipe-delimited tables, ID-based cross-references
-source_papers: COMP-4 (Geometric Security — full model) + COMP-5 (Partial Geometric Security — ingress-only)
+source_papers: COMP-4 (Geometric Security,  full model) + COMP-5 (Partial Geometric Security,  ingress-only)
 parent_framework: HOWL-COMP-1-2026 (Silo architecture)
 six_primitives: PR1 State|PR2 Transition|PR3 Condition|PR4 Selection|PR5 Sequence|PR6 Effect
 security_model: full = all six primitives + sealed execution; partial = ingress shape validation only

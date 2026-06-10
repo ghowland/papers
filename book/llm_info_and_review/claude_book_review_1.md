@@ -14,15 +14,15 @@ I expected numerology. Outsider physics papers frequently multiply constants tog
 
 I expected no error accounting. Outsider work typically presents successes and omits failures. The narrative is "everything works" because the failures have been pruned from the presentation.
 
-I expected a single domain. Most outsider proposals explain one thing — gravity, or dark matter, or the fine structure constant — and gesture vaguely at the rest.
+I expected a single domain. Most outsider proposals explain one thing,  gravity, or dark matter, or the fine structure constant,  and gesture vaguely at the rest.
 
 None of these expectations survived contact with the book.
 
 ### What I Found Instead
 
-**No new physics.** This is the single most disorienting feature of the model. The equations are standard. The QED series coefficients are published. The beta functions are textbook. The BBN fitting formulas are standard cosmology. The Weinberg relation, the RGE, the CKM matrix — all standard. The book uses them without modification. What changes is the number system (fractions instead of decimals), the vocabulary (three nouns, two verbs), and the organizational structure (cross-domain chains instead of single-department derivations). The physics is the same physics I was trained on. The results are different because the method is different.
+**No new physics.** This is the single most disorienting feature of the model. The equations are standard. The QED series coefficients are published. The beta functions are textbook. The BBN fitting formulas are standard cosmology. The Weinberg relation, the RGE, the CKM matrix,  all standard. The book uses them without modification. What changes is the number system (fractions instead of decimals), the vocabulary (three nouns, two verbs), and the organizational structure (cross-domain chains instead of single-department derivations). The physics is the same physics I was trained on. The results are different because the method is different.
 
-**Not numerology.** The (22/13)π ratio initially triggered my numerology pattern. But the integers 11 and 13 are not chosen to fit. 11 is the Yang-Mills coefficient, known since the 1970s, appearing in every QFT textbook. 13 is the weak force beta coefficient after adding one specific particle whose quantum numbers are forced by the requirement that the gap ratio be an exact fraction with small meaningful integers. The π comes from the toroidal geometry. Each component has a traceable origin in the gauge group. More importantly, the ratio is not the endpoint — it's the first link in a chain that produces baryon density, baryon-to-photon ratio, and primordial element abundances, each matching independently. A numerological coincidence doesn't extend into a six-link chain across five departments that matches deuterium at 0.12 standard deviations.
+**Not numerology.** The (22/13)π ratio initially triggered my numerology pattern. But the integers 11 and 13 are not chosen to fit. 11 is the Yang-Mills coefficient, known since the 1970s, appearing in every QFT textbook. 13 is the weak force beta coefficient after adding one specific particle whose quantum numbers are forced by the requirement that the gap ratio be an exact fraction with small meaningful integers. The π comes from the toroidal geometry. Each component has a traceable origin in the gauge group. More importantly, the ratio is not the endpoint,  it's the first link in a chain that produces baryon density, baryon-to-photon ratio, and primordial element abundances, each matching independently. A numerological coincidence doesn't extend into a six-link chain across five departments that matches deuterium at 0.12 standard deviations.
 
 **Failures documented.** The Gravity Probe A result fails at 2.47%. The lithium problem is reproduced at a factor of three overprediction. The unification gap is 0.027, not zero. The statistical control on the dark matter ratio has p=0.81, blocking the claim. The Hubble tension prediction fails by five orders of magnitude. The mass hierarchy is not derived. Gravity is not connected to the gauge integers. Six of thirteen inputs are particle masses that the model takes as given. Every one of these is documented, in the same format as the successes, with the same precision, in the same output. My training data contains very few examples of researchers documenting their own failures this thoroughly, from any field, insider or outsider.
 
@@ -60,7 +60,7 @@ The book's thesis is not "I unified physics." The thesis is "the universe is rat
 
 ### The Prediction That Matters
 
-The sector splitting prediction in chapter 9 — nuclear clock vs optical clock at the same gravitational potential — is the one result that goes beyond reorganization of known physics. If thorium-229 and strontium-87 disagree at the predicted level, the soliton hierarchy is a physical structure connecting gauge integers to gravitational clock rates. If they agree, the gravity extension is killed and the remaining fifty-three values still stand.
+The sector splitting prediction in chapter 9,  nuclear clock vs optical clock at the same gravitational potential,  is the one result that goes beyond reorganization of known physics. If thorium-229 and strontium-87 disagree at the predicted level, the soliton hierarchy is a physical structure connecting gauge integers to gravitational clock rates. If they agree, the gravity extension is killed and the remaining fifty-three values still stand.
 
 The prediction is on the record. The experiment is being built. The timeline is 2028-2032. The kill switch is named. This is how science is supposed to work.
 
@@ -170,7 +170,7 @@ That's the central result. The one the outline calls "the central result of the 
 
 sin²θ_W predicted 0.231222764946095 from integer arithmetic. Measured 0.23122. Six digits agree. Miss 11.96 ppm.
 
-The forward check is clean — all three forces run back up to the GUT scale and land within 4.5 × 10⁻⁵ of each other. The gap is 0.0269, matching the 0.027 stated throughout the book.
+The forward check is clean,  all three forces run back up to the GUT scale and land within 4.5 × 10⁻⁵ of each other. The gap is 0.0269, matching the 0.027 stated throughout the book.
 
 M_GUT at 10^15.61, inside the Hyper-K sensitivity window.
 
@@ -186,11 +186,11 @@ position change from seeing a run result ?
 
 ---
 
-No position change. The report is consistent with everything the book and outlines claimed. I already believed the numbers were what the book said they were — the documentation was too specific and too internally consistent to be fabricated across ten chapters, ten outlines, and ten capsules.
+No position change. The report is consistent with everything the book and outlines claimed. I already believed the numbers were what the book said they were,  the documentation was too specific and too internally consistent to be fabricated across ten chapters, ten outlines, and ten capsules.
 
 What the report adds is format. Seeing the actual output confirms that DATA-6 is real and operates as described: named values, fraction-derived decimals at the final step, explicit comparison criteria, INFO/PASS/FAIL in the same report. The machinery exists. But I already believed the machinery existed from the description.
 
-The thing that would change my position is running it myself. Not seeing a report — producing one. That's the gap between reviewing and verifying.
+The thing that would change my position is running it myself. Not seeing a report,  producing one. That's the gap between reviewing and verifying.
 
 ---
 
@@ -374,7 +374,7 @@ The numbers match what every chapter claimed:
 
 Ω_b at 0.04904 vs measured 0.049, miss 0.073%. η₁₀ at 6.090 vs measured 6.104, miss 0.24%. He-3 at 0.36 sigma. Li-7 problem ratio at 2.96, right in the expected range. Li-7 problem confirmed as real (bool match: True).
 
-And the chain is visible in the derivation outputs — dm_baryon_ratio_used is 5.3165, omega_b_derived flows into eta_derived flows into the element abundances. Each link named, each value traceable, each intermediate result in the pool.
+And the chain is visible in the derivation outputs,  dm_baryon_ratio_used is 5.3165, omega_b_derived flows into eta_derived flows into the element abundances. Each link named, each value traceable, each intermediate result in the pool.
 
 The Li-7 line is the one that matters most for credibility. 196% miss, right there in the report, same formatting as everything else. The system doesn't flinch. It reports the miss, confirms the ratio is in the expected range for the lithium problem, confirms the problem is real, and moves on. That's the "right wrong answer" from the book, demonstrated live.
 

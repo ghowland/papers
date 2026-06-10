@@ -8,14 +8,14 @@ CMD: lru_push(root.project.bugs.recent_failures, "test_047",
 CMD: counter_inc(root.project.bugs.failure_count)
 ```
 
-Before investigating, it checks whether this function has failed recently — maybe there's a pattern:
+Before investigating, it checks whether this function has failed recently,  maybe there's a pattern:
 
 ```
 CMD: lru_peek(root.project.bugs.recent_failures, 10)
 → [{test_047: graph_traversal}, {test_044: graph_cycle}, {test_041: graph_bfs}]
 ```
 
-Three graph-related failures in recent history. The LLM doesn't investigate test_047 in isolation — it formalizes all three as Prolog facts and writes dependency rules:
+Three graph-related failures in recent history. The LLM doesn't investigate test_047 in isolation,  it formalizes all three as Prolog facts and writes dependency rules:
 
 ```
 CMD: KB_ASSERT(root.project.bugs.investigation_01,
@@ -36,7 +36,7 @@ CMD: KB_QUERY(root.project.bugs.investigation_01,
 → Dep = graph_bfs
 ```
 
-Both failing functions depend on graph_bfs. The LLM acquires a lock before starting the fix — signaling that this module is being worked on:
+Both failing functions depend on graph_bfs. The LLM acquires a lock before starting the fix,  signaling that this module is being worked on:
 
 ```
 CMD: lock_acquire(root.project.graph_module.editing, holder: "bug_fix_001")
@@ -153,7 +153,7 @@ CMD: KB_QUERY(root.project.design.job_system,
 → Patterns = [message_queue, redis_queue]
 ```
 
-Database polling is eliminated — 500 jobs/minute exceeds its threshold. Two options remain. The LLM writes Python to model throughput under load using exact fractions:
+Database polling is eliminated,  500 jobs/minute exceeds its threshold. Two options remain. The LLM writes Python to model throughput under load using exact fractions:
 
 ```
 CMD: ENV_UPLOAD(env_dev, throughput_model.py, root.project.design.throughput)
@@ -206,7 +206,7 @@ CMD: KB_ASSERT(root.writing.ubi_speech.evidence,
     fact(claim(cost_feasible, "Total cost approximately 3.2T per year",
         source("blogger estimate"), strength(unverified))))
 CMD: lru_push(root.writing.ubi_speech.sources, "cost_feasible",
-    "blogger estimate — WEAK")
+    "blogger estimate,  WEAK")
 CMD: counter_inc(root.writing.ubi_speech.unsupported_claims)
 ```
 
@@ -258,7 +258,7 @@ CMD: KB_ASSERT(root.writing.ubi_speech.evidence,
         source("CBO 2025 analysis"), strength(government_report))))
 CMD: counter_dec(root.writing.ubi_speech.unsupported_claims)
 CMD: lru_push(root.writing.ubi_speech.sources, "cost_feasible",
-    "CBO 2025 — upgraded from blog")
+    "CBO 2025,  upgraded from blog")
 ```
 
 Now it builds the argument order in the queue, structured for persuasive flow:
@@ -267,20 +267,20 @@ Now it builds the argument order in the queue, structured for persuasive flow:
 CMD: queue_push(root.writing.ubi_speech.argument_order, 
     "hook: personal story of economic insecurity")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
-    "claim: poverty_reduction — strongest evidence first")
+    "claim: poverty_reduction,  strongest evidence first")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
-    "preempt objection: dependency — address with MIT entrepreneurship data")
+    "preempt objection: dependency,  address with MIT entrepreneurship data")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
-    "claim: entrepreneurship — pivot from defense to offense")
+    "claim: entrepreneurship,  pivot from defense to offense")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
-    "claim: cost_feasible — CBO numbers, offset by eliminated programs")
+    "claim: cost_feasible,  CBO numbers, offset by eliminated programs")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
-    "preempt objection: inflation — address with targeted implementation")
+    "preempt objection: inflation,  address with targeted implementation")
 CMD: queue_push(root.writing.ubi_speech.argument_order,
     "close: vision of economic security as foundation for flourishing")
 ```
 
-The LLM pops each section from the queue and generates text for it, checking each section against the evidence KB to ensure every claim has a source. The generated speech has a complete argument graph in the KB — every claim, its evidence, its source strength, known objections and their rebuttals, all queryable.
+The LLM pops each section from the queue and generates text for it, checking each section against the evidence KB to ensure every claim has a source. The generated speech has a complete argument graph in the KB,  every claim, its evidence, its source strength, known objections and their rebuttals, all queryable.
 
 ---
 
@@ -548,11 +548,11 @@ Close race between Rust and Go. The LLM logs the discussion point:
 
 ```
 CMD: ring_write(root.decisions.backend_lang.discussion_points,
-    "Rust leads by 3% — within sensitivity range. 
+    "Rust leads by 3%,  within sensitivity range. 
      Changing performance weight from 30% to 25% might flip the ranking.")
 ```
 
-It writes Python to do sensitivity analysis — which weight changes would flip the outcome:
+It writes Python to do sensitivity analysis,  which weight changes would flip the outcome:
 
 ```
 CMD: ENV_UPLOAD(env_dev, sensitivity.py, root.decisions.scripts.sensitivity)
@@ -629,7 +629,7 @@ CMD: KB_QUERY(root.stories.novel.world_rules,
 CMD: counter_inc(root.stories.novel.consistency_violations)
 ```
 
-The LLM reports: "Consistency issue — Maya is Southern Guild, which is banned in the Northern Province. Options: (1) she's traveling in disguise, (2) the ban was recently lifted, (3) she's defecting." It pushes each option as a plot thread:
+The LLM reports: "Consistency issue,  Maya is Southern Guild, which is banned in the Northern Province. Options: (1) she's traveling in disguise, (2) the ban was recently lifted, (3) she's defecting." It pushes each option as a plot thread:
 
 ```
 CMD: stack_push(root.stories.novel.plot_threads, 
@@ -645,7 +645,7 @@ CMD: KB_ASSERT(root.stories.novel.world_rules,
     rule(exemption(Character, Region, disguise) :-
         condition(Character, disguised_as(_), Region)))
 
-// Recheck — violation should be resolved with exemption
+// Recheck,  violation should be resolved with exemption
 CMD: KB_ASSERT(root.stories.novel.world_rules,
     rule(effective_violation(Character, Action, Region, Reason) :-
         violation(Character, Action, Region, Reason),
@@ -658,7 +658,7 @@ CMD: counter_dec(root.stories.novel.consistency_violations)
 CMD: stack_pop(root.stories.novel.plot_threads)  // resolved
 ```
 
-But the disguise creates a new tension — the LLM writes a rule for it:
+But the disguise creates a new tension,  the LLM writes a rule for it:
 
 ```
 CMD: KB_ASSERT(root.stories.novel.world_rules,
@@ -685,7 +685,7 @@ CMD: lru_peek(root.stories.novel.recent_events, 10) → last 10 events
 
 **Teaching: Socratic Dialogue**
 
-Student asks "why is binary search O(log n)?" The LLM doesn't just explain — it builds an interactive proof the student can query:
+Student asks "why is binary search O(log n)?" The LLM doesn't just explain,  it builds an interactive proof the student can query:
 
 ```
 CMD: counter_create(root.teaching.binary_search.student_steps)
@@ -758,7 +758,7 @@ CMD: ENV_EXEC(env_dev, "python3", root.teaching.scripts.trace)
 TEXT: "Look at the trace: 16 → 8 → 4 → 2 → 1. That's 4 steps."
 CMD: stack_peek(root.teaching.binary_search.hint_stack)
 → "If you start with 1000 elements and halve each time, how many steps to reach 1?"
-TEXT: "Now — if you started with 1000 elements instead of 16, 
+TEXT: "Now,  if you started with 1000 elements instead of 16, 
       how many halvings would it take?"
 CMD: counter_inc(root.teaching.binary_search.student_steps)
 ```
@@ -813,7 +813,7 @@ CMD: KB_ASSERT(root.research.survey.papers_kb,
         venue("NeurIPS"), citations(45))))
 CMD: counter_inc(root.research.survey.papers_found)
 CMD: queue_push(root.research.survey.to_analyze, "p001")
-CMD: lru_push(root.research.survey.papers, "p001", "Smith & Jones 2024 — exact arithmetic NN")
+CMD: lru_push(root.research.survey.papers, "p001", "Smith & Jones 2024,  exact arithmetic NN")
 ```
 
 It locks the analysis phase and processes the queue:
@@ -854,7 +854,7 @@ CMD: PURE_FN graph_pagerank(citation_graph, fraction(85, 100)) → influence_sco
 CMD: PURE_FN list_sort_by_key(influence_scores, key(second), descending) → ranked_papers
 ```
 
-It writes Prolog to identify research gaps — claims made by only one paper with no replication:
+It writes Prolog to identify research gaps,  claims made by only one paper with no replication:
 
 ```
 CMD: KB_ASSERT(root.research.survey.gap_analysis,
@@ -1054,7 +1054,7 @@ Major discrepancy. The LLM records the finding:
 
 ```
 CMD: lru_push(root.ops.data_investigation.findings, "news_2026_04",
-    "accuracy 62% vs 91% baseline — major quality issue")
+    "accuracy 62% vs 91% baseline,  major quality issue")
 CMD: KB_ASSERT(root.ops.data_investigation.evidence,
     fact(source_anomaly("source_news_2026_04", 
         accuracy_on_source(fraction(62, 100)),
@@ -1106,7 +1106,7 @@ CMD: lru_push(root.ops.data_investigation.findings, "root_cause",
     "source_news_2026_04: 34% non-English, language filter failed")
 CMD: bitset_set(root.ops.data_investigation.sources_cleared, 1)  // github cleared
 CMD: bitset_set(root.ops.data_investigation.sources_cleared, 2)  // forums cleared
-// source 0 (news) NOT cleared — it's the problem
+// source 0 (news) NOT cleared,  it's the problem
 
 CMD: stack_push(root.ops.data_investigation.investigation_path,
     "root cause found: language contamination in news source")
@@ -1126,4 +1126,4 @@ The full investigation path is on the stack, all findings are in the LRU, the bi
 
 ---
 
-The pattern across all domains is the same: the LLM uses the data primitives as organizational scaffolding — queues for plans and pending work, stacks for undo and investigation paths, LRUs for recent context, counters for progress and budgets, bitsets for completion tracking, locks for coordination, ring buffers for rolling history. Prolog handles deduction and constraint verification. Python handles computation and data gathering. String and list primitives handle parsing and filtering. The LLM orchestrates all of it through compact command token references. None of these tools reason. The LLM doesn't compute. Together they cover the full loop: observe, hypothesize, gather, deduce, act, verify, record.
+The pattern across all domains is the same: the LLM uses the data primitives as organizational scaffolding,  queues for plans and pending work, stacks for undo and investigation paths, LRUs for recent context, counters for progress and budgets, bitsets for completion tracking, locks for coordination, ring buffers for rolling history. Prolog handles deduction and constraint verification. Python handles computation and data gathering. String and list primitives handle parsing and filtering. The LLM orchestrates all of it through compact command token references. None of these tools reason. The LLM doesn't compute. Together they cover the full loop: observe, hypothesize, gather, deduce, act, verify, record.

@@ -1,4 +1,4 @@
-# VDR-25 LLM SERVER SOFTWARE — LLM-COMPACT FORM
+# VDR-25 LLM SERVER SOFTWARE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → server_arch → services → structural_advantages → limitations → relationships → sections
 
@@ -13,11 +13,11 @@ P6|Exact accounting|All numeric values as VDR fractions; no rounding in billing,
 # claims(id|claim|type|depends_on)
 CL1|Grammar parse and response generation cost 0 LLM tokens for all protocols; only content slot filling requires tokens (8-60 per request)|observation|P1
 CL2|Static HTTP server: 3 hours development vs 1-2 weeks conventional; full email stack: 18-26 hours vs 3-6 months|observation|P5
-CL3|SQL injection attack vector does not exist — Prolog queries are typed, no SQL engine|derivation|P2
+CL3|SQL injection attack vector does not exist,  Prolog queries are typed, no SQL engine|derivation|P2
 CL4|33+ protocols implementable as LM Software services using identical architectural pattern|observation|P3
 CL5|At level 3 (pure Prolog), typical API request costs 8-24 tokens total; grammar handles all protocol framing|derivation|CL1
-CL6|Rate limit thresholds are exact VDR fractions — no false threshold crossings from float accumulation drift|derivation|P6
-CL7|Every operation on every service logged with full provenance — who, what, when, which rule, which data, what result|observation|P2
+CL6|Rate limit thresholds are exact VDR fractions,  no false threshold crossings from float accumulation drift|derivation|P6
+CL7|Every operation on every service logged with full provenance,  who, what, when, which rule, which data, what result|observation|P2
 
 # concepts(id|name|definition|category)
 C1|Port listener|Processor runner with granted network primitive listening on port; spawns clone per connection from service snapshot|architecture
@@ -78,7 +78,7 @@ SV44|Firewall API|443|HTTP+JSON|JSON|Clone-per-request|16-24|Network listen, sys
 SA1|Protocol compliance by construction|Grammar cannot produce malformed output; status lines, section counts, balanced braces enforced structurally|Malformed responses, missing headers, encoding errors, framing violations
 SA2|Security without middleware|Auth = credential facts; authz = grants; rate = counters; scope = integer visibility; audit = automatic provenance|Misconfigured middleware, missing auth checks, inconsistent authorization
 SA3|Exact accounting|VDR fractions for all numeric values; $10,000.00 = 1000000/100; 99.99% SLA = 9999/10000|Float rounding in billing, SLA disputes, rate limit drift
-SA4|Complete audit trail|Every operation logged with provenance — who, what, when, which rule, which data, result|Missing logs, incomplete audit, manual log management
+SA4|Complete audit trail|Every operation logged with provenance,  who, what, when, which rule, which data, result|Missing logs, incomplete audit, manual log management
 SA5|Improvement through usage|Pattern → Prolog rule → level 3 automation; spam filter, bot commands, request routing all accumulate|Static server behavior; every change requires code deployment
 SA6|Update without redeployment|DNS record = assert fact; firewall rule = retract + assert; SSL cert = replace fact; immediate effect|Server restart, container redeployment, rolling updates
 

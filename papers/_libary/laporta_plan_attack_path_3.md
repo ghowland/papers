@@ -1,4 +1,4 @@
-## Notebook: Attack 3 — The Combined ζ + Elliptic PSLQ and What It Opens
+## Notebook: Attack 3,  The Combined ζ + Elliptic PSLQ and What It Opens
 
 **Status:** Planning notebook. Pre-computation.
 **Date:** April 19, 2026
@@ -12,9 +12,9 @@ The magnitude scans and subtraction experiments established suggestive but not d
 
 **From the raw elliptic scan (experiment_laporta_toroidal_v0):** All six Laporta integrals match combinations (p/q) × K(k)^a × E(k)^b to better than 0.006%. But the scan tested 562,500 candidates per integral. Random matches at the 0.002% level are expected. The hits are at the random noise floor. Not conclusive.
 
-**From the ζ subtraction scan (experiment_remainder_elliptic_v0):** Subtracting integer × ζ(3) or ζ(5) from each integral improved the elliptic match by 7-266×. The post-subtraction misses are 0.00001%-0.001% — 10-100× below the random floor. 6/6 improved. This is strongly suggestive but still from a magnitude scan with a large candidate space (20 subtractions × 250,000 elliptic candidates = 5 million per integral).
+**From the ζ subtraction scan (experiment_remainder_elliptic_v0):** Subtracting integer × ζ(3) or ζ(5) from each integral improved the elliptic match by 7-266×. The post-subtraction misses are 0.00001%-0.001%,  10-100× below the random floor. 6/6 improved. This is strongly suggestive but still from a magnitude scan with a large candidate space (20 subtractions × 250,000 elliptic candidates = 5 million per integral).
 
-**What we DON'T have:** A PSLQ relation. PSLQ is definitive — it either finds an exact linear relation with bounded coefficients or proves none exists within those bounds. The 24/24 null against the 66-element polylogarithmic basis proved the integrals are NOT polylogarithmic. But we never tested them against elliptic periods because K(k) and E(k) were not in the basis.
+**What we DON'T have:** A PSLQ relation. PSLQ is definitive,  it either finds an exact linear relation with bounded coefficients or proves none exists within those bounds. The 24/24 null against the 66-element polylogarithmic basis proved the integrals are NOT polylogarithmic. But we never tested them against elliptic periods because K(k) and E(k) were not in the basis.
 
 **The gap:** We have the right forms (KE, K³, K, K²/π, E×π) and the right ζ subtractions (2, −5, 2, −3, 4, −2). We have approximate moduli (k = 0.15 to 0.999 from the scan grid). We don't have the EXACT moduli, and we don't have PSLQ confirmation.
 
@@ -28,10 +28,10 @@ The magnitude scans and subtraction experiments established suggestive but not d
 
 **Attack 3 (PSLQ with ζ + elliptic combined basis):** This is qualitatively different because:
 
-1. The basis includes constants NOT in Attacks 1-2 — specifically K(k) and E(k) at topology-specific moduli.
+1. The basis includes constants NOT in Attacks 1-2,  specifically K(k) and E(k) at topology-specific moduli.
 2. The subtraction experiment tells us WHICH ζ to include (ζ(3), ζ(5)) and WHICH elliptic forms (K, E, K², KE, K³, K/π, K×π, E×π) to prioritize.
 3. The moduli k are constrained by the magnitude scan to narrow ranges.
-4. A FOUND result would be the first closed-form expression for a Laporta integral — resolving a question open since 2017.
+4. A FOUND result would be the first closed-form expression for a Laporta integral,  resolving a question open since 2017.
 
 ---
 
@@ -55,7 +55,7 @@ The PSLQ basis for each integral should be:
 
 That's about 20 basis elements per modulus per integral. PSLQ with 20 elements needs precision roughly 20 × (digits per coefficient). At maxcoeff 1000, that's 20 × 3 = 60 digits minimum. At maxcoeff 10,000, that's 20 × 4 = 80 digits. We have 4925 digits. Precision is not the bottleneck.
 
-**The bottleneck is the modulus k.** K(k) changes continuously with k. PSLQ tests a SPECIFIC set of constants. If we put K(0.60) in the basis but the true modulus is k = 0.5973, PSLQ returns null — not because the integral isn't elliptic but because we guessed the wrong k. The magnitude scan gives approximate moduli (to 2-3 significant figures from a 25-point grid). We need the exact modulus.
+**The bottleneck is the modulus k.** K(k) changes continuously with k. PSLQ tests a SPECIFIC set of constants. If we put K(0.60) in the basis but the true modulus is k = 0.5973, PSLQ returns null,  not because the integral isn't elliptic but because we guessed the wrong k. The magnitude scan gives approximate moduli (to 2-3 significant figures from a 25-point grid). We need the exact modulus.
 
 ---
 
@@ -67,9 +67,9 @@ This is the central difficulty. The modulus k for each topology is determined by
 
 **Approach A: Literature search.** Adams, Bogner, and Weinzierl have computed elliptic moduli for specific Feynman topologies at two and three loops. Bloch, Kerr, and Vanhove have related Feynman integrals to periods of elliptic curves over specific number fields. If anyone has identified the elliptic curves for topologies 81 and 83, the modulus is known. This is a literature research task, not a computation.
 
-**Approach B: Numerical modulus extraction.** Use the magnitude scan results to narrow the modulus range, then do a fine grid search. The scan found best matches at k = 0.60 (C81a, KE form) and k = 0.35 (C83a, K² form) — but these are from a coarse 25-point grid. A fine search over k = 0.55 to 0.65 in steps of 0.0001 for topology 81, and k = 0.30 to 0.40 for topology 83, would refine the modulus to 4 significant figures. Then PSLQ with K(k_refined) has a chance.
+**Approach B: Numerical modulus extraction.** Use the magnitude scan results to narrow the modulus range, then do a fine grid search. The scan found best matches at k = 0.60 (C81a, KE form) and k = 0.35 (C83a, K² form),  but these are from a coarse 25-point grid. A fine search over k = 0.55 to 0.65 in steps of 0.0001 for topology 81, and k = 0.30 to 0.40 for topology 83, would refine the modulus to 4 significant figures. Then PSLQ with K(k_refined) has a chance.
 
-**Approach C: Modulus from the subtraction.** After subtracting the ζ content, the post-subtraction remainder should be a pure elliptic expression. For C81c + 2ζ(5), the best match was K at some k with miss 0.0000208%. At this precision, the modulus is determined: solve K(k) = (C81c + 2ζ(5)) × (q/p) for k. The miss of 0.00002% means we know k to 5-6 significant figures from the scan. At 4925 digits of C81c, we could extract k to thousands of digits — IF the form is correct.
+**Approach C: Modulus from the subtraction.** After subtracting the ζ content, the post-subtraction remainder should be a pure elliptic expression. For C81c + 2ζ(5), the best match was K at some k with miss 0.0000208%. At this precision, the modulus is determined: solve K(k) = (C81c + 2ζ(5)) × (q/p) for k. The miss of 0.00002% means we know k to 5-6 significant figures from the scan. At 4925 digits of C81c, we could extract k to thousands of digits,  IF the form is correct.
 
 **Approach C is the most powerful.** If we ASSUME the subtraction experiment identified the correct form (e.g., C81c + 2ζ(5) ≈ (1/18) × K(k₈₁)), then k₈₁ is determined by k₈₁ = K⁻¹(18 × (C81c + 2ζ(5))). We can compute this k to arbitrary precision from the 4925-digit value of C81c. Then we put K(k₈₁) into the PSLQ basis and test. If FOUND: the form is confirmed and the modulus is exact. If NULL: the form was wrong and we try the next candidate.
 
@@ -114,7 +114,7 @@ NULL at maxcoeff 10,000: The integral is not in this basis at this modulus. Eith
 
 **Step 4: If topology-consistent k found, reduce the constant count.**
 
-If all three integrals within topology 81 are expressible in terms of K(k₈₁) and E(k₈₁), then the three integrals C81a, C81b, C81c are NOT independent — they are three different rational combinations of two transcendentals (K and E at a shared modulus). The six "independent" Laporta constants reduce to four: K₈₁, E₈₁, K₈₃, E₈₃. Or possibly fewer if the two topologies share a modulus.
+If all three integrals within topology 81 are expressible in terms of K(k₈₁) and E(k₈₁), then the three integrals C81a, C81b, C81c are NOT independent,  they are three different rational combinations of two transcendentals (K and E at a shared modulus). The six "independent" Laporta constants reduce to four: K₈₁, E₈₁, K₈₃, E₈₃. Or possibly fewer if the two topologies share a modulus.
 
 This would be a major result: the six opaque constants become four (or two) understood constants at identified moduli. The Q335 basis gains specific, named entries rather than six opaque numbers.
 
@@ -124,15 +124,15 @@ This would be a major result: the six opaque constants become four (or two) unde
 
 **6a. Closed forms for Laporta integrals.** The first closed-form expressions for four-loop master integrals. Currently known to 4925 digits but with no analytical formula. A closed form would be a significant result in mathematical physics, independent of the HOWL framework.
 
-**6b. The Q335 basis becomes richer.** Instead of six opaque entries, the basis gains elliptic periods at specific moduli. These moduli connect to the Feynman diagram topology — they are computable from the diagram structure, not free parameters. The basis becomes: Q335 polylogarithmic constants + elliptic periods at Feynman-determined moduli.
+**6b. The Q335 basis becomes richer.** Instead of six opaque entries, the basis gains elliptic periods at specific moduli. These moduli connect to the Feynman diagram topology,  they are computable from the diagram structure, not free parameters. The basis becomes: Q335 polylogarithmic constants + elliptic periods at Feynman-determined moduli.
 
 **6c. The A₄ decomposition becomes computable.** With closed forms for the Laporta integrals, and with the rational coefficients c₁-c₆ from Laporta 2017, the full three-layer decomposition of A₄ is computable. The spherical modulus, the number-theoretic remainder, and the toroidal remainder can be separated. The cancellation percentage at four loops can be computed. The cancellation staircase extends to loop 4.
 
-**6d. The ζ + elliptic layering is confirmed.** The subtraction experiment suggested C_i = n × ζ + r × f(K, E). If PSLQ confirms this exact structure, the two-layer remainder is not a scan artifact — it is the actual mathematical structure of four-loop QED. Number theory and toroidal geometry are literally ADDED together in each integral.
+**6d. The ζ + elliptic layering is confirmed.** The subtraction experiment suggested C_i = n × ζ + r × f(K, E). If PSLQ confirms this exact structure, the two-layer remainder is not a scan artifact,  it is the actual mathematical structure of four-loop QED. Number theory and toroidal geometry are literally ADDED together in each integral.
 
 **6e. The modulus identifies the elliptic curve.** Each modulus k determines an elliptic curve y² = x(x − 1)(x − k²). This curve is a specific mathematical object with known invariants (j-invariant, conductor, discriminant). Identifying the curve for each topology connects four-loop QED to algebraic geometry. The question "what elliptic curve is QED computing at four loops?" has a specific answer.
 
-**6f. Higher-loop predictions.** If topologies 81 and 83 produce elliptic integrals at specific moduli, the question becomes: which five-loop topologies produce which integrals? The genus progression (sphere → torus → higher genus?) is testable. If five-loop topologies produce hyperelliptic periods, the pattern continues. If they produce more elliptic periods at new moduli, the pattern is different — each loop adds new tori rather than higher genus.
+**6f. Higher-loop predictions.** If topologies 81 and 83 produce elliptic integrals at specific moduli, the question becomes: which five-loop topologies produce which integrals? The genus progression (sphere → torus → higher genus?) is testable. If five-loop topologies produce hyperelliptic periods, the pattern continues. If they produce more elliptic periods at new moduli, the pattern is different,  each loop adds new tori rather than higher genus.
 
 **6g. The dual geometry becomes computational.** With explicit moduli, the toroidal contribution to any QED observable is computable from the modulus + rational coefficients. The mass-dependent toroidal scaling (m/mₑ)² can be computed for any lepton at any loop order, not just estimated. The crossover mass (43 mₑ) can be computed precisely.
 
@@ -140,15 +140,15 @@ This would be a major result: the six opaque constants become four (or two) unde
 
 ### 7. WHAT ATTACK 3 OPENS UP IF IT FAILS
 
-**7a. The simple elliptic hypothesis fails.** If PSLQ returns 6/6 null against the combined ζ + elliptic basis at the topology-extracted moduli, the integrals are not simple combinations of K and E. This doesn't mean they're not geometric — they could involve:
+**7a. The simple elliptic hypothesis fails.** If PSLQ returns 6/6 null against the combined ζ + elliptic basis at the topology-extracted moduli, the integrals are not simple combinations of K and E. This doesn't mean they're not geometric,  they could involve:
 
 - **Incomplete elliptic integrals** F(φ, k) and E(φ, k) at specific amplitudes φ ≠ π/2
-- **Elliptic polylogarithms** ELi_n(x; k) — a recently developed function class
-- **Periods of higher-dimensional varieties** — not tori but K3 surfaces or Calabi-Yau manifolds
-- **Modular forms** — functions of τ = iK'/K rather than K directly
-- **Iterated integrals of modular forms** — the cutting edge of Feynman integral computation
+- **Elliptic polylogarithms** ELi_n(x; k),  a recently developed function class
+- **Periods of higher-dimensional varieties**,  not tori but K3 surfaces or Calabi-Yau manifolds
+- **Modular forms**,  functions of τ = iK'/K rather than K directly
+- **Iterated integrals of modular forms**,  the cutting edge of Feynman integral computation
 
-Each of these is a different kind of "non-spherical geometry." A null result doesn't kill the dual geometry hypothesis — it refines it. The toroidal sector might be more complex than simple elliptic periods.
+Each of these is a different kind of "non-spherical geometry." A null result doesn't kill the dual geometry hypothesis,  it refines it. The toroidal sector might be more complex than simple elliptic periods.
 
 **7b. The subtraction integers are wrong.** The ζ subtraction scan tested n from −5 to +5. If the true integer is outside this range, the subtraction identified the wrong ζ piece, leading to the wrong post-subtraction remainder, leading to the wrong modulus extraction. Attack 3 at the wrong modulus returns null. The fix: extend the ζ scan to n = ±20 and re-extract moduli.
 
@@ -166,7 +166,7 @@ Each of these is a different kind of "non-spherical geometry." A null result doe
 
 **Data needed:** The six Laporta integrals at 4925 digits (in pool: laporta_C81a_v0 through laporta_C83c_v0). ζ(3) and ζ(5) at 1000+ digits (computable from mpmath). The rational p/q values from the subtraction scan (in experiment results).
 
-**What we DON'T need from external sources:** No literature lookup required for the computation itself. The modulus is extracted from our own data. If we want to VERIFY the modulus against the Feynman diagram structure, that requires understanding the specific propagator routing of topologies 81 and 83 — but that's verification, not computation.
+**What we DON'T need from external sources:** No literature lookup required for the computation itself. The modulus is extracted from our own data. If we want to VERIFY the modulus against the Feynman diagram structure, that requires understanding the specific propagator routing of topologies 81 and 83,  but that's verification, not computation.
 
 ---
 
@@ -214,11 +214,11 @@ This is the first thing Attack 3 should compute. If the moduli are consistent, p
 
 **Can start immediately:** Modulus extraction (Step 1) and consistency check. All data in pool. No external dependency.
 
-**Blocked on nothing computational:** PSLQ, elliptic function evaluation, Newton inversion — all available in mpmath. The computation is straightforward once the moduli are extracted.
+**Blocked on nothing computational:** PSLQ, elliptic function evaluation, Newton inversion,  all available in mpmath. The computation is straightforward once the moduli are extracted.
 
 **Blocked on c₁-c₆ for the A₄ decomposition:** The rational coefficients that determine how each Laporta integral enters A₄ are in Laporta's 2017 paper. Extracting them requires reading the paper. This blocks the full three-layer decomposition of A₄ but does NOT block the closed-form search for the individual integrals.
 
-**Timeline estimate:** The consistency check and PSLQ for all six integrals could be done in one session. The modulus extraction is a single derivation function. The PSLQ is a single derivation function. The interpretation is immediate — FOUND or NULL is unambiguous.
+**Timeline estimate:** The consistency check and PSLQ for all six integrals could be done in one session. The modulus extraction is a single derivation function. The PSLQ is a single derivation function. The interpretation is immediate,  FOUND or NULL is unambiguous.
 
 ---
 

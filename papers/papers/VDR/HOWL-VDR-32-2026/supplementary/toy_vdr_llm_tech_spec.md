@@ -1,4 +1,4 @@
-# VDR Toy LLM — Technical Specification
+# VDR Toy LLM,  Technical Specification
 
 ## Goal
 
@@ -20,7 +20,7 @@ This proves the complete pipeline works end-to-end and serves as exact ground tr
 - FFN hidden dimension: 8
 - Total parameters: ~200 scalars
 
-This is deliberately tiny. The point is not performance — it's proving the pipeline is exact.
+This is deliberately tiny. The point is not performance,  it's proving the pipeline is exact.
 
 ---
 
@@ -62,7 +62,7 @@ embedding = Embedding([Vec([emb_table[i, j] for j in range(4)]) for i in range(6
 
 ### 2. Positional Encoding
 
-Fixed rational positional encoding. No sin/cos needed for 4 positions — just learnable or fixed rational vectors.
+Fixed rational positional encoding. No sin/cos needed for 4 positions,  just learnable or fixed rational vectors.
 
 ```python
 pos_table = rational_uniform_mat(4, 4, denom=10, seed=43)
@@ -191,7 +191,7 @@ examples/toy_llm/
 
 ---
 
-## model.py — Specification
+## model.py,  Specification
 
 ```python
 class ToyTransformer:
@@ -251,7 +251,7 @@ class ToyTransformer:
 
 ---
 
-## data.py — Specification
+## data.py,  Specification
 
 ```python
 CORPUS = "the cat sat on the mat"
@@ -270,7 +270,7 @@ def one_hot_target(target_id, vocab_size):
 
 ---
 
-## train.py — Specification
+## train.py,  Specification
 
 ```python
 def train(n_epochs=20):
@@ -306,7 +306,7 @@ Every loss value is an exact fraction. No float anywhere.
 
 ---
 
-## verify.py — Specification
+## verify.py,  Specification
 
 ```python
 def verify_all():
@@ -344,7 +344,7 @@ def verify_all():
 
 ---
 
-## generate.py — Specification
+## generate.py,  Specification
 
 ```python
 def generate_text(model, prompt="the cat", max_tokens=10):
@@ -365,17 +365,17 @@ def generate_text(model, prompt="the cat", max_tokens=10):
 
 ## Build Order
 
-**Phase 1: data.py** — corpus, vocab, tokenization, windows. Pure Python + VDR one_hot. Test: windows are correct.
+**Phase 1: data.py**,  corpus, vocab, tokenization, windows. Pure Python + VDR one_hot. Test: windows are correct.
 
-**Phase 2: model.py** — ToyTransformer construction and forward pass. Test: forward produces logits of correct shape, softmax sums to 1.
+**Phase 2: model.py**,  ToyTransformer construction and forward pass. Test: forward produces logits of correct shape, softmax sums to 1.
 
-**Phase 3: train.py** — single training step. Test: loss decreases, gradients are nonzero, parameters change.
+**Phase 3: train.py**,  single training step. Test: loss decreases, gradients are nonzero, parameters change.
 
-**Phase 4: verify.py** — full verification suite. Test: all 8 properties hold.
+**Phase 4: verify.py**,  full verification suite. Test: all 8 properties hold.
 
-**Phase 5: generate.py** — text generation. Test: produces valid token ids, deterministic with seed.
+**Phase 5: generate.py**,  text generation. Test: produces valid token ids, deterministic with seed.
 
-**Phase 6: end-to-end** — train 20 epochs, generate, verify everything exact.
+**Phase 6: end-to-end**,  train 20 epochs, generate, verify everything exact.
 
 ---
 
@@ -413,7 +413,7 @@ def generate_text(model, prompt="the cat", max_tokens=10):
 
 ## What This Proves
 
-1. **Complete LLM pipeline in exact arithmetic works.** Embedding, attention, softmax, FFN, loss, backprop, optimizer — all exact.
+1. **Complete LLM pipeline in exact arithmetic works.** Embedding, attention, softmax, FFN, loss, backprop, optimizer,  all exact.
 
 2. **Softmax sums to exactly 1 at every step.** Not approximately. Exactly.
 

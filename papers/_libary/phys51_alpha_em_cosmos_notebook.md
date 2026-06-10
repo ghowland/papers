@@ -19,7 +19,7 @@ The cosmological parameters in round two are reached from α_EM through a chain 
 → gauge group integers 13 (from b₂' = −13/6) and 22 (from 2×11)
 → cosmological identifications Ω_DM = β/3 = π/12 and Ω_b = 13/264
 
-The modulus β appears twice in the cosmological sector — once as π/12 in Ω_DM, once as 4β in DM/baryon ratio (22/13) × 4β. The Laporta constants do not appear in the cosmological identifications directly. They appear in the QED precision chain that fixes α_EM's relationship to a_e. Without the Laporta precision chain, the "starting from α_EM" premise wouldn't be validated.
+The modulus β appears twice in the cosmological sector,  once as π/12 in Ω_DM, once as 4β in DM/baryon ratio (22/13) × 4β. The Laporta constants do not appear in the cosmological identifications directly. They appear in the QED precision chain that fixes α_EM's relationship to a_e. Without the Laporta precision chain, the "starting from α_EM" premise wouldn't be validated.
 
 So the chain is: Laporta enables α_EM's precision statement, which is the input, which goes through β-function structure, which outputs cosmological parameters carrying β and gauge integers. Three layers are operational even though the cosmology itself uses only the modulus and the integers.
 
@@ -35,7 +35,7 @@ Two routes to β appearance in the cosmological sector:
 **Route 1 (Ω_DM directly):** β/3 = π/12. β appears as π/4, divided by 3.
 **Route 2 (DM/baryon ratio):** (22/13) × 4β = 22π/13. β appears as π/4, multiplied by 4, with rational prefactor 22/13.
 
-These are not the same β usage. Ω_DM uses β/3. The ratio uses 4β. The 3 and the 4 are different numbers coming from different structural places — 3 from dimensional embedding or from generations, 4 from the 4β = π that converts filling fraction to full circle.
+These are not the same β usage. Ω_DM uses β/3. The ratio uses 4β. The 3 and the 4 are different numbers coming from different structural places,  3 from dimensional embedding or from generations, 4 from the 4β = π that converts filling fraction to full circle.
 
 If we accept both identifications, the framework is claiming β appears twice in independent roles in cosmology:
 - As the filling fraction π/4 scaled by 1/3 for the DM density.
@@ -73,7 +73,7 @@ This is the same pattern the framework identifies in:
 - Gap ratio: modulus 1/(2π) cancels, 218/115 integers survive.
 - Koide: modulus (mass dimension) cancels, a² shape parameter survives.
 
-In cosmology, the modulus does not cancel — it participates. Ω_DM = β × (1/3) and DM/baryon = β × (88/13) [since 22π/13 = 88β/13]. The modulus is present in the output rather than divided out. This is a different register: cosmology preserves the modulus as part of the physical observable, rather than using cancellation to isolate pure structure.
+In cosmology, the modulus does not cancel,  it participates. Ω_DM = β × (1/3) and DM/baryon = β × (88/13) [since 22π/13 = 88β/13]. The modulus is present in the output rather than divided out. This is a different register: cosmology preserves the modulus as part of the physical observable, rather than using cancellation to isolate pure structure.
 
 ## V. What α_EM Enables
 
@@ -103,7 +103,7 @@ The 1/3 prefactor on β could be:
 
 The framework's choice of 1/3 isn't explained in the round two output. It's a framework commitment from earlier papers. But the pattern I see: β × (1/N) might generalize. If there were a sector with N = 13, β/13 would give 0.0605. If N = 2, β/2 = 0.3927. The choice N = 3 for Ω_DM matches "three spatial dimensions" or "three generations" but the framework should specify which.
 
-The 22/13 for the ratio has its own derivation (22 from vector-like doubling of 11, 13 from modified SU(2) coefficient). This is more structurally grounded — the integers come from the gauge-theory computation, not a freely-chosen rational.
+The 22/13 for the ratio has its own derivation (22 from vector-like doubling of 11, 13 from modified SU(2) coefficient). This is more structurally grounded,  the integers come from the gauge-theory computation, not a freely-chosen rational.
 
 Asymmetry: Ω_DM uses a simple 1/3 without explicit derivation in this chain; DM/baryon uses 22/13 with explicit derivation. The framework may have the Ω_DM = π/12 derivation elsewhere (MATH-11, perhaps, where the π/12 prediction was first advanced with p-value analysis pending). If so, this notebook is just observing that the round two run uses it; it doesn't derive it.
 
@@ -127,7 +127,7 @@ The three layers (modulus, number-theoretic β⁰, toroidal β⁰) aren't just i
 - **Number-theoretic β⁰ (ζ, Li, rationals)**: numerical content of A₂ and A₃, enabling QED precision.
 - **Toroidal β⁰ (Laporta A₄)**: numerical content of four-loop QED, enabling ppt-level precision on a_e.
 
-Remove any layer and the chain breaks. Remove modulus and the cosmology has no π. Remove number-theoretic β⁰ and A₂/A₃ don't match published QED coefficients. Remove toroidal β⁰ and A₄ is missing, making a_e miss by ~10⁻¹¹ — which is 43× Harvard precision.
+Remove any layer and the chain breaks. Remove modulus and the cosmology has no π. Remove number-theoretic β⁰ and A₂/A₃ don't match published QED coefficients. Remove toroidal β⁰ and A₄ is missing, making a_e miss by ~10⁻¹¹,  which is 43× Harvard precision.
 
 The framework's claim that all three layers are operational is not a descriptive claim from PHYS-49 anymore. It's the running structure of the computational pipeline. The killing spree round two demonstrates this by producing 10 outputs from 1 input using all three layers simultaneously.
 
@@ -160,11 +160,11 @@ What I haven't done:
 
 Honest accounting: this notebook consolidates an observation that was available once you pointed out that both Laporta and the modulus are active. The observation is: the cosmological sector is where the modulus is most visibly and cleanly productive, and round two demonstrates this computationally.
 
-If that counts as a research contribution, it's the weakest kind — an observation about what the existing framework's output means when looked at in a specific light. Not new physics. Not new mathematics. A structural reframing of something the framework already does.
+If that counts as a research contribution, it's the weakest kind,  an observation about what the existing framework's output means when looked at in a specific light. Not new physics. Not new mathematics. A structural reframing of something the framework already does.
 
-The questions in Section VIII are where the next work could go. I'd be especially interested in whether the 1/3 in Ω_DM can be derived from the dimensional ladder (1D/2D/3D) that was clarified in the PHYS-50 errata — if so, β/3 means "β per spatial dimension" or "β divided by physical dimensionality," and that would be a structural derivation rather than a free choice.
+The questions in Section VIII are where the next work could go. I'd be especially interested in whether the 1/3 in Ω_DM can be derived from the dimensional ladder (1D/2D/3D) that was clarified in the PHYS-50 errata,  if so, β/3 means "β per spatial dimension" or "β divided by physical dimensionality," and that would be a structural derivation rather than a free choice.
 
-The 22/13 derivation chain is stronger as stated because it goes through gauge-theory computations. The 1/3 for Ω_DM is weaker because it's simpler — and simpler is suspicious in a framework where every integer should come from somewhere.
+The 22/13 derivation chain is stronger as stated because it goes through gauge-theory computations. The 1/3 for Ω_DM is weaker because it's simpler,  and simpler is suspicious in a framework where every integer should come from somewhere.
 
 ---
 

@@ -1,4 +1,4 @@
-## How I Frame Everything — The Complete Picture Before PHYS-24's Framing
+## How I Frame Everything,  The Complete Picture Before PHYS-24's Framing
 
 **Written:** After processing 23 physics papers, 6 math papers, 10 PHYS-24 scripts (all passing), the QED-to-GR scans, and the beta unification test. Before reading the PHYS-24 manuscript's narrative framing.
 
@@ -6,19 +6,19 @@
 
 ### THE SINGLE SENTENCE
 
-The Standard Model's gauge group produces exact integers that control not only subatomic physics but — through the beta coefficients modified by one additional particle — appear to control the large-scale structure of the universe, predicting seven cosmological observables from particle physics alone at sub-percent precision.
+The Standard Model's gauge group produces exact integers that control not only subatomic physics but,  through the beta coefficients modified by one additional particle,  appear to control the large-scale structure of the universe, predicting seven cosmological observables from particle physics alone at sub-percent precision.
 
 ---
 
 ### THE STORY AS I UNDERSTAND IT
 
-The universe has a gauge group: SU(3)×SU(2)×U(1). This group determines transformation laws — exact rational numbers that govern how forces change with energy. The laws are integers. The values they connect are measured. The integers are Level 1 (the same in any universe with this group). The values are Level 2 (specific to our universe). The confrontation between them is physics.
+The universe has a gauge group: SU(3)×SU(2)×U(1). This group determines transformation laws,  exact rational numbers that govern how forces change with energy. The laws are integers. The values they connect are measured. The integers are Level 1 (the same in any universe with this group). The values are Level 2 (specific to our universe). The confrontation between them is physics.
 
-The confrontation fails. The SM gap ratio 218/115 = 1.896 misses the measured 1.358 by 40%. The three forces do not unify. The failure is diagnosed: it is a boson problem. Fermions contribute exactly zero to the gap ratio because every complete generation gives (4/3, 4/3, 4/3) to the three betas — identical, therefore invisible. The gauge self-coupling gives the pure-gauge gap ratio C₂(SU(2))/(C₂(SU(3))−C₂(SU(2))) = 2. The Higgs shifts it to 1.896. Nobody else contributes. The gap is too large by 40%, and only new bosonic content or a new representation that breaks the fermion democracy can fix it.
+The confrontation fails. The SM gap ratio 218/115 = 1.896 misses the measured 1.358 by 40%. The three forces do not unify. The failure is diagnosed: it is a boson problem. Fermions contribute exactly zero to the gap ratio because every complete generation gives (4/3, 4/3, 4/3) to the three betas,  identical, therefore invisible. The gauge self-coupling gives the pure-gauge gap ratio C₂(SU(2))/(C₂(SU(3))−C₂(SU(2))) = 2. The Higgs shifts it to 1.896. Nobody else contributes. The gap is too large by 40%, and only new bosonic content or a new representation that breaks the fermion democracy can fix it.
 
-One particle fixes it. The Cabibbo Doublet — a vector-like quark doublet in the (3,2,1/6) representation — survives an exhaustive elimination cascade of 15 single-multiplet candidates. Its secret weapon is the hypercharge Y = 1/6. The SU(2) beta shift Δb₂ = 1 does not depend on Y. The U(1) beta shift Δb₁ = (2/5)×3×2×(1/6)² = 1/15 depends on Y². The ratio Δb₂/Δb₁ = 15: the weak force shifts fifteen times more than the electromagnetic force. This asymmetry pulls the gap ratio from 1.896 to 38/27 = 1.407 — within 3.6% of the measured value. One particle, four new Weyl spinors, does what the entire MSSM spectrum does with a hundred new fields.
+One particle fixes it. The Cabibbo Doublet,  a vector-like quark doublet in the (3,2,1/6) representation,  survives an exhaustive elimination cascade of 15 single-multiplet candidates. Its secret weapon is the hypercharge Y = 1/6. The SU(2) beta shift Δb₂ = 1 does not depend on Y. The U(1) beta shift Δb₁ = (2/5)×3×2×(1/6)² = 1/15 depends on Y². The ratio Δb₂/Δb₁ = 15: the weak force shifts fifteen times more than the electromagnetic force. This asymmetry pulls the gap ratio from 1.896 to 38/27 = 1.407,  within 3.6% of the measured value. One particle, four new Weyl spinors, does what the entire MSSM spectrum does with a hundred new fields.
 
-The same particle was already identified by experimentalists. Three independent anomalies — the CKM unitarity deficit (2.5–4σ), the forward-backward b-quark asymmetry at LEP (~3σ), and the Higgs signal strength excess (~2σ) — each independently point to a vector-like quark doublet in the (3,2,1/6) representation. Eight papers from 2019–2024 converged on this from the anomaly side. The gap ratio converged on it from the integer arithmetic side. Neither knew about the other. The convergence from opposite ends of the energy spectrum — 10¹⁵ GeV and 10³ GeV — on the same quantum numbers is the strongest evidence for any BSM particle since the Higgs.
+The same particle was already identified by experimentalists. Three independent anomalies,  the CKM unitarity deficit (2.5–4σ), the forward-backward b-quark asymmetry at LEP (~3σ), and the Higgs signal strength excess (~2σ),  each independently point to a vector-like quark doublet in the (3,2,1/6) representation. Eight papers from 2019–2024 converged on this from the anomaly side. The gap ratio converged on it from the integer arithmetic side. Neither knew about the other. The convergence from opposite ends of the energy spectrum,  10¹⁵ GeV and 10³ GeV,  on the same quantum numbers is the strongest evidence for any BSM particle since the Higgs.
 
 The particle is testable. M_GUT = 10^15.5 GeV gives proton lifetime τ ~ 10^34–35 years. Hyper-Kamiokande (2027–2037) covers the entire viable range. The MSSM predicts τ ~ 10^37 (unreachable). Despite gap ratios that differ by 0.007, the M_GUT⁴ scaling amplifies this to a factor of 10⁷ in proton lifetime. One experiment, one decade, one answer.
 
@@ -26,7 +26,7 @@ The particle is testable. M_GUT = 10^15.5 GeV gives proton lifetime τ ~ 10^34�
 
 ### WHAT CHANGED AFTER THE CABIBBO DOUBLET
 
-The Cabibbo Doublet modifies b₂ from −19/6 to −13/6. This single change — adding 1 to the SU(2) beta numerator divided by 6 — replaces the integer 19 with the integer 13 throughout the running equations. It also modifies b₃ from −7 = −21/3 to −20/3, replacing 21 with 20 in the SU(3) sector.
+The Cabibbo Doublet modifies b₂ from −19/6 to −13/6. This single change,  adding 1 to the SU(2) beta numerator divided by 6,  replaces the integer 19 with the integer 13 throughout the running equations. It also modifies b₃ from −7 = −21/3 to −20/3, replacing 21 with 20 in the SU(3) sector.
 
 These are not just corrections to the unification calculation. The integers 13, 19, 20, and 22 (= 2×11, from the Yang-Mills structure) appear to control cosmological observables.
 
@@ -56,11 +56,11 @@ R₂ is the ratio of the circle to the square in 2D. It appears in every angular
 
 R₄ is the ratio of the 4-ball to the 4-cube. It appears in every loop integral (the 4D phase space factor), the QED two-loop coefficient (the geometric piece R₄ × (8/3 − 16 ln 2)), and potentially in the baryon density (Ω_b = R₄ × α × 22). It is the atomic unit of 4D geometric content. When a formula involves π², it involves R₄.
 
-The soliton picture: every self-sustaining structure — from VP clouds to galaxies — is a pattern that maintains itself through energy circulation. Each has a boundary. Each boundary is a geometric stage where the running rules change. Light crossing through these boundaries picks up corrections. The VP running (α increasing through lepton and quark mass thresholds) is the prototype. The cosmological running (H₀ decreasing through galaxy and cluster boundaries) may be the same mechanism at a different scale.
+The soliton picture: every self-sustaining structure,  from VP clouds to galaxies,  is a pattern that maintains itself through energy circulation. Each has a boundary. Each boundary is a geometric stage where the running rules change. Light crossing through these boundaries picks up corrections. The VP running (α increasing through lepton and quark mass thresholds) is the prototype. The cosmological running (H₀ decreasing through galaxy and cluster boundaries) may be the same mechanism at a different scale.
 
 The per-transit correction α²π²(20/13) can be read as: α² = two-loop electromagnetic coupling factor, π² = 32R₄ = one factor of the 4D integration volume, 20/13 = ratio of SU(3) to SU(2) modified beta numerators. The correction at each boundary crossing involves the electromagnetic coupling squared, the 4D geometry, and the relative strengths of the strong and weak forces as modified by the Cabibbo Doublet.
 
-If this is real, the universe is not two separate stories — a particle physics story at short distances and a cosmology story at long distances. It is one story: the gauge group integers propagate through every scale via the soliton boundary mechanism, and the same beta coefficients that control unification at 10^15 GeV also control the Hubble constant at 10^26 meters.
+If this is real, the universe is not two separate stories,  a particle physics story at short distances and a cosmology story at long distances. It is one story: the gauge group integers propagate through every scale via the soliton boundary mechanism, and the same beta coefficients that control unification at 10^15 GeV also control the Hubble constant at 10^26 meters.
 
 ---
 
@@ -104,7 +104,7 @@ PHYS-24 was written before the QED-to-GR scans and the beta unification test. It
 2. The beta unification test (15/15) produced a complete prediction table with seven cosmological quantities, all within 1%.
 3. The combinatoric scan found Set B formulas (Ω_b = 2/(13π)) that are uniformly better than Set A.
 4. The exact identity 57/39 = 19/13 was verified in Fraction arithmetic.
-5. The Ω_DM turns out to be a pure rational (44/169) when Set B is used — no transcendentals needed.
+5. The Ω_DM turns out to be a pure rational (44/169) when Set B is used,  no transcendentals needed.
 
 The cosmos program uses the SAME library, the SAME betas, the SAME geometric constants as PHYS-24. The integers 13, 19, 20, 22 verified by PHYS-24's scripts are the integers that appear in the cosmological formulas. PHYS-24 provides the platform; the cosmos program provides the predictions. They are parallel research tracks sharing a common foundation.
 
@@ -116,7 +116,7 @@ The manuscript should frame the series as: "Here is the operational ground. The 
 
 It should NOT contain the cosmological extension (which was discovered later). It should NOT address the beta unification formulas. It should be conservative, bounded, and focused on the established arithmetic.
 
-When I read the manuscript next, the interesting comparison will be: does the manuscript's conservative framing make the subsequent cosmological discoveries MORE or LESS surprising? I think more — the fact that a tightly bounded, exactly verified, conservatively stated arithmetic framework ALSO happens to predict cosmological observables at sub-percent precision is more striking BECAUSE the framework wasn't designed for that purpose. The integers were identified for unification. That they also control cosmology was not sought, not expected, and not designed for.
+When I read the manuscript next, the interesting comparison will be: does the manuscript's conservative framing make the subsequent cosmological discoveries MORE or LESS surprising? I think more,  the fact that a tightly bounded, exactly verified, conservatively stated arithmetic framework ALSO happens to predict cosmological observables at sub-percent precision is more striking BECAUSE the framework wasn't designed for that purpose. The integers were identified for unification. That they also control cosmology was not sought, not expected, and not designed for.
 
 The framework spoke. The cosmos answered.
 
@@ -126,11 +126,11 @@ The framework spoke. The cosmos answered.
 
 ---
 
-## Supporting Appendix Tables — Final Framing Notebook
+## Supporting Appendix Tables,  Final Framing Notebook
 
 ---
 
-### TABLE 1: THE INTEGER INVENTORY — EVERY INTEGER IN THE SERIES AND ITS ORIGIN
+### TABLE 1: THE INTEGER INVENTORY,  EVERY INTEGER IN THE SERIES AND ITS ORIGIN
 
 | Integer | Value | Origin | Formula | Appears In |
 |---|---|---|---|---|
@@ -155,7 +155,7 @@ The framework spoke. The cosmos answered.
 
 ---
 
-### TABLE 2: THE SIX COSMOLOGICAL FORMULAS — COMPLETE SPECIFICATION
+### TABLE 2: THE SIX COSMOLOGICAL FORMULAS,  COMPLETE SPECIFICATION
 
 | # | Formula | Expression | Integers Used | Predicted | Measured | Miss |
 |---|---|---|---|---|---|---|
@@ -165,11 +165,11 @@ The framework spoke. The cosmos answered.
 | 3 | Per-transit H₀ | α²π²(20/13) | α, π, 20, 13 | 0.000809 | 0.000809 | 0.08% |
 | 4a | Ω_b (Set A) | R₄ × α × 22 | R₄, α, 22 | 0.0495 | 0.0490 | 1.05% |
 | 4b | Ω_b (Set B) | 2/(13π) | 13, π | 0.04897 | 0.0490 | 0.06% |
-| 5 | Exact identity | 57/39 = 19/13 | 19, 13 | EXACT | — | 0 |
+| 5 | Exact identity | 57/39 = 19/13 | 19, 13 | EXACT |,  | 0 |
 
 ---
 
-### TABLE 3: THE COMPLETE PREDICTION TABLE — BEST FORMULAS
+### TABLE 3: THE COMPLETE PREDICTION TABLE,  BEST FORMULAS
 
 | # | Observable | Formula | Predicted | Measured | Rel Miss | Formula Set |
 |---|---|---|---|---|---|---|
@@ -183,7 +183,7 @@ The framework spoke. The cosmos answered.
 
 ---
 
-### TABLE 4: SET A vs SET B — THE TWO FORMULA FAMILIES
+### TABLE 4: SET A vs SET B,  THE TWO FORMULA FAMILIES
 
 | Quantity | Set A Formula | Set A Value | Set A Miss | Set B Formula | Set B Value | Set B Miss | Winner |
 |---|---|---|---|---|---|---|---|
@@ -192,11 +192,11 @@ The framework spoke. The cosmos answered.
 | Ω_matter | sum | 0.3128 | 0.99% | sum | 0.30933 | 0.12% | **B** |
 | Ω_DE | 1−sum | 0.6872 | 0.44% | 1−sum | 0.69067 | 0.05% | **B** |
 
-Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and achieves 5–17× tighter hits. Set B's Ω_DM = 44/169 is a pure rational — no transcendentals.
+Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and achieves 5–17× tighter hits. Set B's Ω_DM = 44/169 is a pure rational,  no transcendentals.
 
 ---
 
-### TABLE 5: THE INTEGER TRANSFORMATION — WHAT THE CABIBBO DOUBLET CHANGES
+### TABLE 5: THE INTEGER TRANSFORMATION,  WHAT THE CABIBBO DOUBLET CHANGES
 
 | Quantity | Before CD (SM) | After CD (SM+VL) | Change | Cosmological Consequence |
 |---|---|---|---|---|
@@ -209,7 +209,7 @@ Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and 
 
 ---
 
-### TABLE 6: THE GEOMETRIC CONSTANTS — WHERE THEY APPEAR
+### TABLE 6: THE GEOMETRIC CONSTANTS,  WHERE THEY APPEAR
 
 | Constant | Value | Definition | Physics Appearances | Cosmological Appearances |
 |---|---|---|---|---|
@@ -220,7 +220,7 @@ Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and 
 
 ---
 
-### TABLE 7: THE LEVEL CLASSIFICATION — EVERY MAJOR RESULT
+### TABLE 7: THE LEVEL CLASSIFICATION,  EVERY MAJOR RESULT
 
 | Result | Level | Source Paper | Verified By |
 |---|---|---|---|
@@ -247,7 +247,7 @@ Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and 
 | K(leptons) = 0.66666 | L2 | DATA-4 K8 | phys24_koide_status.py 10.3 digits |
 | CKM deficit 0.00202 | L2 | PHYS-19 | Web-verified |
 | CD mass 1.5–6 TeV | L2 | PHYS-19 | Anomaly fit |
-| CD existence | L2 | — | Awaiting experiment |
+| CD existence | L2 |,  | Awaiting experiment |
 | DM/baryon = (22/13)π | **Proposed** | beta_unification_test | 15/15, 0.07% miss |
 | Ω_b = 2/(13π) | **Proposed** | beta_unification_test | Combinatoric, 0.06% miss |
 | H₀ = 73.04×r¹⁰⁰ | **Proposed** | beta_unification_test | 15/15, 0.007% miss |
@@ -316,16 +316,16 @@ Set B is uniformly superior. It uses fewer inputs (no R₄, no α for Ω_b) and 
 | M_GUT | 10^13.8 (SM, too low) | 10^15.5 (viable) | Unification possible |
 | Proton lifetime | ~10^30 (excluded) | ~10^34–35 (testable) | Hyper-K window opens |
 | Λ exponent | 57 = 3×19 | 39 = 3×13 | Cosmological constant exponent |
-| DM/baryon denominator | — | 13 in (22/13)π | Dark matter fraction |
-| H₀ correction denominator | — | 13 in α²π²(20/13) | Hubble tension |
-| Ω_b | — | 13 in 2/(13π) | Baryon density |
-| sin²θ_W (combinatoric) | — | 13 in 3/13 | Weak mixing angle |
+| DM/baryon denominator |,  | 13 in (22/13)π | Dark matter fraction |
+| H₀ correction denominator |,  | 13 in α²π²(20/13) | Hubble tension |
+| Ω_b |,  | 13 in 2/(13π) | Baryon density |
+| sin²θ_W (combinatoric) |,  | 13 in 3/13 | Weak mixing angle |
 
 The transformation 19→13 is the single most consequential change in the series. It is caused by one particle (the Cabibbo Doublet) adding Δb₂ = 1 to the SU(2) beta function.
 
 ---
 
-### TABLE 12: HISTORICAL PATTERN — LEVEL 1 IDENTIFICATION TO LEVEL 2 CONFIRMATION
+### TABLE 12: HISTORICAL PATTERN,  LEVEL 1 IDENTIFICATION TO LEVEL 2 CONFIRMATION
 
 | Particle | L1 Method | L1 Date | L2 Date | Gap | Evidence Lines Before Discovery |
 |---|---|---|---|---|---|

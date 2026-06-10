@@ -1,4 +1,4 @@
-# VDR-12 GRAMMAR-DIRECTED COMPACTION — LLM-COMPACT FORM
+# VDR-12 GRAMMAR-DIRECTED COMPACTION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → problem → compaction → grammars → grammar_matching → training_apps → prompt_apps → economics → limitations → prior_work → col_types → profiles → rel_taxonomy → compaction_stats → grammar_scoring → auto_grammars → test_results → relationships → section_index → decode_legend
 
@@ -140,7 +140,7 @@ AG6|relationship_display|1 per doc|edges with resolved names
 PS1|Classify source character|mostly (keyword); LLM fallback|pattern match on signal words
 PS2|Select profile|yes|character → profile lookup
 PS3|Determine applicable tables|yes|profile required + optional matching source
-PS4|Extract rows|no (LLM)|what's a concept, what merits a row — expensive creative step
+PS4|Extract rows|no (LLM)|what's a concept, what merits a row,  expensive creative step
 PS5|Extract relationships|no (LLM)|what depends on what
 PS6|Build section index|hybrid|map items to source sections
 PS7|Build decode legend|yes|collect all enums from schemas used

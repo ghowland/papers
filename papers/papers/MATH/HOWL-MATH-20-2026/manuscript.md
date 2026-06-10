@@ -1,11 +1,11 @@
 
-**Registry:** [@HOWL-MATH-16-2026]
+**Registry:** [@HOWL-MATH-20-2026]
 
-**Series Path:** [@HOWL-INFO-11-2026] → [@HOWL-INFO-12-2026] → [@HOWL-INFO-13-2026] → [@HOWL-MATH-14-2026] → [@HOWL-MATH-15-2026] → [@HOWL-MATH-16-2026]
+**Series Path:** [@HOWL-INFO-11-2026] → [@HOWL-INFO-12-2026] → [@HOWL-INFO-13-2026] → [@HOWL-MATH-14-2026] → [@HOWL-MATH-15-2026] → [@HOWL-MATH-16-2026] → [@HOWL-MATH-17-2026] → [@HOWL-MATH-18-2026] → [@HOWL-MATH-19-2026] → [@HOWL-MATH-20-2026]
 
 **Date:** June 2026
 
-**DOI:** 10.5281/zenodo.20629792
+**DOI:** 10.5281/zenodo.zzz
 
 **Domain:** Information Processing Theory / Applied Mathematics
 

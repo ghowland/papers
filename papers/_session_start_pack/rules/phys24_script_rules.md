@@ -24,7 +24,7 @@ All scripts target Python 3.8+. No language features introduced after 3.8 are pe
 - No walrus operator `:=`
 - No `match`/`case`
 - No `type | None` union syntax
-- No `assert` statements — use `if/else` with printed output. Asserts stop execution. We want all output, including failures.
+- No `assert` statements,  use `if/else` with printed output. Asserts stop execution. We want all output, including failures.
 - No f-strings with `=` (debug format). Use `%` formatting throughout for consistency.
 
 ---
@@ -60,7 +60,7 @@ The minimum print precision is 11 significant figures via `mp.nstr(value, 11)`. 
 # CORRECT
 chk_bool("gap in range", mpf("1.2") < f2m(gap) < mpf("1.5"), ..., checks)
 
-# WRONG — bare float literals
+# WRONG,  bare float literals
 chk_bool("gap in range", 1.2 < float(f2m(gap)) < 1.5, ..., checks)
 ```
 
@@ -76,7 +76,7 @@ from phys24_lib import *
 
 This single import provides all constants, all helpers, all check functions. No script defines its own `f2m`, `chk`, `show`, or any constant. No script hardcodes a Q335 numerator, a measured value, or a beta coefficient. Everything comes from the library.
 
-The library file `phys24_lib.py` lives in `./code/` alongside the scripts. The import is local — no package installation, no `sys.path` manipulation, no `__init__.py`.
+The library file `phys24_lib.py` lives in `./code/` alongside the scripts. The import is local,  no package installation, no `sys.path` manipulation, no `__init__.py`.
 
 If a script needs a value not in the library, the value is added to the library first, the library self-test is updated and re-run, and then the script imports it. No script ever contains a constant that belongs in the library.
 
@@ -87,7 +87,7 @@ from phys24_lib import *   # Session 4 platform
 from phys36_lib import *   # hypothetical Session 6 platform
 ```
 
-To test a script against a new platform, change one line. Every variable name stays the same. The library API only grows — values are added, never removed. If a name collapses (two quantities found to be equal), the alias goes in the NAME MAPPINGS section at the end of the library, and no script code changes.
+To test a script against a new platform, change one line. Every variable name stays the same. The library API only grows,  values are added, never removed. If a name collapses (two quantities found to be equal), the alias goes in the NAME MAPPINGS section at the end of the library, and no script code changes.
 
 ---
 
@@ -114,7 +114,7 @@ All helpers are defined in `phys24_lib.py` and imported via `from phys24_lib imp
 
 `chk_precision` is for measured constants where the reference is a published decimal string. It reports: published string, rendered string, source significant digits, character-level match, numeric agreement, and whether agreement meets or exceeds source precision.
 
-In chk_precision, pass/fail is determined by numeric agreement against the need threshold. String comparison is diagnostic — it reports character-level match or divergence but does not affect pass/fail. For values outside [0.001, 999999], mpmath may render in scientific notation against a plain-decimal published string. This is a display format difference, not a data error.
+In chk_precision, pass/fail is determined by numeric agreement against the need threshold. String comparison is diagnostic,  it reports character-level match or divergence but does not affect pass/fail. For values outside [0.001, 999999], mpmath may render in scientific notation against a plain-decimal published string. This is a display format difference, not a data error.
 
 ---
 
@@ -221,8 +221,8 @@ The Session 3 scripts remain the verified source of truth. The PHYS-24 scripts a
 - Scripts do not import libraries beyond `fractions`, `mpmath`, `sys`, and `phys24_lib`
 - Scripts do not use `assert`
 - Scripts do not use `float()` anywhere in the computation chain
-- Scripts do not use bare `print(value)` — all values go through `mp.nstr` or `show`
-- Scripts do not suppress errors — if something fails, it prints FAIL and continues
+- Scripts do not use bare `print(value)`,  all values go through `mp.nstr` or `show`
+- Scripts do not suppress errors,  if something fails, it prints FAIL and continues
 - Scripts do not use `try/except` around computation (only the `sys.set_int_max_str_digits` guard in phys24_lib.py)
 - Scripts do not define constants that belong in the library
 - Scripts do not redefine helper functions from the library
@@ -237,7 +237,7 @@ The author writes scripts in chat as code blocks. The human operator runs them a
 
 This rule exists so the human operator is never out of the loop. Every script is reviewed before execution. Every output is reviewed before proceeding to the next script.
 
-**One script per prompt.** The author writes one complete script per message. Do not combine two scripts into one message to save tokens — low tokens mean bad choices. If two scripts are needed, they are written in two separate messages. The human runs each one and sends back the output before the next script is written. The only exception is when the human explicitly requests multiple scripts in one message.
+**One script per prompt.** The author writes one complete script per message. Do not combine two scripts into one message to save tokens,  low tokens mean bad choices. If two scripts are needed, they are written in two separate messages. The human runs each one and sends back the output before the next script is written. The only exception is when the human explicitly requests multiple scripts in one message.
 
 ---
 
@@ -252,7 +252,7 @@ If a script produces a FAIL:
 
 Never paper over a FAIL. Never comment out a failing check. Never weaken a check threshold to make it pass. If a check fails, the check is telling you something. Listen to it.
 
-**Crash semantics:** Check failures print FAIL and continue — the script runs to completion so all checks are reported. Invalid computation states (division by zero, missing assumptions, corrupted data) may hard-crash the script before the checks block. Hard crashes are acceptable diagnostic output and must not be hidden with `try/except`. A crash that prevents the TOTAL line from printing is itself a diagnostic: something is wrong before the checks.
+**Crash semantics:** Check failures print FAIL and continue,  the script runs to completion so all checks are reported. Invalid computation states (division by zero, missing assumptions, corrupted data) may hard-crash the script before the checks block. Hard crashes are acceptable diagnostic output and must not be hidden with `try/except`. A crash that prevents the TOTAL line from printing is itself a diagnostic: something is wrong before the checks.
 
 ---
 
@@ -293,7 +293,7 @@ Every physical input and result label must include units or state "dimensionless
 show("M_Z (MeV)", f2m(M_Z))
 show("gap ratio (dimensionless)", f2m(gap_SM))
 
-# WRONG — no units
+# WRONG,  no units
 show("M_Z", f2m(M_Z))
 ```
 
@@ -326,7 +326,7 @@ paper_name/
   paper_name.md            # the paper itself
 ```
 
-The `./code/` directory contains the platform library and all scripts. Every script imports from the local copy: `from phys24_lib import *`. This means each paper is self-contained — copy the directory and it runs.
+The `./code/` directory contains the platform library and all scripts. Every script imports from the local copy: `from phys24_lib import *`. This means each paper is self-contained,  copy the directory and it runs.
 
 The `./supplementary/` directory contains this rules document and any other supporting material that is not a script or a paper.
 
@@ -368,10 +368,10 @@ The standard is:
 - Python 3.8 compatible
 
 **Platform rules:**
-- `from phys24_lib import *` — one import, all constants from library
-- No hardcoded constants in scripts — everything from the library
-- Platform versions by import line — change one line to test new data
-- Library API only grows — values added, never removed
+- `from phys24_lib import *`,  one import, all constants from library
+- No hardcoded constants in scripts,  everything from the library
+- Platform versions by import line,  change one line to test new data
+- Library API only grows,  values added, never removed
 
 **Workflow rules:**
 - Scripts written in chat, human runs and returns output

@@ -18,7 +18,7 @@ The human could not compute. Not from inability, from time. The derivation chain
 
 One person cannot do three weeks of calculation in an afternoon. But one person and one AI can. The human specifies what to compute. The AI computes it. The human reads the result and decides what to compute next. The cycle takes minutes, not weeks.
 
-This is not AI replacing the physicist. This is AI replacing the calculator. The physics — which derivation to attempt, which inputs to use, which comparison matters, what a failure means — comes from the human. The computation — the fraction arithmetic, the series evaluation, the numerical integration, the pool management — comes from the AI. Neither alone could have produced the result.
+This is not AI replacing the physicist. This is AI replacing the calculator. The physics,  which derivation to attempt, which inputs to use, which comparison matters, what a failure means,  comes from the human. The computation,  the fraction arithmetic, the series evaluation, the numerical integration, the pool management,  comes from the AI. Neither alone could have produced the result.
 
 ---
 
@@ -78,15 +78,15 @@ Each decision was a judgment call. The AI provided the computation. The human pr
 
 Speed. Six days produced 53 derived values across eight domains. A traditional research program covering the same ground would take years. The AI's ability to write and run derivation functions in minutes rather than weeks compressed the timeline by orders of magnitude.
 
-Error detection. The AI-built comparison engine caught errors that would have passed human review. The normalization bug, the wrong root selection, the too-tight range threshold — all caught by automatic comparisons, not by human inspection of numbers.
+Error detection. The AI-built comparison engine caught errors that would have passed human review. The normalization bug, the wrong root selection, the too-tight range threshold,  all caught by automatic comparisons, not by human inspection of numbers.
 
 Cross-domain reach. No single physicist spans quantum electrodynamics, electroweak physics, grand unification, cosmology, nuclear physics, flavor physics, and precision spectroscopy. The AI has training data from all of these fields. It can write derivation functions in any of them. The cross-domain chains, which are the central achievement of the framework, were possible because the AI could compute in any domain the human pointed it toward.
 
-Persistence. The pool grew monotonically. Nothing was lost. Every session built on the previous sessions' results. The AI didn't forget what had been computed — it read it from the pool. The human could start each day by reading the pool state and deciding what to compute next.
+Persistence. The pool grew monotonically. Nothing was lost. Every session built on the previous sessions' results. The AI didn't forget what had been computed,  it read it from the pool. The human could start each day by reading the pool state and deciding what to compute next.
 
 **What did not work:**
 
-Originality. The AI never proposed a new physics idea. Not once. Every thesis-level decision — soliton boundaries, integer fractions, toroidal galaxies, the Rectification of Names — came from the human. The AI is a powerful amplifier of human ideas. It is not a source of them.
+Originality. The AI never proposed a new physics idea. Not once. Every thesis-level decision,  soliton boundaries, integer fractions, toroidal galaxies, the Rectification of Names,  came from the human. The AI is a powerful amplifier of human ideas. It is not a source of them.
 
 Judgment. The AI could not tell important results from routine ones. The 12 parts per million weak mixing angle match and the 0.12 standard deviation deuterium match are both reported as PASS by the comparison engine. The AI reports both with equal weight. The human recognizes that five significant figures from integer arithmetic is extraordinary while a deuterium match at 0.12 standard deviations is expected. The AI understands comparison. It does not understand significance.
 
@@ -96,7 +96,7 @@ Self-correction. When the normalization bug was active, the AI did not notice th
 
 ### The Method
 
-The process that produced these results is reproducible. Not the specific results — those are determined by the physics — but the method.
+The process that produced these results is reproducible. Not the specific results,  those are determined by the physics,  but the method.
 
 State a thesis. Not a vague intuition. A concrete claim: this quantity should equal that quantity, where the first is derivable from the second through known physics. The thesis can be wrong. That is fine. It needs to be testable.
 
@@ -108,7 +108,7 @@ React to failure. Every FAIL is information. Is it a code bug? Fix the code. A p
 
 Iterate. Each result, pass or fail, suggests the next computation. A pass suggests extending the chain. A fail suggests debugging or abandoning. The iteration is the science. The individual computations are the steps.
 
-This process — thesis, tool, derivation, reaction, iteration — is how physics has always been done. What is new is the speed. The AI compresses derivation from weeks to minutes. The tool compresses reaction from confusion to clarity. The combination compresses an entire research program from years to days.
+This process,  thesis, tool, derivation, reaction, iteration,  is how physics has always been done. What is new is the speed. The AI compresses derivation from weeks to minutes. The tool compresses reaction from confusion to clarity. The combination compresses an entire research program from years to days.
 
 The process does not require this specific AI or this specific human. It requires a thesis, any concrete and testable claim about physics. It requires a tool, any system that stores, computes, and compares. And it requires the willingness to react honestly to failure, which is the hardest part for humans and AIs alike.
 
@@ -120,7 +120,7 @@ A human with a thesis and an AI with a calculator produced a map of physics that
 
 The map is not complete. The edges are clearly marked. The completed sections are solid. The nearby sections are ready. The distant sections are research programs. The possibly impossible sections are honest about what may be beyond reach.
 
-But the methodology — integer fractions, soliton boundaries, automated derivation with versioned pools and automatic comparison — is proven. It works. It produces correct predictions at precisions ranging from 0.007 parts per billion to 725 parts per million across domains that have never been connected before.
+But the methodology,  integer fractions, soliton boundaries, automated derivation with versioned pools and automatic comparison,  is proven. It works. It produces correct predictions at precisions ranging from 0.007 parts per billion to 725 parts per million across domains that have never been connected before.
 
 The universe is rational. The integers are the structure. The decimals are the shadow. The soliton boundaries are the organization. The transformation laws are exact fractions from the gauge group.
 

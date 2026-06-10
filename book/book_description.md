@@ -6,7 +6,7 @@ A software engineer with no physics degree looked at the Standard Model and noti
 
 The Rational Universe Model derives 53 measurable values across eight domains of physics from 13 measured inputs using exact integer fraction arithmetic. The electromagnetic force strength matched to 15 digits. The weak mixing angle predicted to 12 parts per million. The primordial deuterium abundance matched at 0.12 standard deviations. No new equations. No new physics. Every derivation uses published formulas, reorganized so the integers are never converted to decimals until the final comparison against measurement.
 
-The framework predicts one new particle — the Cabibbo Doublet — selected not by theoretical preference but by the requirement that the gap ratio between the three forces be an exact fraction with small meaningful integers. Its consequences include a testable proton decay rate for the Hyper-Kamiokande detector beginning operation in 2027.
+The framework predicts one new particle,  the Cabibbo Doublet,  selected not by theoretical preference but by the requirement that the gap ratio between the three forces be an exact fraction with small meaningful integers. Its consequences include a testable proton decay rate for the Hyper-Kamiokande detector beginning operation in 2027.
 
 This book presents the complete model in plain language. Three nouns: inertia, vortex, soliton. Two verbs: reading, running reading. Twelve layers from the vacuum to the universe, each described in one consistent vocabulary. The physics is standard. The organization is new. The numbers are checkable. Every derivation can be reproduced by anyone with Python and the published code.
 

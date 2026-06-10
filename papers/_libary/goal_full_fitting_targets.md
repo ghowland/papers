@@ -22,60 +22,60 @@ Organized by what's blocking each derivation.
 
 ---
 
-### TIER 1: IMMEDIATE — Missing corrections to close existing chains
+### TIER 1: IMMEDIATE,  Missing corrections to close existing chains
 
 These are known values we need as DATA-6 nodes to improve existing derivations from ~ppb to sub-ppb.
 
 | Target Value | What It Is | Needed For | Estimated Effect | Source | Difficulty |
 |---|---|---|---|---|---|
-| a_e(mass-dep, 2-loop) | μ/τ VP in electron g-2 | α extraction | +2.5 ppb | Kinoshita et al. | Easy — published |
-| a_e(mass-dep, 3-loop) | Higher-order mass-dep | α extraction | +0.1 ppb | Laporta, Passera | Easy — published |
-| a_e(hadronic VP, LO) | Hadronic vacuum polarization | α extraction | +1.7 ppb | Davier et al. / lattice | Easy — published |
-| a_e(hadronic VP, NLO) | Next-to-leading hadronic | α extraction | -0.2 ppb | Kurz et al. | Easy — published |
-| a_e(hadronic LbL) | Light-by-light scattering | α extraction | +0.3 ppb | WP 2020 | Easy — published |
-| a_e(electroweak) | W/Z loop corrections | α extraction | +0.03 ppb | Czarnecki et al. | Easy — published |
-| A₅(resolved) | 5-loop coefficient | α extraction | ±0.5 ppb | Volkov vs AHKN | Hard — 5σ tension |
+| a_e(mass-dep, 2-loop) | μ/τ VP in electron g-2 | α extraction | +2.5 ppb | Kinoshita et al. | Easy,  published |
+| a_e(mass-dep, 3-loop) | Higher-order mass-dep | α extraction | +0.1 ppb | Laporta, Passera | Easy,  published |
+| a_e(hadronic VP, LO) | Hadronic vacuum polarization | α extraction | +1.7 ppb | Davier et al. / lattice | Easy,  published |
+| a_e(hadronic VP, NLO) | Next-to-leading hadronic | α extraction | -0.2 ppb | Kurz et al. | Easy,  published |
+| a_e(hadronic LbL) | Light-by-light scattering | α extraction | +0.3 ppb | WP 2020 | Easy,  published |
+| a_e(electroweak) | W/Z loop corrections | α extraction | +0.03 ppb | Czarnecki et al. | Easy,  published |
+| A₅(resolved) | 5-loop coefficient | α extraction | ±0.5 ppb | Volkov vs AHKN | Hard,  5σ tension |
 | Laporta convention map | C81/C83 → A₄/A₅ | α at 4900-digit precision | unknown | Investigation | Medium |
 
 **When complete:** α from a_e at <1 ppb. R∞, a₀, μ₀ at <2 ppb. Four CODATA values from two measurements.
 
 ---
 
-### TIER 2: NEAR-TERM — Extend existing derivation chains
+### TIER 2: NEAR-TERM,  Extend existing derivation chains
 
 | Target Value | What It Is | Needed For | What Derives It | Current Status | Difficulty |
 |---|---|---|---|---|---|
-| α(M_Z) | Running coupling at Z pole | Electroweak predictions | VP running from α(0) | Framework in PHYS-9 | Medium — hadronic VP limits |
-| sin²θ_W(predicted) | Weak mixing angle | EW sector derivation | GUT running from α(M_Z) | 1.2% miss at 1-loop | Medium — needs 2-loop |
-| α_s(predicted) | Strong coupling | QCD sector | Two-loop CD unification | 0.33% miss (platform) | Medium — fix two-loop bug |
+| α(M_Z) | Running coupling at Z pole | Electroweak predictions | VP running from α(0) | Framework in PHYS-9 | Medium,  hadronic VP limits |
+| sin²θ_W(predicted) | Weak mixing angle | EW sector derivation | GUT running from α(M_Z) | 1.2% miss at 1-loop | Medium,  needs 2-loop |
+| α_s(predicted) | Strong coupling | QCD sector | Two-loop CD unification | 0.33% miss (platform) | Medium,  fix two-loop bug |
 | M_GUT | Unification scale | Proton decay prediction | One-loop CD crossing | 10^15.54 GeV | Done (1-loop) |
-| τ_proton | Proton decay lifetime | Hyper-K prediction | M_GUT⁴ scaling | 10^34-35 yr | Medium — threshold corrections |
+| τ_proton | Proton decay lifetime | Hyper-K prediction | M_GUT⁴ scaling | 10^34-35 yr | Medium,  threshold corrections |
 | M_W(predicted) | W mass from sin²θ_W | EW precision test | M_W = M_Z cos θ_W | Not yet attempted | Medium |
-| Γ_Z(predicted) | Z width | EW precision test | From α(M_Z) + sin²θ_W | Not yet attempted | Hard — needs full EW |
-| a_μ(predicted) | Muon g-2 | BSM test | QED series + mass-dep + hadronic | Not yet attempted | Hard — hadronic dominates |
+| Γ_Z(predicted) | Z width | EW precision test | From α(M_Z) + sin²θ_W | Not yet attempted | Hard,  needs full EW |
+| a_μ(predicted) | Muon g-2 | BSM test | QED series + mass-dep + hadronic | Not yet attempted | Hard,  hadronic dominates |
 
 **When complete:** The electroweak sector predicted from coupling extraction + running. W mass, Z width, sin²θ_W become derived.
 
 ---
 
-### TIER 3: MEDIUM-TERM — New derivation chains
+### TIER 3: MEDIUM-TERM,  New derivation chains
 
 | Target Value | What It Is | Needed For | What Would Derive It | Current Status | Difficulty |
 |---|---|---|---|---|---|
-| G_F(predicted) | Fermi constant | EW unification | From M_W, sin²θ_W, α | Not attempted | Hard — full EW |
-| m_e/m_μ ratio | Lepton mass ratio | Koide extension | Unknown — no known law | OPEN PROBLEM | Unknown |
-| m_e absolute | Electron mass in MeV | Reducing to 1 input | Unknown — no known law | OPEN PROBLEM | Unknown |
-| Ω_b(predicted) | Baryon density | Cosmology from integers | Ω_DM/(DM/baryon) | Framework exists | Easy — needs normalization |
-| Ω_DE(predicted) | Dark energy density | Flatness constraint | 1 - Ω_m | Framework exists | Easy — follows from Ω_m |
-| H₀(predicted) | Hubble constant | Cosmology | Boundary running | Hypothesis only | Hard — N unknown |
-| a₀(MOND) | MOND acceleration | Galaxy dynamics | cH₀/(8R₂) | 15% match | Medium — H₀ input needed |
-| V_CKM elements | CKM matrix | Flavor physics | CD mixing angles | STAGED (6 parameters) | Hard — CD mass needed |
+| G_F(predicted) | Fermi constant | EW unification | From M_W, sin²θ_W, α | Not attempted | Hard,  full EW |
+| m_e/m_μ ratio | Lepton mass ratio | Koide extension | Unknown,  no known law | OPEN PROBLEM | Unknown |
+| m_e absolute | Electron mass in MeV | Reducing to 1 input | Unknown,  no known law | OPEN PROBLEM | Unknown |
+| Ω_b(predicted) | Baryon density | Cosmology from integers | Ω_DM/(DM/baryon) | Framework exists | Easy,  needs normalization |
+| Ω_DE(predicted) | Dark energy density | Flatness constraint | 1 - Ω_m | Framework exists | Easy,  follows from Ω_m |
+| H₀(predicted) | Hubble constant | Cosmology | Boundary running | Hypothesis only | Hard,  N unknown |
+| a₀(MOND) | MOND acceleration | Galaxy dynamics | cH₀/(8R₂) | 15% match | Medium,  H₀ input needed |
+| V_CKM elements | CKM matrix | Flavor physics | CD mixing angles | STAGED (6 parameters) | Hard,  CD mass needed |
 
 **When complete:** Cosmological parameters from integers. EW sector from running. CKM from CD.
 
 ---
 
-### TIER 4: LONG-TERM — The open problems
+### TIER 4: LONG-TERM,  The open problems
 
 | Target Value | What It Is | Why It's Hard | What Would Break It Open | Status |
 |---|---|---|---|---|
@@ -103,23 +103,23 @@ These are known values we need as DATA-6 nodes to improve existing derivations f
 | α_s | 1 | PREDICTED (0.33%) | α, sin²θ_W, betas | CD 2-loop running |
 | M_W | 1 | NOT YET | sin²θ_W, M_Z | M_Z cos θ_W |
 | G_F | 1 | NOT YET | M_W, sin²θ_W, α | Full EW |
-| m_e | 1 | MEASURED | — | No known law |
-| m_μ | 1 | MEASURED | — | No known law |
-| m_u | 1 | MEASURED | — | No known law |
-| m_d | 1 | MEASURED | — | No known law |
-| m_s | 1 | MEASURED | — | No known law |
-| m_c | 1 | MEASURED | — | No known law |
-| m_b | 1 | MEASURED | — | No known law |
-| m_t | 1 | MEASURED | — | No known law |
-| V_us, V_cb, V_ub | 3 | MEASURED | — | CD mixing (staged) |
-| δ_CKM | 1 | MEASURED | — | CD phase (staged) |
-| m_H | 1 | MEASURED | — | No known law |
-| DM/baryon | — | DERIVED (0.073%) | b₂_mod integers | (22/13)π |
-| Ω_DM | — | PREDICTED (~21%) | integers + R₂ | (44/169)R₂ |
-| H₀ | — | MEASURED | — | Running hypothesis |
-| M_VL (CD mass) | +1 | STAGED [1.5-6 TeV] | — | LHC search |
-| θ₁₄ (CD mixing) | +1 | STAGED [~0.045] | — | CKM deficit |
-| 4 more CD params | +4 | STAGED | — | B physics, kaon, nEDM |
+| m_e | 1 | MEASURED |,  | No known law |
+| m_μ | 1 | MEASURED |,  | No known law |
+| m_u | 1 | MEASURED |,  | No known law |
+| m_d | 1 | MEASURED |,  | No known law |
+| m_s | 1 | MEASURED |,  | No known law |
+| m_c | 1 | MEASURED |,  | No known law |
+| m_b | 1 | MEASURED |,  | No known law |
+| m_t | 1 | MEASURED |,  | No known law |
+| V_us, V_cb, V_ub | 3 | MEASURED |,  | CD mixing (staged) |
+| δ_CKM | 1 | MEASURED |,  | CD phase (staged) |
+| m_H | 1 | MEASURED |,  | No known law |
+| DM/baryon |,  | DERIVED (0.073%) | b₂_mod integers | (22/13)π |
+| Ω_DM |,  | PREDICTED (~21%) | integers + R₂ | (44/169)R₂ |
+| H₀ |,  | MEASURED |,  | Running hypothesis |
+| M_VL (CD mass) | +1 | STAGED [1.5-6 TeV] |,  | LHC search |
+| θ₁₄ (CD mixing) | +1 | STAGED [~0.045] |,  | CKM deficit |
+| 4 more CD params | +4 | STAGED |,  | B physics, kaon, nEDM |
 
 **Current SM count:** 19 standard → 18 (θ_QCD) → 17 (Koide conditional) → +6 CD = 23
 
@@ -138,7 +138,7 @@ These are known values we need as DATA-6 nodes to improve existing derivations f
 | 3 | sin²θ_W from CD running | Already have 1-loop at 1.2% | experiment_sin2_prediction_v0 |
 | 4 | M_W from sin²θ_W | Simple formula, big payoff | experiment_mw_prediction_v0 |
 | 5 | Complete what-if scan (10 remaining) | Direct-db derivation ready | 10 more whatif experiments |
-| 6 | Statistical control | BLOCKING — must compute p-value | experiment_statistical_control_v0 |
+| 6 | Statistical control | BLOCKING,  must compute p-value | experiment_statistical_control_v0 |
 | 7 | Ω_b, Ω_m, Ω_DE flatness chain | Framework exists, needs normalization | experiment_cosmology_chain_v0 (defined) |
 | 8 | α(M_Z) from VP running | PHYS-9 framework, hadronic VP limits | experiment_alpha_running_v0 |
 | 9 | a_μ prediction | Ties to muon g-2 anomaly | experiment_muon_g2_v0 |
@@ -165,4 +165,4 @@ When everything derivable is derived, the irreducible measured inputs are:
 
 **18 irreducible inputs** from the universe. Everything else is integers plus these 18 numbers. That's the full fitting target. Each time one of these becomes derivable from the others (like m_τ from m_e and m_μ), the count drops by one.
 
-The truly open problems — the ones no known law addresses — are the 6 quark masses, the Higgs mass, and why there are exactly 3 generations. Those are the universe's choices that no integer structure has yet explained.
+The truly open problems,  the ones no known law addresses,  are the 6 quark masses, the Higgs mass, and why there are exactly 3 generations. Those are the universe's choices that no integer structure has yet explained.

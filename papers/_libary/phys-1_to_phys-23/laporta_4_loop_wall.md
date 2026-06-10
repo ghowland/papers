@@ -1,6 +1,6 @@
-# Working Document: The 4-Loop Wall — PSLQ Attack on A₄ and the Extended Transcendental Basis
+# Working Document: The 4-Loop Wall,  PSLQ Attack on A₄ and the Extended Transcendental Basis
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Complete state capture for future session pickup. Framework staged for computation when Laporta's master integral values become available.
 
@@ -21,14 +21,14 @@ A₄ = T₀ + T₁ + ... + T₇ + V + W + E + U
 | T₀–T₇ | Rational combos of ζ(2)–ζ(7), ln(2), Li₄(1/2)–Li₇(1/2) | **FULLY IN BASIS** |
 | V | Harmonic polylogarithms at e^(iπ/3), e^(2iπ/3) | **COMPUTABLE** (Clausen functions, L-functions) |
 | W | Harmonic polylogarithms at e^(iπ/2) | **COMPUTABLE** (Catalan-type constants) |
-| E | Integrated products of K(x) — constants B₃, C₃ | **PARTIALLY COMPUTABLE** (quadrature on Fractions) |
+| E | Integrated products of K(x),  constants B₃, C₃ | **PARTIALLY COMPUTABLE** (quadrature on Fractions) |
 | U | Six master integrals C81a–C83c | **NOT PUBLIC** (4800 digits, Laporta private) |
 
 Estimated split: |T+V+W+E| / |A₄| ≈ 85%. |U| / |A₄| ≈ 15%.
 
 ---
 
-## III. THE U TERM — SIX MASTER INTEGRALS
+## III. THE U TERM,  SIX MASTER INTEGRALS
 
 From Laporta Eq. 53:
 
@@ -92,7 +92,7 @@ This requires either Laporta's master integral values or the complete T+V+W+E an
 
 Total: ~25 integer-pair constants, all verified against mpmath.
 
-The Borwein method also gives ζ(s) for any odd s at 100+ digits with the same n=210 parameter — unlimited odd zeta values on demand.
+The Borwein method also gives ζ(s) for any odd s at 100+ digits with the same n=210 parameter,  unlimited odd zeta values on demand.
 
 ---
 
@@ -102,8 +102,8 @@ The Borwein method also gives ζ(s) for any odd s at 100+ digits with the same n
 
 If we receive C81a–C83c at 4800 digits:
 
-1. Compute U from the rational coefficients — exact Fraction
-2. Compute A₄ − U = T+V+W+E — the known analytical content
+1. Compute U from the rational coefficients,  exact Fraction
+2. Compute A₄ − U = T+V+W+E,  the known analytical content
 3. Verify against the published T+V+W+E expression
 4. Run PSLQ on each C_i individually against:
    - The current basis (ζ, ln, Li, K, E)
@@ -122,7 +122,7 @@ The E terms involve ∫₀¹ f(x)·K(g(x)) dx where f and g are algebraic functi
 - Evaluating K(g(x_i)) at each node via the hypergeometric series
 - Summing with rational quadrature weights
 
-This produces the E constants as integer pairs (approximately — bounded by the quadrature order). The specific integrands f and g are given in the paper through the constants B₃ and C₃.
+This produces the E constants as integer pairs (approximately,  bounded by the quadrature order). The specific integrands f and g are given in the paper through the constants B₃ and C₃.
 
 ---
 
@@ -140,11 +140,11 @@ This produces the E constants as integer pairs (approximately — bounded by the
 ## VIII. CONNECTION TO MATH-3
 
 MATH-3 predicted:
-- K(k) at rational k is an integer pair via hypergeometric — **CONFIRMED**
-- Borwein gives ζ(5) at 100+ digits in 210 terms — **CONFIRMED**
-- The transcendental hierarchy maps loop order to transcendental class — **CONFIRMED** (4-loop requires elliptic content beyond the ζ/ln/Li family)
-- PSLQ identification of Laporta's master integrals is feasible — **STAGED** (framework ready, awaiting data)
-- Elliptic integrals enter at the 4-loop factorization boundary — **CONFIRMED** by the E term structure
+- K(k) at rational k is an integer pair via hypergeometric,  **CONFIRMED**
+- Borwein gives ζ(5) at 100+ digits in 210 terms,  **CONFIRMED**
+- The transcendental hierarchy maps loop order to transcendental class,  **CONFIRMED** (4-loop requires elliptic content beyond the ζ/ln/Li family)
+- PSLQ identification of Laporta's master integrals is feasible,  **STAGED** (framework ready, awaiting data)
+- Elliptic integrals enter at the 4-loop factorization boundary,  **CONFIRMED** by the E term structure
 
 MATH-3 was written as a theoretical paper describing methods. This session made it computational. Every method described in MATH-3 is now implemented and verified.
 
@@ -172,7 +172,7 @@ Load this document plus MATH-3 and PHYS-5/PHYS-6. The framework is staged.
 
 **If we get the complete paper expressions:** Execute Path B. Transcribe T+V+W+E formulas into Fraction arithmetic, compute, subtract from A₄.
 
-**If neither:** Advance by computing the integrated elliptic products (Path C) — the E terms from the paper's B₃ and C₃ constants. This extends the basis independently of the master integral values.
+**If neither:** Advance by computing the integrated elliptic products (Path C),  the E terms from the paper's B₃ and C₃ constants. This extends the basis independently of the master integral values.
 
 **The PSLQ null on A₄-as-a-whole is not a failure.** It confirms the hierarchy: A₄ contains transcendental content beyond the ζ/ln/Li/K(fixed) family. The correct PSLQ target is the individual master integrals, not the sum.
 

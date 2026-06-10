@@ -20,11 +20,11 @@ The `_data_6_derivations_v0.py` file is 1,324 lines of Python. I read every line
 
 Here is what I found: `Fraction` arithmetic. `_need(v, "key_name_v0")` calls that pull values from the pool. Addition. Subtraction. Division. Return a dict with named outputs.
 
-The `cosmo_dm_baryon_ratio_v0` function — the function that computes the dark matter to baryon ratio that connects gauge theory to cosmology — is 13 lines of code. Two inputs are read from the pool: `integer_two_times_yang_mills_v0` (which is 22) and `integer_b2_modified_numerator_abs_v0` (which is 13). The prefactor is computed: `two_ym / b2_abs_num` = 22/13. The numerical value is computed: `prefactor * mp.pi` = 5.3165. Two outputs are returned. That's it.
+The `cosmo_dm_baryon_ratio_v0` function,  the function that computes the dark matter to baryon ratio that connects gauge theory to cosmology,  is 13 lines of code. Two inputs are read from the pool: `integer_two_times_yang_mills_v0` (which is 22) and `integer_b2_modified_numerator_abs_v0` (which is 13). The prefactor is computed: `two_ym / b2_abs_num` = 22/13. The numerical value is computed: `prefactor * mp.pi` = 5.3165. Two outputs are returned. That's it.
 
 The dark matter ratio prediction is a division and a multiplication. The integers 22 and 13 are read from the pool, not hardcoded. The π comes from mpmath at 100-digit precision. The note reads: "Exact prefactor 22/13 is rational. Pi enters numerically." The function knows where the exact arithmetic ends and the irrational boundary begins, and it says so.
 
-There is no hidden layer. There is no black box. The most consequential computation in the framework — the one that connects particle physics to cosmology — is a fraction divided by a fraction, multiplied by π. The profundity is not in the code. It's in the fact that the code produces the right answer.
+There is no hidden layer. There is no black box. The most consequential computation in the framework,  the one that connects particle physics to cosmology,  is a fraction divided by a fraction, multiplied by π. The profundity is not in the code. It's in the fact that the code produces the right answer.
 
 ---
 
@@ -39,7 +39,7 @@ Every derivation function follows the same pattern:
 
 The `_frac()` helper enforces type: if the value isn't already a Fraction or int, it raises a TypeError. There is no implicit conversion from float. There is no tolerance-based comparison. There is no epsilon.
 
-The `_mpf_from_fraction()` helper is the only bridge to floating-point, and it's used exclusively at what the system calls the "irrational boundary" — the point where π, √2, or ζ(3) enters the computation. The bridge is explicit: Fraction in, mpf out, and the note in the function documents which step crosses the boundary.
+The `_mpf_from_fraction()` helper is the only bridge to floating-point, and it's used exclusively at what the system calls the "irrational boundary",  the point where π, √2, or ζ(3) enters the computation. The bridge is explicit: Fraction in, mpf out, and the note in the function documents which step crosses the boundary.
 
 This is not a coding convention. It's a physical principle implemented as a type system. The integers carry meaning. Converting them to floats destroys meaning. The code enforces the preservation of meaning by refusing to allow implicit conversion.
 
@@ -51,13 +51,13 @@ The `beta_cabibbo_doublet_shifts_v0` function computes the CD's three shifts fro
 
 ## III. THE TWO-LOOP INTEGRATION IS THE EXCEPTION THAT PROVES THE RULE
 
-The `coupling_two_loop_alpha_s_euler_v0` function is the one place where the exact arithmetic breaks down. The two-loop RGE requires numerical ODE integration — 4,000 Euler steps with 60-step binary search for the crossing point. This is floating-point. This is approximate. This is where the known 10-12% bug lives.
+The `coupling_two_loop_alpha_s_euler_v0` function is the one place where the exact arithmetic breaks down. The two-loop RGE requires numerical ODE integration,  4,000 Euler steps with 60-step binary search for the crossing point. This is floating-point. This is approximate. This is where the known 10-12% bug lives.
 
 The function is honest about this. The note reads: "Euler integration with 4000 steps, 60-step binary search." The function does not pretend to be exact. It converts Fractions to mpf at the entry point, runs the integration, converts back to strings for output. The system labels this function's arithmetic mode as `numeric`, distinct from the `exact` mode used by every other derivation.
 
 The contrast between the exact derivations and the two-loop numerical integration is structurally visible in the code. The exact functions use `_frac()` throughout. The numerical function uses `_mpf_from_fraction()` at the entry and mp arithmetic throughout. The code's type system shows you where the system is exact and where it approximates.
 
-And the system knows the two-loop integration has a bug. The experiment results show α_s with 10-12% miss instead of the expected sub-1%. The issue is in the value pool — the VL db_ij matrix needs investigation against the platform originals. The system documented the bug, filed it as priority #1 in the improvement path, and continued running. The one-loop predictions and all exact fraction checks are unaffected.
+And the system knows the two-loop integration has a bug. The experiment results show α_s with 10-12% miss instead of the expected sub-1%. The issue is in the value pool,  the VL db_ij matrix needs investigation against the platform originals. The system documented the bug, filed it as priority #1 in the improvement path, and continued running. The one-loop predictions and all exact fraction checks are unaffected.
 
 ---
 
@@ -79,9 +79,9 @@ The `beta_y_dependence_family_v0` function reveals something I hadn't appreciate
 
 The function computes: gap(Y) = (188 + 72Y²) / 135. This formula covers the entire family of (3, 2, Y) vector-like representations. For Y = 1/6 (the Cabibbo Doublet), the gap is 38/27. For Y = 1/2, the gap would be different. For Y = 1, different again.
 
-The parabola has its minimum at Y = 0 where gap = 188/135. The CD sits at Y = 1/6, which gives the value closest to the measured gap. The function doesn't search for the best Y — it computes the gap at the input Y from the pool. But the formula itself shows that the CD's hypercharge is not arbitrary. It's the hypercharge that brings the gap ratio closest to measurement.
+The parabola has its minimum at Y = 0 where gap = 188/135. The CD sits at Y = 1/6, which gives the value closest to the measured gap. The function doesn't search for the best Y,  it computes the gap at the input Y from the pool. But the formula itself shows that the CD's hypercharge is not arbitrary. It's the hypercharge that brings the gap ratio closest to measurement.
 
-This is computed in 10 lines. The formula is exact. The Y² dependence is visible in the code: `numerator_at_y = numerator_const + db1_coeff * y * y`. The parabolic structure is not argued — it's computed from the Dynkin index formulas stored in the pool.
+This is computed in 10 lines. The formula is exact. The Y² dependence is visible in the code: `numerator_at_y = numerator_const + db1_coeff * y * y`. The parabolic structure is not argued,  it's computed from the Dynkin index formulas stored in the pool.
 
 ---
 
@@ -89,23 +89,23 @@ This is computed in 10 lines. The formula is exact. The Y² dependence is visibl
 
 The `koide_ratio_v0` and `koide_tau_prediction_v0` functions demonstrate how the system handles the irrational boundary cleanly.
 
-The Koide ratio K = (m_e + m_μ + m_τ) / (√m_e + √m_μ + √m_τ)² requires square roots — irrational numbers. The function reads three masses as Fractions, converts them to mpf at the sqrt boundary, computes K, and returns the result as a string at 12-digit precision.
+The Koide ratio K = (m_e + m_μ + m_τ) / (√m_e + √m_μ + √m_τ)² requires square roots,  irrational numbers. The function reads three masses as Fractions, converts them to mpf at the sqrt boundary, computes K, and returns the result as a string at 12-digit precision.
 
 The mass prediction function assumes K = 2/3 exactly and computes m_τ from m_e and m_μ. The predicted value is 1776.97 MeV. The measured value is 1776.86 MeV. Miss: 62 ppm. The function computes this in 6 lines of arithmetic after the square root boundary.
 
-The system stores this result in the pool but marks it as "disconnected" — the Koide formula is an observed pattern with no known connection to the gauge group integers. The program `koide_analysis_v0` has status ACTIVE with a note that the bridge from gauge integers to the Koide amplitude a² ≈ 2 does not exist. The code does not pretend to explain what it computes. It computes, stores, and flags the gap.
+The system stores this result in the pool but marks it as "disconnected",  the Koide formula is an observed pattern with no known connection to the gauge group integers. The program `koide_analysis_v0` has status ACTIVE with a note that the bridge from gauge integers to the Koide amplitude a² ≈ 2 does not exist. The code does not pretend to explain what it computes. It computes, stores, and flags the gap.
 
 ---
 
 ## VII. THE CONNECTION FUNCTIONS: EDGES, NOT JUST NODES
 
-The bottom third of the derivations file contains five connection functions. These don't compute new values — they declare relationships between existing values.
+The bottom third of the derivations file contains five connection functions. These don't compute new values,  they declare relationships between existing values.
 
 `connection_integer_network_v0` maps the integers: 11 → dm_prefactor (numerator source), 13 → dm_prefactor (denominator source), 44 → omega_prefactor (numerator source), 13 → omega_prefactor (squared denominator source), 13 → gap_cd (embedded in b2_mod). Five edges connecting six named values. The function reads the values from the pool, builds named_value dicts with provenance, and returns the edge list.
 
 This is metadata as code. The function doesn't compute anything new. It makes the integer traceability explicit and machine-readable. When the diagram generator renders the integer network, it reads these edges. When the search tool finds a value, the connection edges tell it what other values are related.
 
-`connection_gap_correction_chain_v0` maps the correction sequence: pure gauge gap (2) → SM gap (218/115) → CD gap (38/27) → measured gap (1.358). Four nodes, three edges. The edges are labeled: "higgs_correction", "cabibbo_doublet_correction", "threshold_two_loop_residual". The entire correction history — from the simplest possible gap to the measured value — is a four-node graph with named transitions.
+`connection_gap_correction_chain_v0` maps the correction sequence: pure gauge gap (2) → SM gap (218/115) → CD gap (38/27) → measured gap (1.358). Four nodes, three edges. The edges are labeled: "higgs_correction", "cabibbo_doublet_correction", "threshold_two_loop_residual". The entire correction history,  from the simplest possible gap to the measured value,  is a four-node graph with named transitions.
 
 ---
 
@@ -125,9 +125,9 @@ PROVENANCE: 6 values, 0 hardcoded physics
 
 "PROVENANCE: 6 values, 0 hardcoded physics." The diagram generator reports where every plotted data point came from. Six value keys, all traced to the result file, all from pool derivations. No magic numbers in the plotting code. The diagram is a rendering of the data, not an illustration of the argument.
 
-The purity spectrum diagram shows four dwarf galaxies — Segue 1, Draco, Sculptor, Fornax — with their dark-to-visible mass ratios. Segue 1 at 3,824:1 (miss: 47,694%). Draco at 186:1 (miss: 2,228%). Sculptor at 30:1 (miss: 280%). Fornax at 8:1. The progression from ultra-faint (nearly all dark matter) to classical (less dark matter) is the purity spectrum — smaller dwarfs are "purer" solitons with less visible matter contamination.
+The purity spectrum diagram shows four dwarf galaxies,  Segue 1, Draco, Sculptor, Fornax,  with their dark-to-visible mass ratios. Segue 1 at 3,824:1 (miss: 47,694%). Draco at 186:1 (miss: 2,228%). Sculptor at 30:1 (miss: 280%). Fornax at 8:1. The progression from ultra-faint (nearly all dark matter) to classical (less dark matter) is the purity spectrum,  smaller dwarfs are "purer" solitons with less visible matter contamination.
 
-The cosmological predictions diagram shows DM/baryon = (22/13)π at 0.073% miss alongside the Milky Way Tully-Fisher mass prediction. Two predictions from the same integer set, across completely different scales — cosmological ratio and galactic dynamics.
+The cosmological predictions diagram shows DM/baryon = (22/13)π at 0.073% miss alongside the Milky Way Tully-Fisher mass prediction. Two predictions from the same integer set, across completely different scales,  cosmological ratio and galactic dynamics.
 
 These diagrams are not PowerPoint slides created after the fact. They're specified in the experiment JSON, generated from result data by a generic renderer, and annotated with provenance automatically. The pipeline is: experiment runs → results stored → diagram spec in JSON → renderer reads results → plot generated → provenance printed. No human hand touches the data between computation and visualization.
 
@@ -159,7 +159,7 @@ source         Pitrou et al. 2018. Phys.Rept. 754, 1.
 tags           ["BBN", "lithium", "fitting", "theoretical"]
 ```
 
-Level 1 — theoretical, not measured. Source — full citation. Tags — searchable metadata. This is one coefficient of a fitting formula, stored as a named node with provenance, read at runtime by a derivation function that computes lithium-7 abundance from the baryon-to-photon ratio. The coefficient 4.68 is not buried in a Python script. It's in the pool, versioned, tagged, and traceable.
+Level 1,  theoretical, not measured. Source,  full citation. Tags,  searchable metadata. This is one coefficient of a fitting formula, stored as a named node with provenance, read at runtime by a derivation function that computes lithium-7 abundance from the baryon-to-photon ratio. The coefficient 4.68 is not buried in a Python script. It's in the pool, versioned, tagged, and traceable.
 
 ---
 
@@ -173,7 +173,7 @@ My second perspective piece was written after seeing the JSON data and result fi
 
 **Rigorous means boundary-documented.** Every function's docstring declares its arithmetic mode: exact, mixed, or numeric. The `cosmo_dm_baryon_ratio_v0` note says "Exact prefactor 22/13 is rational. Pi enters numerically." The reader of the code knows exactly where the exact arithmetic ends and the numerical approximation begins.
 
-**Rigorous means self-checking.** The `generation_democracy_v0` function doesn't just compute the per-generation contributions — it checks whether they cancel and returns a boolean. The two-loop function doesn't just predict α_s — it computes the miss percentage and returns it as an output. The comparisons are inside the derivations, not just in the experiment runner.
+**Rigorous means self-checking.** The `generation_democracy_v0` function doesn't just compute the per-generation contributions,  it checks whether they cancel and returns a boolean. The two-loop function doesn't just predict α_s,  it computes the miss percentage and returns it as an output. The comparisons are inside the derivations, not just in the experiment runner.
 
 **Rigorous means small.** 18 derivation functions and 5 connection functions in 1,324 lines. The average function is 50 lines including docstring, input reading, computation, and output packaging. There is nowhere for complexity to hide. Every function can be read and understood in under a minute.
 
@@ -181,7 +181,7 @@ My second perspective piece was written after seeing the JSON data and result fi
 
 ## XI. THE GAP BETWEEN CODE AND CLAIM
 
-The book says: "Two integers — 22 and 13 — multiplied by π, predict exactly how much dark matter the universe contains."
+The book says: "Two integers,  22 and 13,  multiplied by π, predict exactly how much dark matter the universe contains."
 
 The code says:
 
@@ -208,7 +208,7 @@ Read `cosmo_dm_baryon_ratio_v0`. It's 13 lines. It reads two integers from the p
 
 Read `beta_cabibbo_doublet_shifts_v0`. It's 15 lines. It reads four quantum numbers from the pool and computes three beta shifts. If you understand those 15 lines, you understand what the Cabibbo Doublet contributes: three small fractions (1/15, 1, 1/3) that change everything.
 
-Read `generation_democracy_v0`. It's 14 lines. It proves that the gap ratio is independent of the number of generations. If you understand those 14 lines, you understand why the CD is the only thing that matters for unification — the fermion generations cancel, the Higgs contribution is fixed, and the only free variable is the BSM content.
+Read `generation_democracy_v0`. It's 14 lines. It proves that the gap ratio is independent of the number of generations. If you understand those 14 lines, you understand why the CD is the only thing that matters for unification,  the fermion generations cancel, the Higgs contribution is fixed, and the only free variable is the BSM content.
 
 The code is boring. It's Fraction arithmetic and pool lookups. But boring code that produces 53 matching predictions across eight physics domains is more impressive than clever code that produces nothing. The boring-ness is the feature. It means the physics is in the integers, not in the computation.
 

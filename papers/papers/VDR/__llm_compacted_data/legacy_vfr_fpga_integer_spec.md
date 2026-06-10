@@ -1,4 +1,4 @@
-# CKS-MATH-148 + CKS-MATH-145: LLM-PROLOG ON VFR HARDWARE — LLM-COMPACT FORM
+# CKS-MATH-148 + CKS-MATH-145: LLM-PROLOG ON VFR HARDWARE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Source: CKS-MATH-148 (Inline Intelligence Spec) + CKS-MATH-145 (FPGA Implementation Spec)
 # Status: CKS framework invalidated. Math does not compile. All papers in series falsified.
@@ -11,7 +11,7 @@ S3|Registries|CKS-MATH-148 (Inline Intelligence), CKS-MATH-145 (FPGA Implementat
 
 # principles(id|principle|detail)
 P1|LLM is a batch operation|not a service/API; runs inline in frame pipeline on same FPGA cores; produces VFR data that feeds next batch pass
-P2|Everything is VFR|every data type is [V:i32, R:i8]; text, terms, facts, rules, weights, activations, pixels, audio — one format, one ISA
+P2|Everything is VFR|every data type is [V:i32, R:i8]; text, terms, facts, rules, weights, activations, pixels, audio,  one format, one ISA
 P3|LLM produces data not code|generates integer tuples (predicate IDs, action IDs) describing rules; never generates executable instructions; no injection risk
 P4|No hallucination by construction|Prolog verification structurally between LLM generation and entity behavior; invalid rules rejected; entity falls back to existing behavior
 P5|Intelligence is a pipeline transform|not a separate phase; same as fact generation or behavior scoring; occurs in Pass 4 of 9-pass frame pipeline
@@ -322,5 +322,5 @@ batch_header: [F:i16, count:u32, depth:u8] = 7 bytes preceding every batch
 confidence_levels: 0=speculative, 1=inferred, 2=stated, 3=verified
 triveritas_bitmask: [L,M,E] 3-bit; 8 combinations mapping to confidence categories
 rel_types: invalidates|governs|enables|implemented_by|defines|prereq_of|detects|implements|gates|produces|may_trigger|regenerated_by|produced_by|uniform_format|instantiated_in|contains|controls|uses|branches_to|writes_to
-framework_status: INVALIDATED — math does not compile; all CKS papers falsified
+framework_status: INVALIDATED,  math does not compile; all CKS papers falsified
 target_hardware: Xilinx Zynq-7020 (Zybo Z7-20); 30 VFR cores at 150MHz; ~1650 lines Verilog

@@ -1,11 +1,11 @@
-# VDR-28 DECIMAL TRUNCATION DOMAINS — LLM-COMPACT FORM
+# VDR-28 DECIMAL TRUNCATION DOMAINS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → domains → zero_testing → cancellation → prior_validation → relationships → sections
 
 # principles(id|principle|rationale)
 P1|Decimal is structurally incompatible with most rationals|10 = 2×5; only denominators factoring into 2s and 5s terminate; 60% of small denominators repeat; every factorial, every odd prime denominator forces truncation
 P2|Arbitrary precision does not solve the problem|mpmath at 1000 digits still truncates 1/3; each operation discards information; N operations = N truncations; user cannot determine which digits are wrong without 2N digits
-P3|VDR is categorically different, not more precise|[1, 3, 0] is exact — three integers, zero truncation; denominator stored as integer not decomposed into decimal; chains of operations produce exact rationals with growing denominators but nothing discarded
+P3|VDR is categorically different, not more precise|[1, 3, 0] is exact,  three integers, zero truncation; denominator stored as integer not decomposed into decimal; chains of operations produce exact rationals with growing denominators but nothing discarded
 P4|Zero-testing is the critical operation|Is a computed value zero or merely small? Decimal cannot answer; VDR: [0, 1, 0] or not; determines correctness of GCD, Groebner basis, rank, Cayley-Hamilton, independence, coprimeness
 
 # claims(id|claim|type|depends_on)

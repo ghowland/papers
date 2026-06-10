@@ -1,6 +1,6 @@
 Let's walk through the actual operations.
 
-## Matmul — the dominant cost
+## Matmul,  the dominant cost
 
 **Float32 path:**
 ```
@@ -18,11 +18,11 @@ for each k:
     acc_r += product & ACTIVATION_MASK                  // mask = remainder
 ```
 
-That's one integer multiply, one shift, one mask, two adds. No division anywhere. The shift and mask are the divmod — free on any hardware.
+That's one integer multiply, one shift, one mask, two adds. No division anywhere. The shift and mask are the divmod,  free on any hardware.
 
-**Comparison:** Float FMA is one cycle on modern hardware. The VDR path is roughly 4-5 integer ops. But integer multiply throughput on modern SIMD is comparable to float FMA. And i16 × i32 packs tighter than f32 × f32 — you fit more elements per cache line, more per register.
+**Comparison:** Float FMA is one cycle on modern hardware. The VDR path is roughly 4-5 integer ops. But integer multiply throughput on modern SIMD is comparable to float FMA. And i16 × i32 packs tighter than f32 × f32,  you fit more elements per cache line, more per register.
 
-So matmul is maybe 2-3× integer ops but with better memory density. Depending on whether you're compute-bound or memory-bound, VDR could actually be faster for weight-limited inference. Current INT8 inference already beats FP32 for exactly this reason — smaller elements, more throughput per byte loaded.
+So matmul is maybe 2-3× integer ops but with better memory density. Depending on whether you're compute-bound or memory-bound, VDR could actually be faster for weight-limited inference. Current INT8 inference already beats FP32 for exactly this reason,  smaller elements, more throughput per byte loaded.
 
 ## Softmax
 
@@ -49,11 +49,11 @@ sum_r = reduce_add(out.r)
 // this is integer divmod against the sum
 ```
 
-The exp becomes a table lookup because the inputs are bounded integers at fixed precision. You precompute the exact VDR expansion of exp for every possible input value in the Q16 or Q32 range. No transcendental function at runtime. The table fits in cache for Q16 — 65536 entries × 4 bytes = 256KB.
+The exp becomes a table lookup because the inputs are bounded integers at fixed precision. You precompute the exact VDR expansion of exp for every possible input value in the Q16 or Q32 range. No transcendental function at runtime. The table fits in cache for Q16,  65536 entries × 4 bytes = 256KB.
 
 That's potentially much faster than float softmax. The transcendental disappears entirely.
 
-## Accumulation over long chains — where VDR wins outright
+## Accumulation over long chains,  where VDR wins outright
 
 **Float path for diffusion (1000 steps):**
 ```
@@ -74,7 +74,7 @@ for each step:
     // zero information lost, zero drift, forever
 ```
 
-Same number of operations. Same throughput. But after a million steps the float version has drifted measurably and the VDR version has not drifted at all. The per-step cost is identical — the correctness comes free.
+Same number of operations. Same throughput. But after a million steps the float version has drifted measurably and the VDR version has not drifted at all. The per-step cost is identical,  the correctness comes free.
 
 ## Memory bandwidth
 
@@ -87,7 +87,7 @@ This is where VDR might actually win on net performance.
 | Vdr32 (v+r) | 8 | 8 |
 | f16 | 2 | 32 |
 
-Vdr16 is the same density as f32. You get exact arithmetic at the same memory bandwidth. Vdr32 is 2× f32 but carries the remainder — so you're comparing against f32 that silently drops information vs Vdr32 that keeps it.
+Vdr16 is the same density as f32. You get exact arithmetic at the same memory bandwidth. Vdr32 is 2× f32 but carries the remainder,  so you're comparing against f32 that silently drops information vs Vdr32 that keeps it.
 
 For memory-bound workloads (which most inference is), Vdr16 weights at f32-equivalent bandwidth with zero precision loss is a strict improvement.
 
@@ -104,6 +104,6 @@ For memory-bound workloads (which most inference is), Vdr16 weights at f32-equiv
 
 The honest answer: per-op arithmetic is roughly 2-3× more integer operations than float FMA. But transcendentals become table lookups (faster), division becomes bit shifts (faster), memory density at Q16 matches f32 (same), and accumulated error over chains is zero (free correctness).
 
-For inference — memory-bound, weight-dominated, long-chain diffusion — VDR on fixed power-of-two basis in Zig might not just be competitive with float. It might be faster, because the expensive float operations (exp, div, sqrt) all collapse into integer operations or precomputed tables, while the cheap float operation (FMA) becomes a slightly more expensive but still cheap integer sequence.
+For inference,  memory-bound, weight-dominated, long-chain diffusion,  VDR on fixed power-of-two basis in Zig might not just be competitive with float. It might be faster, because the expensive float operations (exp, div, sqrt) all collapse into integer operations or precomputed tables, while the cheap float operation (FMA) becomes a slightly more expensive but still cheap integer sequence.
 
 The Python 50-200× overhead was never about the math. It was about Python.

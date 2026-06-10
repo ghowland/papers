@@ -1,4 +1,4 @@
-# MATH-4 UNIVERSAL POWER-OF-TWO BASIS — LLM-COMPACT FORM
+# MATH-4 UNIVERSAL POWER-OF-TWO BASIS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → cf_origin → basis_constants → verification → arithmetic → compression → qed_application → falsification → limitations → relationships → section_index → decode_legend
 

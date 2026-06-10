@@ -6,9 +6,9 @@
 
 ## Abstract
 
-Decimal arithmetic — including arbitrary-precision libraries like mpmath — represents numbers in base 10. The only fractions with terminating decimal representations are those whose denominators factor exclusively into 2s and 5s. Every other fraction — 1/3, 1/7, 1/11, 1/13, every fraction whose denominator contains any prime factor other than 2 or 5 — becomes an infinite repeating decimal that must be truncated. This truncation is not a precision issue solvable by carrying more digits. It is a structural incompatibility between the representation and the value.
+Decimal arithmetic,  including arbitrary-precision libraries like mpmath,  represents numbers in base 10. The only fractions with terminating decimal representations are those whose denominators factor exclusively into 2s and 5s. Every other fraction,  1/3, 1/7, 1/11, 1/13, every fraction whose denominator contains any prime factor other than 2 or 5,  becomes an infinite repeating decimal that must be truncated. This truncation is not a precision issue solvable by carrying more digits. It is a structural incompatibility between the representation and the value.
 
-This paper identifies twenty computational domains where this structural incompatibility produces materially wrong results, and demonstrates that VDR exact rational arithmetic [VDR-1] eliminates the problem entirely. VDR represents 1/3 as [1, 3, 0] — exact, with zero truncation. Chains of operations on exact rationals produce exact rationals. The denominator grows but nothing is discarded. This is not "more precision." It is a categorically different relationship with the numbers.
+This paper identifies twenty computational domains where this structural incompatibility produces materially wrong results, and demonstrates that VDR exact rational arithmetic [VDR-1] eliminates the problem entirely. VDR represents 1/3 as [1, 3, 0],  exact, with zero truncation. Chains of operations on exact rationals produce exact rationals. The denominator grows but nothing is discarded. This is not "more precision." It is a categorically different relationship with the numbers.
 
 No prior reading is required. VDR arithmetic is summarized where first used; full specifications are in [VDR-1] and [VDR-14].
 

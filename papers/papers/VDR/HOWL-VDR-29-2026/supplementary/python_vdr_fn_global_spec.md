@@ -24,36 +24,36 @@ NEG_ONE = VDR(-1, 1)
 
 | Method | Input | Output | Errors |
 |---|---|---|---|
-| `is_zero` | — | bool | — |
-| `is_atomic` | — | bool | — |
-| `is_globally_zero` | — | bool (recursive) | — |
-| `structural_eq(other)` | Remainder | bool | — |
-| `negate()` | — | Remainder | — |
-| `combine(other, sign=1)` | Remainder, ±1 | Remainder | — |
+| `is_zero` |,  | bool |,  |
+| `is_atomic` |,  | bool |,  |
+| `is_globally_zero` |,  | bool (recursive) |,  |
+| `structural_eq(other)` | Remainder | bool |,  |
+| `negate()` |,  | Remainder |,  |
+| `combine(other, sign=1)` | Remainder, ±1 | Remainder |,  |
 | `lift(k)` | int (nonzero) | Remainder | VDRError if k=0 |
-| `legacy_value()` | — | Fraction | — |
-| `normalize()` | — | Remainder | — |
+| `legacy_value()` |,  | Fraction |,  |
+| `normalize()` |,  | Remainder |,  |
 
 **`VDR(v: int, d: int = 1, r: Remainder | int | None = None)`**
 
 | Method | Input | Output | Errors |
 |---|---|---|---|
-| `is_closed` | — | bool | — |
-| `is_active` | — | bool | — |
-| `is_globally_closed` | — | bool | — |
-| `structural_eq(other)` | VDR | bool | — |
-| `value_eq(other)` | VDR | bool | — |
-| `normalize()` | — | VDR (canonical) | — |
-| `to_fraction()` | — | Fraction | VDRError if functional R |
-| `to_float()` | — | float (lossy) | — |
+| `is_closed` |,  | bool |,  |
+| `is_active` |,  | bool |,  |
+| `is_globally_closed` |,  | bool |,  |
+| `structural_eq(other)` | VDR | bool |,  |
+| `value_eq(other)` | VDR | bool |,  |
+| `normalize()` |,  | VDR (canonical) |,  |
+| `to_fraction()` |,  | Fraction | VDRError if functional R |
+| `to_float()` |,  | float (lossy) |,  |
 | `rebase(target_d)` | int (nonzero) | VDR | RebaseError |
-| `negate()` | — | VDR | — |
-| `depth()` | — | int | — |
-| `size()` | — | int | — |
-| `den_complexity()` | — | tuple(int,int,int) | — |
-| `bracket()` | — | str | — |
-| `from_fraction(frac)` | Fraction | VDR (classmethod) | — |
-| `from_int(n)` | int | VDR (classmethod) | — |
+| `negate()` |,  | VDR |,  |
+| `depth()` |,  | int |,  |
+| `size()` |,  | int |,  |
+| `den_complexity()` |,  | tuple(int,int,int) |,  |
+| `bracket()` |,  | str |,  |
+| `from_fraction(frac)` | Fraction | VDR (classmethod) |,  |
+| `from_int(n)` | int | VDR (classmethod) |,  |
 
 **Operators:** `+`, `-`, `*`, `/`, `-x`, `+x`, `abs(x)`, `==`, `!=`, `<`, `<=`, `>`, `>=`, `hash`, `float`, `__repr__`, `__str__`
 
@@ -81,7 +81,7 @@ NEG_ONE = VDR(-1, 1)
 
 **`active_div(a: VDR, b: VDR) -> VDR`**
 - I: two VDR objects, b nonzero
-- O: exact quotient. By closed: multiply by reciprocal. By active: project divisor, invert, multiply (v1 compromise — divisor R structure lost)
+- O: exact quotient. By closed: multiply by reciprocal. By active: project divisor, invert, multiply (v1 compromise,  divisor R structure lost)
 - S: none
 - E: ArithmeticFailure if divisor is zero
 
@@ -173,13 +173,13 @@ NEG_ONE = VDR(-1, 1)
 | `from_ints(ns)` | list[int] | Vec | classmethod |
 | `from_fracs(pairs)` | list[tuple] | Vec | classmethod |
 | `zero(n)` | int | Vec | classmethod |
-| `dim` | — | int | property |
+| `dim` |,  | int | property |
 | `__add__`, `__sub__` | Vec | Vec | same dim required |
-| `__neg__` | — | Vec | — |
-| `scale(s)` / `__mul__` | VDR or int | Vec | — |
+| `__neg__` |,  | Vec |,  |
+| `scale(s)` / `__mul__` | VDR or int | Vec |,  |
 | `dot(other)` | Vec | VDR | exact |
-| `norm_sq()` | — | VDR | v·v, no sqrt |
-| `to_fractions()` | — | list[Fraction] | — |
+| `norm_sq()` |,  | VDR | v·v, no sqrt |
+| `to_fractions()` |,  | list[Fraction] |,  |
 
 **`Mat(rows: list[list | Vec])`**
 
@@ -187,35 +187,35 @@ NEG_ONE = VDR(-1, 1)
 |---|---|---|---|
 | `from_ints`, `from_fracs` | nested lists | Mat | classmethod |
 | `identity(n)`, `zero(nr,nc)` | int(s) | Mat | classmethod |
-| `nrows`, `ncols`, `shape`, `is_square` | — | int/tuple/bool | properties |
-| `row(i)`, `col(j)` | int | Vec | — |
+| `nrows`, `ncols`, `shape`, `is_square` |,  | int/tuple/bool | properties |
+| `row(i)`, `col(j)` | int | Vec |,  |
 | `__add__`, `__sub__`, `__neg__` | Mat | Mat | same shape |
-| `scale(s)` | VDR or int | Mat | — |
+| `scale(s)` | VDR or int | Mat |,  |
 | `matmul(other)` | Mat | Mat | compatible shapes |
-| `matvec(v)` | Vec | Vec | — |
-| `T` | — | Mat | transpose, property |
-| `trace()` | — | VDR | square required |
-| `det()` | — | VDR | dispatches: cofactor ≤4, Gaussian ≥5 |
-| `det_cofactor()` | — | VDR | O(n!) explicit |
-| `det_gauss()` | — | VDR | O(n³) |
-| `inv()` | — | Mat | dispatches similarly |
-| `inv_adjugate()` | — | Mat | via adj/det |
-| `inv_gauss()` | — | Mat | via Gaussian |
+| `matvec(v)` | Vec | Vec |,  |
+| `T` |,  | Mat | transpose, property |
+| `trace()` |,  | VDR | square required |
+| `det()` |,  | VDR | dispatches: cofactor ≤4, Gaussian ≥5 |
+| `det_cofactor()` |,  | VDR | O(n!) explicit |
+| `det_gauss()` |,  | VDR | O(n³) |
+| `inv()` |,  | Mat | dispatches similarly |
+| `inv_adjugate()` |,  | Mat | via adj/det |
+| `inv_gauss()` |,  | Mat | via Gaussian |
 | `solve(b)` | Vec | Vec | dispatches |
 | `solve_cramer(b)` | Vec | Vec | explicit |
 | `solve_gauss(b)` | Vec | Vec | O(n³) |
-| `rank()` | — | int | Gaussian, exact |
-| `rref()` | — | Mat | reduced row echelon |
-| `pretty()` | — | str | formatted display |
-| `to_fractions()` | — | list[list[Fraction]] | — |
+| `rank()` |,  | int | Gaussian, exact |
+| `rref()` |,  | Mat | reduced row echelon |
+| `pretty()` |,  | str | formatted display |
+| `to_fractions()` |,  | list[list[Fraction]] |,  |
 
 ### Functions
 
-**`parse_vdr(text: str) -> VDR`** — bracket notation parser
+**`parse_vdr(text: str) -> VDR`**,  bracket notation parser
 
-**`vdr_to_dict(x) -> dict`** / **`vdr_from_dict(d) -> VDR`** — JSON serialization
+**`vdr_to_dict(x) -> dict`** / **`vdr_from_dict(d) -> VDR`**,  JSON serialization
 
-**`vdr_to_latex(x) -> str`** — LaTeX export
+**`vdr_to_latex(x) -> str`**,  LaTeX export
 
 ---
 
@@ -414,23 +414,23 @@ None (all computed on demand).
 
 ### Functions
 
-**`binom(n: int, k: int) -> VDR`** — C(n,k) exact
+**`binom(n: int, k: int) -> VDR`**,  C(n,k) exact
 
-**`stirling2(n: int, k: int) -> VDR`** — Stirling numbers of second kind
+**`stirling2(n: int, k: int) -> VDR`**,  Stirling numbers of second kind
 
-**`bell(n: int) -> VDR`** — Bell numbers
+**`bell(n: int) -> VDR`**,  Bell numbers
 
-**`derangement(n: int) -> VDR`** — D(n) subfactorials
+**`derangement(n: int) -> VDR`**,  D(n) subfactorials
 
-**`catalan(n: int) -> VDR`** — Catalan numbers
+**`catalan(n: int) -> VDR`**,  Catalan numbers
 
-**`catalan_gf(x: VDR, terms: int) -> VDR`** — generating function partial sum
+**`catalan_gf(x: VDR, terms: int) -> VDR`**,  generating function partial sum
 
-**`multinomial(n: int, ks: list[int]) -> VDR`** — multinomial coefficient
+**`multinomial(n: int, ks: list[int]) -> VDR`**,  multinomial coefficient
 
-**`factorial(n: int) -> VDR`** — n! as VDR
+**`factorial(n: int) -> VDR`**,  n! as VDR
 
-**`falling_factorial(n: VDR, k: int) -> VDR`** — n(n-1)...(n-k+1)
+**`falling_factorial(n: VDR, k: int) -> VDR`**,  n(n-1)...(n-k+1)
 
 ---
 
@@ -444,11 +444,11 @@ BERNOULLI_CACHE = {}  # populated on demand
 
 ### Functions
 
-**`fibonacci(n: int) -> VDR`** — F(n) via matrix power or recursion
+**`fibonacci(n: int) -> VDR`**,  F(n) via matrix power or recursion
 
-**`fibonacci_seq(n: int) -> list[VDR]`** — F(0) through F(n)
+**`fibonacci_seq(n: int) -> list[VDR]`**,  F(0) through F(n)
 
-**`lucas(n: int) -> VDR`** — L(n)
+**`lucas(n: int) -> VDR`**,  L(n)
 
 **`lucas_seq(n: int) -> list[VDR]`**
 
@@ -589,11 +589,11 @@ BERNOULLI_CACHE = {}  # populated on demand
 
 ### Functions
 
-**`gf_add(a: int, b: int, p: int) -> int`** — Galois field addition
+**`gf_add(a: int, b: int, p: int) -> int`**,  Galois field addition
 
-**`gf_mul(a: int, b: int, p: int) -> int`** — Galois field multiplication
+**`gf_mul(a: int, b: int, p: int) -> int`**,  Galois field multiplication
 
-**`gf_inv(a: int, p: int) -> int`** — multiplicative inverse in GF(p)
+**`gf_inv(a: int, p: int) -> int`**,  multiplicative inverse in GF(p)
 
 **`gf_poly_eval(coeffs: list[int], x: int, p: int) -> int`**
 
@@ -645,15 +645,15 @@ TROPICAL_INF = None  # represents +∞ in min-plus algebra
 
 ### Functions
 
-**`trop_add(a, b) -> VDR | None`** — min(a, b) in tropical
+**`trop_add(a, b) -> VDR | None`**,  min(a, b) in tropical
 
-**`trop_mul(a, b) -> VDR | None`** — a + b in tropical
+**`trop_mul(a, b) -> VDR | None`**,  a + b in tropical
 
-**`trop_mat_mul(A: list, B: list, n: int) -> list`** — tropical matrix multiplication
+**`trop_mat_mul(A: list, B: list, n: int) -> list`**,  tropical matrix multiplication
 
-**`trop_det(M: list, n: int) -> VDR`** — tropical determinant (min-weight perfect matching)
+**`trop_det(M: list, n: int) -> VDR`**,  tropical determinant (min-weight perfect matching)
 
-**`gram_matrix(vectors: list[Vec]) -> Mat`** — Gram matrix vᵢ·vⱼ
+**`gram_matrix(vectors: list[Vec]) -> Mat`**,  Gram matrix vᵢ·vⱼ
 
 **`gram_schmidt_exact(vectors: list[Vec]) -> tuple[list[Vec], Mat]`**
 - O: (orthogonalized vectors, μ coefficient matrix), all exact
@@ -727,12 +727,12 @@ TROPICAL_INF = None  # represents +∞ in min-plus algebra
 
 ## 22. `vdr.math.transcendental`
 
-### Globals — Named Constants as FnRemainder
+### Globals,  Named Constants as FnRemainder
 
 Each constant is available both as a FnRemainder (arbitrary depth) and as a Q335 precomputed value.
 
 ```python
-# Functional remainders — resolve to any depth
+# Functional remainders,  resolve to any depth
 PI_FN       # make_series_fn: Machin arctan formula
 E_FN        # make_series_fn: exp(1) Taylor
 LN2_FN      # make_series_fn: 2·arctanh(1/3)
@@ -795,17 +795,17 @@ CATALAN     = VDR(641102851116..., 2**335)   # Catalan's G
 **`hypergeometric_2f1(a: VDR, b: VDR, c: VDR, z: VDR, terms: int) -> VDR`**
 - General ₂F₁ with rational parameters
 
-**`clausen_2(x: VDR, terms: int) -> VDR`** — Cl₂(x)
+**`clausen_2(x: VDR, terms: int) -> VDR`**,  Cl₂(x)
 
-**`clausen_3(x: VDR, terms: int) -> VDR`** — Cl₃(x)
+**`clausen_3(x: VDR, terms: int) -> VDR`**,  Cl₃(x)
 
-**`exp_series(x: VDR, depth: int = 16) -> VDR`** — Taylor exp
+**`exp_series(x: VDR, depth: int = 16) -> VDR`**,  Taylor exp
 
-**`sin_series(x: VDR, depth: int = 16) -> VDR`** — Taylor sin
+**`sin_series(x: VDR, depth: int = 16) -> VDR`**,  Taylor sin
 
-**`cos_series(x: VDR, depth: int = 16) -> VDR`** — Taylor cos
+**`cos_series(x: VDR, depth: int = 16) -> VDR`**,  Taylor cos
 
-**`ln_series(x: VDR, depth: int = 16) -> VDR`** — ln via arctanh reduction
+**`ln_series(x: VDR, depth: int = 16) -> VDR`**,  ln via arctanh reduction
 
 **`arctan_series(x: VDR, depth: int = 16) -> VDR`**
 
@@ -865,7 +865,7 @@ CATALAN     = VDR(641102851116..., 2**335)   # Catalan's G
 - O: barycentric coordinates, exact. Sum to exactly 1.
 
 **`point_in_triangle(p: tuple, a: tuple, b: tuple, c: tuple) -> bool`**
-- Exact — no epsilon needed
+- Exact,  no epsilon needed
 
 **`dist_sq(p1: tuple, p2: tuple) -> VDR`**
 - Squared distance, exact (avoids sqrt)
@@ -887,7 +887,7 @@ CATALAN     = VDR(641102851116..., 2**335)   # Catalan's G
 - O: list of (x, y) pairs, all exact
 
 **`rk4_step(f: Callable, x: VDR, y: VDR, h: VDR) -> VDR`**
-- O: one RK4 step, exact (Butcher coefficients are 1/6, 1/3, 1/3, 1/6 — all rational)
+- O: one RK4 step, exact (Butcher coefficients are 1/6, 1/3, 1/3, 1/6,  all rational)
 
 **`rk4_solve(f: Callable, y0: VDR, x0: VDR, h: VDR, n_steps: int) -> list[tuple[VDR, VDR]]`**
 
@@ -1030,7 +1030,7 @@ A1 = VDR(1, 2)    # 1-loop: exactly 1/2
 
 ```python
 SIGMA_X = Mat.from_ints([[0, 1], [1, 0]])
-SIGMA_Y  # complex: [[0, -i], [i, 0]] — represented as pairs
+SIGMA_Y  # complex: [[0, -i], [i, 0]],  represented as pairs
 SIGMA_Z = Mat.from_ints([[1, 0], [0, -1]])
 IDENTITY_2 = Mat.identity(2)
 ```
@@ -1241,25 +1241,25 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 
 ### Classes
 
-**`VecParam(value: Vec, name: str = None)`** — trainable vector parameter with grad
+**`VecParam(value: Vec, name: str = None)`**,  trainable vector parameter with grad
 
-**`MatParam(value: Mat, name: str = None)`** — trainable matrix parameter with grad
+**`MatParam(value: Mat, name: str = None)`**,  trainable matrix parameter with grad
 
-**`Module`** — base class with `parameters()`, `zero_grad()`
+**`Module`**,  base class with `parameters()`, `zero_grad()`
 
-**`Linear(weight: Mat, bias: Vec)`** — forward: Wx + b, backward: exact gradients
+**`Linear(weight: Mat, bias: Vec)`**,  forward: Wx + b, backward: exact gradients
 
-**`ReLU()`** — forward: max(0, x), backward: 0 or 1 per element
+**`ReLU()`**,  forward: max(0, x), backward: 0 or 1 per element
 
-**`Sequential(layers: list[Module])`** — forward/backward chain
+**`Sequential(layers: list[Module])`**,  forward/backward chain
 
-**`FFN(l1: Linear, act: ReLU, l2: Linear)`** — feed-forward network block
+**`FFN(l1: Linear, act: ReLU, l2: Linear)`**,  feed-forward network block
 
 ### Functions
 
-**`relu_scalar(x: VDR) -> VDR`** — max(0, x)
+**`relu_scalar(x: VDR) -> VDR`**,  max(0, x)
 
-**`relu_prime_scalar(x: VDR) -> VDR`** — 0 if x < 0, 1 if x ≥ 0
+**`relu_prime_scalar(x: VDR) -> VDR`**,  0 if x < 0, 1 if x ≥ 0
 
 ---
 
@@ -1267,23 +1267,23 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 
 ### Classes
 
-**`Node(value: VDR, children, backward_fn)`** — computation graph node
+**`Node(value: VDR, children, backward_fn)`**,  computation graph node
 
 ### Functions
 
 **`ensure_node(x) -> Node`**
 
-**`relu(x: Node) -> Node`** — with backward
+**`relu(x: Node) -> Node`**,  with backward
 
 **`sum_nodes(xs: list[Node]) -> Node`**
 
 **`mean_nodes(xs: list[Node]) -> Node`**
 
-**`mse_loss(pred: list[Node], target: list) -> Node`** — exact MSE with backward
+**`mse_loss(pred: list[Node], target: list) -> Node`**,  exact MSE with backward
 
 **`dot_nodes(a: list[Node], b: list[Node]) -> Node`**
 
-**`linear_node(weights, xs: list[Node], bias) -> Node`** — Wx + b as graph node
+**`linear_node(weights, xs: list[Node], bias) -> Node`**,  Wx + b as graph node
 
 **`zero_grads(nodes: list[Node])`**
 
@@ -1311,13 +1311,13 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 
 ### Functions
 
-**`mse(pred: Vec, target: Vec) -> VDR`** — mean squared error, exact
+**`mse(pred: Vec, target: Vec) -> VDR`**,  mean squared error, exact
 
-**`l1(pred: Vec, target: Vec) -> VDR`** — mean absolute error
+**`l1(pred: Vec, target: Vec) -> VDR`**,  mean absolute error
 
-**`hinge_binary(score: VDR, label: int) -> VDR`** — max(0, 1 - label·score)
+**`hinge_binary(score: VDR, label: int) -> VDR`**,  max(0, 1 - label·score)
 
-**`mse_grad(pred: Vec, target: Vec) -> Vec`** — gradient of MSE
+**`mse_grad(pred: Vec, target: Vec) -> Vec`**,  gradient of MSE
 
 ---
 
@@ -1351,10 +1351,10 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 - `lookup_many(ids: list[int]) -> list[Vec]`
 - `to_qbasis(bits: int) -> Embedding`
 
-**`FFNBlock(l1: Linear, l2: Linear)`** — two-layer FFN with ReLU
+**`FFNBlock(l1: Linear, l2: Linear)`**,  two-layer FFN with ReLU
 
 **`TransformerBlock(Wq, Wk, Wv, Wo: Mat, ffn: FFNBlock)`**
-- `forward(xs: list[Vec]) -> list[Vec]` — self-attention + FFN
+- `forward(xs: list[Vec]) -> list[Vec]`,  self-attention + FFN
 
 **`TransformerLM(embedding, blocks: list[TransformerBlock], output_proj)`**
 - `forward_logits(token_ids: list[int]) -> list[Vec]`
@@ -1366,13 +1366,13 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 
 ### Functions
 
-**`cdf_from_probs(probs: Vec) -> Vec`** — cumulative distribution, exact
+**`cdf_from_probs(probs: Vec) -> Vec`**,  cumulative distribution, exact
 
-**`categorical_sample(probs: Vec, rng) -> int`** — exact rational CDF comparison
+**`categorical_sample(probs: Vec, rng) -> int`**,  exact rational CDF comparison
 
-**`top_k_probs(probs: Vec, k: int) -> Vec`** — zero out below top-k, renormalize to sum 1
+**`top_k_probs(probs: Vec, k: int) -> Vec`**,  zero out below top-k, renormalize to sum 1
 
-**`nucleus_probs(probs: Vec, threshold: VDR) -> Vec`** — nucleus (top-p) sampling
+**`nucleus_probs(probs: Vec, threshold: VDR) -> Vec`**,  nucleus (top-p) sampling
 
 ---
 
@@ -1384,7 +1384,7 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 - LCG with exact integer arithmetic
 - `next_int() -> int`
 - `randbelow(n: int) -> int`
-- `rand_fraction() -> VDR` — uniform in [0, 1) as exact rational
+- `rand_fraction() -> VDR`,  uniform in [0, 1) as exact rational
 - `randint(lo: int, hi: int) -> int`
 - `shuffle_in_place(xs: list)`
 - `permutation(n: int) -> list[int]`
@@ -1410,7 +1410,7 @@ def FLAT_MIRROR() -> Mat:       # [[-1, 0], [0, -1]]  (reflection convention)
 
 ### Classes
 
-**`Tensor3D(data: list[list[Vec]])`** — batch × sequence × dimension
+**`Tensor3D(data: list[list[Vec]])`**,  batch × sequence × dimension
 
 ### Functions
 

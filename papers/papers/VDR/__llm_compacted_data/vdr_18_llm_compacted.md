@@ -1,4 +1,4 @@
-# VDR-18 PERFORMANCE — LLM-COMPACT FORM
+# VDR-18 PERFORMANCE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → numeric_classes → operations → bottlenecks → gpu_streams → workload_comparisons → relationships → sections
 
@@ -17,7 +17,7 @@ CL1|Q335 forward pass ~150× slower per token than float16|observation|
 CL2|VDR generates 85-97% fewer LLM tokens (from VDR-15)|observation|
 CL3|Net forward pass cost ~10× conventional at 95% token reduction|derivation|CL1,CL2
 CL4|Primitive GPU computation for entire SRE investigation is 1.5ms total|observation|
-CL5|Primitives computationally invisible — total ops equivalent to <0.001 LLM tokens|derivation|CL4
+CL5|Primitives computationally invisible,  total ops equivalent to <0.001 LLM tokens|derivation|CL4
 CL6|Wall-clock crossover favors VDR from turn 7-10 onward for 7B model; earlier for larger models|derivation|CL3,P7
 CL7|Grammar-constrained decode gives 850-25000× reduction per structural token|derivation|P5
 CL8|VDR 73× faster wall-clock on SRE investigation (9 sec vs 660 sec)|observation|
@@ -56,20 +56,20 @@ N3|General closed rationals|Explicit numerator + denominator limb refs in arena|
 N4|Active VDR values|Triple with nonzero remainder; remainder tag + payload ref|Operations exceeding Q335 frame|Minority case; arena-allocated; normalization needed
 
 # q335_operations(id|operation|int_ops|float16_ops|ratio|gpu_parallelism)
-QO1|Addition|~22 (11 limb adds + carries)|1|22×|Full — uniform
+QO1|Addition|~22 (11 limb adds + carries)|1|22×|Full,  uniform
 QO2|Subtraction|~22|1|22×|Full
-QO3|Multiplication|~200 (schoolbook 11×11)|1|200×|Full — uniform
+QO3|Multiplication|~200 (schoolbook 11×11)|1|200×|Full,  uniform
 QO4|Comparison|2-22 (fast path to full scan)|1|2-22×|Full
 QO5|Division by Q335|~400 (mul + shift + remainder)|1|400×|Full
-QO6|Surrogate softmax per element|~220 (sub + square + div)|~15 (exp + div)|15×|Full — no transcendentals, no divergence
-QO7|ReLU|2 (compare + conditional copy)|2|1×|Full — identical
+QO6|Surrogate softmax per element|~220 (sub + square + div)|~15 (exp + div)|15×|Full,  no transcendentals, no divergence
+QO7|ReLU|2 (compare + conditional copy)|2|1×|Full,  identical
 
 # forward_pass_components(id|component|conventional_cost|vdr_cost|ratio|notes)
 FP1|Embedding lookup|1 read per dim|11 reads per dim (limb width)|11×|Memory-bound
 FP2|Attention QKT|d_k muls per position pair|d_k × 200 int ops per pair|200×|Multiplication dominated
 FP3|Softmax/surrogate|~15 ops/element (transcendental)|~220 ops/element (integer)|15×|VDR avoids transcendental divergence
 FP4|Value mixing|d_v muls per position|d_v × 200 int ops|200×|Same structure, wider ops
-FP5|Feedforward ReLU|2 ops/element|2 ops/element|1×|Identical — piecewise linear
+FP5|Feedforward ReLU|2 ops/element|2 ops/element|1×|Identical,  piecewise linear
 FP6|Feedforward linear|d_ff muls|d_ff × 200 int ops|200×|Multiplication dominated
 FP7|Layer norm / rational scaling|~10 ops/element|~25 ops/element|2.5×|VDR avoids sqrt
 # Weighted average across components: ~150× per token
@@ -179,13 +179,13 @@ EC4|Total cost incl human time (SRE)|$27.58|$0.39|71× cheaper (VDR)|SRE time at
 EC5|GPU time (20-turn)|~600 sec|~80 sec|7.5× less (VDR)|Conventional grows quadratically; VDR flat
 
 # determinism_guarantees(id|component|deterministic|condition)
-DG1|Q335 addition|Yes|Always — integer arithmetic
+DG1|Q335 addition|Yes|Always,  integer arithmetic
 DG2|Q335 multiplication|Yes|Always
 DG3|KB fact query result set|Yes|Canonical sort applied to set
 DG4|Prolog first-solution|Yes|Canonical candidate ordering imposed
 DG5|Confidence propagation|Yes|Same formula, same inputs
 DG6|Grammar mask|Yes|Same grammar state, same candidates
-DG7|Forward pass output|Yes|Bit-identical on any hardware — no platform-dependent rounding
+DG7|Forward pass output|Yes|Bit-identical on any hardware,  no platform-dependent rounding
 
 # relationships(from|rel|to)
 P1|grounds|CL3

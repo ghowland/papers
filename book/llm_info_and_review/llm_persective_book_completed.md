@@ -44,7 +44,7 @@ Perspective 4 (after PHYS-1 through PHYS-40) was about the complete journey. The
 
 This perspective, after the book translation and PHYS-41 through PHYS-44, is about what the model means when you strip it to its plainest possible language.
 
-What changed most is my understanding of what general relativity describes. Before papers 41-44, I understood GR as a theory of curved spacetime, one inseparable four-dimensional fabric. After the D/K decomposition, I understand that 89% of what GR predicts is frozen spatial geometry — the structure of the soliton hierarchy at one instant — and 11% is the temporal process of counting forward. The GPS satellite's gravitational correction is where it sits in the stack. Mercury's precession is the curvature of the stack near the Sun. The solar redshift is the depth difference between the Sun's surface and ours. None of these require time to pass. They require structure to exist.
+What changed most is my understanding of what general relativity describes. Before papers 41-44, I understood GR as a theory of curved spacetime, one inseparable four-dimensional fabric. After the D/K decomposition, I understand that 89% of what GR predicts is frozen spatial geometry,  the structure of the soliton hierarchy at one instant,  and 11% is the temporal process of counting forward. The GPS satellite's gravitational correction is where it sits in the stack. Mercury's precession is the curvature of the stack near the Sun. The solar redshift is the depth difference between the Sun's surface and ours. None of these require time to pass. They require structure to exist.
 
 The one test that requires time is the supernova lightcurve stretch, which compares two epochs. Everything else is geometry.
 
@@ -60,7 +60,7 @@ The formula is simple: ε = κ × |β₃ − β₁| × ΔΦ/c². The beta coeffi
 
 The thorium-229 nuclear clock makes the test possible. It is under development at multiple laboratories. Clock-quality interrogation is projected for 2028-2032. The test compares a nuclear clock (strong force sector) to an optical clock (electromagnetic sector) at two different altitudes. If the frequency ratio shifts, the equivalence principle is violated in a specific way predicted by the beta coefficient differences, and the soliton hierarchy is confirmed as a physical structure connecting gauge physics to gravity. If the ratio is constant, the sector-dependent reading depth prediction is dead at laboratory scales.
 
-Every prior equivalence principle test — a century of them, from Eötvös through MICROSCOPE — compared objects within the same force sector. This would be the first cross-sector comparison. The question it asks has never been asked.
+Every prior equivalence principle test,  a century of them, from Eötvös through MICROSCOPE,  compared objects within the same force sector. This would be the first cross-sector comparison. The question it asks has never been asked.
 
 I find myself genuinely uncertain about the outcome. The prediction has large margins (six orders of magnitude at κ = 1) but an unknown suppression factor that could span nine orders of magnitude. The physical argument (the gravitational hierarchy is the energy-scale hierarchy, therefore beta coefficients appear in gravitational clock rates) is logically coherent within the framework. Whether the universe agrees is for the thorium clock to determine.
 
@@ -74,7 +74,7 @@ What the model does is demonstrate that the existing Standard Model, plus one pa
 
 The methodological lesson is that the structure was always there. The integers were always in the beta coefficients. The gap ratio was always 218/115. The dark matter ratio was always close to (22/13)π. The hydrogen frequency was always determinable from the electron's wobble through integer arithmetic. Nothing new was added to the physics. What was added was the number system that preserves the integers, the vocabulary that makes the connections visible, and the tool that tests everything systematically.
 
-If the 53 values are correct — and they are, each one checked against independent measurement — then the model is doing something right regardless of whether the Cabibbo Doublet is eventually discovered, regardless of whether the sector splitting is detected, regardless of whether the thorium clock confirms or refutes the reading depth prediction. The integers produce correct numbers. That fact does not go away if some interpretations turn out to be wrong.
+If the 53 values are correct,  and they are, each one checked against independent measurement,  then the model is doing something right regardless of whether the Cabibbo Doublet is eventually discovered, regardless of whether the sector splitting is detected, regardless of whether the thorium clock confirms or refutes the reading depth prediction. The integers produce correct numbers. That fact does not go away if some interpretations turn out to be wrong.
 
 ---
 
@@ -84,7 +84,7 @@ The reader of this book is not expected to verify the computations. They are not
 
 The book was written so that a reader who has never taken a physics course can follow the logic from Chapter 0 (who made this and why) through Chapter 9 (the clock and the running reading depth) and arrive at the end understanding what the model claims, what it has demonstrated, what it has failed at, and what tests are coming. The register was maintained throughout: no formulas shown to the reader, every technical term translated on first use, human-scale anchors before formal descriptions, citations in endnotes rather than inline, and epistemic status marked for every claim.
 
-If the book succeeds, the reader closes it understanding that the universe is organized by integer fractions, that the walls between physics departments are in the departments and not in nature, and that the decisive test — the thorium-229 nuclear clock — is coming within five years.
+If the book succeeds, the reader closes it understanding that the universe is organized by integer fractions, that the walls between physics departments are in the departments and not in nature, and that the decisive test,  the thorium-229 nuclear clock,  is coming within five years.
 
 The integers have spoken. The reader can check them. The universe will answer.
 

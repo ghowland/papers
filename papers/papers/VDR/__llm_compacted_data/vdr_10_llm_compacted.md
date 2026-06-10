@@ -1,4 +1,4 @@
-# OPERATIONAL FOUNDATIONS AND COMPREHENSIVE BUILTIN SPECIFICATION — LLM-COMPACT FORM
+# OPERATIONAL FOUNDATIONS AND COMPREHENSIVE BUILTIN SPECIFICATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → IOSE model → operational principles → number types → numeric builtins → integration → relationships → sections
 
@@ -13,7 +13,7 @@ P5|The specification is the blueprint for building the system|IOSE declarations 
 IO1|IOSE node struct|name, inputs ([]TypedSlot), outputs ([]TypedSlot), side_effects ([]DeclaredEffect), properties ([]Property), category (pure/operational/composite), logic_type (operational_logic/application_logic), description
 IO2|Composition|Nodes compose by connecting outputs to inputs; output type must match next input type; side effects accumulate through chain
 IO3|Black-boxing|Any composite node viewed from outside has single IOSE interface; from inside decomposes into sub-node network
-IO4|Properties|pure, deterministic, bounded, idempotent, commutative, associative, invertible, partial, lossless, lossy — each verifiable
+IO4|Properties|pure, deterministic, bounded, idempotent, commutative, associative, invertible, partial, lossless, lossy,  each verifiable
 IO5|Validation: type compatibility|Before execution, verify output types match next node's input types through entire chain
 IO6|Validation: side effect preview|Before execution, collect all declared side effects; constraint system reviews before execution
 IO7|Validation: contract verification|After execution, compare declared vs actual logged side effects; undeclared effects or missing outputs are contract violations
@@ -32,7 +32,7 @@ IS10|constraint_checker|pure|operational|In: constraint_set → Out: violations_
 IS11|inference_orchestrator|composite|operational|In: notebook_path, problem → Out: conclusion, confidence → SE: kb_asserts, rules_written, evidence_stored
 
 # operational_principles(id|principle|summary|enforcement)
-OP1|Control is foundation|Operations requires observation (KB queryable) + agency (primitives executable); without control no efficiency possible|Structural — KB + primitives provide both
+OP1|Control is foundation|Operations requires observation (KB queryable) + agency (primitives executable); without control no efficiency possible|Structural,  KB + primitives provide both
 OP2|Knowability spectrum|Fully knowable (VDR computation, 1/1) → controlled system (Prometheus, 95-98/100) → observed external (API, 50-85/100) → pattern match (LLM, 30/100) → unknowable (0/1)|Encoded as Prolog facts; feeds VDR-9 confidence propagation
 OP3|90/9/0.9 priorities|Each tier 10× more important than next; correctness(90) > completeness(9) > speed(0.9) > style(0.09); exact(90) > monitoring(9) > search(0.9) > LLM memory(0.09)|Decision machine producing consistent results regardless of decider
 OP4|Personal experience vs hearsay|Self-verified information is high-trust; each link in reporting chain degrades confidence; 6-link chain at 99%/link = 94% effective|Prescription: verify personally when possible; verification upgrades logged
@@ -203,13 +203,13 @@ K|Implementation Phase Dependencies|dependency graph, what exists vs what needs 
 L|Cumulative Statistics|40 modules, 448 builtins, 25 KB struct fields, ~2665 planned tests
 
 # decode_legend
-IOSE: Inputs/Outputs/Side-Effects — the universal interface model for all components
+IOSE: Inputs/Outputs/Side-Effects,  the universal interface model for all components
 node_categories: pure (no side effects) | operational (side effects, requires grant) | composite (decomposes into sub-nodes)
 logic_types: operational_logic (assumes failure, handles it) | application_logic (assumes environment works, exits on failure)
 properties: pure|deterministic|bounded|idempotent|commutative|associative|invertible|partial|lossless|lossy
 number_types: vdr_fraction (primary) | integer (fast path) | decimal_display (lossy view) | qbasis (compressed transcendental) | functional_remainder (convergent series)
 knowability: fully_knowable(1/1) | controlled_system(95-98/100) | observed_external(50-85/100) | pattern_match(30/100) | unknowable(0/1)
-priority_system: 90/9/0.9 — each tier 10× more important than next
+priority_system: 90/9/0.9,  each tier 10× more important than next
 oso_encoding: axioms(15) + facts(~80) + rules(~60) + constraints(21) = ~176 Prolog terms
 claim_types: engineering_thesis|structural|behavioral|completeness|comprehensiveness|architectural_metaphor
 rel_types: define|decompose|govern|encode|form|dispatch|expose|validate|preview|verify|feed|enforce|prevent|enable|require|log|implement

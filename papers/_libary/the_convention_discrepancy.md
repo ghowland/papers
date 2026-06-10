@@ -1,4 +1,4 @@
-## The Convention Discrepancy — Critical Finding for PHYS-25
+## The Convention Discrepancy,  Critical Finding for PHYS-25
 
 **Status:** Critical active finding. This may be the resolution of the normalization question.
 **Origin:** Reading sin2_theta_w_0.py during Session 4, April 2 2026
@@ -82,17 +82,17 @@ The ratios between library VL shifts and the "standard Dirac" values:
 The ratios are NOT uniform (1/2, 1/2, 1/4). If the error were a simple Weyl-vs-Dirac factor of 2, all three ratios would be 1/2. The non-uniform ratio (1/4 for SU(3)) was the puzzle.
 
 BUT NOW: comparing to 2× scalar vs 4× scalar:
-- 2× scalar gives (1/15, 1, 1/3) — the library values
-- 4× scalar gives (2/15, 2, 2/3) — the "correct" values if the comment is right
+- 2× scalar gives (1/15, 1, 1/3),  the library values
+- 4× scalar gives (2/15, 2, 2/3),  the "correct" values if the comment is right
 - Ratio: (1/15)/(2/15) = 1/2, 1/2 = 1/2, (1/3)/(2/3) = 1/2
 
 ALL THREE RATIOS ARE 1/2. The discrepancy IS a uniform factor of 2.
 
 The earlier diagnostic compared to "standard Dirac" values (2/15, 2, 4/3), which gave non-uniform ratios (1/2, 1/2, 1/4). But that comparison was against the WRONG reference. The correct reference for Resolution B is 4× scalar = (2/15, 2, 2/3), NOT the Machacek-Vaughn "standard Dirac" (2/15, 2, 4/3).
 
-Wait — that means (2/15, 2, 2/3) and (2/15, 2, 4/3) differ in the SU(3) component: 2/3 vs 4/3. This is ANOTHER factor of 2, specific to SU(3). Where does this come from?
+Wait,  that means (2/15, 2, 2/3) and (2/15, 2, 4/3) differ in the SU(3) component: 2/3 vs 4/3. This is ANOTHER factor of 2, specific to SU(3). Where does this come from?
 
-The 4× scalar formula gives Δb₃ = 4 × (1/6) = 2/3. The "standard Dirac" formula from Machacek-Vaughn gives Δb₃ = 4/3. The difference: 2/3 vs 4/3 — another factor of 2 in SU(3).
+The 4× scalar formula gives Δb₃ = 4 × (1/6) = 2/3. The "standard Dirac" formula from Machacek-Vaughn gives Δb₃ = 4/3. The difference: 2/3 vs 4/3,  another factor of 2 in SU(3).
 
 This means there are THREE possible VL beta shift values for the (3,2,1/6) representation, depending on convention:
 
@@ -103,7 +103,7 @@ This means there are THREE possible VL beta shift values for the (3,2,1/6) repre
 | 4× scalar (comment says VL) | 2/15 | 2 | 2/3 | What the convention comment implies |
 | Standard Dirac (Machacek-Vaughn) | 2/15 | 2 | 4/3 | External textbook reference |
 
-Wait — rows 1 and 2 are the same. Let me redo this carefully.
+Wait,  rows 1 and 2 are the same. Let me redo this carefully.
 
 Scalar (3,2,1/6) from the script: (1/30, 1/2, 1/6).
 
@@ -111,9 +111,9 @@ Scalar (3,2,1/6) from the script: (1/30, 1/2, 1/6).
 |---|---|---|---|---|
 | 1× scalar | 1/30 | 1/2 | 1/6 | One complex scalar |
 | 2× scalar = 1 Weyl (if comment right) | 1/15 | 1 | 1/3 | One Weyl fermion |
-| 2× scalar = VL (if comment wrong) | 1/15 | 1 | 1/3 | VL fermion (L+R) — library values |
-| 4× scalar = VL (if comment right) | 2/15 | 2 | 2/3 | VL fermion (L+R) — what comment implies |
-| Standard Dirac (Machacek-Vaughn) | 2/15 | 2 | 4/3 | External reference — different Δb₃ |
+| 2× scalar = VL (if comment wrong) | 1/15 | 1 | 1/3 | VL fermion (L+R),  library values |
+| 4× scalar = VL (if comment right) | 2/15 | 2 | 2/3 | VL fermion (L+R),  what comment implies |
+| Standard Dirac (Machacek-Vaughn) | 2/15 | 2 | 4/3 | External reference,  different Δb₃ |
 
 The question splits into two parts:
 
@@ -169,7 +169,7 @@ This convention tracing is exactly what PHYS-13/15 should document. Without the 
 
 5. **What gap ratio does (2/15, 2, 2/3) produce?** This is a simple computation. The modified beta slopes would be b₁ + 2/15 = 41/10 + 2/15 = 123/30 + 4/30 = 127/30, b₂ + 2 = −19/6 + 2 = −7/6, b₃ + 2/3 = −7 + 2/3 = −19/3. The gap ratio = (127/30 − (−7/6)) / (−7/6 − (−19/3)) = (127/30 + 7/6) / (−7/6 + 19/3) = (127/30 + 35/30) / (−7/6 + 38/6) = (162/30) / (31/6) = (27/5) / (31/6) = 162/155. As decimal: 162/155 = 1.0452. This is FAR from the measured 1.358. The VL doublet with (2/15, 2, 2/3) OVERSHOOTS the correction and produces a gap ratio below 1.1.
 
-This is a critical result. If Resolution B is correct (VL = 4× scalar, values should be 2/15, 2, 2/3), the VL doublet produces gap ratio ~1.045, which MISSES the measured 1.358 by 23% — much worse than the current (1/15, 1, 1/3) which gives 1.407 and misses by 4.9%. Resolution B kills the VL doublet as a viable candidate.
+This is a critical result. If Resolution B is correct (VL = 4× scalar, values should be 2/15, 2, 2/3), the VL doublet produces gap ratio ~1.045, which MISSES the measured 1.358 by 23%,  much worse than the current (1/15, 1, 1/3) which gives 1.407 and misses by 4.9%. Resolution B kills the VL doublet as a viable candidate.
 
 Therefore: EITHER the library values (1/15, 1, 1/3) are correct and the convention comment is wrong, OR the VL doublet is not the right BSM extension.
 

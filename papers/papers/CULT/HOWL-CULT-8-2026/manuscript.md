@@ -20,13 +20,13 @@
 
 ## I. ABSTRACT
 
-The space between academic departments is real. It is not a metaphor. Physics owns particles. Chemistry owns molecules. Biology owns cells. Engineering owns systems. Nobody owns the boundaries between them. The boundaries are where the unsolved problems live — and where they die, because nobody has jurisdiction to work on them.
+The space between academic departments is real. It is not a metaphor. Physics owns particles. Chemistry owns molecules. Biology owns cells. Engineering owns systems. Nobody owns the boundaries between them. The boundaries are where the unsolved problems live,  and where they die, because nobody has jurisdiction to work on them.
 
 This paper documents a method for working in that space. The method does not require credentials, institutional affiliation, or permission. It requires prerequisites that take decades to develop and cannot be shortcut: years of outcome-tested experience across multiple domains, the ability to kill your own best work immediately when evidence demands it, a physical practice that falsifies you daily, information management methods that handle contradiction and uncertainty, and a production amplifier that makes the exploration rate viable within a human lifetime.
 
 The method does not grant success. It grants access. Access to the questions nobody is asking because the questions live in the gap between departments. What you find there depends on your specific combination of experience, your specific pattern recognition, and your specific willingness to kill what doesn't survive testing.
 
-One route through this method is documented as illustration — 43 years of infrastructure engineering and entrepreneurship, a theory of everything built and killed in 45 days, and an archive of cross-domain findings built from the surviving pieces. The route is personal. The method is general. Anyone with the prerequisites can walk the path. Nobody walks the same route.
+One route through this method is documented as illustration,  43 years of infrastructure engineering and entrepreneurship, a theory of everything built and killed in 45 days, and an archive of cross-domain findings built from the surviving pieces. The route is personal. The method is general. Anyone with the prerequisites can walk the path. Nobody walks the same route.
 
 ---
 
@@ -68,7 +68,7 @@ The problems are visible from inside the departments. The departments see the bo
 
 ## III. THE PREREQUISITES
 
-These are not qualifications. They are things you need before the method works. They cannot be acquired quickly. Each takes years. There is no shortcut. The shortcut produces the crank — the person who has opinions about everything and tested knowledge of nothing.
+These are not qualifications. They are things you need before the method works. They cannot be acquired quickly. Each takes years. There is no shortcut. The shortcut produces the crank,  the person who has opinions about everything and tested knowledge of nothing.
 
 ### III.I Years of Outcome-Tested Experience Across Multiple Domains
 
@@ -76,9 +76,9 @@ Not book learning. Real work where you touched the system and watched what happe
 
 The domains don't have to be prestigious. Infrastructure operations. Entrepreneurship. Construction. Farming. Coaching. Teaching. Parenting. Cooking. Martial arts. Music. Any domain where the system talks back. Where wrong decisions produce observable wrong outcomes. Where right decisions produce observable right outcomes. Where the connection between what you did and what happened is visible, repeated, and accumulates over years.
 
-What accumulates is local data ([@HOWL-INFO-4-2026]). Not population-level knowledge about systems in general — local data about systems you touched. The 25-year blacksmith doesn't know metallurgy in the abstract. He knows what this steel does at this temperature under this hammer. That knowledge is different in kind from the textbook. It is trained pattern recognition operating on real outcomes.
+What accumulates is local data ([@HOWL-INFO-4-2026]). Not population-level knowledge about systems in general,  local data about systems you touched. The 25-year blacksmith doesn't know metallurgy in the abstract. He knows what this steel does at this temperature under this hammer. That knowledge is different in kind from the textbook. It is trained pattern recognition operating on real outcomes.
 
-You need this in enough different domains that the pattern recognition crosses domain boundaries without effort. You don't force the connections. You see them. A structure in domain A reminds you of a structure in domain B — not because you're looking for connections but because your pattern recognition has been trained on enough different structures that the similarity is automatic.
+You need this in enough different domains that the pattern recognition crosses domain boundaries without effort. You don't force the connections. You see them. A structure in domain A reminds you of a structure in domain B,  not because you're looking for connections but because your pattern recognition has been trained on enough different structures that the similarity is automatic.
 
 There is no minimum number of years. No minimum number of domains. The prerequisite is met when you see cross-domain patterns without trying. If you have to force them, you're not ready. If you see them without looking, you are.
 
@@ -88,7 +88,7 @@ This is the hard one. Most people cannot do it. Most people who think they can d
 
 The kill discipline is the ability to destroy your own best work immediately when evidence demands it. Not "revise." Not "adjust." Not "save the parts that work." Destroy. All of it. Now. Because the arithmetic failed. Because the prediction was wrong. Because the test came back negative. Because reality said no.
 
-The difficulty is not intellectual. Intellectually, everyone agrees that wrong ideas should be discarded. The difficulty is emotional and structural. When you build a framework — especially a framework that connects many domains, that explains things nobody else has explained, that feels coherent and beautiful and true — the framework becomes part of your identity. Killing it feels like killing yourself. The coherence was euphoric. The connections were real. The pattern recognition was operating at maximum throughput. And the arithmetic failed.
+The difficulty is not intellectual. Intellectually, everyone agrees that wrong ideas should be discarded. The difficulty is emotional and structural. When you build a framework,  especially a framework that connects many domains, that explains things nobody else has explained, that feels coherent and beautiful and true,  the framework becomes part of your identity. Killing it feels like killing yourself. The coherence was euphoric. The connections were real. The pattern recognition was operating at maximum throughput. And the arithmetic failed.
 
 The prerequisite is not that you've killed a theory of everything. It's that you can kill anything you've built. A piece of code that took three weeks. A business strategy you presented to investors. A training method you've used for years. A relationship assumption you've held since childhood. When the evidence says it's wrong, can you kill it today and start fresh tomorrow?
 
@@ -110,13 +110,13 @@ The specific practice doesn't matter. What matters is that it's physical, it's d
 
 You need a way to handle the volume and complexity of cross-domain information without drowning in it.
 
-Multi-dimensional indexing ([@HOWL-INFO-1-2026]): holding contradictory information without cognitive dissonance. Two facts that contradict each other are not a problem if they carry their context — when each was true, who said it, under what conditions, at what verification level. The Taliban example: allies in 1985, enemies in 2001, negotiating partners in 2021. No contradiction. Three properly indexed instances, each valid in its context.
+Multi-dimensional indexing ([@HOWL-INFO-1-2026]): holding contradictory information without cognitive dissonance. Two facts that contradict each other are not a problem if they carry their context,  when each was true, who said it, under what conditions, at what verification level. The Taliban example: allies in 1985, enemies in 2001, negotiating partners in 2021. No contradiction. Three properly indexed instances, each valid in its context.
 
-Materiality assessment ([@HOWL-INFO-2-2026]): knowing what matters and what doesn't. You will see thousands of cross-domain patterns. Most are noise. The Scales Method provides the filter — does this connection change the outcome? Does it affect a non-negligible percentage of cases? If not, index it and move on. Don't spend cycles on non-material patterns.
+Materiality assessment ([@HOWL-INFO-2-2026]): knowing what matters and what doesn't. You will see thousands of cross-domain patterns. Most are noise. The Scales Method provides the filter,  does this connection change the outcome? Does it affect a non-negligible percentage of cases? If not, index it and move on. Don't spend cycles on non-material patterns.
 
-Sequencing ([@HOWL-INFO-3-2026]): knowing what to investigate next. The Pseudo-Socratic Method provides the state tracker — where am I in this investigation? What do I know solidly? Where are the gaps? What prerequisites am I missing? What's the next step that builds on solid ground? Without sequencing, investigation becomes random wandering.
+Sequencing ([@HOWL-INFO-3-2026]): knowing what to investigate next. The Pseudo-Socratic Method provides the state tracker,  where am I in this investigation? What do I know solidly? Where are the gaps? What prerequisites am I missing? What's the next step that builds on solid ground? Without sequencing, investigation becomes random wandering.
 
-Information locality ([@HOWL-INFO-4-2026]): knowing when external data is invalid. When you're investigating a specific system, only data from that system is valid for accuracy-critical decisions. Population statistics, general benchmarks, textbook descriptions — these are non-local data. They don't determine anything about the specific system you're looking at. Local data only when accuracy matters.
+Information locality ([@HOWL-INFO-4-2026]): knowing when external data is invalid. When you're investigating a specific system, only data from that system is valid for accuracy-critical decisions. Population statistics, general benchmarks, textbook descriptions,  these are non-local data. They don't determine anything about the specific system you're looking at. Local data only when accuracy matters.
 
 These can be the specific methods documented in the INFO series or equivalent methods you've developed yourself. What matters is that you have them. Without them, omni-domain investigation is having opinions about everything. With them, it's structured investigation across domains with explicit evaluation at every step.
 
@@ -124,11 +124,11 @@ These can be the specific methods documented in the INFO series or equivalent me
 
 The method requires volume. You need to produce, test, kill, and rebuild at a rate that makes the exploration viable within a human lifetime.
 
-The academy's production rate — one paper per researcher per year — makes omni-domain investigation impossible. At that rate, an investigator who lives to 80 and starts at 30 produces 50 findings. Most will be wrong. The survivors — the actual contribution — might be 5 or 10 findings. That is not enough to map any meaningful portion of any boundary between any two departments.
+The academy's production rate,  one paper per researcher per year,  makes omni-domain investigation impossible. At that rate, an investigator who lives to 80 and starts at 30 produces 50 findings. Most will be wrong. The survivors,  the actual contribution,  might be 5 or 10 findings. That is not enough to map any meaningful portion of any boundary between any two departments.
 
-An LLM changes the economics. The production bottleneck is eliminated. A person with the prerequisites can produce, test, and kill at a rate of multiple findings per day. In 45 days, one person can explore an entire cross-domain space — build hundreds of connections, test them, kill the failures, and identify the survivors. The survivors form an archive. The archive is the contribution.
+An LLM changes the economics. The production bottleneck is eliminated. A person with the prerequisites can produce, test, and kill at a rate of multiple findings per day. In 45 days, one person can explore an entire cross-domain space,  build hundreds of connections, test them, kill the failures, and identify the survivors. The survivors form an archive. The archive is the contribution.
 
-The LLM doesn't provide the ideas. The ideas come from the pattern recognition trained over decades of real work. The LLM provides the formalization — the rigorous statement of claims, the literature cross-referencing, the identification of logical gaps, the writing of falsification criteria. The LLM also provides the review. It pushes back. It finds contradictions. It asks "what would falsify this?" when the investigator is too deep in the work to ask it themselves.
+The LLM doesn't provide the ideas. The ideas come from the pattern recognition trained over decades of real work. The LLM provides the formalization,  the rigorous statement of claims, the literature cross-referencing, the identification of logical gaps, the writing of falsification criteria. The LLM also provides the review. It pushes back. It finds contradictions. It asks "what would falsify this?" when the investigator is too deep in the work to ask it themselves.
 
 Before LLMs existed, omni-domain investigation was a luxury available to a handful of people with unusual combinations of ability, wealth, time, and stubbornness. Leonardo. Leibniz. Franklin. Now it's available to anyone with the prerequisites and an internet connection. The prerequisites still take decades to develop. There is no shortcut for the prerequisites. But the production barrier is gone.
 
@@ -142,7 +142,7 @@ You're working in domain A. Something reminds you of something you saw in domain
 
 This is not a theory. It is a signal. Most signals are noise. That's fine. Index it:
 
-What did you see in domain A? What does it remind you of in domain B? How strong is the similarity — surface-level analogy or structural isomorphism? What verification level do you assign? What context were you in when you saw it?
+What did you see in domain A? What does it remind you of in domain B? How strong is the similarity,  surface-level analogy or structural isomorphism? What verification level do you assign? What context were you in when you saw it?
 
 The index is not a commitment. It's a data point. You may never look at it again. You may look at it tomorrow and see something you didn't see today. The index preserves the signal without requiring you to act on it immediately.
 
@@ -150,7 +150,7 @@ The index is not a commitment. It's a data point. You may never look at it again
 
 Does this connection matter?
 
-If the pattern is real — if domain A and domain B actually share this mechanism — does it change anything? Does it resolve an existing problem in either domain? Does it make a prediction neither domain can make alone? Does it explain an anomaly? Does it affect a non-negligible percentage of cases in either domain?
+If the pattern is real,  if domain A and domain B actually share this mechanism,  does it change anything? Does it resolve an existing problem in either domain? Does it make a prediction neither domain can make alone? Does it explain an anomaly? Does it affect a non-negligible percentage of cases in either domain?
 
 If the answer is no on all counts, the pattern is a curiosity. Index it as a curiosity. Don't investigate it. Move on.
 
@@ -170,13 +170,13 @@ Use the institution's own data. Their measurements. Their equations. Their publi
 
 This is the self-sourcing strategy. Every claim sources its evidence from the institution's own published literature. The institution cannot dismiss the evidence without dismissing its own publications. The institution cannot question the methods without questioning its own methods. The claim stands or falls on the institution's own ground.
 
-If the data doesn't exist — if nobody has measured the specific thing your claim predicts — identify what data would be needed and whether it's obtainable. If it's obtainable, you have a research proposal. If it's not obtainable, the claim is currently untestable. Index it as untestable. Don't treat it as confirmed. Don't treat it as refuted. It waits.
+If the data doesn't exist,  if nobody has measured the specific thing your claim predicts,  identify what data would be needed and whether it's obtainable. If it's obtainable, you have a research proposal. If it's not obtainable, the claim is currently untestable. Index it as untestable. Don't treat it as confirmed. Don't treat it as refuted. It waits.
 
 ### IV.V Kill It or Keep It
 
 If the evidence refutes the claim, kill it. Immediately. Completely. Document the kill. The kill is a finding ([@HOWL-CULT-5-2026]). It tells you: this specific connection between domain A and domain B, through this specific mechanism, does not hold. That narrows the search space. That's valuable. Index the kill with the same rigor you'd index a success.
 
-If the evidence supports the claim, keep it provisionally. Assign falsification criteria for future tests. Specify what additional evidence would strengthen or weaken the claim. Publish it with those criteria visible. It stands until someone — including you — runs a specified test and it fails.
+If the evidence supports the claim, keep it provisionally. Assign falsification criteria for future tests. Specify what additional evidence would strengthen or weaken the claim. Publish it with those criteria visible. It stands until someone,  including you,  runs a specified test and it fails.
 
 Do not defend kept claims. Hold them provisionally. If new evidence weakens them, downweight them. If new evidence kills them, kill them. The claim is not yours. The claim is a statement about reality that you happened to notice and formalize. Reality decides whether it's true. You decide whether to keep looking.
 
@@ -196,13 +196,13 @@ No single finding will be as impressive as a specialist's lifetime contribution 
 
 If you do this long enough and your findings accumulate, the network of connections will approach full connectivity. The findings in domain A connect to findings in domain B which connect to findings in domain C. The connections form a web. The web starts to look like a theory of everything.
 
-The feeling is unmistakable. Everything connects. Every new input confirms the framework. The writing flows effortlessly. The production rate peaks. You see the same structure everywhere — in physics, in biology, in social systems, in mathematics, in your own body, in the movement of your cat. The framework explains everything. The coherence is total.
+The feeling is unmistakable. Everything connects. Every new input confirms the framework. The writing flows effortlessly. The production rate peaks. You see the same structure everywhere,  in physics, in biology, in social systems, in mathematics, in your own body, in the movement of your cat. The framework explains everything. The coherence is total.
 
 This is the most productive and most dangerous state available to a human mind.
 
 ### V.II The Productivity Is Real
 
-The connections are not all hallucinated. Many of them are real. The pattern recognition is operating at maximum throughput because the network is fully connected — every node reaches every other node. The cross-domain connections are flowing because the barriers between domains have been eliminated in your own thinking. The writing is effortless because the ideas are fully integrated.
+The connections are not all hallucinated. Many of them are real. The pattern recognition is operating at maximum throughput because the network is fully connected,  every node reaches every other node. The cross-domain connections are flowing because the barriers between domains have been eliminated in your own thinking. The writing is effortless because the ideas are fully integrated.
 
 This is not delusion in the clinical sense. The pattern recognition is trained. The domains are real. The connections are based on structural similarities that actually exist. Many of the specific connections will survive testing.
 
@@ -210,7 +210,7 @@ This is not delusion in the clinical sense. The pattern recognition is trained. 
 
 In a fully connected network, everything confirms everything. There is no falsification surface. Every new input gets absorbed into the framework because there is always a path from the new data to existing nodes. The framework cannot be wrong because it cannot exclude anything.
 
-The specific danger: you cannot tell which connections are real and which are artifacts of the network's full connectivity. In a sparse network, a connection between A and B is surprising and testable — most things are not connected, so this specific connection is a specific claim. In a fully connected network, a connection between A and B is trivial — everything is connected to everything. The connection carries no information because it excludes nothing.
+The specific danger: you cannot tell which connections are real and which are artifacts of the network's full connectivity. In a sparse network, a connection between A and B is surprising and testable,  most things are not connected, so this specific connection is a specific claim. In a fully connected network, a connection between A and B is trivial,  everything is connected to everything. The connection carries no information because it excludes nothing.
 
 The signs that you're in the trap:
 
@@ -226,9 +226,9 @@ You feel certain. Certainty about a framework that spans multiple domains and ex
 
 Stop producing. This is the hardest instruction because the production feels effortless and euphoric and the framework seems to need just a few more pieces to be complete. Stop anyway. The framework will never be complete. The feeling that it's almost complete is the trap.
 
-Check the arithmetic. Not the logic — the logic is fine. That's the problem. The logic is L=97 and it feels true. Check the mathematics. Does the framework compile from axioms to outputs through valid operations? Not "is it coherent" — coherence is the L dimension. Does it compute? Can you take the starting premises, apply only valid mathematical operations, and arrive at the claimed outputs without inserting measured values, adjusting constants, or performing operations that aren't defined?
+Check the arithmetic. Not the logic,  the logic is fine. That's the problem. The logic is L=97 and it feels true. Check the mathematics. Does the framework compile from axioms to outputs through valid operations? Not "is it coherent",  coherence is the L dimension. Does it compute? Can you take the starting premises, apply only valid mathematical operations, and arrive at the claimed outputs without inserting measured values, adjusting constants, or performing operations that aren't defined?
 
-If you can't check the mathematics yourself, find someone who can. If nobody can check it because the framework is too large, too novel, or too interdisciplinary — that is the red flag. A framework that can't be checked can't be falsified. A framework that can't be falsified is not a theory. It is a belief system.
+If you can't check the mathematics yourself, find someone who can. If nobody can check it because the framework is too large, too novel, or too interdisciplinary,  that is the red flag. A framework that can't be checked can't be falsified. A framework that can't be falsified is not a theory. It is a belief system.
 
 If the mathematics fails, kill the framework. All of it. Not the parts that work. All of it. The fully connected network is one structure. Keeping parts of it preserves the connections to the dead parts through the network's full connectivity. You cannot selectively prune a fully connected network. You can only collapse it and examine the pieces individually.
 
@@ -236,11 +236,11 @@ Then, the next day, look at the pieces. Each piece independently. Does this spec
 
 ### V.V The Entrance Exam
 
-The ToE trap is the entrance exam for the club. Not a deliberate test — a structural inevitability. If you do omni-domain investigation long enough, you will enter the fully connected state. What you do there determines whether you become an omni-domain investigator or a crank.
+The ToE trap is the entrance exam for the club. Not a deliberate test,  a structural inevitability. If you do omni-domain investigation long enough, you will enter the fully connected state. What you do there determines whether you become an omni-domain investigator or a crank.
 
 The crank enters the fully connected state and stays. The framework becomes their identity. They defend it for the rest of their career. They accumulate followers who share the euphoria. They cannot kill it because killing it would kill who they are.
 
-The investigator enters the fully connected state, recognizes it, checks the arithmetic, kills what fails, survives the kill, and starts again the next day. The investigator builds the next framework from the surviving pieces — smaller, tighter, more falsifiable, less euphoric, more useful. The investigator has been through the trap and come out the other side. The trap has no power the second time because the investigator knows what the euphoria feels like and knows it is not truth.
+The investigator enters the fully connected state, recognizes it, checks the arithmetic, kills what fails, survives the kill, and starts again the next day. The investigator builds the next framework from the surviving pieces,  smaller, tighter, more falsifiable, less euphoric, more useful. The investigator has been through the trap and come out the other side. The trap has no power the second time because the investigator knows what the euphoria feels like and knows it is not truth.
 
 This exam cannot be studied for. It cannot be simulated. You have to build a theory of everything, feel the total coherence, and kill it when the evidence demands it. Most people who enter the fully connected state never leave. The ones who leave are the investigators.
 
@@ -254,7 +254,7 @@ The specialist sees deeper. The investigator sees wider. Both are real. Both are
 
 The specialist's depth comes from years of focused work within one domain. The specialist knows the literature, the methods, the open problems, the history, the personalities, the funding landscape, the experimental constraints, and the subtle distinctions that outsiders miss. This knowledge is hard-won and irreplaceable. A specialist who has spent 30 years on protein folding knows things about protein folding that no omni-domain investigator will ever know.
 
-The investigator's width comes from years of working across domains with outcome feedback. The investigator knows what structures look like across many different systems. The investigator sees the same pattern in fluid dynamics and social networks and neural activity and market behavior — not because the investigator is forcing a connection but because the pattern recognition has been trained on enough different systems that the structural similarity is visible.
+The investigator's width comes from years of working across domains with outcome feedback. The investigator knows what structures look like across many different systems. The investigator sees the same pattern in fluid dynamics and social networks and neural activity and market behavior,  not because the investigator is forcing a connection but because the pattern recognition has been trained on enough different systems that the structural similarity is visible.
 
 The specialist's knowledge is available. It is in textbooks, papers, courses, and consultations. If you need depth, you can get depth. The institution produces and distributes specialist knowledge. It does this well.
 
@@ -272,7 +272,7 @@ If both specialists confirm that the claim is consistent with their domain's kno
 
 Ten specialists in ten different fields will not see the connection between field 3 and field 7. Not because they're not smart enough. Because specialist 3 doesn't read field 7's literature and specialist 7 doesn't read field 3's literature. The departmental structure ensures this. The specialist is not failing. The structure is preventing.
 
-The investigator reads both — not at the specialist's depth, but at sufficient depth to see the structural similarity and state a falsifiable claim. The investigator's reading is shallow by specialist standards. That is the point. The investigator is not trying to out-specialize the specialist. The investigator is trying to see the connection that the specialist's depth prevents them from seeing.
+The investigator reads both,  not at the specialist's depth, but at sufficient depth to see the structural similarity and state a falsifiable claim. The investigator's reading is shallow by specialist standards. That is the point. The investigator is not trying to out-specialize the specialist. The investigator is trying to see the connection that the specialist's depth prevents them from seeing.
 
 ---
 
@@ -292,21 +292,21 @@ The common pattern: the prerequisites were met, but the production rate was the 
 
 The LLM eliminates the production bottleneck.
 
-The investigator sees the pattern. The LLM formalizes it — states it precisely, identifies the relevant literature, checks the logic, writes the falsification criteria, produces the paper. The investigator evaluates the output, corrects errors, adds domain knowledge the LLM doesn't have, and directs the next investigation.
+The investigator sees the pattern. The LLM formalizes it,  states it precisely, identifies the relevant literature, checks the logic, writes the falsification criteria, produces the paper. The investigator evaluates the output, corrects errors, adds domain knowledge the LLM doesn't have, and directs the next investigation.
 
-The production rate goes from one paper per year to multiple papers per day. The testing rate goes from one test per month to multiple tests per day. The kill rate matches — wrong ideas are identified and killed in hours, not years. The surviving findings accumulate at a rate that makes the method viable within a normal working lifetime.
+The production rate goes from one paper per year to multiple papers per day. The testing rate goes from one test per month to multiple tests per day. The kill rate matches,  wrong ideas are identified and killed in hours, not years. The surviving findings accumulate at a rate that makes the method viable within a normal working lifetime.
 
 The LLM does not provide the ideas. The ideas come from the pattern recognition trained over decades of real work. A person with no cross-domain experience and an LLM will produce volume without insight. The LLM amplifies what's already there. If what's already there is shallow, the amplification produces shallow volume. If what's already there is deep cross-domain pattern recognition, the amplification produces rapid, tested, cross-domain findings.
 
-The LLM also provides an adversary. It pushes back. It identifies logical gaps. It asks questions the investigator didn't think to ask. It brings information from domains the investigator hasn't explored. It serves as a review process — not as a replacement for specialist review, but as a first pass that catches obvious errors before the claim is published.
+The LLM also provides an adversary. It pushes back. It identifies logical gaps. It asks questions the investigator didn't think to ask. It brings information from domains the investigator hasn't explored. It serves as a review process,  not as a replacement for specialist review, but as a first pass that catches obvious errors before the claim is published.
 
 ### VII.III The Implication
 
-The prerequisites are now the only barrier. Not money — LLMs are accessible. Not credentials — the method doesn't require them. Not institutional access — the institution's data is published. Not time — the production rate makes the method viable in years, not decades.
+The prerequisites are now the only barrier. Not money,  LLMs are accessible. Not credentials,  the method doesn't require them. Not institutional access,  the institution's data is published. Not time,  the production rate makes the method viable in years, not decades.
 
 The prerequisites: years of outcome-tested experience across multiple domains, kill discipline, physical grounding, information management methods. These take decades to develop. There is no shortcut.
 
-But for the person who has already developed the prerequisites through decades of real work across multiple domains — and there are many such people, in infrastructure, in entrepreneurship, in trades, in agriculture, in coaching, in medicine, in the military — the LLM removes every remaining barrier. The club is open to anyone with the prerequisites. The prerequisites are the only door.
+But for the person who has already developed the prerequisites through decades of real work across multiple domains,  and there are many such people, in infrastructure, in entrepreneurship, in trades, in agriculture, in coaching, in medicine, in the military,  the LLM removes every remaining barrier. The club is open to anyone with the prerequisites. The prerequisites are the only door.
 
 ---
 
@@ -330,7 +330,7 @@ Over years, the accumulation produces a body of work that is different in kind f
 
 ### VIII.III The Route
 
-One route through this method: 43 years of infrastructure operations and entrepreneurship. Pattern recognition trained on deployments, hiring decisions, business pivots, production failures, customer behavior, system architecture. The DSP ran across every domain the work touched. Then an LLM became available. The production rate increased by orders of magnitude. A theory of everything was built in 45 days — 350 papers connecting physics, biology, consciousness, mathematics, engineering, social systems. The arithmetic was checked. The theory failed. It was killed in 30 minutes. The next day, new papers — clean start, different foundation, no dependency on the dead framework. The surviving pieces became an archive of cross-domain findings, each with falsification criteria, each testable, each standing on the institution's own data.
+One route through this method: 43 years of infrastructure operations and entrepreneurship. Pattern recognition trained on deployments, hiring decisions, business pivots, production failures, customer behavior, system architecture. The DSP ran across every domain the work touched. Then an LLM became available. The production rate increased by orders of magnitude. A theory of everything was built in 45 days,  350 papers connecting physics, biology, consciousness, mathematics, engineering, social systems. The arithmetic was checked. The theory failed. It was killed in 30 minutes. The next day, new papers,  clean start, different foundation, no dependency on the dead framework. The surviving pieces became an archive of cross-domain findings, each with falsification criteria, each testable, each standing on the institution's own data.
 
 That is one route. It is not the only route. It is not the best route. A different person with different domains and different pattern recognition would walk a different route through the same method. The method is: see the pattern, check materiality, state the claim, test it, kill it or keep it, move on. The route is: which patterns you see, which domains you draw from, which boundaries you investigate. The method is general. The route is personal.
 
@@ -358,7 +358,7 @@ The club is the set of people who work in the gap between departments, test what
 
 The club is small because the entrance requirements are contradictory by institutional standards. Deep experience but no specialization. Rigorous methods but no credentials. Maximum production but immediate kills. Total coherence followed by total destruction followed by rebuilding the next day. The institution selects against every one of these properties. The club is populated by the people the institution filtered out.
 
-The club is growing because the LLM removed the production barrier. The prerequisites still take decades. But the people who already have the prerequisites — and there are many, working in trades and businesses and clinics and farms and schools — can now enter the gap. They always had the pattern recognition. They always saw the connections. They never had a way to formalize and test them at a viable rate. Now they do.
+The club is growing because the LLM removed the production barrier. The prerequisites still take decades. But the people who already have the prerequisites,  and there are many, working in trades and businesses and clinics and farms and schools,  can now enter the gap. They always had the pattern recognition. They always saw the connections. They never had a way to formalize and test them at a viable rate. Now they do.
 
 The club does not compete with the academy. The academy maps territories. The club maps boundaries. The academy produces depth. The club produces connections. The academy evaluates within domains. The club provides claims that cross domains for the academy to evaluate. Both are needed. Neither replaces the other. The gap between them is where the interesting problems live.
 
@@ -366,17 +366,17 @@ The club does not compete with the academy. The academy maps territories. The cl
 
 ## XI. FALSIFICATION CRITERIA
 
-**F1.** If omni-domain investigation produces no findings that survive specialist evaluation — if every cross-domain connection turns out to be an artifact of surface-level pattern matching without structural substance — the method produces volume without value. The method has value only if some findings survive evaluation by specialists in the relevant domains.
+**F1.** If omni-domain investigation produces no findings that survive specialist evaluation,  if every cross-domain connection turns out to be an artifact of surface-level pattern matching without structural substance,  the method produces volume without value. The method has value only if some findings survive evaluation by specialists in the relevant domains.
 
-**F2.** If the kill discipline proves impossible to maintain — if every investigator who enters the fully connected state stays there permanently and becomes a crank — then the ToE trap has no exit and the method is dangerous rather than productive. The claim is that the exit exists and is documented. If nobody can take it, the method fails.
+**F2.** If the kill discipline proves impossible to maintain,  if every investigator who enters the fully connected state stays there permanently and becomes a crank,  then the ToE trap has no exit and the method is dangerous rather than productive. The claim is that the exit exists and is documented. If nobody can take it, the method fails.
 
-**F3.** If specialists can reliably produce the same cross-domain findings by reading each other's literature without an omni-domain investigator — if the gap is routinely bridged from within the departments — the investigator is unnecessary. The claim is that departments do not bridge the gap in practice due to structural barriers ([@HOWL-CULT-2-2026], [@HOWL-CULT-7-2026]). If the structural barriers are removed and the gap closes naturally, the investigator becomes redundant. That would be a good outcome.
+**F3.** If specialists can reliably produce the same cross-domain findings by reading each other's literature without an omni-domain investigator,  if the gap is routinely bridged from within the departments,  the investigator is unnecessary. The claim is that departments do not bridge the gap in practice due to structural barriers ([@HOWL-CULT-2-2026], [@HOWL-CULT-7-2026]). If the structural barriers are removed and the gap closes naturally, the investigator becomes redundant. That would be a good outcome.
 
-**F4.** If the LLM production amplifier introduces systematic errors that the investigator cannot detect — if the speed produces findings that are artifacts of the LLM's training data rather than artifacts of the investigator's pattern recognition — the tool corrupts the method. The claim is that the investigator's decades of experience provide sufficient calibration to detect LLM confabulation. If they don't, the tool is dangerous.
+**F4.** If the LLM production amplifier introduces systematic errors that the investigator cannot detect,  if the speed produces findings that are artifacts of the LLM's training data rather than artifacts of the investigator's pattern recognition,  the tool corrupts the method. The claim is that the investigator's decades of experience provide sufficient calibration to detect LLM confabulation. If they don't, the tool is dangerous.
 
-**F5.** If the prerequisites described in this paper are insufficient — if people who meet all five prerequisites consistently fail to produce surviving findings — then the prerequisites are wrong and the method needs different prerequisites or does not work.
+**F5.** If the prerequisites described in this paper are insufficient,  if people who meet all five prerequisites consistently fail to produce surviving findings,  then the prerequisites are wrong and the method needs different prerequisites or does not work.
 
-**F6.** If the ToE trap is avoidable — if investigators can accumulate cross-domain findings indefinitely without ever entering the fully connected state — then the trap is not a structural inevitability and Section V overstates its importance. The claim is that full connectivity is an inevitable consequence of sufficient accumulation. If investigators can remain in the sparse-connection state permanently while still producing cross-domain findings, the trap is avoidable and the entrance exam is unnecessary.
+**F6.** If the ToE trap is avoidable,  if investigators can accumulate cross-domain findings indefinitely without ever entering the fully connected state,  then the trap is not a structural inevitability and Section V overstates its importance. The claim is that full connectivity is an inevitable consequence of sufficient accumulation. If investigators can remain in the sparse-connection state permanently while still producing cross-domain findings, the trap is avoidable and the entrance exam is unnecessary.
 
 Each criterion specifies a concrete test. The paper stands until a specific test demonstrates a specific failure.
 

@@ -1,4 +1,4 @@
-# VDR-11 TECH SPEC — LLM-COMPACT FORM
+# VDR-11 TECH SPEC,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → module_map → data_structures → fields → enums → registration → stages → stage_modules → builtin_counts → invariants → zig_mapping → falsification → relationships → section_index → decode_legend
 
@@ -152,14 +152,14 @@ S4|Full Integration|9|58|~420|~3500|300|900|local env+grants+filesystem+network+
 S5|Production|7|65|448|~3000|350|1250|Docker+SSH+VM+compilation+linting+feedback+deployment+monitoring+canary+retirement
 
 # invariants(id|invariant|verified_by)
-INV1|IOSE declared — every function has declaration before implementation|registry check at startup
-INV2|Exact arithmetic — every numeric op uses VDR fractions or exact ints, no floats|type system enforcement
-INV3|KB is truth — all persistent state in KBs, no module globals|module state audit
-INV4|Data primitives bounded — declared capacity enforced at every mutation|constructor enforcement
-INV5|No silent truncation — every precision reduction declared with exact error bound|conversion boundary logging
-INV6|Tests cumulative — all current + prior stage tests pass|CI run
-INV7|OSO principles loaded — root.system.oso KB active at startup|startup check
-INV8|Idempotent where declared — f(f(x))=f(x) tested|dedicated idempotency tests
+INV1|IOSE declared,  every function has declaration before implementation|registry check at startup
+INV2|Exact arithmetic,  every numeric op uses VDR fractions or exact ints, no floats|type system enforcement
+INV3|KB is truth,  all persistent state in KBs, no module globals|module state audit
+INV4|Data primitives bounded,  declared capacity enforced at every mutation|constructor enforcement
+INV5|No silent truncation,  every precision reduction declared with exact error bound|conversion boundary logging
+INV6|Tests cumulative,  all current + prior stage tests pass|CI run
+INV7|OSO principles loaded,  root.system.oso KB active at startup|startup check
+INV8|Idempotent where declared,  f(f(x))=f(x) tested|dedicated idempotency tests
 INV9|One canonical method per task category|registry uniqueness check
 
 # zig_mapping(id|python|zig|difficulty)

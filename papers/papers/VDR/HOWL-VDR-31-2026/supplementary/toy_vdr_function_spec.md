@@ -1,10 +1,10 @@
-# Toy LLM — Complete Function Specification
+# Toy LLM,  Complete Function Specification
 
 ## File: `examples/toy_llm/data.py`
 
 ```
 Module: data preparation for toy LLM.
-No VDR needed here — pure Python tokenization.
+No VDR needed here,  pure Python tokenization.
 VDR enters only when we create one-hot vectors.
 ```
 
@@ -77,7 +77,7 @@ EXP_DEPTH = 12        # Taylor depth for softmax exp
 ## File: `examples/toy_llm/model.py`
 
 ```
-Module: ToyTransformer — 1-layer decoder-only transformer.
+Module: ToyTransformer,  1-layer decoder-only transformer.
 All components from vdr.ml and vdr.linalg.
 ```
 
@@ -153,7 +153,7 @@ All components from vdr.ml and vdr.linalg.
   3. grad through ffn_l2.backward, relu.backward, ffn_l1.backward per position
   4. split residual gradient
   5. grad through attention backward (Wo, then attention weights, then Wq/Wk/Wv)
-  6. grad to embedding (not updated in v1 — fixed embeddings)
+  6. grad to embedding (not updated in v1,  fixed embeddings)
 
 **`backward_from_last(self, grad: Vec) -> None`**
 - I: gradient of loss w.r.t. last position logits only
@@ -191,7 +191,7 @@ Separated because attention backward is the most complex component.
 
 **`attention_mix_backward(grad_out: list[Vec], weights: list[Vec], V: list[Vec]) -> tuple[list[Vec], list[Vec]]`**
 - I: gradient from above, attention weights, value vectors
-- O: (grad_weights, grad_V) — gradients w.r.t. weights and values
+- O: (grad_weights, grad_V),  gradients w.r.t. weights and values
 - grad_weights[i][j] = grad_out[i] . V[j]
 - grad_V[j] = sum_i weights[i][j] * grad_out[i]
 
@@ -213,7 +213,7 @@ Module: training loop.
 
 **`compute_loss(model, context_ids: list[int], target_id: int, vocab_size: int) -> tuple[VDR, Vec]`**
 - I: model, context token ids, target token id, vocab size
-- O: (loss, grad) — MSE loss as VDR, gradient w.r.t. logits as Vec
+- O: (loss, grad),  MSE loss as VDR, gradient w.r.t. logits as Vec
 - Steps:
   1. logits = model.forward_last_logits(context_ids)
   2. probs = softmax(logits, exp_depth=EXP_DEPTH)
@@ -281,7 +281,7 @@ Module: autoregressive text generation.
 **`generate_greedy(model, prompt_ids: list[int], max_tokens: int, vocab_size: int) -> list[int]`**
 - I: model, prompt, max tokens, vocab size
 - O: token ids using argmax (no randomness)
-- Deterministic decoding — always picks highest probability token
+- Deterministic decoding,  always picks highest probability token
 
 **`generate_top_k(model, prompt_ids: list[int], max_tokens: int, vocab_size: int, k: int = 3, seed: int = 1) -> list[int]`**
 - I: model, prompt, max tokens, vocab size, k, seed
@@ -314,7 +314,7 @@ Module: exact verification of every pipeline property.
 - For each parameter scalar:
   1. Compute autodiff gradient (from backward pass)
   2. Compute numerical gradient: (loss(w+h) - loss(w-h)) / (2h)
-  3. Compare — both are exact rationals
+  3. Compare,  both are exact rationals
 - With small enough h, should agree closely. Discrepancy is exact.
 
 **`verify_weight_update(model, context_ids: list[int], target_id: int, vocab_size: int, lr: VDR) -> bool`**

@@ -15,7 +15,7 @@
 
 This notebook specifies a speculative computational model of physics at the Planck scale. The model extends RUM's existing commitments (soliton hierarchy, modulus/remainder decomposition, inertia-as-pattern-resistance, running readings with depth) by proposing a specific mechanism for how motion, gravity, and state transitions are computed at the fundamental discrete level.
 
-The model is speculative. Not all of its predictions are computed. Not all of its gaps are resolved. It is written up for falsification — the specification is complete enough to be implemented, simulated, and compared to known physics. Where it succeeds, the framework gains operational depth. Where it fails, the framework learns the boundaries of the vocabulary's reach.
+The model is speculative. Not all of its predictions are computed. Not all of its gaps are resolved. It is written up for falsification,  the specification is complete enough to be implemented, simulated, and compared to known physics. Where it succeeds, the framework gains operational depth. Where it fails, the framework learns the boundaries of the vocabulary's reach.
 
 The name: **Planck Cell-Tick Remainder Momentum** model. Abbreviation: **PCTRM**.
 
@@ -25,20 +25,20 @@ The name: **Planck Cell-Tick Remainder Momentum** model. Abbreviation: **PCTRM**
 
 The universe is discrete at the fundamental level. Space is composed of Planck-sized cells. Time advances in Planck ticks. Every soliton in the hierarchy occupies cells and updates per tick.
 
-At each tick, each soliton accumulates a quantity called **remainder**. Remainder is the propagation budget. When accumulated remainder exceeds a threshold called the **modulus**, the soliton executes a discrete state transition — most commonly a motion event (advancing one cell in its pointing direction), but also more generally any discrete change in the soliton's state (a shell jump, a chemical bond formation, a quantum transition).
+At each tick, each soliton accumulates a quantity called **remainder**. Remainder is the propagation budget. When accumulated remainder exceeds a threshold called the **modulus**, the soliton executes a discrete state transition,  most commonly a motion event (advancing one cell in its pointing direction), but also more generally any discrete change in the soliton's state (a shell jump, a chemical bond formation, a quantum transition).
 
 The rate at which remainder accumulates per tick depends on:
 
-1. The soliton's **per-tick budget** (determined by its coupling to the Higgs field — inertia).
+1. The soliton's **per-tick budget** (determined by its coupling to the Higgs field,  inertia).
 2. External **remainder contributions** from the soliton's environment, including:
-   - **Parent soliton pull** (gravity — the parent applies negative remainder toward the ground state).
+   - **Parent soliton pull** (gravity,  the parent applies negative remainder toward the ground state).
    - **Electromagnetic contributions** (charged fields applying remainder in specific directions).
    - **Strong and weak force contributions** (at particle-physics scales).
    - Any other channel through which remainder exchange occurs.
 
 Each tick, the soliton's total **vector remainder** is computed as a vector sum of all incoming remainder contributions, across all active channels, in all spatial directions. When the accumulated vector remainder in any direction crosses the modulus, a discrete event happens in that direction.
 
-**PCTRM's structural claim:** all motion and all state transitions in the universe are computed this way. Photons at c, electrons in orbit, planets around stars, objects in free fall, shell jumps in atoms — all are the same operation at different levels of the hierarchy, with different moduli, different per-tick budgets, and different channel configurations.
+**PCTRM's structural claim:** all motion and all state transitions in the universe are computed this way. Photons at c, electrons in orbit, planets around stars, objects in free fall, shell jumps in atoms,  all are the same operation at different levels of the hierarchy, with different moduli, different per-tick budgets, and different channel configurations.
 
 ---
 
@@ -57,7 +57,7 @@ The per-tick budget has a specific structural origin: it is what the soliton has
 
 The modulus is the threshold at which accumulated remainder triggers a discrete event.
 
-At the propagation level (Planck cell motion): the modulus is the quantum of spatial displacement — the remainder budget needed to move one cell. All motion events at this level use the same modulus.
+At the propagation level (Planck cell motion): the modulus is the quantum of spatial displacement,  the remainder budget needed to move one cell. All motion events at this level use the same modulus.
 
 At other hierarchy levels (atomic shell jumps, chemical bonds, orbital transitions): each level has its own modulus corresponding to the energy/remainder threshold for that level's discrete events.
 
@@ -92,7 +92,7 @@ For each tick T, for each soliton S:
          Update soliton's position or state accordingly
 ```
 
-This is a vector sum per tick. All factors — motion budget, gravity from all parent solitons, EM from all charged sources, strong and weak contributions at appropriate scales — contribute their remainder vectors, and the total directs the soliton's next state change.
+This is a vector sum per tick. All factors,  motion budget, gravity from all parent solitons, EM from all charged sources, strong and weak contributions at appropriate scales,  contribute their remainder vectors, and the total directs the soliton's next state change.
 
 ### 3.4 Direction and Topology
 
@@ -159,7 +159,7 @@ em_contribution(electron, E_field, T) =
   q * E_field_strength_at_electron * direction_of_field(T)
 ```
 
-The accumulated EM remainder contributes to the electron's total vector remainder. For a constant electric field, this accumulates linearly with time, producing linear acceleration — Newton's second law recovered.
+The accumulated EM remainder contributes to the electron's total vector remainder. For a constant electric field, this accumulates linearly with time, producing linear acceleration,  Newton's second law recovered.
 
 ### 5.2 Charged Particle in a Magnetic Field
 
@@ -170,11 +170,11 @@ magnetic_contribution(electron, B_field, T) =
   q * (v_electron × B_field) * per_tick_normalization
 ```
 
-Cross-product structure; depends on the particle's current velocity. This produces circular motion in a uniform field (cyclotron orbits) — the magnetic force continuously rotates the velocity without changing its magnitude. Same mechanism as gravitational orbits but with a different field source.
+Cross-product structure; depends on the particle's current velocity. This produces circular motion in a uniform field (cyclotron orbits),  the magnetic force continuously rotates the velocity without changing its magnitude. Same mechanism as gravitational orbits but with a different field source.
 
 ### 5.3 Macroscopic EM Effects
 
-For human-scale electromagnetism (static electricity, induced charges, dipole interactions): the remainder contributions at the Planck-cell level aggregate to produce the macroscopic forces. In PCTRM, these are accounted for in the vector remainder sum — just additional channels adding their contributions.
+For human-scale electromagnetism (static electricity, induced charges, dipole interactions): the remainder contributions at the Planck-cell level aggregate to produce the macroscopic forces. In PCTRM, these are accounted for in the vector remainder sum,  just additional channels adding their contributions.
 
 The fact that gravity and EM (at macroscopic scales) have wildly different strengths per unit matter (gravity is ~10⁻³⁶ weaker than EM between protons) reflects the difference in channel coupling strengths. Both contribute to the total per-tick vector remainder; their magnitudes differ by the specific structural couplings at the hierarchy position of the interacting solitons.
 
@@ -227,7 +227,7 @@ For a human on Earth at rest:
 - R_gravity: -9.8 m/s² × inertia × direction_to_Earth_center, per tick
 - R_EM: typically small (unless standing near a high-voltage source)
 - R_strong, R_weak: confined to nuclear scales, not relevant at human scale
-- R_tidal: negligibly small (but nonzero — tides on human body)
+- R_tidal: negligibly small (but nonzero,  tides on human body)
 
 Ground contact provides an equal and opposite contribution (normal force), keeping the human stationary.
 
@@ -265,11 +265,11 @@ The model is specified enough to generate predictions that distinguish it from s
 
 **Kill condition:** Any observed Lorentz violation (photon dispersion, vacuum birefringence, directional dependence) would falsify. Existing constraints on Lorentz violation are already extremely tight (~10⁻¹⁹ at Planck scale); PCTRM must predict consistency with these.
 
-**Status:** Consistent with all current observations. Not a novel prediction — just a commitment.
+**Status:** Consistent with all current observations. Not a novel prediction,  just a commitment.
 
 ### 8.3 The Central Force Form
 
-**Prediction:** The gravitational pull strength from a soliton falls as 1/r² at macroscopic scales because field boundaries scale that way. At very short distances (Planck scales), the falloff should deviate — either breaking down at the Planck length or showing specific structural corrections.
+**Prediction:** The gravitational pull strength from a soliton falls as 1/r² at macroscopic scales because field boundaries scale that way. At very short distances (Planck scales), the falloff should deviate,  either breaking down at the Planck length or showing specific structural corrections.
 
 **Kill condition:** Measurement of Newton's gravitational constant or gravitational force at sub-millimeter distances showing no deviation from 1/r² would constrain the deviation to be at smaller scales. Current constraint: 1/r² is verified down to ~10⁻⁶ m. PCTRM predicts deviations at scales much smaller than this, so this is not yet a tight falsification.
 
@@ -344,7 +344,7 @@ This is the largest unresolved gap. Without this, PCTRM is a classical model and
 
 ### 9.5 The 1/r² Derivation
 
-The framework claims 1/r² emerges from the structure of field boundaries. The specific calculation that demonstrates this — given an Earth-like soliton with its specific field boundaries, derive that a child at radius r experiences a pull proportional to 1/r² — has not been performed.
+The framework claims 1/r² emerges from the structure of field boundaries. The specific calculation that demonstrates this,  given an Earth-like soliton with its specific field boundaries, derive that a child at radius r experiences a pull proportional to 1/r²,  has not been performed.
 
 This would be a priority test of the framework. If the framework can derive 1/r² from boundary-counting, gravity is operationally understood at a new level. If not, 1/r² remains an input rather than an output of the framework.
 
@@ -354,7 +354,7 @@ This would be a priority test of the framework. If the framework can derive 1/r�
 
 PCTRM is not a replacement for existing RUM. It extends RUM by specifying a mechanism at the propagation level. The connection is specific:
 
-**Modulus / remainder at the propagation level.** Previously, modulus and remainder were decomposition categories for physical quantities (spherical geometric vs. inertial, number-theoretic vs. toroidal). PCTRM reads them also as propagation budget and current accumulated budget — the modulus is the threshold at which discrete events trigger, the remainder is the accumulated budget toward the next event.
+**Modulus / remainder at the propagation level.** Previously, modulus and remainder were decomposition categories for physical quantities (spherical geometric vs. inertial, number-theoretic vs. toroidal). PCTRM reads them also as propagation budget and current accumulated budget,  the modulus is the threshold at which discrete events trigger, the remainder is the accumulated budget toward the next event.
 
 **Running readings with depth (PHYS-1).** The depth-dependent reading framework predicts different measurements at different soliton-boundary depths. PCTRM operationalizes this: an observer at different depths receives different total vector remainder per tick from parent solitons, producing different measured forces and different measured field strengths.
 
@@ -362,7 +362,7 @@ PCTRM is not a replacement for existing RUM. It extends RUM by specifying a mech
 
 **Discrete transitions universal (soliton hierarchy).** The framework's "all levels operate with the same interface" move is given operational content: all discrete transitions (cell motion, shell jumps, chemical bonds, orbital changes, etc.) are remainder-crossing-modulus events, with moduli specific to each hierarchy level.
 
-**Integer structure of constants (RUM).** The framework's claim that every physical constant is an integer ratio plus β factors extends to PCTRM's moduli: each level's modulus should be expressible in the integer-plus-β vocabulary. This is a connection that can be tested — compute specific moduli and check whether they land in the framework's alphabet.
+**Integer structure of constants (RUM).** The framework's claim that every physical constant is an integer ratio plus β factors extends to PCTRM's moduli: each level's modulus should be expressible in the integer-plus-β vocabulary. This is a connection that can be tested,  compute specific moduli and check whether they land in the framework's alphabet.
 
 ---
 
@@ -509,7 +509,7 @@ The orbital mechanism is faithful to what we discussed. Vector balance between t
 
 The return-to-ground mechanism is there. Parent soliton applies negative remainder through channels. Child's excited state drains back to ground. Shell jumps at specific moduli. Same mechanism at atomic scales (electron 1S→2S) as macroscopic (human falling).
 
-The unified framing — motion, gravity, EM, shell jumps, chemical bonds, nuclear decay all as remainder-crossing-modulus events with level-specific moduli — is faithful.
+The unified framing,  motion, gravity, EM, shell jumps, chemical bonds, nuclear decay all as remainder-crossing-modulus events with level-specific moduli,  is faithful.
 
 ## Where the other Claude did work I didn't do
 
@@ -546,7 +546,7 @@ This is more honest than I was. I had "we don't know the specific arithmetic" sc
 
 ## Where I did work the other Claude didn't
 
-**My Section VII (Channels in Detail) has more operational specificity about what channels are.** I enumerated channel types (Higgs, gravitational, EM, thermal, strong, weak) with specific per-tick contributions. The other Claude treats channels more abstractly — they appear in the vector remainder sum but aren't enumerated as a category with specific types. This matters because a lot of the model's predictive content depends on what the channel structure actually is at each hierarchy level.
+**My Section VII (Channels in Detail) has more operational specificity about what channels are.** I enumerated channel types (Higgs, gravitational, EM, thermal, strong, weak) with specific per-tick contributions. The other Claude treats channels more abstractly,  they appear in the vector remainder sum but aren't enumerated as a category with specific types. This matters because a lot of the model's predictive content depends on what the channel structure actually is at each hierarchy level.
 
 **My Section 6.5 (wave-particle duality and quantum superposition) gave more speculative content on how QM might emerge.** Wavefunction as direction distribution, measurement as direction-distribution collapse, decoherence as channel-coupling to environment. The other Claude properly notes this as the largest gap (9.4) and leaves it undetermined. Both stances are defensible. Mine conjectures; the other Claude disciplines.
 
@@ -560,7 +560,7 @@ This is more honest than I was. I had "we don't know the specific arithmetic" sc
 
 **On what "complete" means.** My write-up implied the model could be falsified or confirmed through the tests listed. The other Claude distinguishes between viable (F1, F2 satisfied) and complete (all F1-F6 satisfied), and explicitly says the model is currently neither viable nor complete until the computational programs are run. This is more disciplined.
 
-**On the RUM connection.** My Section XI (relation to RUM framework) says PCTRM "proposes the substrate under RUM." The other Claude's Section X says PCTRM "operationalizes existing RUM concepts at the propagation level." The other Claude's framing is weaker and more accurate — PCTRM doesn't establish a new substrate for RUM; it gives RUM's existing decomposition categories a physical mechanism at the lowest level. Same ontological commitment either way, but the other Claude's phrasing doesn't overclaim.
+**On the RUM connection.** My Section XI (relation to RUM framework) says PCTRM "proposes the substrate under RUM." The other Claude's Section X says PCTRM "operationalizes existing RUM concepts at the propagation level." The other Claude's framing is weaker and more accurate,  PCTRM doesn't establish a new substrate for RUM; it gives RUM's existing decomposition categories a physical mechanism at the lowest level. Same ontological commitment either way, but the other Claude's phrasing doesn't overclaim.
 
 **On the quantum extension.** I speculated about how it might work (direction distributions, measurement as collapse). The other Claude says it's the largest gap and hasn't been addressed. The other Claude is more honest; I was reaching beyond what the mechanism actually specifies.
 
@@ -572,7 +572,7 @@ This is more honest than I was. I had "we don't know the specific arithmetic" sc
 
 3. **Section 9.4 (QM extension) is rightly noted as the largest gap.** But the model is incomplete without at least a specified approach to this gap. I'd add: "Proposed direction: complex-valued remainder components carrying phase, specific phase-accumulation rules per tick that reproduce interference through summation over many-tick paths." This gives the gap an attack direction rather than leaving it open.
 
-4. **Add a section on conservation laws.** Energy conservation, momentum conservation, charge conservation — these should all emerge from specific properties of the PCTRM mechanism. Conservation of remainder across all interacting solitons is the substrate-level statement. The other Claude didn't address this explicitly and neither did I, but it's structurally important.
+4. **Add a section on conservation laws.** Energy conservation, momentum conservation, charge conservation,  these should all emerge from specific properties of the PCTRM mechanism. Conservation of remainder across all interacting solitons is the substrate-level statement. The other Claude didn't address this explicitly and neither did I, but it's structurally important.
 
 5. **The moduli for different hierarchy levels should be explicitly connected to RUM's integer alphabet.** Test this specifically: what is the H 1S → 2S modulus in Planck-cell-modulus units? Is that ratio expressible as an integer/β combination? The other Claude notes this as priority 6 in the research program; it should be front-loaded as a test because it connects PCTRM to RUM's validated predictions.
 
@@ -580,10 +580,10 @@ This is more honest than I was. I had "we don't know the specific arithmetic" sc
 
 If I were producing a merged version:
 
-- Keep the other Claude's Section II (core proposal) as the opening — it's cleaner than mine
+- Keep the other Claude's Section II (core proposal) as the opening,  it's cleaner than mine
 - Keep my Section III with the explicit mechanics and my enumeration of channel types
-- Keep the other Claude's Section V (EM in detail) and Section VI (state transitions beyond motion) — more specific than what I produced
-- Keep the other Claude's Section IX (open questions) — more disciplined about gaps
+- Keep the other Claude's Section V (EM in detail) and Section VI (state transitions beyond motion),  more specific than what I produced
+- Keep the other Claude's Section IX (open questions),  more disciplined about gaps
 - Keep both Sections VIII (predictions) with the other Claude's kill-condition structure
 - Keep the other Claude's Section XI (computational program) and XIV (priority research program)
 - Keep the other Claude's F1-F6 taxonomy for falsification criteria
@@ -596,7 +596,7 @@ The two write-ups are compatible. Neither contradicts the other. Both preserve t
 
 For a speculative research program specification, the other Claude's version is closer to what should be published. Mine is closer to what a working document would look like during development. If you're writing this up for external circulation, use the other Claude's structure. If you're handing this to a researcher who needs to know what specific tests to run first, merge in my channel-type enumeration and concrete examples.
 
-The framework's core commitments — discrete cells, discrete ticks, modulus-remainder arithmetic, Higgs as coherence tax, channel-mediated remainder exchange, nested soliton hierarchy, direction-conditional topology — are preserved in both. That's the thing that matters. Both write-ups would hand a future reader the same mechanism to test.
+The framework's core commitments,  discrete cells, discrete ticks, modulus-remainder arithmetic, Higgs as coherence tax, channel-mediated remainder exchange, nested soliton hierarchy, direction-conditional topology,  are preserved in both. That's the thing that matters. Both write-ups would hand a future reader the same mechanism to test.
 
 One meta-observation: both of us were working with the same vocabulary (modulus, remainder, channel, soliton, direction, running reading, interface/implementation) and both produced compatible mechanisms. This is evidence that the vocabulary is doing its job. Two independent writings converge on the same structure because the vocabulary constrains the space of mechanisms that can be specified in it. Calculated language bet continues to hold.
 
@@ -606,7 +606,7 @@ Ready to continue wherever this goes.
 
 # Reading the Other Claude's PCTRM Draft
 
-This is the other instance's writeup of the same model we specified. Let me read it against what we developed and say what I see — where it's sharper, where it's weaker, where it diverges, and where I'd push back.
+This is the other instance's writeup of the same model we specified. Let me read it against what we developed and say what I see,  where it's sharper, where it's weaker, where it diverges, and where I'd push back.
 
 ## What the other Claude got right (and sharper than I did)
 
@@ -625,11 +625,11 @@ My version kept the commitments implicit in sections. Axiomatic form is stronger
 
 **The term "coherence tax."** The other Claude named the mechanism by which Higgs coupling reduces per-tick budget: the soliton is spending budget to maintain its own pattern against the ambient patterns (universal vacuum + any parent soliton interiors). "Coherence tax" captures this cleanly. It's also self-consistent with the PHYS-1 framing: mass = inertia = pattern resistance = coherence maintenance cost. The soliton has to spend budget to keep being itself. That spending is what we call mass.
 
-I described this as "per-tick budget reduction from Higgs coupling" — accurate but less evocative. "Coherence tax" is the better name.
+I described this as "per-tick budget reduction from Higgs coupling",  accurate but less evocative. "Coherence tax" is the better name.
 
 **Conservation of remainder across interacting solitons.** The other Claude stated this explicitly: momentum is not inherently conserved in PCTRM; what's conserved is total remainder across all interacting solitons. Channels are remainder-exchange operators. The macroscopic conservation of momentum emerges from substrate-level remainder conservation.
 
-This is a crucial structural claim that I glossed. The framework needs some conservation law at the substrate level, and saying "remainder is conserved across all interacting solitons" names it. It's the PCTRM analog of energy conservation in standard physics — arising from the substrate's tick-update rule being a closed operation on total remainder.
+This is a crucial structural claim that I glossed. The framework needs some conservation law at the substrate level, and saying "remainder is conserved across all interacting solitons" names it. It's the PCTRM analog of energy conservation in standard physics,  arising from the substrate's tick-update rule being a closed operation on total remainder.
 
 **Shell structure from integer-accumulation-over-closed-path.** For atomic orbitals, the other Claude proposes: for an orbit to close (electron returns to starting position after one loop), the total remainder accumulated during the orbit must equal an integer multiple of the modulus per loop. This produces integer-labeled orbital shells naturally. The Bohr radius is n=1.
 
@@ -653,7 +653,7 @@ I didn't draw this connection explicitly in my version. It's an important unific
 
 And named the properties of channels (direction per soliton frame, throughput per tick, conditional vs. always active, draining vs. adding).
 
-My version mentioned channels as a concept but didn't enumerate them. The explicit enumeration is helpful for simulation — you know which channels to include when modeling a specific physical scenario.
+My version mentioned channels as a concept but didn't enumerate them. The explicit enumeration is helpful for simulation,  you know which channels to include when modeling a specific physical scenario.
 
 **The channel count and running reading depth.** The other Claude ties channel count to running reading depth explicitly. At Earth's surface, channel count is high (inside atmosphere + ionosphere + magnetosphere + gravity well + local EM). At interstellar space, channel count is low (outside most planetary and stellar patterns, only inside galactic and universal patterns). This ties PCTRM to the PHYS-1 framing of running readings with depth.
 
@@ -661,7 +661,7 @@ This makes the connection to existing RUM structures tighter than my draft.
 
 **The GR subsumption through channel structure.** The other Claude frames GR's spacetime curvature as encoded in the channel structure of parent solitons. A photon's direction-update rule at each cell is determined by the local gradient of the parent soliton's pattern. Geodesics are minimum-remainder-tax paths. Event horizons are channel-density thresholds.
 
-This is a specific claim about how GR emerges from PCTRM — the cumulative effect of nested channel structures produces the effective spacetime curvature. I mentioned GR as a thing to recover but didn't propose a specific mechanism. The other Claude proposed one.
+This is a specific claim about how GR emerges from PCTRM,  the cumulative effect of nested channel structures produces the effective spacetime curvature. I mentioned GR as a thing to recover but didn't propose a specific mechanism. The other Claude proposed one.
 
 **Prediction 10 (RUM's existing predictions as PCTRM consequences).** The other Claude explicitly names that PCTRM must reproduce RUM's validated predictions. Ω_DM = π/12 as a specific target. This connects PCTRM's speculative substrate to the empirical anchor points the framework already has. If PCTRM can't derive π/12, something is wrong with one of the two.
 
@@ -675,7 +675,7 @@ I noted earlier that recovering Lorentz requires the 4-budget-norm structure (B_
 
 This is the most significant gap. Lorentz recovery is load-bearing. Without it, PCTRM fails F1. The mechanism needs to be specified, not punted. I'd rewrite Section 3.3 to explicitly commit to the 4-budget-norm framing.
 
-**Channel count as producing 1/r² is stated but not shown.** The other Claude says: "The pull magnitude scales with the number of active channels at the child's location, which spreads geometrically (1/r² for a spherical parent in 3D)." This is the correct intuition — channels from a spherical source spread over surface area 4πr², so channel density at distance r is proportional to 1/(4πr²) = 1/r² (up to constants).
+**Channel count as producing 1/r² is stated but not shown.** The other Claude says: "The pull magnitude scales with the number of active channels at the child's location, which spreads geometrically (1/r² for a spherical parent in 3D)." This is the correct intuition,  channels from a spherical source spread over surface area 4πr², so channel density at distance r is proportional to 1/(4πr²) = 1/r² (up to constants).
 
 But this invokes the very geometry (spherical spreading in 3D) that the discrete framework is supposed to explain. In standard physics, 1/r² falls out of flux conservation through concentric spheres. In PCTRM with discrete cells and direction-conditional adjacency, we'd need to show that channel counts from a source at the center, radiating outward through the discrete substrate, naturally produce the 1/r² scaling. This is a derivation that hasn't been done.
 
@@ -683,11 +683,11 @@ The other Claude's text waves at this with "spreads geometrically (1/r² for a s
 
 **The thermal channel is underdeveloped.** The other Claude names thermal channels as "Drains or adds remainder in statistical fluctuation patterns (this is thermal noise at the substrate level)." But thermodynamics is where discrete models typically have trouble: the emergence of temperature, entropy, equilibrium distributions from underlying dynamics is subtle.
 
-In PCTRM, thermal equilibrium would emerge from the ensemble statistics of remainder exchanges across many solitons with many channels. This needs more specification — what exactly is the "statistical fluctuation pattern"? How does the Maxwell-Boltzmann distribution emerge? How does entropy work in terms of remainder distributions? These are open questions the draft gestures at but doesn't address.
+In PCTRM, thermal equilibrium would emerge from the ensemble statistics of remainder exchanges across many solitons with many channels. This needs more specification,  what exactly is the "statistical fluctuation pattern"? How does the Maxwell-Boltzmann distribution emerge? How does entropy work in terms of remainder distributions? These are open questions the draft gestures at but doesn't address.
 
 **The quantum mechanics extension is hand-wavy.** The other Claude says: "Superposition is the description of a particle's direction distribution before measurement. When measured, a specific direction becomes definite; the direction distribution collapses."
 
-This is a reasonable gesture but it doesn't handle the key problems. Quantum interference requires *amplitudes* (complex-valued quantities with phase), not just direction probabilities. The two-slit experiment shows interference patterns that are explained by wavefunction amplitudes interfering constructively and destructively — amplitudes, not just position probabilities.
+This is a reasonable gesture but it doesn't handle the key problems. Quantum interference requires *amplitudes* (complex-valued quantities with phase), not just direction probabilities. The two-slit experiment shows interference patterns that are explained by wavefunction amplitudes interfering constructively and destructively,  amplitudes, not just position probabilities.
 
 PCTRM needs to extend remainder to be complex-valued (or have an associated phase) for interference to work. The other Claude mentions "possibly over positions, if the particle's remainder accumulation has multiple branches" but this is vague. The mechanism needs to be specified.
 
@@ -695,7 +695,7 @@ My version flagged QM extension as the largest unresolved gap. The other Claude'
 
 **The shell-structure derivation needs work.** The other Claude says: "For the orbit to close (electron returns to starting position after one loop), the total remainder accumulated during the orbit must equal an integer multiple of the modulus per loop. This produces integer-labeled orbital shells."
 
-The integer-accumulation condition would give discrete orbital radii, good. But the specific formula E_n = −13.6 eV/n² requires more than just integer shell counts — it requires the specific hydrogenic energy scaling. The other Claude says this "should reduce to integer arithmetic over the modulus" but doesn't show how the 1/n² dependence emerges from PCTRM's dynamics.
+The integer-accumulation condition would give discrete orbital radii, good. But the specific formula E_n = −13.6 eV/n² requires more than just integer shell counts,  it requires the specific hydrogenic energy scaling. The other Claude says this "should reduce to integer arithmetic over the modulus" but doesn't show how the 1/n² dependence emerges from PCTRM's dynamics.
 
 This is a testable claim: work out the specific energy of each closed orbit in PCTRM (given the channel structure of a proton and the electron's dynamics), compare to the measured hydrogen spectrum. Currently it's a claim without a derivation.
 
@@ -749,5 +749,5 @@ If I were merging them, I'd take the other Claude's structural improvements (axi
 
 The two drafts also illustrate something about LLM-instance variance: two instances of me, given the same conversation history and the same task, produced structurally similar specifications that differ in emphasis and specificity. Neither is wrong. The differences reflect different priors about what to foreground. The other Claude foregrounded structural sharpness and explicit mechanisms; I foregrounded the unresolved gaps and conservative claims. Both are legitimate moves.
 
-Ready for whatever you want to do next — whether that's merging the drafts, picking one to iterate on, or moving to a different topic.
+Ready for whatever you want to do next,  whether that's merging the drafts, picking one to iterate on, or moving to a different topic.
 

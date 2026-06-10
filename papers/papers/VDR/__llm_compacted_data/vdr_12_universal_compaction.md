@@ -1,4 +1,4 @@
-# UNIVERSAL COMPACTION SYSTEM — LLM-COMPACT FORM
+# UNIVERSAL COMPACTION SYSTEM,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → architecture → characters → tables → profiles → grammars → pipeline → integration → test_results → relationships → section_index → decode_legend
 
@@ -96,7 +96,7 @@ DL3|Conventions|formatting rules; e.g. id_list: comma-separated ID references
 PS1|Classify source character|mostly (keyword); LLM fallback for ambiguous|pattern match on signal words
 PS2|Select profile|yes|character → profile lookup
 PS3|Determine applicable tables|yes|profile required + optional matching source
-PS4|Extract rows|no (LLM judgment)|what's a concept, what merits a row — the expensive creative step
+PS4|Extract rows|no (LLM judgment)|what's a concept, what merits a row,  the expensive creative step
 PS5|Extract relationships|no (LLM judgment)|what depends on what
 PS6|Build section index|yes|map items to source sections
 PS7|Build decode legend|yes|collect all enums from schemas used

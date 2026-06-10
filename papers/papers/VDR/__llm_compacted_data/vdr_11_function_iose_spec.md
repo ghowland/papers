@@ -1,4 +1,4 @@
-# VDR-11 FUNCTION IOSE SPEC — LLM-COMPACT FORM
+# VDR-11 FUNCTION IOSE SPEC,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: enums → structs → functions → relationships → section_index → decode_legend
 

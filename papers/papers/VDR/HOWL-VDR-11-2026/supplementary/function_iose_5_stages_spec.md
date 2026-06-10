@@ -1,4 +1,4 @@
-# VDR-LLM-Prolog Implementation — Function IOSE Specification
+# VDR-LLM-Prolog Implementation,  Function IOSE Specification
 ## Five Stages: Data Structures and Function Interfaces
 
 ---
@@ -499,9 +499,9 @@ class ExecResult:
 **Fields:** value (Optional[Any]), error (Optional[VDRError]), ok (bool).
 
 **Methods:**
-- `unwrap() -> Any` — returns value or raises if error.
-- `unwrap_or(default) -> Any` — returns value or default.
-- `map(fn) -> Result` — apply fn to value if ok.
+- `unwrap() -> Any`,  returns value or raises if error.
+- `unwrap_or(default) -> Any`,  returns value or default.
+- `map(fn) -> Result`,  apply fn to value if ok.
 
 ---
 
@@ -526,7 +526,7 @@ class ExecResult:
 **Side effects:** None. Read-only lookup.
 
 #### delete_kb
-**Purpose:** Remove a KB from the store. Detaches from parent. Does not cascade to children — they become orphans (which the orphan constraint will catch).
+**Purpose:** Remove a KB from the store. Detaches from parent. Does not cascade to children,  they become orphans (which the orphan constraint will catch).
 
 **Inputs:** kb_id (int).
 
@@ -539,7 +539,7 @@ class ExecResult:
 ### kb/fact_store.py
 
 #### assert_fact
-**Purpose:** Add a fact to a KB's fact list. If a structurally identical fact already exists, this is idempotent — no duplicate added.
+**Purpose:** Add a fact to a KB's fact list. If a structurally identical fact already exists, this is idempotent,  no duplicate added.
 
 **Inputs:** kb (KnowledgeBase), fact (Fact).
 
@@ -548,7 +548,7 @@ class ExecResult:
 **Side effects:** kb.facts modified. kb.last_modified updated.
 
 #### retract_fact
-**Purpose:** Remove a fact from a KB's fact list. If fact not present, idempotent — no error.
+**Purpose:** Remove a fact from a KB's fact list. If fact not present, idempotent,  no error.
 
 **Inputs:** kb (KnowledgeBase), predicate (str), args (List[Any]).
 
@@ -561,7 +561,7 @@ class ExecResult:
 
 **Inputs:** kb (KnowledgeBase), predicate (str), args (List[Optional[Any]]).
 
-**Outputs:** List[Fact] — all matching facts.
+**Outputs:** List[Fact],  all matching facts.
 
 **Side effects:** None. Read-only.
 
@@ -585,15 +585,15 @@ class ExecResult:
 
 **Methods:**
 - `get(var_name) -> Optional[Any]`
-- `bind(var_name, value) -> Binding` — returns new Binding with added binding.
-- `merge(other) -> Optional[Binding]` — combines two bindings; None if conflict.
+- `bind(var_name, value) -> Binding`,  returns new Binding with added binding.
+- `merge(other) -> Optional[Binding]`,  combines two bindings; None if conflict.
 
 #### unify
 **Purpose:** Attempt to unify two terms. Returns bindings if successful, None if terms cannot unify. Handles: atoms (string equality), variables (bind to anything), VDRFractions (cross-multiplication equality), lists (element-wise recursive), facts (predicate + args recursive).
 
 **Inputs:** term_a (Any), term_b (Any), bindings (Binding).
 
-**Outputs:** Optional[Binding] — updated bindings if unification succeeds, None if fails.
+**Outputs:** Optional[Binding],  updated bindings if unification succeeds, None if fails.
 
 **Side effects:** None. Pure.
 
@@ -602,7 +602,7 @@ class ExecResult:
 
 **Inputs:** term (Any), bindings (Binding).
 
-**Outputs:** Any — term with variables replaced.
+**Outputs:** Any,  term with variables replaced.
 
 **Side effects:** None. Pure.
 
@@ -611,7 +611,7 @@ class ExecResult:
 
 **Inputs:** kb (KnowledgeBase), goal (Fact), max_depth (int, default 100).
 
-**Outputs:** List[Binding] — all satisfying bindings.
+**Outputs:** List[Binding],  all satisfying bindings.
 
 **Side effects:** None. Read-only query over KB state.
 
@@ -642,7 +642,7 @@ class ExecResult:
 
 **Inputs:** kb (KnowledgeBase), key (str), kb_store (Dict[int, KnowledgeBase]).
 
-**Outputs:** Optional[Any] — value if found, None if not found in entire chain.
+**Outputs:** Optional[Any],  value if found, None if not found in entire chain.
 
 **Side effects:** None. Read-only.
 
@@ -669,7 +669,7 @@ class ExecResult:
 
 **Inputs:** kb (KnowledgeBase), kb_store (Dict[int, KnowledgeBase]).
 
-**Outputs:** Dict[str, Any] — complete visible binding set.
+**Outputs:** Dict[str, Any],  complete visible binding set.
 
 **Side effects:** None. Read-only.
 
@@ -720,7 +720,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Purpose:** Exact comparison operations on VDRFractions. All use cross-multiplication for closed objects, scalar projection for active objects. All pure.
 
-**Pattern:** Same pattern — VDRFraction inputs, simple output, no side effects.
+**Pattern:** Same pattern,  VDRFraction inputs, simple output, no side effects.
 
 #### vdr_compare
 **Inputs:** a (VDRFraction), b (VDRFraction). **Outputs:** str ("less", "equal", "greater").
@@ -815,7 +815,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Purpose:** 17 string operations. All pure, deterministic, bounded.
 
-**Pattern:** All follow identical structure — string inputs, string or bool or int or list output, no side effects. Listing by group:
+**Pattern:** All follow identical structure,  string inputs, string or bool or int or list output, no side effects. Listing by group:
 
 **Construction:** string_concat(a, b) → str. string_join(items, delim) → str. string_pad_left(s, width, fill) → str. chars_to_string(chars) → str.
 
@@ -1017,7 +1017,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 ### data_primitives/lock.py
 
-**Pattern:** Same as counter — functions operating on LockState within KB.
+**Pattern:** Same as counter,  functions operating on LockState within KB.
 
 #### lock_create
 **Inputs:** kb, name. **Side effects:** kb.locks[name] created.
@@ -1041,7 +1041,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 ### data_primitives/queue.py
 
-**Pattern:** Same — functions operating on BoundedQueue within KB.
+**Pattern:** Same,  functions operating on BoundedQueue within KB.
 
 #### queue_create
 **Inputs:** kb, name, capacity (int). **Side effects:** kb.queues[name] created.
@@ -1074,7 +1074,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 ### data_primitives/stack.py
 
-**Pattern:** Same — functions operating on BoundedStack within KB.
+**Pattern:** Same,  functions operating on BoundedStack within KB.
 
 #### stack_create
 **Inputs:** kb, name, capacity (int). **Side effects:** kb.stacks[name] created.
@@ -1156,7 +1156,7 @@ Delegates to: core/vdr.py VDR class methods.
 #### get_priority
 **Purpose:** Look up the priority weight for a concern.
 
-**Inputs:** concern (str), domain (str — "evidence", "lifecycle", "response").
+**Inputs:** concern (str), domain (str,  "evidence", "lifecycle", "response").
 
 **Outputs:** VDRFraction (priority weight).
 
@@ -1167,7 +1167,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** concern_a (str), concern_b (str), domain (str).
 
-**Outputs:** str — "a", "b", or "tradeoff_required".
+**Outputs:** str,  "a", "b", or "tradeoff_required".
 
 **Side effects:** None. Pure decision.
 
@@ -1178,7 +1178,7 @@ Delegates to: core/vdr.py VDR class methods.
 ### kb/constraint_engine.py
 
 #### check_constraint
-**Purpose:** Evaluate a single constraint's condition against the current KB state. The condition is a Prolog goal — evaluated by the rule engine.
+**Purpose:** Evaluate a single constraint's condition against the current KB state. The condition is a Prolog goal,  evaluated by the rule engine.
 
 **Inputs:** kb (KnowledgeBase), constraint (Constraint), kb_store (Dict[int, KnowledgeBase]).
 
@@ -1191,7 +1191,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** kb (KnowledgeBase), kb_store (Dict[int, KnowledgeBase]).
 
-**Outputs:** List[Constraint] — constraints that are violated.
+**Outputs:** List[Constraint],  constraints that are violated.
 
 **Side effects:** None.
 
@@ -1200,7 +1200,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** constraint (Constraint), kb (KnowledgeBase).
 
-**Outputs:** str — action taken ("warned", "blocked", "error_raised", "escalated").
+**Outputs:** str,  action taken ("warned", "blocked", "error_raised", "escalated").
 
 **Side effects:** Depends on on_violation: may log a warning fact, may block an operation, may raise error.
 
@@ -1223,7 +1223,7 @@ Delegates to: core/vdr.py VDR class methods.
 #### ScopeChain (class)
 **Purpose:** Represents the ordered list of KB IDs in scope for a given active topic.
 
-**Fields:** chain (List[int]) — ordered from current KB to root. secondary (List[int]) — explicitly activated secondary scopes.
+**Fields:** chain (List[int]),  ordered from current KB to root. secondary (List[int]),  explicitly activated secondary scopes.
 
 #### build_scope_chain
 **Purpose:** Given an active topic KB, build the scope chain by walking parent_id links to root, then adding global KB.
@@ -1239,7 +1239,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** scope_chain (ScopeChain), predicate (str), args (List[Optional[Any]]), kb_store (Dict[int, KnowledgeBase]).
 
-**Outputs:** List[Fact] — matches from first KB in scope that has any.
+**Outputs:** List[Fact],  matches from first KB in scope that has any.
 
 **Side effects:** None.
 
@@ -1248,7 +1248,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** predicate (str), args (List[Optional[Any]]), kb_store (Dict[int, KnowledgeBase]).
 
-**Outputs:** List[Tuple[str, Fact]] — (kb_path, fact) pairs.
+**Outputs:** List[Tuple[str, Fact]],  (kb_path, fact) pairs.
 
 **Side effects:** None.
 
@@ -1323,9 +1323,9 @@ Delegates to: core/vdr.py VDR class methods.
 #### parse_command_stream
 **Purpose:** Parse a mixed stream of text and command tokens. Text tokens are strings. Command tokens are structured invocations.
 
-**Inputs:** raw_stream (str — the LLM's output with CMD: prefixes).
+**Inputs:** raw_stream (str,  the LLM's output with CMD: prefixes).
 
-**Outputs:** List[Union[str, CommandToken]] — interleaved text and commands.
+**Outputs:** List[Union[str, CommandToken]],  interleaved text and commands.
 
 **Side effects:** None. Pure parsing.
 
@@ -1347,7 +1347,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** token (CommandToken), registry (BuiltinRegistry), path_registry (PathRegistry), kb_store (Dict[int, KnowledgeBase]), scope_chain (ScopeChain).
 
-**Outputs:** Result[Any] — the operation's output.
+**Outputs:** Result[Any],  the operation's output.
 
 **Side effects:** Depends on the command. Pure commands: none. KB commands: KB state modified. Op commands: external effects.
 
@@ -1356,7 +1356,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Inputs:** tokens (List[CommandToken]), registry, path_registry, kb_store, scope_chain.
 
-**Outputs:** Result[List[Any]] — results of each step.
+**Outputs:** Result[List[Any]],  results of each step.
 
 **Side effects:** Union of all step side effects.
 
@@ -1367,7 +1367,7 @@ Delegates to: core/vdr.py VDR class methods.
 #### Scratchpad (class)
 **Purpose:** A RingBuffer-based internal computation channel. The LLM's internal workspace. Created at session start.
 
-**Fields:** buffer (RingBuffer), path (str — "root.sessions.active.scratchpad").
+**Fields:** buffer (RingBuffer), path (str,  "root.sessions.active.scratchpad").
 
 #### write_entry
 **Inputs:** entry_type (str), content (Any), turn (int). **Side effects:** Entry written to ring buffer.
@@ -1384,7 +1384,7 @@ Delegates to: core/vdr.py VDR class methods.
 
 **Purpose:** 5 active arithmetic builtins wrapping core/active_mul.py.
 
-**Pattern:** Same as closed arithmetic — VDRFraction in, VDRFraction out, pure.
+**Pattern:** Same as closed arithmetic,  VDRFraction in, VDRFraction out, pure.
 
 #### vdr_active_add_same_d
 **Inputs:** a (VDRFraction), b (VDRFraction). Both must share d. **Outputs:** VDRFraction.
@@ -1406,7 +1406,7 @@ Delegates to: core/vdr.py VDR class methods.
 ### primitives/structure_ops.py
 
 #### vdr_lift
-**Inputs:** remainder (Any — int, CompositeRemainder, or FnRemainder), k (int). **Outputs:** remainder (same type family). Pure.
+**Inputs:** remainder (Any,  int, CompositeRemainder, or FnRemainder), k (int). **Outputs:** remainder (same type family). Pure.
 
 #### vdr_rebase
 **Inputs:** frac (VDRFraction), target_d (int). **Outputs:** VDRFraction. May produce mismatch witness. Pure.
@@ -1439,7 +1439,7 @@ Delegates to: core/vdr.py VDR class methods.
 **Inputs:** a (int), m (int). **Outputs:** Result[int]. Partial (gcd(a,m) != 1).
 
 #### vdr_extended_gcd
-**Inputs:** a (int), b (int). **Outputs:** Tuple[int, int, int] — (g, x, y) where a*x + b*y = g.
+**Inputs:** a (int), b (int). **Outputs:** Tuple[int, int, int],  (g, x, y) where a*x + b*y = g.
 
 #### vdr_is_prime
 **Inputs:** n (int). **Outputs:** bool.
@@ -1721,7 +1721,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** chain (List[BuiltinDef]).
 
-**Outputs:** List[str] — type mismatch descriptions. Empty if all compatible.
+**Outputs:** List[str],  type mismatch descriptions. Empty if all compatible.
 
 **Side effects:** None.
 
@@ -1730,7 +1730,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** chain (List[BuiltinDef]).
 
-**Outputs:** List[str] — all side effects that would occur.
+**Outputs:** List[str],  all side effects that would occur.
 
 **Side effects:** None.
 
@@ -1739,7 +1739,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** builtin_def (BuiltinDef), declared_effects (List[str]), observed_effects (List[str]).
 
-**Outputs:** List[str] — contract violations (undeclared effects or missing declared effects).
+**Outputs:** List[str],  contract violations (undeclared effects or missing declared effects).
 
 **Side effects:** None.
 
@@ -1792,7 +1792,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 **Inputs:** a (QBasis), b (QBasis). **Outputs:** QBasis.
 
 #### qbasis_mul
-**Inputs:** a (QBasis), b (QBasis). **Outputs:** Tuple[QBasis, VDRFraction] — (reprojected result, exact error bound).
+**Inputs:** a (QBasis), b (QBasis). **Outputs:** Tuple[QBasis, VDRFraction],  (reprojected result, exact error bound).
 
 #### qbasis_scalar_mul
 **Inputs:** scalar (VDRFraction), qb (QBasis). **Outputs:** QBasis.
@@ -1871,13 +1871,13 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 **Inputs:** frac (VDRFraction). **Outputs:** int.
 
 #### vdr_reproject_qbasis
-**Inputs:** frac (VDRFraction), exponent (int). **Outputs:** Tuple[VDRFraction, VDRFraction] — (reprojected, error bound).
+**Inputs:** frac (VDRFraction), exponent (int). **Outputs:** Tuple[VDRFraction, VDRFraction],  (reprojected, error bound).
 
 #### vdr_denom_budget_check
 **Inputs:** frac (VDRFraction), budget_bits (int). **Outputs:** bool (True if over budget).
 
 #### vdr_precision_state
-**Inputs:** frac (VDRFraction). **Outputs:** Dict — {denom_bits, denom_digits, is_closed, is_active, remainder_depth, node_count}.
+**Inputs:** frac (VDRFraction). **Outputs:** Dict,  {denom_bits, denom_digits, is_closed, is_active, remainder_depth, node_count}.
 
 ---
 
@@ -1964,13 +1964,13 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 **Side effects:** All counters reset, all locks released, all queues/stacks/rings/LRUs/bitsets cleared, scratchpad cleared.
 
 #### session_list
-**Inputs:** snapshot_store. **Outputs:** List[str] — snapshot names.
+**Inputs:** snapshot_store. **Outputs:** List[str],  snapshot names.
 
 #### session_diff
-**Inputs:** name_a (str), name_b (str), snapshot_store. **Outputs:** Dict — added, removed, changed primitives.
+**Inputs:** name_a (str), name_b (str), snapshot_store. **Outputs:** Dict,  added, removed, changed primitives.
 
 #### session_info
-**Inputs:** name (str), snapshot_store. **Outputs:** Result[Dict] — metadata. Partial.
+**Inputs:** name (str), snapshot_store. **Outputs:** Result[Dict],  metadata. Partial.
 
 ---
 
@@ -2003,16 +2003,16 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** notebook (InferenceNotebook), kb_store.
 
-**Outputs:** LoopPhase — the next phase to enter (formalize, conclude, halt, backtrack, branch).
+**Outputs:** LoopPhase,  the next phase to enter (formalize, conclude, halt, backtrack, branch).
 
 **Side effects:** steps_executed counter incremented. steps_since_evidence incremented.
 
 #### formalize
-**Purpose:** Placeholder for the LLM's creative step. In the Python prototype, this is a hook that accepts a callable representing what the LLM would do — write Prolog rules, construct a Python script, or assemble a primitive chain.
+**Purpose:** Placeholder for the LLM's creative step. In the Python prototype, this is a hook that accepts a callable representing what the LLM would do,  write Prolog rules, construct a Python script, or assemble a primitive chain.
 
 **Inputs:** notebook, action_fn (Callable).
 
-**Outputs:** Any — the formalized artifact (list of Facts for rules, str for script, List[CommandToken] for primitives).
+**Outputs:** Any,  the formalized artifact (list of Facts for rules, str for script, List[CommandToken] for primitives).
 
 **Side effects:** Artifacts may be asserted to notebook KB.
 
@@ -2021,7 +2021,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** artifact (Any), notebook, kb_store, registry, executor.
 
-**Outputs:** Result[Any] — execution result.
+**Outputs:** Result[Any],  execution result.
 
 **Side effects:** Per the artifact type.
 
@@ -2035,7 +2035,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 **Side effects:** KB facts asserted. evidence_count incremented. steps_since_evidence reset. Relevant bitset bits set. LRU updated with finding.
 
 #### run_loop
-**Purpose:** Execute the full assess→formalize→execute→store loop until termination. The action_fn parameter is called at each formalize step — in the prototype this is provided by test code, in production it would be the LLM.
+**Purpose:** Execute the full assess→formalize→execute→store loop until termination. The action_fn parameter is called at each formalize step,  in the prototype this is provided by test code, in production it would be the LLM.
 
 **Inputs:** notebook, action_fn (Callable that takes notebook state and returns formalized artifact), kb_store, registry, executor, max_iterations (int).
 
@@ -2060,7 +2060,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 **Inputs:** analogy_strength (VDRFraction), source_confidence (VDRFraction). **Outputs:** VDRFraction. strength * source.
 
 #### propagate_through_chain
-**Inputs:** chain (List[Tuple[str, VDRFraction]]) — (step_type, step_confidence) pairs. **Outputs:** VDRFraction — overall chain confidence.
+**Inputs:** chain (List[Tuple[str, VDRFraction]]),  (step_type, step_confidence) pairs. **Outputs:** VDRFraction,  overall chain confidence.
 
 **Side effects:** None. All pure computation.
 
@@ -2073,7 +2073,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** fact (Fact), source_type (str), confidence (VDRFraction), notebook, turn.
 
-**Outputs:** Dict — the evidence record.
+**Outputs:** Dict,  the evidence record.
 
 **Side effects:** Evidence record asserted to notebook KB.
 
@@ -2091,7 +2091,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** conclusion_id (str), notebook.
 
-**Outputs:** List[Dict] — ordered chain from evidence to conclusion.
+**Outputs:** List[Dict],  ordered chain from evidence to conclusion.
 
 **Side effects:** None. Read-only.
 
@@ -2100,7 +2100,7 @@ All follow identical IOSE pattern: pure, deterministic, bounded, exact Gregorian
 
 **Inputs:** counter_fact (Fact), conclusion_id (str), notebook, kb_store.
 
-**Outputs:** Dict — {conclusion_still_holds: bool, new_confidence: VDRFraction, affected_links: List}.
+**Outputs:** Dict,  {conclusion_still_holds: bool, new_confidence: VDRFraction, affected_links: List}.
 
 **Side effects:** Counter-fact asserted. Conclusion may be retracted or confidence downgraded.
 
@@ -2158,7 +2158,7 @@ All methods delegate to Python subprocess and os modules. Each method logs to th
 ### ops/grants.py
 
 #### GrantStore (class)
-**Purpose:** Stores and validates grants. Grants follow the KB hierarchy — inherited from parent KBs.
+**Purpose:** Stores and validates grants. Grants follow the KB hierarchy,  inherited from parent KBs.
 
 #### add_grant
 **Inputs:** grant (Grant). **Side effects:** Grant stored.
@@ -2168,7 +2168,7 @@ All methods delegate to Python subprocess and os modules. Each method logs to th
 
 **Inputs:** operation_class (str), operation_type (str), location (str), user (str).
 
-**Outputs:** Result[Grant] — the matching grant, or error if none found.
+**Outputs:** Result[Grant],  the matching grant, or error if none found.
 
 **Side effects:** None for check. Grant.use() called on execution.
 
@@ -2176,7 +2176,7 @@ All methods delegate to Python subprocess and os modules. Each method logs to th
 **Inputs:** grant (Grant). **Side effects:** uses_remaining decremented. Status may change to EXHAUSTED.
 
 #### list_effective_grants
-**Inputs:** user (str), kb_store. **Outputs:** List[Grant] — all grants in user's ancestry chain.
+**Inputs:** user (str), kb_store. **Outputs:** List[Grant],  all grants in user's ancestry chain.
 
 ---
 
@@ -2233,7 +2233,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 
 **Inputs:** notebook, premises (List[Fact]), rules (List[Rule]), goal (Fact), kb_store.
 
-**Outputs:** List[Binding] — all satisfying bindings.
+**Outputs:** List[Binding],  all satisfying bindings.
 
 **Side effects:** Premises and rules asserted to notebook KB.
 
@@ -2242,7 +2242,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 
 **Inputs:** notebook, evidence (List[Fact]), scoring_rules (List[Rule]), kb_store.
 
-**Outputs:** List[Tuple[str, VDRFraction]] — hypotheses ranked by score.
+**Outputs:** List[Tuple[str, VDRFraction]],  hypotheses ranked by score.
 
 **Side effects:** Evidence and rules asserted.
 
@@ -2251,7 +2251,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 
 **Inputs:** notebook, observations (List[Fact]), causal_rules (List[Rule]), kb_store.
 
-**Outputs:** List[str] — possible causes.
+**Outputs:** List[str],  possible causes.
 
 **Side effects:** Observations and rules asserted.
 
@@ -2260,7 +2260,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 
 **Inputs:** notebook, source_facts (List[Fact]), target_facts (List[Fact]), mapping_rules (List[Rule]), kb_store.
 
-**Outputs:** List[Tuple[Fact, VDRFraction]] — transferred conclusions with analogy strength.
+**Outputs:** List[Tuple[Fact, VDRFraction]],  transferred conclusions with analogy strength.
 
 **Side effects:** All facts and rules asserted.
 
@@ -2328,7 +2328,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 #### run_benchmark
 **Inputs:** checkpoint_kb, benchmark_name (str), test_data (List), env (EnvironmentInterface), kb_store.
 
-**Outputs:** Dict — {metric_name: VDRFraction} for each measured metric.
+**Outputs:** Dict,  {metric_name: VDRFraction} for each measured metric.
 
 **Side effects:** Evaluation KB created with results.
 
@@ -2342,7 +2342,7 @@ Each verifies network grant, executes via Python urllib/socket, logs.
 #### compare_checkpoints
 **Inputs:** eval_kb_a, eval_kb_b.
 
-**Outputs:** Dict — {benchmark: {metric: (score_a, score_b, delta)}}.
+**Outputs:** Dict,  {benchmark: {metric: (score_a, score_b, delta)}}.
 
 **Side effects:** None.
 
@@ -2494,7 +2494,7 @@ Each verifies lint grant (read-only), delegates, logs, returns analysis results.
 
 **Inputs:** monitoring_kb, kb_store.
 
-**Outputs:** List[Dict] — triggered watches with details.
+**Outputs:** List[Dict],  triggered watches with details.
 
 **Side effects:** Triggered watch facts asserted.
 
@@ -2506,7 +2506,7 @@ Each verifies lint grant (read-only), delegates, logs, returns analysis results.
 #### detect_drift
 **Inputs:** monitoring_kb, baseline_metrics (Dict), current_metrics (Dict).
 
-**Outputs:** List[Dict] — metrics that have drifted beyond thresholds.
+**Outputs:** List[Dict],  metrics that have drifted beyond thresholds.
 
 **Side effects:** Drift events asserted if detected.
 

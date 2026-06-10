@@ -10,7 +10,7 @@
 
 ### 1. PROGRAM OBJECTIVE
 
-Determine whether the Standard Model's integer structure — specifically the SU(2) beta coefficient b₂ and the QED vacuum polarization step size α/(3π) — quantitatively connects particle physics observables to cosmological observables through soliton boundary corrections.
+Determine whether the Standard Model's integer structure,  specifically the SU(2) beta coefficient b₂ and the QED vacuum polarization step size α/(3π),  quantitatively connects particle physics observables to cosmological observables through soliton boundary corrections.
 
 The program produces one of three outcomes:
 
@@ -41,7 +41,7 @@ Each signal has a specific verification protocol and a specific falsification cr
 
 **Falsification criterion:** If the real galaxy survey boundary count to the CMB is outside [30, 300], the VP step connection at k=1 fails. (It could reappear at a different k for a different N, but the specific N=100 / k=1 match is dead.)
 
-**Script to write:** `phys25_vp_step_twoloop.py` — computes the two-loop VP step size in Fraction arithmetic using A₂ from the library, and recomputes the ratio.
+**Script to write:** `phys25_vp_step_twoloop.py`,  computes the two-loop VP step size in Fraction arithmetic using A₂ from the library, and recomputes the ratio.
 
 **Data needed:** Galaxy survey boundary count estimates. These come from published galaxy number density (~0.1 per Mpc³) times line-of-sight distance to CMB (~14 Gpc). Rough estimate: ~1400 galaxies, but "major structures" (massive enough to produce significant correction) may be ~100-200. Published catalogs (SDSS, 2MASS) provide this.
 
@@ -61,7 +61,7 @@ Each signal has a specific verification protocol and a specific falsification cr
 
 **Falsification criterion:** If two-loop corrections move the effective exponent more than 3 units away from 57 (i.e., outside [54, 60]), the connection between Λ and b₂ is broken. If the needed prefactor is not a simple expression, the formula is numerology rather than structure.
 
-**Script to write:** `phys25_lambda_from_b2.py` — computes Λ from α^(3 × b₂_num) at one-loop and two-loop, with explicit prefactor extraction.
+**Script to write:** `phys25_lambda_from_b2.py`,  computes Λ from α^(3 × b₂_num) at one-loop and two-loop, with explicit prefactor extraction.
 
 **Data needed:** Two-loop SM beta coefficients (published, e.g., Machacek-Vaughn 1983-84). The two-loop b₂ for the SM is b₂^(2) = 136/3 (from the SM with one Higgs doublet). This shifts the effective running but the exact impact on the exponent 57 requires computation.
 
@@ -79,7 +79,7 @@ Each signal has a specific verification protocol and a specific falsification cr
 
 **Falsification criterion:** If the statistical control shows >5% expected hit rate, the match is not significant. If updated measurements move DM/baryon away from (22/13)π by >2σ, the match is dead.
 
-**Script to write:** `phys25_dm_ratio_test.py` — statistical control (random rational × π scan) plus updated measurement comparison.
+**Script to write:** `phys25_dm_ratio_test.py`,  statistical control (random rational × π scan) plus updated measurement comparison.
 
 **Data needed:** Latest Planck/ACT/SPT Ω_DM and Ω_b values with uncertainties.
 
@@ -96,7 +96,7 @@ Each signal has a specific verification protocol and a specific falsification cr
 
 **Falsification criterion:** If the 20/13 = (3|b₃_mod|)/|b₂_mod_num| identity does NOT hold exactly, the connection to beta coefficients is broken and the hit is numerical coincidence. If the identity holds, the connection is algebraic and warrants derivation.
 
-**Script to write:** `phys25_product_form_verify.py` — tests the 20/13 identity against beta coefficients, performs statistical control.
+**Script to write:** `phys25_product_form_verify.py`,  tests the 20/13 identity against beta coefficients, performs statistical control.
 
 **Data needed:** None beyond the library. All beta coefficients are in phys24_lib.py.
 
@@ -111,11 +111,11 @@ Each signal has a specific verification protocol and a specific falsification cr
 **Verification protocol:**
 1. This identity is algebraic, not numerical. It does not need statistical testing. It needs PHYSICAL INTERPRETATION. Why does the exponent of the cosmological constant scale as 3 × |b₂_num|? What physical mechanism makes Λ proportional to α raised to a power determined by the SU(2) beta function?
 2. Test the formula at two loops. If the two-loop effective b₂ is (−19 + δ)/6, the exponent becomes 3 × (19 − δ). Compute δ from the known two-loop coefficient and check whether the shifted exponent gives a better or worse match to Λ.
-3. Test the formula for other gauge groups. If Λ ∝ α^(3 × |b₂_num|), does the same structure hold with b₁ or b₃? Compute α^(3 × |b₁_num|) = α^(3 × 41) = α^123. This gives 10^−262.8 — far below Λ. Compute α^(3 × |b₃_num|) = α^(3 × 7) = α^21. This gives 10^−44.9 — far above Λ. Only b₂ (the SU(2) coefficient) gives the right order of magnitude. This is a non-trivial selection: of the three gauge groups, only SU(2) produces an exponent in the right range.
+3. Test the formula for other gauge groups. If Λ ∝ α^(3 × |b₂_num|), does the same structure hold with b₁ or b₃? Compute α^(3 × |b₁_num|) = α^(3 × 41) = α^123. This gives 10^−262.8,  far below Λ. Compute α^(3 × |b₃_num|) = α^(3 × 7) = α^21. This gives 10^−44.9,  far above Λ. Only b₂ (the SU(2) coefficient) gives the right order of magnitude. This is a non-trivial selection: of the three gauge groups, only SU(2) produces an exponent in the right range.
 
-**Falsification criterion:** If the two-loop shift moves the exponent outside [54, 60] for the SM or outside [36, 42] for the VL version, the quantitative connection to Λ is broken. The algebraic identity 57/39 = 19/13 remains true regardless — it is an algebraic fact. What can be falsified is the INTERPRETATION that these exponents have physical meaning for the cosmological constant.
+**Falsification criterion:** If the two-loop shift moves the exponent outside [54, 60] for the SM or outside [36, 42] for the VL version, the quantitative connection to Λ is broken. The algebraic identity 57/39 = 19/13 remains true regardless,  it is an algebraic fact. What can be falsified is the INTERPRETATION that these exponents have physical meaning for the cosmological constant.
 
-**Script to write:** `phys25_b2_exponent_test.py` — tests all three gauge groups, two-loop shifts, prefactor extraction.
+**Script to write:** `phys25_b2_exponent_test.py`,  tests all three gauge groups, two-loop shifts, prefactor extraction.
 
 **Data needed:** Two-loop SM beta coefficients (published).
 
@@ -233,18 +233,18 @@ START
 ### 5. TIMELINE AND ORDERING
 
 **Phase 1 (immediate, this session if time permits):**
-- phys25_lambda_from_b2.py — the Λ exponent test is the highest-information-content computation. If 57 is wrong at two loops, half the program collapses immediately. If it's right, the entire program is energized.
-- phys25_product_form_verify.py — the 20/13 identity check is pure algebra on library values. Takes 10 minutes. Immediately upgrades or kills Signal 4.
+- phys25_lambda_from_b2.py,  the Λ exponent test is the highest-information-content computation. If 57 is wrong at two loops, half the program collapses immediately. If it's right, the entire program is energized.
+- phys25_product_form_verify.py,  the 20/13 identity check is pure algebra on library values. Takes 10 minutes. Immediately upgrades or kills Signal 4.
 
 **Phase 2 (next session):**
-- phys25_vp_step_twoloop.py — requires encoding the two-loop VP coefficient, which involves A₂ from the library.
-- phys25_galaxy_boundary_count.py — requires looking up published galaxy density numbers.
-- phys25_dm_ratio_test.py — requires the statistical control scan.
+- phys25_vp_step_twoloop.py,  requires encoding the two-loop VP coefficient, which involves A₂ from the library.
+- phys25_galaxy_boundary_count.py,  requires looking up published galaxy density numbers.
+- phys25_dm_ratio_test.py,  requires the statistical control scan.
 
 **Phase 3 (after Phase 2 results):**
-- phys25_b2_exponent_test.py — comprehensive test of all gauge groups.
-- phys25_directional_h0.py — directional predictions from mock or real census.
-- phys25_three_param_fit.py — calibrated fit with void anti-corrections.
+- phys25_b2_exponent_test.py,  comprehensive test of all gauge groups.
+- phys25_directional_h0.py,  directional predictions from mock or real census.
+- phys25_three_param_fit.py,  calibrated fit with void anti-corrections.
 
 **Phase 4 (if Outcome A):**
 - Paper: "The SU(2) Beta Coefficient and the Cosmological Constant" or similar.
@@ -257,7 +257,7 @@ START
 
 This program is NOT a claim that QED produces GR. It is a search for quantitative connections between QED integers and GR observables through the soliton boundary mechanism. The connections may be coincidental, approximate, or exact. The program determines which.
 
-This program does NOT replace the PHYS-25 normalization paper. The convention discrepancy (VL beta shifts, 2× vs 4× scalar) is a separate finding with its own resolution path. The QED-to-GR program USES the VL beta shifts but does not depend on the convention question — it uses the library values (1/15, 1, 1/3) which are supported by the gap ratio test regardless of which scalar convention produced them.
+This program does NOT replace the PHYS-25 normalization paper. The convention discrepancy (VL beta shifts, 2× vs 4× scalar) is a separate finding with its own resolution path. The QED-to-GR program USES the VL beta shifts but does not depend on the convention question,  it uses the library values (1/15, 1, 1/3) which are supported by the gap ratio test regardless of which scalar convention produced them.
 
 This program does NOT claim to solve the cosmological constant problem, the dark matter problem, or the Hubble tension. It claims to TEST whether these problems are connected to the SM gauge structure through specific, computable, falsifiable formulas. The formulas are stated. The tests are specified. The outcomes are enumerated.
 

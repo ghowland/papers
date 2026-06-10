@@ -11,13 +11,13 @@ Each recipe is self-contained. Copy, paste, run. Every result is exact.
 1. [Basic Arithmetic](#1-basic-arithmetic)
 2. [Return-to-Origin Test](#2-return-to-origin-test)
 3. [Exact Matrix Inverse](#3-exact-matrix-inverse)
-4. [Hilbert Matrix — Where Float Fails](#4-hilbert-matrix--where-float-fails)
+4. [Hilbert Matrix,  Where Float Fails](#4-hilbert-matrix--where-float-fails)
 5. [Newton Square Root](#5-newton-square-root)
 6. [Square Root of Any Rational](#6-square-root-of-any-rational)
 7. [Exact Polynomial Interpolation](#7-exact-polynomial-interpolation)
-8. [Polynomial GCD — Exact Zero-Testing](#8-polynomial-gcd--exact-zero-testing)
+8. [Polynomial GCD,  Exact Zero-Testing](#8-polynomial-gcd--exact-zero-testing)
 9. [Bayesian Updating Chain](#9-bayesian-updating-chain)
-10. [Binomial PMF — Sum Exactly 1](#10-binomial-pmf--sum-exactly-1)
+10. [Binomial PMF,  Sum Exactly 1](#10-binomial-pmf--sum-exactly-1)
 11. [Markov Chain Steady State](#11-markov-chain-steady-state)
 12. [RSA Encrypt-Decrypt Roundtrip](#12-rsa-encrypt-decrypt-roundtrip)
 13. [Fibonacci via Matrix Power](#13-fibonacci-via-matrix-power)
@@ -28,41 +28,41 @@ Each recipe is self-contained. Copy, paste, run. Every result is exact.
 18. [Continued Fraction Roundtrip](#18-continued-fraction-roundtrip)
 19. [Exact Definite Integral](#19-exact-definite-integral)
 20. [Discrete Derivative and Finite Differences](#20-discrete-derivative-and-finite-differences)
-21. [Exact Softmax — Sum to 1](#21-exact-softmax--sum-to-1)
+21. [Exact Softmax,  Sum to 1](#21-exact-softmax--sum-to-1)
 22. [Neural Network Forward-Backward](#22-neural-network-forward-backward)
 23. [Training Loop with Exact Gradients](#23-training-loop-with-exact-gradients)
 24. [Autodiff Computation Graph](#24-autodiff-computation-graph)
 25. [Exact Self-Attention](#25-exact-self-attention)
-26. [DFT Roundtrip — Perfect Reconstruction](#26-dft-roundtrip--perfect-reconstruction)
-27. [IIR Filter — Zero Drift](#27-iir-filter--zero-drift)
+26. [DFT Roundtrip,  Perfect Reconstruction](#26-dft-roundtrip--perfect-reconstruction)
+27. [IIR Filter,  Zero Drift](#27-iir-filter--zero-drift)
 28. [Convolution and Deconvolution](#28-convolution-and-deconvolution)
 29. [Exact Dijkstra Shortest Path](#29-exact-dijkstra-shortest-path)
-30. [PageRank — Sum Exactly 1](#30-pagerank--sum-exactly-1)
-31. [Shapley Values — Sum to v(N)](#31-shapley-values--sum-to-vn)
+30. [PageRank,  Sum Exactly 1](#30-pagerank--sum-exactly-1)
+31. [Shapley Values,  Sum to v(N)](#31-shapley-values--sum-to-vn)
 32. [Cournot Duopoly Equilibrium](#32-cournot-duopoly-equilibrium)
 33. [Hamming Code Error Correction](#33-hamming-code-error-correction)
 34. [Exact Betti Numbers](#34-exact-betti-numbers)
 35. [LLL Lattice Reduction](#35-lll-lattice-reduction)
 36. [Cayley-Hamilton Verification](#36-cayley-hamilton-verification)
-37. [State-Space Evolution — Zero Drift](#37-state-space-evolution--zero-drift)
+37. [State-Space Evolution,  Zero Drift](#37-state-space-evolution--zero-drift)
 38. [Transfer Function Evaluation](#38-transfer-function-evaluation)
 39. [Haar Wavelet Perfect Reconstruction](#39-haar-wavelet-perfect-reconstruction)
-40. [Tent Map — Exact Period Detection](#40-tent-map--exact-period-detection)
+40. [Tent Map,  Exact Period Detection](#40-tent-map--exact-period-detection)
 41. [Q335 Constants and Arithmetic](#41-q335-constants-and-arithmetic)
 42. [Borwein Zeta Acceleration](#42-borwein-zeta-acceleration)
 43. [Elliptic Integral Computation](#43-elliptic-integral-computation)
 44. [QED A₂ Coefficient](#44-qed-a₂-coefficient)
 45. [Spin Rotation Periodicity](#45-spin-rotation-periodicity)
 46. [Kepler Orbit Closure](#46-kepler-orbit-closure)
-47. [Optical System — Symplecticity](#47-optical-system--symplecticity)
+47. [Optical System,  Symplecticity](#47-optical-system--symplecticity)
 48. [Helmert Transformation Roundtrip](#48-helmert-transformation-roundtrip)
 49. [Ising Model Partition Function](#49-ising-model-partition-function)
 50. [Crystal Point Group Closure](#50-crystal-point-group-closure)
-51. [Truss Structure — Exact Equilibrium](#51-truss-structure--exact-equilibrium)
-52. [Diffusion Schedule — Exact Cumulative Product](#52-diffusion-schedule--exact-cumulative-product)
-53. [DDIM Roundtrip — Exactly Zero Error](#53-ddim-roundtrip--exactly-zero-error)
+51. [Truss Structure,  Exact Equilibrium](#51-truss-structure--exact-equilibrium)
+52. [Diffusion Schedule,  Exact Cumulative Product](#52-diffusion-schedule--exact-cumulative-product)
+53. [DDIM Roundtrip,  Exactly Zero Error](#53-ddim-roundtrip--exactly-zero-error)
 54. [Multi-Cycle Drift Test](#54-multi-cycle-drift-test)
-55. [Q335 Multiplication — D Stays Fixed](#55-q335-multiplication--d-stays-fixed)
+55. [Q335 Multiplication,  D Stays Fixed](#55-q335-multiplication--d-stays-fixed)
 56. [Custom D-Frame Arithmetic](#56-custom-d-frame-arithmetic)
 57. [Rebase Between Frames](#57-rebase-between-frames)
 58. [JSON Serialization Roundtrip](#58-json-serialization-roundtrip)
@@ -129,7 +129,7 @@ print("M * M^-1 = I exactly")
 
 ---
 
-## 4. Hilbert Matrix — Where Float Fails
+## 4. Hilbert Matrix,  Where Float Fails
 
 ```python
 from vdr import VDR
@@ -213,12 +213,12 @@ for x, y in points:
 
 # Evaluate at a new point
 print("p(1/2) =", poly_eval(p, VDR(1, 2)))
-# Exact — no Runge phenomenon from arithmetic
+# Exact,  no Runge phenomenon from arithmetic
 ```
 
 ---
 
-## 8. Polynomial GCD — Exact Zero-Testing
+## 8. Polynomial GCD,  Exact Zero-Testing
 
 ```python
 from vdr import VDR
@@ -255,12 +255,12 @@ for i, p in enumerate(posteriors):
     print("After evidence %d: P(H) = %s = %s" % (
         i+1, p, p.to_fraction()))
 
-# Every posterior is exact — no accumulation from 5 updates
+# Every posterior is exact,  no accumulation from 5 updates
 ```
 
 ---
 
-## 10. Binomial PMF — Sum Exactly 1
+## 10. Binomial PMF,  Sum Exactly 1
 
 ```python
 from vdr import VDR
@@ -337,7 +337,7 @@ for n in [10, 20, 30, 50]:
     fib_n = Fn[0, 1]
     print("F(%d) = %s" % (n, fib_n))
 
-# F(50) = 12586269025 — exact, no overflow concern
+# F(50) = 12586269025,  exact, no overflow concern
 ```
 
 ---
@@ -372,7 +372,7 @@ for n in range(0, 20, 2):
     bn = bernoulli(n)
     print("B(%2d) = %s" % (n, bn.to_fraction()))
 
-# B(12) = -691/2730 — denominator has factors 2·3·5·7·13
+# B(12) = -691/2730,  denominator has factors 2·3·5·7·13
 # Decimal would truncate. VDR: exact.
 ```
 
@@ -478,7 +478,7 @@ print("Δ⁴(x³) at 0 =", d4g(VDR(0)), "— exactly zero")
 
 ---
 
-## 21. Exact Softmax — Sum to 1
+## 21. Exact Softmax,  Sum to 1
 
 ```python
 from vdr import VDR
@@ -605,7 +605,7 @@ for i, v in enumerate(out):
 
 ---
 
-## 26. DFT Roundtrip — Perfect Reconstruction
+## 26. DFT Roundtrip,  Perfect Reconstruction
 
 ```python
 from vdr import VDR
@@ -625,7 +625,7 @@ print("Parseval energy identity: exact")
 
 ---
 
-## 27. IIR Filter — Zero Drift
+## 27. IIR Filter,  Zero Drift
 
 ```python
 from vdr import VDR
@@ -659,7 +659,7 @@ print("Conv:", y)  # [1, 3, 5, 3]
 
 recovered = deconvolve(y, b)
 print("Deconv:", recovered)
-# recovered == a — exact inverse
+# recovered == a,  exact inverse
 ```
 
 ---
@@ -685,7 +685,7 @@ for node in sorted(dist.keys()):
 
 ---
 
-## 30. PageRank — Sum Exactly 1
+## 30. PageRank,  Sum Exactly 1
 
 ```python
 from vdr import VDR
@@ -707,7 +707,7 @@ print("Sum:", total, "— exactly 1")
 
 ---
 
-## 31. Shapley Values — Sum to v(N)
+## 31. Shapley Values,  Sum to v(N)
 
 ```python
 from vdr import VDR
@@ -811,14 +811,14 @@ basis = [
     Vec.from_ints([10, 10, 1]),
 ]
 
-# Gram-Schmidt — cross-dot products exactly 0
+# Gram-Schmidt,  cross-dot products exactly 0
 ortho, mu = gram_schmidt_exact(basis)
 for i in range(3):
     for j in range(i):
         assert ortho[i].dot(ortho[j]) == VDR(0)
 print("Gram-Schmidt: all cross-dots exactly 0")
 
-# LLL — exact Lovász condition, no float rounding
+# LLL,  exact Lovász condition, no float rounding
 reduced = lll_reduce(basis)
 print("LLL reduced basis:")
 for v in reduced:
@@ -845,7 +845,7 @@ print("Cayley-Hamilton: p(A) = 0 exactly (every entry [0, 1, 0])")
 
 ---
 
-## 37. State-Space Evolution — Zero Drift
+## 37. State-Space Evolution,  Zero Drift
 
 ```python
 from vdr import VDR
@@ -860,7 +860,7 @@ inputs = [Vec.from_ints([0, 0])] * 100
 traj = state_evolve(A, B, x0, inputs)
 print("Initial state:", traj[0])
 print("After 100 steps:", traj[100])
-print("All 101 states are exact rationals — zero drift")
+print("All 101 states are exact rationals,  zero drift")
 ```
 
 ---
@@ -914,7 +914,7 @@ print("64-sample 6-level roundtrip: exact")
 
 ---
 
-## 40. Tent Map — Exact Period Detection
+## 40. Tent Map,  Exact Period Detection
 
 ```python
 from vdr import VDR
@@ -985,7 +985,7 @@ from vdr import VDR
 from vdr.math.transcendental import elliptic_k, elliptic_e
 from vdr.export import to_decimal
 
-# K(k) at k² = 1/4 — fastest convergence
+# K(k) at k² = 1/4,  fastest convergence
 k1 = elliptic_k(VDR(1, 4), terms=200)
 print("K(1/2) ≈", to_decimal(k1, 20))
 
@@ -1058,7 +1058,7 @@ print("After one orbit: (%s, %s)" % (
 
 ---
 
-## 47. Optical System — Symplecticity
+## 47. Optical System,  Symplecticity
 
 ```python
 from vdr import VDR
@@ -1142,7 +1142,7 @@ print("Closed under multiplication:", closed)
 
 ---
 
-## 51. Truss Structure — Exact Equilibrium
+## 51. Truss Structure,  Exact Equilibrium
 
 ```python
 from vdr import VDR
@@ -1161,7 +1161,7 @@ print("K @ u == F: exact (not 'residual < 1e-10')")
 
 ---
 
-## 52. Diffusion Schedule — Exact Cumulative Product
+## 52. Diffusion Schedule,  Exact Cumulative Product
 
 ```python
 from vdr import VDR
@@ -1183,7 +1183,7 @@ print("Cumulative product matches Fraction: bit-identical")
 
 ---
 
-## 53. DDIM Roundtrip — Exactly Zero Error
+## 53. DDIM Roundtrip,  Exactly Zero Error
 
 ```python
 from vdr import VDR
@@ -1223,7 +1223,7 @@ print("Error does NOT grow across cycles")
 
 ---
 
-## 55. Q335 Multiplication — D Stays Fixed
+## 55. Q335 Multiplication,  D Stays Fixed
 
 ```python
 from vdr import VDR
@@ -1337,7 +1337,7 @@ Template for adding a new domain to VDR.
 
 ```python
 """
-vdr.math.my_domain — Exact my-domain computations.
+vdr.math.my_domain,  Exact my-domain computations.
 
     from vdr.math.my_domain import my_function
     result = my_function(VDR(1, 3))
@@ -1358,7 +1358,7 @@ def my_function(x):
     I: x as VDR
     O: result as VDR, exact
     """
-    # Use only VDR operations — everything stays exact
+    # Use only VDR operations,  everything stays exact
     result = x * x + VDR(1) / x
     return result
 
@@ -1379,7 +1379,7 @@ from vdr.math.transcendental import sqrt_newton
 def my_sqrt_function(n):
     """Compute something involving sqrt."""
     s = sqrt_newton(VDR(n), depth=10)
-    return s * s  # should be very close to n — check residual exactly
+    return s * s  # should be very close to n,  check residual exactly
 
 # Test pattern: always verify with == not tolerance
 def verify_my_property(x):
@@ -1419,6 +1419,6 @@ class TestMyDomain:
 
 5. **Use functional remainders for irrationals.** `sqrt_newton(VDR(2), depth=10)` not `math.sqrt(2)`.
 
-6. **Let normalization work.** Don't manually reduce fractions — `.normalize()` handles it.
+6. **Let normalization work.** Don't manually reduce fractions,  `.normalize()` handles it.
 
 7. **D never changes.** If you're in a fixed frame (Q335 or otherwise), multiplication uses divmod. Overflow goes to R. D stays fixed. Zero loss.

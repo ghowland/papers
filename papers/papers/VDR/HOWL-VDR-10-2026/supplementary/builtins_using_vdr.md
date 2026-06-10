@@ -1,5 +1,5 @@
 % ================================================================
-% VDR-LLM-Prolog — Numbers and Mathematics Specification
+% VDR-LLM-Prolog,  Numbers and Mathematics Specification
 % Comprehensive Builtin Specification for Numeric Types and
 % Mathematical Operations
 %
@@ -14,11 +14,11 @@
 % layer through the same command token interface.
 %
 % Layers (inner to outer):
-%   1. VDR exact fractions — the ground truth
-%   2. Arbitrary-precision integers — for counting, indexing, IDs
-%   3. Decimal display — for human-facing output
-%   4. Q-basis compressed — for transcendental constants
-%   5. Functional remainder — for convergent series
+%   1. VDR exact fractions,  the ground truth
+%   2. Arbitrary-precision integers,  for counting, indexing, IDs
+%   3. Decimal display,  for human-facing output
+%   4. Q-basis compressed,  for transcendental constants
+%   5. Functional remainder,  for convergent series
 %
 % Every layer has IOSE declarations.
 % Every operation between layers has a declared conversion
@@ -370,7 +370,7 @@ builtin(vdr_lift, vdr_structure_ops,
     "Remainder transport operator.
      lift(r, k) = k*r for atomic remainder.
      lift(r + X1..Xn, k) = k*r + lift(X1,k) + ... + lift(Xn,k).
-     lift([V,D,R], k) = [k*V, D, lift(R,k)] — D preserved.
+     lift([V,D,R], k) = [k*V, D, lift(R,k)],  D preserved.
      Properties: identity at k=1, negation at k=-1,
      multiplicative composition, distributes over addition").
 
@@ -751,7 +751,7 @@ builtin(qbasis_scalar_mul, qbasis_ops,
 builtin(qbasis_to_fraction, qbasis_ops,
     iose([qbasis], [vdr_fraction], []),
     [pure, deterministic, bounded],
-    "Convert Q-basis to VDR fraction. Always exact —
+    "Convert Q-basis to VDR fraction. Always exact, 
      qbasis [p, 2^k, 0] IS a VDR fraction already").
 
 builtin(qbasis_get_constant, qbasis_ops,
@@ -773,7 +773,7 @@ builtin(qbasis_precision_bits, qbasis_ops,
 %
 % Deferred exact computation via convergent series and
 % Newton iteration. Each depth produces a complete exact
-% rational — not an approximation of a limit.
+% rational,  not an approximation of a limit.
 % ================================================================
 
 builtin(fn_sqrt, functional_remainder_ops,
@@ -1353,7 +1353,7 @@ builtin(pagerank_exact, graph_math_ops,
 % Counting, indexing, string lengths, loop bounds, bit operations.
 % Also decimal display for user-facing output.
 %
-% These are NOT separate from VDR — every integer IS a VDR
+% These are NOT separate from VDR,  every integer IS a VDR
 % fraction [N, 1, 0]. These builtins are performance paths
 % that avoid unnecessary denominator arithmetic when the
 % denominator is known to be 1.
@@ -1476,7 +1476,7 @@ builtin(bit_width, bit_ops,
 % path based on operand types. Integer operations use the fast
 % integer path. Mixed integer-fraction operations promote the
 % integer to VDR fraction. The LLM does not need to track types
-% explicitly — the dispatch is transparent.
+% explicitly,  the dispatch is transparent.
 % ================================================================
 
 % Dispatch rules for arithmetic
@@ -1515,7 +1515,7 @@ rule(promote(qbasis, vdr_fraction, qbasis(P, K), Promoted) :-
 %
 % Denominators grow through operations. The system tracks growth
 % and provides tools for controlled reprojection when denominators
-% exceed budgets. This is NOT silent truncation — every
+% exceed budgets. This is NOT silent truncation,  every
 % reprojection is declared, logged, and bounded.
 % ================================================================
 
@@ -1537,7 +1537,7 @@ builtin(vdr_reproject_qbasis, denominator_mgmt,
      Error bounded by 2^(-K-1).
      The reprojection is declared: the caller knows precision
      was reduced and by exactly how much.
-     This is the antidote to float's silent truncation —
+     This is the antidote to float's silent truncation, 
      controlled precision reduction with exact error tracking").
 
 builtin(vdr_denom_budget_check, denominator_mgmt,

@@ -2,7 +2,7 @@
 
 ### The Principle
 
-Nothing in the system is hidden from itself or from an authorized user. Every KB, every fact, every binding, every constraint, every derivation, every topic state is queryable, surfaceable, and directly addressable. The system does not need to reconstruct or paraphrase its own state — it can point directly at the structured data and say "here it is."
+Nothing in the system is hidden from itself or from an authorized user. Every KB, every fact, every binding, every constraint, every derivation, every topic state is queryable, surfaceable, and directly addressable. The system does not need to reconstruct or paraphrase its own state,  it can point directly at the structured data and say "here it is."
 
 This is a fundamental departure from how LLMs currently work. A current LLM has internal activations that are opaque tensors. If a user asks "what do you know about Bob," the model generates tokens that approximate its internal state. The tokens might be wrong. They might be incomplete. They might hallucinate facts that are not actually represented anywhere. The model's internal state and its verbal report about that state are two completely different things, and there is no mechanism to ensure they agree.
 
@@ -28,10 +28,10 @@ Output (mixed):
     bob_occupation: retired professor
     bob_introduced_at: chapter 1, paragraph 3
     
-  LLM text: "Margaret is also in this story — want to see her details?"
+  LLM text: "Margaret is also in this story,  want to see her details?"
 ```
 
-The data block is not generated text. It is a direct read from `kb_characters_b`, formatted for display. The LLM did not produce the number 59. The KB produced it. The LLM produced the framing sentence. The distinction matters because the data cannot be wrong — it is exactly what is stored. The framing sentence could be wrong (the LLM might mischaracterize the data), but the data itself is authoritative.
+The data block is not generated text. It is a direct read from `kb_characters_b`, formatted for display. The LLM did not produce the number 59. The KB produced it. The LLM produced the framing sentence. The distinction matters because the data cannot be wrong,  it is exactly what is stored. The framing sentence could be wrong (the LLM might mischaracterize the data), but the data itself is authoritative.
 
 ### Addressable References
 
@@ -80,7 +80,7 @@ Rule: user_can_see(User, KB) :-
     % End users see KBs explicitly granted to them
 ```
 
-The constrained user asks "what do you know about me?" The system queries only the KBs the user is permitted to see. Model weights, training provenance, internal constraint states — these are in KBs marked `internal_only` and are invisible to end users. But the end user's conversation history, their stored preferences, their working data — these are in KBs the user can see and query freely.
+The constrained user asks "what do you know about me?" The system queries only the KBs the user is permitted to see. Model weights, training provenance, internal constraint states,  these are in KBs marked `internal_only` and are invisible to end users. But the end user's conversation history, their stored preferences, their working data,  these are in KBs the user can see and query freely.
 
 The unconstrained owner asks the same question and sees everything: model parameters, training history, constraint violations, internal reasoning traces, all KB states across all topics. Nothing is hidden because nothing needs to be hidden from the person who controls the system.
 
@@ -96,7 +96,7 @@ Rule: llm_can_access(KB) :- kb_exists(KB).
 
 The reasoning layer and the output layer are separate. The LLM reasons over all available KBs. The output layer filters what the user sees based on permissions. This means the LLM can use internal facts (model architecture, training state, constraint status) to inform its reasoning without exposing those facts to the user.
 
-But if the user is the owner, the output filter is identity — everything the LLM sees, the owner sees. The owner can ask "show me the internal constraint state" and get the actual constraint facts, not a summary.
+But if the user is the owner, the output filter is identity,  everything the LLM sees, the owner sees. The owner can ask "show me the internal constraint state" and get the actual constraint facts, not a summary.
 
 ### Surfacing Modes
 
@@ -161,14 +161,14 @@ Every line is a fact in the KB. Every value is an exact fraction. The chain is c
 ```
 User: "/constraints"
 
-[active] vdr_exact           — operational — verified at turn 45
-[active] python_38_compat    — operational — verified at turn 45
-[active] 30_sec_runtime      — operational — verified at turn 43
-[active] sum_to_one          — axiom       — verified at turn 44
-[active] non_negative_attn   — axiom       — verified at turn 44
-[active] denom_bound_2^64    — project     — VIOLATED at turn 40
+[active] vdr_exact          ,  operational,  verified at turn 45
+[active] python_38_compat   ,  operational,  verified at turn 45
+[active] 30_sec_runtime     ,  operational,  verified at turn 43
+[active] sum_to_one         ,  axiom      ,  verified at turn 44
+[active] non_negative_attn  ,  axiom      ,  verified at turn 44
+[active] denom_bound_2^64   ,  project    ,  VIOLATED at turn 40
   → parameter layer2.weight[1][3] has denominator 2^71
-[parked] story_consistency   — project     — parked with topic story_b
+[parked] story_consistency  ,  project    ,  parked with topic story_b
 ```
 
 **Diff mode.** The system shows what changed between two points.
@@ -241,7 +241,7 @@ LLM: "The gradients suggest the model is learning the input-output mapping.
 Want me to run another training step?"
 ```
 
-The KB blocks are authoritative data. They cannot hallucinate. They are not paraphrases. They are the actual stored facts, formatted for display. The LLM text between them is interpretation — it could be wrong, but the data it is interpreting is guaranteed correct.
+The KB blocks are authoritative data. They cannot hallucinate. They are not paraphrases. They are the actual stored facts, formatted for display. The LLM text between them is interpretation,  it could be wrong, but the data it is interpreting is guaranteed correct.
 
 ### Self-Reference in Reasoning
 
@@ -270,9 +270,9 @@ The LLM does not need to remember the constraints from the system prompt. It que
 
 ### The Fundamental Shift
 
-In a conventional LLM, the model's knowledge and its output are the same thing — both are token sequences. The model "knows" something only in the sense that it can generate tokens about it. There is no separate store of verified facts. There is no authority that is not the model's own generation.
+In a conventional LLM, the model's knowledge and its output are the same thing,  both are token sequences. The model "knows" something only in the sense that it can generate tokens about it. There is no separate store of verified facts. There is no authority that is not the model's own generation.
 
-In VDR-Prolog with first-class KB surfacing, knowledge and output are distinct. Knowledge lives in KBs as structured, exact, queryable facts. Output is a mix of LLM-generated framing and directly surfaced KB data. The LLM can be wrong in its framing. The KB data cannot be wrong — it is what it is.
+In VDR-Prolog with first-class KB surfacing, knowledge and output are distinct. Knowledge lives in KBs as structured, exact, queryable facts. Output is a mix of LLM-generated framing and directly surfaced KB data. The LLM can be wrong in its framing. The KB data cannot be wrong,  it is what it is.
 
 This means the user can trust the data even when they cannot fully trust the model. The KB is an exact record. The model is an interpreter of that record. The interpreter might misinterpret, but the record is always available for the user to check.
 

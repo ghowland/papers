@@ -1,4 +1,4 @@
-# VDR-23 FUNCTIONAL REMAINDER HARDWARE — LLM-COMPACT FORM
+# VDR-23 FUNCTIONAL REMAINDER HARDWARE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → fru_design → recurrences → inference_chain → training → prolog → scale → chip_update → relationships → sections
 
@@ -12,7 +12,7 @@ P5|Data plane self-sufficiency|With FRU, every primitive in the 448-builtin voca
 # claims(id|claim|type|depends_on)
 CL1|FRU adds ~496K transistors per QIU (7% per-unit increase); 2.54B chip-wide; 3.4% die area increase (581→601 mm²)|observation|
 CL2|Exact exp-softmax over 1,024 logits: ~56 ns on VDR-22+FRU; competitive with float H100 (100-200 ns)|derivation|
-CL3|Single-query latency unchanged — LLM forward pass dominates primitives by 300-30,000×; FRU makes already-negligible time more negligible|observation|P3
+CL3|Single-query latency unchanged,  LLM forward pass dominates primitives by 300-30,000×; FRU makes already-negligible time more negligible|observation|P3
 CL4|Without FRU: host CPU saturates at ~500K concurrent sessions from remainder round-trips; with FRU: no saturation at 10M+ sessions|derivation|P5
 CL5|Continuous remainder resolution eliminates Q-basis reprojection stalls; training step time constant (~15.2μs) vs periodic spikes (~72μs) without FRU|derivation|
 CL6|Active-value Prolog unification: 6-8 cycles on-chip with FRU vs ~5,000 cycles host round-trip without|observation|
@@ -66,7 +66,7 @@ Sum-to-one|Exact (1/1)|Exact (1/1)
 Monotonicity|Yes|Yes
 Latency (1,024 logits)|~10 ns|~56 ns
 FRU required|No|Yes
-Adaptive depth|N/A|Yes — less work for well-separated logits
+Adaptive depth|N/A|Yes,  less work for well-separated logits
 Per-value precision info|No (closed)|Yes (R slot carries truncation metadata)
 Full-model latency difference||<1% (matrix multiplies dominate)
 
@@ -82,7 +82,7 @@ Feedforward linear|Same as attention multiply|Same threshold filtering|Same
 0|~10|~12|0%|0|No
 1,000|~20|~30|0.1%|2|No
 10,000|~35|~48|0.8%|4|Approaching
-20,000|~40|~55|1.2%|5|**Yes — stall ~20μs**
+20,000|~40|~55|1.2%|5|**Yes,  stall ~20μs**
 50,000|~45|~65|2.0%|7|**Multiple stalls**
 
 # training_with_fru(step|avg_denom_bits|max_denom_bits|pct_R_before|pct_R_after|max_depth|reprojection)
@@ -293,13 +293,13 @@ N|End-to-End Transformer Latency|transformer_latency,model_forward_pass
 
 # decode_legend
 format: pipe-delimited tables, ID-based cross-references
-fru: Functional Remainder Unit — sequencer per QIU driving existing ALU through recurrence loops; ~496K transistors, ~0.004 mm²
+fru: Functional Remainder Unit,  sequencer per QIU driving existing ALU through recurrence loops; ~496K transistors, ~0.004 mm²
 feval: Opcode 0x35; variable-latency; evaluates functional remainder to requested depth using function tag
 function_tags: 0x01 exp|0x02 sqrt|0x03 ln|0x04 sin|0x05 cos|0x06 generic (microcode)
 reciprocal_table: 64 entries × 48B = 3KB; replaces division-by-k with multiply-by-reciprocal; ±1 ULP for non-power-of-2 k (≈10^(-101) error)
 convergence: per-context configurable threshold in Q335 numerator magnitude; 0 = exact required
 chip_delta: +3.4% area (581→601 mm²), +3.7% transistors (68→70.5B), +2.5% TDP (400→410W)
-single_query: FRU invisible — LLM forward pass dominates primitives by 300-30,000×
+single_query: FRU invisible,  LLM forward pass dominates primitives by 300-30,000×
 datacenter: FRU eliminates host serialization; without FRU saturates at ~500K sessions; with FRU no saturation at 10M+
 training: continuous resolution eliminates reprojection stalls; step time constant vs periodic spikes
 unification: active-value Prolog unification 700-1,000× faster on-chip vs host round-trip

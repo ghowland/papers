@@ -7,9 +7,9 @@
 
 When a language model is asked to sort a list, reverse a string, compute a factorial, or find the maximum of a set, it does not execute an algorithm. It generates tokens that pattern-match against training examples of those operations. This means:
 
-A sort of 5 items usually works. A sort of 50 items sometimes has errors. A sort of 500 items will fail. The failure mode is not "out of memory" or "timeout" — it is "generated the wrong answer confidently." The model does not know it failed because it was never computing. It was predicting what sorted output looks like.
+A sort of 5 items usually works. A sort of 50 items sometimes has errors. A sort of 500 items will fail. The failure mode is not "out of memory" or "timeout",  it is "generated the wrong answer confidently." The model does not know it failed because it was never computing. It was predicting what sorted output looks like.
 
-This is wasteful and unreliable. String reversal is a solved problem. Array sorting is a solved problem. GCD computation is a solved problem. Arithmetic is a solved problem — and yet VDR exists precisely because the LLM's arithmetic is unreliable.
+This is wasteful and unreliable. String reversal is a solved problem. Array sorting is a solved problem. GCD computation is a solved problem. Arithmetic is a solved problem,  and yet VDR exists precisely because the LLM's arithmetic is unreliable.
 
 The fix is to make these operations built-in predicates in the Prolog layer. When the system needs to sort a list, it calls a tested, constrained, pure function that produces the correct result every time. The LLM does not generate the sorted output. The primitive computes it. The LLM's role is to recognize that sorting is needed and to frame the result for the user.
 
@@ -236,7 +236,7 @@ Exact rational statistics.
 | softmax | list(fraction), number → list(fraction) | Exact VDR softmax | sum exactly 1 |
 | softmax_surrogate | list(fraction), number → list(fraction) | Rational surrogate | sum exactly 1 |
 
-**Why these matter:** The LLM's output is a probability distribution. Every operation on that distribution should be exact. Bayesian updates, expected values, normalization — all done by exact primitives rather than token-predicted arithmetic.
+**Why these matter:** The LLM's output is a probability distribution. Every operation on that distribution should be exact. Bayesian updates, expected values, normalization,  all done by exact primitives rather than token-predicted arithmetic.
 
 ### Category 8: Conversion and Formatting
 
@@ -259,7 +259,7 @@ Type conversion and output formatting primitives.
 | format_percentage | fraction, number → atom | Percentage with N decimals | format_percentage(1/3, 2) → "33.33%" |
 | format_scientific | fraction, number → atom | Scientific notation | format_scientific(1/30000, 3) → "3.333e-5" |
 
-**Why these matter:** LLMs frequently make formatting errors — wrong decimal places, incorrect rounding, mangled tables. As primitives, formatting is deterministic and correct.
+**Why these matter:** LLMs frequently make formatting errors,  wrong decimal places, incorrect rounding, mangled tables. As primitives, formatting is deterministic and correct.
 
 ### Category 9: Date and Time
 
@@ -282,7 +282,7 @@ Rational date arithmetic. Dates as integer day counts from epoch. Times as fract
 
 ### Category 10: Hashing and Encoding
 
-Deterministic byte-level operations. No cryptographic security claims — these are for checksums, identifiers, and deterministic encoding.
+Deterministic byte-level operations. No cryptographic security claims,  these are for checksums, identifiers, and deterministic encoding.
 
 | Primitive | Signature | Description | Example |
 |-----------|-----------|-------------|---------|
@@ -321,7 +321,7 @@ Operations on graphs represented as adjacency structures in the KB.
 
 ### Category 12: Regular Expression and Pattern Matching
 
-Deterministic string pattern matching. Not LLM-style fuzzy matching — exact regex execution.
+Deterministic string pattern matching. Not LLM-style fuzzy matching,  exact regex execution.
 
 | Primitive | Signature | Description | Example |
 |-----------|-----------|-------------|---------|
@@ -411,7 +411,7 @@ Action:
   2. list_sort_by_key(Results, second, ascending)
      → [("margaret_age", 45), ("bob_age", 59)]
 Output: "Margaret (45) then Bob (59)"
-(correct by construction — data from KB, sorting by primitive)
+(correct by construction,  data from KB, sorting by primitive)
 ```
 
 ---

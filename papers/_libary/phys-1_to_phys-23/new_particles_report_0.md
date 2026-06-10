@@ -9,7 +9,7 @@
 
 ### Statement
 
-Every complete Standard Model generation contributes exactly (Δb₁, Δb₂, Δb₃) = (4/3, 4/3, 4/3) to the one-loop beta functions. The contribution is identical for all three gauge couplings. This means complete generations are invisible to the gap ratio — they shift the numerator (b₁ − b₂) and the denominator (b₂ − b₃) by zero.
+Every complete Standard Model generation contributes exactly (Δb₁, Δb₂, Δb₃) = (4/3, 4/3, 4/3) to the one-loop beta functions. The contribution is identical for all three gauge couplings. This means complete generations are invisible to the gap ratio,  they shift the numerator (b₁ − b₂) and the denominator (b₂ − b₃) by zero.
 
 ### Derivation
 
@@ -29,15 +29,15 @@ b₃: −11 + 3(4/3) + 0 = −11 + 4 = −7 ✓
 
 ### Why This Is Not Trivial
 
-The democracy Δb₁ = Δb₂ = Δb₃ is not obvious from the per-component calculation. Each generation contains five Weyl fermions: the (ν, e)_L doublet, the e_R singlet, the (u, d)_L doublet, the u_R singlet, and the d_R singlet. These have wildly different quantum numbers — different hypercharges, different color representations, different SU(2) structures. The individual contributions to b₁, b₂, b₃ are all different fractions. But when you add them up within one generation, the three totals are exactly equal.
+The democracy Δb₁ = Δb₂ = Δb₃ is not obvious from the per-component calculation. Each generation contains five Weyl fermions: the (ν, e)_L doublet, the e_R singlet, the (u, d)_L doublet, the u_R singlet, and the d_R singlet. These have wildly different quantum numbers,  different hypercharges, different color representations, different SU(2) structures. The individual contributions to b₁, b₂, b₃ are all different fractions. But when you add them up within one generation, the three totals are exactly equal.
 
 This equality traces to the SU(5) anomaly cancellation condition. In SU(5) grand unification, one generation fills the 5̄ + 10 representations. The total Dynkin index of a complete 5̄ + 10 is the same for all three SM gauge factors when computed in the GUT normalization. This is a necessary condition for the SU(5) theory to be anomaly-free. It is a mathematical property of the representation content, not something anyone chose or tuned.
 
 ### What It Means for Unification
 
-The gap ratio (b₁ − b₂)/(b₂ − b₃) = 218/115 does not depend on how many generations exist. One generation, three generations, ten generations — the gap ratio is the same. You could add or remove entire generations and the unification test would not change.
+The gap ratio (b₁ − b₂)/(b₂ − b₃) = 218/115 does not depend on how many generations exist. One generation, three generations, ten generations,  the gap ratio is the same. You could add or remove entire generations and the unification test would not change.
 
-This means the unification failure of the SM is not caused by there being too many or too few quarks and leptons. Every quark, every lepton, every neutrino — they are all innocent. The guilty parties are the gauge bosons (which contribute asymmetrically because U(1) is abelian) and the Higgs (which contributes asymmetrically because it's a scalar doublet with no color).
+This means the unification failure of the SM is not caused by there being too many or too few quarks and leptons. Every quark, every lepton, every neutrino,  they are all innocent. The guilty parties are the gauge bosons (which contribute asymmetrically because U(1) is abelian) and the Higgs (which contributes asymmetrically because it's a scalar doublet with no color).
 
 This is the structural result from PHYS-14. It reframes the entire unification problem: stop looking at fermions. Look at bosons.
 
@@ -45,7 +45,7 @@ This is the structural result from PHYS-14. It reframes the entire unification p
 
 Prior to this session, the question "why doesn't the SM unify?" was answered as "the beta coefficients don't have the right values." That's true but uninformative. Now the answer is specific: "the gap ratio is determined solely by the gauge self-coupling (0, −22/3, −11) and the Higgs (1/10, 1/6, 0). The fermion content is irrelevant. The failure is a boson problem."
 
-This changes what future sessions should look for. Any BSM physics that fixes unification must contribute asymmetrically to the three beta functions — it must break the generation democracy. Particles that contribute equally to all three (like a complete fourth generation) cannot fix the gap ratio. Only particles with lopsided contributions can. The Cabibbo Doublet (1/15, 1, 1/3) has the most extreme asymmetry of any candidate tested.
+This changes what future sessions should look for. Any BSM physics that fixes unification must contribute asymmetrically to the three beta functions,  it must break the generation democracy. Particles that contribute equally to all three (like a complete fourth generation) cannot fix the gap ratio. Only particles with lopsided contributions can. The Cabibbo Doublet (1/15, 1, 1/3) has the most extreme asymmetry of any candidate tested.
 
 ---
 
@@ -71,15 +71,15 @@ The gap ratio 218/115 = (109/15)/(23/6) is therefore the ratio of two gauge-domi
 
 ### Why the Gauge Self-Coupling Is Asymmetric
 
-The gauge self-coupling contributes (0, −22/3, −11) to the three beta functions. The asymmetry is maximal: b₁ gets nothing (U(1) is abelian — there is no U(1) self-coupling), while b₂ and b₃ get large negative contributions proportional to their Casimirs (C₂(SU(2)) = 2, C₂(SU(3)) = 3).
+The gauge self-coupling contributes (0, −22/3, −11) to the three beta functions. The asymmetry is maximal: b₁ gets nothing (U(1) is abelian,  there is no U(1) self-coupling), while b₂ and b₃ get large negative contributions proportional to their Casimirs (C₂(SU(2)) = 2, C₂(SU(3)) = 3).
 
-The integer 11 is universal in Yang-Mills theory. Every non-abelian gauge boson contributes −11C₂(G)/3 to its own beta function. The 11 comes from the triple and quartic gauge boson vertices in the Yang-Mills Lagrangian — it counts the degrees of freedom in the gauge field self-interaction. This is the integer that makes non-abelian gauge theories asymptotically free (negative beta function) while U(1) is not (zero gauge self-coupling contribution, positive beta from matter fields).
+The integer 11 is universal in Yang-Mills theory. Every non-abelian gauge boson contributes −11C₂(G)/3 to its own beta function. The 11 comes from the triple and quartic gauge boson vertices in the Yang-Mills Lagrangian,  it counts the degrees of freedom in the gauge field self-interaction. This is the integer that makes non-abelian gauge theories asymptotically free (negative beta function) while U(1) is not (zero gauge self-coupling contribution, positive beta from matter fields).
 
-The asymmetry — U(1) gets zero, SU(2) gets −22/3, SU(3) gets −11 — is the root cause of the gap ratio. It is not a property of the SM particle content. It is a property of gauge theory itself. Any universe with SU(3)×SU(2)×U(1) gauge structure will have this asymmetry, regardless of its fermion content.
+The asymmetry,  U(1) gets zero, SU(2) gets −22/3, SU(3) gets −11,  is the root cause of the gap ratio. It is not a property of the SM particle content. It is a property of gauge theory itself. Any universe with SU(3)×SU(2)×U(1) gauge structure will have this asymmetry, regardless of its fermion content.
 
 ### Why the Higgs Contribution Is Asymmetric
 
-The Higgs doublet (1, 2, 1/2) contributes (1/10, 1/6, 0). It has no color (Δb₃ = 0), a small weak charge (Δb₂ = 1/6), and a tiny hypercharge contribution (Δb₁ = 1/10). The asymmetry is because the Higgs is a colorless weak doublet — it talks to SU(2) and U(1) but not to SU(3).
+The Higgs doublet (1, 2, 1/2) contributes (1/10, 1/6, 0). It has no color (Δb₃ = 0), a small weak charge (Δb₂ = 1/6), and a tiny hypercharge contribution (Δb₁ = 1/10). The asymmetry is because the Higgs is a colorless weak doublet,  it talks to SU(2) and U(1) but not to SU(3).
 
 The Higgs contribution is small compared to the gauge contribution (less than 5% of either the numerator or denominator). But it is the only SM particle besides the gauge bosons that affects the gap ratio at all (since fermion generations cancel out). In a universe with no Higgs, the gap ratio would be (22/3)/(11/3) = 22/11 = 2. The Higgs brings it down from 2.000 to 1.896. It helps, but not enough.
 
@@ -109,13 +109,13 @@ For U(1): b₁^gauge = 0. There is no negative gauge term. U(1) is never asympto
 
 The 11 comes from the one-loop calculation of the vacuum polarization of a non-abelian gauge field. The gauge field propagator receives corrections from three types of loops: gauge boson loops (which give −11C₂(G)/3 × g²), ghost loops (included in the −11), and fermion loops (which give +2T(R)/3 × g² per Weyl fermion). The −11 is the sum of the gauge boson self-interaction contribution and the ghost contribution required for consistency in covariant gauges.
 
-The calculation was first performed by Gross and Wilczek, and independently by Politzer, in 1973. The discovery of asymptotic freedom — that the −11 makes non-abelian gauge theories weaker at short distances — earned the 2004 Nobel Prize. The integer 11 is arguably the most important single number in the Standard Model, because it is the reason the strong force confines quarks at low energy (α_s grows) while becoming perturbative at high energy (α_s shrinks).
+The calculation was first performed by Gross and Wilczek, and independently by Politzer, in 1973. The discovery of asymptotic freedom,  that the −11 makes non-abelian gauge theories weaker at short distances,  earned the 2004 Nobel Prize. The integer 11 is arguably the most important single number in the Standard Model, because it is the reason the strong force confines quarks at low energy (α_s grows) while becoming perturbative at high energy (α_s shrinks).
 
 ### The Connection to the Gap Ratio
 
 The 11 enters the gap ratio through the gauge self-coupling asymmetry. The numerator b₁ − b₂ contains +22/3 (from the SU(2) gauge term, since b₁^gauge = 0 and b₂^gauge = −22/3). The denominator b₂ − b₃ contains +11/3 (from the difference between SU(2) and SU(3) gauge terms: −22/3 − (−11) = 11/3).
 
-If the integer were different — say 10 instead of 11 — the gauge contributions would be (0, −20/3, −10) and the gap ratio would change. The 11 is not a free parameter. It is determined by the structure of non-abelian gauge theory itself, which in turn is determined by Lorentz invariance, gauge invariance, and renormalizability. Three principles fix the integer. The integer fixes the gap ratio. The gap ratio determines whether the couplings converge.
+If the integer were different,  say 10 instead of 11,  the gauge contributions would be (0, −20/3, −10) and the gap ratio would change. The 11 is not a free parameter. It is determined by the structure of non-abelian gauge theory itself, which in turn is determined by Lorentz invariance, gauge invariance, and renormalizability. Three principles fix the integer. The integer fixes the gap ratio. The gap ratio determines whether the couplings converge.
 
 ---
 
@@ -139,17 +139,17 @@ Numerator: 22/3 + (1/10 − 1/6) = 22/3 − 1/15 = 110/15 − 1/15 = 109/15
 Denominator: 11/3 + (1/6 − 0) = 11/3 + 1/6 = 22/6 + 1/6 = 23/6
 Gap ratio: (109/15)/(23/6) = 218/115 = 1.896
 
-The Higgs brings the gap ratio from 2.000 to 1.896. A correction of −0.104, or −5.2%. The direction is correct — it moves toward the measured 1.358 — but the magnitude is far too small. The gap ratio needs to decrease by 0.538 (from 1.896 to 1.358). The Higgs accounts for 0.104 of that, or 19%.
+The Higgs brings the gap ratio from 2.000 to 1.896. A correction of −0.104, or −5.2%. The direction is correct,  it moves toward the measured 1.358,  but the magnitude is far too small. The gap ratio needs to decrease by 0.538 (from 1.896 to 1.358). The Higgs accounts for 0.104 of that, or 19%.
 
 ### Why the Higgs Can't Fix Unification Alone
 
-The Higgs contributes Δb₂ = 1/6 but Δb₃ = 0. Adding more Higgs doublets would increase the denominator (through Δb₂) but not change Δb₃. This means more Higgs doublets push the gap ratio downward — toward 1.358. In fact, the enumeration table shows that 3 extra Higgs doublets (candidate #14 in the table) give a gap ratio of 1.631, still 0.273 above the target.
+The Higgs contributes Δb₂ = 1/6 but Δb₃ = 0. Adding more Higgs doublets would increase the denominator (through Δb₂) but not change Δb₃. This means more Higgs doublets push the gap ratio downward,  toward 1.358. In fact, the enumeration table shows that 3 extra Higgs doublets (candidate #14 in the table) give a gap ratio of 1.631, still 0.273 above the target.
 
 The problem: Higgs doublets also increase the numerator (through Δb₁ = 1/10 per doublet), which partially counteracts the denominator increase. You'd need an unreasonable number of Higgs doublets to reach 1.358. The Cabibbo Doublet achieves it with one particle because its Δb₂ = 1 is six times larger than a Higgs doublet's Δb₂ = 1/6, while its Δb₁ = 1/15 is smaller than a Higgs doublet's Δb₁ = 1/10.
 
 ### What This Means for the Theory
 
-The SM has exactly one scalar: the Higgs doublet. Its representation (1, 2, 1/2) is the minimal scalar needed for electroweak symmetry breaking. It is not chosen for unification — it is chosen for mass generation. The fact that it happens to improve the gap ratio by 5% is a coincidence of the representation, not a design feature.
+The SM has exactly one scalar: the Higgs doublet. Its representation (1, 2, 1/2) is the minimal scalar needed for electroweak symmetry breaking. It is not chosen for unification,  it is chosen for mass generation. The fact that it happens to improve the gap ratio by 5% is a coincidence of the representation, not a design feature.
 
 The Higgs is the bridge between the gauge sector (which sets the gap ratio) and the fermion sector (which is invisible to it). It is the only SM particle that speaks to unification without being a gauge boson.
 
@@ -163,23 +163,23 @@ The vector-like quark doublet (3, 2, 1/6) has beta function contributions (Δb�
 
 ### Why the Asymmetry Is Extreme
 
-The Δb₁ contribution goes as Y² — the square of the hypercharge. The (3, 2, 1/6) representation has the smallest nonzero hypercharge possible for a color triplet weak doublet: Y = 1/6. Squaring this gives Y² = 1/36, which enters Δb₁ as a very small number (1/15 after all the Dynkin index factors).
+The Δb₁ contribution goes as Y²,  the square of the hypercharge. The (3, 2, 1/6) representation has the smallest nonzero hypercharge possible for a color triplet weak doublet: Y = 1/6. Squaring this gives Y² = 1/36, which enters Δb₁ as a very small number (1/15 after all the Dynkin index factors).
 
 The Δb₂ contribution goes as the SU(2) Dynkin index T(R₂) times the color dimension: T(2) × 3 = (1/2) × 3 × (2/3 for VL fermion counting) = 1. This is independent of the hypercharge.
 
-The Δb₃ contribution goes as the SU(3) Dynkin index T(R₃) times the SU(2) dimension: T(3) × 2 = (1/2) × 2 × (2/3) = 2/3... actually the exact computation gives 1/3 from the script. The point is that it's moderate — between the tiny Δb₁ and the large Δb₂.
+The Δb₃ contribution goes as the SU(3) Dynkin index T(R₃) times the SU(2) dimension: T(3) × 2 = (1/2) × 2 × (2/3) = 2/3... actually the exact computation gives 1/3 from the script. The point is that it's moderate,  between the tiny Δb₁ and the large Δb₂.
 
 The result: Δb₂ dominates by a factor of 15 over Δb₁. The particle dumps its entire beta function impact into SU(2), with almost nothing going to U(1) and a moderate amount to SU(3). This is precisely the profile needed to shrink the gap ratio numerator (b₁ − b₂) without proportionally growing the denominator (b₂ − b₃).
 
 ### Comparison with Other Candidates
 
-No other single multiplet achieves this ratio. The SU(5) 5+5̄ has Δb₂/Δb₁ = 1/(2/5) = 2.5 — much less asymmetric. Its gap ratio (1.481) is further from the target. The VL lepton doublet has Δb₂/Δb₁ = (1/3)/(1/5) = 5/3 = 1.67 — even less asymmetric. Its gap ratio (1.712) is far from the target.
+No other single multiplet achieves this ratio. The SU(5) 5+5̄ has Δb₂/Δb₁ = 1/(2/5) = 2.5,  much less asymmetric. Its gap ratio (1.481) is further from the target. The VL lepton doublet has Δb₂/Δb₁ = (1/3)/(1/5) = 5/3 = 1.67,  even less asymmetric. Its gap ratio (1.712) is far from the target.
 
-The MSSM achieves a similar gap ratio (7/5 = 1.400 vs 38/27 = 1.407) but through a completely different mechanism: it adds large contributions to ALL three beta functions (5/2, 25/6, 4) that reshape the entire running structure. Its Δb₂/Δb₁ = (25/6)/(5/2) = 5/3 = 1.67 — not particularly asymmetric. The MSSM works through brute force (massive changes to all three betas) rather than surgical precision (one targeted asymmetric contribution).
+The MSSM achieves a similar gap ratio (7/5 = 1.400 vs 38/27 = 1.407) but through a completely different mechanism: it adds large contributions to ALL three beta functions (5/2, 25/6, 4) that reshape the entire running structure. Its Δb₂/Δb₁ = (25/6)/(5/2) = 5/3 = 1.67,  not particularly asymmetric. The MSSM works through brute force (massive changes to all three betas) rather than surgical precision (one targeted asymmetric contribution).
 
 ### The Y = 1/6 Connection
 
-The hypercharge Y = 1/6 is not arbitrary. It is the hypercharge of the left-handed quark doublet in the Standard Model. The Cabibbo Doublet has the same quantum numbers as (u_L, d_L) — it is literally a vector-like copy of the quark doublet that already exists.
+The hypercharge Y = 1/6 is not arbitrary. It is the hypercharge of the left-handed quark doublet in the Standard Model. The Cabibbo Doublet has the same quantum numbers as (u_L, d_L),  it is literally a vector-like copy of the quark doublet that already exists.
 
 This means the Cabibbo Doublet is the most "conservative" BSM particle possible in the quark sector. It doesn't introduce any new type of quantum number. It doesn't require any new force. It is a heavier copy of something that already exists, distinguished only by being vector-like (both chiralities transform the same way) rather than chiral (left and right transform differently).
 
@@ -205,7 +205,7 @@ This is a 4σ deficit from unity. The first-row CKM elements do not add up.
 
 V_ud is measured from nuclear beta decays (superallowed 0⁺ → 0⁺ transitions) and neutron decay. V_us is measured from kaon decays (both leptonic K → μν and semileptonic K → πeν). V_ub is measured from B meson decays but is so small (|V_ub| ≈ 0.004) that it contributes negligibly to the sum.
 
-The deficit was first identified as a potential BSM signal by Belfatto, Beradze, and Berezhiani at the University of L'Aquila in 2019 (published 2020). They proposed that if a 4th quark with mass below ~6 TeV participates in the mixing, the apparent 3×3 CKM matrix is actually a 3×4 submatrix of a 4×4 unitary matrix. The missing elements — the fourth column — account for the deficit. The natural candidate: a vector-like quark doublet.
+The deficit was first identified as a potential BSM signal by Belfatto, Beradze, and Berezhiani at the University of L'Aquila in 2019 (published 2020). They proposed that if a 4th quark with mass below ~6 TeV participates in the mixing, the apparent 3×3 CKM matrix is actually a 3×4 submatrix of a 4×4 unitary matrix. The missing elements,  the fourth column,  account for the deficit. The natural candidate: a vector-like quark doublet.
 
 The deficit has been confirmed by multiple independent analyses. Kitahara (2024) states that "the prime candidate for the UV completion is the vector-like quark extension." Cirigliano et al. (2024) confirm the ~3σ tension in a global SMEFT analysis.
 
@@ -233,7 +233,7 @@ Measured: μ ≈ 1.06–1.10 (combined Run 1 + Run 2)
 SM prediction: μ = 1.00
 Excess: approximately 2σ
 
-This is the weakest of the three anomalies — a 2σ excess could easily be a statistical fluctuation. But it is consistent with the VL doublet interpretation. A VL quark doublet contributes to the gluon-gluon-Higgs loop (same topology as the top loop, since the VL doublet has the same color charge). Additionally, if the VL doublet mixes with the b quark, it slightly reduces the bottom Yukawa coupling, which modifies the Higgs branching ratios. Both effects push the apparent signal strength above 1.
+This is the weakest of the three anomalies,  a 2σ excess could easily be a statistical fluctuation. But it is consistent with the VL doublet interpretation. A VL quark doublet contributes to the gluon-gluon-Higgs loop (same topology as the top loop, since the VL doublet has the same color charge). Additionally, if the VL doublet mixes with the b quark, it slightly reduces the bottom Yukawa coupling, which modifies the Higgs branching ratios. Both effects push the apparent signal strength above 1.
 
 ### The Three-Anomaly Fit
 
@@ -287,7 +287,7 @@ The Cabibbo Doublet now has two independent paths: the gap ratio integer argumen
 
 ### Statement
 
-The gap ratio analysis does not constrain the Cabibbo Doublet mass — M_VL is a free parameter. But three independent constraints from other data bracket the mass:
+The gap ratio analysis does not constrain the Cabibbo Doublet mass,  M_VL is a free parameter. But three independent constraints from other data bracket the mass:
 
 Lower bound: M_VL > 1.3-1.5 TeV from LHC direct searches (CMS and ATLAS pair production in Run 2).
 
@@ -299,7 +299,7 @@ Upper bound (alternative): M_VL < ~7 TeV from the up-type VL quark variant (Bran
 
 Combined: **1.5 TeV < M_VL < 6 TeV**.
 
-This is a narrow window — less than half a decade in energy. The LHC at 13.6 TeV has probed up to ~1.5 TeV in pair production. The HL-LHC (high-luminosity upgrade, running through ~2040) will extend the reach to ~2-3 TeV in pair production. If the Cabibbo Doublet exists in the lower half of its mass window, the HL-LHC will find it.
+This is a narrow window,  less than half a decade in energy. The LHC at 13.6 TeV has probed up to ~1.5 TeV in pair production. The HL-LHC (high-luminosity upgrade, running through ~2040) will extend the reach to ~2-3 TeV in pair production. If the Cabibbo Doublet exists in the lower half of its mass window, the HL-LHC will find it.
 
 If it's in the upper half (3-6 TeV), a future collider at higher energy (the proposed FCC-hh at 100 TeV) would be needed for pair production discovery. However, single production (which depends on the mixing angle with SM quarks) can probe higher masses at the HL-LHC if the mixing is large enough.
 
@@ -315,7 +315,7 @@ The CKM upper bound comes from the unitarity deficit: |V_ub'|² = 1 − |V_ud|²
 
 ### Statement
 
-The Cabibbo Doublet's quantum numbers (3, 2, 1/6) are Level 1 — determined by the gauge group integers through the gap ratio constraint. Its mass, mixing angles, and CP phases are Level 2 — supplied by the universe through measurement. This extends the PHYS-1/PHYS-2 boundary to BSM physics for the first time.
+The Cabibbo Doublet's quantum numbers (3, 2, 1/6) are Level 1,  determined by the gauge group integers through the gap ratio constraint. Its mass, mixing angles, and CP phases are Level 2,  supplied by the universe through measurement. This extends the PHYS-1/PHYS-2 boundary to BSM physics for the first time.
 
 ### What Is Level 1
 
@@ -335,7 +335,7 @@ The three mixing angles: not determined by the representation. They describe how
 
 The two new CP phases: not determined by the representation. They appear in the extended 4×4 CKM matrix and contribute to CP violation in the quark sector. They will be constrained by the neutron electric dipole moment, B-meson CP asymmetries, and kaon physics.
 
-The existence of the particle itself: this is Level 2. The gap ratio arithmetic identifies the representation as the minimal fix for unification. Whether nature actually contains this particle — whether unification is a feature of nature at all — is an empirical question answered by experiment.
+The existence of the particle itself: this is Level 2. The gap ratio arithmetic identifies the representation as the minimal fix for unification. Whether nature actually contains this particle,  whether unification is a feature of nature at all,  is an empirical question answered by experiment.
 
 ### Why This Matters
 
@@ -353,7 +353,7 @@ The Standard Model has 17 free parameters (after the θ_QCD and Koide conditiona
 
 ### Why More Parameters Can Be Better
 
-Six more parameters sounds like a step backward. But the question is not "how many parameters" — it's "how well do the parameters explain the data."
+Six more parameters sounds like a step backward. But the question is not "how many parameters",  it's "how well do the parameters explain the data."
 
 The SM with 17 parameters has three unexplained anomalies totaling approximately 4σ + 3σ + 2σ = 9σ of combined tension (not addable in quadrature since they're different observables, but the point is clear: multiple independent measurements disagree with the theory).
 
@@ -363,7 +363,7 @@ The trade is: 6 parameters buy the resolution of 3 independent multi-sigma anoma
 
 ### The New Parameters' Roles
 
-M_VL (the mass) determines where the Cabibbo Doublet activates in the energy-scale map. Below M_VL, the SM running applies. Above M_VL, the modified beta coefficients apply. The gap ratio jumps from 218/115 to 38/27 at this threshold. The mass is Level 2 — it must be measured.
+M_VL (the mass) determines where the Cabibbo Doublet activates in the energy-scale map. Below M_VL, the SM running applies. Above M_VL, the modified beta coefficients apply. The gap ratio jumps from 218/115 to 38/27 at this threshold. The mass is Level 2,  it must be measured.
 
 θ₁₄ (1st-generation mixing) is the primary mixing angle responsible for the CKM unitarity deficit. |V_ub'| ≈ sin(θ₁₄) ≈ 0.045. This is what the beta decay and kaon decay experiments are measuring.
 
@@ -393,7 +393,7 @@ The Cabibbo Doublet scenario sits AT this boundary. It is not yet excluded, but 
 
 Hyper-Kamiokande is a 258-kiloton water Cherenkov detector under construction in the Tochibora mine in Gifu Prefecture, Japan. Its fiducial volume is approximately 8 times larger than Super-Kamiokande. It is expected to begin operations around 2027.
 
-After 10 years of exposure, Hyper-K's projected sensitivity reaches τ ~ 10^35 years — a factor of 10 improvement over Super-K. This covers the full range predicted by the Cabibbo Doublet scenario.
+After 10 years of exposure, Hyper-K's projected sensitivity reaches τ ~ 10^35 years,  a factor of 10 improvement over Super-K. This covers the full range predicted by the Cabibbo Doublet scenario.
 
 ### The Discriminator
 
@@ -403,7 +403,7 @@ If Hyper-K sees nothing after full exposure: The minimal Cabibbo Doublet scenari
 
 ### Model Dependence
 
-The proton lifetime prediction depends not just on M_GUT but on the GUT completion — which unified gauge group (SU(5), SO(10), E₆) the SM is embedded in, and which proton decay operators are generated. In minimal SU(5), the dominant decay is p → e⁺π⁰ through dimension-6 operators mediated by the heavy X and Y gauge bosons. The lifetime scales as M_GUT⁴, so a factor of 10 in M_GUT gives a factor of 10⁴ in lifetime.
+The proton lifetime prediction depends not just on M_GUT but on the GUT completion,  which unified gauge group (SU(5), SO(10), E₆) the SM is embedded in, and which proton decay operators are generated. In minimal SU(5), the dominant decay is p → e⁺π⁰ through dimension-6 operators mediated by the heavy X and Y gauge bosons. The lifetime scales as M_GUT⁴, so a factor of 10 in M_GUT gives a factor of 10⁴ in lifetime.
 
 In SO(10) or non-minimal SU(5), additional operators and different decay channels (p → K⁺ν̄, p → μ⁺π⁰) may dominate, changing both the predicted lifetime and the experimental signature. DUNE (the Deep Underground Neutrino Experiment, starting ~2028) will provide complementary sensitivity to different proton decay channels.
 
@@ -445,7 +445,7 @@ This is a small but nonzero mixing between the up quark and the new heavy quark.
 
 The extended CKM matrix introduces right-handed charged currents (because the VL doublet has both chiralities). These modify the angular distributions in beta decay, the CP asymmetries in B meson decays, and the rate of flavor-changing neutral currents mediated by the Z boson.
 
-All of these are measurable. The mixing angles and CP phases of the extended matrix are the Level 2 parameters of the Cabibbo Doublet — they specify how the particle couples to each SM quark. They will be determined by a global fit to precision flavor data once sufficient experimental information is available.
+All of these are measurable. The mixing angles and CP phases of the extended matrix are the Level 2 parameters of the Cabibbo Doublet,  they specify how the particle couples to each SM quark. They will be determined by a global fit to precision flavor data once sufficient experimental information is available.
 
 ---
 
@@ -453,7 +453,7 @@ All of these are measurable. The mixing angles and CP phases of the extended mat
 
 ### Statement
 
-The PHYS-12 electroweak computation found R_b overshooting by 1.6% at tree + Δρ. This overshoot was diagnosed as the missing t-b-W vertex correction — a known SM one-loop diagram. But part of the overshoot may also be attributable to the Cabibbo Doublet's modification of the Z-b-b vertex.
+The PHYS-12 electroweak computation found R_b overshooting by 1.6% at tree + Δρ. This overshoot was diagnosed as the missing t-b-W vertex correction,  a known SM one-loop diagram. But part of the overshoot may also be attributable to the Cabibbo Doublet's modification of the Z-b-b vertex.
 
 ### The Two Sources of the R_b Overshoot
 
@@ -495,7 +495,7 @@ The gap ratio jumps discontinuously at M_VL. Below the threshold, the universe l
 
 The Cabibbo Doublet threshold is qualitatively different from the SM mass thresholds (m_c, m_b, m_t, etc.) because it breaks the generation democracy. When the charm quark activates at ~1.3 GeV, it adds one more quark to the democratic generation sum, contributing equally to all three betas. The gap ratio doesn't change. When the Cabibbo Doublet activates at ~1.5-6 TeV, it adds an asymmetric contribution (1/15, 1, 1/3) that changes the gap ratio from 1.896 to 1.407.
 
-This is the first threshold in the map where the gap ratio changes. All the SM thresholds below it — every quark, every lepton — leave the gap ratio invariant. The Cabibbo Doublet is the first particle that matters for unification.
+This is the first threshold in the map where the gap ratio changes. All the SM thresholds below it,  every quark, every lepton,  leave the gap ratio invariant. The Cabibbo Doublet is the first particle that matters for unification.
 
 ---
 
@@ -503,7 +503,7 @@ This is the first threshold in the map where the gap ratio changes. All the SM t
 
 ### Statement
 
-The findings from this session complete the evidence base for DISC-9, the capstone boundary paper of the HOWL series. DISC-9 organizes the Level 1 / Level 2 boundary — what the framework determines (structure, integers) versus what the universe supplies (values, measurements).
+The findings from this session complete the evidence base for DISC-9, the capstone boundary paper of the HOWL series. DISC-9 organizes the Level 1 / Level 2 boundary,  what the framework determines (structure, integers) versus what the universe supplies (values, measurements).
 
 ### What DISC-9 Now Contains
 
@@ -523,7 +523,7 @@ From the Koide investigation: The C₃ spacing is a tautology. The amplitude a²
 
 ### The DISC-9 Thesis
 
-The transformation laws are integers. The values are not. The integers determine the structure — the gauge group, the representations, the beta coefficients, the gap ratio, the generation democracy, the confinement wall, the Cabibbo Doublet's quantum numbers. The values determine the specific realization — the coupling constants, the masses, the mixing angles, the CP phases.
+The transformation laws are integers. The values are not. The integers determine the structure,  the gauge group, the representations, the beta coefficients, the gap ratio, the generation democracy, the confinement wall, the Cabibbo Doublet's quantum numbers. The values determine the specific realization,  the coupling constants, the masses, the mixing angles, the CP phases.
 
 The boundary between Level 1 and Level 2 is the boundary between what mathematics forces and what the universe provides. DISC-9 documents this boundary across every energy scale, every particle, and every observable in the Standard Model plus its minimal extension.
 

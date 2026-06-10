@@ -1,18 +1,18 @@
-This is a great question — you're asking where the VDR+Prolog infrastructure creates opportunities that standard LLMs can't exploit because they're trapped in the float-softmax-attention paradigm. Let me think through this systematically.
+This is a great question,  you're asking where the VDR+Prolog infrastructure creates opportunities that standard LLMs can't exploit because they're trapped in the float-softmax-attention paradigm. Let me think through this systematically.
 
 **Where standard LLM operations are wasteful given VDR infrastructure:**
 
-The biggest waste is the LLM re-deriving things it already knows structurally. In a standard LLM, every turn re-reads the entire conversation as tokens, re-attends over everything, and re-computes relationships that were already established. With KBs and Prolog, a huge amount of what attention does — figuring out what's relevant, what depends on what, what the current state is — is already answered by scoped KB queries and Prolog rule evaluation. The LLM doesn't need to attend over 50 turns of conversation to figure out "what's Bob's age in story B" when that's a single KB lookup returning an exact value.
+The biggest waste is the LLM re-deriving things it already knows structurally. In a standard LLM, every turn re-reads the entire conversation as tokens, re-attends over everything, and re-computes relationships that were already established. With KBs and Prolog, a huge amount of what attention does,  figuring out what's relevant, what depends on what, what the current state is,  is already answered by scoped KB queries and Prolog rule evaluation. The LLM doesn't need to attend over 50 turns of conversation to figure out "what's Bob's age in story B" when that's a single KB lookup returning an exact value.
 
-This suggests a fundamental architectural shift: **attention should be over a much smaller working set**, because the KB has already done the relevance filtering that attention normally handles. Instead of attending over the full token history, the LLM attends over a compact context assembled from KB queries — the active scope's facts, the current working data, the pending items, the recent findings from the LRU. The context is pre-filtered by scope, not discovered by attention.
+This suggests a fundamental architectural shift: **attention should be over a much smaller working set**, because the KB has already done the relevance filtering that attention normally handles. Instead of attending over the full token history, the LLM attends over a compact context assembled from KB queries,  the active scope's facts, the current working data, the pending items, the recent findings from the LRU. The context is pre-filtered by scope, not discovered by attention.
 
 **Softmax alternatives with VDR:**
 
-The surrogate softmax (square-shift kernel) from VDR-4 is already better for our case — no transcendentals, exact sum-to-one, preserves ordering. But there's a deeper question: do we need softmax-style attention at all?
+The surrogate softmax (square-shift kernel) from VDR-4 is already better for our case,  no transcendentals, exact sum-to-one, preserves ordering. But there's a deeper question: do we need softmax-style attention at all?
 
 Standard attention computes a dense score matrix between all positions, then softmax-normalizes each row. This is O(n²) in sequence length and the softmax is there to turn arbitrary scores into a probability distribution. But in VDR, we have exact rational arithmetic and Prolog for structured lookup. Consider an alternative:
 
-**Prolog-guided sparse attention.** Instead of computing dense QK^T scores across all positions, the system uses Prolog to determine which positions are structurally relevant to each query position. If position 5 contains a reference to "Bob's age" and positions 2 and 37 contain Bob-related facts, Prolog tells us positions 2 and 37 are relevant. The attention only computes scores for those positions — sparse by structure, not by approximation. The scores are exact VDR fractions. Normalization is exact. No wasted computation on irrelevant positions.
+**Prolog-guided sparse attention.** Instead of computing dense QK^T scores across all positions, the system uses Prolog to determine which positions are structurally relevant to each query position. If position 5 contains a reference to "Bob's age" and positions 2 and 37 contain Bob-related facts, Prolog tells us positions 2 and 37 are relevant. The attention only computes scores for those positions,  sparse by structure, not by approximation. The scores are exact VDR fractions. Normalization is exact. No wasted computation on irrelevant positions.
 
 This is fundamentally different from sparse attention approximations in the float world (where you're trying to approximate the dense matrix cheaply). Here you're computing exact attention on the structurally relevant subset, identified by logical inference rather than learned patterns.
 
@@ -20,21 +20,21 @@ This is fundamentally different from sparse attention approximations in the floa
 
 Think about what attention actually accomplishes in a standard transformer. It answers implicit questions like: "what in the context is relevant to what I'm currently processing?" and "how should I weight different pieces of context?" These are search and relevance problems. Prolog is a search engine with exact unification. Several attention-like operations map directly to Prolog:
 
-Coreference resolution — "which earlier mention refers to the same entity?" — is unification over KB facts. The LLM doesn't need attention to figure out that "he" refers to Bob when the KB has `binding("current_subject", "bob")` in scope.
+Coreference resolution,  "which earlier mention refers to the same entity?",  is unification over KB facts. The LLM doesn't need attention to figure out that "he" refers to Bob when the KB has `binding("current_subject", "bob")` in scope.
 
-Dependency tracking — "what earlier computation does this step depend on?" — is `depends_on(X, Y)` in the provenance chain. The LLM doesn't need to re-discover dependencies through attention patterns when the KB records them explicitly.
+Dependency tracking,  "what earlier computation does this step depend on?",  is `depends_on(X, Y)` in the provenance chain. The LLM doesn't need to re-discover dependencies through attention patterns when the KB records them explicitly.
 
-Constraint checking — "is this output consistent with earlier statements?" — is `constraint_check_all()`. Attention can't really do this reliably; Prolog can do it exactly.
+Constraint checking,  "is this output consistent with earlier statements?",  is `constraint_check_all()`. Attention can't really do this reliably; Prolog can do it exactly.
 
 **A hybrid architecture concept:**
 
 Rather than a standard transformer where attention does everything, consider a three-phase processing model:
 
-Phase 1: **KB Assembly** (Prolog, no LLM). Given the user's input, Prolog queries determine what's in scope, what facts are relevant, what constraints are active, what pending items exist, what working data is available. This produces a compact, structured context — not raw tokens, but organized facts with provenance and confidence scores. This replaces what the first several attention layers normally do (figuring out what's relevant in the context).
+Phase 1: **KB Assembly** (Prolog, no LLM). Given the user's input, Prolog queries determine what's in scope, what facts are relevant, what constraints are active, what pending items exist, what working data is available. This produces a compact, structured context,  not raw tokens, but organized facts with provenance and confidence scores. This replaces what the first several attention layers normally do (figuring out what's relevant in the context).
 
-Phase 2: **LLM Reasoning** (small transformer over assembled context). The LLM receives the compact structured context plus the user's input. It doesn't need to attend over thousands of tokens of conversation history — it attends over a few hundred tokens of pre-filtered, structured, exact data. The attention mechanism here can be simpler because the hard relevance-filtering work is already done. The surrogate softmax works well at this scale.
+Phase 2: **LLM Reasoning** (small transformer over assembled context). The LLM receives the compact structured context plus the user's input. It doesn't need to attend over thousands of tokens of conversation history,  it attends over a few hundred tokens of pre-filtered, structured, exact data. The attention mechanism here can be simpler because the hard relevance-filtering work is already done. The surrogate softmax works well at this scale.
 
-Phase 3: **Tool Dispatch** (command tokens, no LLM). The LLM's output includes command tokens that invoke exact operations. Prolog evaluates rules, primitives compute, KB stores results. The LLM never computes — it only decides what to compute and how to frame the results.
+Phase 3: **Tool Dispatch** (command tokens, no LLM). The LLM's output includes command tokens that invoke exact operations. Prolog evaluates rules, primitives compute, KB stores results. The LLM never computes,  it only decides what to compute and how to frame the results.
 
 This three-phase model means the transformer itself can be much smaller than a standard LLM for the same effective capability, because it's doing less work per turn. The KB and Prolog handle structured operations that would otherwise require billions of parameters to approximate through learned attention patterns.
 
@@ -42,29 +42,29 @@ This three-phase model means the transformer itself can be much smaller than a s
 
 For **layer normalization**, standard transformers use sqrt of variance, which is transcendental. VDR-4 already uses rational scaling (divide by exact mean absolute value). But with KB infrastructure, we could go further: track the distribution statistics of activations as exact VDR fractions in counters and ring buffers, and use those for normalization rather than recomputing per forward pass.
 
-For **position encoding**, standard transformers use sinusoidal or learned embeddings. With dotted-path addressing and KB structure, position has semantic meaning — position 3 isn't just "the third token," it's "the token at root.inference.notebook.evidence[3]" which carries structural information that learned position embeddings try to approximate.
+For **position encoding**, standard transformers use sinusoidal or learned embeddings. With dotted-path addressing and KB structure, position has semantic meaning,  position 3 isn't just "the third token," it's "the token at root.inference.notebook.evidence[3]" which carries structural information that learned position embeddings try to approximate.
 
-For **the feedforward layers**, which in standard transformers serve as key-value memories (this is well-established in the interpretability literature), the KB is an explicit key-value memory. The feedforward layers in a VDR-native architecture could be much smaller because they don't need to memorize facts — facts live in the KB.
+For **the feedforward layers**, which in standard transformers serve as key-value memories (this is well-established in the interpretability literature), the KB is an explicit key-value memory. The feedforward layers in a VDR-native architecture could be much smaller because they don't need to memorize facts,  facts live in the KB.
 
 For **tokenization and embedding**, instead of learning embeddings for 50,000 tokens, a VDR-native system could use structured embeddings where the embedding of a token is composed from its semantic components stored in the KB. The token "photosynthesis" doesn't need a learned 768-dimensional vector if the KB has `is_a(photosynthesis, biological_process)`, `involves(photosynthesis, [light, carbon_dioxide, water])`, and those KB facts map to structured embedding components.
 
 **Where this thinking leads:**
 
-The honest conclusion is that a VDR+Prolog native architecture would look quite different from a standard transformer. The standard transformer is a universal function approximator that learns everything from data — attention patterns, factual knowledge, logical rules, formatting conventions, all encoded in continuous weight space. The VDR+Prolog system already has explicit infrastructure for most of these, so the LLM component can be specialized for what it's genuinely best at: natural language understanding, intent recognition, creative formalization, and output framing.
+The honest conclusion is that a VDR+Prolog native architecture would look quite different from a standard transformer. The standard transformer is a universal function approximator that learns everything from data,  attention patterns, factual knowledge, logical rules, formatting conventions, all encoded in continuous weight space. The VDR+Prolog system already has explicit infrastructure for most of these, so the LLM component can be specialized for what it's genuinely best at: natural language understanding, intent recognition, creative formalization, and output framing.
 
 The practical path is probably: keep a standard-ish transformer for the language understanding part, but make it much smaller than current LLMs; use Prolog for all structured reasoning, relevance filtering, and constraint checking; use VDR for all computation; use the KB for all memory. The transformer becomes the "intent recognizer and orchestrator" from VDR-9, not the "do everything" engine that current LLMs are.
 
-The question for your system is whether this is Stage 6 thinking (after the Python prototype validates the architecture) or whether some of these ideas should influence the Stage 1-5 design now. My recommendation: build Stages 1-5 as specified using a standard small transformer (the VDR-4 architecture), validate that the KB+Prolog+command token infrastructure works, then use that working system to experiment with the hybrid architecture ideas. The infrastructure you're building is the testbed for these experiments — you need it running before you can measure whether Prolog-guided sparse attention actually outperforms dense attention at small scale.
+The question for your system is whether this is Stage 6 thinking (after the Python prototype validates the architecture) or whether some of these ideas should influence the Stage 1-5 design now. My recommendation: build Stages 1-5 as specified using a standard small transformer (the VDR-4 architecture), validate that the KB+Prolog+command token infrastructure works, then use that working system to experiment with the hybrid architecture ideas. The infrastructure you're building is the testbed for these experiments,  you need it running before you can measure whether Prolog-guided sparse attention actually outperforms dense attention at small scale.
 
 ---
 
-You're describing something genuinely novel — using Prolog grammars as a generation accelerator that sits between the LLM's intent and the output token stream. Let me work through the mechanics of this.
+You're describing something genuinely novel,  using Prolog grammars as a generation accelerator that sits between the LLM's intent and the output token stream. Let me work through the mechanics of this.
 
 **The core insight is that most LLM output is grammatically predictable.**
 
-When the LLM decides to output a Python function definition, the token sequence `def`, space, name, `(`, params, `)`, `:`, newline, indent is not a creative act — it's filling a template. The LLM spends significant computation predicting tokens that are structurally determined. The same applies to English sentences ("The", noun phrase, verb phrase, period), JSON structures (`{`, key, `:`, value, `}`), error messages, markdown formatting, and so on.
+When the LLM decides to output a Python function definition, the token sequence `def`, space, name, `(`, params, `)`, `:`, newline, indent is not a creative act,  it's filling a template. The LLM spends significant computation predicting tokens that are structurally determined. The same applies to English sentences ("The", noun phrase, verb phrase, period), JSON structures (`{`, key, `:`, value, `}`), error messages, markdown formatting, and so on.
 
-Right now, every one of those structurally determined tokens goes through the full forward pass — attention over the entire context, feedforward through all layers, softmax over the full vocabulary. That's enormously wasteful when the next token is `(` because we just emitted `def function_name`.
+Right now, every one of those structurally determined tokens goes through the full forward pass,  attention over the entire context, feedforward through all layers, softmax over the full vocabulary. That's enormously wasteful when the next token is `(` because we just emitted `def function_name`.
 
 **Prolog grammars as generation templates:**
 
@@ -103,17 +103,17 @@ rest_members --> [comma], pair, rest_members.
 pair --> json_string, [colon], json_value.
 ```
 
-These grammars don't constrain what the LLM says — they constrain the structural tokens around what the LLM says. The LLM still chooses which function name, which variable names, which words to use. But the punctuation, the formatting, the structural tokens are filled by grammar rules, not by expensive forward passes.
+These grammars don't constrain what the LLM says,  they constrain the structural tokens around what the LLM says. The LLM still chooses which function name, which variable names, which words to use. But the punctuation, the formatting, the structural tokens are filled by grammar rules, not by expensive forward passes.
 
 **The generation pipeline becomes:**
 
 Step 1: The LLM's first few tokens (or a scratchpad command) select a grammar profile. "I need to output a Python function" activates `python_funcdef`. "I need to answer in English" activates `declarative` or `compound_sentence`. "I need to return JSON" activates `json_object`.
 
-Step 2: The grammar produces a template with **slots** — positions where the LLM needs to choose content. The structural tokens between slots are deterministic. For `python_funcdef`, the slots are: function name, each parameter name, optional type hints, and the body statements. Everything else — `def`, `(`, `)`, `:`, indentation — is grammar-determined.
+Step 2: The grammar produces a template with **slots**,  positions where the LLM needs to choose content. The structural tokens between slots are deterministic. For `python_funcdef`, the slots are: function name, each parameter name, optional type hints, and the body statements. Everything else,  `def`, `(`, `)`, `:`, indentation,  is grammar-determined.
 
-Step 3: The LLM runs forward passes only for the slots. Each slot has a constrained vocabulary — the function name slot draws from identifier tokens, not from punctuation or keywords. The vocabulary constraint means the softmax is over a much smaller set, which is both faster and more reliable.
+Step 3: The LLM runs forward passes only for the slots. Each slot has a constrained vocabulary,  the function name slot draws from identifier tokens, not from punctuation or keywords. The vocabulary constraint means the softmax is over a much smaller set, which is both faster and more reliable.
 
-Step 4: Structural tokens are emitted directly from the grammar rule, zero computation required. They're exact, they're correct, they don't hallucinate. A closing parenthesis after a parameter list is not a prediction — it's a fact.
+Step 4: Structural tokens are emitted directly from the grammar rule, zero computation required. They're exact, they're correct, they don't hallucinate. A closing parenthesis after a parameter list is not a prediction,  it's a fact.
 
 **The savings are substantial.** In a typical Python function definition, maybe 40% of the tokens are structural (def, parens, colon, indentation, newline). In JSON output, it's 50-60% (braces, brackets, colons, commas, quotes). In formatted English, it's 20-30% (articles, punctuation, common function words that are grammar-determined given the sentence structure). Those tokens skip the forward pass entirely.
 
@@ -127,17 +127,17 @@ If we're in `root.project.vdr` and writing Python, the KB knows the module's imp
 
 If we're in `root.stories.london` and writing dialogue, the KB knows the character names, the setting details, the established facts. The slot vocabulary for "proper noun" is populated from `kb_characters_b`, not from the LLM's memory of every name it's ever seen.
 
-If we're generating a Prometheus query, the grammar is `metric_name{label_selectors}` and the KB knows the available metric names and label keys from the monitoring KB. The LLM doesn't need to remember Prometheus syntax or guess at metric names — the grammar provides the structure and the KB provides the vocabulary.
+If we're generating a Prometheus query, the grammar is `metric_name{label_selectors}` and the KB knows the available metric names and label keys from the monitoring KB. The LLM doesn't need to remember Prometheus syntax or guess at metric names,  the grammar provides the structure and the KB provides the vocabulary.
 
 **Handling novel and irregular input:**
 
-For generation, grammar-guided output works well because we control the output. For parsing user input, the situation is different — typos, informal grammar, code with errors, mixed languages. Here the approach inverts:
+For generation, grammar-guided output works well because we control the output. For parsing user input, the situation is different,  typos, informal grammar, code with errors, mixed languages. Here the approach inverts:
 
-The system tries to match the input against known grammars in priority order. User types "def foo(x" — the Python grammar matches up to the missing close paren. The system knows what's expected next (close paren, then colon) and can either auto-complete or signal the specific error.
+The system tries to match the input against known grammars in priority order. User types "def foo(x",  the Python grammar matches up to the missing close paren. The system knows what's expected next (close paren, then colon) and can either auto-complete or signal the specific error.
 
-User types "whats bobs age in the london story" — the English grammar partially matches (informal, missing apostrophe, no question mark). A typo/informal grammar KB maps common contractions and informal patterns. The Prolog query extraction rule recognizes this as `query(bob_age, scope: kb_stories_london)` — the structural meaning is extracted by rule matching, not by attention over the token sequence.
+User types "whats bobs age in the london story",  the English grammar partially matches (informal, missing apostrophe, no question mark). A typo/informal grammar KB maps common contractions and informal patterns. The Prolog query extraction rule recognizes this as `query(bob_age, scope: kb_stories_london)`,  the structural meaning is extracted by rule matching, not by attention over the token sequence.
 
-For genuinely novel input that matches no grammar, the system falls back to standard token-by-token LLM processing. The grammar system doesn't replace the LLM — it accelerates the common cases and provides exact structural tokens for the predictable parts.
+For genuinely novel input that matches no grammar, the system falls back to standard token-by-token LLM processing. The grammar system doesn't replace the LLM,  it accelerates the common cases and provides exact structural tokens for the predictable parts.
 
 **Common typo mapping as KB facts:**
 
@@ -148,7 +148,7 @@ typo_map("pritn", "print", language("python"), frequency(high)).
 typo_map("retrun", "return", language("python"), frequency(high)).
 ```
 
-These are KB facts, scoped by language. When parsing input, the system checks typo maps in the active language scope before passing unknown tokens to the LLM. The typo correction is exact (KB lookup), not probabilistic (LLM guess). And it's extensible — new typo patterns are just new KB facts.
+These are KB facts, scoped by language. When parsing input, the system checks typo maps in the active language scope before passing unknown tokens to the LLM. The typo correction is exact (KB lookup), not probabilistic (LLM guess). And it's extensible,  new typo patterns are just new KB facts.
 
 **Grammar profiles as KB-scoped rulesets:**
 
@@ -169,7 +169,7 @@ In the hybrid architecture from our earlier discussion, this grammar layer sits 
 
 The LLM in step 2 doesn't output tokens at all. It outputs structured decisions: "output a Python function named X with parameters Y and Z that does W." The grammar layer in step 3 turns that into a correctly formatted token stream. The LLM makes high-level creative decisions. The grammar makes low-level structural decisions. The KB provides the vocabulary for both.
 
-This means the LLM can be smaller because it's not learning formatting rules, bracket matching, indentation conventions, or punctuation patterns. Those are in the grammar KBs. The LLM learns intent recognition, content selection, and creative composition — the parts that actually require the pattern-matching capability of a neural network.
+This means the LLM can be smaller because it's not learning formatting rules, bracket matching, indentation conventions, or punctuation patterns. Those are in the grammar KBs. The LLM learns intent recognition, content selection, and creative composition,  the parts that actually require the pattern-matching capability of a neural network.
 
 **The practical implication for your build stages:**
 
@@ -183,7 +183,7 @@ IOSE: grammar_generator
   Properties: deterministic (given same intent and grammar), bounded
 ```
 
-Each output token is tagged with its source — grammar rule (structural, exact), LLM prediction (creative, probabilistic), or KB lookup (factual, exact). The provenance chain extends to individual tokens. You can ask "why did the output contain this specific token?" and get either "the Python grammar requires a colon after the parameter list" or "the LLM selected this word with probability 340/1000" or "this value was retrieved from kb_characters_b.bob_age."
+Each output token is tagged with its source,  grammar rule (structural, exact), LLM prediction (creative, probabilistic), or KB lookup (factual, exact). The provenance chain extends to individual tokens. You can ask "why did the output contain this specific token?" and get either "the Python grammar requires a colon after the parameter list" or "the LLM selected this word with probability 340/1000" or "this value was retrieved from kb_characters_b.bob_age."
 
 This token-level provenance is something no current LLM system provides and it falls naturally out of the grammar-guided generation architecture combined with the VDR-Prolog KB infrastructure you've already specified.
 
@@ -193,7 +193,7 @@ This is the key mechanism. Let me work through exactly how this operates.
 
 **The problem stated precisely:**
 
-The LLM has decided what it wants to communicate — a set of data items, each with attributes. It needs to select a grammar that has slots matching those attributes, then fill the slots. The grammar selection is itself a matching problem that Prolog is designed to solve.
+The LLM has decided what it wants to communicate,  a set of data items, each with attributes. It needs to select a grammar that has slots matching those attributes, then fill the slots. The grammar selection is itself a matching problem that Prolog is designed to solve.
 
 **Concrete example to ground the discussion:**
 
@@ -210,7 +210,7 @@ Each item has 5 attributes. The LLM needs to present these to the user. The ques
 
 **Available grammars as Prolog facts:**
 
-Grammars are stored in the language KB with their slot specifications — what attributes each slot accepts and what structure the grammar produces.
+Grammars are stored in the language KB with their slot specifications,  what attributes each slot accepts and what structure the grammar produces.
 
 ```
 grammar(comparison_table, 
@@ -278,13 +278,13 @@ Rule: requirement_satisfied(exists_orderable_attribute, Items) :-
 
 For our 4 memory reduction items, Prolog evaluates:
 
-`comparison_table` — requires 3+ items (yes, 4), requires shared attributes (yes, all have reduction, quality_loss, maturity). Slots map: name→technique name, metric_1→reduction, metric_2→quality_loss, metric_3→maturity. Coverage: 4 of 5 attributes mapped (source unmapped). Score: high.
+`comparison_table`,  requires 3+ items (yes, 4), requires shared attributes (yes, all have reduction, quality_loss, maturity). Slots map: name→technique name, metric_1→reduction, metric_2→quality_loss, metric_3→maturity. Coverage: 4 of 5 attributes mapped (source unmapped). Score: high.
 
-`ranked_list` — requires 2+ items (yes), requires orderable attribute (yes, reduction is numeric). Slots map: rank→by reduction, name→technique name, primary_metric→reduction, detail→remaining attributes as text. Coverage: all attributes representable but compressed. Score: medium.
+`ranked_list`,  requires 2+ items (yes), requires orderable attribute (yes, reduction is numeric). Slots map: rank→by reduction, name→technique name, primary_metric→reduction, detail→remaining attributes as text. Coverage: all attributes representable but compressed. Score: medium.
 
-`pros_cons_pairs` — requires tradeoff attributes. Reduction vs quality_loss is a tradeoff. Slots map: name→technique, advantage→reduction, disadvantage→quality_loss. Coverage: 3 of 5. Score: medium.
+`pros_cons_pairs`,  requires tradeoff attributes. Reduction vs quality_loss is a tradeoff. Slots map: name→technique, advantage→reduction, disadvantage→quality_loss. Coverage: 3 of 5. Score: medium.
 
-`single_recommendation` — requires one item clearly dominates. Quantization has highest reduction (75) but Prolog checks whether the dominance is clear. 75 vs 60 is not overwhelming. Requirement fails. Score: 0.
+`single_recommendation`,  requires one item clearly dominates. Quantization has highest reduction (75) but Prolog checks whether the dominance is clear. 75 vs 60 is not overwhelming. Requirement fails. Score: 0.
 
 Prolog returns the ranked grammar matches:
 
@@ -296,7 +296,7 @@ CMD: KB_QUERY(root.language.grammars,
     pros_cons_pairs-fraction(65,100)]
 ```
 
-The comparison table wins. The LLM doesn't need to decide on presentation format through token prediction — Prolog selected it by structural matching.
+The comparison table wins. The LLM doesn't need to decide on presentation format through token prediction,  Prolog selected it by structural matching.
 
 **Slot filling by attribute mapping:**
 
@@ -353,7 +353,7 @@ Rule: type_compatible(numeric_with_unit(_), free_text).  % numeric can be render
 Rule: type_compatible(categorical(_), free_text).         % categorical can be rendered as text
 ```
 
-Now Prolog solves the assignment problem — which attribute goes in which slot — by finding a valid mapping:
+Now Prolog solves the assignment problem,  which attribute goes in which slot,  by finding a valid mapping:
 
 ```
 Rule: assign_attributes_to_slots([], [], []).
@@ -369,17 +369,17 @@ For the comparison table with our data:
 assign result: [name-name, reduction-metric_1, quality_loss-metric_2, maturity-metric_3]
 ```
 
-Source is unassigned — it doesn't fit any remaining slot. The grammar system notes this as an unmapped attribute and the LLM can decide whether to mention it in a footnote or drop it.
+Source is unassigned,  it doesn't fit any remaining slot. The grammar system notes this as an unmapped attribute and the LLM can decide whether to mention it in a footnote or drop it.
 
 **The LLM's remaining job:**
 
 After Prolog selects the grammar and maps attributes to slots, the LLM's job is reduced to:
 
-1. **Header text** — "Here are four approaches to reducing memory usage:" (one short sentence, not a full generation)
-2. **Column headers** — the grammar template has slots for column names. The LLM picks human-readable names: "Technique", "Memory Reduction", "Quality Impact", "Maturity". These could also come from KB metadata if the attributes have display_name facts.
-3. **Value formatting** — reduction(75) becomes "75%" using the `format_percentage` builtin. quality_loss(2) becomes "2% loss". maturity(high) stays "High". These are conversion builtins, not LLM generation.
-4. **Ordering decision** — sort by reduction descending? By maturity? The LLM decides the sort key, the `list_sort_by_key` primitive executes it exactly.
-5. **Summary sentence** — "Quantization offers the best reduction with minimal quality impact." This is the one piece that genuinely requires LLM generation — a synthesis judgment.
+1. **Header text**,  "Here are four approaches to reducing memory usage:" (one short sentence, not a full generation)
+2. **Column headers**,  the grammar template has slots for column names. The LLM picks human-readable names: "Technique", "Memory Reduction", "Quality Impact", "Maturity". These could also come from KB metadata if the attributes have display_name facts.
+3. **Value formatting**,  reduction(75) becomes "75%" using the `format_percentage` builtin. quality_loss(2) becomes "2% loss". maturity(high) stays "High". These are conversion builtins, not LLM generation.
+4. **Ordering decision**,  sort by reduction descending? By maturity? The LLM decides the sort key, the `list_sort_by_key` primitive executes it exactly.
+5. **Summary sentence**,  "Quantization offers the best reduction with minimal quality impact." This is the one piece that genuinely requires LLM generation,  a synthesis judgment.
 
 Out of maybe 100 tokens in the final output, the LLM generated perhaps 25. The grammar provided the structure. The builtins provided the formatting. The KB provided the data. Prolog provided the selection and mapping.
 
@@ -470,7 +470,7 @@ IOSE: slot_filler
   Properties: deterministic (given same inputs), bounded
 ```
 
-The grammar matcher is pure Prolog — no LLM needed. The slot filler is mostly builtins and grammar rules — the LLM only provides values for the creative slots (summary sentences, explanations, judgment calls). The output token stream has provenance per token.
+The grammar matcher is pure Prolog,  no LLM needed. The slot filler is mostly builtins and grammar rules,  the LLM only provides values for the creative slots (summary sentences, explanations, judgment calls). The output token stream has provenance per token.
 
 **This changes the economics of generation fundamentally.** Instead of every token costing one forward pass through the full model, most tokens cost zero (grammar) or nearly zero (KB lookup, builtin formatting). Only the genuinely creative tokens cost a forward pass, and even those run against a constrained vocabulary (slot type determines what tokens are candidates). The effective cost per output token drops dramatically while the structural correctness goes up because grammar-produced tokens can't hallucinate.
 
@@ -495,7 +495,7 @@ CMD: KB_ASSERT(root.language.grammars.custom,
     template(api_error_report, [
         line(header, "API Error Report"),
         line(field, "Endpoint: ", slot(endpoint)),
-        line(field, "Status: ", slot(status_code), " — ", slot(error_message)),
+        line(field, "Status: ", slot(status_code), ",  ", slot(error_message)),
         line(field, "Time: ", slot(timestamp)),
         line(conditional, slot(affected_users), "Affected users: ", slot(affected_users)),
         line(field, "Severity: ", slot(severity)),
@@ -532,24 +532,24 @@ A grammar created in `root.project.vdr.grammars` is available when working on th
 The LLM can create grammars at any scope level:
 
 ```
-# Global utility grammar — available everywhere
+# Global utility grammar,  available everywhere
 CMD: KB_ASSERT(root.language.grammars,
     grammar(numbered_steps, ...))
 
-# Project-specific grammar — only in VDR project scope
+# Project-specific grammar,  only in VDR project scope
 CMD: KB_ASSERT(root.project.vdr.grammars,
     grammar(gym_result_report, ...))
 
-# Session-only grammar — disposable, dies with the clone
+# Session-only grammar,  disposable, dies with the clone
 CMD: KB_ASSERT(root.sessions.active.grammars,
     grammar(debug_trace_format, ...))
 ```
 
-A project grammar for gym results makes sense — every gym has the same structure (name, tests, passed, failed, notes). The LLM creates it once during the first gym report. The second through twenty-fifth gym reports use it automatically. The Prolog matcher finds it in scope and the generation is almost entirely structural.
+A project grammar for gym results makes sense,  every gym has the same structure (name, tests, passed, failed, notes). The LLM creates it once during the first gym report. The second through twenty-fifth gym reports use it automatically. The Prolog matcher finds it in scope and the generation is almost entirely structural.
 
 **Grammar evolution:**
 
-The LLM can modify grammars based on feedback. User says "I prefer the results in a more compact format." The LLM doesn't need to learn a new preference through gradient updates — it retracts the old template and asserts a compact version:
+The LLM can modify grammars based on feedback. User says "I prefer the results in a more compact format." The LLM doesn't need to learn a new preference through gradient updates,  it retracts the old template and asserts a compact version:
 
 ```
 CMD: KB_RETRACT(root.project.vdr.grammars,
@@ -626,7 +626,7 @@ CMD: lru_peek(root.language.grammars.low_score_matches, 5)
 → patterns that were tried but scored poorly
 ```
 
-If a grammar is frequently the best match but users often ask for modifications afterward, that's a signal the grammar needs a variant. If a grammar was created but never reused, maybe it was too specific. The LLM can prune, merge, or refine grammars based on usage data — not through training, but through KB operations guided by the inference loop.
+If a grammar is frequently the best match but users often ask for modifications afterward, that's a signal the grammar needs a variant. If a grammar was created but never reused, maybe it was too specific. The LLM can prune, merge, or refine grammars based on usage data,  not through training, but through KB operations guided by the inference loop.
 
 **The constraint integration:**
 
@@ -644,7 +644,7 @@ CMD: KB_ASSERT(root.language.grammars,
         on_violation("fall_back_to_narrative")))
 ```
 
-The constraint system checks grammar constraints before generation. A comparison table with only one item violates the minimum rows constraint and the system falls back to the narrative grammar. This is structural correctness enforcement — the output format is guaranteed appropriate for the data, not guessed by the LLM.
+The constraint system checks grammar constraints before generation. A comparison table with only one item violates the minimum rows constraint and the system falls back to the narrative grammar. This is structural correctness enforcement,  the output format is guaranteed appropriate for the data, not guessed by the LLM.
 
 **What this means for the LLM's role:**
 
@@ -656,13 +656,13 @@ The LLM becomes a grammar architect and an intent translator, not a token genera
 4. Deciding when to modify or retire grammars based on usage patterns
 5. Translating user intent into data selection plus grammar selection
 
-Everything else — structural tokens, formatting, data rendering, bracket matching, indentation, punctuation, table alignment — is handled by the grammar system with zero LLM computation and zero hallucination risk.
+Everything else,  structural tokens, formatting, data rendering, bracket matching, indentation, punctuation, table alignment,  is handled by the grammar system with zero LLM computation and zero hallucination risk.
 
 The economic implication is that the effective intelligence of the system per compute dollar goes up dramatically. The LLM spends its forward passes on the 20% of tokens that require judgment and creativity. The other 80% are exact, structural, and free. The quality also goes up because the structural tokens are provably correct and the creative tokens are generated against constrained vocabularies with KB-provided context rather than against the full 50,000-token vocabulary with attention-recovered context.
 
 ---
 
-Yes. The grammar belongs on the KB struct the same way constraints moved onto it in the VDR-5 addendum. Same principle — the thing being described holds its own description.
+Yes. The grammar belongs on the KB struct the same way constraints moved onto it in the VDR-5 addendum. Same principle,  the thing being described holds its own description.
 
 **The structural argument:**
 
@@ -728,11 +728,11 @@ class KnowledgeBase:
     last_modified: int = 0
 ```
 
-That's 26 fields now. The grammar field is persistent — it survives reset, travels on export, inherits through the tree.
+That's 26 fields now. The grammar field is persistent,  it survives reset, travels on export, inherits through the tree.
 
 **Grammar inheritance through the KB tree:**
 
-This is where the connection mapping creates real leverage. Grammars inherit just like constraints — a child KB inherits its parent's grammars, and can override by declaring a grammar with the same name.
+This is where the connection mapping creates real leverage. Grammars inherit just like constraints,  a child KB inherits its parent's grammars, and can override by declaring a grammar with the same name.
 
 ```
 root                          → base grammars (numbered_steps, comparison_table, etc.)
@@ -836,7 +836,7 @@ GrammarRule(
 )
 ```
 
-The slot filler sees `training_loss` needs data from the connected training run KB. It follows the `trained_by` connection, resolves to the target KB by integer ID, queries the loss fact, and fills the slot. One grammar declaration describes a dashboard that pulls data from four different KBs across the lifecycle tree. The LLM didn't generate any of this — the grammar declared the connections to follow and the slot filler traversed them.
+The slot filler sees `training_loss` needs data from the connected training run KB. It follows the `trained_by` connection, resolves to the target KB by integer ID, queries the loss fact, and fills the slot. One grammar declaration describes a dashboard that pulls data from four different KBs across the lifecycle tree. The LLM didn't generate any of this,  the grammar declared the connections to follow and the slot filler traversed them.
 
 ```python
 def fill_connected_slot(kb: KnowledgeBase, slot_name: str, 
@@ -864,17 +864,17 @@ When the system needs to present data from a KB:
 1. Grammar matcher reads the KB's fact attributes (what data exists)
 2. Grammar matcher reads the KB's connection topology (what related data exists elsewhere)
 3. Grammar matcher scores all grammars in scope (own grammars → parent grammars → language grammars)
-4. Best grammar selected — it declares both local slots and connected slots
+4. Best grammar selected,  it declares both local slots and connected slots
 5. Slot filler fills local slots from the KB's own facts
 6. Slot filler fills connected slots by following connections to target KBs via integer ID
 7. Remaining creative slots (summaries, recommendations) go to the LLM
 8. Grammar template assembles the token stream
 
-The entire data gathering step — which in a standard LLM would require the model to remember or re-derive the relationships between training runs, evaluations, and deployments — is handled by connection traversal. The connections are explicitly declared, stored on the KB struct, and traversable by integer ID in O(1).
+The entire data gathering step,  which in a standard LLM would require the model to remember or re-derive the relationships between training runs, evaluations, and deployments,  is handled by connection traversal. The connections are explicitly declared, stored on the KB struct, and traversable by integer ID in O(1).
 
 **Grammar-aware connections:**
 
-Connections can carry grammar hints — when you create a connection, you can declare how the connected data should be presented if this connection is traversed for slot filling:
+Connections can carry grammar hints,  when you create a connection, you can declare how the connected data should be presented if this connection is traversed for slot filling:
 
 ```python
 @dataclass
@@ -907,7 +907,7 @@ Connection(
 )
 ```
 
-The connection itself knows how to present the connected data. The slot filler doesn't need to guess which facts from the eval KB are relevant — the connection's `display_slot_mapping` declares exactly which facts map to which slots. The connection is both a structural link and a presentation instruction.
+The connection itself knows how to present the connected data. The slot filler doesn't need to guess which facts from the eval KB are relevant,  the connection's `display_slot_mapping` declares exactly which facts map to which slots. The connection is both a structural link and a presentation instruction.
 
 **Self-documenting KBs:**
 
@@ -921,7 +921,7 @@ With grammars on the struct, a KB becomes fully self-documenting. It carries:
 - **What it's currently tracking** (data primitives)
 - **Who owns it and who can see it** (metadata)
 
-When you export a KB, the grammars travel with it. When you import a KB into a different system, the receiving system immediately knows how to present its data because the presentation grammar is inside the data. The grammar is not external configuration — it's part of the KB's identity.
+When you export a KB, the grammars travel with it. When you import a KB into a different system, the receiving system immediately knows how to present its data because the presentation grammar is inside the data. The grammar is not external configuration,  it's part of the KB's identity.
 
 **Revised struct field count:**
 
@@ -956,7 +956,7 @@ The KB struct is now at 26 fields:
 | 25 | iose_declaration | Metadata | VDR-10 |
 | 26 | display_grammar | Metadata | NEW |
 
-Wait — I listed grammars at position 8 as a list of GrammarRule, and display_grammar at 26 as a default grammar name. Let me reconsider. The `grammars` field (position 8) is the list of grammar rules the KB defines. The default display grammar (which grammar to use when presenting this KB without further specification) could just be a fact rather than a struct field. Keep it at 26 fields — `grammars` replaces `display_grammar` as the single grammar-related field, and the default display grammar is a convention (the first grammar in the list, or the one named `default_display`).
+Wait,  I listed grammars at position 8 as a list of GrammarRule, and display_grammar at 26 as a default grammar name. Let me reconsider. The `grammars` field (position 8) is the list of grammar rules the KB defines. The default display grammar (which grammar to use when presenting this KB without further specification) could just be a fact rather than a struct field. Keep it at 26 fields,  `grammars` replaces `display_grammar` as the single grammar-related field, and the default display grammar is a convention (the first grammar in the list, or the one named `default_display`).
 
 So 26 fields total. 6 persistent (facts, rules, constraints, connections, grammars, plus iose_declaration as metadata-but-persistent). 8 live. 3 structural. The grammars field follows the same inheritance, export, and scoping rules as constraints.
 

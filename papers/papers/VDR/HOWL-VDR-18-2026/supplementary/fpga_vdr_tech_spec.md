@@ -2,7 +2,7 @@
 
 ## Document Purpose
 
-This specification defines the hardware acceleration subsystem for VDR-LLM-Prolog, targeting the Xilinx Zynq-7020 SoC (Zybo Z7-20 development board) as the proof-of-concept platform. The FPGA accelerates data-plane operations — Prolog fact matching, Q335 batch arithmetic, attention score computation, constraint checking, and softmax normalization — while the host Zig software retains all control-plane operations. Every accelerated operation produces results identical to the software path. The IOSE declarations, builtin contracts, and VDR-14 system specification are unchanged.
+This specification defines the hardware acceleration subsystem for VDR-LLM-Prolog, targeting the Xilinx Zynq-7020 SoC (Zybo Z7-20 development board) as the proof-of-concept platform. The FPGA accelerates data-plane operations,  Prolog fact matching, Q335 batch arithmetic, attention score computation, constraint checking, and softmax normalization,  while the host Zig software retains all control-plane operations. Every accelerated operation produces results identical to the software path. The IOSE declarations, builtin contracts, and VDR-14 system specification are unchanged.
 
 ---
 
@@ -20,7 +20,7 @@ The FPGA is responsible for: parallel Prolog fact matching across KB partitions,
 
 Two AXI interfaces connect PS to PL. AXI GP0 (general purpose, 32-bit) provides register-mapped control for small queries and configuration. AXI HP0 (high performance, 64-bit) provides DMA for bulk data transfer between DDR3 and core BRAMs.
 
-For small operations (single Prolog query, single constraint check), the host writes query parameters directly to control registers and reads results from status registers — no DMA overhead. For bulk operations (batch parameter update, attention matrix computation, full KB scan), the host sets DDR3 source and destination addresses in registers, triggers DMA, and polls for completion.
+For small operations (single Prolog query, single constraint check), the host writes query parameters directly to control registers and reads results from status registers,  no DMA overhead. For bulk operations (batch parameter update, attention matrix computation, full KB scan), the host sets DDR3 source and destination addresses in registers, triggers DMA, and polls for completion.
 
 ### 1.3 Memory Map
 
@@ -48,7 +48,7 @@ PL BRAM space (shared, read-only during operation):
 
 ### 2.1 Working Width
 
-All arithmetic operates on 384-bit integers. This covers Q335 numerators (approximately 340 bits) with 44 bits of margin for intermediate overflow during multiply-accumulate. The denominator D = 2^335 is never stored — it is implicit in the Q335 convention. Division by D is a right-shift by 335 bits. Multiplication results (768 bits) split at bit 335: upper bits become V, lower 335 bits become R.
+All arithmetic operates on 384-bit integers. This covers Q335 numerators (approximately 340 bits) with 44 bits of margin for intermediate overflow during multiply-accumulate. The denominator D = 2^335 is never stored,  it is implicit in the Q335 convention. Division by D is a right-shift by 335 bits. Multiplication results (768 bits) split at bit 335: upper bits become V, lower 335 bits become R.
 
 ### 2.2 Register File
 
@@ -76,13 +76,13 @@ The ALU is the computational engine of each core. It is pipelined internally but
 
 **128-bit iterative multiplier.** Computes 384 × 384 → 768-bit product by tiling into 3 × 3 = 9 partial products of 128 × 128 → 256 bits. Each partial product uses DSP48E1 cascade (5 DSP48 slices per 128-bit multiply, chaining 25×18 primitives). Nine iterations with accumulation into a 768-bit result register. Latency: 9 cycles. Resources: 5 DSP48E1 slices (time-multiplexed across 9 iterations), approximately 200 LUTs for accumulation and control.
 
-**384-bit barrel shifter.** Shifts by 0-383 positions in a single cycle via 9 stages of 2:1 multiplexers (shift by 1, 2, 4, 8, 16, 32, 64, 128, 256). Special-case SHR335 instruction uses a fixed wiring extraction — bits [334:0] to one register, bits [767:335] to another — requiring no multiplexers. Latency: 1 cycle for barrel shift, 0 additional logic for SHR335. Resources: approximately 350 LUTs for the barrel shifter.
+**384-bit barrel shifter.** Shifts by 0-383 positions in a single cycle via 9 stages of 2:1 multiplexers (shift by 1, 2, 4, 8, 16, 32, 64, 128, 256). Special-case SHR335 instruction uses a fixed wiring extraction,  bits [334:0] to one register, bits [767:335] to another,  requiring no multiplexers. Latency: 1 cycle for barrel shift, 0 additional logic for SHR335. Resources: approximately 350 LUTs for the barrel shifter.
 
 **384-bit comparator.** Cascaded 64-bit comparisons with early termination. Sets EQ, LT, GT flags. Latency: 1 cycle. Resources: approximately 100 LUTs.
 
 **Cross-multiply unit.** For VDR fraction unification: computes A.V × B.D and B.V × A.D using the iterative multiplier (two invocations, 18 cycles total), then compares the two 768-bit products. Sets EQ flag if equal. Latency: 19 cycles (18 multiply + 1 compare). Invoked by CROSS_MUL instruction.
 
-**Q335 divmod.** Dedicated instruction SHR335 that extracts the quotient and remainder of division by 2^335 in zero additional cycles — it is a fixed wiring of the 768-bit multiply result into two 384-bit registers. The upper bits [767:335] are the quotient (new V), the lower bits [334:0] are the remainder (new R, zero-extended to 384 bits). This is the core VDR nesting operation and it is free in hardware.
+**Q335 divmod.** Dedicated instruction SHR335 that extracts the quotient and remainder of division by 2^335 in zero additional cycles,  it is a fixed wiring of the 768-bit multiply result into two 384-bit registers. The upper bits [767:335] are the quotient (new V), the lower bits [334:0] are the remainder (new R, zero-extended to 384 bits). This is the core VDR nesting operation and it is free in hardware.
 
 ### 2.4 Remainder BRAM
 
@@ -213,7 +213,7 @@ Port A: write-only, connected to DMA engine for loading. Port B: read-only, broa
 
 A binary tree of 384-bit adders connecting core outputs for operations that require global aggregation (softmax denominator sum, norm computation, global dot product). Five levels of adders reduce 10 core outputs to one 384-bit sum. Latency: 5 cycles. Resources: approximately 1,200 LUTs, 600 FFs.
 
-The reduction network is optional — results can alternatively be collected by DMA and reduced in software. Hardware reduction is faster for operations where the reduction is on the critical path (softmax).
+The reduction network is optional,  results can alternatively be collected by DMA and reduced in software. Hardware reduction is faster for operations where the reduction is on the critical path (softmax).
 
 ---
 
@@ -264,7 +264,7 @@ For single Prolog queries without DMA:
 | 0x11C | FP_MATCH_1 | 32 | R | Index of second matching fact |
 | 0x120 | FP_MATCH_2 | 32 | R | Index of third matching fact |
 | 0x124 | FP_MATCH_3 | 32 | R | Index of fourth matching fact |
-| 0x128-0x1FC | Reserved | — | — | Expansion for multi-argument queries |
+| 0x128-0x1FC | Reserved |,  |,  | Expansion for multi-argument queries |
 
 Fast-path latency: approximately 10 + (fact_count / 10) cycles. For 200 facts: approximately 30 cycles = 200ns at 150 MHz.
 
@@ -304,8 +304,8 @@ Type B (batch):
 
 | Opcode | Mnemonic | Format | Cycles | Description |
 |--------|----------|--------|--------|-------------|
-| 0x00 | HALT | — | 1 | Stop core, set DONE flag |
-| 0x01 | NOP | — | 1 | No operation |
+| 0x00 | HALT |,  | 1 | Stop core, set DONE flag |
+| 0x01 | NOP |,  | 1 | No operation |
 | 0x02 | JMP | J | 1 | Unconditional jump to address |
 | 0x03 | JEQ | J | 1 | Jump if EQ flag set |
 | 0x04 | JLT | J | 1 | Jump if LT flag set |
@@ -352,8 +352,8 @@ Type B (batch):
 | 0x2D | LDSHARED | I | 2 | Vd = shared_BRAM[imm] (read from shared read-only BRAM) |
 | 0x2E | TSEND | R | 1 | Write Vs1 to inter-core transfer register; assert send_ready |
 | 0x2F | TRECV | R | 1 | Vd = inter-core transfer register; wait for send_ready |
-| 0x30 | TWAIT | — | var | Stall until transfer complete |
-| 0x31 | TDONE | — | 1 | Signal transfer complete |
+| 0x30 | TWAIT |,  | var | Stall until transfer complete |
+| 0x31 | TDONE |,  | 1 | Signal transfer complete |
 | 0x32 | REDUCE_ADD | R | 5 | Send Vs1 to reduction network; receive global sum in Vd (5-cycle tree reduction across 10 cores) |
 | 0x33 | MOVI | I | 1 | Vd[17:0] = imm (move immediate to low 18 bits, zero-extend) |
 | 0x34 | MOVHI | I | 1 | Vd[35:18] = imm (move immediate to bits 35:18) |

@@ -1,8 +1,8 @@
-## VDR Kernel Specs — Minimal Complete Set
+## VDR Kernel Specs,  Minimal Complete Set
 
 ```zig
 // ============================================================
-// vdr_kernels.zig — Toy specs for H100 VDR kernel library
+// vdr_kernels.zig,  Toy specs for H100 VDR kernel library
 // Fixed basis, INT8/INT16 tensor core targeting
 // ============================================================
 
@@ -15,7 +15,7 @@ const TENSOR_CORE_N: i32 = 16;
 const TENSOR_CORE_K_INT8: i32 = 32;
 const SHARED_MEM_BYTES: i32 = 65536; // 64KB configurable
 
-// Fixed basis per domain — no runtime D anywhere in kernels
+// Fixed basis per domain,  no runtime D anywhere in kernels
 const WEIGHT_BITS: u5 = 8;
 const ACTIVATION_BITS: u5 = 16;
 const ACCUMULATOR_BITS: u5 = 32;
@@ -64,7 +64,7 @@ const AccumulatorTile = struct {
 
 // --- Kernel Specs ---
 
-// 1. GEMM — the workhorse
+// 1. GEMM,  the workhorse
 // INT8 weight × INT16 activation → INT32 accumulator
 // Tensor core path: mma.sync.aligned.m16n16k32.s32.s8.s16
 // Post-accumulation: shift+mask to split V and R
@@ -83,7 +83,7 @@ const GemmKernel = struct {
     // Shared memory: double-buffered
     //   Buffer A: 128 × 32 × 1 byte = 4KB
     //   Buffer B: 32 × 128 × 2 bytes = 8KB
-    //   Double: 24KB total — leaves room for tables
+    //   Double: 24KB total,  leaves room for tables
     //
     // Inner loop per warp:
     //   load A tile into registers (i8)
@@ -97,7 +97,7 @@ const GemmKernel = struct {
     //   two instructions, no branch
 };
 
-// 2. Softmax — table lookup, no SFU
+// 2. Softmax,  table lookup, no SFU
 // Input: i16 logits. Output: i16 V and R normalized.
 // Table precomputed for all 65536 possible i16 inputs.
 
@@ -109,7 +109,7 @@ const SoftmaxKernel = struct {
     num_heads: i32,
 
     // Shared memory layout:
-    //   exp_table_v: [65536]i16 — but only need range actually present
+    //   exp_table_v: [65536]i16,  but only need range actually present
     //   In practice: logits are bounded, say [-1024, 1024]
     //   Table for that range: 2048 × 2 bytes = 4KB
     //   Fits in shared memory trivially
@@ -130,7 +130,7 @@ const SoftmaxKernel = struct {
     // All at full INT32 throughput, zero SFU
 };
 
-// 3. Layer Norm — integer mean/variance, no rsqrt SFU
+// 3. Layer Norm,  integer mean/variance, no rsqrt SFU
 // Newton iteration for reciprocal sqrt, precomputable
 
 const LayerNormKernel = struct {
@@ -142,12 +142,12 @@ const LayerNormKernel = struct {
     output_r: [*]i16,
     hidden_dim: i32,
 
-    // Phase 1: mean — integer sum / count
+    // Phase 1: mean,  integer sum / count
     //   sum = warp_reduce_add(input_v)
     //   mean_v = sum >> log2(hidden_dim)  // if power of two
     //   mean_r = sum & (hidden_dim - 1)   // exact remainder
     //
-    // Phase 2: variance — integer sum of squared deviations
+    // Phase 2: variance,  integer sum of squared deviations
     //   diff = input_v[i] - mean_v
     //   sq = diff * diff               // i16 × i16 → i32
     //   var_sum = warp_reduce_add(sq)
@@ -164,7 +164,7 @@ const LayerNormKernel = struct {
     //   all integer multiply-shift-add
 };
 
-// 4. GeLU Activation — table lookup
+// 4. GeLU Activation,  table lookup
 
 const GeluKernel = struct {
     input_v: [*]i16,
@@ -180,7 +180,7 @@ const GeluKernel = struct {
     // done. no SFU, no polynomial, no tanh approximation
 };
 
-// 5. Attention Score — GEMM + scale + mask + softmax fused
+// 5. Attention Score,  GEMM + scale + mask + softmax fused
 
 const AttentionKernel = struct {
     q_v: [*]i16,
@@ -196,14 +196,14 @@ const AttentionKernel = struct {
     // Fused kernel:
     // Step 1: QK^T via integer GEMM on tensor cores
     //   i16 × i16 → i32 accumulator
-    //   scale by 1/sqrt(d) — precomputed as integer multiply + shift
+    //   scale by 1/sqrt(d),  precomputed as integer multiply + shift
     //   no float rsqrt
     //
-    // Step 2: causal mask — integer compare + set to INT_MIN
+    // Step 2: causal mask,  integer compare + set to INT_MIN
     //   no branch: mask = (col > row) * INT_MIN
     //   integer multiply by 0 or 1, same instruction all threads
     //
-    // Step 3: softmax — fused, table lookup as above
+    // Step 3: softmax,  fused, table lookup as above
     //
     // Step 4: score × V via integer GEMM on tensor cores
     //   i16 × i16 → i32 → shift+mask → i16 output
@@ -214,7 +214,7 @@ const AttentionKernel = struct {
     // and softmax has no SFU dependency
 };
 
-// 6. Diffusion Step — the chain kernel
+// 6. Diffusion Step,  the chain kernel
 
 const DiffusionStepKernel = struct {
     xt_v: [*]i16,
@@ -240,7 +240,7 @@ const DiffusionStepKernel = struct {
     // chain 8.64 million of these: still zero drift.
 };
 
-// 7. Residual Add — trivial but important for chains
+// 7. Residual Add,  trivial but important for chains
 
 const ResidualAddKernel = struct {
     a_v: [*]i16,
@@ -257,7 +257,7 @@ const ResidualAddKernel = struct {
     // 6 integer ops, no branch
 };
 
-// 8. Embedding Lookup — pure memory
+// 8. Embedding Lookup,  pure memory
 
 const EmbeddingKernel = struct {
     table_v: [*]i8,       // vocab_size × embed_dim
@@ -276,19 +276,19 @@ const EmbeddingKernel = struct {
 
 ---
 
-## Now Game It Out — Full Forward Pass, Float vs VDR
+## Now Game It Out,  Full Forward Pass, Float vs VDR
 
 Assume a 7B parameter model, 32 layers, hidden dim 4096, 32 heads, sequence length 2048. Single-batch inference on one H100 SXM.
 
-### Memory Load — The First Bottleneck
+### Memory Load,  The First Bottleneck
 
 **FP16 model:** 7B params × 2 bytes = 14GB. At 3.35 TB/s, minimum load time = 4.2ms.
 
-**VDR INT8 weights:** 7B params × 1 byte = 7GB. At 3.35 TB/s, minimum load time = 2.1ms. Plus R channel for activations — but activations are generated on-chip, not loaded from HBM.
+**VDR INT8 weights:** 7B params × 1 byte = 7GB. At 3.35 TB/s, minimum load time = 2.1ms. Plus R channel for activations,  but activations are generated on-chip, not loaded from HBM.
 
 **VDR loads the model in half the time.** For inference where you're loading weights once per token, this is a 2× throughput advantage before any compute happens.
 
-### Compute — Per Layer
+### Compute,  Per Layer
 
 One transformer layer at seq_len=2048, hidden=4096, 32 heads:
 
@@ -331,7 +331,7 @@ One transformer layer at seq_len=2048, hidden=4096, 32 heads:
 | Division by N | float div | shift (if N is power of 2) |
 | Time | ~0.004ms | ~0.002ms |
 
-### Full Forward Pass — 32 Layers
+### Full Forward Pass,  32 Layers
 
 | Component | FP16 per layer | VDR per layer |
 |---|---|---|
@@ -359,7 +359,7 @@ One transformer layer at seq_len=2048, hidden=4096, 32 heads:
 
 **2× inference throughput.** Not from approximation. From exactness on faster hardware paths.
 
-### The Diffusion Chain — Where It Gets Absurd
+### The Diffusion Chain,  Where It Gets Absurd
 
 A 2-hour video at 24fps, 150 diffusion steps per frame:
 
@@ -373,7 +373,7 @@ A 2-hour video at 24fps, 150 diffusion steps per frame:
 | Correction passes needed | every ~1000 steps | never |
 | Correction overhead | ~25,920 extra passes | zero |
 
-Float needs periodic renormalization — recompute the schedule values from scratch, resync the latent. That costs compute and adds complexity. VDR never needs it. Over a 2-hour generation, the correction overhead for float could add 5-10% to total compute. VDR uses that budget for actual work.
+Float needs periodic renormalization,  recompute the schedule values from scratch, resync the latent. That costs compute and adds complexity. VDR never needs it. Over a 2-hour generation, the correction overhead for float could add 5-10% to total compute. VDR uses that budget for actual work.
 
 ### Net Scorecard
 
@@ -390,4 +390,4 @@ Float needs periodic renormalization — recompute the schedule values from scra
 | Long-chain correction | required | never |
 | Software maturity | cuBLAS/cuDNN/FlashAttn | needs kernel library |
 
-The only column where float wins is software maturity. On every hardware metric, VDR INT8 on existing tensor cores is faster, denser, and exact. The hardware is already there. The quantization community funded it. VDR just uses it correctly — keeping the remainder instead of throwing it away.
+The only column where float wins is software maturity. On every hardware metric, VDR INT8 on existing tensor cores is faster, denser, and exact. The hardware is already there. The quantization community funded it. VDR just uses it correctly,  keeping the remainder instead of throwing it away.

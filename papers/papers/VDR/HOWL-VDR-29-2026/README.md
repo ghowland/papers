@@ -6,9 +6,9 @@
 
 ## Abstract
 
-Every floating-point operation can round. One rounding is negligible. Millions compound. This paper presents performance projections for VDR — Value, Denominator, Remainder — exact integer arithmetic implemented in Zig targeting AVX-512 SIMD and NVIDIA H100 GPU tensor cores. VDR eliminates accumulated arithmetic error by replacing floating-point operations with integer multiply, shift, and mask on a fixed power-of-two denominator basis, storing exact remainders rather than discarding them.
+Every floating-point operation can round. One rounding is negligible. Millions compound. This paper presents performance projections for VDR,  Value, Denominator, Remainder,  exact integer arithmetic implemented in Zig targeting AVX-512 SIMD and NVIDIA H100 GPU tensor cores. VDR eliminates accumulated arithmetic error by replacing floating-point operations with integer multiply, shift, and mask on a fixed power-of-two denominator basis, storing exact remainders rather than discarding them.
 
-The reference VDR implementation (vdr-math, Python) uses a 335-bit basis tuned for physics and transcendental computation. This paper retunes the basis to match machine register widths for LLM inference and diffusion model workloads: 8-bit for weights, 16-bit for activations, 64-bit for gradient accumulation. At these widths, VDR's divmod operation reduces to a bit shift and mask — native hardware operations on all modern processors.
+The reference VDR implementation (vdr-math, Python) uses a 335-bit basis tuned for physics and transcendental computation. This paper retunes the basis to match machine register widths for LLM inference and diffusion model workloads: 8-bit for weights, 16-bit for activations, 64-bit for gradient accumulation. At these widths, VDR's divmod operation reduces to a bit shift and mask,  native hardware operations on all modern processors.
 
 Projected results on H100: 1.6-1.8× throughput improvement on GEMM via INT8 tensor cores, 3-4× improvement on softmax via elimination of the Special Function Unit bottleneck, 2× effective memory bandwidth from half-size weights, and zero accumulated drift over arbitrarily long operation chains. Full transformer forward pass for a 7B parameter model projects to approximately 2× throughput versus optimized FP16, with exact results at every step.
 

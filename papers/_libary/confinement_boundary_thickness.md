@@ -18,9 +18,9 @@ PHYS-45 defined boundary thickness as 1/|b| for each gauge sector. The values:
 | SU(2) weak | −19/6 | 6/19 = 0.31579 | −13/6 | 6/13 = 0.46154 |
 | U(1) EM | 41/10 | 10/41 = 0.24390 | 25/6 | 6/25 = 0.24000 |
 
-These were presented as exact fractions, verified by the experiment runner, and accepted as structural properties of the boundaries. The paper stated: "A larger |b₃| means α_s runs faster, meaning the transition from perturbative to non-perturbative is sharper — the boundary is thinner."
+These were presented as exact fractions, verified by the experiment runner, and accepted as structural properties of the boundaries. The paper stated: "A larger |b₃| means α_s runs faster, meaning the transition from perturbative to non-perturbative is sharper,  the boundary is thinner."
 
-The claim is physically intuitive. A coupling that runs fast reaches criticality over a narrow energy range — thin boundary. A coupling that runs slow reaches criticality over a wide energy range — thick boundary. The reciprocal of the running rate gives the width of the transition zone in units of the logarithmic energy scale.
+The claim is physically intuitive. A coupling that runs fast reaches criticality over a narrow energy range,  thin boundary. A coupling that runs slow reaches criticality over a wide energy range,  thick boundary. The reciprocal of the running rate gives the width of the transition zone in units of the logarithmic energy scale.
 
 But "physically intuitive" is not a derivation. This notebook examines what 1/|b| actually measures, whether it's the right definition, and what it implies.
 
@@ -43,7 +43,7 @@ So 1/|b| is proportional to the energy range (in log space) over which the coupl
 - 1/|b| is the change in α⁻¹ per unit of ln(μ)/(2π)
 - Or equivalently, 2π/|b| is the change in ln(μ) per unit change in α⁻¹
 
-The factor of 2π is conventional — it comes from the standard normalization of the beta function. The structurally meaningful quantity is 1/|b|, which strips the convention and leaves the pure ratio: how much does the coupling change per logarithmic decade of energy?
+The factor of 2π is conventional,  it comes from the standard normalization of the beta function. The structurally meaningful quantity is 1/|b|, which strips the convention and leaves the pure ratio: how much does the coupling change per logarithmic decade of energy?
 
 This means 1/|b| is not just a label we're attaching to boundaries. It is the actual logarithmic derivative of the inverse coupling:
 
@@ -57,17 +57,17 @@ The boundary thickness 1/|b| is the reciprocal of this rate. It is the energy sc
 
 A soliton boundary is where the coupling transitions from weak (perturbative, calculable) to strong (non-perturbative, confining or symmetry-breaking). The thickness measures how gradually this transition occurs.
 
-**Thin boundary (small 1/|b|, large |b|):** The coupling runs fast. It goes from perturbative to non-perturbative over a narrow energy range. The transition is sharp. Crossing the boundary is abrupt. You're outside, and then suddenly you're inside. The strong force in the SM has thickness 1/7 ≈ 0.143 — the thinnest gauge boundary. Confinement is sharp.
+**Thin boundary (small 1/|b|, large |b|):** The coupling runs fast. It goes from perturbative to non-perturbative over a narrow energy range. The transition is sharp. Crossing the boundary is abrupt. You're outside, and then suddenly you're inside. The strong force in the SM has thickness 1/7 ≈ 0.143,  the thinnest gauge boundary. Confinement is sharp.
 
-**Thick boundary (large 1/|b|, small |b|):** The coupling runs slowly. The transition from perturbative to non-perturbative is spread over a wide energy range. The boundary is gradual. There's a broad crossover zone where you're neither fully inside nor fully outside. The weak force with CD modification has thickness 6/13 ≈ 0.462 — the thickest gauge boundary. Electroweak symmetry breaking is gradual.
+**Thick boundary (large 1/|b|, small |b|):** The coupling runs slowly. The transition from perturbative to non-perturbative is spread over a wide energy range. The boundary is gradual. There's a broad crossover zone where you're neither fully inside nor fully outside. The weak force with CD modification has thickness 6/13 ≈ 0.462,  the thickest gauge boundary. Electroweak symmetry breaking is gradual.
 
 The physical consequences of thickness:
 
-**For confinement (SU(3)):** A thin boundary means quarks go from nearly free to completely confined over a narrow energy window. Perturbation theory works well above the boundary and fails completely below it. The transition zone — where neither perturbative QCD nor hadronic models work perfectly — is narrow. This is why the confinement problem is hard: there's almost no overlap between the two descriptions.
+**For confinement (SU(3)):** A thin boundary means quarks go from nearly free to completely confined over a narrow energy window. Perturbation theory works well above the boundary and fails completely below it. The transition zone,  where neither perturbative QCD nor hadronic models work perfectly,  is narrow. This is why the confinement problem is hard: there's almost no overlap between the two descriptions.
 
-**For electroweak symmetry breaking (SU(2)):** A thicker boundary means the transition from unbroken SU(2) to broken electroweak is more gradual. The energy range where both the symmetric and broken descriptions are partially valid is wider. This is why electroweak corrections are perturbatively calculable — the boundary is thick enough that you never fully leave the perturbative regime.
+**For electroweak symmetry breaking (SU(2)):** A thicker boundary means the transition from unbroken SU(2) to broken electroweak is more gradual. The energy range where both the symmetric and broken descriptions are partially valid is wider. This is why electroweak corrections are perturbatively calculable,  the boundary is thick enough that you never fully leave the perturbative regime.
 
-**For electromagnetism (U(1)):** The EM coupling runs in the opposite direction (b₁ is positive — the coupling gets stronger at higher energy, not weaker). The thickness 10/41 ≈ 0.244 measures how gradually the screening of electric charge by virtual particle-antiparticle pairs increases as you zoom in. The EM "boundary" is not a confinement boundary — it's a screening boundary. It's the rate at which the vacuum polarization reveals the bare charge.
+**For electromagnetism (U(1)):** The EM coupling runs in the opposite direction (b₁ is positive,  the coupling gets stronger at higher energy, not weaker). The thickness 10/41 ≈ 0.244 measures how gradually the screening of electric charge by virtual particle-antiparticle pairs increases as you zoom in. The EM "boundary" is not a confinement boundary,  it's a screening boundary. It's the rate at which the vacuum polarization reveals the bare charge.
 
 ---
 
@@ -81,7 +81,7 @@ The CD shifts all three beta coefficients, which shifts all three thicknesses. T
 | SU(2) | +1 | 19/6 | 13/6 | +46.2% thicker | Large Δb (full unit) relative to moderate |b| |
 | U(1) | +1/15 | 41/10 | 25/6 | −1.6% thinner | Tiny Δb relative to large |b| |
 
-The hierarchy of changes mirrors the CD's quantum numbers. The CD is an SU(2) doublet — it transforms as a 2 under the weak force, giving the largest beta shift (+1). It's an SU(3) triplet with a vector-like pair — moderate shift (+1/3). It has hypercharge 1/6 — the smallest quantum number in the SM quantization, giving a tiny shift (+1/15).
+The hierarchy of changes mirrors the CD's quantum numbers. The CD is an SU(2) doublet,  it transforms as a 2 under the weak force, giving the largest beta shift (+1). It's an SU(3) triplet with a vector-like pair,  moderate shift (+1/3). It has hypercharge 1/6,  the smallest quantum number in the SM quantization, giving a tiny shift (+1/15).
 
 The weak boundary getting 46% thicker is the largest structural change the CD produces. This is worth examining. A 46% thicker electroweak boundary means the transition from unbroken to broken electroweak symmetry is substantially more gradual. This affects:
 
@@ -89,7 +89,7 @@ The weak boundary getting 46% thicker is the largest structural change the CD pr
 - Electroweak baryogenesis (can the matter-antimatter asymmetry be generated at the EW scale?)
 - The Higgs potential's running (how quickly does the quartic coupling change near the EW scale?)
 
-Each of these is a major open question in particle physics. The CD's effect on the EW boundary thickness — 46% thicker — may be relevant to all of them.
+Each of these is a major open question in particle physics. The CD's effect on the EW boundary thickness,  46% thicker,  may be relevant to all of them.
 
 ---
 
@@ -113,9 +113,9 @@ The ratios between thicknesses are themselves exact fractions.
 | U(1)/SU(3) | (6/25)/(3/20) | 120/75 = 8/5 | 1.6000 |
 | U(1)/SU(2) | (6/25)/(6/13) | 78/150 = 13/25 | 0.5200 |
 
-Every ratio is an exact fraction. The CD changes every ratio. The SU(2)/SU(3) ratio goes from 42/19 ≈ 2.21 to 40/13 ≈ 3.08 — the weak boundary becomes 39% thicker relative to the strong boundary. The U(1)/SU(3) ratio goes from 70/41 ≈ 1.71 to 8/5 = 1.60 — the EM boundary becomes 6% thinner relative to the strong boundary.
+Every ratio is an exact fraction. The CD changes every ratio. The SU(2)/SU(3) ratio goes from 42/19 ≈ 2.21 to 40/13 ≈ 3.08,  the weak boundary becomes 39% thicker relative to the strong boundary. The U(1)/SU(3) ratio goes from 70/41 ≈ 1.71 to 8/5 = 1.60,  the EM boundary becomes 6% thinner relative to the strong boundary.
 
-The CD ratio 8/5 for U(1)/SU(3) is notable. 8/5 is a simple fraction. 70/41 is not. The CD simplifies this ratio. Whether this simplification has physical meaning — whether the CD makes the relationship between electromagnetic screening and strong confinement structurally cleaner — is an open question.
+The CD ratio 8/5 for U(1)/SU(3) is notable. 8/5 is a simple fraction. 70/41 is not. The CD simplifies this ratio. Whether this simplification has physical meaning,  whether the CD makes the relationship between electromagnetic screening and strong confinement structurally cleaner,  is an open question.
 
 ---
 
@@ -151,7 +151,7 @@ For the strong-EM pair:
 | \|b₁\| × \|b₃\| | (41/10)(7) = 287/10 | (25/6)(20/3) = 500/18 = 250/9 |
 | ΔT | 29/287 = 0.1011 | (65/6)/(250/9) = (65×9)/(6×250) = 585/1500 = 39/100 = 0.39 |
 
-Wait — this needs checking. The CD changes the sign structure. Let me recompute.
+Wait,  this needs checking. The CD changes the sign structure. Let me recompute.
 
 SM: |b₃| = 7, |b₁| = 41/10 = 4.1. Since |b₃| > |b₁|, the strong sector has the thinner boundary.
 
@@ -173,13 +173,13 @@ The weak-EM pair tells a different story:
 
 The CD *increases* the weak-EM thickness difference by 3×. If the sector splitting depends on thickness difference rather than beta difference directly, the weak-EM pair becomes a much better test than the strong-EM pair in the CD theory.
 
-This might change which clock comparison is the most sensitive test. PHYS-44 proposed thorium-229 (nuclear, probing strong sector) versus strontium-87 (optical, probing EM sector). If the relevant quantity is thickness difference rather than beta difference, a clock probing the weak sector versus an optical clock might give a larger signal. The question is whether any clock directly probes the weak sector. Weak interactions are involved in beta decay — a beta-decay clock (neutron lifetime measurement) versus an optical clock might be the test.
+This might change which clock comparison is the most sensitive test. PHYS-44 proposed thorium-229 (nuclear, probing strong sector) versus strontium-87 (optical, probing EM sector). If the relevant quantity is thickness difference rather than beta difference, a clock probing the weak sector versus an optical clock might give a larger signal. The question is whether any clock directly probes the weak sector. Weak interactions are involved in beta decay,  a beta-decay clock (neutron lifetime measurement) versus an optical clock might be the test.
 
 ---
 
 ## VII. THICKNESS AND THE SEMI-PERTURBATIVE WINDOW
 
-The speculative report preceding PHYS-45 noted that a thicker confinement boundary might widen the semi-perturbative window — the energy range where perturbation theory is failing but not yet completely useless.
+The speculative report preceding PHYS-45 noted that a thicker confinement boundary might widen the semi-perturbative window,  the energy range where perturbation theory is failing but not yet completely useless.
 
 This can now be quantified. The semi-perturbative window extends from the scale where α_s becomes "large" (say, α_s > 0.3, where perturbative corrections become comparable to leading-order terms) to the scale where α_s diverges (Λ_QCD).
 
@@ -197,7 +197,7 @@ Window(SM) = ln(1273/142.5) = ln(8.93) = 2.189
 
 Window(CD) = ln(1273/145.4) = ln(8.75) = 2.170
 
-The difference is small — the CD barely changes the semi-perturbative window width. The 5% thickness increase translates to a ~1% window change. The speculation that the CD significantly widens the semi-perturbative window is not supported by the numbers.
+The difference is small,  the CD barely changes the semi-perturbative window width. The 5% thickness increase translates to a ~1% window change. The speculation that the CD significantly widens the semi-perturbative window is not supported by the numbers.
 
 This is a useful negative result. It means the CD's effect on confinement operates through the coupling value at M_Z (which propagates to a 2% shift in Λ_QCD), not through the transition shape. The boundary is 5% thicker but the window is only 1% wider. The thickness change is real but its practical consequences for calculability are minimal.
 
@@ -211,9 +211,9 @@ A reading changes across the hierarchy. α_s reads 0.118 at M_Z and ~1 near conf
 
 The thickness 1/|b| does not change with energy scale (at one-loop). It is a construction parameter set by the gauge group and the particle content. The confinement boundary has thickness 1/7 whether you measure it at CERN, at Fermilab, or in a neutron star. It is a property of the boundary itself.
 
-This makes thickness fundamentally different from every other quantity in the framework so far. The 53 derived values in the book are all readings — values at specific boundaries or running between boundaries. Thickness is not a reading. It is a property of the object that produces readings. It is a property of the infrastructure, not a property of the measurement.
+This makes thickness fundamentally different from every other quantity in the framework so far. The 53 derived values in the book are all readings,  values at specific boundaries or running between boundaries. Thickness is not a reading. It is a property of the object that produces readings. It is a property of the infrastructure, not a property of the measurement.
 
-In the soliton vocabulary: readings are what you get when you measure the pattern. Thickness is a property of the pattern itself. The proton's mass is a reading at the confinement boundary — it depends on Λ_QCD, which depends on where the boundary sits, which depends on the coupling's value at a reference scale. The confinement boundary's thickness is 1/7 regardless of where the boundary sits. Move Λ_QCD up or down (by changing α_s at M_Z, or by adding particles like the CD), and the boundary moves. But its thickness stays 1/7 (SM) or changes to 3/20 (CD) based on the particle content, not on the boundary's position.
+In the soliton vocabulary: readings are what you get when you measure the pattern. Thickness is a property of the pattern itself. The proton's mass is a reading at the confinement boundary,  it depends on Λ_QCD, which depends on where the boundary sits, which depends on the coupling's value at a reference scale. The confinement boundary's thickness is 1/7 regardless of where the boundary sits. Move Λ_QCD up or down (by changing α_s at M_Z, or by adding particles like the CD), and the boundary moves. But its thickness stays 1/7 (SM) or changes to 3/20 (CD) based on the particle content, not on the boundary's position.
 
 This suggests a classification:
 
@@ -224,7 +224,7 @@ This suggests a classification:
 | Thickness | Reciprocal of running rate | Particle content only | 1/7 for SU(3) with 6 flavors |
 | Topology | Structural property of the soliton | Nothing (?) | Genus 0 for sphere, genus 1 for toroid |
 
-Thickness sits between running (which depends on what particles are active at a given scale) and topology (which depends on nothing known). Thickness depends on particle content — add the CD and it changes — but not on energy scale. It is a structural property that is more stable than a reading but less fundamental than topology.
+Thickness sits between running (which depends on what particles are active at a given scale) and topology (which depends on nothing known). Thickness depends on particle content,  add the CD and it changes,  but not on energy scale. It is a structural property that is more stable than a reading but less fundamental than topology.
 
 If the Koide amplitude a² connects to topology (counting stable soliton geometries), and thickness connects to particle content (counting active fields), then the mass hierarchy might involve both: the topology sets the Koide relation (how many modes, what symmetry), and the thickness sets the energy spacing between modes (how far apart the boundaries are in log energy).
 
@@ -236,13 +236,13 @@ The one-loop thickness 1/|b| is exact because b is exact. But real couplings run
 
 dα⁻¹/d(ln μ) = −b/(2π) − b'α/(4π²)
 
-where b' is the two-loop coefficient. The effective running rate is now scale-dependent — it changes as α changes. This means the effective thickness is also scale-dependent at two loops.
+where b' is the two-loop coefficient. The effective running rate is now scale-dependent,  it changes as α changes. This means the effective thickness is also scale-dependent at two loops.
 
-Near the boundary (where α is large), the two-loop correction term becomes significant. The effective |b_eff| = |b + b'α/(2π)| is larger than |b| alone (for asymptotically free theories where b and b' have the same sign). This means the effective thickness is *thinner* at two loops than at one loop near the boundary — the transition is sharper than the one-loop picture suggests.
+Near the boundary (where α is large), the two-loop correction term becomes significant. The effective |b_eff| = |b + b'α/(2π)| is larger than |b| alone (for asymptotically free theories where b and b' have the same sign). This means the effective thickness is *thinner* at two loops than at one loop near the boundary,  the transition is sharper than the one-loop picture suggests.
 
 Far from the boundary (where α is small), the two-loop correction is negligible and the thickness approaches the one-loop value 1/|b|.
 
-The one-loop thickness 1/|b| is therefore the *asymptotic* thickness — what the boundary looks like from far away. The actual thickness near criticality is thinner. The one-loop value is an upper bound on the transition width.
+The one-loop thickness 1/|b| is therefore the *asymptotic* thickness,  what the boundary looks like from far away. The actual thickness near criticality is thinner. The one-loop value is an upper bound on the transition width.
 
 This means the 5% difference between SM and CD thickness (1/7 vs 3/20) is the difference as seen from high energies. Near the confinement scale itself, the two-loop corrections make both boundaries thinner, and the relative difference may change. Whether the CD's 5% thickness increase survives at two loops depends on the ratio of two-loop corrections, which involves the b_ij matrix elements already in the pool.
 
@@ -257,7 +257,7 @@ The thickness of a boundary determines whether the phase transition it mediates 
 - Thin boundary → first-order phase transition (sharp discontinuity, latent heat, bubbles)
 - Thick boundary → crossover (smooth, no discontinuity, no latent heat)
 
-The electroweak phase transition is currently believed to be a crossover in the Standard Model — too smooth for electroweak baryogenesis to work. The SM electroweak boundary thickness is 6/19 ≈ 0.316. The CD makes it 6/13 ≈ 0.462 — 46% thicker. This pushes the transition *further from* first-order, making baryogenesis *harder*, not easier.
+The electroweak phase transition is currently believed to be a crossover in the Standard Model,  too smooth for electroweak baryogenesis to work. The SM electroweak boundary thickness is 6/19 ≈ 0.316. The CD makes it 6/13 ≈ 0.462,  46% thicker. This pushes the transition *further from* first-order, making baryogenesis *harder*, not easier.
 
 This is a concrete falsifiable consequence of the thickness. If the CD exists and the electroweak phase transition must be first-order for baryogenesis, the CD makes this harder. Either baryogenesis happens by a different mechanism (leptogenesis, which occurs at higher scales), or the CD's effect on the EW boundary is offset by other contributions (the CD's Yukawa coupling to the Higgs might modify the Higgs potential in ways that counteract the beta shift).
 
@@ -271,17 +271,17 @@ The confinement phase transition is different. QCD with physical quark masses un
 
 The gauge boundaries have exact fractional thicknesses because their beta coefficients are exact fractions. Can the thickness concept extend to non-gauge boundaries?
 
-**The gravitational boundary.** Gravitational "running" is described by GM/(Rc²) changing with R. The "beta coefficient" analog is dΦ/d(ln R) = −GM/(Rc²). This isn't from group theory — it's from geometry. It depends on M and R, which are specific to each body. Earth's gravitational boundary has a different "thickness" than Jupiter's. The thickness is not a universal construction parameter — it's body-specific.
+**The gravitational boundary.** Gravitational "running" is described by GM/(Rc²) changing with R. The "beta coefficient" analog is dΦ/d(ln R) = −GM/(Rc²). This isn't from group theory,  it's from geometry. It depends on M and R, which are specific to each body. Earth's gravitational boundary has a different "thickness" than Jupiter's. The thickness is not a universal construction parameter,  it's body-specific.
 
 However, the *ratio* of gravitational thicknesses between two bodies might be universal if it depends only on mass ratios. Earth/Jupiter thickness ratio = (M_J/R_J)/(M_E/R_E) × (R_E/R_J). This involves mass-to-radius ratios, which for gravitationally rounded bodies follow specific scaling relations. Whether these scaling relations produce exact fractions is unknown but testable.
 
-**The atomic boundary.** The atomic binding energy is E_ion = α²m_e/2 = 13.6 eV. The "running" of α_em below M_Z is negligible (~1% total change from M_Z to atomic scales). The atomic boundary has effectively infinite thickness — the coupling barely changes across it. This is why atoms are atoms everywhere. The atomic boundary is not a transition from perturbative to non-perturbative. It's a binding threshold in an essentially constant coupling. The thickness concept doesn't apply in the same way.
+**The atomic boundary.** The atomic binding energy is E_ion = α²m_e/2 = 13.6 eV. The "running" of α_em below M_Z is negligible (~1% total change from M_Z to atomic scales). The atomic boundary has effectively infinite thickness,  the coupling barely changes across it. This is why atoms are atoms everywhere. The atomic boundary is not a transition from perturbative to non-perturbative. It's a binding threshold in an essentially constant coupling. The thickness concept doesn't apply in the same way.
 
-**The nuclear boundary.** The nuclear force is mediated by pion exchange, which is a derivative of the confinement boundary. The "running" of the nuclear force is the running of the pion-nucleon coupling, which inherits its scale dependence from α_s through the pion mass. The nuclear boundary thickness is a derived quantity — it inherits the confinement boundary's thickness through the pion. This chain (confinement thickness → pion properties → nuclear force range → nuclear boundary thickness) is computable but has not been computed.
+**The nuclear boundary.** The nuclear force is mediated by pion exchange, which is a derivative of the confinement boundary. The "running" of the nuclear force is the running of the pion-nucleon coupling, which inherits its scale dependence from α_s through the pion mass. The nuclear boundary thickness is a derived quantity,  it inherits the confinement boundary's thickness through the pion. This chain (confinement thickness → pion properties → nuclear force range → nuclear boundary thickness) is computable but has not been computed.
 
-**The biological boundaries.** The soliton hierarchy extends through cellular, tissue, organ, and organism levels. Do these boundaries have a meaningful thickness? The "coupling" at biological scales is not a gauge coupling — it's metabolic rate, signal strength, binding affinity. The "running" is how these quantities change across the boundary. The "thickness" would be the range over which the transition occurs.
+**The biological boundaries.** The soliton hierarchy extends through cellular, tissue, organ, and organism levels. Do these boundaries have a meaningful thickness? The "coupling" at biological scales is not a gauge coupling,  it's metabolic rate, signal strength, binding affinity. The "running" is how these quantities change across the boundary. The "thickness" would be the range over which the transition occurs.
 
-For a cell membrane: the transition from inside (cytoplasm) to outside (extracellular fluid) occurs over ~7-8 nm (the lipid bilayer width). This is a physical thickness, not a logarithmic one. Whether it's meaningful to define a dimensionless thickness analogous to 1/|b| for biological boundaries requires identifying what plays the role of the beta coefficient — the rate at which the "coupling" (whatever that is at biological scale) changes across the boundary.
+For a cell membrane: the transition from inside (cytoplasm) to outside (extracellular fluid) occurs over ~7-8 nm (the lipid bilayer width). This is a physical thickness, not a logarithmic one. Whether it's meaningful to define a dimensionless thickness analogous to 1/|b| for biological boundaries requires identifying what plays the role of the beta coefficient,  the rate at which the "coupling" (whatever that is at biological scale) changes across the boundary.
 
 This is speculative. But the question is well-posed: does the 1/|b| structure generalize to non-gauge boundaries, and if so, what plays the role of b?
 

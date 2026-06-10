@@ -1,8 +1,8 @@
-**Video 10 Outline: A New Naming System for Every Particle in the Universe — The Soliton Taxonomy**
+**Video 10 Outline: A New Naming System for Every Particle in the Universe,  The Soliton Taxonomy**
 
 ---
 
-**Opening — in frame, the naming problem (2 minutes)**
+**Opening,  in frame, the naming problem (2 minutes)**
 
 - This is the last video in the series, and it's about the thing that makes everything else usable
 - Physics has a naming problem
@@ -14,7 +14,7 @@
 - Compare to biology: Canis lupus tells you immediately it's in the dog family and it's a wolf, a student can locate it in the tree of life from the name
 - Physics has no equivalent, the names are flat, no structure, no hierarchy, no information
 
-**The taxonomy structure — four dots (3 minutes)**
+**The taxonomy structure,  four dots (3 minutes)**
 
 - Every particle gets a four-part dotted name
 - Level dot Function dot Charge dot Stability
@@ -22,12 +22,12 @@
 - Function tells you what it does: Vortex circulates, Messenger carries readings, Scaffold provides ground state
 - Charge tells you how it interacts: Neutral, Negative, Positive, Fraction-Positive, Fraction-Negative, Color
 - Stability tells you how long it lasts: Permanent, Bound-Stable, Unstable, Flash, Confined, Oscillating
-- Show image — the taxonomy structure diagram if available
+- Show image,  the taxonomy structure diagram if available
 - The electron becomes Field.Vortex.Negative.Permanent
 - You immediately know: field level pattern, circulation, negative charge, lasts forever
 - A student encountering this for the first time knows the essential physics before reading a paragraph
 
-**Live demonstration — naming particles (4 minutes)**
+**Live demonstration,  naming particles (4 minutes)**
 
 - Let's do this live, I'll name particles and you see how much information the name carries
 - The photon: Field.Messenger.Neutral.Permanent
@@ -47,7 +47,7 @@
 - Same particle, different stability, because the boundary context determines whether it persists
 - That's the soliton principle encoded directly in the name
 
-**The generation problem — mode numbers (2 minutes)**
+**The generation problem,  mode numbers (2 minutes)**
 
 - Electron, muon, tau are the same pattern at three energy levels
 - Their taxonomy names are almost identical because they ARE almost identical
@@ -59,7 +59,7 @@
 - In the taxonomy: three mode numbers of the same pattern, the connection is in the name
 - The quarks work the same way: up is Mode-1, charm is Mode-2, top is Flash because it decays before confinement can form, the name tells you it's unique among quarks
 
-**The top quark — the name reveals the physics (2 minutes)**
+**The top quark,  the name reveals the physics (2 minutes)**
 
 - Every quark is Confinement.Vortex with a mode number and Confined stability
 - Except the top quark: Confinement.Vortex.Fraction-Positive.Flash
@@ -82,7 +82,7 @@
 - Both names useful, both carry different information, they complement each other
 - Historical name for the history, taxonomy name for the hierarchy
 
-**Above atomic — the taxonomy extends (4 minutes)**
+**Above atomic,  the taxonomy extends (4 minutes)**
 
 - The taxonomy doesn't stop at particles, it extends to every level of the soliton hierarchy
 - The dots change meaning as you go up because the right way to characterize things changes with scale
@@ -101,7 +101,7 @@
 - Galactic level, toroidal flow, gravity dominates, cosmological persistence, barred spiral
 - Each name carries the essential physics of that level, readable without a textbook
 
-**The full stack — one human top to bottom (3 minutes)**
+**The full stack,  one human top to bottom (3 minutes)**
 
 - Show the complete nesting from the book, read it top to bottom
 - Cosmic.Boundary.Expansion.Cosmological, the universe
@@ -124,7 +124,7 @@
 - Twenty levels, one naming convention, one person, top to bottom
 - Every level is a soliton boundary, every boundary has its own reading, every reading connected to every other by integer fractions
 
-**The practical purpose — namespace for experiments (3 minutes)**
+**The practical purpose,  namespace for experiments (3 minutes)**
 
 - This isn't just a naming exercise, it's a database schema for the universe
 - Every experiment gets an address in the namespace
@@ -138,9 +138,9 @@
 - This scales to 100 million experiments in a single database
 - Filter by level, then structure, then flow, then persistence, then scale, five filters and you're looking at dozens of records not millions
 - The hierarchy is the index, the dotted notation is the query language
-- Show terminal — if the experiment system has taxonomy tags, show a search, otherwise describe how it would work
+- Show terminal,  if the experiment system has taxonomy tags, show a search, otherwise describe how it would work
 
-**The distributed database — the future (2 minutes)**
+**The distributed database,  the future (2 minutes)**
 
 - This naming system is what makes the distributed physics database possible
 - Fork the database, do your work, submit a merge
@@ -152,7 +152,7 @@
 - This is the infrastructure that replaces the departmental structure of the academy
 - No departments in a distributed database, just namespaces, and the math is the gatekeeper
 
-**The Rectification of Names — closing the loop (2 minutes)**
+**The Rectification of Names,  closing the loop (2 minutes)**
 
 - Confucius said if names are not correct, language is not in accordance with the truth of things
 - If language is not in accordance with the truth of things, affairs cannot be carried on to success
@@ -163,7 +163,7 @@
 - The historical names stay for history, the taxonomy names add structure
 - Both coexist, latitude and longitude don't replace city names, they tell you where cities are
 
-**Close — in frame, talking to camera, series finale (2 minutes)**
+**Close,  in frame, talking to camera, series finale (2 minutes)**
 
 - This is the last video in the series
 - Ten videos, ten chapters, one model
@@ -187,7 +187,7 @@
 
 **Estimated runtime: 30 to 35 minutes**
 
-Two terminal demonstrations: searching the value pool by taxonomy-relevant terms, and possibly showing the full stack as a structured output. The rest is talking to camera with images and the taxonomy tables shown as overlays or screen shares. The full stack reading — twenty levels from Higgs to universe — is the visual and emotional climax of the entire series, the moment where the viewer sees the complete hierarchy in one vertical line and understands that the naming convention holds from bottom to top.
+Two terminal demonstrations: searching the value pool by taxonomy-relevant terms, and possibly showing the full stack as a structured output. The rest is talking to camera with images and the taxonomy tables shown as overlays or screen shares. The full stack reading,  twenty levels from Higgs to universe,  is the visual and emotional climax of the entire series, the moment where the viewer sees the complete hierarchy in one vertical line and understands that the naming convention holds from bottom to top.
 
 The arc moves from the problem through the solution through live naming through the extension above atomic through the full stack through the practical application through the future through the philosophical closing. It starts narrow with particle names and expands to the entire universe and then expands further to the distributed database that anyone can contribute to. The final minutes close the entire ten-video series with the invitation that has been building since video 1: the field is open, check the numbers, come see.
 
@@ -216,9 +216,9 @@ The arc moves from the problem through the solution through live naming through 
 | Row 7 | "Higgs boson" → "Named after Peter Higgs. Tells you: social history." Color DIM. |
 | Contrast row | "Canis lupus" → "Dog family, wolf species. Tells you: where it sits in the tree of life. Readable without a biology degree." Color GREEN. |
 | Bottom annotation | "Biology has a taxonomy. Chemistry has the periodic table. Physics has personality labels and surnames." |
-| What text cannot show | The wall of "nothing" — seven rows where the name carries no structural information. The visual repetition of DIM text communicates "systematic failure" in a way listing names verbally cannot. |
+| What text cannot show | The wall of "nothing",  seven rows where the name carries no structural information. The visual repetition of DIM text communicates "systematic failure" in a way listing names verbally cannot. |
 
-**Diagram V2: The Information Gap — Name vs Knowledge**
+**Diagram V2: The Information Gap,  Name vs Knowledge**
 
 | Property | Value |
 |---|---|
@@ -228,13 +228,13 @@ The arc moves from the problem through the solution through live naming through 
 | Left panel "Historical name: W⁺ boson" | Five properties listed: "Level in hierarchy: ?", "What it does: ?", "Charge: + (from the name)", "How long it lives: ?", "What's above and below it: ?". Only one property known from the name. Color: 1 GREEN, 4 RED. |
 | Right panel "Taxonomy name: Electroweak.Messenger.Positive.Flash" | Same five properties: "Level: Electroweak boundary ✓", "Function: carries readings ✓", "Charge: positive ✓", "Stability: flash (< 10⁻²⁰ s) ✓", "Above: Unification. Below: Confinement ✓". All five known. Color: 5 GREEN. |
 | Bottom annotation | "The taxonomy name encodes the essential physics. A student encountering it for the first time knows five facts before reading a paragraph." |
-| What text cannot show | The 1/5 vs 5/5 ratio — the visual of one green out of five vs five green out of five makes the information density immediately comparable. |
+| What text cannot show | The 1/5 vs 5/5 ratio,  the visual of one green out of five vs five green out of five makes the information density immediately comparable. |
 
 ---
 
 ### Section: The Taxonomy Structure
 
-**Diagram V3: Four Dots — The Naming Convention**
+**Diagram V3: Four Dots,  The Naming Convention**
 
 | Property | Value |
 |---|---|
@@ -248,7 +248,7 @@ The arc moves from the problem through the solution through live naming through 
 | Column 4 "Stability" | Options: Permanent (> 10²⁸ yr), Bound-Stable (stable in context), Unstable (decays), Flash (< 10⁻²⁰ s), Confined (cannot leave boundary), Oscillating (cycles). Color MAG. Label: "How long it lasts." |
 | Center example | "Field . Vortex . Negative . Permanent" → "The electron." Color WHITE, connecting arrows from each column to the assembled name. |
 | Bottom annotation | "Four dots. Four pieces of information. Every particle, every structure, every level of the hierarchy." |
-| What text cannot show | The four columns with options — the combinatorial structure is visible. The reader sees that the naming system is systematic, not ad hoc. Each column constrains the name independently. |
+| What text cannot show | The four columns with options,  the combinatorial structure is visible. The reader sees that the naming system is systematic, not ad hoc. Each column constrains the name independently. |
 
 **Diagram V4: Five Levels of the Soliton Stack**
 
@@ -264,13 +264,13 @@ The arc moves from the problem through the solution through live naming through 
 | Band 4 "Electroweak" | "The symmetry-breaking boundary. W, Z bosons." Color GREEN. Example: "Electroweak.Messenger.Positive.Flash (W⁺)." Energy: "~80-91 GeV." |
 | Band 5 (top) "Unification" | "Where forces merge. GUT scale. Cabibbo Doublet." Color GOLD. Example: "Unification.Vortex.Fraction-Positive.Bound-Stable (CD)." Energy: "~10¹⁵ GeV." |
 | Each band | Has its energy scale, color, example particle, and defining property. |
-| What text cannot show | The vertical stack — the five levels ordered by energy with particles placed at their level. The visual hierarchy IS the taxonomy's first dot. |
+| What text cannot show | The vertical stack,  the five levels ordered by energy with particles placed at their level. The visual hierarchy IS the taxonomy's first dot. |
 
 ---
 
 ### Section: Live Demonstration
 
-**Diagram V5: Six Particles Named — Side by Side**
+**Diagram V5: Six Particles Named,  Side by Side**
 
 | Property | Value |
 |---|---|
@@ -286,9 +286,9 @@ The arc moves from the problem through the solution through live naming through 
 | Row 6 | "Electron" | "Field.Vortex.Negative.Permanent" | "Field level. Circulation pattern. Negative. Permanent." Color BLUE. |
 | Each row | Historical name in DIM, taxonomy name in GOLD, explanation in WHITE. |
 | Bottom annotation | "The historical name tells you history. The taxonomy name tells you physics. Both coexist." |
-| What text cannot show | Six parallel translations — the reader sees the pattern: every taxonomy name carries the same four pieces of information, every historical name carries different amounts (mostly zero). |
+| What text cannot show | Six parallel translations,  the reader sees the pattern: every taxonomy name carries the same four pieces of information, every historical name carries different amounts (mostly zero). |
 
-**Diagram V6: Photon vs Gluon — Same Function, Different Level**
+**Diagram V6: Photon vs Gluon,  Same Function, Different Level**
 
 | Property | Value |
 |---|---|
@@ -300,7 +300,7 @@ The arc moves from the problem through the solution through live naming through 
 | Shared row "Function" | Both say "Messenger". GOLD highlight. Label: "Same function. Same dot-2. The taxonomy reveals the connection that historical names ('photon' vs 'gluon') completely hide." |
 | Differences highlighted | "Level: Field vs Confinement." "Charge: Neutral vs Color." "Stability: Permanent vs Confined." |
 | Bottom annotation | "The historical names make them sound unrelated. The taxonomy names reveal they're the same thing at different levels." |
-| What text cannot show | The structural parallel — two panels with the same internal layout, sharing one dot (Function = Messenger) but differing in three. The visual similarity-with-difference communicates "related but distinct." |
+| What text cannot show | The structural parallel,  two panels with the same internal layout, sharing one dot (Function = Messenger) but differing in three. The visual similarity-with-difference communicates "related but distinct." |
 
 ---
 
@@ -318,11 +318,11 @@ The arc moves from the problem through the solution through live naming through 
 | Row 2 "Mode-2" | Historical: "Muon". Taxonomy: "Field.Vortex.Negative.Unstable.Mode-2". Mass: 105.7 MeV. Stable: NO (2.2 μs). Color GREEN. |
 | Row 3 "Mode-3" | Historical: "Tau". Taxonomy: "Field.Vortex.Negative.Unstable.Mode-3". Mass: 1776.9 MeV. Stable: NO (290 fs). Color ORANGE. |
 | Pattern highlight | "Field.Vortex.Negative" is identical in all three. GOLD highlight on the shared prefix. Only Stability and Mode differ. |
-| Historical contrast | "Electron, Muon, Tau — three unrelated words. No visible connection." Color DIM. |
+| Historical contrast | "Electron, Muon, Tau,  three unrelated words. No visible connection." Color DIM. |
 | Bottom annotation | "They're the same pattern at three energy levels. The taxonomy makes this obvious. The historical names hide it completely." |
-| What text cannot show | The shared prefix — three rows where the first three dots are identical, highlighted in gold. The visual repetition IS the physics: these are the same thing at different energies. |
+| What text cannot show | The shared prefix,  three rows where the first three dots are identical, highlighted in gold. The visual repetition IS the physics: these are the same thing at different energies. |
 
-**Diagram V8: The Top Quark — Flash Screams at You**
+**Diagram V8: The Top Quark,  Flash Screams at You**
 
 | Property | Value |
 |---|---|
@@ -337,8 +337,8 @@ The arc moves from the problem through the solution through live naming through 
 | Row 5 | "Strange (Mode-2)": "Confinement.Vortex.Fraction-Negative.Confined". Color GREEN. |
 | Row 6 | "Bottom (Mode-3)": "Confinement.Vortex.Fraction-Negative.Confined". Color GREEN. |
 | Highlight on row 3 | "Flash" in RED, contrasting with "Confined" in every other row. Arrow: "Dies in 5 × 10⁻²⁵ s. Faster than confinement can form. The ONLY quark that doesn't confine." |
-| Historical contrast | "In historical naming: 'top quark' — just another quark. Nothing signals its uniqueness." |
-| What text cannot show | The one red word in a column of identical words — "Flash" surrounded by five "Confined" entries. The visual anomaly IS the physics: this quark is fundamentally different, and the name screams it. |
+| Historical contrast | "In historical naming: 'top quark',  just another quark. Nothing signals its uniqueness." |
+| What text cannot show | The one red word in a column of identical words,  "Flash" surrounded by five "Confined" entries. The visual anomaly IS the physics: this quark is fundamentally different, and the name screams it. |
 
 ---
 
@@ -354,16 +354,16 @@ The arc moves from the problem through the solution through live naming through 
 | Layout | Two entries for the doublet |
 | Entry 1 "Upper component" | "Unification.Vortex.Fraction-Positive.Bound-Stable". Annotations: "Level: lives at the unification boundary. Function: matter pattern. Charge: +2/3. Stability: persists above detection threshold." Color GOLD. |
 | Entry 2 "Lower component" | "Unification.Vortex.Fraction-Negative.Bound-Stable". Annotations: "Same level, same function, opposite charge: −1/3. Same stability." Color CYAN. |
-| Historical name | "Cabibbo Doublet — tells you it connects to Cabibbo's work and it's a doublet." Color SILVER. |
+| Historical name | "Cabibbo Doublet,  tells you it connects to Cabibbo's work and it's a doublet." Color SILVER. |
 | Comparison | "Historical name: who and what. Taxonomy name: where, what, how, how long. Different information. Both useful." |
 | Bottom annotation | "Historical name for the history. Taxonomy name for the hierarchy. They complement each other. Latitude and longitude don't replace city names." |
-| What text cannot show | The two entries with near-identical taxonomy names differing only in charge — the visual near-identity communicates "doublet" more naturally than any description. |
+| What text cannot show | The two entries with near-identical taxonomy names differing only in charge,  the visual near-identity communicates "doublet" more naturally than any description. |
 
 ---
 
 ### Section: Above Atomic
 
-**Diagram V10: The Taxonomy Extends — Atoms to Galaxies**
+**Diagram V10: The Taxonomy Extends,  Atoms to Galaxies**
 
 | Property | Value |
 |---|---|
@@ -380,7 +380,7 @@ The arc moves from the problem through the solution through live naming through 
 | Entry 7 | "Galactic.Toroid.Gravity.Cosmological.GX-SBbc" → "Milky Way". Color PURPLE. Scale: 10²¹ m. |
 | Each entry | Shows the five-dot name, the thing it names, and the scale. The dots change meaning at higher levels because the right characterization changes with scale. |
 | Bottom annotation | "The taxonomy doesn't stop at quarks. It extends to every level of the soliton hierarchy. One naming convention, every scale, every structure." |
-| What text cannot show | The vertical span — from water molecules to galaxies, all using the same dotted-name format. The visual continuity of the naming convention across 31 orders of magnitude makes universality visible. |
+| What text cannot show | The vertical span,  from water molecules to galaxies, all using the same dotted-name format. The visual continuity of the naming convention across 31 orders of magnitude makes universality visible. |
 
 **Diagram V11: How the Dots Change Above Atomic**
 
@@ -393,13 +393,13 @@ The arc moves from the problem through the solution through live naming through 
 | Row 1 "Particle scale" | Dot 1: "Level (Vacuum/Field/Confinement/EW/Unification)". Dot 2: "Function (Vortex/Messenger/Scaffold)". Dot 3: "Charge (±, fractional, color)". Dot 4: "Stability (Permanent/Flash/Confined)". Color GOLD boxes. |
 | Row 2 "Macro scale" | Dot 1: "Level (Molecular/Cellular/Organ/Organism/Planetary/Stellar/Galactic)". Dot 2: "Structure (Bond/Membrane/Chamber/Bilateral/Sphere/Toroid)". Dot 3: "Flow (Chemistry/Signals/Metabolism/Gravity/Fusion)". Dot 4: "Persistence (Permanent/Cycling/Seasonal/Geological/Stellar/Cosmological)". Dot 5: "Scale (A3/D100/L-80yr/S-G2V)". Color CYAN boxes. |
 | Connection | Arrow between rows: "Same principle, adapted vocabulary. The hierarchy is continuous. The naming adapts." |
-| What text cannot show | The parallel structure with adapted vocabulary — the reader sees that the same four-dot system morphs smoothly as you move up in scale. |
+| What text cannot show | The parallel structure with adapted vocabulary,  the reader sees that the same four-dot system morphs smoothly as you move up in scale. |
 
 ---
 
 ### Section: The Full Stack
 
-**Diagram V12: One Human, Top to Bottom — 17 Levels**
+**Diagram V12: One Human, Top to Bottom,  17 Levels**
 
 | Property | Value |
 |---|---|
@@ -426,9 +426,9 @@ The arc moves from the problem through the solution through live naming through 
 | Bar 17 (top) | "Cosmic.Boundary.Expansion.Cosmological" → Universe. Color GOLD. |
 | Bar 11 highlighted | "You are here" with arrow. The human sits at level 11 of 17. |
 | Bottom annotation | "17 levels. One naming convention. One person. Top to bottom. Every level is a soliton boundary with its own reading." |
-| What text cannot show | The complete stack with one person highlighted in the middle — the visual placement of "you" at level 11 of 17 communicates "you are not at the top, not at the bottom, you are nested inside the hierarchy at a specific depth." |
+| What text cannot show | The complete stack with one person highlighted in the middle,  the visual placement of "you" at level 11 of 17 communicates "you are not at the top, not at the bottom, you are nested inside the hierarchy at a specific depth." |
 
-**Diagram V13: The Nesting — Each Level Inside the Next**
+**Diagram V13: The Nesting,  Each Level Inside the Next**
 
 | Property | Value |
 |---|---|
@@ -436,18 +436,18 @@ The arc moves from the problem through the solution through live naming through 
 | Size | 16 × 14 |
 | Title | Every Level Is Inside the Next |
 | Layout | Concentric circles, 8 representative levels |
-| Circle 1 (outermost) | "Cosmic.Boundary" — GOLD, α = 0.05. Largest circle. |
-| Circle 2 | "Galactic.Toroid" — PURPLE, α = 0.08. |
-| Circle 3 | "Stellar.Sphere" — ORANGE, α = 0.12. |
-| Circle 4 | "Planetary.Sphere" — BLUE, α = 0.15. |
-| Circle 5 | "Organism.Bilateral" — GOLD, α = 0.25. Label: "You." Highlighted. |
-| Circle 6 | "Atomic.Composite-Shell" — CYAN, α = 0.30. |
-| Circle 7 | "Confinement.Composite-Donut" — RED, α = 0.40. |
-| Circle 8 (innermost) | "Vacuum.Scaffold" — DIM, α = 0.50. Smallest circle. |
+| Circle 1 (outermost) | "Cosmic.Boundary",  GOLD, α = 0.05. Largest circle. |
+| Circle 2 | "Galactic.Toroid",  PURPLE, α = 0.08. |
+| Circle 3 | "Stellar.Sphere",  ORANGE, α = 0.12. |
+| Circle 4 | "Planetary.Sphere",  BLUE, α = 0.15. |
+| Circle 5 | "Organism.Bilateral",  GOLD, α = 0.25. Label: "You." Highlighted. |
+| Circle 6 | "Atomic.Composite-Shell",  CYAN, α = 0.30. |
+| Circle 7 | "Confinement.Composite-Donut",  RED, α = 0.40. |
+| Circle 8 (innermost) | "Vacuum.Scaffold",  DIM, α = 0.50. Smallest circle. |
 | Each circle labeled | With its taxonomy name on the circumference. Scale on the right. |
 | Right annotations | Scale at each level: 10²⁶ m → 10²¹ m → 10⁹ m → 10⁷ m → 2 m → 10⁻¹⁰ m → 10⁻¹⁵ m → "base". |
 | Bottom annotation | "Everything is inside something. The naming convention encodes the nesting. The level prefix tells you which boundary you're inside." |
-| What text cannot show | The nesting — circles within circles, each with its taxonomy name. The geometry IS the hierarchy. |
+| What text cannot show | The nesting,  circles within circles, each with its taxonomy name. The geometry IS the hierarchy. |
 
 ---
 
@@ -467,9 +467,9 @@ The arc moves from the problem through the solution through live naming through 
 | Query 4 | "SELECT * WHERE Structure = 'Toroid'" → Returns: proton, galaxy. Color PURPLE. Label: "Everything with toroidal flow, across all scales. Test whether the same shape follows the same physics." |
 | Schema | Five columns: Level, Function, Charge, Stability, Scale. Each is a filterable index. |
 | Bottom annotation | "Five dimensions. Five filters. 100 million experiments reduced to dozens of records. The hierarchy IS the index. The dotted notation IS the query language." |
-| What text cannot show | The database queries — four example queries each returning structured results. The visual of a working query interface communicates "this isn't just naming, it's infrastructure." |
+| What text cannot show | The database queries,  four example queries each returning structured results. The visual of a working query interface communicates "this isn't just naming, it's infrastructure." |
 
-**Diagram V15: No Collisions — The Level Prefix**
+**Diagram V15: No Collisions,  The Level Prefix**
 
 | Property | Value |
 |---|---|
@@ -482,7 +482,7 @@ The arc moves from the problem through the solution through live naming through 
 | Row 3 | "Messenger at field: Field.Messenger" → Photon. vs "Messenger at confinement: Confinement.Messenger" → Gluon. Color CYAN vs RED. |
 | Annotation | "Same function word, different level prefix. No collision. The prefix disambiguates. A proton donut and a galaxy donut are structurally related but live at different addresses." |
 | Bottom annotation | "This scales to 100 million experiments. Filter by level, then function, then charge, then stability, then scale." |
-| What text cannot show | The non-collision — same second dot, different first dot, different meaning. The visual separation by color (red vs purple, cyan vs red) makes disambiguation visible. |
+| What text cannot show | The non-collision,  same second dot, different first dot, different meaning. The visual separation by color (red vs purple, cyan vs red) makes disambiguation visible. |
 
 ---
 
@@ -501,9 +501,9 @@ The arc moves from the problem through the solution through live naming through 
 | Stage 3 "Merge" | The modified copy merges back into the main database. New nodes integrated. Label: "Submit the merge. Your contribution has a unique address. It can't collide with anyone else's work." Color GREEN. |
 | Git-like annotations | "Branch → work → pull request → review → merge. The same workflow that builds software." |
 | Bottom annotation | "No departments in a distributed database. Just namespaces. The math is the gatekeeper. Every node that flips from red to green is permanent progress." |
-| What text cannot show | The fork-compute-merge cycle — the visual flow of a database splitting and recombining communicates "open collaboration infrastructure" in a way that describing git cannot. |
+| What text cannot show | The fork-compute-merge cycle,  the visual flow of a database splitting and recombining communicates "open collaboration infrastructure" in a way that describing git cannot. |
 
-**Diagram V17: Green, Red, Yellow — The Map of Knowledge**
+**Diagram V17: Green, Red, Yellow,  The Map of Knowledge**
 
 | Property | Value |
 |---|---|
@@ -511,12 +511,12 @@ The arc moves from the problem through the solution through live naming through 
 | Size | 18 × 12 |
 | Title | The Living Map: Exact, Approximate, Frontier |
 | Layout | A grid of ~50 nodes, each colored by status |
-| GREEN nodes (~20) | "exact_fraction" — known exactly. Examples: β coefficients, gap ratio, boundary thicknesses. Labeled: "These never change. Group theory proved them." |
-| RED nodes (~20) | "approximate" — measured, carries uncertainty. Examples: α_em, M_Z, m_t, G. Labeled: "These improve with better experiments." |
-| YELLOW nodes (~10) | "frontier" — active programs, pending results. Examples: CD mass, sector splitting, Koide a². Labeled: "These are being worked on." |
+| GREEN nodes (~20) | "exact_fraction",  known exactly. Examples: β coefficients, gap ratio, boundary thicknesses. Labeled: "These never change. Group theory proved them." |
+| RED nodes (~20) | "approximate",  measured, carries uncertainty. Examples: α_em, M_Z, m_t, G. Labeled: "These improve with better experiments." |
+| YELLOW nodes (~10) | "frontier",  active programs, pending results. Examples: CD mass, sector splitting, Koide a². Labeled: "These are being worked on." |
 | Connections | Arrows between nodes showing derivation chains. Green → green (pure theory). Red → green (measurement enables derivation). Yellow → anything (frontier connections). |
 | Bottom annotation | "Every node that flips from red to green is permanent progress. Every node that flips from yellow to green or red is a resolved question. The map grows in one direction." |
-| What text cannot show | The color distribution — a grid with three colors showing the current state of knowledge. The visual ratio of green to red to yellow communicates "progress so far, work remaining." |
+| What text cannot show | The color distribution,  a grid with three colors showing the current state of knowledge. The visual ratio of green to red to yellow communicates "progress so far, work remaining." |
 
 ---
 
@@ -530,14 +530,14 @@ The arc moves from the problem through the solution through live naming through 
 | Size | 18 × 9 |
 | Title | The Rectification of Names |
 | Layout | Three boxes top to bottom, the Confucian chain |
-| Box 1 | "If names are not correct..." — GOLD. Example: "We call four readings 'four forces'. We call a boundary reading 'a constant'. We call Greek letters 'explanations'." |
-| Box 2 | "...language is not in accordance with the truth of things..." — CYAN. Example: "Students learn four separate subjects for one phenomenon. Departments don't connect because the words don't connect." |
-| Box 3 | "...affairs cannot be carried on to success." — RED. Example: "Unification was missed for 50 years because the naming system hid the connections." |
+| Box 1 | "If names are not correct...",  GOLD. Example: "We call four readings 'four forces'. We call a boundary reading 'a constant'. We call Greek letters 'explanations'." |
+| Box 2 | "...language is not in accordance with the truth of things...",  CYAN. Example: "Students learn four separate subjects for one phenomenon. Departments don't connect because the words don't connect." |
+| Box 3 | "...affairs cannot be carried on to success.",  RED. Example: "Unification was missed for 50 years because the naming system hid the connections." |
 | Resolution | "The Rectification: call things what they are. Name things for what they do. Encode the hierarchy in the name." Color GREEN. Arrow from Box 3 to Resolution. |
 | Bottom annotation | "The soliton taxonomy is the Rectification applied to every particle and every structure in the universe." |
-| What text cannot show | The Confucian chain as a causal sequence — wrong names → wrong language → wrong outcomes. The visual flow from gold to red to green makes the argument structural rather than rhetorical. |
+| What text cannot show | The Confucian chain as a causal sequence,  wrong names → wrong language → wrong outcomes. The visual flow from gold to red to green makes the argument structural rather than rhetorical. |
 
-**Diagram V19: Coexistence — Historical + Taxonomy**
+**Diagram V19: Coexistence,  Historical + Taxonomy**
 
 | Property | Value |
 |---|---|
@@ -553,13 +553,13 @@ The arc moves from the problem through the solution through live naming through 
 | Row 6 | "Milky Way" + "Galactic.Toroid.Gravity.Cosmological.GX-SBbc". |
 | Each row | Historical name in SILVER (left), taxonomy name in GOLD (right). |
 | Analogy | "Paris" (the name) + "48.86°N, 2.35°E" (the coordinates). "Latitude and longitude don't replace city names. They tell you where cities are." |
-| What text cannot show | The side-by-side coexistence — two naming systems for the same things, each carrying different information. The parallel columns communicate "complementary, not competing." |
+| What text cannot show | The side-by-side coexistence,  two naming systems for the same things, each carrying different information. The parallel columns communicate "complementary, not competing." |
 
 ---
 
-### Section: Close — Series Finale
+### Section: Close,  Series Finale
 
-**Diagram V20: The Complete Series — Ten Videos, One Model**
+**Diagram V20: The Complete Series,  Ten Videos, One Model**
 
 | Property | Value |
 |---|---|
@@ -577,9 +577,9 @@ The arc moves from the problem through the solution through live naming through 
 | Video 8 | "Human + AI". Key disclosure: "Both names, same font size." Color CYAN. |
 | Video 9 | "Gravity as Reading Depth". Key prediction: "Sector splitting, 2028-2032." Color ORANGE. |
 | Video 10 | "The Soliton Taxonomy". Key system: "Level.Function.Charge.Stability." Color GOLD. |
-| Bottom | "The universe is rational. Check the numbers. The field is open. There's room for everyone." — GOLD, large. |
+| Bottom | "The universe is rational. Check the numbers. The field is open. There's room for everyone.",  GOLD, large. |
 | Links | "Code: GitHub. Papers: Zenodo. Book: Amazon ($3)." |
-| What text cannot show | The complete ten-video arc in one card — the visual summary communicates "this is a complete, documented, checkable body of work." |
+| What text cannot show | The complete ten-video arc in one card,  the visual summary communicates "this is a complete, documented, checkable body of work." |
 
 ---
 

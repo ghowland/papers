@@ -8,14 +8,14 @@ pip install vdr-math
 
 ```python
 from vdr import VDR
-x = VDR(1, 3)    # exact 1/3 — three integers, zero truncation
+x = VDR(1, 3)    # exact 1/3,  three integers, zero truncation
 y = VDR(2, 7)    # exact 2/7
 z = x + y        # exact 13/21
 ```
 
 **Remainder is first-class. Never error. Never residue.**
 
-vdr-math is an exact arithmetic library where every value is an ordered triple `[V, D, R]` — Value, Denominator, Remainder. The remainder slot carries the exact structure that conventional systems discard. No float. No truncation. No drift.
+vdr-math is an exact arithmetic library where every value is an ordered triple `[V, D, R]`,  Value, Denominator, Remainder. The remainder slot carries the exact structure that conventional systems discard. No float. No truncation. No drift.
 
 Validated across **921 tests in 38 mathematical and computational domains** with **zero VDR computation errors**.
 
@@ -34,12 +34,12 @@ Validated across **921 tests in 38 mathematical and computational domains** with
    - [Two Equality Relations](#two-equality-relations)
 4. [Installation and Setup](#installation-and-setup)
 5. [Core Modules](#core-modules)
-   - [vdr.core — The Triple](#vdrcore--the-triple)
-   - [vdr.active — Active Multiplication and Division](#vdractive--active-multiplication-and-division)
-   - [vdr.fn — Functional Remainders and Discrete Calculus](#vdrfn--functional-remainders-and-discrete-calculus)
-   - [vdr.linalg — Exact Linear Algebra](#vdrlinalg--exact-linear-algebra)
-   - [vdr.export — Lossy Boundary](#vdrexport--lossy-boundary)
-   - [vdr.basis — D-Frame Management and Q335](#vdrbasis--d-frame-management-and-q335)
+   - [vdr.core,  The Triple](#vdrcore--the-triple)
+   - [vdr.active,  Active Multiplication and Division](#vdractive--active-multiplication-and-division)
+   - [vdr.fn,  Functional Remainders and Discrete Calculus](#vdrfn--functional-remainders-and-discrete-calculus)
+   - [vdr.linalg,  Exact Linear Algebra](#vdrlinalg--exact-linear-algebra)
+   - [vdr.export,  Lossy Boundary](#vdrexport--lossy-boundary)
+   - [vdr.basis,  D-Frame Management and Q335](#vdrbasis--d-frame-management-and-q335)
 6. [Math Domains](#math-domains)
    - [Number Theory](#number-theory)
    - [Continued Fractions](#continued-fractions)
@@ -89,7 +89,7 @@ Validated across **921 tests in 38 mathematical and computational domains** with
     - [Forward Process](#forward-process)
     - [Reverse Process](#reverse-process)
     - [Verification and Drift Testing](#verification-and-drift-testing)
-11. [Q335 Basis — The Configurable D-Frame](#q335-basis--the-configurable-d-frame)
+11. [Q335 Basis,  The Configurable D-Frame](#q335-basis--the-configurable-d-frame)
 12. [Design Principles](#design-principles)
 13. [Honest Boundaries](#honest-boundaries)
 14. [Float Comparison Table](#float-comparison-table)
@@ -111,7 +111,7 @@ Float64 result: 0.14285714285714282 (error ≈ 2.78e-16)
 VDR result:     [1, 7, 0] (error = 0)
 ```
 
-For a single operation the error is negligible. For a chain of thousands — video generation frame by frame, Kalman filter cycle by cycle, financial risk position by position — the errors accumulate and become indistinguishable from the signal.
+For a single operation the error is negligible. For a chain of thousands,  video generation frame by frame, Kalman filter cycle by cycle, financial risk position by position,  the errors accumulate and become indistinguishable from the signal.
 
 VDR eliminates per-step arithmetic error entirely. The remainder slot catches what the denominator frame can't absorb, exactly, with zero loss. Chain length becomes irrelevant to accumulated error.
 
@@ -122,22 +122,22 @@ VDR eliminates per-step arithmetic error entirely. The remainder slot catches wh
 Every VDR object is an ordered triple `[V, D, R]`:
 
 ```
-V — Value slot. Arbitrary-precision integer. The settled numerator
+V,  Value slot. Arbitrary-precision integer. The settled numerator
     in the current denominator frame.
 
-D — Denominator slot. Nonzero arbitrary-precision integer. The frame
+D,  Denominator slot. Nonzero arbitrary-precision integer. The frame
     in which V and R are interpreted.
 
-R — Remainder slot. Exact unresolved structure. Three forms:
+R,  Remainder slot. Exact unresolved structure. Three forms:
     Atomic:     a single integer r
     Composite:  integer base r plus finite list of child VDR objects
     Functional: a Python callable f(depth) → VDR
 ```
 
 ```python
-VDR(3)                    # [3, 1, 0]  — integer 3
-VDR(1, 2)                 # [1, 2, 0]  — rational 1/2
-VDR(1, 3, Remainder(1))   # [1, 3, 1]  — active: (1+1)/3 = 2/3
+VDR(3)                    # [3, 1, 0] ,  integer 3
+VDR(1, 2)                 # [1, 2, 0] ,  rational 1/2
+VDR(1, 3, Remainder(1))   # [1, 3, 1] ,  active: (1+1)/3 = 2/3
 ```
 
 V and D are always integers. Recursion exists only in R. Every valid object has finite depth, finite branching, finite total node count. No limits. No approximation. No infinity.
@@ -156,7 +156,7 @@ x.is_closed         # True
 x.to_fraction()     # Fraction(3, 7)
 ```
 
-An **active** object has R ≠ 0. It carries exact structure that the denominator frame couldn't absorb. The remainder is not error — it is the part of the value that lives outside the current frame.
+An **active** object has R ≠ 0. It carries exact structure that the denominator frame couldn't absorb. The remainder is not error,  it is the part of the value that lives outside the current frame.
 
 ```python
 x = VDR(1, 3, Remainder(1))  # active: (1+1)/3 = 2/3
@@ -164,11 +164,11 @@ x.is_active                    # True
 x.to_fraction()                # Fraction(2, 3)
 ```
 
-**Denominator-sensitive completion:** R is interpreted within the parent's D frame — divided by D, not added externally. `[3, 7, 1]` means `(3 + 1)/7 = 4/7`, not `3/7 + 1`.
+**Denominator-sensitive completion:** R is interpreted within the parent's D frame,  divided by D, not added externally. `[3, 7, 1]` means `(3 + 1)/7 = 4/7`, not `3/7 + 1`.
 
 ### Normalization
 
-Normalization produces a deterministic canonical form. It is idempotent — normalizing twice gives the same result as normalizing once.
+Normalization produces a deterministic canonical form. It is idempotent,  normalizing twice gives the same result as normalizing once.
 
 The steps, in order:
 
@@ -183,9 +183,9 @@ The steps, in order:
 Rule N7 solves the Newton perfect-square problem: `sqrt(4)` via Newton iteration produces `[2k, k, 0]` for large k, which N7 collapses to `[2, 1, 0]`.
 
 ```python
-VDR(4, 8).normalize()        # VDR(1, 2) — GCD reduced
-VDR(1, -3).normalize()       # VDR(-1, 3) — sign convention
-VDR(2000000, 1000000).normalize()  # VDR(2, 1) — large GCD
+VDR(4, 8).normalize()        # VDR(1, 2),  GCD reduced
+VDR(1, -3).normalize()       # VDR(-1, 3),  sign convention
+VDR(2000000, 1000000).normalize()  # VDR(2, 1),  large GCD
 ```
 
 ### Lift and Rebase
@@ -203,10 +203,10 @@ Lift composes multiplicatively: `lift(lift(R, a), b) = lift(R, a*b)`.
 
 ```python
 x = VDR(1, 2)
-y = x.rebase(6)    # VDR(3, 6) — closed rebase, clean
+y = x.rebase(6)    # VDR(3, 6),  closed rebase, clean
 
 x = VDR(1, 3)
-y = x.rebase(7)    # active rebase — mismatch witness in R
+y = x.rebase(7)    # active rebase,  mismatch witness in R
 y.to_fraction()     # still Fraction(1, 3)
 ```
 
@@ -222,7 +222,7 @@ This is the operational rule governing the entire system. When any operation wou
 A = [p1, 2^335, 0]
 B = [p2, 2^335, 0]
 
-# Naive multiplication would give [p1*p2, 2^670, 0] — D explosion. Never do this.
+# Naive multiplication would give [p1*p2, 2^670, 0],  D explosion. Never do this.
 # Instead:
 
 Q, S = divmod(p1 * p2, 2**335)
@@ -250,7 +250,7 @@ obj = VDR(0, 1, sqrt2_fn)
 val = resolve(obj, depth=10)   # >100 correct digits of sqrt(2)
 ```
 
-Each depth is a complete exact rational value — not an approximation of a limit. The residual `x^2 - 2` is an exact inspectable rational. You know precisely how far from sqrt(2) you are, not approximately.
+Each depth is a complete exact rational value,  not an approximation of a limit. The residual `x^2 - 2` is an exact inspectable rational. You know precisely how far from sqrt(2) you are, not approximately.
 
 Quadratic convergence: digits double per step. Depth 1 gives 1 digit. Depth 7 gives >100 digits.
 
@@ -266,9 +266,9 @@ Quadratic convergence: digits double per step. Depth 1 gives 1 digit. Depth 7 gi
 a = VDR(1, 2)
 b = VDR(2, 4)
 
-a.structural_eq(b)   # False — different V and D
-a == b                # True  — same value after normalization
-hash(a) == hash(b)    # True  — works as dict keys
+a.structural_eq(b)   # False,  different V and D
+a == b                # True ,  same value after normalization
+hash(a) == hash(b)    # True ,  works as dict keys
 ```
 
 ---
@@ -295,7 +295,7 @@ Active multiplication and functional remainder awareness are installed automatic
 
 ## Core Modules
 
-### vdr.core — The Triple
+### vdr.core,  The Triple
 
 The foundation. Everything else imports from here.
 
@@ -330,8 +330,8 @@ VDR(1, 2) == Fraction(1, 2)  # True
 
 ```python
 x = VDR(3, 7)
-x.to_fraction()     # Fraction(3, 7) — exact for closed, legacy-flattened for active
-float(x)            # 0.4285714285714286 — lossy, loss belongs to float
+x.to_fraction()     # Fraction(3, 7),  exact for closed, legacy-flattened for active
+float(x)            # 0.4285714285714286,  lossy, loss belongs to float
 ```
 
 **Structural metrics:**
@@ -350,7 +350,7 @@ ONE = VDR(1, 1)       # multiplicative identity
 NEG_ONE = VDR(-1, 1)
 ```
 
-### vdr.active — Active Multiplication and Division
+### vdr.active,  Active Multiplication and Division
 
 Extends arithmetic to active objects (R ≠ 0).
 
@@ -380,7 +380,7 @@ uninstall()   # * and / on active objects raise ArithmeticFailure
 install()     # restore
 ```
 
-### vdr.fn — Functional Remainders and Discrete Calculus
+### vdr.fn,  Functional Remainders and Discrete Calculus
 
 ```python
 from vdr.fn import (
@@ -391,7 +391,7 @@ from vdr.fn import (
 )
 ```
 
-**Newton factory — quadratic convergence:**
+**Newton factory,  quadratic convergence:**
 
 ```python
 # sqrt(n) for any n
@@ -399,7 +399,7 @@ sqrt2_fn = make_newton_fn("sqrt2", lambda x: (x + VDR(2)/x) / VDR(2))
 result = sqrt2_fn.expand(10)  # >100 correct digits
 ```
 
-**Series factory — partial sums:**
+**Series factory,  partial sums:**
 
 ```python
 # Leibniz series for pi/4
@@ -411,44 +411,44 @@ pi4_fn = make_series_fn("leibniz_pi4", leibniz_term)
 result = pi4_fn.expand(1000)  # ~3 digits at 1000 terms (slow convergence)
 ```
 
-**Iterative factory — general iteration:**
+**Iterative factory,  general iteration:**
 
 ```python
 fn = make_iterative_fn("contract", lambda x: x / VDR(2) + VDR(1), VDR(100))
 fn.expand(20)  # converges to 2
 ```
 
-**Discrete calculus — exact, no limits:**
+**Discrete calculus,  exact, no limits:**
 
 ```python
 # Discrete derivative: Dh(f)(x) = (f(x+h) - f(x)) / h
 f = lambda x: x * x
 df = discrete_derivative(f, VDR(1, 1000))
-df(VDR(3))     # VDR(6001, 1000) — exact
+df(VDR(3))     # VDR(6001, 1000),  exact
 
 # Discrete integral: left Riemann sum
 result = discrete_integral(lambda x: x*x, VDR(0), VDR(1), 10)
-# VDR(57, 200) — exact
+# VDR(57, 200),  exact
 
-# Trapezoidal rule — more accurate, still exact
+# Trapezoidal rule,  more accurate, still exact
 result = discrete_integral_trapz(lambda x: x*x, VDR(0), VDR(1), 100)
 
 # Finite difference tables
 d3f = discrete_derivative_nth(lambda x: x*x*x, VDR(1), order=3)
-d3f(VDR(0))    # VDR(6) — exactly 3! for cubic
+d3f(VDR(0))    # VDR(6),  exactly 3! for cubic
 d4f = discrete_derivative_nth(lambda x: x*x*x, VDR(1), order=4)
-d4f(VDR(0))    # VDR(0) — exactly zero, no float noise floor
+d4f(VDR(0))    # VDR(0),  exactly zero, no float noise floor
 ```
 
 These are explicitly not approximations of continuous calculus. They are a separate exact system where each step size h gives a complete exact answer.
 
-### vdr.linalg — Exact Linear Algebra
+### vdr.linalg,  Exact Linear Algebra
 
 ```python
 from vdr.linalg import Vec, Mat
 ```
 
-**Vec — exact vector:**
+**Vec,  exact vector:**
 
 ```python
 v = Vec.from_ints([1, 2, 3])
@@ -456,7 +456,7 @@ w = Vec.from_fracs([(1, 2), (1, 3), (1, 7)])
 v + w, v - w, v * VDR(2), v.dot(w), v.norm_sq()
 ```
 
-**Mat — exact matrix:**
+**Mat,  exact matrix:**
 
 ```python
 m = Mat.from_ints([[1, 2], [3, 4]])
@@ -474,21 +474,21 @@ m.matvec(v)      # matrix-vector product
 **Automatic dispatch:** for n ≤ 4, uses cofactor/adjugate/Cramer (simple). For n ≥ 5, uses Gaussian elimination O(n³) (practical). Both available explicitly:
 
 ```python
-m.det_cofactor()   # O(n!) — always available
-m.det_gauss()      # O(n³) — always available
+m.det_cofactor()   # O(n!),  always available
+m.det_gauss()      # O(n³),  always available
 m.inv_adjugate()
 m.inv_gauss()
 m.solve_cramer(b)
 m.solve_gauss(b)
 ```
 
-**Headline result — Hilbert matrices:**
+**Headline result,  Hilbert matrices:**
 
 ```python
 # Hilbert matrix: H[i,j] = 1/(i+j+1). Notoriously ill-conditioned.
 H = Mat([[VDR(1, i+j+1) for j in range(5)] for i in range(5)])
 H_inv = H.inv()
-H.matmul(H_inv) == Mat.identity(5)  # True — exactly zero off-diagonal
+H.matmul(H_inv) == Mat.identity(5)  # True,  exactly zero off-diagonal
 # Float gives residual ~1e-9 for H5, meaningless for H10. VDR: exact at any size.
 ```
 
@@ -501,12 +501,12 @@ parse_vdr("[1, 2, 0]")           # VDR(1, 2)
 parse_vdr("[1, 3, [1, 6, 0]]")   # nested active
 
 d = vdr_to_dict(VDR(1, 2))       # {"v": 1, "d": 2, "r": {"base": 0, "children": []}}
-vdr_from_dict(d)                  # VDR(1, 2) — exact roundtrip
+vdr_from_dict(d)                  # VDR(1, 2),  exact roundtrip
 
 vdr_to_latex(VDR(1, 2))          # "\\frac{1}{2}"
 ```
 
-### vdr.export — Lossy Boundary
+### vdr.export,  Lossy Boundary
 
 This is where exact VDR precision ends and target-format precision begins. Any loss belongs to the target format, not to VDR.
 
@@ -514,19 +514,19 @@ This is where exact VDR precision ends and target-format precision begins. Any l
 from vdr.export import to_fraction, to_float, to_decimal
 
 x = VDR(1, 7)
-to_fraction(x)          # Fraction(1, 7) — exact
-to_float(x)             # 0.14285714285714285 — lossy (64-bit IEEE 754)
-to_decimal(x, digits=50) # "0.14285714285714285714285714285714285714285714285714" — via long division or mpmath
+to_fraction(x)          # Fraction(1, 7),  exact
+to_float(x)             # 0.14285714285714285,  lossy (64-bit IEEE 754)
+to_decimal(x, digits=50) # "0.14285714285714285714285714285714285714285714285714",  via long division or mpmath
 ```
 
-### vdr.basis — D-Frame Management and Q335
+### vdr.basis,  D-Frame Management and Q335
 
 The configurable denominator frame. Like mpmath lets you set `mp.dps`, vdr-math lets you set a default D.
 
 ```python
 from vdr.basis import set_default, get_default, to_qbasis, qb_mul, qb_div
 
-set_default(bits=335)    # Q335 — the default, proven across ~1000 tests
+set_default(bits=335)    # Q335,  the default, proven across ~1000 tests
 set_default(bits=668)    # 200-digit precision
 set_default(bits=3322)   # 1000-digit precision
 
@@ -534,9 +534,9 @@ set_default(bits=3322)   # 1000-digit precision
 a = to_qbasis(VDR(22, 7), bits=335)   # 22/7 on the 2^335 grid
 b = to_qbasis(VDR(1, 3), bits=335)    # 1/3 on the grid
 
-# multiply — D stays fixed, overflow in R
+# multiply,  D stays fixed, overflow in R
 c = qb_mul(a, b, bits=335)
-c.d == 2**335   # True — D never changed
+c.d == 2**335   # True,  D never changed
 ```
 
 Q335 is the default because it's proven, not because it's special. Any D is valid. D = 7 for working in sevenths. D = 2^16 for binary fixed-point. D = 1 for plain integers.
@@ -545,7 +545,7 @@ Q335 is the default because it's proven, not because it's special. Any D is vali
 
 ## Math Domains
 
-Every domain is a built-in library module, ready to use on import. These are not examples — they are active library components.
+Every domain is a built-in library module, ready to use on import. These are not examples,  they are active library components.
 
 ### Number Theory
 
@@ -555,7 +555,7 @@ from vdr.math.number_theory import (
     stern_brocot, vdr_gcd, vdr_lcm, vdr_pow, convergents, e_cf,
 )
 
-harmonic(10)              # VDR(7381, 2520) — exact
+harmonic(10)              # VDR(7381, 2520),  exact
 harmonic(100)             # exact, ~85-digit denominator
 euler_totient(100)        # 40
 farey(5)                  # 11 fractions, mediant property |ad-bc|=1 for all pairs
@@ -573,7 +573,7 @@ e_cf(10)                     # first 10 CF coefficients of e
 from vdr.math.continued_fractions import to_cf, from_cf, sqrt_cf_period, best_rational
 
 to_cf(355, 113)           # [3, 7, 16]
-from_cf([3, 7, 16])       # VDR(355, 113) — roundtrip exact
+from_cf([3, 7, 16])       # VDR(355, 113),  roundtrip exact
 
 a0, period = sqrt_cf_period(2)   # (1, [2])
 a0, period = sqrt_cf_period(7)   # (2, [1, 1, 1, 4])
@@ -602,12 +602,12 @@ binom(10, 3) == binom(9, 2) + binom(9, 3)   # True
 ```python
 from vdr.math.sequences import fibonacci, lucas, bernoulli, tribonacci, rational_recurrence
 
-fibonacci(30)       # VDR(832040) — fast doubling algorithm
+fibonacci(30)       # VDR(832040),  fast doubling algorithm
 lucas(10)           # VDR(123)
-bernoulli(12)       # VDR(-691, 2730) — exact, cached
+bernoulli(12)       # VDR(-691, 2730),  exact, cached
 
 # Cassini identity: F(n-1)*F(n+1) - F(n)^2 = (-1)^n
-# Verified exactly for all n — no float noise floor
+# Verified exactly for all n,  no float noise floor
 
 # General rational recurrence
 seq = rational_recurrence(
@@ -633,9 +633,9 @@ poly_eval(p, VDR(2))            # VDR(7)
 points = [(VDR(0), VDR(1)), (VDR(1), VDR(3)), (VDR(2), VDR(7))]
 p = lagrange_interpolate(points)  # recovers [1, 1, 1] exactly
 
-# Polynomial GCD — exact zero-testing
+# Polynomial GCD,  exact zero-testing
 gcd = poly_gcd([VDR(-1), VDR(0), VDR(1)], [VDR(1), VDR(2), VDR(1)])
-# (x+1) — exact. Decimal cannot do this at any precision.
+# (x+1),  exact. Decimal cannot do this at any precision.
 
 # Exact definite integral via antiderivative
 definite_integral([VDR(0), VDR(0), VDR(1)], VDR(0), VDR(1))  # VDR(1, 3)
@@ -652,7 +652,7 @@ pf = partial_fractions_simple([VDR(1)], [VDR(1), VDR(2)])
 
 # Power sums
 power_sum(3, 100)   # 1^3 + 2^3 + ... + 100^3 = 25502500
-# Nicomachus' theorem: S1(n)^2 == S3(n) — verified exactly
+# Nicomachus' theorem: S1(n)^2 == S3(n),  verified exactly
 ```
 
 ### Probability
@@ -670,10 +670,10 @@ for p in pmf:
     total = total + p
 assert total == VDR(1)   # exactly 1, not 0.9999999999999998
 
-# Bayesian updating — exact posteriors
+# Bayesian updating,  exact posteriors
 post = bayes_update(VDR(1, 2), VDR(3))   # VDR(3, 4)
 
-# Markov steady state — sums to exactly 1
+# Markov steady state,  sums to exactly 1
 P = Mat.from_fracs([[(1, 2), (1, 2)], [(1, 4), (3, 4)]])
 ss = markov_steady_state(P)   # [VDR(1, 3), VDR(2, 3)]
 ```
@@ -686,21 +686,21 @@ from vdr.math.geometry import (
     circumcenter, dist_sq,
 )
 
-# Line intersection — exact
+# Line intersection,  exact
 pt = line_intersect((VDR(0), VDR(0)), (VDR(2), VDR(2)),
                     (VDR(0), VDR(2)), (VDR(2), VDR(0)))
-# (VDR(1), VDR(1)) — no epsilon needed
+# (VDR(1), VDR(1)),  no epsilon needed
 
-# Point-in-triangle — exact boolean
+# Point-in-triangle,  exact boolean
 point_in_triangle((VDR(1, 3), VDR(0)), 
                   (VDR(0), VDR(0)), (VDR(1), VDR(0)), (VDR(0), VDR(1)))
-# True — on edge, no "almost on edge" ambiguity
+# True,  on edge, no "almost on edge" ambiguity
 
 # Barycentric coordinates sum to exactly 1
 l1, l2, l3 = barycentric(p, a, b, c)
 assert l1 + l2 + l3 == VDR(1)
 
-# Circumcenter — equidistant from all three vertices exactly
+# Circumcenter,  equidistant from all three vertices exactly
 cx, cy = circumcenter(a, b, c)
 assert dist_sq((cx, cy), a) == dist_sq((cx, cy), b) == dist_sq((cx, cy), c)
 ```
@@ -710,18 +710,18 @@ assert dist_sq((cx, cy), a) == dist_sq((cx, cy), b) == dist_sq((cx, cy), c)
 ```python
 from vdr.math.optimization import newton_optimize, bisection, simplex_2d
 
-# Newton for optimization — converges in 1 step for quadratic
+# Newton for optimization,  converges in 1 step for quadratic
 x = newton_optimize(
     lambda x: VDR(2)*x - VDR(4),   # f'
     lambda x: VDR(2),               # f''
     VDR(0), 1
 )   # VDR(2)
 
-# Bisection — exact rational midpoints
+# Bisection,  exact rational midpoints
 x = bisection(lambda x: x*x - VDR(2), VDR(1), VDR(2), 30)
 # |x^2 - 2| < 10^-8
 
-# Simplex — exact rational vertex enumeration
+# Simplex,  exact rational vertex enumeration
 result = simplex_2d([VDR(1), VDR(1)], [[VDR(1), VDR(1)]], [VDR(4)])
 ```
 
@@ -730,14 +730,14 @@ result = simplex_2d([VDR(1), VDR(1)], [[VDR(1), VDR(1)]], [VDR(4)])
 ```python
 from vdr.math.differential_eq import euler_solve, rk4_solve, lotka_volterra_solve
 
-# Euler method — exact at each step
+# Euler method,  exact at each step
 traj = euler_solve(lambda x, y: y, VDR(1), VDR(0), VDR(1, 10), 10)
 # y(1) = (11/10)^10 exact
 
-# RK4 — ~140x more accurate than Euler, still exact per step
+# RK4,  ~140x more accurate than Euler, still exact per step
 traj = rk4_solve(lambda x, y: y, VDR(1), VDR(0), VDR(1, 10), 10)
 
-# Lotka-Volterra — 200 steps, all exact
+# Lotka-Volterra,  200 steps, all exact
 traj = lotka_volterra_solve(
     (VDR(10), VDR(5)), VDR(1, 100),
     VDR(1, 10), VDR(1, 100), VDR(1, 10), VDR(1, 100), 200
@@ -754,10 +754,10 @@ from vdr.math.graph import dijkstra, bellman_ford, floyd_warshall, pagerank, pri
 # Dijkstra with exact rational weights
 dist = dijkstra({0: [(1, VDR(1, 3))], 1: [(2, VDR(1, 2))], 2: []}, 0)
 
-# PageRank — sums to exactly 1 via Cramer's rule
+# PageRank,  sums to exactly 1 via Cramer's rule
 pr = pagerank(transition_matrix)
 
-# Floyd-Warshall — all-pairs shortest paths, exact
+# Floyd-Warshall,  all-pairs shortest paths, exact
 result = floyd_warshall(3, distance_matrix)
 ```
 
@@ -766,14 +766,14 @@ result = floyd_warshall(3, distance_matrix)
 ```python
 from vdr.math.game_theory import minimax_2x2, shapley_values, cournot_duopoly
 
-# Minimax — exact mixed strategies
+# Minimax,  exact mixed strategies
 p, q, val = minimax_2x2(Mat.from_ints([[3, -1], [-2, 4]]))
 # p* = 3/5, q* = 1/2, value = 1
 
-# Shapley values — sum to exactly v(N)
+# Shapley values,  sum to exactly v(N)
 phi = shapley_values(v_func, 3)
 
-# Cournot duopoly — exact equilibrium
+# Cournot duopoly,  exact equilibrium
 q1, q2, pi1, pi2 = cournot_duopoly(VDR(100), VDR(1), VDR(10), VDR(20))
 ```
 
@@ -782,7 +782,7 @@ q1, q2, pi1, pi2 = cournot_duopoly(VDR(100), VDR(1), VDR(10), VDR(20))
 ```python
 from vdr.math.cryptographic import rsa_keygen, rsa_encrypt, rsa_decrypt, baby_giant
 
-# RSA — exact modular integer arithmetic (float categorically excluded)
+# RSA,  exact modular integer arithmetic (float categorically excluded)
 n, e, d = rsa_keygen(61, 53, 17)   # (3233, 17, 2753)
 c = rsa_encrypt(42, e, n)
 m = rsa_decrypt(c, d, n)            # 42 exactly
@@ -801,7 +801,7 @@ from vdr.math.coding_theory import (
 # Galois field arithmetic
 gf_inv(3, 7)   # 5 (because 3*5 = 15 = 1 mod 7)
 
-# Hamming(7,4) — all errors corrected exactly
+# Hamming(7,4),  all errors corrected exactly
 codeword = hamming74_encode([1, 0, 1, 1])
 received = list(codeword)
 received[2] ^= 1                       # inject error
@@ -819,7 +819,7 @@ simplices = {
     2: [(0,1,2)],
 }
 boundaries = simplicial_complex_boundaries(simplices)
-betti = betti_numbers(boundaries)   # [1, 0] — filled triangle
+betti = betti_numbers(boundaries)   # [1, 0],  filled triangle
 euler_characteristic(betti)          # 1
 
 # d∘d = 0 verified as exact zero matrix
@@ -834,14 +834,14 @@ from vdr.math.tropical import (
 )
 
 # Tropical: min-plus algebra
-trop_add(VDR(3), VDR(5))   # VDR(3) — min
-trop_mul(VDR(3), VDR(5))   # VDR(8) — ordinary add
+trop_add(VDR(3), VDR(5))   # VDR(3),  min
+trop_mul(VDR(3), VDR(5))   # VDR(8),  ordinary add
 
-# Exact Gram-Schmidt — cross-dot products are exactly 0
+# Exact Gram-Schmidt,  cross-dot products are exactly 0
 ortho, mu = gram_schmidt_exact([v1, v2, v3])
 assert ortho[0].dot(ortho[1]) == VDR(0)
 
-# LLL — exact Lovász condition, no float rounding in threshold
+# LLL,  exact Lovász condition, no float rounding in threshold
 reduced = lll_reduce(basis)
 # mu = 0.500000000000001 vs 0.499999999999999: float makes wrong decision. VDR: exact.
 ```
@@ -854,16 +854,16 @@ from vdr.math.control import (
     transfer_function_eval, mat_pow,
 )
 
-# State evolution — zero drift after 100+ steps
+# State evolution,  zero drift after 100+ steps
 traj = state_evolve(A, B, x0, inputs)
 
-# Cayley-Hamilton — p(A) = exact zero matrix
+# Cayley-Hamilton,  p(A) = exact zero matrix
 result = cayley_hamilton_verify(A)
 assert result == Mat.zero(n, n)   # not ≈ 10^-15, exactly zero
 
 # Transfer function at complex frequency
 H = transfer_function_eval([VDR(1)], [VDR(2), VDR(3), VDR(1)], (VDR(0), VDR(1)))
-# (VDR(1, 10), VDR(-3, 10)) — exact complex value
+# (VDR(1, 10), VDR(-3, 10)),  exact complex value
 ```
 
 ### Wavelets
@@ -871,7 +871,7 @@ H = transfer_function_eval([VDR(1)], [VDR(2), VDR(3), VDR(1)], (VDR(0), VDR(1)))
 ```python
 from vdr.math.wavelets import haar_forward, haar_inverse, haar_multilevel, parseval_verify
 
-# Perfect reconstruction — exact
+# Perfect reconstruction,  exact
 signal = [VDR(1), VDR(3), VDR(5), VDR(7)]
 avgs, dets = haar_forward(signal)
 recovered = haar_inverse(avgs, dets)
@@ -883,7 +883,7 @@ decomp = haar_multilevel(signal64, 6)
 recovered = haar_reconstruct_multilevel(decomp)
 assert recovered == signal64
 
-# Parseval energy identity — exact
+# Parseval energy identity,  exact
 assert parseval_verify(signal, decomp)
 ```
 
@@ -900,12 +900,12 @@ period = detect_period(orbit)   # 3
 # Logistic map: exact but exponential denominator growth at r=4
 x = logistic_map(VDR(1, 3), VDR(4))   # VDR(8, 9) exact
 # NOTE: In flat Fraction, denominator digits grow as ~2^n (step 10: ~258,
-# step 20: ~260,000). VDR with Q335 frame avoids this — D stays 2^335,
+# step 20: ~260,000). VDR with Q335 frame avoids this,  D stays 2^335,
 # tree depth grows by 1 per step. Step 20 in Q335: ~4,080 tree digits,
 # not ~260,000. Cost is tree depth, not denominator explosion.
 ```
 
-Periodic rational orbits under chaotic maps are computationally free — denominators stay bounded.
+Periodic rational orbits under chaotic maps are computationally free,  denominators stay bounded.
 
 ### Transcendental Arithmetic
 
@@ -921,7 +921,7 @@ from vdr.math.transcendental import (
 **22 named constants at 100-digit precision:**
 
 ```python
-PI       # VDR(2198864..., 2^335) — ready to use
+PI       # VDR(2198864..., 2^335),  ready to use
 E        # VDR(1902580..., 2^335)
 SQRT2    # VDR(9898366..., 2^335)
 ZETA3    # VDR(8413439..., 2^335)
@@ -971,7 +971,7 @@ elliptic_e(VDR(1, 4), terms=500)   # E(k) at k^2 = 1/4
 from vdr.signal.convolution import convolve, correlate, deconvolve
 
 y = convolve([VDR(1), VDR(2), VDR(3)], [VDR(1), VDR(1)])
-# [VDR(1), VDR(3), VDR(5), VDR(3)] — exact
+# [VDR(1), VDR(3), VDR(5), VDR(3)],  exact
 
 # Deconvolution: exact inverse
 x = deconvolve(convolve(a, b), b)
@@ -988,7 +988,7 @@ X = exact_dft(x)          # list of (real, imag) VDR pairs
 recovered = exact_idft(X)
 assert recovered == x      # IDFT(DFT(x)) == x exactly
 
-parseval_verify(x, X)      # True — energy preserved exactly
+parseval_verify(x, X)      # True,  energy preserved exactly
 ```
 
 ### Digital Filters
@@ -996,9 +996,9 @@ parseval_verify(x, X)      # True — energy preserved exactly
 ```python
 from vdr.signal.filters import iir_filter, moving_average
 
-# IIR: y[n] = a*y[n-1] + x[n] — exact at every step
+# IIR: y[n] = a*y[n-1] + x[n],  exact at every step
 y = iir_filter([VDR(1)] + [VDR(0)]*19, VDR(1, 2))
-# y[n] = (1/2)^n — exact forever
+# y[n] = (1/2)^n,  exact forever
 # Year-long operation: same precision as second 1
 ```
 
@@ -1036,17 +1036,17 @@ from vdr.physics.quantum import (
     verify_unitarity, pauli_multiply,
 )
 
-# Pauli algebra — structural identity, not approximate
-pauli_multiply("x", "y")   # ((0, 1), "z") — sigma_x * sigma_y = i * sigma_z
-pauli_multiply("x", "x")   # ((1, 0), "I") — sigma_x^2 = I
+# Pauli algebra,  structural identity, not approximate
+pauli_multiply("x", "y")   # ((0, 1), "z"),  sigma_x * sigma_y = i * sigma_z
+pauli_multiply("x", "x")   # ((1, 0), "I"),  sigma_x^2 = I
 
-# Spin rotation — 4x pi/2 about z returns to I exactly
+# Spin rotation,  4x pi/2 about z returns to I exactly
 U = spin_rotation("z", VDR(1, 2))
 verify_unitarity(U)   # True, exact
 
 # Measurement probabilities sum to exactly 1
 probs = measurement_probabilities(Vec([VDR(3, 5), VDR(4, 5)]))
-# [VDR(9, 25), VDR(16, 25)] — sum = VDR(1) exactly
+# [VDR(9, 25), VDR(16, 25)],  sum = VDR(1) exactly
 ```
 
 ### Orbital Mechanics
@@ -1067,7 +1067,7 @@ err = orbit_closure_verify(positions)
 from vdr.physics.optics import free_space, thin_lens, system_matrix, verify_symplecticity, matrix_power
 
 M = system_matrix([free_space(VDR(1)), thin_lens(VDR(2)), free_space(VDR(1))])
-verify_symplecticity(M)   # True — det(M) == 1 exactly
+verify_symplecticity(M)   # True,  det(M) == 1 exactly
 
 M1000 = matrix_power(M, 1000)
 verify_symplecticity(M1000)   # Still True. Float: ~1e-12 after 1000.
@@ -1079,7 +1079,7 @@ verify_symplecticity(M1000)   # Still True. Float: ~1e-12 after 1000.
 from vdr.physics.structural import solve_structure, verify_equilibrium
 
 u = solve_structure(K, F)
-verify_equilibrium(K, u, F)   # True — K@u == F exactly, not "residual < tolerance"
+verify_equilibrium(K, u, F)   # True,  K@u == F exactly, not "residual < tolerance"
 ```
 
 ### Thermodynamics
@@ -1098,7 +1098,7 @@ Z_ising = ising_1d_transfer(VDR(1), VDR(0), VDR(1), 10)
 from vdr.physics.crystallography import point_group_matrix, verify_group_closure
 
 matrices = [point_group_matrix(op) for op in ["E", "C4z", "C2z", "C4z_inv"]]
-verify_group_closure(matrices)   # True — exact structural equality, not tolerance
+verify_group_closure(matrices)   # True,  exact structural equality, not tolerance
 ```
 
 ### Geodesy
@@ -1106,7 +1106,7 @@ verify_group_closure(matrices)   # True — exact structural equality, not toler
 ```python
 from vdr.physics.geodesy import helmert_forward, helmert_roundtrip_verify
 
-helmert_roundtrip_verify(coords, params)   # True — exact recovery
+helmert_roundtrip_verify(coords, params)   # True,  exact recovery
 # Float: ~1 nm error. VDR: zero.
 ```
 
@@ -1138,7 +1138,7 @@ model = Sequential([
 ])
 output = model.forward(Vec.from_ints([1, 1]))
 
-# Backward — exact gradients via chain rule
+# Backward,  exact gradients via chain rule
 grad = mse_grad(output, target)
 model.backward(grad)
 ```
@@ -1227,7 +1227,7 @@ from vdr.diffusion.schedule import DiffusionSchedule, linear_schedule, cosine_sc
 
 schedule = linear_schedule(T=5, beta_start=VDR(1, 100), beta_end=VDR(1, 20))
 # All betas, alphas, alpha_bars exact rationals
-# alpha_bar_T = 26821179/31250000 — verified bit-identical against Python Fraction
+# alpha_bar_T = 26821179/31250000,  verified bit-identical against Python Fraction
 
 schedule.sqrt_alpha_bars[t]           # sqrt via Newton, >100 digits
 schedule.sqrt_one_minus_alpha_bars[t] # same
@@ -1254,7 +1254,7 @@ from vdr.diffusion.reverse import compute_x0_prediction, reverse_step_ddim
 # With oracle noise predictor: prediction error = exactly 0
 x0_pred = compute_x0_prediction(xt, t, schedule, eps_pred)
 
-# DDIM deterministic step — roundtrip error = exactly 0
+# DDIM deterministic step,  roundtrip error = exactly 0
 x_prev = reverse_step_ddim(xt, t, t_prev, schedule, eps_pred)
 ```
 
@@ -1271,7 +1271,7 @@ err = verify_ddim_roundtrip(x0, schedule, epsilon)
 
 # Multi-cycle drift: error at cycle N = error at cycle 1 (central result)
 drift = verify_multi_step_drift(x0, schedule, epsilon, num_cycles=10)
-# drift[0] ≈ drift[9] — does not grow
+# drift[0] ≈ drift[9],  does not grow
 
 # Oracle predictor separates arithmetic error from model error
 oracle = make_oracle_predictor(x0, schedule)
@@ -1288,7 +1288,7 @@ oracle = make_oracle_predictor(x0, schedule)
 
 ---
 
-## Q335 Basis — The Configurable D-Frame
+## Q335 Basis,  The Configurable D-Frame
 
 Q335 means D = 2^335. It's the default because it's proven across ~1000 tests, but it's a configuration choice, not a definition.
 
@@ -1330,11 +1330,11 @@ set_default(bits=3322)   # 1000 digits
 
 ## Honest Boundaries
 
-**Chaotic dynamics:** exact representation of chaotic orbits has real computational cost. In flat Fraction representation, logistic map at r=4 has denominator digits growing as ~2^n after n steps. VDR with Q335 fixed-frame avoids denominator explosion — D stays at 2^335 and the remainder tree grows linearly (one ~102-digit level per step). At step 30: flat Fraction needs ~10^9 digits; Q335 tree needs ~6,120 digits (~163,000× compression). The cost in VDR is tree depth, not denominator explosion. Periodic rational orbits are computationally free — denominators stay bounded.
+**Chaotic dynamics:** exact representation of chaotic orbits has real computational cost. In flat Fraction representation, logistic map at r=4 has denominator digits growing as ~2^n after n steps. VDR with Q335 fixed-frame avoids denominator explosion,  D stays at 2^335 and the remainder tree grows linearly (one ~102-digit level per step). At step 30: flat Fraction needs ~10^9 digits; Q335 tree needs ~6,120 digits (~163,000× compression). The cost in VDR is tree depth, not denominator explosion. Periodic rational orbits are computationally free,  denominators stay bounded.
 
 **No native irrationals or complex numbers.** Functional remainders produce exact rationals approaching irrationals at any depth. Complex extension is engineering work, not mathematical obstacle.
 
-**Active division loses divisor structure.** When dividing by an active object, the divisor is projected to exact rational via scalar projection, then inverted. The divisor's remainder structure is lost. This is the v1 compromise — acknowledged, not hidden.
+**Active division loses divisor structure.** When dividing by an active object, the divisor is projected to exact rational via scalar projection, then inverted. The divisor's remainder structure is lost. This is the v1 compromise,  acknowledged, not hidden.
 
 **Cofactor expansion is O(n!).** Replaced by Gaussian elimination O(n³) for n ≥ 5. Practical limit ~50×50.
 
@@ -1372,9 +1372,9 @@ set_default(bits=3322)   # 1000 digits
 | VDR-2 | 15 gyms | 285 | 279 | 6 | 0 |
 | VDR-3 | 8 new gyms | 157 | 152 | 5 | 0 |
 | VDR-4 | LLM pipeline | 198 | 196 | 2 | 0 |
-| VDR-13 | 14 physics | — | — | — | 0 |
+| VDR-13 | 14 physics |,  |,  |,  | 0 |
 | VDR-26 | Diffusion | 37 | 33 | 4 | 0 |
-| VDR-27 | 35 domains | — | — | — | 0 |
+| VDR-27 | 35 domains |,  |,  |,  | 0 |
 | **Total** | **38 domains** | **921** | **903** | **18** | **0** |
 
 All 18 failures traced to test-design errors (wrong expected values, too-tight thresholds, normalization presentation, precision frame mismatches). Zero VDR computation errors.

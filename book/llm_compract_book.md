@@ -1,4 +1,4 @@
-# THE RATIONAL UNIVERSE — LLM-COMPACT FORM
+# THE RATIONAL UNIVERSE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: inputs → vocabulary → principles → concepts → layers → chains → predictions → tool → lexicon → relationships → sections → legend
 
@@ -223,9 +223,9 @@ M7|Irreducibility|β is transcendental (Lindemann 1882); L1 and L2 permanently i
 Q1|17 constants tested|All 17 produce integer pairs matching mpmath at 100 digits; no float at any computation stage
 Q2|Method|Convergent series in Python Fraction class; verify by string comparison against mpmath; YES/NO, no epsilon
 Q3|Precision threshold|100 digits = 65 orders of magnitude beyond Planck length; operationally identical to transcendental
-Q4|Tier 1 (derived)|π, e, ln(2), ln(3), ln(5), ln(10), √2-√7, φ, ζ(2), ζ(3), e^π, Catalan G — all YES
-Q5|Tier 2 (boundary)|γ (Euler-Mascheroni), Feigenbaum δ and α, Khinchin K, Glaisher-Kinkelin A — computational obstacles, not fundamental
-Q6|Tier 3 (measured)|α and μ (proton/electron mass ratio) — no formula exists; digits come from instruments, not series
+Q4|Tier 1 (derived)|π, e, ln(2), ln(3), ln(5), ln(10), √2-√7, φ, ζ(2), ζ(3), e^π, Catalan G,  all YES
+Q5|Tier 2 (boundary)|γ (Euler-Mascheroni), Feigenbaum δ and α, Khinchin K, Glaisher-Kinkelin A,  computational obstacles, not fundamental
+Q6|Tier 3 (measured)|α and μ (proton/electron mass ratio),  no formula exists; digits come from instruments, not series
 Q7|Structural finding|Transcendental barrier is artifact of convention; real obstacle is Tier 3: constants requiring the universe to answer
 
 # phys40_summary(id|metric|value)

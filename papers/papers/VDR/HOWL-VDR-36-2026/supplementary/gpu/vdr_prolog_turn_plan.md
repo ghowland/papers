@@ -287,7 +287,7 @@ echo "VDRProlog repository structure created: $(find src -name '*.zig' | wc -l) 
 
 ## Turn Plan
 
-Each turn targets ~1,200 lines. Source and tests for a module group ship together. Dependencies flow strictly downward — no turn references code from a later turn.
+Each turn targets ~1,200 lines. Source and tests for a module group ship together. Dependencies flow strictly downward,  no turn references code from a later turn.
 
 ---
 
@@ -410,7 +410,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 11: Primitives — LRU + Counter + Lock
+### Turn 11: Primitives,  LRU + Counter + Lock
 **Files:** `src/primitives/types.zig`, `src/primitives/lru.zig`, `src/primitives/counter.zig`, `src/primitives/lock.zig`, `test/test_primitives_lru.zig`, `test/test_primitives_counter.zig`, `test/test_primitives_lock.zig`
 **Lines:** ~1,100
 
@@ -422,7 +422,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 12: Primitives — Queue + Stack + Ring + Bitset
+### Turn 12: Primitives,  Queue + Stack + Ring + Bitset
 **Files:** `src/primitives/queue.zig`, `src/primitives/stack.zig`, `src/primitives/ring.zig`, `src/primitives/bitset.zig`, `test/test_primitives_queue.zig`, `test/test_primitives_stack.zig`, `test/test_primitives_ring.zig`, `test/test_primitives_bitset.zig`
 **Lines:** ~1,200
 
@@ -463,7 +463,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 15: Engine — Context + Scratchpad + Token Classify + Level Stats
+### Turn 15: Engine,  Context + Scratchpad + Token Classify + Level Stats
 **Files:** `src/engine/context.zig`, `src/engine/scratchpad.zig`, `src/engine/token_classify.zig`, `src/engine/level_stats.zig`, `test/test_context.zig`
 **Lines:** ~900
 
@@ -475,7 +475,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 16: Engine — Command Parse + Command Exec
+### Turn 16: Engine,  Command Parse + Command Exec
 **Files:** `src/engine/command_parse.zig`, `src/engine/command_exec.zig`, `test/test_command_parse.zig`, `test/test_command_exec.zig`
 **Lines:** ~1,100
 
@@ -488,7 +488,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 17: Engine — Auto Resolve + Universal Cycle
+### Turn 17: Engine,  Auto Resolve + Universal Cycle
 **Files:** `src/engine/auto_resolve.zig`, `src/engine/cycle.zig`, `test/test_auto_resolve.zig`, `test/test_cycle.zig`
 **Lines:** ~1,100
 
@@ -499,7 +499,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 18: LLM — Model + Forward + Softmax
+### Turn 18: LLM,  Model + Forward + Softmax
 **Files:** `src/llm/model.zig`, `src/llm/forward.zig`, `src/llm/softmax.zig`, `test/test_forward.zig`, `test/test_softmax.zig`
 **Lines:** ~1,100
 
@@ -511,7 +511,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 19: LLM — Attention + KV Cache
+### Turn 19: LLM,  Attention + KV Cache
 **Files:** `src/llm/attention.zig`, `src/llm/kv_cache.zig`, `test/test_attention.zig`, `test/test_kv_cache.zig`
 **Lines:** ~1,000
 
@@ -523,7 +523,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 20: LLM — Generate + Sampling
+### Turn 20: LLM,  Generate + Sampling
 **Files:** `src/llm/generate.zig`, `src/llm/sampling.zig`, `test/test_generate.zig`, `test/test_sampling.zig`
 **Lines:** ~800
 
@@ -534,7 +534,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 21: Builtins — Dispatch + Text + Arithmetic
+### Turn 21: Builtins,  Dispatch + Text + Arithmetic
 **Files:** `src/builtins/dispatch.zig`, `src/builtins/text.zig`, `src/builtins/arithmetic.zig`, `test/test_builtins_text.zig`, `test/test_builtins_arithmetic.zig`
 **Lines:** ~1,200
 
@@ -545,7 +545,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 22: Builtins — Collections + Sets
+### Turn 22: Builtins,  Collections + Sets
 **Files:** `src/builtins/collections.zig`, `src/builtins/sets.zig`, `test/test_builtins_collections.zig`, `test/test_builtins_sets.zig`
 **Lines:** ~1,200
 
@@ -555,7 +555,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 23: Builtins — Mappings + Conversion
+### Turn 23: Builtins,  Mappings + Conversion
 **Files:** `src/builtins/mappings.zig`, `src/builtins/conversion.zig`, `test/test_builtins_mappings.zig`, `test/test_builtins_conversion.zig`
 **Lines:** ~1,200
 
@@ -566,7 +566,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 24: Builtins — LinAlg + Stats
+### Turn 24: Builtins,  LinAlg + Stats
 **Files:** `src/builtins/linalg.zig`, `src/builtins/stats.zig`, `test/test_builtins_linalg.zig`, `test/test_builtins_stats.zig`
 **Lines:** ~1,200
 
@@ -576,7 +576,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 25: Builtins — Graph + Integer Ops + Time
+### Turn 25: Builtins,  Graph + Integer Ops + Time
 **Files:** `src/builtins/graph.zig`, `src/builtins/integer_ops.zig`, `src/builtins/time.zig`, `test/test_builtins_graph.zig`, `test/test_builtins_integer_ops.zig`, `test/test_builtins_time.zig`
 **Lines:** ~1,200
 
@@ -613,7 +613,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 28: Runner — Types + Pool + Poller
+### Turn 28: Runner,  Types + Pool + Poller
 **Files:** `src/runner/types.zig`, `src/runner/pool.zig`, `src/runner/poller.zig`, `test/test_runner_poller.zig`
 **Lines:** ~1,000
 
@@ -625,7 +625,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 29: Runner — Processor + Internal + Batch
+### Turn 29: Runner,  Processor + Internal + Batch
 **Files:** `src/runner/processor.zig`, `src/runner/internal.zig`, `src/runner/batch.zig`, `test/test_runner_processor.zig`, `test/test_runner_batch.zig`
 **Lines:** ~1,200
 
@@ -636,7 +636,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 30: Server — Types + Listener + Auth
+### Turn 30: Server,  Types + Listener + Auth
 **Files:** `src/server/types.zig`, `src/server/listener.zig`, `src/server/auth.zig`, `test/test_server_auth.zig`
 **Lines:** ~1,100
 
@@ -647,7 +647,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 31: Server — Handler + Rate Limit
+### Turn 31: Server,  Handler + Rate Limit
 **Files:** `src/server/handler.zig`, `src/server/rate_limit.zig`, `test/test_server_http.zig`, `test/test_server_rate_limit.zig`
 **Lines:** ~1,200
 
@@ -658,7 +658,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 32: Server — Health + Reaper + Shutdown
+### Turn 32: Server,  Health + Reaper + Shutdown
 **Files:** `src/server/health.zig`, `src/server/reaper.zig`, `src/server/shutdown.zig`, `test/test_server_shutdown.zig`
 **Lines:** ~800
 
@@ -669,7 +669,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 33: Protocol — HTTP + WebSocket
+### Turn 33: Protocol,  HTTP + WebSocket
 **Files:** `src/protocol/http.zig`, `src/protocol/websocket.zig`, `src/protocol/grammars.zig`, `test/test_server_websocket.zig`
 **Lines:** ~1,200
 
@@ -681,7 +681,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 34: Protocol — SMTP + MQTT (stubs) + Ops
+### Turn 34: Protocol,  SMTP + MQTT (stubs) + Ops
 **Files:** `src/protocol/smtp.zig`, `src/protocol/mqtt.zig`, `src/ops/filesystem.zig`, `src/ops/network.zig`, `src/ops/execute.zig`, `src/ops/compile_op.zig`, `src/ops/process.zig`, `test/test_ops_filesystem.zig`, `test/test_ops_network.zig`
 **Lines:** ~1,200
 
@@ -705,7 +705,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 36: GPU — Device + Memory Layout + Transfer
+### Turn 36: GPU,  Device + Memory Layout + Transfer
 **Files:** `src/gpu/device.zig`, `src/gpu/kb_device.zig`, `src/gpu/transfer.zig`
 **Lines:** ~1,000
 
@@ -713,11 +713,11 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 - Memory layout struct: model_weights, kb_store, fact_store, rule_store, term_store, text_store, grammar_store, live_state, scratch, audit, grant_store, session_table, path_index regions
 - KB device store: mirror of CPU KB store on device memory, fact read/write via device pointers
 - Transfer: host→device, device→host, typed transfers for VDR arrays and KB structs
-- No tests yet — needs GPU hardware. Test files created but marked skip-without-gpu.
+- No tests yet,  needs GPU hardware. Test files created but marked skip-without-gpu.
 
 ---
 
-### Turn 37: GPU — MAC + Softmax + Elementwise Kernels
+### Turn 37: GPU,  MAC + Softmax + Elementwise Kernels
 **Files:** `src/gpu/kernel_mac.zig`, `src/gpu/kernel_softmax.zig`, `src/gpu/kernel_elementwise.zig`, `test/test_gpu_q16_ops.zig`, `test/test_gpu_softmax.zig`
 **Lines:** ~1,200
 
@@ -729,7 +729,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 38: GPU — Attention + LayerNorm + Sort + Prolog Kernels
+### Turn 38: GPU,  Attention + LayerNorm + Sort + Prolog Kernels
 **Files:** `src/gpu/kernel_attention.zig`, `src/gpu/kernel_layernorm.zig`, `src/gpu/kernel_sort.zig`, `src/gpu/kernel_prolog.zig`, `test/test_gpu_attention.zig`, `test/test_gpu_prolog.zig`
 **Lines:** ~1,200
 
@@ -741,7 +741,7 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 
 ---
 
-### Turn 39: GPU — Profiling + Benchmarks + Determinism
+### Turn 39: GPU,  Profiling + Benchmarks + Determinism
 **Files:** `src/gpu/profiling.zig`, `test/test_gpu_determinism.zig`, `test/test_gpu_forward.zig`, `test/test_gpu_benchmark.zig`
 **Lines:** ~800
 
@@ -813,6 +813,6 @@ Each turn targets ~1,200 lines. Source and tests for a module group ship togethe
 | 40 | 6 | 12 | ~1,200 | Deploy + distributed + scripts + chaos tests |
 | **Total** | | **~200** | **~42,200** | |
 
-Estimated total is higher than the 35,000-line spec because the turn plan includes config files, scripts, build infrastructure, and comprehensive test coverage that the line count estimate treated as approximate. Actual implementation will vary — some modules will be shorter than planned, some longer. The turn plan provides sufficient slack (12 lines average per turn below the 1,200 ceiling) to absorb variance without restructuring.
+Estimated total is higher than the 35,000-line spec because the turn plan includes config files, scripts, build infrastructure, and comprehensive test coverage that the line count estimate treated as approximate. Actual implementation will vary,  some modules will be shorter than planned, some longer. The turn plan provides sufficient slack (12 lines average per turn below the 1,200 ceiling) to absorb variance without restructuring.
 
 40 turns. Sequential. No backtracking. Fix forward in test phase.

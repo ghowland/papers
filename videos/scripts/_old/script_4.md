@@ -1,14 +1,14 @@
-# Video 4 Script: What Unification Actually Gets You — From Fiber Optics to Drug Design
+# Video 4 Script: What Unification Actually Gets You,  From Fiber Optics to Drug Design
 
 ## Delivery Notes
 
-This is the most accessible video in the series. No equations, minimal Greek letters, maximum real-world connection. You're answering the "so what" question. The audience is anyone who watched Videos 1-3 and thought "interesting, but what does it do for me?" The energy is entrepreneurial — you're describing opportunities, not just results.
+This is the most accessible video in the series. No equations, minimal Greek letters, maximum real-world connection. You're answering the "so what" question. The audience is anyone who watched Videos 1-3 and thought "interesting, but what does it do for me?" The energy is entrepreneurial,  you're describing opportunities, not just results.
 
 Each industry section follows the same template: current state → gap → the chain from integers → what's missing. The repetition IS the argument. By the third industry, the viewer predicts the pattern.
 
 ---
 
-## SECTION 1: Opening — Reframing the Question (1 minute)
+## SECTION 1: Opening,  Reframing the Question (1 minute)
 
 *[In frame, talking to camera. No slides.]*
 
@@ -18,7 +18,7 @@ Three videos in, you've seen the framework: 53 derived values from 13 inputs acr
 
 The natural response is: so what? Gauge coupling unification is a physics problem. Why should anyone outside physics care?
 
-Because unification isn't a physics achievement. It's an engineering achievement. Every industry that depends on a physical constant — telecommunications, semiconductors, pharmaceuticals, climate science, materials engineering — is waiting for derivation chains that connect measured parameters to their integer origins. The chains are visible now. The computation remains to be done.
+Because unification isn't a physics achievement. It's an engineering achievement. Every industry that depends on a physical constant,  telecommunications, semiconductors, pharmaceuticals, climate science, materials engineering,  is waiting for derivation chains that connect measured parameters to their integer origins. The chains are visible now. The computation remains to be done.
 
 This video traces those chains from the gauge group to your internet speed, your medication cost, and your climate model.
 
@@ -26,17 +26,17 @@ This video traces those chains from the gauge group to your internet speed, your
 
 Three videos in, you've seen what the model does and how it works. The natural question is: so what? Who cares about unifying physics forces?
 
-You should. Because unification isn't about physics — it's about everything physics touches. Your phone, your medication, your internet speed, your solar panel, your climate forecast. All of these depend on physical constants that are currently measured, not derived.
+You should. Because unification isn't about physics,  it's about everything physics touches. Your phone, your medication, your internet speed, your solar panel, your climate forecast. All of these depend on physical constants that are currently measured, not derived.
 
-Measured constants have margins of error. Margins of error mean safety factors. Safety factors mean wasted performance — slower internet, worse drugs, less efficient solar cells.
+Measured constants have margins of error. Margins of error mean safety factors. Safety factors mean wasted performance,  slower internet, worse drugs, less efficient solar cells.
 
-If you can derive those constants from integers with higher precision than current measurements, you can shrink the margins. Not by building new hardware — by understanding the existing hardware better.
+If you can derive those constants from integers with higher precision than current measurements, you can shrink the margins. Not by building new hardware,  by understanding the existing hardware better.
 
 This video is about those chains. From gauge integers to your daily life.
 
 ### MERGE NOTES
 
-You're an engineer. "So what does it do" is a question you've answered a thousand times. The framing — "it's an engineering achievement, not a physics achievement" — is yours. Lead with it.
+You're an engineer. "So what does it do" is a question you've answered a thousand times. The framing,  "it's an engineering achievement, not a physics achievement",  is yours. Lead with it.
 
 ---
 
@@ -74,7 +74,7 @@ You understand this as a pipeline. Input → transformations → output. Each tr
 
 ---
 
-## SECTION 3: Fiber Optics — The Most Concrete Example (5 minutes)
+## SECTION 3: Fiber Optics,  The Most Concrete Example (5 minutes)
 
 *[Slides showing DWDM channel plans and safety margins]*
 
@@ -86,7 +86,7 @@ The gap between 100 and 600 Tb/s exists because three physical parameters are kn
 
 1. The Sellmeier coefficients: six fitted parameters (B₁, B₂, B₃, C₁, C₂, C₃) that determine the refractive index n(λ) as a function of wavelength. These are obtained by fitting the Sellmeier equation n²(λ) = 1 + Σ B_i λ²/(λ² − C_i) to measured refractive index data. The fit achieves ~10⁻⁶ accuracy in n, but the individual coefficients carry fitting uncertainties of 1-5%.
 
-2. The Kerr nonlinear coefficient n₂: measured at approximately 2.6 × 10⁻²⁰ m²/W ± 5%. This parameter governs self-phase modulation (SPM), cross-phase modulation (XPM), and four-wave mixing (FWM) — the three primary nonlinear impairments that limit channel capacity.
+2. The Kerr nonlinear coefficient n₂: measured at approximately 2.6 × 10⁻²⁰ m²/W ± 5%. This parameter governs self-phase modulation (SPM), cross-phase modulation (XPM), and four-wave mixing (FWM),  the three primary nonlinear impairments that limit channel capacity.
 
 3. The chromatic dispersion slope: the rate of change of group velocity dispersion with wavelength, which determines the precision of dispersion compensation across the DWDM band.
 
@@ -100,27 +100,27 @@ This is not a hardware upgrade. It's a physics upgrade applied to hardware alrea
 
 Let me start with the most concrete example.
 
-Your internet runs on light. Specifically, on fiber optic cables carrying dozens of different colors of light simultaneously — each color carrying its own data stream. This technology is called DWDM, dense wavelength division multiplexing.
+Your internet runs on light. Specifically, on fiber optic cables carrying dozens of different colors of light simultaneously,  each color carrying its own data stream. This technology is called DWDM, dense wavelength division multiplexing.
 
 Current commercial systems deliver about 100 terabits per second per fiber. Lab records have reached 430 terabits. The theoretical limit is about 600 terabits. There's a huge gap between what we're doing and what the fiber can actually handle.
 
-Why the gap? Because the physical parameters that govern how light behaves in glass — how fast it travels at each color, how different colors interfere with each other — are known through curve fitting, not derivation. Engineers measured the glass, fitted curves to the measurements, and built their systems around those curves. The curves are good — about 5% uncertainty. But 5% uncertainty means 5% safety margins. Safety margins mean wasted capacity.
+Why the gap? Because the physical parameters that govern how light behaves in glass,  how fast it travels at each color, how different colors interfere with each other,  are known through curve fitting, not derivation. Engineers measured the glass, fitted curves to the measurements, and built their systems around those curves. The curves are good,  about 5% uncertainty. But 5% uncertainty means 5% safety margins. Safety margins mean wasted capacity.
 
-There are six numbers — the Sellmeier coefficients — that determine how light bends in glass. They're fitted, not derived. There's one number — the Kerr coefficient — that determines how strongly different channels interfere. It's measured at plus or minus 5%. Guard bands between channels are set for worst case, not the true boundary.
+There are six numbers,  the Sellmeier coefficients,  that determine how light bends in glass. They're fitted, not derived. There's one number,  the Kerr coefficient,  that determines how strongly different channels interfere. It's measured at plus or minus 5%. Guard bands between channels are set for worst case, not the true boundary.
 
-The chain from integers to these numbers exists. The fine structure constant — which we derive to 12 digits — determines how silicon and oxygen atoms interact. Their interaction determines the glass's optical properties. The glass properties determine the Sellmeier coefficients. The Sellmeier coefficients determine channel spacing.
+The chain from integers to these numbers exists. The fine structure constant,  which we derive to 12 digits,  determines how silicon and oxygen atoms interact. Their interaction determines the glass's optical properties. The glass properties determine the Sellmeier coefficients. The Sellmeier coefficients determine channel spacing.
 
-Every link in that chain uses known equations. Nobody has run the chain end-to-end in exact arithmetic. If you did, and the result gave you the Kerr coefficient to parts per million instead of 5%, you could tighten the channel spacing on fiber that's already in the ground. Not new cables — same cables, better understanding.
+Every link in that chain uses known equations. Nobody has run the chain end-to-end in exact arithmetic. If you did, and the result gave you the Kerr coefficient to parts per million instead of 5%, you could tighten the channel spacing on fiber that's already in the ground. Not new cables,  same cables, better understanding.
 
 That's not a hardware upgrade. It's a physics upgrade.
 
 ### MERGE NOTES
 
-This is your strongest applied example because you understand telecom infrastructure. The DWDM numbers (100 Tb/s commercial, 430 lab, 600 theoretical) are concrete. The "5% uncertainty means 5% safety margins" framing is engineering common sense. The punch line — "same cables, better understanding" — is yours. You don't need to explain the Sellmeier equation. Just say "six numbers that describe how light bends in glass, currently fitted from measurements."
+This is your strongest applied example because you understand telecom infrastructure. The DWDM numbers (100 Tb/s commercial, 430 lab, 600 theoretical) are concrete. The "5% uncertainty means 5% safety margins" framing is engineering common sense. The punch line,  "same cables, better understanding",  is yours. You don't need to explain the Sellmeier equation. Just say "six numbers that describe how light bends in glass, currently fitted from measurements."
 
 ---
 
-## SECTION 4: Handset Radio — Same Principle, Different Domain (3 minutes)
+## SECTION 4: Handset Radio,  Same Principle, Different Domain (3 minutes)
 
 ### TECHNICAL VERSION
 
@@ -134,17 +134,17 @@ This is your strongest applied example because you understand telecom infrastruc
 
 4. FFT arithmetic: every OFDM modem computes the FFT using IEEE 754 float64 representations of the twiddle factors exp(−2πik/N). The π in the exponent inherits 15-digit precision. For a 4096-point FFT, the accumulated arithmetic error contributes to the error vector magnitude (EVM) floor.
 
-The Q335 FFT addresses point 4 directly. Replace float64 π with Q335 π (101 digits, denominator 2³³⁵). The twiddle factors become integer pairs. The butterfly operations become integer multiply and bit-shift. The arithmetic error contribution to EVM drops to effectively zero — 10⁻¹⁰¹ vs 10⁻¹⁵.
+The Q335 FFT addresses point 4 directly. Replace float64 π with Q335 π (101 digits, denominator 2³³⁵). The twiddle factors become integer pairs. The butterfly operations become integer multiply and bit-shift. The arithmetic error contribution to EVM drops to effectively zero,  10⁻¹⁰¹ vs 10⁻¹⁵.
 
 ### NON-TECHNICAL VERSION
 
 Same principle, different domain.
 
-Your phone uses a technology called OFDM — it splits a radio signal into thousands of tiny sub-channels and sends data on each one simultaneously. It's the same idea as fiber optics but through the air.
+Your phone uses a technology called OFDM,  it splits a radio signal into thousands of tiny sub-channels and sends data on each one simultaneously. It's the same idea as fiber optics but through the air.
 
-Current 5G systems operate at about 30 to 50% of their theoretical capacity. The rest is lost to safety margins. The antenna matching is approximate. The spacing between sub-channels includes guard bands for worst-case interference. The power amplifier is deliberately turned down to avoid distortion. Every one of these margins is lost performance — lower data rates, higher power consumption, shorter battery life.
+Current 5G systems operate at about 30 to 50% of their theoretical capacity. The rest is lost to safety margins. The antenna matching is approximate. The spacing between sub-channels includes guard bands for worst-case interference. The power amplifier is deliberately turned down to avoid distortion. Every one of these margins is lost performance,  lower data rates, higher power consumption, shorter battery life.
 
-And here's one you might not expect: the math itself introduces errors. Every modem in every phone on Earth runs a mathematical operation called the FFT — the fast Fourier transform. That operation uses pi. And pi is stored as a 15-digit decimal approximation. Every calculation that uses that approximation inherits a tiny error. Tiny, but real.
+And here's one you might not expect: the math itself introduces errors. Every modem in every phone on Earth runs a mathematical operation called the FFT,  the fast Fourier transform. That operation uses pi. And pi is stored as a 15-digit decimal approximation. Every calculation that uses that approximation inherits a tiny error. Tiny, but real.
 
 Q335 replaces that 15-digit approximation with a 101-digit exact fraction. The error drops from one part in a quadrillion to one part in... a number so large it doesn't have a name. Effectively zero.
 
@@ -156,19 +156,19 @@ You understand OFDM from your telecom background. The FFT-uses-pi point is techn
 
 ---
 
-## SECTION 5: The Q335 FFT — The Patent Example (3 minutes)
+## SECTION 5: The Q335 FFT,  The Patent Example (3 minutes)
 
 ### TECHNICAL VERSION
 
 The Q335 FFT is a concrete, patentable implementation that exists solely because of the integer fraction methodology.
 
-Implementation: for an N-point FFT, compute the twiddle factors ω_k = exp(−2πik/N) as Q335 integers: cos(2πk/N) and sin(2πk/N) each represented as ⌊f(k) × 2³³⁵⌋. The denominator 2³³⁵ means division is a right bit-shift by 335 positions — a single clock cycle on any processor.
+Implementation: for an N-point FFT, compute the twiddle factors ω_k = exp(−2πik/N) as Q335 integers: cos(2πk/N) and sin(2πk/N) each represented as ⌊f(k) × 2³³⁵⌋. The denominator 2³³⁵ means division is a right bit-shift by 335 positions,  a single clock cycle on any processor.
 
 Storage: for N = 4096, the twiddle table requires 4096 × 2 × 42 bytes = 335 KB (each Q335 integer is ~42 bytes at 335 bits). This is smaller than the L2 cache of a modern mobile processor.
 
 Silicon: the multiplier is a 335-bit × 335-bit integer multiply, implementable in approximately 0.8 mm² at 5nm process technology. This is less than 4% of a modern modem SoC die area.
 
-Result: the arithmetic error contribution to EVM drops from ~−80 dBc (float64) to ~−600 dBc (Q335). This eliminates the arithmetic noise floor entirely, enabling the step from 1024-QAM (10 bits/symbol) to 4096-QAM (12 bits/symbol) — a 20% throughput increase on the same spectrum allocation.
+Result: the arithmetic error contribution to EVM drops from ~−80 dBc (float64) to ~−600 dBc (Q335). This eliminates the arithmetic noise floor entirely, enabling the step from 1024-QAM (10 bits/symbol) to 4096-QAM (12 bits/symbol),  a 20% throughput increase on the same spectrum allocation.
 
 The patent space is currently empty. No prior art exists for integer arithmetic FFT implementations above 64-bit precision. The Q335 FFT specification is being released publicly to demonstrate what the methodology produces.
 
@@ -176,11 +176,11 @@ The patent space is currently empty. No prior art exists for integer arithmetic 
 
 Let me give you something concrete. Something you could build.
 
-Every digital signal processing system on Earth — every phone, every router, every radar, every audio system — runs the FFT with approximate arithmetic. The errors are tiny, but they set a floor on how precisely the system can distinguish signals from noise.
+Every digital signal processing system on Earth,  every phone, every router, every radar, every audio system,  runs the FFT with approximate arithmetic. The errors are tiny, but they set a floor on how precisely the system can distinguish signals from noise.
 
-Q335 eliminates that floor. Replace the 15-digit pi with a 101-digit exact fraction. The key trick: the fraction has a denominator that's a power of 2, so dividing by it is just shifting bits — free on any processor.
+Q335 eliminates that floor. Replace the 15-digit pi with a 101-digit exact fraction. The key trick: the fraction has a denominator that's a power of 2, so dividing by it is just shifting bits,  free on any processor.
 
-The twiddle table — the lookup table of sine and cosine values the FFT uses — takes about 335 kilobytes. That's smaller than the cache in your phone's processor. The multiplier circuit takes less than 1 square millimeter at 5 nanometers — less than 4% of a modern modem chip.
+The twiddle table,  the lookup table of sine and cosine values the FFT uses,  takes about 335 kilobytes. That's smaller than the cache in your phone's processor. The multiplier circuit takes less than 1 square millimeter at 5 nanometers,  less than 4% of a modern modem chip.
 
 The result: the step from 1024-QAM to 4096-QAM. That's 10 bits per symbol to 12 bits per symbol. A 20% throughput increase on the same spectrum. No new antennas. No new spectrum licenses. Just more precise arithmetic.
 
@@ -188,17 +188,17 @@ And the patent space is empty. Nobody has built an integer FFT above 64-bit prec
 
 ### MERGE NOTES
 
-This is the most tangible deliverable in the entire series and you understand it as an engineer. The storage numbers (335 KB), the die area (0.8 mm²), the throughput gain (20%) — these are specs you can cite. "The patent space is empty" is a verifiable claim. "I'm releasing it for free" establishes your intent. The 1024-QAM to 4096-QAM step is concrete and meaningful to anyone in telecom.
+This is the most tangible deliverable in the entire series and you understand it as an engineer. The storage numbers (335 KB), the die area (0.8 mm²), the throughput gain (20%),  these are specs you can cite. "The patent space is empty" is a verifiable claim. "I'm releasing it for free" establishes your intent. The 1024-QAM to 4096-QAM step is concrete and meaningful to anyone in telecom.
 
 ---
 
-## SECTION 6: Semiconductor Physics — The Chain Exists (2 minutes)
+## SECTION 6: Semiconductor Physics,  The Chain Exists (2 minutes)
 
 ### TECHNICAL VERSION
 
 The silicon band gap E_g = 1.12 eV at 300K determines the operational characteristics of every silicon-based transistor, solar cell, and integrated circuit. The global semiconductor industry ($600B annual revenue) is built on this single number.
 
-Current theoretical accuracy: density functional theory (DFT) with standard exchange-correlation functionals achieves E_g ≈ 0.5-0.7 eV for silicon — a 40-50% underestimation. The GW approximation (many-body perturbation theory) achieves ~1.1 eV — within 2% — but at extreme computational cost. Quantum Monte Carlo methods can in principle reach meV accuracy but require billions of CPU-hours per material.
+Current theoretical accuracy: density functional theory (DFT) with standard exchange-correlation functionals achieves E_g ≈ 0.5-0.7 eV for silicon,  a 40-50% underestimation. The GW approximation (many-body perturbation theory) achieves ~1.1 eV,  within 2%,  but at extreme computational cost. Quantum Monte Carlo methods can in principle reach meV accuracy but require billions of CPU-hours per material.
 
 The derivation chain: α (12 digits from QED) → electronic structure of Si (Z=14, diamond cubic lattice, Bloch wavefunctions) → band structure → E_g.
 
@@ -208,7 +208,7 @@ This is stated honestly: the path exists, the computation is hard.
 
 ### NON-TECHNICAL VERSION
 
-The silicon band gap. One number — 1.12 electron volts — that determines every transistor, every solar cell, every computer chip on Earth. A 600-billion-dollar industry built on one measurement.
+The silicon band gap. One number,  1.12 electron volts,  that determines every transistor, every solar cell, every computer chip on Earth. A 600-billion-dollar industry built on one measurement.
 
 The current theoretical methods can predict this number to about 2% accuracy on a good day, using enormous computing resources. That's useful but it's not the precision you'd get from an exact derivation.
 
@@ -220,19 +220,19 @@ The path exists. The computation is hard. Both facts stated plainly.
 
 ### MERGE NOTES
 
-The silicon band gap is a number most of your audience uses every day without knowing it. "A 600-billion-dollar industry built on one measurement" is vivid. The honest limit — "the equations are known, solving them exactly is hard" — is important. Don't overclaim. The path exists but the computation is genuinely difficult.
+The silicon band gap is a number most of your audience uses every day without knowing it. "A 600-billion-dollar industry built on one measurement" is vivid. The honest limit,  "the equations are known, solving them exactly is hard",  is important. Don't overclaim. The path exists but the computation is genuinely difficult.
 
 ---
 
-## SECTION 7: Medicine — The Longest Chain (3 minutes)
+## SECTION 7: Medicine,  The Longest Chain (3 minutes)
 
 ### TECHNICAL VERSION
 
-Pharmaceutical drug development: average time to market 10-15 years, cost $1-2B per approved drug, clinical trial failure rate ~90%. The computational bottleneck is binding affinity prediction — whether a candidate molecule binds to a target protein with sufficient specificity and strength.
+Pharmaceutical drug development: average time to market 10-15 years, cost $1-2B per approved drug, clinical trial failure rate ~90%. The computational bottleneck is binding affinity prediction,  whether a candidate molecule binds to a target protein with sufficient specificity and strength.
 
 Current binding prediction accuracy: ~70% for whether binding occurs (binary classification), ~1 kcal/mol for binding free energy (compared to the ~3-10 kcal/mol range of therapeutic binding). The 30% false negative/positive rate drives the high clinical failure rate.
 
-The error source: force field parameters. Molecular dynamics simulations use parameterized potentials — Lennard-Jones ε and σ, partial atomic charges, torsion barriers — that are fitted to experimental data or quantum chemistry calculations at moderate accuracy. These parameters trace to:
+The error source: force field parameters. Molecular dynamics simulations use parameterized potentials,  Lennard-Jones ε and σ, partial atomic charges, torsion barriers,  that are fitted to experimental data or quantum chemistry calculations at moderate accuracy. These parameters trace to:
 
 - Electronic polarizability → α and nuclear charges Z
 - Bond lengths and angles → solutions of the electronic Schrödinger equation with the Coulomb potential (which depends on α)
@@ -242,7 +242,7 @@ The relevant nuclear charges for drug-relevant chemistry: H (Z=1), C (Z=6), N (Z
 
 The derivation chain: α (12 digits) → electronic structure of C, N, O, H, S → molecular polarizabilities → force field parameters → binding affinity predictions.
 
-Each link is known physics. The molecular polarizability calculation is within reach of current quantum chemistry for small molecules. The force field parameterization is an active research area. The endpoint — predicting drug efficacy from gauge integers — is decades away. But every percentage point improvement in binding prediction saves hundreds of millions in failed clinical trials.
+Each link is known physics. The molecular polarizability calculation is within reach of current quantum chemistry for small molecules. The force field parameterization is an active research area. The endpoint,  predicting drug efficacy from gauge integers,  is decades away. But every percentage point improvement in binding prediction saves hundreds of millions in failed clinical trials.
 
 ### NON-TECHNICAL VERSION
 
@@ -250,33 +250,33 @@ Now the longest chain. Medicine.
 
 Getting a drug from idea to pharmacy takes 10 to 15 years and costs 1 to 2 billion dollars. 90% of drugs that enter clinical trials fail. The main reason: we can't predict well enough whether a molecule will bind to its target protein.
 
-Current prediction accuracy: about 70%. That means 30% of the time, the computer says "yes, this molecule will work" and nature says "no." Or the computer says "no" and misses a drug that would have worked. That 30% error rate is why trials are so expensive — you have to try the molecules in humans because the computer can't tell you.
+Current prediction accuracy: about 70%. That means 30% of the time, the computer says "yes, this molecule will work" and nature says "no." Or the computer says "no" and misses a drug that would have worked. That 30% error rate is why trials are so expensive,  you have to try the molecules in humans because the computer can't tell you.
 
 The 30% error comes from the parameters in the simulation. The simulation models atoms as balls connected by springs, and the spring constants are fitted from measurements. The fits are approximate.
 
 Where do those spring constants come from? From how atoms push and pull on each other. How atoms push and pull depends on the fine structure constant and the nuclear charges. For drug chemistry, the nuclear charges are: hydrogen 1, carbon 6, nitrogen 7, oxygen 8, sulfur 16. Five integers.
 
-Five integers, through a chain of known equations, determine whether a drug molecule binds to a protein. The chain is long. Each link is a research program. The endpoint — predicting drug efficacy from integers — is decades away.
+Five integers, through a chain of known equations, determine whether a drug molecule binds to a protein. The chain is long. Each link is a research program. The endpoint,  predicting drug efficacy from integers,  is decades away.
 
 But every percentage point improvement in binding prediction saves hundreds of millions in failed clinical trials. A 1% improvement in prediction accuracy is worth more than most entire research programs.
 
 ### MERGE NOTES
 
-The drug development numbers (10-15 years, $1-2B, 90% failure) are public and dramatic. The "five integers determine drug binding" claim is technically precise — nuclear charges are integers and they do determine chemistry. The honest limit — "decades away" — is crucial. Don't promise anything close. The economic argument — "1% improvement saves hundreds of millions" — is concrete and true.
+The drug development numbers (10-15 years, $1-2B, 90% failure) are public and dramatic. The "five integers determine drug binding" claim is technically precise,  nuclear charges are integers and they do determine chemistry. The honest limit,  "decades away",  is crucial. Don't promise anything close. The economic argument,  "1% improvement saves hundreds of millions",  is concrete and true.
 
 ---
 
-## SECTION 8: Climate — The Most Tractable Applied Chain (2 minutes)
+## SECTION 8: Climate,  The Most Tractable Applied Chain (2 minutes)
 
 ### TECHNICAL VERSION
 
 The greenhouse effect is mediated primarily by CO₂, H₂O, CH₄, and N₂O absorption of infrared radiation. The absorption spectrum of each molecule is determined by its vibrational and rotational energy levels, which are determined by molecular structure, which traces to α and nuclear charges.
 
-CO₂ (O=C=O, linear triatomic): Z_C = 6, Z_O = 8. Three atoms, 22 electrons. The vibrational modes are the symmetric stretch (ν₁, Raman active), the asymmetric stretch (ν₃, IR active at 4.26 μm), and the bending mode (ν₂, IR active at 15 μm). The ν₂ bending mode at 15 μm (667 cm⁻¹) is the primary greenhouse absorption — it sits near the peak of Earth's thermal emission spectrum.
+CO₂ (O=C=O, linear triatomic): Z_C = 6, Z_O = 8. Three atoms, 22 electrons. The vibrational modes are the symmetric stretch (ν₁, Raman active), the asymmetric stretch (ν₃, IR active at 4.26 μm), and the bending mode (ν₂, IR active at 15 μm). The ν₂ bending mode at 15 μm (667 cm⁻¹) is the primary greenhouse absorption,  it sits near the peak of Earth's thermal emission spectrum.
 
 The derivation chain: α + Z_C + Z_O → CO₂ electronic structure → bond length (1.16 Å) → vibrational frequencies → absorption cross-sections → atmospheric absorption spectrum → radiative forcing.
 
-This is one of the nearest targets. CO₂ is a three-atom molecule. Current quantum chemistry (coupled cluster with perturbative triples, CCSD(T)) can compute vibrational frequencies of triatomic molecules to ~1 cm⁻¹ accuracy — already better than the spectroscopic databases used in climate models. Running this in exact fraction arithmetic from α-derived inputs would close the chain.
+This is one of the nearest targets. CO₂ is a three-atom molecule. Current quantum chemistry (coupled cluster with perturbative triples, CCSD(T)) can compute vibrational frequencies of triatomic molecules to ~1 cm⁻¹ accuracy,  already better than the spectroscopic databases used in climate models. Running this in exact fraction arithmetic from α-derived inputs would close the chain.
 
 Climate science currently treats absorption spectra as empirical data from the HITRAN database. The derivation from first principles to spectroscopic precision has not been done in a framework that traces the inputs to gauge integers.
 
@@ -284,7 +284,7 @@ Climate science currently treats absorption spectra as empirical data from the H
 
 Climate science has what might be the most tractable chain of all.
 
-The greenhouse effect works because certain molecules absorb infrared light — heat radiation. CO2 is the main one. It absorbs specific wavelengths of heat, trapping energy in the atmosphere.
+The greenhouse effect works because certain molecules absorb infrared light,  heat radiation. CO2 is the main one. It absorbs specific wavelengths of heat, trapping energy in the atmosphere.
 
 Which wavelengths CO2 absorbs depends on how the molecule vibrates. How it vibrates depends on the bond properties. Bond properties depend on how carbon and oxygen atoms interact. How they interact depends on the fine structure constant and two nuclear charges: carbon 6, oxygen 8.
 
@@ -292,13 +292,13 @@ Two integers and alpha determine the greenhouse effect.
 
 CO2 is three atoms. Three atoms is a problem we can solve. Current quantum chemistry can already compute the vibration frequencies of a three-atom molecule to high precision. Running that computation in exact arithmetic, starting from alpha derived from gauge integers, would complete the chain.
 
-Climate science currently treats the absorption spectrum of CO2 as measured data — they look it up in a database. The derivation from integers to spectrum has not been done. But the molecule is simple enough that it could be.
+Climate science currently treats the absorption spectrum of CO2 as measured data,  they look it up in a database. The derivation from integers to spectrum has not been done. But the molecule is simple enough that it could be.
 
 This is one of the nearest targets. Short chain. Known equations. High-precision measurements available for comparison.
 
 ### MERGE NOTES
 
-"Two integers and alpha determine the greenhouse effect" is a striking claim and it's technically correct. CO2 as a three-atom molecule being computationally tractable is an honest assessment. You don't need to explain coupled cluster methods — just say "current quantum chemistry can handle three-atom molecules." The practical implication — "climate models look up this data instead of computing it" — is something you can state.
+"Two integers and alpha determine the greenhouse effect" is a striking claim and it's technically correct. CO2 as a three-atom molecule being computationally tractable is an honest assessment. You don't need to explain coupled cluster methods,  just say "current quantum chemistry can handle three-atom molecules." The practical implication,  "climate models look up this data instead of computing it",  is something you can state.
 
 ---
 
@@ -312,7 +312,7 @@ The applied chains represent one dimension of impact. A second dimension is conc
 
 Educational impact: the soliton hierarchy teaches one principle (nested boundaries with reading changes) and applies it at every level. A student who understands inertia, vortex, and soliton at the proton level understands the same concepts at the galaxy level. The current curriculum teaches forces, particles, atoms, molecules, planets, stars, and galaxies as separate subjects with separate terminology. The unification reduces the cognitive load.
 
-Conceptual impact: dark matter becomes less mysterious when an integer ratio matches the satellite measurement at 725 ppm. The cosmological constant becomes less baffling when it's the ground state reading of the outermost boundary. These reframings don't solve the problems — they make them approachable.
+Conceptual impact: dark matter becomes less mysterious when an integer ratio matches the satellite measurement at 725 ppm. The cosmological constant becomes less baffling when it's the ground state reading of the outermost boundary. These reframings don't solve the problems,  they make them approachable.
 
 Methodological impact: before proposing new particles, dimensions, or forces to explain a discrepancy, check which boundary you're reading from. The Hubble tension (73 vs 67.4) might be a reading difference, not a physics difference.
 
@@ -320,15 +320,15 @@ Methodological impact: before proposing new particles, dimensions, or forces to 
 
 You don't need to derive protein folding from integers to benefit from this.
 
-Understanding replaces mystery. When someone tells you "95% of the universe is unknown — dark matter and dark energy" — that sounds terrifying. When you learn that an integer ratio matches the dark matter measurement to 725 parts per million, and the rest is the ground state energy of the outermost boundary, it's less terrifying. The mystery shrinks.
+Understanding replaces mystery. When someone tells you "95% of the universe is unknown,  dark matter and dark energy",  that sounds terrifying. When you learn that an integer ratio matches the dark matter measurement to 725 parts per million, and the rest is the ground state energy of the outermost boundary, it's less terrifying. The mystery shrinks.
 
-Education changes. Right now, students learn four forces in separate chapters, separate years, sometimes separate departments. Imagine teaching one principle — a boundary where readings change — and showing four examples. Same idea, different depth. The student sees unity from day one instead of hoping to discover it in graduate school.
+Education changes. Right now, students learn four forces in separate chapters, separate years, sometimes separate departments. Imagine teaching one principle,  a boundary where readings change,  and showing four examples. Same idea, different depth. The student sees unity from day one instead of hoping to discover it in graduate school.
 
-And methodology changes. Before physicists propose new particles, new dimensions, new forces to explain why two measurements disagree — maybe check whether the two measurements are looking at different boundaries. Different boundaries give different readings. That's not a crisis. That's the principle working exactly as expected.
+And methodology changes. Before physicists propose new particles, new dimensions, new forces to explain why two measurements disagree,  maybe check whether the two measurements are looking at different boundaries. Different boundaries give different readings. That's not a crisis. That's the principle working exactly as expected.
 
 ### MERGE NOTES
 
-"Understanding replaces mystery" is your framing. The education point — "one principle with four examples instead of four separate subjects" — is something you feel strongly about. You can deliver the dark matter reframing ("an integer ratio matches at 725 ppm") from your own experience of encountering it. The methodology point — "check which boundary you're reading from before inventing new particles" — is your soliton principle applied.
+"Understanding replaces mystery" is your framing. The education point,  "one principle with four examples instead of four separate subjects",  is something you feel strongly about. You can deliver the dark matter reframing ("an integer ratio matches at 725 ppm") from your own experience of encountering it. The methodology point,  "check which boundary you're reading from before inventing new particles",  is your soliton principle applied.
 
 ---
 
@@ -344,19 +344,19 @@ Not computed: integers → SiO₂ optical properties → Sellmeier coefficients.
 
 These are future work. Years for the nearest targets (CO₂ spectrum, glass optics). Decades for the furthest (drug design, materials by integer design).
 
-But every chain that has been computed works. No chain has failed except where the one-loop approximation is insufficient (proton mass, pion mass — known fix: two-loop). The walls are departmental, not physical. The equations exist. The computation awaits.
+But every chain that has been computed works. No chain has failed except where the one-loop approximation is insufficient (proton mass, pion mass,  known fix: two-loop). The walls are departmental, not physical. The equations exist. The computation awaits.
 
 ### NON-TECHNICAL VERSION
 
 Let me be honest about what we've done and what we haven't.
 
-Done: from gauge integers to deuterium abundance — seven steps, matches within the noise. From one electron's wobble to hydrogen's light frequency — eleven digits match across the ocean. From gauge integers to Z boson decay rates — fifteen predictions, all matching.
+Done: from gauge integers to deuterium abundance,  seven steps, matches within the noise. From one electron's wobble to hydrogen's light frequency,  eleven digits match across the ocean. From gauge integers to Z boson decay rates,  fifteen predictions, all matching.
 
 Not done: from integers to how light bends in glass. From alpha to CO2's absorption spectrum. From the gauge group through chemistry to drug binding.
 
 Those chains are years away for the nearest targets, decades for the furthest.
 
-But every chain we've actually run has worked. Every one. No exceptions — except where we know the approximation is too crude, and we know the fix. The chains that exist work. The chains that don't exist yet use the same kinds of equations. The walls between us and those chains are departmental, not physical.
+But every chain we've actually run has worked. Every one. No exceptions,  except where we know the approximation is too crude, and we know the fix. The chains that exist work. The chains that don't exist yet use the same kinds of equations. The walls between us and those chains are departmental, not physical.
 
 The discovery is done. The universe runs on integer fractions. What remains is computation.
 
@@ -384,7 +384,7 @@ Unification isn't an abstract achievement for physicists. It's the thing that co
 
 Every industry that depends on measured physical constants with safety margins is waiting for derivation chains that cross departmental walls. The chains are visible now. The links remain to be computed.
 
-I have a specification for the Q335 FFT — a zero-error implementation of the most common signal processing operation in the world. I'm releasing it for free, as a demonstration of what these chains produce.
+I have a specification for the Q335 FFT,  a zero-error implementation of the most common signal processing operation in the world. I'm releasing it for free, as a demonstration of what these chains produce.
 
 The universe runs on integers. The engineering runs on approximations of those integers. The gap between them is the opportunity.
 
@@ -394,13 +394,13 @@ Links in the pinned comment. Check the numbers.
 
 ### MERGE NOTES
 
-"The gap between integers and approximations is the opportunity" — that's your closing thesis and it's pure engineering. The Q335 FFT release is a tangible deliverable. "Check the numbers" as always.
+"The gap between integers and approximations is the opportunity",  that's your closing thesis and it's pure engineering. The Q335 FFT release is a tangible deliverable. "Check the numbers" as always.
 
 ---
 
 ## TERMINAL DEMO NOTES
 
-Light on demos for this video — it's mostly conceptual:
+Light on demos for this video,  it's mostly conceptual:
 
 **Demo 1 (Section 5):** Show Q335 pi briefly. Remind them from Video 1. Then show: "this is the pi that goes into the FFT." 30 seconds.
 

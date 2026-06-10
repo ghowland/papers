@@ -41,46 +41,46 @@ Recursion exists only in R. V and D are always atomic integers. Every concrete o
 ```
 code/
   vdr/
-    __init__.py          — public API, auto-installs active_mul and fn
-    vdr.py               — core: VDR, Remainder, normalization, equality,
+    __init__.py         ,  public API, auto-installs active_mul and fn
+    vdr.py              ,  core: VDR, Remainder, normalization, equality,
                            closed arithmetic, rebase, lift, projection
-    active_mul.py        — active multiplication and division, patches operators
-    fn.py                — FnRemainder, resolve, factories, discrete calculus
-    linalg.py            — Vec, Mat, parse_vdr, JSON serialization, LaTeX export
-    export.py            — to_decimal, to_float, to_fraction (lossy boundary)
-  test_basic.py          — core VDR tests (12 sections, all pass)
-  test_layer_1.py        — linalg, parse, serialize, export tests (15 sections, all pass)
-  test_layer_2.py        — active multiplication/division tests (20 sections, all pass)
-  test_layer_3.py        — functional remainders, discrete calculus (21 sections, all pass)
+    active_mul.py       ,  active multiplication and division, patches operators
+    fn.py               ,  FnRemainder, resolve, factories, discrete calculus
+    linalg.py           ,  Vec, Mat, parse_vdr, JSON serialization, LaTeX export
+    export.py           ,  to_decimal, to_float, to_fraction (lossy boundary)
+  test_basic.py         ,  core VDR tests (12 sections, all pass)
+  test_layer_1.py       ,  linalg, parse, serialize, export tests (15 sections, all pass)
+  test_layer_2.py       ,  active multiplication/division tests (20 sections, all pass)
+  test_layer_3.py       ,  functional remainders, discrete calculus (21 sections, all pass)
   gym/
-    gym_01_number_theory.py          — 37/37 pass
-    gym_02_polynomial.py             — 22/23 (1 test-authoring error)
-    gym_03_continued_fractions.py    — 26/31 (5 test-authoring errors)
-    gym_04_matrix_decomposition.py   — 13/13 pass
-    gym_05_recursive_sequences.py    — 15/15 pass
-    gym_06_combinatorics.py          — 31/31 pass
-    gym_07_signal_processing.py      — 11/11 pass
-    gym_08_geometry.py               — 19/19 pass
-    gym_09_differential_equations.py — 10/10 pass
-    gym_10_optimization.py           — 8/8 pass
-    gym_11_probability.py            — 13/13 pass
-    gym_12_cryptographic_primitives.py — 37/37 pass
-    gym_13_symbolic_algebra.py       — 20/20 pass
-    gym_14_fixed_point.py            — partial (killed: chaos cost)
-    gym_15_chaos_and_sensitivity.py  — partial (killed: chaos cost)
-  make_diagrams_vdr1.py              — 8 figures for VDR-1 paper
-  make_diagrams_vdr2.py              — 8 figures for VDR-2 paper
+    gym_01_number_theory.py         ,  37/37 pass
+    gym_02_polynomial.py            ,  22/23 (1 test-authoring error)
+    gym_03_continued_fractions.py   ,  26/31 (5 test-authoring errors)
+    gym_04_matrix_decomposition.py  ,  13/13 pass
+    gym_05_recursive_sequences.py   ,  15/15 pass
+    gym_06_combinatorics.py         ,  31/31 pass
+    gym_07_signal_processing.py     ,  11/11 pass
+    gym_08_geometry.py              ,  19/19 pass
+    gym_09_differential_equations.py,  10/10 pass
+    gym_10_optimization.py          ,  8/8 pass
+    gym_11_probability.py           ,  13/13 pass
+    gym_12_cryptographic_primitives.py,  37/37 pass
+    gym_13_symbolic_algebra.py      ,  20/20 pass
+    gym_14_fixed_point.py           ,  partial (killed: chaos cost)
+    gym_15_chaos_and_sensitivity.py ,  partial (killed: chaos cost)
+  make_diagrams_vdr1.py             ,  8 figures for VDR-1 paper
+  make_diagrams_vdr2.py             ,  8 figures for VDR-2 paper
 ```
 
 ---
 
 ## 4. What Each Module Does
 
-### 4.1 vdr/vdr.py — The Core
+### 4.1 vdr/vdr.py,  The Core
 
 Contains `VDR` class and `Remainder` class. This is the foundation everything else builds on.
 
-**VDR class.** Construction from integers, rationals, Fraction, direct triple specification. Validation on construction (zero denominator raises, non-integer slots raise). Properties: `is_closed`, `is_active`, `is_globally_closed`. Equality: `structural_eq(other)` for slot-by-slot match, `value_eq(other)` for normalized match, `__eq__` uses value equality. Normalization: positive D, GCD reduction on closed nodes, atomic remainder consolidation, child ordering, same-denominator child merge, zero elimination, D=1 absorption, closed-form preference. Projection: `to_fraction()` returns exact `Fraction` (legacy flattening for active objects), `to_float()` returns lossy float. Closed arithmetic: `+`, `-`, `*`, `/` via operator overloading for closed objects. Active same-frame add/sub. Rebase: `rebase(target_d)` — closed when V·B/D is integer, active otherwise producing `[Q, B, [S,D,0] + lift(R,B)]`. Lift: `_lift_vdr(k)` scales V by k, preserves D, lifts R recursively. Negation: `-[V,D,R] = [-V,D,-R]`. Comparison: `<`, `<=`, `>`, `>=` via projection to Fraction. Metrics: `depth()`, `size()`, `den_complexity()`. Display: `__repr__`, `__str__`, `bracket()`.
+**VDR class.** Construction from integers, rationals, Fraction, direct triple specification. Validation on construction (zero denominator raises, non-integer slots raise). Properties: `is_closed`, `is_active`, `is_globally_closed`. Equality: `structural_eq(other)` for slot-by-slot match, `value_eq(other)` for normalized match, `__eq__` uses value equality. Normalization: positive D, GCD reduction on closed nodes, atomic remainder consolidation, child ordering, same-denominator child merge, zero elimination, D=1 absorption, closed-form preference. Projection: `to_fraction()` returns exact `Fraction` (legacy flattening for active objects), `to_float()` returns lossy float. Closed arithmetic: `+`, `-`, `*`, `/` via operator overloading for closed objects. Active same-frame add/sub. Rebase: `rebase(target_d)`,  closed when V·B/D is integer, active otherwise producing `[Q, B, [S,D,0] + lift(R,B)]`. Lift: `_lift_vdr(k)` scales V by k, preserves D, lifts R recursively. Negation: `-[V,D,R] = [-V,D,-R]`. Comparison: `<`, `<=`, `>`, `>=` via projection to Fraction. Metrics: `depth()`, `size()`, `den_complexity()`. Display: `__repr__`, `__str__`, `bracket()`.
 
 **Remainder class.** `base` (int) and `children` (list of VDR). Properties: `is_zero`, `is_atomic`, `is_globally_zero`, `is_functional` (always False for base class). Operations: `negate()`, `combine(other, sign)`, `lift(k)`, `legacy_value()`, `normalize()`, `structural_eq(other)`.
 
@@ -88,19 +88,19 @@ Contains `VDR` class and `Remainder` class. This is the foundation everything el
 
 **Private helpers.** `_coerce(other)` converts int/Fraction to VDR. `_active_add(a, b, sign)` handles active addition with cross-scaling and lift. `_remainder_divisible_by(r, g)` and `_remainder_divide(r, g)` for GCD reduction of active nodes. `_merge_same_denom_children(children)` merges closed children sharing a denominator. `_child_sort_key(c)` for canonical ordering. `_residual_size(r)` and `_collect_denoms(x, acc)` for metrics.
 
-### 4.2 vdr/active_mul.py — Active Multiplication
+### 4.2 vdr/active_mul.py,  Active Multiplication
 
 Patches VDR `__mul__`, `__rmul__`, `__truediv__`, `__rtruediv__` when `install()` is called (auto-called by `__init__.py`).
 
 **active_mul(a, b).** For two closed objects: direct formula `[V₁V₂, D₁D₂, 0]`. For mixed or active: product in frame D₁·D₂ with closed numerator V₁·V₂. Remainder captures three cross-terms: V₁ scales R₂ (left), V₂ scales R₁ (right), R₁·R₂ (cross). The cross-product is computed by projecting both remainders to exact Fraction, multiplying, and expressing the result as VDR remainder structure (atomic if integer, closed child if rational).
 
-**active_div(a, b).** Division by closed object: multiply by reciprocal `[D₂, V₂, 0]`. Division by active object: project divisor to exact Fraction, invert, multiply. This is the v1 compromise — divisor structure is collapsed through projection. The projected value is exact.
+**active_div(a, b).** Division by closed object: multiply by reciprocal `[D₂, V₂, 0]`. Division by active object: project divisor to exact Fraction, invert, multiply. This is the v1 compromise,  divisor structure is collapsed through projection. The projected value is exact.
 
 **_scale_remainder(r, k).** Multiplies remainder base and all child value slots by integer k.
 
 **_mul_remainders(r1, r2, d1, d2).** Projects both to Fraction, multiplies, returns as remainder.
 
-### 4.3 vdr/fn.py — Functional Remainders
+### 4.3 vdr/fn.py,  Functional Remainders
 
 **FnRemainder class.** Subclass of Remainder. Holds `func` (callable), `name` (string), `meta` (dict). `is_zero` always False. `is_functional` always True. `expand(depth)` calls the function. `legacy_value()` raises (must resolve first). Supports `negate()`, `lift(k)`, `combine(other, sign)`.
 
@@ -109,20 +109,20 @@ Patches VDR `__mul__`, `__rmul__`, `__truediv__`, `__rtruediv__` when `install()
 **resolve_recursive(x, depth).** Resolves all functional remainders at every level of the tree.
 
 **Factories:**
-- `make_constant_fn(name, value_func)` — always returns same value.
-- `make_series_fn(name, term_func, initial)` — partial sum of series to depth N.
-- `make_newton_fn(name, f_step)` — Newton-Raphson iteration from VDR(1).
-- `make_iterative_fn(name, step, start)` — general iteration.
+- `make_constant_fn(name, value_func)`,  always returns same value.
+- `make_series_fn(name, term_func, initial)`,  partial sum of series to depth N.
+- `make_newton_fn(name, f_step)`,  Newton-Raphson iteration from VDR(1).
+- `make_iterative_fn(name, step, start)`,  general iteration.
 
 **Discrete calculus:**
-- `discrete_derivative(f, h)` — returns function Df where Df(x) = (f(x+h) - f(x)) / h.
-- `discrete_integral(f, a, b, n)` — left Riemann sum, exact.
-- `discrete_integral_trapz(f, a, b, n)` — trapezoidal rule, exact.
-- `discrete_derivative_nth(f, h, order)` — repeated application.
+- `discrete_derivative(f, h)`,  returns function Df where Df(x) = (f(x+h) - f(x)) / h.
+- `discrete_integral(f, a, b, n)`,  left Riemann sum, exact.
+- `discrete_integral_trapz(f, a, b, n)`,  trapezoidal rule, exact.
+- `discrete_derivative_nth(f, h, order)`,  repeated application.
 
 **Installation.** `install()` patches VDR.to_fraction to raise on functional remainders, and fixes is_closed/is_active properties.
 
-### 4.4 vdr/linalg.py — Linear Algebra and Utilities
+### 4.4 vdr/linalg.py,  Linear Algebra and Utilities
 
 **Vec class.** Ordered list of VDR objects. Construction from list, `from_ints`, `from_fracs`, `zero(n)`. Arithmetic: `+`, `-`, `scale(s)`, `*` (scalar), `dot(other)`, `-v`. `to_fractions()` for export.
 
@@ -134,11 +134,11 @@ Patches VDR `__mul__`, `__rmul__`, `__truediv__`, `__rtruediv__` when `install()
 
 **LaTeX.** `vdr_to_latex(x)` exports to LaTeX notation. Closed objects render as `\frac{V}{D}`, active objects render remainder in braces.
 
-### 4.5 vdr/export.py — Lossy Boundary
+### 4.5 vdr/export.py,  Lossy Boundary
 
-`to_fraction(x)` — exact Fraction projection. `to_float(x)` — lossy float. `to_decimal(x, digits)` — arbitrary precision decimal via mpmath if available, manual long division fallback.
+`to_fraction(x)`,  exact Fraction projection. `to_float(x)`,  lossy float. `to_decimal(x, digits)`,  arbitrary precision decimal via mpmath if available, manual long division fallback.
 
-### 4.6 vdr/__init__.py — Public API
+### 4.6 vdr/__init__.py,  Public API
 
 Imports and re-exports everything. Auto-installs active_mul and fn patches. User code needs only:
 
@@ -184,19 +184,19 @@ Closed: `V/D` exact. Active concrete: legacy flattening (additive recursion thro
 
 ## 6. What Works (Verified by Tests)
 
-### 6.1 Core (test_basic.py — 12 sections)
+### 6.1 Core (test_basic.py,  12 sections)
 
 Construction, all four closed arithmetic operations, normalization, both equality types, sign handling, return-to-origin equality recovery, multiply/divide roundtrip, closed rebase, active rebase with projection verification, Path B active/closed distinction, active same-frame addition with cancellation, lift, Fraction interop, mixed VDR/int arithmetic, 200-operation zero-drift test.
 
-### 6.2 Layer 1 (test_layer_1.py — 15 sections)
+### 6.2 Layer 1 (test_layer_1.py,  15 sections)
 
 Vector arithmetic (add, sub, scale, dot, neg). Matrix arithmetic (add, sub, mul, scalar mul, transpose). Determinant (2×2, 3×3, singular). Trace. Inverse (2×2, rational, 3×3). Solve via Cramer's rule (integer and rational systems). Rank. Matrix-vector product. Bracket notation parser. JSON serialization roundtrip. LaTeX export. Decimal export. 4×4 Hilbert matrix exact inversion: H×H⁻¹ = I exactly, inv(inv(H)) = H exactly. 40-operation matrix roundtrip zero drift.
 
-### 6.3 Layer 2 (test_layer_2.py — 20 sections)
+### 6.3 Layer 2 (test_layer_2.py,  20 sections)
 
 Closed multiplication/division unchanged. Active × closed. Closed × active. Active × active with atomic remainders. Active × active with nested remainders. Division: active/closed, closed/active, active/active. Division by zero checks. Multiplicative identity and inverse. Commutativity across mixed operands. Associativity. Distributivity. Active multiply/divide roundtrip. 40-operation active long chain. Matrix with active entries (determinant, identity multiplication). Mixed active/closed matrix multiply. Scalar multiplication with active VDR. Int and Fraction interop.
 
-### 6.4 Layer 3 (test_layer_3.py — 21 sections)
+### 6.4 Layer 3 (test_layer_3.py,  21 sections)
 
 FnRemainder construction and expansion. Resolve functional VDR. Projection blocked on unresolved functional. Newton-Raphson √2 (>100 digits at depth 7). Newton-Raphson √3. Leibniz series for π/4. Basel series for π²/6. Iterative halving. Discrete derivative of x² (exactly 6001/1000). Discrete derivative of x³. Second derivative. Left Riemann integral of x² (exactly 57/200). Trapezoidal integral. Integral of 1/x. FnRemainder negation, lift, combination. VDR with frame and functional remainder. Recursive resolve. Newton convergence comparison (>100 correct digits by depth 7). Exact finite difference table (Δ³(x³) = 6, Δ⁴(x³) = 0).
 
@@ -217,8 +217,8 @@ FnRemainder construction and expansion. Resolve functional VDR. Projection block
 | 11 | Probability | 13 | 0 | Bayes, Markov steady state, gambler's ruin, expected value, binomial PMF, Bayesian updating |
 | 12 | Cryptography | 37 | 0 | Modular exp, extended GCD, mod inverse, CRT, RSA, discrete log |
 | 13 | Symbolic algebra | 20 | 0 | Partial fractions, rational functions, power sums, poly derivative/integral, definite integrals |
-| 14 | Fixed point | partial | — | Killed after 20 min: logistic r=4 denominator explosion |
-| 15 | Chaos | partial | — | Killed after 20 min: same cause. Completed sections: tent map, Bernoulli shift, Arnold cat map (period 40), Lyapunov exponent |
+| 14 | Fixed point | partial |,  | Killed after 20 min: logistic r=4 denominator explosion |
+| 15 | Chaos | partial |,  | Killed after 20 min: same cause. Completed sections: tent map, Bernoulli shift, Arnold cat map (period 40), Lyapunov exponent |
 
 All 6 failures are test-authoring errors, not VDR computation errors.
 
@@ -283,7 +283,7 @@ Priority-ordered. Each item is independent enough to be a work unit.
 
 **Why:** Current det/inv is O(n!) which limits practical matrix size to ~6. Gaussian elimination is O(n³) with exact rational pivoting. This would make VDR practical for matrices of size 20-50+.
 
-**How:** Implement row reduction with exact VDR pivot operations. Partial pivoting by magnitude (via projection comparison). Track row swaps for determinant sign. The math is standard — the implementation is exact VDR division at each elimination step.
+**How:** Implement row reduction with exact VDR pivot operations. Partial pivoting by magnitude (via projection comparison). Track row swaps for determinant sign. The math is standard,  the implementation is exact VDR division at each elimination step.
 
 **Risk:** Low. The algorithm is well-known. Every pivot operation is exact VDR rational arithmetic.
 
@@ -319,7 +319,7 @@ Priority-ordered. Each item is independent enough to be a work unit.
 **Why:** Enables eigenvalue computation for 2×2 matrices with complex eigenvalues. Opens the door to exact DFT computation. Required for many linear algebra applications.
 
 **What it enables:**
-- Eigenvalues of 2×2 matrices (quadratic formula, possibly irrational — needs functional remainder for the square root term).
+- Eigenvalues of 2×2 matrices (quadratic formula, possibly irrational,  needs functional remainder for the square root term).
 - Exact discrete Fourier transform on rational signals using roots of unity expressed as VDR complex objects.
 - Complex polynomial root finding.
 
@@ -383,7 +383,7 @@ Priority-ordered. Each item is independent enough to be a work unit.
 
 ### 10.2 Remainder Named "Remainder" Not "Residual"
 
-"Residual" implies degradation or error. "Remainder" is the correct term — it is the part of the value that remains after the V/D frame absorbs what it can. Operational rule throughout the codebase.
+"Residual" implies degradation or error. "Remainder" is the correct term,  it is the part of the value that remains after the V/D frame absorbs what it can. Operational rule throughout the codebase.
 
 ### 10.3 Single-File Core
 
@@ -498,7 +498,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 
 ## Appendix A. Complete Module API Surface
 
-### A.1 vdr/vdr.py — Core Types
+### A.1 vdr/vdr.py,  Core Types
 
 | Class/Function | Signature | Returns | Description |
 |---|---|---|---|
@@ -530,7 +530,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `.normalize()` | `()` | Remainder | Canonical form |
 | `.structural_eq(other)` | `(Remainder)` | bool | Exact match |
 
-### A.2 vdr/vdr.py — Error Types
+### A.2 vdr/vdr.py,  Error Types
 
 | Error | Parent | Raised When |
 |---|---|---|
@@ -540,7 +540,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `RebaseError` | `VDRError` | Invalid target denominator |
 | `ArithmeticFailure` | `VDRError` | Division by zero, unsupported operation |
 
-### A.3 vdr/vdr.py — Operator Overloads
+### A.3 vdr/vdr.py,  Operator Overloads
 
 | Operator | Left | Right | Behavior |
 |---|---|---|---|
@@ -548,17 +548,17 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `-` | VDR | VDR, int, Fraction | Closed or active subtraction |
 | `*` | VDR | VDR, int, Fraction | Patched by active_mul |
 | `/` | VDR | VDR, int, Fraction | Patched by active_mul |
-| `-x` | VDR | — | Negation: [-V, D, -R] |
-| `+x` | VDR | — | Identity |
-| `abs(x)` | VDR | — | Negate if projection < 0 |
-| `float(x)` | VDR | — | Lossy float via to_float() |
+| `-x` | VDR |,  | Negation: [-V, D, -R] |
+| `+x` | VDR |,  | Identity |
+| `abs(x)` | VDR |,  | Negate if projection < 0 |
+| `float(x)` | VDR |,  | Lossy float via to_float() |
 | `==` | VDR | VDR, int, Fraction | Value equality |
 | `!=` | VDR | VDR, int, Fraction | Value inequality |
 | `<` | VDR | VDR, int, Fraction | Projection comparison |
 | `<=` | VDR | VDR, int, Fraction | Projection comparison |
 | `>` | VDR | VDR, int, Fraction | Projection comparison |
 | `>=` | VDR | VDR, int, Fraction | Projection comparison |
-| `hash(x)` | VDR | — | Hash of normalized form |
+| `hash(x)` | VDR |,  | Hash of normalized form |
 
 ### A.4 vdr/active_mul.py
 
@@ -569,7 +569,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `install()` | `()` | None | Patch VDR operators |
 | `uninstall()` | `()` | None | Restore original operators |
 
-### A.5 vdr/fn.py — Functional Remainders
+### A.5 vdr/fn.py,  Functional Remainders
 
 | Class/Function | Signature | Returns | Description |
 |---|---|---|---|
@@ -590,7 +590,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `install()` | `()` | None | Patch VDR for functional awareness |
 | `uninstall()` | `()` | None | Restore original VDR |
 
-### A.6 vdr/linalg.py — Linear Algebra
+### A.6 vdr/linalg.py,  Linear Algebra
 
 | Class/Function | Signature | Returns | Description |
 |---|---|---|---|
@@ -620,7 +620,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `.pretty()` | `()` | str | Human-readable display |
 | `.to_fractions()` | `()` | list | Export as nested Fraction lists |
 
-### A.7 vdr/linalg.py — Utilities
+### A.7 vdr/linalg.py,  Utilities
 
 | Function | Signature | Returns | Description |
 |---|---|---|---|
@@ -629,7 +629,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | `vdr_from_dict` | `(d: dict)` | VDR | Deserialization |
 | `vdr_to_latex` | `(x: VDR)` | str | LaTeX export |
 
-### A.8 vdr/export.py — Lossy Boundary
+### A.8 vdr/export.py,  Lossy Boundary
 
 | Function | Signature | Returns | Description |
 |---|---|---|---|
@@ -658,12 +658,12 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 
 | Input | After Sign | After GCD | After Children | Final |
 |---|---|---|---|---|
-| [1, -2, 0] | [-1, 2, 0] | [-1, 2, 0] | — | [-1, 2, 0] |
-| [6, -15, 0] | [-6, 15, 0] | [-2, 5, 0] | — | [-2, 5, 0] |
-| [2, 4, 0] | [2, 4, 0] | [1, 2, 0] | — | [1, 2, 0] |
-| [5, 5, 0] | [5, 5, 0] | [1, 1, 0] | — | [1, 1, 0] |
-| [0, -7, 0] | [0, 7, 0] | [0, 1, 0] | — | [0, 1, 0] |
-| [2, 5, 1] | [2, 5, 1] | [2, 5, 1] | — | [2, 5, 1] |
+| [1, -2, 0] | [-1, 2, 0] | [-1, 2, 0] |,  | [-1, 2, 0] |
+| [6, -15, 0] | [-6, 15, 0] | [-2, 5, 0] |,  | [-2, 5, 0] |
+| [2, 4, 0] | [2, 4, 0] | [1, 2, 0] |,  | [1, 2, 0] |
+| [5, 5, 0] | [5, 5, 0] | [1, 1, 0] |,  | [1, 1, 0] |
+| [0, -7, 0] | [0, 7, 0] | [0, 1, 0] |,  | [0, 1, 0] |
+| [2, 5, 1] | [2, 5, 1] | [2, 5, 1] |,  | [2, 5, 1] |
 
 ---
 
@@ -685,13 +685,13 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 
 | Input | k | Result | V scaled | D preserved | R scaled |
 |---|---|---|---|---|---|
-| 3 (atomic) | 5 | 15 | — | — | — |
-| -2 (atomic) | 3 | -6 | — | — | — |
-| 0 (atomic) | 100 | 0 | — | — | — |
+| 3 (atomic) | 5 | 15 |,  |,  |,  |
+| -2 (atomic) | 3 | -6 |,  |,  |,  |
+| 0 (atomic) | 100 | 0 |,  |,  |,  |
 | [1, 3, 0] | 2 | [2, 3, 0] | 1→2 | 3 | 0→0 |
 | [2, 5, 1] | 3 | [6, 5, 3] | 2→6 | 5 | 1→3 |
 | [1, 7, -2] | 4 | [4, 7, -8] | 1→4 | 7 | -2→-8 |
-| 1 + [1,3,0] | 2 | 2 + [2,3,0] | — | — | — |
+| 1 + [1,3,0] | 2 | 2 + [2,3,0] |,  |,  |,  |
 | [3, 4, 0] | -1 | [-3, 4, 0] | 3→-3 | 4 | 0→0 |
 
 ### C.3 Lift Composition Verification
@@ -715,7 +715,7 @@ VDR is a working exact arithmetic library in Python that represents values as fi
 | [V, D, 0] | B | V·B/D ∉ ℤ | [Q, B, [S,D,0]] where VB = QD + S (active) |
 | [V, D, R] | B | R ≠ 0 | [Q, B, [S,D,0] + lift(R,B)] |
 | [V, D, R] | D | any | [V, D, R] (identity) |
-| any | 0 | — | RebaseError |
+| any | 0 |,  | RebaseError |
 
 ### D.2 Closed Rebase Examples
 
@@ -773,8 +773,8 @@ For `[V₁, D₁, R₁] × [V₂, D₂, R₂]`:
 | [2,5,1] | [3,7,0] | Yes | Multiply by [7,3,0] | 7/5 |
 | [1,2,0] | [1,3,1] | No | Project B→2/3, invert→[3,2,0] | 3/4 |
 | [2,5,1] | [1,3,1] | No | Project B→2/3, invert→[3,2,0] | 9/10 |
-| [1,2,0] | [0,3,0] | Yes, V=0 | FAIL: division by zero | — |
-| [1,1,0] | [1,2,-1] | No, proj=0 | FAIL: division by zero | — |
+| [1,2,0] | [0,3,0] | Yes, V=0 | FAIL: division by zero |,  |
+| [1,1,0] | [1,2,-1] | No, proj=0 | FAIL: division by zero |,  |
 
 ---
 
@@ -943,7 +943,7 @@ Trapezoidal error is exactly 1/(6n²) = h²/6 for x² on [0,1].
 
 | Step | Denominator digit count | Approximate growth |
 |---|---|---|
-| 0 | 1 | — |
+| 0 | 1 |,  |
 | 1 | 1 | ×1 |
 | 2 | 2 | ×2 |
 | 3 | 3 | ×1.5 |
@@ -1068,7 +1068,7 @@ Float orbit diverges after ~24 steps. VDR stays exact forever.
 | Wrong expected value | 1 | No |
 | Insufficient test setup | 5 | No |
 | Wrong expected period | 1 | No |
-| VDR computation error | 0 | — |
+| VDR computation error | 0 |,  |
 | **Total** | **7** | **Zero VDR errors** |
 
 ---

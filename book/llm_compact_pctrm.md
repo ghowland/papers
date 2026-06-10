@@ -1,4 +1,4 @@
-# PCTRM MASTER SPEC + COVERAGE COMPANION — LLM-COMPACT FORM
+# PCTRM MASTER SPEC + COVERAGE COMPANION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: primitives → topology → quiver → solitons → channels → geometry → coordinates → mechanics → QM → SM → cosmology → alphabet → dynamics → coverage → relationships → sections → legend
 
@@ -41,7 +41,7 @@ QV5|Quantum vacuum connection|Zero-point energy, Casimir effect, vacuum fluctuat
 # solitons(id|commitment|detail)
 SL1|Definition|Stable self-sustaining pattern in substrate arithmetic; extracts from quiver each tick
 SL2|Pattern not substance|Mass is inertia (m=F/a), not stuff; no substance in any equation
-SL3|Everything is soliton|Fermions, bosons, atoms, planets, galaxies, universe — all solitons
+SL3|Everything is soliton|Fermions, bosons, atoms, planets, galaxies, universe,  all solitons
 SL4|Hierarchy fundamental|No soliton exists without parent soliton context
 SL5|Parent-child|Soliton contains soliton contains soliton; strictly nested
 SL6|Universal soliton|Outermost boundary; hierarchy's top level

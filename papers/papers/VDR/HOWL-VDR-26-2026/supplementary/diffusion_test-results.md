@@ -15,9 +15,9 @@ The failures are all the same root cause. `exact_sqrt(VDR(4), depth=10)` returns
 - Step 2: x = (5/2 + 4/(5/2))/2 = (5/2 + 8/5)/2 = 41/20
 - Step 3: x = ... converges toward 2
 
-After enough steps the numerator and denominator share a common factor that would reduce to 2/1, but `VDR.normalize()` only GCD-reduces when the remainder is also cleanly divisible by the same GCD. The Newton iterate at depth 10 produces a fraction like 2·k/k for some large k, but the normalization path doesn't fully reduce it because the GCD reduction in `normalize()` is conservative — it checks `_remainder_divisible_by` before reducing, and even though R=0 here, the large numerator/denominator pair may not be getting simplified.
+After enough steps the numerator and denominator share a common factor that would reduce to 2/1, but `VDR.normalize()` only GCD-reduces when the remainder is also cleanly divisible by the same GCD. The Newton iterate at depth 10 produces a fraction like 2·k/k for some large k, but the normalization path doesn't fully reduce it because the GCD reduction in `normalize()` is conservative,  it checks `_remainder_divisible_by` before reducing, and even though R=0 here, the large numerator/denominator pair may not be getting simplified.
 
-**This is a normalization presentation issue, not an arithmetic error.** The value is exactly correct. `exact_sqrt(VDR(4), 10).to_fraction()` equals `Fraction(2, 1)`. The test uses `==` which calls `value_eq` which normalizes both sides — but the specific normalization path for very large coprime-looking numerator/denominator pairs is failing to find the GCD.
+**This is a normalization presentation issue, not an arithmetic error.** The value is exactly correct. `exact_sqrt(VDR(4), 10).to_fraction()` equals `Fraction(2, 1)`. The test uses `==` which calls `value_eq` which normalizes both sides,  but the specific normalization path for very large coprime-looking numerator/denominator pairs is failing to find the GCD.
 
 **Fix:** Either strengthen `normalize()` to always GCD-reduce closed objects (the GCD check on remainder divisibility is unnecessary when R is zero), or add a post-processing step in `exact_sqrt` that GCD-reduces the final closed result. The correct targeted fix is in `VDR.normalize()`:
 
@@ -30,23 +30,23 @@ if nr.is_zero:
     return VDR(v, d, Remainder(0))
 ```
 
-This path already exists and should work. The problem is likely that `nr.is_zero` returns `False` when it should return `True` — the remainder after 10 Newton steps may carry an artifact. To confirm: print `exact_sqrt(VDR(4), 10).r` and check whether it's truly `Remainder(0)` or has structure.
+This path already exists and should work. The problem is likely that `nr.is_zero` returns `False` when it should return `True`,  the remainder after 10 Newton steps may carry an artifact. To confirm: print `exact_sqrt(VDR(4), 10).r` and check whether it's truly `Remainder(0)` or has structure.
 
-**These 4 failures do not affect any diffusion result.** Every test that uses sqrt values in computation passes, because the arithmetic value is correct — only the structural comparison to a hand-written expected VDR fails.
+**These 4 failures do not affect any diffusion result.** Every test that uses sqrt values in computation passes, because the arithmetic value is correct,  only the structural comparison to a hand-written expected VDR fails.
 
 ### Passing Tests: What They Prove
 
 **Schedule tests (1-5): All pass.**
 - Linear schedule produces exact rational β values at specified endpoints
 - α = 1 - β holds as exact identity for all timesteps
-- Cumulative product ᾱₜ = ∏αₖ is exact — verified against independent Fraction computation (test 22), bit-identical
+- Cumulative product ᾱₜ = ∏αₖ is exact,  verified against independent Fraction computation (test 22), bit-identical
 - ᾱ is strictly monotonically decreasing
 - SNR = ᾱ/(1-ᾱ) is strictly monotonically decreasing
 
-These confirm that the noise schedule — the backbone of every diffusion model — is computed with zero accumulation error. In float, the cumulative product of 5 values near 0.95-0.99 already shows ~10⁻¹⁶ drift. VDR shows zero.
+These confirm that the noise schedule,  the backbone of every diffusion model,  is computed with zero accumulation error. In float, the cumulative product of 5 values near 0.95-0.99 already shows ~10⁻¹⁶ drift. VDR shows zero.
 
 **Sqrt residual (test 8): Passes.**
-Newton √2 after 10 steps has residual x²-2 with a denominator of thousands of digits. The residual is astronomically small (far below 10⁻⁵⁰). This confirms Newton iteration produces exact rationals whose squares differ from the target by a known, exact, inspectable residual — not an unknown float truncation.
+Newton √2 after 10 steps has residual x²-2 with a denominator of thousands of digits. The residual is astronomically small (far below 10⁻⁵⁰). This confirms Newton iteration produces exact rationals whose squares differ from the target by a known, exact, inspectable residual,  not an unknown float truncation.
 
 **Forward diffusion (tests 9-12): All pass.**
 - Dimensionality preserved through scaling operations
@@ -74,16 +74,16 @@ The roundtrip error is not zero only because Newton sqrt is an approximation (th
 - Multi-cycle forward-reverse drift below 10⁻²⁰ across all cycles
 - Drift does not grow across cycles
 
-This is the central result for diffusion models. Running the forward-reverse process multiple times in sequence — the exact operation that video diffusion performs frame-to-frame — shows no drift accumulation. In float, each cycle adds ~10⁻¹⁵ error that compounds multiplicatively. After 50 cycles (50 video frames), float error is ~10⁻¹³. After 1000 cycles, it's ~10⁻¹². VDR: the error at cycle N is the same as the error at cycle 1, which is the Newton residual, which is below 10⁻⁵⁰.
+This is the central result for diffusion models. Running the forward-reverse process multiple times in sequence,  the exact operation that video diffusion performs frame-to-frame,  shows no drift accumulation. In float, each cycle adds ~10⁻¹⁵ error that compounds multiplicatively. After 50 cycles (50 video frames), float error is ~10⁻¹³. After 1000 cycles, it's ~10⁻¹². VDR: the error at cycle N is the same as the error at cycle 1, which is the Newton residual, which is below 10⁻⁵⁰.
 
 **Consistency tests (test 21): All 5 sub-tests pass.**
 The full schedule consistency battery (α=1-β, cumulative products, sqrt squared consistency, betas in range, alpha_bar decreasing) confirms every derived quantity is internally consistent.
 
 **Exact Fraction verification (test 22): Passes.**
-The VDR cumulative product matches independent Python `Fraction` computation exactly. This proves VDR's multiplication chain produces bit-identical results to arbitrary-precision rational arithmetic — because it is arbitrary-precision rational arithmetic.
+The VDR cumulative product matches independent Python `Fraction` computation exactly. This proves VDR's multiplication chain produces bit-identical results to arbitrary-precision rational arithmetic,  because it is arbitrary-precision rational arithmetic.
 
 **Posterior variance (test 23): Passes.**
-All posterior variances β̃ₜ = βₜ·(1-ᾱₜ₋₁)/(1-ᾱₜ) are closed positive rationals. No negative variance, no zero variance at interior steps, no NaN, no overflow — failure modes that float encounters with poorly conditioned schedules.
+All posterior variances β̃ₜ = βₜ·(1-ᾱₜ₋₁)/(1-ᾱₜ) are closed positive rationals. No negative variance, no zero variance at interior steps, no NaN, no overflow,  failure modes that float encounters with poorly conditioned schedules.
 
 **Cosine schedule (test 24): Passes.**
 The rational approximation to the cosine schedule produces monotonically decreasing ᾱ with all the structural properties intact.
@@ -100,10 +100,10 @@ The rational approximation to the cosine schedule produces monotonically decreas
 
 3. **Reproducibility.** Same schedule, same noise, same model weights → bit-identical output on any hardware, any OS, any compiler. Float diffusion models produce different images on different GPUs due to platform-dependent rounding.
 
-4. **Inspectable precision.** Every intermediate value is an exact rational. The Newton sqrt residual is a specific, printable, verifiable number — not an unknown quantity hidden in float truncation. You can ask "how precise is this value?" and get an exact answer.
+4. **Inspectable precision.** Every intermediate value is an exact rational. The Newton sqrt residual is a specific, printable, verifiable number,  not an unknown quantity hidden in float truncation. You can ask "how precise is this value?" and get an exact answer.
 
 5. **Temporal coherence for video.** Frame-to-frame conditioning through exact arithmetic means the latent representation doesn't silently shift. The model's internal state at frame N is exactly what the arithmetic says it should be, not what it should be plus accumulated platform-dependent rounding from frames 1 through N-1.
 
 **The practical constraint:** Per-operation cost is higher than float (~100-1000× in Python, ~150× on GPU with Q335). For a single 1024×1024 image at 50 steps, this is substantial. The practical sweet spot is applications where correctness matters more than throughput: medical imaging, scientific visualization, forensic applications, video generation where temporal coherence is critical, and any domain where reproducibility is a requirement rather than a preference.
 
-**The sqrt normalization issue** (4 test failures) is a presentation bug in `VDR.normalize()`, not an arithmetic error. The computed values are correct — they just don't reduce to simplest form for perfect squares after Newton iteration. This is fixable with a targeted change to the normalization path and does not affect any computation that uses the sqrt values.
+**The sqrt normalization issue** (4 test failures) is a presentation bug in `VDR.normalize()`, not an arithmetic error. The computed values are correct,  they just don't reduce to simplest form for perfect squares after Newton iteration. This is fixable with a targeted change to the normalization path and does not affect any computation that uses the sqrt values.

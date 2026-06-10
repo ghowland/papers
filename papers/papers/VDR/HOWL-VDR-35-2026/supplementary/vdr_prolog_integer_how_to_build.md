@@ -21,7 +21,7 @@ Phase 5: VDRProlog GPU Kernels              → needs GCP GPU instance
 Phase 6: Production Integration         → needs GCP, multi-instance
 ```
 
-Each phase produces a testable system. Each phase's tests remain valid for all subsequent phases. Nothing gets rewritten — later phases add modules, not replace them.
+Each phase produces a testable system. Each phase's tests remain valid for all subsequent phases. Nothing gets rewritten,  later phases add modules, not replace them.
 
 ---
 
@@ -73,7 +73,7 @@ pub const Q16 = struct {
 
     pub fn add(a: Q16, b: Q16) -> Q16
     // Same D: v = a.v + b.v. Carry: if r0 sum >= D, increment v.
-    // No branching on overflow — i32 addition cannot overflow from two
+    // No branching on overflow,  i32 addition cannot overflow from two
     // Q16 values because max v is bounded by application (model weights
     // are initialized in range, gradients are bounded by learning rate).
     // For safety: add with overflow detection as debug-mode assertion.
@@ -83,8 +83,8 @@ pub const Q16 = struct {
 
     pub fn mul(a: Q16, b: Q16) -> Q16
     // Widening multiply: product = @as(i64, a.v) * @as(i64, b.v)
-    // v = @intCast(i32, product >> 16)  — quotient
-    // r0 = @intCast(i16, product & 0xFFFF)  — remainder
+    // v = @intCast(i32, product >> 16) ,  quotient
+    // r0 = @intCast(i16, product & 0xFFFF) ,  remainder
     // This is THE instruction. The paper's entire hardware argument
     // rests on this being a widening multiply + shift.
 
@@ -983,7 +983,7 @@ zig build test-phase2
 zig build test-phase3
 zig build test-phase4
 # All tests must pass. Same counts as local.
-# If any differ: that's a bug. The system is integer — it must be identical.
+# If any differ: that's a bug. The system is integer,  it must be identical.
 
 # Verify GPU is available
 nvidia-smi
@@ -1292,7 +1292,7 @@ curl -X POST https://your-instance.gcp/api/query \
   -d '{"input": "checkout-api returning 503s at ~15% for 20 minutes"}'
 
 # Response:
-# (If system is mature and triage rules handle it — L3):
+# (If system is mature and triage rules handle it,  L3):
 # {"level": "L3", "tokens": 0, "auto_triaged": true,
 #  "findings": [
 #    {"service": "checkout-api", "error_rate": "152/1000",
@@ -1301,7 +1301,7 @@ curl -X POST https://your-instance.gcp/api/query \
 #  ],
 #  "recommended": "Run remediation script pool_restore_v3"}
 #
-# (If system is fresh — L1):
+# (If system is fresh,  L1):
 # {"level": "L1", "tokens": 80, "auto_triaged": false,
 #  "response": "I've created an investigation for checkout-api 503s...",
 #  "commands_executed": 4,

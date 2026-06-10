@@ -10,13 +10,13 @@
 
 ### I. THE RECOGNITION
 
-The RUM framework has described the soliton hierarchy as nested boundaries from Planck to cosmos. It has computed readings at each level — gravitational potentials, coupling values, clock rates. But it has not examined what the boundaries themselves are made of. It has treated them as abstract transition zones between hierarchy levels.
+The RUM framework has described the soliton hierarchy as nested boundaries from Planck to cosmos. It has computed readings at each level,  gravitational potentials, coupling values, clock rates. But it has not examined what the boundaries themselves are made of. It has treated them as abstract transition zones between hierarchy levels.
 
 The confinement boundary is not abstract. It is the best-measured, best-understood boundary in particle physics. Decades of lattice QCD, deep inelastic scattering, jet physics, and heavy ion collisions have mapped it in detail. We know where it sits (Λ_QCD ≈ 200-300 MeV). We know what governs it (the running of α_s). We know what happens when you breach it (quarks and gluons emerge as jets). We know what happens below it (hadrons, nuclear physics, chemistry, life).
 
-The recognition: the confinement boundary is not just analogous to a soliton boundary. It IS a soliton boundary. And the mechanism that sets its position — the running of α_s governed by b₃ — is the same mechanism that should set the position of every soliton boundary in the hierarchy. Each boundary sits where the relevant coupling hits its threshold. The coupling runs according to its beta coefficient. The beta coefficient is an exact fraction from group theory.
+The recognition: the confinement boundary is not just analogous to a soliton boundary. It IS a soliton boundary. And the mechanism that sets its position,  the running of α_s governed by b₃,  is the same mechanism that should set the position of every soliton boundary in the hierarchy. Each boundary sits where the relevant coupling hits its threshold. The coupling runs according to its beta coefficient. The beta coefficient is an exact fraction from group theory.
 
-This means every soliton boundary in the hierarchy is positioned by an exact fraction. The hierarchy is not just organized by integers — it is constructed by them. The boundaries are where they are because the beta coefficients are what they are.
+This means every soliton boundary in the hierarchy is positioned by an exact fraction. The hierarchy is not just organized by integers,  it is constructed by them. The boundaries are where they are because the beta coefficients are what they are.
 
 ---
 
@@ -24,11 +24,11 @@ This means every soliton boundary in the hierarchy is positioned by an exact fra
 
 A soliton boundary has four components:
 
-**The coupling.** Each boundary is governed by a specific gauge coupling. The confinement boundary is governed by α_s (SU(3)). The electroweak symmetry breaking boundary is governed by the Higgs potential, which depends on α₂ (SU(2)) and α₁ (U(1)). The atomic boundary — where electrons bind to nuclei — is governed by α_em. The gravitational boundaries (planetary, stellar, galactic) are governed by GM/(Rc²), which is not a gauge coupling but plays the same role: it sets the reading at the boundary.
+**The coupling.** Each boundary is governed by a specific gauge coupling. The confinement boundary is governed by α_s (SU(3)). The electroweak symmetry breaking boundary is governed by the Higgs potential, which depends on α₂ (SU(2)) and α₁ (U(1)). The atomic boundary,  where electrons bind to nuclei,  is governed by α_em. The gravitational boundaries (planetary, stellar, galactic) are governed by GM/(Rc²), which is not a gauge coupling but plays the same role: it sets the reading at the boundary.
 
 **The beta coefficient.** The coupling runs with energy. The rate of running is the beta coefficient. The beta coefficient is an exact fraction from group theory. b₃ = −7 (SM) or −20/3 (CD) for the strong force. b₂ = −19/6 (SM) or −13/6 (CD) for the weak force. b₁ = 41/10 (SM) or 25/6 (CD) for the electromagnetic force. These fractions are the construction parameters of the boundaries. They determine where each boundary sits.
 
-**The threshold.** The boundary sits where the coupling reaches a critical value. For confinement, α_s ≈ 1 (the coupling becomes non-perturbative). For electroweak symmetry breaking, the Higgs potential reaches its minimum at v = 246 GeV. For atomic binding, α_em ≈ 1/137 is already at its threshold — the fine structure constant sets the atomic scale directly. The threshold is the reading at the boundary itself.
+**The threshold.** The boundary sits where the coupling reaches a critical value. For confinement, α_s ≈ 1 (the coupling becomes non-perturbative). For electroweak symmetry breaking, the Higgs potential reaches its minimum at v = 246 GeV. For atomic binding, α_em ≈ 1/137 is already at its threshold,  the fine structure constant sets the atomic scale directly. The threshold is the reading at the boundary itself.
 
 **The soliton.** Inside the boundary, a stable self-sustaining pattern exists. Inside the confinement boundary: the proton, a stable configuration of three quarks bound by gluon fields. Inside the atomic boundary: the atom, a stable configuration of a nucleus bound to electrons by photon exchange. Inside the gravitational boundary: the planet or star, a stable configuration of matter bound by the gravitational field. Each soliton is stable because the coupling inside the boundary is strong enough to maintain the pattern against perturbation.
 
@@ -42,13 +42,13 @@ The confinement scale Λ_QCD is defined by the condition that α_s diverges (at 
 
 Λ_QCD = μ × exp(2π / (b₃ × α_s(μ)))
 
-where μ is any reference scale and α_s(μ) is the coupling at that scale. The result is independent of which μ you choose — that is the whole point of the renormalization group.
+where μ is any reference scale and α_s(μ) is the coupling at that scale. The result is independent of which μ you choose,  that is the whole point of the renormalization group.
 
 Using pool values: μ = M_Z = 91187.6 MeV, α_s(M_Z) = 59/500 = 0.118, b₃(SM) = −7.
 
 Λ_QCD(SM) = 91187.6 × exp(2π / (−7 × 0.118)) = 91187.6 × exp(−7.60) ≈ 91187.6 × 5.0 × 10⁻⁴ ≈ 46 MeV
 
-Wait — this gives ~46 MeV, but the standard Λ_QCD is ~200-300 MeV. The discrepancy: the one-loop formula is a rough approximation. The precise value depends on the renormalization scheme (MS-bar), the number of active flavors at each threshold, and higher-loop corrections. The one-loop formula with 6 active flavors and b₃ = −7 gives a low estimate because it does not account for the flavor thresholds (the top, bottom, and charm quarks decouple below their masses, changing the effective b₃).
+Wait,  this gives ~46 MeV, but the standard Λ_QCD is ~200-300 MeV. The discrepancy: the one-loop formula is a rough approximation. The precise value depends on the renormalization scheme (MS-bar), the number of active flavors at each threshold, and higher-loop corrections. The one-loop formula with 6 active flavors and b₃ = −7 gives a low estimate because it does not account for the flavor thresholds (the top, bottom, and charm quarks decouple below their masses, changing the effective b₃).
 
 This matters for the framework. The exact computation of Λ_QCD requires running α_s from M_Z downward through the top threshold (where n_f drops from 6 to 5), the bottom threshold (5 to 4), and the charm threshold (4 to 3). At each threshold, b₃ changes because the number of active flavors changes. The CD contributes above its mass threshold (M_CD > 1.5 TeV from LHC bounds) and does not contribute below it.
 
@@ -67,7 +67,7 @@ The CD only affects the running above its own mass threshold. Below M_CD, the SM
 
 The change in α_s(M_Z) due to the CD is exactly what the framework already computes: the crossing prediction gives α_s = 0.1184 vs measured 0.118. The difference between α_s(SM) and α_s(CD) at M_Z propagates to a different Λ_QCD. The shift is small (because the CD decouples far above the confinement scale) but exact.
 
-This is important: the CD does not directly modify confinement. It modifies the coupling at high energy, and that modification propagates down through the hierarchy to the confinement scale. The confinement boundary feels the CD indirectly, through the running. This is how soliton boundaries communicate across the hierarchy — through the running of couplings.
+This is important: the CD does not directly modify confinement. It modifies the coupling at high energy, and that modification propagates down through the hierarchy to the confinement scale. The confinement boundary feels the CD indirectly, through the running. This is how soliton boundaries communicate across the hierarchy,  through the running of couplings.
 
 ---
 
@@ -77,11 +77,11 @@ The confinement boundary is Λ_QCD: the scale where α_s hits its threshold. But
 
 **The electroweak boundary.** The scale where the electroweak symmetry breaks: v = 246 GeV (the Higgs vacuum expectation value). Above this scale, the W and Z are massless and SU(2) × U(1) is unbroken. Below it, the symmetry is broken, the W and Z are massive, and the weak force becomes short-range. The threshold is v. The coupling is a combination of α₂ and α₁. The beta coefficients b₂ and b₁ govern the running that determines where the symmetry breaks. This is Λ_EW.
 
-**The atomic boundary.** The scale where electromagnetic binding becomes dominant: E_atomic ~ α_em² × m_e ≈ 13.6 eV (the hydrogen ionization energy). Above this scale, atoms are ionized plasma. Below it, atoms are stable bound states. The threshold is E_atomic. The coupling is α_em. α_em barely runs, so the atomic boundary is nearly scale-invariant — atoms are atoms at every energy below ionization. This stability is why chemistry works the same everywhere in the universe.
+**The atomic boundary.** The scale where electromagnetic binding becomes dominant: E_atomic ~ α_em² × m_e ≈ 13.6 eV (the hydrogen ionization energy). Above this scale, atoms are ionized plasma. Below it, atoms are stable bound states. The threshold is E_atomic. The coupling is α_em. α_em barely runs, so the atomic boundary is nearly scale-invariant,  atoms are atoms at every energy below ionization. This stability is why chemistry works the same everywhere in the universe.
 
 **The nuclear boundary.** The scale where nuclear binding becomes dominant: E_nuclear ~ Λ_QCD × (α_s/π) ≈ 8 MeV per nucleon (the nuclear binding energy). Above this scale, nuclei dissociate into free nucleons. Below it, nuclei are stable. The threshold is E_nuclear. The coupling is the residual strong force (nuclear force), which is a derivative of α_s operating outside the confinement boundary. The pion mass (m_π ≈ 135 MeV) sets the nuclear force range through the Yukawa mechanism.
 
-**The gravitational boundaries.** The scale where gravitational binding becomes dominant: E_grav = GM²/(R) for a self-gravitating body. Planets, stars, and galaxies each have their own gravitational threshold. Above the threshold (supplying more energy than the binding energy), the body dissociates. Below it, the body is gravitationally bound. The "coupling" is GM/(Rc²) = Φ/c², the reading depth from PHYS-42. The "running" is how Φ/c² changes with position — the gravitational gradient. The boundaries are the Hill spheres, the heliopause, the virial radius.
+**The gravitational boundaries.** The scale where gravitational binding becomes dominant: E_grav = GM²/(R) for a self-gravitating body. Planets, stars, and galaxies each have their own gravitational threshold. Above the threshold (supplying more energy than the binding energy), the body dissociates. Below it, the body is gravitationally bound. The "coupling" is GM/(Rc²) = Φ/c², the reading depth from PHYS-42. The "running" is how Φ/c² changes with position,  the gravitational gradient. The boundaries are the Hill spheres, the heliopause, the virial radius.
 
 In every case: a coupling runs to a threshold, a boundary forms, a soliton is stable inside.
 
@@ -97,7 +97,7 @@ The hierarchy:
 | Stellar | E_grav | GM²/R | Φ/c² | (not gauge) | Star |
 | Galactic | E_grav + DM | GM²/R × A | Φ/c² × (22/13)π | (not gauge + integer) | Galaxy |
 
-The first four boundaries are governed by gauge couplings with exact fractional beta coefficients. The last three are gravitational, governed by GM/(Rc²). The PHYS-44 sector splitting formula ε = κ|Δβ|ΔΦ/c² is the bridge between them — it says the gauge beta coefficients appear in the gravitational sector too.
+The first four boundaries are governed by gauge couplings with exact fractional beta coefficients. The last three are gravitational, governed by GM/(Rc²). The PHYS-44 sector splitting formula ε = κ|Δβ|ΔΦ/c² is the bridge between them,  it says the gauge beta coefficients appear in the gravitational sector too.
 
 ---
 
@@ -111,7 +111,7 @@ The CD modifies all three gauge beta coefficients. This means it modifies the ru
 
 **Atomic boundary.** b₁ shifts from 41/10 to 25/6. α_em runs differently at high energies. At atomic energies, the effect is negligible (α_em barely runs below M_Z). But the shift matters for the sector splitting: the difference |b₃ − b₁| enters the clock comparison prediction. The atomic boundary (where the optical clock reads) and the confinement boundary (where the nuclear clock reads) have different β shifts, producing the sector splitting.
 
-The CD leaves its fingerprint on every boundary through the beta coefficients. The fingerprint is always an exact fraction. The framework has computed the fingerprint's effect on coupling unification (sin²θ_W, α_s, M_GUT) and on cosmological parameters (DM/baryon, Ω_DM). It has not computed the fingerprint's effect on the boundaries themselves — on where they sit, how thick they are, and what the reading is at each one.
+The CD leaves its fingerprint on every boundary through the beta coefficients. The fingerprint is always an exact fraction. The framework has computed the fingerprint's effect on coupling unification (sin²θ_W, α_s, M_GUT) and on cosmological parameters (DM/baryon, Ω_DM). It has not computed the fingerprint's effect on the boundaries themselves,  on where they sit, how thick they are, and what the reading is at each one.
 
 ---
 
@@ -119,15 +119,15 @@ The CD leaves its fingerprint on every boundary through the beta coefficients. T
 
 The proton is the best-studied soliton in nature. Its properties:
 
-**Inertia:** 938.272 MeV. Of this, ~9 MeV comes from quark masses (1% of the total). The remaining ~929 MeV comes from the strong force binding energy — from the confinement mechanism itself. The proton's inertia is almost entirely the energy stored in the gluon field configuration that maintains confinement. It is the reading at the confinement boundary.
+**Inertia:** 938.272 MeV. Of this, ~9 MeV comes from quark masses (1% of the total). The remaining ~929 MeV comes from the strong force binding energy,  from the confinement mechanism itself. The proton's inertia is almost entirely the energy stored in the gluon field configuration that maintains confinement. It is the reading at the confinement boundary.
 
-**Stability:** The proton is stable (lifetime > 10³⁴ years, possibly infinite). It is the lightest baryon. It cannot decay into anything lighter while conserving baryon number. In the RUM framework, this stability is topological — the proton is a soliton whose topology prevents it from unwinding. The only way to destroy a proton is through baryon number violation, which occurs at the GUT scale (the M_GUT boundary, far above the confinement boundary).
+**Stability:** The proton is stable (lifetime > 10³⁴ years, possibly infinite). It is the lightest baryon. It cannot decay into anything lighter while conserving baryon number. In the RUM framework, this stability is topological,  the proton is a soliton whose topology prevents it from unwinding. The only way to destroy a proton is through baryon number violation, which occurs at the GUT scale (the M_GUT boundary, far above the confinement boundary).
 
 **Internal structure:** Three valence quarks (uud), a sea of virtual quark-antiquark pairs, and gluons. The internal structure is described by parton distribution functions, measured in deep inelastic scattering. The internal readings (quark momenta, gluon density) are accessible only by breaching the confinement boundary with energy above Λ_QCD.
 
 **Size:** The proton charge radius is 0.841 fm (from pool: `spectro_proton_charge_radius_v0`). This is the spatial extent of the confinement boundary. Inside 0.841 fm, you are inside the proton soliton. Outside, you see the proton as a point-like particle with charge +1 and spin 1/2.
 
-The proton's inertia (938 MeV), size (0.841 fm), and internal structure are all consequences of where the confinement boundary sits. Λ_QCD sets the scale. The beta coefficient b₃ sets where Λ_QCD is. The CD modifies b₃. Therefore the CD modifies the proton — not by changing what is inside it, but by shifting where the boundary is.
+The proton's inertia (938 MeV), size (0.841 fm), and internal structure are all consequences of where the confinement boundary sits. Λ_QCD sets the scale. The beta coefficient b₃ sets where Λ_QCD is. The CD modifies b₃. Therefore the CD modifies the proton,  not by changing what is inside it, but by shifting where the boundary is.
 
 This is a subtle but important distinction. The CD does not change the quarks or the gluons. It changes the boundary. The quarks and gluons inside are the same. But the boundary is at a slightly different energy, which means the soliton has a slightly different inertia, a slightly different size, and a slightly different internal structure.
 
@@ -135,7 +135,7 @@ This is a subtle but important distinction. The CD does not change the quarks or
 
 ### VII. THE PION AS THE BOUNDARY MESSENGER
 
-The pion deserves special attention. It is the lightest hadron (m_π ≈ 135-140 MeV). It is a quark-antiquark pair (uū or dū). It mediates the nuclear force between protons and neutrons — it IS the force carrier of the residual strong interaction that operates outside the confinement boundary.
+The pion deserves special attention. It is the lightest hadron (m_π ≈ 135-140 MeV). It is a quark-antiquark pair (uū or dū). It mediates the nuclear force between protons and neutrons,  it IS the force carrier of the residual strong interaction that operates outside the confinement boundary.
 
 In the soliton hierarchy: the pion is the boundary mode. It exists at the confinement boundary itself. It is not fully inside (it is not a stable three-quark soliton like the proton) and not fully outside (it carries color in a confined configuration). It lives on the boundary, and its mass is set by the boundary's properties.
 
@@ -153,7 +153,7 @@ The chain from one fraction (Δb₃ = 1/3) through the confinement boundary to t
 
 ### VIII. WHAT LATTICE QCD PROVIDES
 
-The framework cannot derive the proton mass from first principles without non-perturbative input. The running of α_s from M_Z down to Λ_QCD is perturbative and computable from beta coefficients. But the transition from "α_s is large" to "quarks are confined into a proton" is non-perturbative — it requires solving QCD at strong coupling.
+The framework cannot derive the proton mass from first principles without non-perturbative input. The running of α_s from M_Z down to Λ_QCD is perturbative and computable from beta coefficients. But the transition from "α_s is large" to "quarks are confined into a proton" is non-perturbative,  it requires solving QCD at strong coupling.
 
 Lattice QCD does this numerically. The key results:
 
@@ -171,7 +171,7 @@ where Λ_QCD(CD) is the confinement scale in the CD-modified theory, computable 
 
 The question for the RUM framework: is C itself an integer or a simple fraction? If the soliton boundary equation (the unwritten equation from Chapter 7) has an analytical solution, C would be determined by the topology of the proton soliton. A stable genus-0 soliton in a Yang-Mills field with SU(3) gauge group might have a specific topological invariant that sets C. This is deep mathematics that does not currently exist.
 
-But even without an analytical C, the framework gains something: the proton mass as Λ_QCD times a measured constant. And Λ_QCD is set by the beta coefficients, which are exact fractions. So the proton mass is an exact fraction times a measured constant. This is progress — it reduces the proton mass from a fully measured quantity to a partially derived one.
+But even without an analytical C, the framework gains something: the proton mass as Λ_QCD times a measured constant. And Λ_QCD is set by the beta coefficients, which are exact fractions. So the proton mass is an exact fraction times a measured constant. This is progress,  it reduces the proton mass from a fully measured quantity to a partially derived one.
 
 ---
 
@@ -183,7 +183,7 @@ It comes from two competing effects:
 
 **Quark mass difference:** m_d − m_u ≈ 2.3 MeV. The down quark is heavier than the up quark. This makes the neutron (udd) heavier than the proton (uud) by about 2.3 MeV of quark mass.
 
-**Electromagnetic self-energy difference:** The proton has charge +1 and the neutron has charge 0. The proton's electromagnetic self-energy (the energy stored in its electric field) is positive and adds to its mass. This effect is about −0.8 MeV (it makes the proton lighter relative to the neutron by reducing the mass difference). Wait — it makes the proton heavier, partially canceling the quark mass effect. Let me reconsider.
+**Electromagnetic self-energy difference:** The proton has charge +1 and the neutron has charge 0. The proton's electromagnetic self-energy (the energy stored in its electric field) is positive and adds to its mass. This effect is about −0.8 MeV (it makes the proton lighter relative to the neutron by reducing the mass difference). Wait,  it makes the proton heavier, partially canceling the quark mass effect. Let me reconsider.
 
 Actually: the electromagnetic contribution makes the proton heavier (more electromagnetic energy stored) while the quark mass difference makes the neutron heavier (heavier down quark). The two effects partially cancel: 2.3 MeV (neutron heavier from quarks) − 1.0 MeV (proton heavier from EM) ≈ 1.3 MeV (neutron wins).
 
@@ -195,19 +195,19 @@ The electromagnetic self-energy depends on α_em and on the proton charge radius
 
 The BMW lattice collaboration (Borsanyi et al. 2015) computed the neutron-proton mass difference from first principles on the lattice, including both QCD and QED effects, obtaining 1.51 ± 0.30 MeV (consistent with measured 1.293 MeV within uncertainties). This shows the computation is possible with non-perturbative methods.
 
-For the RUM framework: the neutron-proton mass difference is a reading at the confinement boundary. It is the difference between two soliton readings (neutron reading minus proton reading). The CD modifies both readings through its effect on the confinement boundary. If the lattice provides the non-perturbative matching, the neutron-proton mass difference becomes a derived quantity — an exact fraction from the CD beta shifts, propagated through the running to the confinement scale, matched onto hadron masses by the lattice.
+For the RUM framework: the neutron-proton mass difference is a reading at the confinement boundary. It is the difference between two soliton readings (neutron reading minus proton reading). The CD modifies both readings through its effect on the confinement boundary. If the lattice provides the non-perturbative matching, the neutron-proton mass difference becomes a derived quantity,  an exact fraction from the CD beta shifts, propagated through the running to the confinement scale, matched onto hadron masses by the lattice.
 
 ---
 
 ### X. THE BOUNDARY THICKNESS
 
-A soliton boundary is not infinitely sharp. It has a thickness — a range of energies over which the transition from "inside" to "outside" occurs. For confinement, this thickness is related to the rate at which α_s changes near Λ_QCD.
+A soliton boundary is not infinitely sharp. It has a thickness,  a range of energies over which the transition from "inside" to "outside" occurs. For confinement, this thickness is related to the rate at which α_s changes near Λ_QCD.
 
-The thickness is set by the beta coefficient. A larger |b₃| means α_s runs faster, meaning the transition from perturbative to non-perturbative is sharper — the boundary is thinner. A smaller |b₃| means slower running, a gentler transition, a thicker boundary.
+The thickness is set by the beta coefficient. A larger |b₃| means α_s runs faster, meaning the transition from perturbative to non-perturbative is sharper,  the boundary is thinner. A smaller |b₃| means slower running, a gentler transition, a thicker boundary.
 
 The CD reduces |b₃| from 7 to 20/3 = 6.667. The boundary gets slightly thicker. The transition is slightly more gradual. The confinement is slightly softer.
 
-This might have observable consequences. The "softness" of confinement affects jet fragmentation — how quarks produced at high energy hadronize into the observed particles. A softer confinement boundary means more gradual hadronization. This is measurable (in principle) at the LHC, though the effect of one CD pair is likely too small to detect above other uncertainties.
+This might have observable consequences. The "softness" of confinement affects jet fragmentation,  how quarks produced at high energy hadronize into the observed particles. A softer confinement boundary means more gradual hadronization. This is measurable (in principle) at the LHC, though the effect of one CD pair is likely too small to detect above other uncertainties.
 
 More speculatively: the boundary thickness determines how much quantum tunneling occurs through the boundary. A thinner boundary means less tunneling. A thicker boundary means more. If the confinement boundary has finite thickness (which it does), quarks can tunnel partially through it, producing effects that look like "leakage" of color charge outside the proton. This is related to the proton's charge radius and form factors. The CD's modification of the boundary thickness would modify these measurable quantities.
 
@@ -223,7 +223,7 @@ Write a derivation function that runs α_s from M_Z downward through flavor thre
 
 **Stage 2: Compute the proton mass ratio.**
 
-Using the lattice factor C = m_p / Λ_QCD from BMW (approximately 4.7), compute m_p(CD) = C × Λ_QCD(CD). Compare to measured m_p. This is a partial derivation — exact fractions for Λ_QCD, measured constant for C. Output the miss.
+Using the lattice factor C = m_p / Λ_QCD from BMW (approximately 4.7), compute m_p(CD) = C × Λ_QCD(CD). Compare to measured m_p. This is a partial derivation,  exact fractions for Λ_QCD, measured constant for C. Output the miss.
 
 **Stage 3: Connect to the Koide exploration.**
 
@@ -255,9 +255,9 @@ The key insight of this notebook is not any single computation. It is the refram
 
 Every soliton boundary in the RUM hierarchy is a threshold where a coupling reaches criticality. The threshold position is determined by the beta coefficient, which is an exact fraction from group theory. The CD modifies every beta coefficient, which shifts every boundary, which changes every reading at every level of the hierarchy.
 
-The framework has been computing the consequences of the CD's beta shifts at the unification scale (sin²θ_W, α_s, M_GUT) and at the cosmological scale (DM/baryon, Ω_DM). It has not been computing the consequences at the intermediate scales — the confinement boundary, the nuclear boundary, the atomic boundary. These are where the actual stuff of the universe lives. Protons, neutrons, atoms, nuclei, molecules, planets, stars. All of these are solitons. All of their boundaries are set by beta coefficients. All of their readings are modified by the CD.
+The framework has been computing the consequences of the CD's beta shifts at the unification scale (sin²θ_W, α_s, M_GUT) and at the cosmological scale (DM/baryon, Ω_DM). It has not been computing the consequences at the intermediate scales,  the confinement boundary, the nuclear boundary, the atomic boundary. These are where the actual stuff of the universe lives. Protons, neutrons, atoms, nuclei, molecules, planets, stars. All of these are solitons. All of their boundaries are set by beta coefficients. All of their readings are modified by the CD.
 
-The framework has been looking at the top of the hierarchy (GUT scale) and the bottom (cosmological scale). The middle — where matter exists — has been untouched. The confinement boundary is the door into the middle. The CD's Δb₃ = 1/3 is the key.
+The framework has been looking at the top of the hierarchy (GUT scale) and the bottom (cosmological scale). The middle,  where matter exists,  has been untouched. The confinement boundary is the door into the middle. The CD's Δb₃ = 1/3 is the key.
 
 ---
 
@@ -265,13 +265,13 @@ The framework has been looking at the top of the hierarchy (GUT scale) and the b
 
 **The mass hierarchy problem.** Why is m_t / m_e ≈ 340,000? In the soliton boundary framework, each fermion mass is a reading at a specific boundary. The top quark mass is a reading at the electroweak boundary. The electron mass is a reading at the atomic boundary. The ratio of their masses is the ratio of readings at two different boundaries. If the boundary positions are determined by beta coefficients, the mass hierarchy follows from the hierarchy of beta coefficients. This does not solve the mass hierarchy problem, but it reframes it: instead of "why are the Yukawa couplings so different?" the question becomes "why are the boundary readings so different?" The boundary readings are set by the running couplings, which are set by exact fractions.
 
-**The Koide relation.** The quark Koide may hold at the confinement boundary (Stage 3). If it does, the Koide formula is a property of the boundary, not of the quarks themselves. The three quark masses within each sector (u, c, t or d, s, b) are three modes of a soliton at the confinement boundary, and their inertia ratios follow from the boundary's geometry — exactly as the lepton Koide (three modes of a soliton at the atomic/electroweak boundary) follows from its boundary's geometry.
+**The Koide relation.** The quark Koide may hold at the confinement boundary (Stage 3). If it does, the Koide formula is a property of the boundary, not of the quarks themselves. The three quark masses within each sector (u, c, t or d, s, b) are three modes of a soliton at the confinement boundary, and their inertia ratios follow from the boundary's geometry,  exactly as the lepton Koide (three modes of a soliton at the atomic/electroweak boundary) follows from its boundary's geometry.
 
 **The PHYS-44 sector splitting.** The sector splitting ε = κ|Δβ|ΔΦ/c² connects gauge betas to gravitational potentials. The confinement boundary framework says: the gauge betas determine boundary positions. The gravitational potentials determine boundary positions. If both determine boundary positions, they must be related. The sector splitting is the relationship. The conversion factor κ measures how tightly the gauge and gravitational projections of the hierarchy are coupled.
 
-**The proton decay prediction.** The framework predicts M_GUT = 10^15.54 GeV, within the Hyper-K sensitivity window. Proton decay violates baryon number, which means it breaches the confinement boundary from the outside — not by supplying energy (which would just liberate quarks), but by a topological transition that unwinds the proton soliton. The GUT scale IS the energy at which this topological transition becomes possible. The GUT boundary (where SU(3)×SU(2)×U(1) unifies into SU(5) or similar) is the outermost gauge boundary. Inside it, baryon number is conserved and protons are stable. Above it, baryon number can change and protons can decay. The CD modifies where this boundary sits through M_GUT, which it already does — the proton decay prediction is a boundary position prediction.
+**The proton decay prediction.** The framework predicts M_GUT = 10^15.54 GeV, within the Hyper-K sensitivity window. Proton decay violates baryon number, which means it breaches the confinement boundary from the outside,  not by supplying energy (which would just liberate quarks), but by a topological transition that unwinds the proton soliton. The GUT scale IS the energy at which this topological transition becomes possible. The GUT boundary (where SU(3)×SU(2)×U(1) unifies into SU(5) or similar) is the outermost gauge boundary. Inside it, baryon number is conserved and protons are stable. Above it, baryon number can change and protons can decay. The CD modifies where this boundary sits through M_GUT, which it already does,  the proton decay prediction is a boundary position prediction.
 
-**The dark matter amplification.** The toroidal DM distribution in galaxies has amplification factor A = (44/13)π(c/v)². The integers 44 and 13 come from the CD beta coefficients. The amplification determines the galactic boundary — how much deeper the galactic gravitational well is than the visible matter alone would produce. The DM amplification is a boundary thickness: how much the galactic soliton boundary extends beyond the visible matter. The CD determines this thickness through its integers.
+**The dark matter amplification.** The toroidal DM distribution in galaxies has amplification factor A = (44/13)π(c/v)². The integers 44 and 13 come from the CD beta coefficients. The amplification determines the galactic boundary,  how much deeper the galactic gravitational well is than the visible matter alone would produce. The DM amplification is a boundary thickness: how much the galactic soliton boundary extends beyond the visible matter. The CD determines this thickness through its integers.
 
 ---
 
@@ -291,11 +291,11 @@ The computation program (Stages 1-6) is clear. The inputs exist in the pool. The
 
 ---
 
-### Table A.1: The Soliton Hierarchy — Complete Boundary Catalog
+### Table A.1: The Soliton Hierarchy,  Complete Boundary Catalog
 
 | Level | Boundary name | Threshold energy | Governing coupling | β coefficient (SM) | β coefficient (CD) | Soliton inside | Breach method |
 |---|---|---|---|---|---|---|---|
-| Planck | Quantum gravity | 1.22 × 10¹⁹ GeV | all couplings unify | — | — | spacetime itself | — |
+| Planck | Quantum gravity | 1.22 × 10¹⁹ GeV | all couplings unify |,  |,  | spacetime itself |,  |
 | GUT | Unification | 10¹⁵·⁵⁴ GeV | α_GUT ≈ 1/38 | all merge | all merge | baryon number conservation | proton decay |
 | Electroweak | Symmetry breaking | 246 GeV (Higgs vev) | α₂, α₁ | b₂ = −19/6, b₁ = 41/10 | b₂ = −13/6, b₁ = 25/6 | massive W, Z, fermion masses | collider energy > 246 GeV |
 | CD threshold | CD pair production | > 1500 GeV | α_s, α₂ | n/a (CD absent) | CD decouples below | CD pair itself | collider energy > M_CD |
@@ -323,7 +323,7 @@ The computation program (Stages 1-6) is clear. The inputs exist in the pool. The
 
 The CD contributes only above its mass threshold. Below M_CD, the SM running applies at every stage. The confinement scale Λ_QCD is reached far below M_CD, so the CD affects Λ_QCD indirectly: it changes α_s at high energies, which propagates downward through all the flavor thresholds.
 
-### Table A.3: The Proton — Soliton Properties
+### Table A.3: The Proton,  Soliton Properties
 
 | Property | Value | Source | What determines it |
 |---|---|---|---|
@@ -338,7 +338,7 @@ The CD contributes only above its mass threshold. Below M_CD, the SM running app
 | Lattice mass computation | 936 ± 25 MeV | BMW 2008 | Non-perturbative QCD |
 | Lattice factor C = m_p/Λ_QCD | ~4.7 | Lattice estimate | Soliton topology (uncomputed analytically) |
 
-### Table A.4: The Neutron-Proton Mass Difference — Budget
+### Table A.4: The Neutron-Proton Mass Difference,  Budget
 
 | Contribution | Value | Sign | Coupling involved | CD effect |
 |---|---|---|---|---|
@@ -354,34 +354,34 @@ The CD contributes only above its mass threshold. Below M_CD, the SM running app
 
 | Step | What changes | Changed by | Magnitude of change | Exact fraction? |
 |---|---|---|---|---|
-| 1. β coefficients | b₁, b₂, b₃ | CD representation content | Δb = (1/15, 1/3, 1/3) | Yes — group theory |
-| 2. Coupling running | α₁(μ), α₂(μ), α₃(μ) | Modified betas | ~1% per decade in log μ | Yes — RGE is exact at one-loop |
-| 3. Unification scale | M_GUT | Modified crossing | 10¹⁵·⁵⁴ GeV | Yes — from crossing equation |
-| 4. α_s at M_Z | α_s(M_Z) | Running from M_GUT | 0.1184 vs measured 0.118 | Yes — 0.33% miss |
-| 5. Confinement scale | Λ_QCD | α_s running through thresholds | ~5% shift (estimate) | Yes — through exact b₃ fractions |
-| 6. Proton mass | m_p = C × Λ_QCD | Shifted Λ_QCD | ~5% × C (estimate) | Partially — C from lattice |
-| 7. Pion mass | m_π ~ √(m_q × Λ_QCD) | Shifted Λ_QCD and running m_q | ~2.5% (estimate, sqrt) | Partially — ChPT formula |
+| 1. β coefficients | b₁, b₂, b₃ | CD representation content | Δb = (1/15, 1/3, 1/3) | Yes,  group theory |
+| 2. Coupling running | α₁(μ), α₂(μ), α₃(μ) | Modified betas | ~1% per decade in log μ | Yes,  RGE is exact at one-loop |
+| 3. Unification scale | M_GUT | Modified crossing | 10¹⁵·⁵⁴ GeV | Yes,  from crossing equation |
+| 4. α_s at M_Z | α_s(M_Z) | Running from M_GUT | 0.1184 vs measured 0.118 | Yes,  0.33% miss |
+| 5. Confinement scale | Λ_QCD | α_s running through thresholds | ~5% shift (estimate) | Yes,  through exact b₃ fractions |
+| 6. Proton mass | m_p = C × Λ_QCD | Shifted Λ_QCD | ~5% × C (estimate) | Partially,  C from lattice |
+| 7. Pion mass | m_π ~ √(m_q × Λ_QCD) | Shifted Λ_QCD and running m_q | ~2.5% (estimate, sqrt) | Partially,  ChPT formula |
 | 8. Nuclear force range | r ~ 1/m_π | Shifted m_π | ~2.5% inverse | Partially |
 | 9. Nuclear binding | E_B ~ f(m_π, Λ_QCD) | Multiple shifts | complex | Requires nuclear calculation |
 | 10. Neutron-proton difference | m_n − m_p | Shifted m_q and α_em at Λ_QCD | small | Partially |
 
-### Table A.6: All Solitons — Classified by Boundary
+### Table A.6: All Solitons,  Classified by Boundary
 
 | Soliton | Boundary | Topology | Stable? | Inertia | What sets the inertia |
 |---|---|---|---|---|---|
 | Proton | Confinement | Sphere (genus 0) | Yes (> 10³⁴ yr) | 938.3 MeV | Λ_QCD × C |
 | Neutron | Confinement | Sphere (genus 0) | No (τ = 880 s) | 939.6 MeV | Λ_QCD × C + EM correction |
-| Pion (π⁺) | Confinement (boundary mode) | — | No (τ = 26 ns) | 139.6 MeV | √(m_q × Λ_QCD³)/f_π |
-| Pion (π⁰) | Confinement (boundary mode) | — | No (τ = 8.4 × 10⁻¹⁷ s) | 135.0 MeV | √(m_q × Λ_QCD³)/f_π |
+| Pion (π⁺) | Confinement (boundary mode) |,  | No (τ = 26 ns) | 139.6 MeV | √(m_q × Λ_QCD³)/f_π |
+| Pion (π⁰) | Confinement (boundary mode) |,  | No (τ = 8.4 × 10⁻¹⁷ s) | 135.0 MeV | √(m_q × Λ_QCD³)/f_π |
 | Hydrogen atom | Atomic | Sphere | Yes | 938.8 MeV | m_p + m_e − 13.6 eV |
 | Helium-4 | Nuclear | Sphere | Yes | 3727.4 MeV | 4 × m_N − 28.3 MeV |
-| Deuteron | Nuclear | — | Yes | 1875.6 MeV | m_p + m_n − 2.22 MeV |
+| Deuteron | Nuclear |,  | Yes | 1875.6 MeV | m_p + m_n − 2.22 MeV |
 | Earth | Planetary gravitational | Sphere | Yes | 5.97 × 10²⁴ kg | Gravitational accretion |
 | Sun | Stellar gravitational | Sphere | Yes (5 Gyr remaining) | 1.99 × 10³⁰ kg | Gravitational accretion |
 | Milky Way | Galactic gravitational + DM | Toroid (disk + halo) | Yes | ~10⁴² kg | Gravitational + DM amplification |
-| Electron | EW / Planck (?) | Sphere | Yes | 0.511 MeV | Unknown — deepest open problem |
+| Electron | EW / Planck (?) | Sphere | Yes | 0.511 MeV | Unknown,  deepest open problem |
 
-### Table A.7: Λ_QCD Computation — Required Pool Values
+### Table A.7: Λ_QCD Computation,  Required Pool Values
 
 | Pool key | Value | Role in Λ_QCD computation |
 |---|---|---|
@@ -414,13 +414,13 @@ Larger thickness = softer boundary = more gradual transition. The CD makes the c
 
 | Stage | Derivation | Pool inputs | Non-pool inputs | Output | Difficulty |
 |---|---|---|---|---|---|
-| 1. Λ_QCD | Running α_s through thresholds | 11 values (Table A.7) | None | Λ_QCD(SM), Λ_QCD(CD), ratio | Close — one function |
-| 2. Proton mass | C × Λ_QCD | Stage 1 output | C ≈ 4.7 from lattice | m_p(predicted), miss | Close — uses Stage 1 |
-| 3. Quark Koide at Λ_QCD | Running quark masses to Λ_QCD | Quark masses, α_s | None | K, a² at confinement scale | Close — running machinery exists |
-| 4. Pion mass | ChPT formula | m_u, m_d at Λ_QCD, f_π | f_π ≈ 93 MeV (measured) | m_π(predicted), miss | Medium — needs f_π in pool |
-| 5. n-p mass difference | QCD + QED at Λ_QCD | Multiple couplings, masses | Lattice EM correction | Δm(predicted), miss | Medium-far — complex matching |
-| 6. All boundaries | Generalize Stage 1 | All betas, all thresholds | None | Complete boundary catalog | Medium — systematic |
-| 7. Soliton equation | New mathematics | — | — | Analytical C, Koide a², mass hierarchy | Far — unwritten |
+| 1. Λ_QCD | Running α_s through thresholds | 11 values (Table A.7) | None | Λ_QCD(SM), Λ_QCD(CD), ratio | Close,  one function |
+| 2. Proton mass | C × Λ_QCD | Stage 1 output | C ≈ 4.7 from lattice | m_p(predicted), miss | Close,  uses Stage 1 |
+| 3. Quark Koide at Λ_QCD | Running quark masses to Λ_QCD | Quark masses, α_s | None | K, a² at confinement scale | Close,  running machinery exists |
+| 4. Pion mass | ChPT formula | m_u, m_d at Λ_QCD, f_π | f_π ≈ 93 MeV (measured) | m_π(predicted), miss | Medium,  needs f_π in pool |
+| 5. n-p mass difference | QCD + QED at Λ_QCD | Multiple couplings, masses | Lattice EM correction | Δm(predicted), miss | Medium-far,  complex matching |
+| 6. All boundaries | Generalize Stage 1 | All betas, all thresholds | None | Complete boundary catalog | Medium,  systematic |
+| 7. Soliton equation | New mathematics |,  |,  | Analytical C, Koide a², mass hierarchy | Far,  unwritten |
 
 ### Table A.10: Connections to Existing Framework
 
@@ -435,7 +435,7 @@ Larger thickness = softer boundary = more gradual transition. The CD makes the c
 | All boundaries catalog | PHYS-41 soliton hierarchy | Quantifies each hierarchy level | Boundaries become computed, not assumed |
 | Soliton equation | Chapter 7 (book) | The deepest open problem | Would complete the framework |
 
-### Table A.11: The 1/3 Shift — Group Theory Origin
+### Table A.11: The 1/3 Shift,  Group Theory Origin
 
 | Quantity | Value | Where it comes from |
 |---|---|---|
@@ -452,18 +452,18 @@ Larger thickness = softer boundary = more gradual transition. The CD makes the c
 
 | Observable | Current value | Depends on | CD shifts it through | Measurable? |
 |---|---|---|---|---|
-| Λ_QCD | 200-300 MeV | b₃, α_s(M_Z) | Δb₃ = 1/3 | Yes — computable from pool |
-| Proton mass | 938.3 MeV | Λ_QCD × C | ΔΛ_QCD | Partially — needs lattice C |
-| Proton charge radius | 0.841 fm | Λ_QCD, α_s | ΔΛ_QCD | Partially — needs lattice |
-| Pion mass | 135-140 MeV | √(m_q × Λ_QCD) | ΔΛ_QCD, Δm_q running | Yes — ChPT formula |
-| Nuclear force range | ~1.4 fm | 1/m_π | Δm_π | Yes — from pion mass |
-| n-p mass difference | 1.293 MeV | m_d−m_u at Λ_QCD, α_em | Δ(running masses), Δα_em | Partially — complex matching |
-| Deuteron binding | 2.224 MeV | Nuclear force from m_π | Δm_π propagated | Far — nuclear calculation |
-| BBN He-4 abundance | Y_p = 0.245 | n-p mass diff, neutron lifetime | Δ(m_n − m_p) | Far — chain of dependencies |
-| Jet fragmentation | Hadronization parameters | Λ_QCD, boundary thickness | ΔΛ_QCD, Δ(1/b₃) | In principle — LHC data |
-| Sector splitting | ε ≈ 10⁻¹² | \|Δβ\| × ΔΦ/c² | β differences set by CD | Yes — Th-229 clock test |
+| Λ_QCD | 200-300 MeV | b₃, α_s(M_Z) | Δb₃ = 1/3 | Yes,  computable from pool |
+| Proton mass | 938.3 MeV | Λ_QCD × C | ΔΛ_QCD | Partially,  needs lattice C |
+| Proton charge radius | 0.841 fm | Λ_QCD, α_s | ΔΛ_QCD | Partially,  needs lattice |
+| Pion mass | 135-140 MeV | √(m_q × Λ_QCD) | ΔΛ_QCD, Δm_q running | Yes,  ChPT formula |
+| Nuclear force range | ~1.4 fm | 1/m_π | Δm_π | Yes,  from pion mass |
+| n-p mass difference | 1.293 MeV | m_d−m_u at Λ_QCD, α_em | Δ(running masses), Δα_em | Partially,  complex matching |
+| Deuteron binding | 2.224 MeV | Nuclear force from m_π | Δm_π propagated | Far,  nuclear calculation |
+| BBN He-4 abundance | Y_p = 0.245 | n-p mass diff, neutron lifetime | Δ(m_n − m_p) | Far,  chain of dependencies |
+| Jet fragmentation | Hadronization parameters | Λ_QCD, boundary thickness | ΔΛ_QCD, Δ(1/b₃) | In principle,  LHC data |
+| Sector splitting | ε ≈ 10⁻¹² | \|Δβ\| × ΔΦ/c² | β differences set by CD | Yes,  Th-229 clock test |
 
-### Table A.13: The Boundary Hierarchy — Threshold Energies Ordered
+### Table A.13: The Boundary Hierarchy,  Threshold Energies Ordered
 
 | Rank | Boundary | Threshold | log₁₀(E/MeV) | Separation from next | What lives between |
 |---|---|---|---|---|---|
@@ -480,7 +480,7 @@ Larger thickness = softer boundary = more gradual transition. The CD makes the c
 | 11 | Molecular | ~0.000001 MeV | −6.0 | 32 decades | Molecules, chemistry, life |
 | 12 | Planetary grav | ~10⁻³⁸ MeV equiv | −38 | 6 decades | Planets |
 | 13 | Stellar grav | ~10⁻³² MeV equiv | −32 | 6 decades | Stars |
-| 14 | Galactic grav | ~10⁻²⁶ MeV equiv | −26 | — | Galaxies |
+| 14 | Galactic grav | ~10⁻²⁶ MeV equiv | −26 |,  | Galaxies |
 
 The hierarchy spans 48 orders of magnitude from molecular binding to the Planck scale in the gauge sector alone. Adding the gravitational boundaries extends it to 60+ orders. Every gauge boundary is positioned by an exact fractional beta coefficient. Every gravitational boundary is positioned by GM/(Rc²). The PHYS-44 sector splitting connects the two.
 

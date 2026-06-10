@@ -7,7 +7,7 @@
 
 Every modern data system has the same structural deficiency: values exist without provenance. A number sits in a column. Where did it come from? What computed it? What were the inputs? What constraints must it satisfy? What happens if an upstream value changes?
 
-The answers to these questions live outside the data — in documentation, in code comments, in the memories of engineers. The data itself is inert. It has values but no reasons.
+The answers to these questions live outside the data,  in documentation, in code comments, in the memories of engineers. The data itself is inert. It has values but no reasons.
 
 This creates two cascading failures. First, trust is impossible to verify. You cannot look at a value and determine whether it is correct, because correctness is a relationship between a value and its derivation, and the derivation is not stored. Second, error propagation is invisible. When an upstream value changes or is found to be wrong, there is no systematic way to identify everything downstream that depends on it.
 
@@ -15,7 +15,7 @@ Float arithmetic makes this worse. Values are silently rounded at every step. Th
 
 VDR solves the arithmetic problem. Every value is exact. Every operation preserves exactness. Every intermediate result is a specific inspectable fraction. But VDR alone does not solve the provenance problem. A VDR fraction knows what it is. It does not know why it is, or what it depends on, or what constraints it must satisfy.
 
-Prolog solves the provenance problem. Every fact has a derivation. Every derivation is a chain of rules applied to other facts. Every query can explain its answer by producing the proof tree. But Prolog alone does not solve the arithmetic problem. Prolog's native arithmetic is whatever the host language provides — typically floats, with all their silent truncation.
+Prolog solves the provenance problem. Every fact has a derivation. Every derivation is a chain of rules applied to other facts. Every query can explain its answer by producing the proof tree. But Prolog alone does not solve the arithmetic problem. Prolog's native arithmetic is whatever the host language provides,  typically floats, with all their silent truncation.
 
 The two systems are complementary in a way that is almost too clean to be accidental.
 
@@ -27,7 +27,7 @@ The two systems are complementary in a way that is almost too clean to be accide
 
 Exact values. Every number is a fraction p/q with arbitrary-precision integers. No rounding. No drift. No silent truncation.
 
-Exact operations. Addition, multiplication, matrix inversion, discrete calculus, softmax, autodiff — all producing exact fractions.
+Exact operations. Addition, multiplication, matrix inversion, discrete calculus, softmax, autodiff,  all producing exact fractions.
 
 Structural identity. The remainder slot carries exact information about how a value sits in its denominator frame. Two values with the same scalar projection can be structurally distinct.
 
@@ -35,17 +35,17 @@ Reproducibility. The same computation on any machine produces bit-identical resu
 
 Transcendental reach. Via functional remainders (arbitrary-precision rational series) and Q335 projection (100-digit constants as integers over 2^335).
 
-A working ML stack. Softmax, autodiff, linear layers, attention, transformers, optimizers, sampling — 24 modules, 705 tests, zero computation errors.
+A working ML stack. Softmax, autodiff, linear layers, attention, transformers, optimizers, sampling,  24 modules, 705 tests, zero computation errors.
 
 ### 2.2 Prolog Provides
 
 Logical provenance. Every derived fact can produce the proof tree that justifies it. The chain of reasoning from axioms to conclusion is inspectable.
 
-Constraint propagation. CLP(Q) — Constraint Logic Programming over rationals — provides exact rational constraint solving natively. Variables can be constrained by linear inequalities, equalities, and arithmetic relationships, and the solver propagates these constraints exactly.
+Constraint propagation. CLP(Q),  Constraint Logic Programming over rationals,  provides exact rational constraint solving natively. Variables can be constrained by linear inequalities, equalities, and arithmetic relationships, and the solver propagates these constraints exactly.
 
 Backtracking search. When a derivation fails, Prolog systematically explores alternatives. This is built-in exhaustive search with pruning.
 
-Rule-based knowledge. Domain knowledge is expressed as logical rules, not imperative code. The rules are declarative — they say what is true, not how to compute it.
+Rule-based knowledge. Domain knowledge is expressed as logical rules, not imperative code. The rules are declarative,  they say what is true, not how to compute it.
 
 Unification. Pattern matching on structured terms. A query unifies with a rule head, binding variables, and the rule body becomes the new goal. This is the mechanism that connects facts to their derivations.
 
@@ -98,7 +98,7 @@ computed_by(id(V42), vdr_softmax, depth(12)).
 timestamp(id(V42), step(17)).
 ```
 
-This node records: the exact value, how it was derived, what constraint it satisfies, what VDR operation computed it, and when. The provenance graph is itself a Prolog database — queryable, inspectable, and complete.
+This node records: the exact value, how it was derived, what constraint it satisfies, what VDR operation computed it, and when. The provenance graph is itself a Prolog database,  queryable, inspectable, and complete.
 
 ---
 
@@ -106,7 +106,7 @@ This node records: the exact value, how it was derived, what constraint it satis
 
 ### 4.1 Auditable ML Inference
 
-A VDR transformer processes an input. Every intermediate value — every embedding lookup, every attention score, every softmax weight, every feedforward activation, every logit — is asserted into Prolog with its derivation. The final output token probability is an exact fraction with a complete proof tree connecting it back to the input tokens and model parameters.
+A VDR transformer processes an input. Every intermediate value,  every embedding lookup, every attention score, every softmax weight, every feedforward activation, every logit,  is asserted into Prolog with its derivation. The final output token probability is an exact fraction with a complete proof tree connecting it back to the input tokens and model parameters.
 
 A regulator asks: "Why did the model assign probability 3/7 to token X?" The system produces the exact derivation: these attention weights (exact fractions, summing to exactly 1) weighted these value vectors (exact fractions) to produce this representation, which was transformed by these feedforward weights (exact fractions) to produce these logits, which were softmax-normalized to produce 3/7.
 
@@ -123,7 +123,7 @@ constraint(gradient_norm_bounded_by(10)).
 constraint(parameter_denominator_bounded_by(2^64)).
 ```
 
-Prolog verifies these constraints after each training step. If a constraint is violated, the system can: reject the step, trigger re-projection onto the constraint surface, or flag the violation for human review. The constraint checking is exact — "all attention rows sum to 1" is checked by exact fraction addition, not by tolerance comparison.
+Prolog verifies these constraints after each training step. If a constraint is violated, the system can: reject the step, trigger re-projection onto the constraint surface, or flag the violation for human review. The constraint checking is exact,  "all attention rows sum to 1" is checked by exact fraction addition, not by tolerance comparison.
 
 ### 4.3 Data Pipeline Provenance
 
@@ -146,7 +146,7 @@ conserved_quantity(energy, System, E) :-
     kinetic(System, KE), potential(System, PE), E is KE + PE.
 ```
 
-VDR computations are checked against these rules. If a softmax output violates `valid_distribution`, the system detects it immediately — not through a float tolerance check but through exact fraction verification. If an energy computation violates conservation, the exact point of violation is identified.
+VDR computations are checked against these rules. If a softmax output violates `valid_distribution`, the system detects it immediately,  not through a float tolerance check but through exact fraction verification. If an energy computation violates conservation, the exact point of violation is identified.
 
 ### 4.5 Exact Scientific Computation With Logical Bookkeeping
 
@@ -189,7 +189,7 @@ prolog.assertz(
 ?- softmax_output(step(17), row(0), Weights),
    sum_list(Weights, Sum),
    Sum =:= 1.
-% true — exact verification
+% true,  exact verification
 
 ?- derived_from(softmax_output(step(17), row(0)), Op, Source).
 % Op = softmax, Source = logits(step(17), row(0))
@@ -215,7 +215,7 @@ nonneg(W) :- { W >= 0 }.
 % W3 = 5/12
 ```
 
-CLP(Q) can solve for unknown values given constraints — something VDR cannot do alone. VDR computes forward. CLP(Q) reasons bidirectionally.
+CLP(Q) can solve for unknown values given constraints,  something VDR cannot do alone. VDR computes forward. CLP(Q) reasons bidirectionally.
 
 ### 5.3 VDR as Prolog Arithmetic Engine
 
@@ -347,13 +347,13 @@ Raw data: temperature readings [20.5, 21.3, 19.8]
   → Prolog: raw(sensor(1), time(t1), 41/2), source(file("readings.csv"), line(1))
 
 Transform: Celsius to Kelvin (add 273.15 = 5463/20)
-  → VDR: [VDR(5873,20), VDR(10389,20), VDR(6423,20)]  — wait, let me be exact
+  → VDR: [VDR(5873,20), VDR(10389,20), VDR(6423,20)] ,  wait, let me be exact
   → VDR: 41/2 + 5463/20 = 410/20 + 5463/20 = 5873/20
   → Prolog: kelvin(sensor(1), time(t1), 5873/20), 
             derived_from(kelvin(s1,t1), add, [raw(s1,t1), constant(273_15, 5463/20)])
 
 Aggregate: mean temperature
-  → VDR: (5873/20 + 5389/10 + 6423/20) / 3  — exact fraction
+  → VDR: (5873/20 + 5389/10 + 6423/20) / 3 ,  exact fraction
   → Prolog: mean_kelvin(batch(1), Result), 
             derived_from(mean_kelvin(b1), mean, [kelvin(s1,t1), kelvin(s1,t2), kelvin(s1,t3)])
 
@@ -386,7 +386,7 @@ Domain constraints are Prolog rules. They are checked after every computation. V
 
 ### 8.4 Dependencies Are Tracked
 
-The provenance graph is a directed acyclic graph connecting every value to its inputs. When an input changes, the set of affected downstream values is computable by graph traversal. Recomputation is targeted — only affected values are recomputed.
+The provenance graph is a directed acyclic graph connecting every value to its inputs. When an input changes, the set of affected downstream values is computable by graph traversal. Recomputation is targeted,  only affected values are recomputed.
 
 ### 8.5 Everything Is Reproducible
 

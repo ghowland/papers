@@ -2,7 +2,7 @@
 
 ## Scope
 
-This report identifies the implementation vectors for a Zig CPU SIMD implementation of the VDR fixed-basis arithmetic system described in HOWL-VDR-29-2026. Each vector is a self-contained line of work that produces a testable artifact. Vectors are ordered by dependency — each one unlocks the next, but lateral vectors can be parallelized where noted.
+This report identifies the implementation vectors for a Zig CPU SIMD implementation of the VDR fixed-basis arithmetic system described in HOWL-VDR-29-2026. Each vector is a self-contained line of work that produces a testable artifact. Vectors are ordered by dependency,  each one unlocks the next, but lateral vectors can be parallelized where noted.
 
 ---
 
@@ -15,7 +15,7 @@ The core operation is basis multiply: two V slots in, one V and one R out. At Q1
 The full set of scalar kernels:
 
 - **basis_mul_q16**: i16 × i16 → (i16 V, i16 R). The workhorse for activation-activation operations.
-- **basis_mul_q8_q16**: i8 × i16 → (i16 V, i16 R). Weight × activation. The widening multiply produces i24 effective, which fits i32. Split point depends on target basis — if accumulating into Q32, shift by 16 after the full dot product, not per element.
+- **basis_mul_q8_q16**: i8 × i16 → (i16 V, i16 R). Weight × activation. The widening multiply produces i24 effective, which fits i32. Split point depends on target basis,  if accumulating into Q32, shift by 16 after the full dot product, not per element.
 - **basis_mul_q32**: i32 × i32 → (i32 V, i32 R). Schedule constants, accumulator operations.
 - **basis_mul_q64**: i64 × i64 → (i64 V, i64 R). Gradient accumulation. Needs `@mulWithOverflow` or u128 intermediate.
 - **basis_add_q16**: i16 + i16 with carry detection. If the addition overflows i16, the overflow goes to R. This is the one operation where float is simpler (single add vs add-check-carry), but it's less than 0.1% of pipeline compute.
@@ -39,11 +39,11 @@ The vectorization order follows compute dominance:
 
 1. **GEMM inner loop** (vpmaddwd path). This is 70%+ of forward pass compute. The i8 weight × i16 activation path uses `vpmaddubsw` (unsigned×signed byte multiply-add to word) if weights are stored unsigned-offset, or widening to i16 first. The paper assumes the latter for clarity but the former is one instruction.
 2. **Softmax** (table gather). Load logits as i16, find max via horizontal reduce, subtract (shift), use the shifted value as index into a lookup table stored in memory. The table maps i16 input → i16 output (V and R). The gather is `vpgatherdd` or, for sequential access patterns, just indexed loads. Barrett division for the normalization denominator.
-3. **GeLU/SiLU** (table lookup). Same pattern as softmax but simpler — one table, no normalization. The paper estimates 5-10× over float because you replace a polynomial chain with a single load.
-4. **Layer norm** (integer reduction + table rsqrt). Sum and sum-of-squares via integer reduction. Mean via right shift if hidden dim is power of two (it almost always is — 4096, 8192). Reciprocal square root via table lookup on the variance. The table is larger (~40KB at Q16) but fits L2 comfortably.
+3. **GeLU/SiLU** (table lookup). Same pattern as softmax but simpler,  one table, no normalization. The paper estimates 5-10× over float because you replace a polynomial chain with a single load.
+4. **Layer norm** (integer reduction + table rsqrt). Sum and sum-of-squares via integer reduction. Mean via right shift if hidden dim is power of two (it almost always is,  4096, 8192). Reciprocal square root via table lookup on the variance. The table is larger (~40KB at Q16) but fits L2 comfortably.
 5. **Residual add**. Vectorized add with carry propagation. Lowest priority because it's trivial compute.
 
-Each SIMD kernel gets tested against the scalar kernel on the same inputs. Bit-identical results required — this is the whole point.
+Each SIMD kernel gets tested against the scalar kernel on the same inputs. Bit-identical results required,  this is the whole point.
 
 ---
 
@@ -57,7 +57,7 @@ The tiling strategy for GEMM follows cache hierarchy. On a typical CPU with 32KB
 - Activation tile: 32×128 at i16 = 8KB for V. Fits L1 alongside weight tile.
 - Accumulator: 128×128 at i32 = 64KB. Lives in L2 during accumulation, written back as Q16 (V+R) after epilogue.
 
-The R array for activations is read during backward pass and during any operation that needs the full precision chain. During forward inference, some operations (GEMM accumulation) only read V and produce new R — the old R is consumed only if you're tracking remainder propagation through the full chain. For inference without remainder tracking, the R array is write-only during GEMM, which halves the read bandwidth for activations.
+The R array for activations is read during backward pass and during any operation that needs the full precision chain. During forward inference, some operations (GEMM accumulation) only read V and produce new R,  the old R is consumed only if you're tracking remainder propagation through the full chain. For inference without remainder tracking, the R array is write-only during GEMM, which halves the read bandwidth for activations.
 
 The tile sizes above give the paper's SM1-SM3 numbers adapted for CPU cache instead of GPU shared memory. The key constraint is: weight tile + activation tile + lookup tables must fit L1+L2 simultaneously. At the sizes above, ~12KB for tiles leaves ~20KB+ in L1 for the hot lookup table (softmax exp or GeLU), with the full 256KB table in L2 for cold entries.
 
@@ -83,7 +83,7 @@ Three tables needed for a minimal transformer:
 - GeLU: ~32KB at Q16 bounded (LT2). This is the largest and may need to live in L2 rather than L1.
 - Reciprocal square root (layer norm): ~40KB at Q16 (LT3). The paper notes Q32 should use Newton iteration instead.
 
-Barrett reduction constants are also precomputed here. For each possible divisor (sequence length for softmax normalization, hidden dim for mean), precompute the multiplicative inverse as a Q32 or Q64 value. There are very few unique divisors in a given model — sequence length, hidden dim, number of heads, vocabulary size. A handful of constants.
+Barrett reduction constants are also precomputed here. For each possible divisor (sequence length for softmax normalization, hidden dim for mean), precompute the multiplicative inverse as a Q32 or Q64 value. There are very few unique divisors in a given model,  sequence length, hidden dim, number of heads, vocabulary size. A handful of constants.
 
 ---
 
@@ -106,7 +106,7 @@ The operation sequence for one layer, following the paper's architecture:
 11. **FFN down**: GEMM Q8×Q16→Q32→Q16.
 12. **Residual add**: input + FFN output.
 
-The test for this vector is: run the same inputs through the Python VDR reference implementation and the Zig implementation, compare all intermediate activations for bit-identical results. Not approximate. Identical. If they differ anywhere, something is wrong — there's no tolerance in integer arithmetic.
+The test for this vector is: run the same inputs through the Python VDR reference implementation and the Zig implementation, compare all intermediate activations for bit-identical results. Not approximate. Identical. If they differ anywhere, something is wrong,  there's no tolerance in integer arithmetic.
 
 ---
 
@@ -122,7 +122,7 @@ The key operations:
 - **Gradient of layer norm**: standard layer norm backward, all in integer arithmetic. The reciprocal square root and its derivative come from the table.
 - **Gradient accumulation**: sum across batch dimension in Q64. The paper (OV3) confirms i64 is safe for batch sizes up to 2^32.
 
-Rebase from Q64 gradient to Q8 weight update (RB5) is a right shift by 56 and mask. The remainder captures the 56 bits that didn't fit — this is where stochastic rounding or explicit remainder tracking across steps would go. For a first implementation, truncate the remainder (equivalent to round-toward-zero). This matches what every existing quantized training system does, except VDR tells you exactly what was truncated.
+Rebase from Q64 gradient to Q8 weight update (RB5) is a right shift by 56 and mask. The remainder captures the 56 bits that didn't fit,  this is where stochastic rounding or explicit remainder tracking across steps would go. For a first implementation, truncate the remainder (equivalent to round-toward-zero). This matches what every existing quantized training system does, except VDR tells you exactly what was truncated.
 
 ---
 
@@ -130,7 +130,7 @@ Rebase from Q64 gradient to Q8 weight update (RB5) is a right shift by 56 and ma
 
 SGD is trivial: `weight_new = weight_old - lr * gradient`, all in integer arithmetic with appropriate rebasing. The learning rate is a Q8 or Q16 constant, precomputed.
 
-Adam is more interesting. The running mean and variance of gradients (m and v) accumulate in Q32 or Q64. The update rule involves division by (sqrt(v) + epsilon) — but epsilon is zero in VDR (no denormals to protect against) and sqrt is a table lookup or Newton iteration at Q32. The division is Barrett reduction.
+Adam is more interesting. The running mean and variance of gradients (m and v) accumulate in Q32 or Q64. The update rule involves division by (sqrt(v) + epsilon),  but epsilon is zero in VDR (no denormals to protect against) and sqrt is a table lookup or Newton iteration at Q32. The division is Barrett reduction.
 
 The momentum coefficients (beta1, beta2) are Q16 constants projected from their exact rational values at init time. The bias correction terms (1 - beta^t) are precomputed for all t up to max training steps and stored as a Q32 table. This is a few KB for any practical training run.
 
@@ -172,6 +172,6 @@ V1 through V4 are the foundation. V5 is the first complete artifact that runs in
 
 GPU kernels. That's a separate implementation vector set targeting CUDA integer tensor cores. The CPU SIMD path comes first because it's testable without GPU infrastructure, produces the reference implementation that GPU kernels are validated against, and runs real workloads at the throughput numbers from OC1-OC6 in the paper (1.3-1.6× faster than float for a full forward pass on AVX-512).
 
-Multi-node distribution. Not needed for the first implementation. When it matters, VDR's associativity guarantee (VR1) means gradient reduction order is irrelevant — any allreduce topology produces identical results. That's a property you get for free from the arithmetic.
+Multi-node distribution. Not needed for the first implementation. When it matters, VDR's associativity guarantee (VR1) means gradient reduction order is irrelevant,  any allreduce topology produces identical results. That's a property you get for free from the arithmetic.
 
 ONNX/framework interop. Irrelevant. The Zig implementation is the framework.

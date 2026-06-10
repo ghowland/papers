@@ -2,17 +2,17 @@ You're right. Let me search for what exists and what the paper requires.Now I ha
 
 ---
 
-# VDRProlog — Integer Compute Unified Device Architecture
+# VDRProlog,  Integer Compute Unified Device Architecture
 
 ## Spec for VDR-Native GPU Computing
 
-### Version 0.1 — Design Reference
+### Version 0.1,  Design Reference
 
 ---
 
 ## 1. Design Premise
 
-CUDA exists because GPUs have float hardware and integer hardware and the software must manage both. H100 SXM delivers 3,958 TOPS INT8 Tensor Core throughput alongside 1,979 TFLOPS FP16 — two complete datapaths on one die. Each SM contains FP32 cores, FP64 cores, INT32 cores, and Tensor Cores. Special Function Units handle transcendentals like sine and cosine. The entire Transformer Engine exists to intelligently manage and dynamically choose between FP8 and 16-bit calculations, automatically handling re-casting and scaling between FP8 and 16-bit in each layer.
+CUDA exists because GPUs have float hardware and integer hardware and the software must manage both. H100 SXM delivers 3,958 TOPS INT8 Tensor Core throughput alongside 1,979 TFLOPS FP16,  two complete datapaths on one die. Each SM contains FP32 cores, FP64 cores, INT32 cores, and Tensor Cores. Special Function Units handle transcendentals like sine and cosine. The entire Transformer Engine exists to intelligently manage and dynamically choose between FP8 and 16-bit calculations, automatically handling re-casting and scaling between FP8 and 16-bit in each layer.
 
 VDRProlog eliminates all of this. One datapath. One type system. One execution model. Everything is integer.
 
@@ -28,7 +28,7 @@ Three base types, corresponding to the paper's operational Q-bases:
 
 ```
 // Fixed-width VDR structs. D is compile-time constant.
-// R slots are flattened — no pointer chasing, no recursion.
+// R slots are flattened,  no pointer chasing, no recursion.
 
 struct vdr_q16 {        // 16-bit inference
     i32 v;              // value (numerator)
@@ -53,7 +53,7 @@ struct vdr_q335 {       // high-precision / transcendental
 };                      // 240 bytes
 ```
 
-No float types. No FP4, FP6, FP8, FP16, BF16, TF32, FP32, FP64. None. The entire float type hierarchy from the CUDA Math API — every conversion function, every precision negotiation, every mixed-precision pathway — is gone.
+No float types. No FP4, FP6, FP8, FP16, BF16, TF32, FP32, FP64. None. The entire float type hierarchy from the CUDA Math API,  every conversion function, every precision negotiation, every mixed-precision pathway,  is gone.
 
 ### 2.2 Scalar Integer Types
 
@@ -72,7 +72,7 @@ pred                    // 1-bit predicate (unchanged from PTX)
 vdr_q16x2              // packed pair for warp-level operations
 vdr_q16x4              // quad for SIMD-style processing
 vdr_q32x2
-// q335 vectors are implicit — one q335 already spans 6 limbs
+// q335 vectors are implicit,  one q335 already spans 6 limbs
 ```
 
 ### 2.4 No Implicit Conversions
@@ -90,7 +90,7 @@ vdr.add.q16     dst, src_a, src_b    // integer add, same D
 vdr.sub.q16     dst, src_a, src_b    // integer subtract
 vdr.mul.q16     dst, src_a, src_b    // widening multiply + SHR16
 vdr.mac.q16     dst, src_a, src_b, acc  // multiply-accumulate (THE instruction)
-vdr.shr.q16     dst, src, amt        // divmod — wiring on ASIC, shift on GPU
+vdr.shr.q16     dst, src, amt        // divmod,  wiring on ASIC, shift on GPU
 vdr.cmp.q16     dst, src_a, src_b    // cross-multiply compare, sets predicate
 ```
 
@@ -102,14 +102,14 @@ Same set for `.q32` and `.q335`. The `.q335` variants operate on 384-bit limb ar
 
 Everything in the CUDA Math API's float sections. All of it:
 
-- No `__fadd_rn`, `__fmul_rz`, `__fdiv_rd` — no rounding mode suffixes because integers don't round
-- No `__expf`, `__logf`, `__sinf`, `__cosf` — no SFU transcendentals
-- No `__hfma`, `__hfma2` — no half-precision fused multiply-add
-- No `__nv_cvt_fp4x2_to_halfraw2` — no FP4/FP6/FP8 conversion intrinsics
-- No NaN/Inf checks — integers cannot produce NaN or Inf
-- No `__saturatef` — no saturation arithmetic on floats
-- No epsilon constants — exact comparison replaces approximate
-- No loss scaling functions — integer gradients don't overflow to Inf
+- No `__fadd_rn`, `__fmul_rz`, `__fdiv_rd`,  no rounding mode suffixes because integers don't round
+- No `__expf`, `__logf`, `__sinf`, `__cosf`,  no SFU transcendentals
+- No `__hfma`, `__hfma2`,  no half-precision fused multiply-add
+- No `__nv_cvt_fp4x2_to_halfraw2`,  no FP4/FP6/FP8 conversion intrinsics
+- No NaN/Inf checks,  integers cannot produce NaN or Inf
+- No `__saturatef`,  no saturation arithmetic on floats
+- No epsilon constants,  exact comparison replaces approximate
+- No loss scaling functions,  integer gradients don't overflow to Inf
 
 ### 3.3 New Instructions
 
@@ -119,7 +119,7 @@ vdr.xmul_cmp.q16  pred, a_v, a_d, b_v, b_d   // cross-multiply unification
     // this is Prolog unification in hardware
 
 vdr.softmax_surr.q16  dst[], src[], n    // quadratic softmax surrogate
-    // shift, square, sum, divide — all integer
+    // shift, square, sum, divide,  all integer
     // sum of outputs = D exactly, by construction
 
 vdr.dot.q16  dst, src_a[], src_b[], n    // integer dot product with accumulation
@@ -141,10 +141,10 @@ vdr.fru.unify.q335  pred, a, b         // active-value unification with remainde
 
 ```
 vdr.mma.q16.m16n16k16  dst, src_a, src_b, acc
-    // 16×16×16 integer MMA — same tile shape as tensor core MMA
+    // 16×16×16 integer MMA,  same tile shape as tensor core MMA
     // inputs: i16, accumulator: i32
     // every element of the result is exact
-    // no mixed precision — input and output are both integer at declared Q-basis
+    // no mixed precision,  input and output are both integer at declared Q-basis
 ```
 
 This replaces the zoo of `mma.sync` variants with their format permutations (`.f16`, `.bf16`, `.tf32`, `.f64`, `.s8`, `.u8`, `.s4`, `.u4`). One instruction. One datapath. One behavior.
@@ -163,10 +163,10 @@ __shared__ vdr_kb_cache kb_local;    // fixed-size KB struct cache in shared mem
 // Load a KB subtree from global memory into shared memory
 vdr.kb_load  kb_local, global_kb_base, kb_id;
 
-// Query a fact by slot ID — O(1) integer index
+// Query a fact by slot ID,  O(1) integer index
 vdr.kb_query dst, kb_local, slot_id;
 
-// Assert a fact — bounded write
+// Assert a fact,  bounded write
 vdr.kb_assert kb_local, slot_id, value;
 
 // Flush modified facts back to global memory
@@ -180,7 +180,7 @@ KB structs are fixed-size (the 26-field struct from the paper, Appendix K). Fixe
 Global memory is a flat array of KB structs indexed by `kb_id`. Access pattern: small random reads by integer ID, not large sequential tile loads. This inverts the current memory access optimization from bandwidth-optimized (large coalesced reads for weight matrices) to latency-optimized (fast random access for KB lookups).
 
 ```
-// Global KB store — base address set at kernel launch
+// Global KB store,  base address set at kernel launch
 __global__ vdr_kb_store {
     vdr_kb_struct kbs[];       // contiguous array of fixed-size structs
     vdr_fact_store facts[];    // contiguous fact storage, indexed by kb_id + slot_id
@@ -190,7 +190,7 @@ __global__ vdr_kb_store {
 
 ### 4.3 Register File
 
-PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. VDRProlog extends to 384-bit registers for Q335 limb operations. The register file is typed — `vdr_q16`, `vdr_q32`, or `vdr_q335` — and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
+PTX supports 8-, 16-, 32-, 64-, or 128-bit scalar registers and 16-, 32-, 64-, or 128-bit vector registers. VDRProlog extends to 384-bit registers for Q335 limb operations. The register file is typed,  `vdr_q16`, `vdr_q32`, or `vdr_q335`,  and the compiler tracks Q-basis per register. Assigning a `q16` register to a `q32` instruction is a compile error.
 
 ### 4.4 No Texture Units, No Surface Units
 
@@ -200,7 +200,7 @@ CUDA includes texture memory, surface memory, samplers, and filtering hardware. 
 
 ## 5. Execution Model
 
-### 5.1 Warps — Simplified
+### 5.1 Warps,  Simplified
 
 Warp divergence, where threads follow different execution paths, degrades performance because divergent paths are executed serially. In CUDA, the primary sources of divergence are: NaN/Inf checks (some threads have special values, others don't), mixed-precision branching (Transformer Engine selecting between FP8 and FP16 per layer), subnormal handling, and data-dependent transcendental computation in SFUs.
 
@@ -211,25 +211,25 @@ VDRProlog warps have zero divergence sources in the arithmetic. Integer add take
 Three kernel categories replace the single generic CUDA-like kernel:
 
 ```
-// MAC kernel — pure matrix multiply-accumulate
+// MAC kernel,  pure matrix multiply-accumulate
 // The forward pass. Highest throughput, simplest scheduling.
 __mac_kernel__ void attention_forward(vdr_q16* queries, vdr_q16* keys, 
                                        vdr_q16* values, vdr_q16* output,
                                        int seq_len, int d_model);
 
-// Prolog kernel — parallel unification over fact tables
+// Prolog kernel,  parallel unification over fact tables
 // Cross-multiply comparisons across warps, filter matches, collect results.
 __prolog_kernel__ void fact_query(vdr_kb_cache* kb, vdr_q16* query_terms,
                                    pred* matches, int n_facts);
 
-// Primitive kernel — builtin execution
-// Sort, filter, parse, format — deterministic, bounded, infallible.
+// Primitive kernel,  builtin execution
+// Sort, filter, parse, format,  deterministic, bounded, infallible.
 __prim_kernel__ void list_sort(vdr_q16* data, int n, vdr_q16* output);
 ```
 
 The runtime schedules these differently. MAC kernels get maximum SM allocation and maximum memory bandwidth. Prolog kernels get maximum shared memory for KB caches. Primitive kernels get minimum resources because they're fast and small.
 
-### 5.3 Stream Model — Session Streams
+### 5.3 Stream Model,  Session Streams
 
 CUDA has generic streams for overlapping compute and memory transfer. VDRProlog adds session-aware streams:
 
@@ -261,7 +261,7 @@ Integer type checking. Q-basis tracking and enforcement. KB struct layout. Widen
 
 **Q-basis propagation.** The compiler tracks Q-basis through the computation graph. If all inputs to a kernel are Q16, all intermediates are Q16, and the output is Q16, no reprojection is needed. If a Q32 intermediate feeds a Q16 output, the compiler inserts an explicit `vdr.reproject` and generates a warning.
 
-**Remainder elision.** If the programmer declares `__no_remainder__` on a kernel, the compiler can use narrower registers and skip remainder extraction on every multiply. This is the "depth 0" case — you accept that remainders are truncated and get smaller, faster code. The compiler tracks this declaration and prevents remainder-elided values from flowing into remainder-preserving code without explicit reprojection.
+**Remainder elision.** If the programmer declares `__no_remainder__` on a kernel, the compiler can use narrower registers and skip remainder extraction on every multiply. This is the "depth 0" case,  you accept that remainders are truncated and get smaller, faster code. The compiler tracks this declaration and prevents remainder-elided values from flowing into remainder-preserving code without explicit reprojection.
 
 **KB access fusion.** Multiple sequential KB queries to the same KB can be fused into a single shared-memory load of the KB struct, followed by register-level field extraction. The compiler recognizes `kb_query(kb, 3); kb_query(kb, 7); kb_query(kb, 12);` and transforms it into one load and three register reads.
 
@@ -271,10 +271,10 @@ Integer type checking. Q-basis tracking and enforcement. KB struct layout. Widen
 
 ## 7. Runtime Library
 
-### 7.1 VDRPrologVDR — Replaces cuBLAS, cuDNN, cuFFT
+### 7.1 VDRPrologVDR,  Replaces cuBLAS, cuDNN, cuFFT
 
 ```c
-// Matrix multiply — always integer, always exact
+// Matrix multiply,  always integer, always exact
 VDRPrologStatus_t VDRPrologVdrGemm(
     VDRPrologVdrQBasis_t qbasis,     // Q16, Q32, or Q335
     int m, int n, int k,
@@ -282,14 +282,14 @@ VDRPrologStatus_t VDRPrologVdrGemm(
     VDRPrologSessionStream_t stream
 );
 
-// Softmax — quadratic surrogate, sum = D exactly
+// Softmax,  quadratic surrogate, sum = D exactly
 VDRPrologStatus_t VDRPrologVdrSoftmax(
     VDRPrologVdrQBasis_t qbasis,
     const void* logits, void* probs, int n,
     VDRPrologSessionStream_t stream
 );
 
-// Attention — fused QKV with exact integer softmax
+// Attention,  fused QKV with exact integer softmax
 VDRPrologStatus_t VDRPrologVdrAttention(
     VDRPrologVdrQBasis_t qbasis,
     const void* Q, const void* K, const void* V,
@@ -308,7 +308,7 @@ VDRPrologStatus_t VDRPrologVdrExpSoftmax(
 
 No `cublasSgemm` / `cublasDgemm` / `cublasHgemm` / `cublasGemmEx` with their format negotiation. One function. One type parameter. One behavior.
 
-### 7.2 VDRPrologProlog — New
+### 7.2 VDRPrologProlog,  New
 
 ```c
 // Load KB subtree into device memory
@@ -341,7 +341,7 @@ VDRPrologStatus_t VDRPrologPrologFireRules(
 );
 ```
 
-### 7.3 VDRPrologPrim — 448 Builtins as Device Functions
+### 7.3 VDRPrologPrim,  448 Builtins as Device Functions
 
 ```c
 // Every pure builtin from the paper's Appendix L
@@ -353,7 +353,7 @@ __device__ VDRPrologStatus_t VDRPrologPrimListFilter(vdr_q16* data, int n, pred*
 // ... 444 more
 ```
 
-### 7.4 VDRPrologGrammar — Structural Token Generation
+### 7.4 VDRPrologGrammar,  Structural Token Generation
 
 ```c
 // Load grammar template from KB
@@ -378,23 +378,23 @@ VDRPrologStatus_t VDRPrologGrammarRender(
 
 ## 8. What's Removed from the Software Stack
 
-**cuBLAS** — replaced by `VDRPrologVdrGemm`. One function instead of hundreds of precision-variant entry points.
+**cuBLAS**,  replaced by `VDRPrologVdrGemm`. One function instead of hundreds of precision-variant entry points.
 
-**cuDNN** — replaced by `VDRPrologVdrAttention` and a handful of layer functions. No precision negotiation, no Transformer Engine switching, no mixed-precision graph optimization.
+**cuDNN**,  replaced by `VDRPrologVdrAttention` and a handful of layer functions. No precision negotiation, no Transformer Engine switching, no mixed-precision graph optimization.
 
-**cuFFT** — replaced by exact integer DFT via `VDRPrologVdrDFT`. The twiddle factors are exact VDR fractions. The roundtrip is exact (the paper validates this in Appendix H).
+**cuFFT**,  replaced by exact integer DFT via `VDRPrologVdrDFT`. The twiddle factors are exact VDR fractions. The roundtrip is exact (the paper validates this in Appendix H).
 
-**NCCL** — simplified. Multi-GPU communication sends integers. No mixed-precision reduction, no loss-scaling synchronization across nodes. Allreduce is integer addition, which is commutative and associative regardless of reduction order. Current float allreduce is non-deterministic because float addition is not associative — different reduction trees produce different results. Integer allreduce is deterministic. The distributed training determinism problem disappears.
+**NCCL**,  simplified. Multi-GPU communication sends integers. No mixed-precision reduction, no loss-scaling synchronization across nodes. Allreduce is integer addition, which is commutative and associative regardless of reduction order. Current float allreduce is non-deterministic because float addition is not associative,  different reduction trees produce different results. Integer allreduce is deterministic. The distributed training determinism problem disappears.
 
-**TensorRT** — dramatically simplified. No quantization calibration step (you're already integer). No INT8 calibration tables. No precision fallback. No layer-by-layer precision selection. The "optimization" step of TensorRT is mostly precision management. With one precision, it's just graph optimization and memory planning.
+**TensorRT**,  dramatically simplified. No quantization calibration step (you're already integer). No INT8 calibration tables. No precision fallback. No layer-by-layer precision selection. The "optimization" step of TensorRT is mostly precision management. With one precision, it's just graph optimization and memory planning.
 
-**Nsight profiling** — simplified. No mixed-precision analysis. No tensor core utilization versus CUDA core utilization breakdown (there's one core type). No SFU bottleneck detection (no SFU). Profiling is: integer throughput, memory bandwidth utilization, warp occupancy (which is always near 100% since there's no divergence), and KB cache hit rate.
+**Nsight profiling**,  simplified. No mixed-precision analysis. No tensor core utilization versus CUDA core utilization breakdown (there's one core type). No SFU bottleneck detection (no SFU). Profiling is: integer throughput, memory bandwidth utilization, warp occupancy (which is always near 100% since there's no divergence), and KB cache hit rate.
 
 ---
 
 ## 9. Migration Path
 
-Phase 1: VDRProlog library runs on existing H100 hardware using the INT8 tensor core path. Performance is 2× FP16 on existing silicon because you're using the fast integer datapath that's already there, and skipping everything else. This works today — the I-ViT and I-BERT papers already demonstrated it.
+Phase 1: VDRProlog library runs on existing H100 hardware using the INT8 tensor core path. Performance is 2× FP16 on existing silicon because you're using the fast integer datapath that's already there, and skipping everything else. This works today,  the I-ViT and I-BERT papers already demonstrated it.
 
 Phase 2: Next-generation GPU removes SFUs and float tensor cores. The freed die area becomes more integer ALUs and larger on-chip SRAM for KB caching. Performance jump from increased integer unit count on same die area.
 

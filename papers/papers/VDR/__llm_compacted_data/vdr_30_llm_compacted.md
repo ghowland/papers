@@ -1,10 +1,10 @@
-# HOWL-VDR-30-2026 — LLM-COMPACT FORM
+# HOWL-VDR-30-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → vdr_foundation → hardware → token_reduction → compound_economics → float_wall → new_capabilities → adoption → limitations → industry_position
 
 # principles(id|principle|rationale)
 P1|VDR triple [V,D,R] represents exact rational (V+R)/D|R is exact residual within D frame, not error; closed=R is 0, active=R≠0
-P2|divmod splits results: Q=product>>bits, S=product&mask|when D is power-of-two, integer division is shift+mask — cheapest operations on any processor
+P2|divmod splits results: Q=product>>bits, S=product&mask|when D is power-of-two, integer division is shift+mask,  cheapest operations on any processor
 P3|V+R always equals exact integer numerator|no operation discards information; chain length irrelevant to error
 P4|D is power-of-two matching hardware register widths|D=2^8 weights, D=2^16 activations, D=2^64 gradients; exactness holds at any D
 P5|884 tests across 37 domains, zero VDR computation errors|14 test failures all traced to test-design errors, not arithmetic
@@ -12,10 +12,10 @@ P6|three independent cost axes multiply: per-token speedup × token reduction ×
 
 # hardware_specs(id|unit|throughput_ops_SM_cycle|role)
 HW1|FP16 Tensor Cores|512|current ML matrix multiply
-HW2|INT8 Tensor Cores|1024|VDR matrix multiply — 2× FP16 rate
+HW2|INT8 Tensor Cores|1024|VDR matrix multiply,  2× FP16 rate
 HW3|FP32 CUDA cores|128|current general float ops
 HW4|INT32 CUDA cores|64|VDR general integer ops
-HW5|Special Function Unit (SFU)|32|exp, log, rsqrt, sin, cos, division — 1/16 FP16 tensor rate; bottleneck for all float transcendentals
+HW5|Special Function Unit (SFU)|32|exp, log, rsqrt, sin, cos, division,  1/16 FP16 tensor rate; bottleneck for all float transcendentals
 
 # operations_gpu(id|operation|float_method|vdr_method|vdr_speedup|notes)
 OP1|GEMM|FP16 tensor 512 ops/SM/cyc, FP32 accum (rounds)|INT8 tensor 1024 ops/SM/cyc, INT32 accum (exact) + shift+mask epilogue|1.6-1.8×|2× raw hardware offset by kernel maturity gap (75-85% vs 85-95% util)
@@ -45,11 +45,11 @@ FW9|residual add (×2)|0.002|0.003|0.7×
 FW10|full forward pass (32 layers + embed/head)|~110 ms|~55 ms|~2×
 
 # token_categories(id|category|description|vdr_replacement)
-TC1|arithmetic as text|model writes calculations, carries digits, sometimes wrong|integer ALU — nanoseconds, exact
-TC2|state reconstruction|each turn re-reads entire conversation history through attention|KB addresses — O(1) access, independent of history length
-TC3|data serialization|JSON, markdown tables, formatted text; braces/brackets/commas/field names|KB facts at integer addresses — zero tokens
-TC4|deductive reasoning as prose|"if A and B then C, since we established A..."|Prolog engine — depth-first search with backtracking, microseconds, deterministic
-TC5|hedging and safety language|"it's important to note...", "please consult a professional..."|structural safety — zero LLM tokens
+TC1|arithmetic as text|model writes calculations, carries digits, sometimes wrong|integer ALU,  nanoseconds, exact
+TC2|state reconstruction|each turn re-reads entire conversation history through attention|KB addresses,  O(1) access, independent of history length
+TC3|data serialization|JSON, markdown tables, formatted text; braces/brackets/commas/field names|KB facts at integer addresses,  zero tokens
+TC4|deductive reasoning as prose|"if A and B then C, since we established A..."|Prolog engine,  depth-first search with backtracking, microseconds, deterministic
+TC5|hedging and safety language|"it's important to note...", "please consult a professional..."|structural safety,  zero LLM tokens
 TC6|formatting and presentation|headers, bullets, code blocks, emphasis|grammars provide structural tokens at zero LLM cost, 100% correct
 
 # vdr_architecture_components(id|component|function|token_impact)
@@ -60,7 +60,7 @@ AC4|grammars|declare fixed output structure with typed content slots; structural
 AC5|scoped sessions with snapshot/clone|state captured atomically, cloned for parallel exploration, killed when stale; state persists in KBs across turns|LLM reads current state from KB, not history re-read
 
 # llm_role_under_vdr(id|role|description)
-LR1|orchestration|reads KB facts, decides next action, selects builtins/Prolog queries, interprets results — pure judgment
+LR1|orchestration|reads KB facts, decides next action, selects builtins/Prolog queries, interprets results,  pure judgment
 LR2|prose generation|natural language for explanations, summaries, recommendations, creative writing; fills grammar content slots or generates freely
 LR3|novel rule creation|formalizes recognized patterns as Prolog rules stored in KB; rule executes at zero token cost on all future encounters; system improves with use
 
@@ -95,7 +95,7 @@ SC5|100|5,050|100|50.5:1
 CE1|token reduction|25,100 → 769 tokens (SRE example)
 CE2|per-token speedup|~2× from INT8 tensor cores; $0.85 → $0.42
 CE3|scaling over session|linear vs quadratic over multi-turn
-CE4|SRE end-to-end result|$0.39 vs $27.58 — factor 71×
+CE4|SRE end-to-end result|$0.39 vs $27.58,  factor 71×
 CE5|compound formula|savings = token_reduction × per_token_speedup × scaling_advantage
 
 # cost_by_task(id|task|conventional_pct|vdr_pct|factor)
@@ -136,11 +136,11 @@ FE7|non-deterministic test infrastructure|cannot write deterministic tests; nois
 FE8|safety/alignment tax|hedging language, safety disclaimers, refusal reasoning in every response
 
 # new_capabilities(id|capability|description|why_float_cannot)
-NC1|deterministic LLM applications|regulatory compliance, automated testing, cached inference, audit trails — same input same output every time on any hardware|float non-determinism is mathematical, not engineering
-NC2|long-form generative media|feature-length video, continuous livestream, multi-day simulation — unlimited chain length, zero drift, zero correction|float drift intrinsic; correction passes introduce discontinuities
+NC1|deterministic LLM applications|regulatory compliance, automated testing, cached inference, audit trails,  same input same output every time on any hardware|float non-determinism is mathematical, not engineering
+NC2|long-form generative media|feature-length video, continuous livestream, multi-day simulation,  unlimited chain length, zero drift, zero correction|float drift intrinsic; correction passes introduce discontinuities
 NC3|LLM software (sessions as applications)|snapshot+clone sessions as running applications; 3 execution levels: L1 (full LLM 50-500 tok/op), L2 (LLM invokes Prolog 8 tok), L3 (pure Prolog batch 0 tok)|requires exact state, deterministic logic, addressed data, structural safety
 NC4|LLM server software|protocol grammars (HTTP, SMTP, DNS, MQTT, SSH, 30+); clone-per-connection isolation; Prolog request processing|structural security: no SQL injection vector, no XSS (grammar safe by construction), no float drift in financial values
-NC5|structural safety|KB visibility (integer comparison) + scope chain (ancestor walk) filter before LLM involvement; session identity set at authentication; 3 independent layers must all fail|replaces RLHF, red teaming, prompt injection defense, output filtering, jailbreak patching — ongoing costs that scale with usage
+NC5|structural safety|KB visibility (integer comparison) + scope chain (ancestor walk) filter before LLM involvement; session identity set at authentication; 3 independent layers must all fail|replaces RLHF, red teaming, prompt injection defense, output filtering, jailbreak patching,  ongoing costs that scale with usage
 
 # execution_levels(id|level|description|tokens_per_op|notes)
 EL1|L1|full LLM judgment|50-500|investigation 1 at a new task
@@ -177,9 +177,9 @@ RA2|don't investigate VDR|competitor deploys VDR at 2-5% cost; your GPU infrastr
 
 # limitations(id|limitation|description)
 LM1|model quality unchanged|VDR makes arithmetic exact, not models smarter; poor judgments produced exactly
-LM2|creative tasks minimal token reduction|poetry, fiction, open conversation — every token is judgment; per-token speedup still applies
+LM2|creative tasks minimal token reduction|poetry, fiction, open conversation,  every token is judgment; per-token speedup still applies
 LM3|kernel maturity gap|75-85% util vs cuBLAS 85-95%; 12-18 months to close; projections are net of gap
-LM4|ecosystem cost|new operator libraries, model conversion, debugging, deployment — multi-year engineering
+LM4|ecosystem cost|new operator libraries, model conversion, debugging, deployment,  multi-year engineering
 LM5|projections are conservative|assume first-gen kernels; systems improve with use as Prolog rules accumulate; 30× blended is lower bound
 
 # industry_trajectory(id|direction|float_impact|vdr_impact)
@@ -290,16 +290,16 @@ B|Cross-References to VDR Paper Series|—
 # basis shorthand: Q8=D=2^8, Q16=D=2^16, Q64=D=2^64, Q335=D=2^335
 # closed: R=0; active: R≠0
 # divmod: integer division + modulo; reduces to shift+mask when D is power-of-two
-# SFU: Special Function Unit — GPU hardware for transcendentals, 32 ops/SM/cycle on H100, 1/16 tensor core rate
+# SFU: Special Function Unit,  GPU hardware for transcendentals, 32 ops/SM/cycle on H100, 1/16 tensor core rate
 # Barrett reduction: integer division via precomputed multiplicative inverse (multiply + shift)
-# ULP: unit in last place — least significant bit magnitude of float mantissa
+# ULP: unit in last place,  least significant bit magnitude of float mantissa
 # throughput units: ops/SM/cycle (GPU), ms (latency), tok/s (inference throughput)
 # utilization: fraction of peak hardware throughput achieved by kernel
 # TOPS: tera integer operations/second; TFLOPS: tera float operations/second
-# KB: knowledge base — scoped storage at integer addresses
+# KB: knowledge base,  scoped storage at integer addresses
 # builtin: typed deterministic primitive invoked by LLM (~8 tokens per invocation)
 # grammar: structural template providing fixed output tokens with typed content slots
-# IOSE: Input, Output, Side Effects, Properties — declaration model for every VDR component
+# IOSE: Input, Output, Side Effects, Properties,  declaration model for every VDR component
 # execution levels: L1 (full LLM), L2 (LLM+Prolog), L3 (pure Prolog)
 # token reduction %: fraction of conventional tokens eliminated by deterministic components
 # cost factor: conventional_cost / vdr_cost

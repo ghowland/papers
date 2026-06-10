@@ -1,4 +1,4 @@
-# VDR-26 DIFFUSION ZERO-DRIFT — LLM-COMPACT FORM
+# VDR-26 DIFFUSION ZERO-DRIFT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → schedule → forward → reverse → drift → test_results → relationships → sections
 
@@ -45,7 +45,7 @@ FP3|Coefficient identity residual < 10^-20|Energy conservation to 5 orders tight
 FP4|Trajectory has T+1 entries, starts exactly at x₀|Identity comparison, not tolerance|Test 12
 
 # reverse_properties(id|property|verification|test)
-RP1|x₀ prediction error with perfect noise = 0|Exactly zero — division-subtraction perfectly inverts multiply-add|Test 13
+RP1|x₀ prediction error with perfect noise = 0|Exactly zero,  division-subtraction perfectly inverts multiply-add|Test 13
 RP2|Posterior mean correct dimension|Direct verification|Test 14
 RP3|Reverse step preserves dimension|Direct verification|Test 15
 RP4|All posterior variances closed positive rationals|No negative, no zero interior, no NaN, no overflow|Test 23

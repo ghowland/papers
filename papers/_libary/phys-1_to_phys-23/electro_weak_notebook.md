@@ -29,7 +29,7 @@ RESULT 2: PARAMETER EXTRACTIONS
   Two extractions agree:   Δ = 3.9e-05
 
   α_s from R_l:            0.10425276  (input: 0.11800000, Δ = -1.3747e-02)
-  (12% low — expected missing b-quark vertex correction)
+  (12% low,  expected missing b-quark vertex correction)
 
 RESULT 3: KEY NUMBERS FOR DATA-2 EXTENSION
 ------------------------------------------------------------------------
@@ -76,7 +76,7 @@ RESULT 4: INTEGER ANATOMY
   Measured content: G_F, M_Z, α⁻¹, sin²θ_W, α_s, m_t, m_H
   These 7 values are the ONLY non-integer input.
 
-RESULT 5: MISSING CORRECTIONS — WHY RESIDUALS EXIST
+RESULT 5: MISSING CORRECTIONS,  WHY RESIDUALS EXIST
 ------------------------------------------------------------------------
 
   Observable       Residual              Dominant missing correction
@@ -110,7 +110,7 @@ RESULT 6: DECISIONS
     more integers of the same kind from the same gauge group.
     Compare: PHYS-5 (gap ratio), PHYS-6 (confinement wall), PHYS-9
     (g-2 decomposition) each produced a FINDING. One-loop EW would
-    confirm 'the SM works at one-loop' — already known.
+    confirm 'the SM works at one-loop',  already known.
 
   OPEN PATHS from this computation:
     - sin²θ_W from 3/8 + RG running (structural question)
@@ -140,5 +140,5 @@ CHECKS
   TOTAL: 14 PASS, 0 FAIL out of 14
 
 ========================================================================
-ELECTROWEAK NOTEBOOK COMPLETE — ALL CHECKS PASS
+ELECTROWEAK NOTEBOOK COMPLETE,  ALL CHECKS PASS
 ========================================================================

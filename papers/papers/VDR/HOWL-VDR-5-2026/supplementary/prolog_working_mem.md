@@ -258,7 +258,7 @@ Fact: binding("vdr_llm_training", "attention_weights_row0",
         fraction_vec([43545600/59565131, 16019531/59565131])).
 ```
 
-These are not model parameters stored for inference. These are working values stored for conversation — so when we are discussing training results, the system has the exact values in scope, not approximations reconstructed from context tokens. "What was the loss at step 1?" is answered from the binding, not from scrolling back through conversation history.
+These are not model parameters stored for inference. These are working values stored for conversation,  so when we are discussing training results, the system has the exact values in scope, not approximations reconstructed from context tokens. "What was the loss at step 1?" is answered from the binding, not from scrolling back through conversation history.
 
 ### The Integration With Topics and Constraints
 

@@ -12,47 +12,47 @@ From the analysis, the rewrite needs to:
 6. Error reporting via status buffer, not return codes
 7. Keep LLM forward pass, parallel unification scan, and math builtins on GPU
 
-The data types, memory layout, session model, safety model, invariants, and host-side orchestration (Sections 3, 4.1, 4.2, 5, 7-18) remain unchanged — only Section 4.3 (shared memory), Section 6 (device engines), and the bridge layer need rewriting.
+The data types, memory layout, session model, safety model, invariants, and host-side orchestration (Sections 3, 4.1, 4.2, 5, 7-18) remain unchanged,  only Section 4.3 (shared memory), Section 6 (device engines), and the bridge layer need rewriting.
 
-One question before I write: the spec references "VDRProlog Hardware Layer" as a custom silicon concept (integer ALUs, KB Cache, FRU, Warp Scheduler). Should the rewrite target **commodity Vulkan GPU hardware** (T4, L4, H100 — what you'd actually run on GCP today), or should it preserve the aspirational custom hardware path alongside? I'll assume commodity Vulkan as the primary target with a note about future custom silicon, since that's what you're actually building toward with this project. Agree?
+One question before I write: the spec references "VDRProlog Hardware Layer" as a custom silicon concept (integer ALUs, KB Cache, FRU, Warp Scheduler). Should the rewrite target **commodity Vulkan GPU hardware** (T4, L4, H100,  what you'd actually run on GCP today), or should it preserve the aspirational custom hardware path alongside? I'll assume commodity Vulkan as the primary target with a note about future custom silicon, since that's what you're actually building toward with this project. Agree?
 
-Actually — you said write it, so I'll proceed with commodity Vulkan as primary, custom silicon as noted future path.
+Actually,  you said write it, so I'll proceed with commodity Vulkan as primary, custom silicon as noted future path.
 
 ---
 
-# Section 4.3 — Shared Memory Usage (Per Workgroup) — REVISED
+# Section 4.3,  Shared Memory Usage (Per Workgroup),  REVISED
 
 ```
 // ============================================================
 // Shared Memory: sized for Vulkan minimum (32 KB guaranteed).
-// Larger allocations available on H100 (228 KB) — detected at
+// Larger allocations available on H100 (228 KB),  detected at
 // runtime via vkGetPhysicalDeviceProperties.maxComputeSharedMemorySize.
 // Kernels declare their shared memory need. Host selects variant.
 // ============================================================
 
 // Baseline profile: 32 KB (all Vulkan 1.2 devices)
 struct vlp_shared_baseline {
-    // Softmax accumulator — one head's attention scores
+    // Softmax accumulator,  one head's attention scores
     softmax_scratch: [2048]i32,     // 2048 × 4 bytes = 8 KB
     // Covers seq_len up to 2048 per dispatch. Longer sequences
     // require multiple dispatches with host-side accumulation.
 
-    // Fact scan cache — for parallel unification
+    // Fact scan cache,  for parallel unification
     fact_cache: [256]vlp_fact,      // 256 facts × 40 bytes = 10 KB
     // One warp scans 32 facts simultaneously. 8 warps = 256 facts.
 
-    // Unification stack — iterative Prolog, per-invocation
+    // Unification stack,  iterative Prolog, per-invocation
     // NOT in shared memory. In per-invocation private storage or
     // in a storage buffer region indexed by global_invocation_id.
     // Shared memory is for data shared ACROSS invocations in a workgroup.
 
-    // Reduction scratch — for parallel reductions (sum, max, argmax)
+    // Reduction scratch,  for parallel reductions (sum, max, argmax)
     reduction_scratch: [1024]i32,   // 1024 × 4 bytes = 4 KB
 
-    // Binding results — unification outputs from parallel scan
+    // Binding results,  unification outputs from parallel scan
     binding_results: [128]vlp_binding, // 128 × 8 bytes = 1 KB
 
-    // Workgroup status — error codes, match counts
+    // Workgroup status,  error codes, match counts
     status: [256]i32,               // 256 × 4 bytes = 1 KB
 
     // Total: 24 KB. Within 32 KB budget. 8 KB headroom.
@@ -60,7 +60,7 @@ struct vlp_shared_baseline {
 
 // Extended profile: 64 KB (most discrete GPUs)
 struct vlp_shared_extended {
-    softmax_scratch: [4096]i32,     // 16 KB — seq_len up to 4096
+    softmax_scratch: [4096]i32,     // 16 KB,  seq_len up to 4096
     fact_cache: [512]vlp_fact,      // 20 KB
     reduction_scratch: [2048]i32,   // 8 KB
     binding_results: [256]vlp_binding, // 2 KB
@@ -76,7 +76,7 @@ struct vlp_shared_extended {
 
 ---
 
-# Section 6 — Device Engines — REVISED
+# Section 6,  Device Engines,  REVISED
 
 The device side is restructured into **compute kernels** dispatched by the host. No engine has autonomous control flow on GPU. The host orchestrates all sequencing. The GPU executes parallel work items.
 
@@ -136,28 +136,28 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // This minimizes descriptor set updates between dispatches.
 // ============================================================
 
-// Set 0 — Model (read-only)
+// Set 0,  Model (read-only)
 // binding 0: embedding_table      [vocab_size × d_model] vlp_q16
 // binding 1: layer_weights        [n_layers × layer_stride] vlp_q16
 // binding 2: lm_head              [vocab_size × d_model] vlp_q16
 // binding 3: layer_norm_params    [n_layers × 2 × d_model] vlp_q16
 
-// Set 1 — KB Data (read-write, per session)
+// Set 1,  KB Data (read-write, per session)
 // binding 0: kb_store             [max_kbs × 256] bytes (vlp_kb array)
 // binding 1: fact_store           [max_facts × 40] bytes (vlp_fact array)
 // binding 2: rule_store           [max_rules × 44] bytes (vlp_rule array)
 // binding 3: term_store           [max_terms × 24] bytes (vlp_term array)
 // binding 4: live_state           [session_live_size] bytes
 
-// Set 2 — Scratch (read-write, per dispatch)
+// Set 2,  Scratch (read-write, per dispatch)
 // binding 0: scratch_a            [scratch_size] bytes
 // binding 1: scratch_b            [scratch_size] bytes
 // binding 2: kv_cache             [kv_cache_size] bytes
 
-// Set 3 — Control (read-write, per dispatch)
+// Set 3,  Control (read-write, per dispatch)
 // binding 0: dispatch_params      uniform buffer, kernel-specific parameters
 // binding 1: status_buffer        [max_invocations] i32
-// binding 2: result_counts        [small] i32 — atomic counters for results
+// binding 2: result_counts        [small] i32,  atomic counters for results
 ```
 
 ## 6.2 LLM Kernels
@@ -220,7 +220,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //      Intermediate: i64 to hold i32 × i32 product.
 //   4. Compute inverse sqrt of variance via integer Newton-Raphson.
 //      Iterative. 4 iterations gives exact Q16 result for typical ranges.
-//      No recursion — fixed iteration count.
+//      No recursion,  fixed iteration count.
 //   5. Apply: output[i] = gamma[i] * (input[i] - mean) * inv_sqrt + beta[i]
 //      All integer multiply + shift.
 
@@ -234,7 +234,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // Inputs:
 //   dispatch_params: n_tokens, d_model, n_heads, d_head, layer_idx
-//   Set 0 binding 1: layer_weights (read) — QKV weight subregion
+//   Set 0 binding 1: layer_weights (read),  QKV weight subregion
 //   Set 2 binding 0: input (read)
 // Outputs:
 //   Set 2 binding 1: qkv_output [n_tokens × 3 × n_heads × d_head] vlp_q16 (write)
@@ -255,8 +255,8 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // Inputs:
 //   dispatch_params: n_tokens, n_heads, d_head, seq_len, scale_v (attention scale as Q16)
-//   Set 2 binding 1: qkv (read) — Q and K subregions
-//   Set 2 binding 2: kv_cache (read) — previous K values
+//   Set 2 binding 1: qkv (read),  Q and K subregions
+//   Set 2 binding 2: kv_cache (read),  previous K values
 // Outputs:
 //   Set 2 binding 0: attention_scores [n_heads × n_tokens × seq_len] i32 (write)
 //
@@ -308,8 +308,8 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // Inputs:
 //   dispatch_params: n_tokens, n_heads, d_head, seq_len
 //   Set 2 binding 0: attention_probs (read)
-//   Set 2 binding 1: qkv (read) — V subregion
-//   Set 2 binding 2: kv_cache (read) — previous V values
+//   Set 2 binding 1: qkv (read),  V subregion
+//   Set 2 binding 2: kv_cache (read),  previous V values
 // Outputs:
 //   Set 2 binding 0: attn_output [n_tokens × n_heads × d_head] vlp_q16 (write)
 //
@@ -364,7 +364,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // Pure scatter write. O(1) per element. No search.
 
 // ============================================================
-// LLM Forward Pass — Host Orchestration
+// LLM Forward Pass,  Host Orchestration
 // ============================================================
 //
 // The host dispatches kernels in sequence for one forward pass:
@@ -387,11 +387,11 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // All dispatches on the same Vulkan command buffer.
 // Pipeline barriers between dependent steps.
-// No host round-trip between layers — entire forward pass is
+// No host round-trip between layers,  entire forward pass is
 // one command buffer submission.
 //
 // Host reads back logits after final dispatch + fence wait.
-// Sampling (argmax, top-k, top-p) is host-side — it's a single
+// Sampling (argmax, top-k, top-p) is host-side,  it's a single
 // scan over vocab_size integers. Not worth a GPU dispatch.
 ```
 
@@ -429,11 +429,11 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // Inputs:
 //   dispatch_params.n_facts: i32
-//   dispatch_params.base_offset: i32 — starting offset in fact store
+//   dispatch_params.base_offset: i32,  starting offset in fact store
 //   Set 2 binding 0: facts_to_write [n_facts] vlp_fact (read)
-//   Set 2 binding 1: slot_ids [n_facts] i32 (read) — target slot indices
+//   Set 2 binding 1: slot_ids [n_facts] i32 (read),  target slot indices
 // Outputs:
-//   Set 1 binding 1: fact_store (write) — at computed offsets
+//   Set 1 binding 1: fact_store (write),  at computed offsets
 //   Set 3 binding 1: status_buffer (write)
 //
 // Algorithm:
@@ -453,7 +453,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // Inputs:
 //   dispatch_params.n_reads: i32
-//   Set 2 binding 0: read_offsets [n_reads] i32 (read) — absolute offsets
+//   Set 2 binding 0: read_offsets [n_reads] i32 (read),  absolute offsets
 // Outputs:
 //   Set 2 binding 1: facts_out [n_reads] vlp_fact (write)
 //
@@ -470,13 +470,13 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // Dispatch: (scan_length, 1, 1), local_size (256, 1, 1)
 //
 // Inputs:
-//   dispatch_params.base_offset: i32  — KB's facts_offset
-//   dispatch_params.scan_length: i32  — KB's facts_count
-//   dispatch_params.target_tag: i32   — vlp_fact_tag to match
+//   dispatch_params.base_offset: i32 ,  KB's facts_offset
+//   dispatch_params.scan_length: i32 ,  KB's facts_count
+//   dispatch_params.target_tag: i32  ,  vlp_fact_tag to match
 //   dispatch_params.max_results: i32
 // Outputs:
 //   Set 2 binding 0: matching_indices [max_results] i32 (write)
-//   Set 3 binding 2: result_counts [1] i32 (atomic write) — number of matches
+//   Set 3 binding 2: result_counts [1] i32 (atomic write),  number of matches
 //
 // Algorithm:
 //   gid = global_invocation_id.x
@@ -506,7 +506,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   dispatch_params.max_results: i32
 //   Set 2 binding 0: chain_table [n_chain_entries × 3] i32 (read)
 //     Each entry: (kb_id, facts_offset, facts_count)
-//     Sorted by priority (deepest first — lexical scoping).
+//     Sorted by priority (deepest first,  lexical scoping).
 //   Set 2 binding 1: scan_offsets [total_facts] i32 (read)
 //     Pre-computed by host: absolute fact_store offset for each fact
 //     to scan, ordered by chain priority.
@@ -545,10 +545,10 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 // Inputs:
 //   dispatch_params.n_candidates: i32
-//   dispatch_params.query_term_offset: i32  — offset into term_store
+//   dispatch_params.query_term_offset: i32 ,  offset into term_store
 //   dispatch_params.query_term_type: i32
-//   dispatch_params.query_atom_id: i32      — for ATOM queries
-//   dispatch_params.query_functor_id: i32   — for COMPOUND queries
+//   dispatch_params.query_atom_id: i32     ,  for ATOM queries
+//   dispatch_params.query_functor_id: i32  ,  for COMPOUND queries
 //   dispatch_params.query_args_count: i32
 //   Set 2 binding 0: candidate_offsets [n_candidates] i32 (read)
 //     Absolute offsets into fact_store for each candidate.
@@ -557,7 +557,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //     Per candidate: 1 = unified, 0 = failed
 //   Set 2 binding 0: bindings_out [n_candidates × max_bindings_per] vlp_binding (write)
 //     Bindings produced by each successful unification.
-//   Set 3 binding 2: result_counts [1] i32 (atomic) — number of successes
+//   Set 3 binding 2: result_counts [1] i32 (atomic),  number of successes
 //
 // Algorithm per invocation (ITERATIVE, not recursive):
 //   gid = global_invocation_id.x
@@ -565,7 +565,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //
 //   candidate = fact_store[candidate_offsets[gid]]
 //
-//   // Flat unification — no recursion.
+//   // Flat unification,  no recursion.
 //   // Handles the common cases that cover ~95% of Prolog queries:
 //   //   ATOM-ATOM: compare atom_id (integer equality)
 //   //   VARIABLE-anything: always succeeds, produces binding
@@ -660,7 +660,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   Set 2 binding 1: body_eval_results (read)
 // Outputs:
 //   Set 2 binding 0: firing_rule_ids [max_fires] i32 (write)
-//   Set 3 binding 2: result_counts [1] i32 (atomic) — number of firing rules
+//   Set 3 binding 2: result_counts [1] i32 (atomic),  number of firing rules
 //
 // Algorithm per invocation:
 //   gid = global_invocation_id.x
@@ -675,7 +675,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //     if (idx < max_fires): firing_rule_ids[idx] = matched_rule_ids[gid]
 
 // ============================================================
-// Prolog Query — Host Orchestration
+// Prolog Query,  Host Orchestration
 // ============================================================
 //
 // The host drives the Prolog search:
@@ -692,7 +692,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   6. Collect bindings from successful unifications.
 //   7. If depth > 0 and unresolved sub-goals remain:
 //      Build new candidate set for sub-goal, goto 4.
-//      This is the backtracking loop — iterative on host.
+//      This is the backtracking loop,  iterative on host.
 //      Each iteration dispatches parallel GPU work.
 //   8. Enforce depth limit (default 100 iterations of this loop).
 //   9. Return collected bindings to caller.
@@ -702,7 +702,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // For typical queries: depth 3-5, candidates 50-500.
 // GPU parallelism pays off when candidates > ~32 (one warp).
 // For tiny queries (< 32 candidates), host can run unification
-// directly — same integer algorithm, just on CPU.
+// directly,  same integer algorithm, just on CPU.
 ```
 
 ## 6.5 Math Builtin Kernels
@@ -720,7 +720,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   abs, negate, sign, complement, clz, ctz, popcount, etc.
 //   One kernel handles all: dispatch_params.op_code selects operation.
 //   Dispatch: (n_elements, 1, 1), local_size (256, 1, 1)
-//   switch(op_code) in kernel — static branching, no function pointers.
+//   switch(op_code) in kernel,  static branching, no function pointers.
 
 // Group 2: Element-wise binary operations (40 builtins)
 //   add, sub, mul, div, mod, min, max, gcd, lcm, and, or, xor, etc.
@@ -756,7 +756,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   These are the VDR arithmetic foundation operations.
 
 // ============================================================
-// Builtin Dispatch — Host Side
+// Builtin Dispatch,  Host Side
 // ============================================================
 //
 // Host maintains: builtin_dispatch_table[448] → pipeline_handle
@@ -784,7 +784,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 // staging buffer copies, but their logic is CPU-side.
 // ============================================================
 
-// Grammar Engine — HOST ONLY
+// Grammar Engine,  HOST ONLY
 //   Reason: serial text manipulation (template walking, string
 //   concatenation, integer-to-ASCII conversion). Wrong workload
 //   for GPU. Typical render time: microseconds on CPU.
@@ -793,14 +793,14 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   session output buffer (host memory).
 //   Functions unchanged from original spec Section 6.4.
 
-// Path Index — HOST ONLY
+// Path Index,  HOST ONLY
 //   Reason: hash map with variable-length string keys.
 //   Host maintains the hash map in host memory.
 //   On KB creation: host inserts (path_hash, kb_id).
 //   On path resolution: host looks up kb_id from dotted path string.
-//   GPU never sees dotted path strings — only integer kb_id values.
+//   GPU never sees dotted path strings,  only integer kb_id values.
 
-// COW Page Management — HOST ONLY
+// COW Page Management,  HOST ONLY
 //   Reason: page table manipulation, fault handling, and merge
 //   are inherently serial control-flow operations.
 //   Host tracks which pages are shared vs private per clone.
@@ -809,29 +809,29 @@ The device side is restructured into **compute kernels** dispatched by the host.
 //   retries the write. The write itself may be a GPU kernel dispatch,
 //   but the COW fault handling is host logic.
 
-// Access Control — HOST ONLY
+// Access Control,  HOST ONLY
 //   Reason: KB tree walk with branching visibility checks.
 //   Typically 3-10 integer comparisons. Nanoseconds on CPU.
 //   Not worth a GPU dispatch.
 
-// Grant Checking — HOST ONLY
+// Grant Checking,  HOST ONLY
 //   Reason: index lookup + integer comparisons + atomic decrement.
 //   The grant store CAN be in GPU memory (for grants checked during
 //   GPU-side rule firing). But the check logic is simple enough
 //   that host-side checking before dispatch is preferred.
 //   The atomic decrement of remaining_uses happens on host.
 
-// Audit Log — HOST ONLY for writes, GPU READABLE
+// Audit Log,  HOST ONLY for writes, GPU READABLE
 //   Reason: append-only ring buffer writes are serial.
 //   Host writes audit entries. GPU can read audit entries for
 //   builtins that query audit history (if any).
 
-// Command Parsing — HOST ONLY
+// Command Parsing,  HOST ONLY
 //   Reason: token stream parsing with branching. Serial.
 //   Host parses command tokens into vlp_command struct.
 //   Then dispatches appropriate GPU kernel if needed.
 
-// Sampling (argmax, top-k, top-p) — HOST ONLY
+// Sampling (argmax, top-k, top-p),  HOST ONLY
 //   Reason: single scan over vocab_size integers.
 //   At vocab_size 32K: ~128 KB of data. CPU scans this in
 //   microseconds. Not worth GPU dispatch overhead.
@@ -841,7 +841,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 
 ---
 
-# Section 6.7 — Host-Device Bridge (vlp_bridge)
+# Section 6.7,  Host-Device Bridge (vlp_bridge)
 
 ```
 // ============================================================
@@ -851,7 +851,7 @@ The device side is restructured into **compute kernels** dispatched by the host.
 
 struct vlp_bridge {
     device: VulkanDevice,
-    // Pipeline cache — all compute pipelines created at init
+    // Pipeline cache,  all compute pipelines created at init
     llm_pipelines: vlp_llm_pipeline_set,       // ~12 kernel pipelines
     kb_pipelines: vlp_kb_pipeline_set,          // ~4 kernel pipelines
     prolog_pipelines: vlp_prolog_pipeline_set,  // ~4 kernel pipelines
@@ -912,7 +912,7 @@ vlp_bridge_should_use_gpu(operation: vlp_operation_type, data_size: i32) -> bool
 
 ---
 
-# Section 6.8 — Invariants — REVISED additions
+# Section 6.8,  Invariants,  REVISED additions
 
 ```
 // Additional invariants for the GPU compute model:

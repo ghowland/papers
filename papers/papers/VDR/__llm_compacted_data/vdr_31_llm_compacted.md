@@ -1,4 +1,4 @@
-# HOWL-VDR-31-2026 — LLM-COMPACT FORM
+# HOWL-VDR-31-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → model_arch → denominator_problem → basis_aware_ops → surrogate_softmax → training_results → verification → precision → scaling → comparisons
 
@@ -6,7 +6,7 @@
 P1|VDR triple [V,D,R]: value is (V+R)/D; R=0 closed, R≠0 active|remainder is exact residual not error; R can be recursive tree of child VDR triples
 P2|fixed-frame rule: D never explodes; divmod keeps D fixed, overflow goes to R|product>>bits=Q, product&mask=S; one shift one mask on power-of-two D
 P3|precision floor at D=2^32 is 1/2^32 ≈ 2.33×10⁻¹⁰|worst-case error per op is half grid spacing; configurable by choosing larger D
-P4|D=2^32 chosen for toy model: 9.6 decimal digits, V×V product fits 64 bits|divmod is 32-bit right shift — one instruction; sits between float32 (7.2 digits) and float64 (15.9 digits)
+P4|D=2^32 chosen for toy model: 9.6 decimal digits, V×V product fits 64 bits|divmod is 32-bit right shift,  one instruction; sits between float32 (7.2 digits) and float64 (15.9 digits)
 
 # denominator_growth_problem(id|source|mechanism|growth_rate)
 DG1|core arithmetic operators (+,-,×,÷)|cross-multiplication D1×D2 for different-D operands|×: doubles bit length per step; 10 muls → D exceeds 10^105
@@ -68,7 +68,7 @@ MA6|Wo projection|4×4 + bias 4|20|
 MA7|FFN layer 1|8×4 + bias 8|40|hidden dim 8, ReLU activation
 MA8|FFN layer 2|4×8 + bias 4|36|
 MA9|output head|5×4 + bias 5|25|projects to vocab size
-# total: 217 VDR values (181 trainable parameters reported by parameters() — excludes 36 embedding elements)
+# total: 217 VDR values (181 trainable parameters reported by parameters(),  excludes 36 embedding elements)
 # architecture: embed → single-head causal attention → residual → FFN(ReLU) → residual → output projection → quadratic softmax
 
 # weight_initialization(id|method|details)
@@ -78,12 +78,12 @@ WI3|bit-identical across platforms|LCG is deterministic; no float-dependent init
 
 # quadratic_softmax_surrogate(id|aspect|description)
 QS1|formula|p_i = (x_i - shift)² / Σ_j (x_j - shift)²; shift = min logit
-QS2|operations|subtraction, squaring, summation, division — all exact rational in VDR; zero transcendentals
+QS2|operations|subtraction, squaring, summation, division,  all exact rational in VDR; zero transcendentals
 QS3|sum-to-one guarantee|compute first N-1 probabilities by independent division; last = 1 - sum of others; absorbs all division remainder residuals
 QS4|max residual bound|(N-1)/2^32 ≈ 9.3×10⁻¹⁰ for N=5 vocabulary
 QS5|backward pass|∂L/∂s_i = (2·s_i / Σs²) · (∂L/∂p_i - Σ_j ∂L/∂p_j · p_j); uses cached shifted values and probabilities; no exp derivative
 QS6|vs Taylor exp softmax|3 ops/element vs ~32; no series truncation error; no mixed-frame constants; broader distribution (no gradient saturation)
-QS7|nature|not an approximation of exp softmax — different normalization function satisfying same structural requirements: non-negative, sum-to-1, differentiable
+QS7|nature|not an approximation of exp softmax,  different normalization function satisfying same structural requirements: non-negative, sum-to-1, differentiable
 
 # training_config(id|parameter|value)
 TC1|loss function|MSE between softmax output and one-hot target; constants projected to basis
@@ -104,7 +104,7 @@ TRN5|20|0.225423|yes
 AT1|"the cat sat on"|the→the: 1.000; cat→(the 0.500, cat 0.500); sat→(the 0.333, cat 0.335, sat 0.332); on→(the 0.283, cat 0.527, on 0.190)|causal mask exact: future positions get exactly zero; each row sums to exactly 1
 
 # generation(id|prompt|output|notes)
-GEN1|"the cat"|the cat sat sat sat sat|model learned "sat" as most probable next token — consistent with training data
+GEN1|"the cat"|the cat sat sat sat sat|model learned "sat" as most probable next token,  consistent with training data
 
 # decoding_strategies(id|strategy|mechanism)
 DS1|greedy|exact argmax comparison
@@ -163,13 +163,13 @@ OPC14|output projection (mat-vec 5×4)|20 mul + 15 add|4|140
 DM1|every LLM pipeline operation works in fixed-D rational arithmetic|forward, backprop, attention, softmax, sampling, weight updates all demonstrated
 DM2|denominator growth solvable at operator level|basis-aware operators make frame stability automatic; model code unaware
 DM3|quadratic surrogate eliminates transcendentals from forward pass|no exp anywhere; simpler backward; natural fit for VDR
-DM4|exact determinism achievable|VT4+VT5: bit-identical across runs — structural property of integer arithmetic
+DM4|exact determinism achievable|VT4+VT5: bit-identical across runs,  structural property of integer arithmetic
 DM5|D=2^32 sufficient precision for toy scale|20 epochs, worst error 9.07×10⁻¹³, well below 10⁻⁶
 
 # limitations(id|limitation|description)
 LM1|scale|181 params, 5 tokens; production needs billions of params, 50K+ vocab; Python VDR ~50-200× float per op
 LM2|convergence quality|quadratic surrogate produces different optimization landscape than exp softmax; not compared at scale
-LM3|no layer normalization|requires rsqrt (irrational) — must approximate via Newton iteration; engineering not math obstacle
+LM3|no layer normalization|requires rsqrt (irrational),  must approximate via Newton iteration; engineering not math obstacle
 LM4|single-head attention|multi-head structurally trivial but would test D stability more thoroughly
 LM5|no hardware acceleration|all Python arbitrary-precision; production needs compiled kernels on fixed-width integers
 
@@ -194,7 +194,7 @@ SC9|suitability for VDR|functional but expensive|natural fit
 # quantization_comparison(id|property|int8_quantization|vdr_fixed_basis)
 QC1|representation|integer with float scaling factor|integer triple [V,D,R] with power-of-two D
 QC2|error tracking|quantization error discarded|remainder slot catches exact overflow
-QC3|remainder options|none — information lost|monitor, accumulate, carry, or flatten
+QC3|remainder options|none,  information lost|monitor, accumulate, carry, or flatten
 QC4|current toy model behavior|n/a|flattens remainders (like quantization) but infrastructure for exact carry exists
 
 # relationships(from|rel|to)
@@ -291,6 +291,6 @@ K|Verification Test Execution Order|VT1-VT9
 # precision floor: 1/D = smallest representable nonzero value = grid spacing
 # D growth: uncontrolled denominator expansion from cross-multiplication of different-D operands
 # Barrett reduction: integer division via precomputed multiplicative inverse
-# ULP: unit in last place — float mantissa least significant bit magnitude
+# ULP: unit in last place,  float mantissa least significant bit magnitude
 # frame sizes: Q8=D=2^8, Q16=D=2^16, Q32=D=2^32, Q64=D=2^64, Q335=D=2^335
 # rel_types: defines|prevents|configurable_via|enables|caused_by|solves|implemented_in|eliminates|ensures|simpler_than|distinct_from|component_of|requires|demonstrates|validates|demonstrated_by|motivates|extends|relates_to

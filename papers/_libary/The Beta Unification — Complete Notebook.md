@@ -1,4 +1,4 @@
-## The Beta Unification — Complete Notebook
+## The Beta Unification,  Complete Notebook
 
 **Status:** Active critical-path research. Highest-priority finding in Session 4.
 **Origin:** beta_unification_test.py, 15/15 PASS, April 2 2026
@@ -9,9 +9,9 @@
 
 ### 1. THE CLAIM
 
-Starting from ONLY particle physics constants in phys24_lib.py — the electromagnetic coupling α, the beta coefficients of SU(3)×SU(2)×U(1), and the geometric constants R₂ = π/4 and R₄ = π²/32 — with NO cosmological measurements as input, a set of six formulas predicts seven cosmological observables. All seven predictions land within 1% of the measured values, except the cosmological constant scale which spans 122 orders of magnitude and is hit to 0.2%.
+Starting from ONLY particle physics constants in phys24_lib.py,  the electromagnetic coupling α, the beta coefficients of SU(3)×SU(2)×U(1), and the geometric constants R₂ = π/4 and R₄ = π²/32,  with NO cosmological measurements as input, a set of six formulas predicts seven cosmological observables. All seven predictions land within 1% of the measured values, except the cosmological constant scale which spans 122 orders of magnitude and is hit to 0.2%.
 
-No physical derivation exists for any of the six formulas. They were found by scanning, not derived from first principles. The claim is NOT that these formulas are proven physics. The claim is that they EXIST, that they use ONLY beta-derived integers, and that they HIT measured cosmological values to precisions that require explanation — either as physics or as statistical artifacts.
+No physical derivation exists for any of the six formulas. They were found by scanning, not derived from first principles. The claim is NOT that these formulas are proven physics. The claim is that they EXIST, that they use ONLY beta-derived integers, and that they HIT measured cosmological values to precisions that require explanation,  either as physics or as statistical artifacts.
 
 ---
 
@@ -56,7 +56,7 @@ Every integer traces to the gauge group through the beta coefficient formulas. N
 
 ### 3. THE SIX FORMULAS
 
-**Formula 1a — Cosmological Constant (SM version):**
+**Formula 1a,  Cosmological Constant (SM version):**
 
 log₁₀(Λ_Planck) = 3 × 19 × log₁₀(α) = 57 × (−2.1368) = −121.80
 
@@ -64,7 +64,7 @@ Measured: −121.54. Miss: 0.26 decades (0.21% over 122 orders of magnitude).
 
 The 57 = 3 generations × 19 = |numerator of b₂_SM = −19/6|.
 
-**Formula 1b — Cosmological Constant (VL version):**
+**Formula 1b,  Cosmological Constant (VL version):**
 
 log₁₀(Λ_Planck) = 3 × 13 × log₁₀(α/(3π)) = 39 × (−3.1111) = −121.33
 
@@ -74,7 +74,7 @@ The 39 = 3 generations × 13 = |numerator of b₂_mod = −13/6|.
 
 The two versions BRACKET the measured value: −121.80 < −121.54 < −121.33. The interpolation fraction is f = 0.44 (midpoint would be 0.50). The measured Λ sits almost exactly between the SM and VL predictions.
 
-**Formula 2 — Dark Matter Ratio:**
+**Formula 2,  Dark Matter Ratio:**
 
 DM/baryon = (2 × 11 / 13) × π = (22/13)π = 5.3165
 
@@ -82,7 +82,7 @@ Measured: 5.3204. Miss: 0.07%.
 
 The 22 = 2 × Yang-Mills. The 13 = |b₂_mod numerator|. π from the circular geometry (R₂ = π/4).
 
-**Formula 3 — Per-Transit H₀ Correction:**
+**Formula 3,  Per-Transit H₀ Correction:**
 
 (1−r) = α² × π² × (20/13) = 0.00080857
 
@@ -92,7 +92,7 @@ The 20 = |3 × b₃_mod| since b₃_mod = −20/3. The 13 = |b₂_mod numerator|
 
 At N = 100 boundary transits: H₀(CMB) = 73.04 × (1 − 0.00080857)^100 = 67.364 km/s/Mpc. Measured: 67.36. Miss: 0.007%.
 
-**Formula 4 — Baryon Density:**
+**Formula 4,  Baryon Density:**
 
 Ω_b = R₄ × α × 22 = 0.3084 × 0.00730 × 22 = 0.04952
 
@@ -100,18 +100,18 @@ Measured: 0.0490. Miss: 1.05%.
 
 R₄ = π²/32 is the 4D geometric content. α is the electromagnetic coupling. 22 = 2 × 11 = twice the Yang-Mills integer. Alternatively: 22/3 = |b₂_gauge| = the gauge self-coupling contribution to SU(2).
 
-**Formula 5 — Derived Ω Chain:**
+**Formula 5,  Derived Ω Chain:**
 
 From Formulas 2 and 4:
 - Ω_DM = Ω_b × (22/13)π = 0.2632. Measured: 0.2607. Miss: 0.98%.
 - Ω_matter = Ω_b + Ω_DM = 0.3128. Measured: 0.3097. Miss: 0.99%.
 - Ω_DE = 1 − Ω_matter = 0.6872. Measured: 0.6903. Miss: 0.44%.
 
-**Formula 6 — The Exact Identity:**
+**Formula 6,  The Exact Identity:**
 
 57/39 = 19/13 = |b₂_SM_num|/|b₂_mod_num|. EXACT in Fraction arithmetic.
 
-This connects Formulas 1a and 1b: the ratio of the SM and VL cosmological constant exponents equals the ratio of their SU(2) beta numerators. This is algebraic, not numerical — it follows from the library values of b₂_SM and b₂_mod through exact Fraction cancellation.
+This connects Formulas 1a and 1b: the ratio of the SM and VL cosmological constant exponents equals the ratio of their SU(2) beta numerators. This is algebraic, not numerical,  it follows from the library values of b₂_SM and b₂_mod through exact Fraction cancellation.
 
 ---
 
@@ -175,15 +175,15 @@ R₄ = π²/32 is the volume fraction of the 4-ball in the 4-cube. It measures "
 
 Combining: Ω_b = (4D geometry) × (EM coupling) × (2 × weak self-coupling integer). The baryon density is set by the product of the electromagnetic coupling, the 4D geometric content, and a weak-force structure integer.
 
-Is there a mechanism? In standard cosmology, Ω_b is determined by Big Bang nucleosynthesis, which depends on the baryon-to-photon ratio η ≈ 6 × 10⁻¹⁰. This ratio is set by baryogenesis — the matter-antimatter asymmetry in the early universe. If baryogenesis is connected to the electroweak phase transition (which involves SU(2) gauge physics), and the baryon-to-photon ratio involves both α (photon coupling) and the SU(2) self-coupling (through sphaleron processes), then a formula of the form Ω_b ∝ α × (SU(2) integer) is not physically unreasonable. The R₄ factor could come from the 4D phase space integration over the sphaleron rate.
+Is there a mechanism? In standard cosmology, Ω_b is determined by Big Bang nucleosynthesis, which depends on the baryon-to-photon ratio η ≈ 6 × 10⁻¹⁰. This ratio is set by baryogenesis,  the matter-antimatter asymmetry in the early universe. If baryogenesis is connected to the electroweak phase transition (which involves SU(2) gauge physics), and the baryon-to-photon ratio involves both α (photon coupling) and the SU(2) self-coupling (through sphaleron processes), then a formula of the form Ω_b ∝ α × (SU(2) integer) is not physically unreasonable. The R₄ factor could come from the 4D phase space integration over the sphaleron rate.
 
 This is speculation. No derivation exists.
 
 **What would it MEAN if DM/baryon = (22/13)π?**
 
-The dark matter to baryon ratio would be a ratio of gauge-group integers (Yang-Mills to VL beta numerator) times the circular geometry constant. If dark matter is a geometric effect of the soliton boundary structure (the toroidal rotation thesis from the conceptual notebooks), the π comes from the circular/toroidal geometry. The 22/13 comes from the ratio of the gauge self-coupling integer to the modified SU(2) beta numerator — a ratio that characterizes how much the weak force changes when the Cabibbo Doublet is added.
+The dark matter to baryon ratio would be a ratio of gauge-group integers (Yang-Mills to VL beta numerator) times the circular geometry constant. If dark matter is a geometric effect of the soliton boundary structure (the toroidal rotation thesis from the conceptual notebooks), the π comes from the circular/toroidal geometry. The 22/13 comes from the ratio of the gauge self-coupling integer to the modified SU(2) beta numerator,  a ratio that characterizes how much the weak force changes when the Cabibbo Doublet is added.
 
-This would mean: the amount of "dark matter" is determined by the ratio of the weak force's self-coupling to the VL-modified running, amplified by the circular geometry of the soliton boundaries. The Cabibbo Doublet doesn't just fix unification — its modification of b₂ sets the dark matter fraction.
+This would mean: the amount of "dark matter" is determined by the ratio of the weak force's self-coupling to the VL-modified running, amplified by the circular geometry of the soliton boundaries. The Cabibbo Doublet doesn't just fix unification,  its modification of b₂ sets the dark matter fraction.
 
 **What would it MEAN if (1−r) = α²π²(20/13)?**
 
@@ -199,15 +199,15 @@ This would mean: the redshift accumulated by light crossing through a soliton bo
 
 The scan tested (22/13)π against the measured 5.3204. The target has uncertainty ±0.065 (propagated from Planck 2018 Ω_DM and Ω_b uncertainties). The miss 0.0039 is well within 1σ (0.065). The formula is consistent with the data.
 
-But IS it significant? The combinatoric scan tested ~500 rationals times π^{−1,0,1} against 8 targets = ~12,000 comparisons. Expected hits within 0.1% by chance: ~12 (12,000 × 0.001). The scan found ~3 hits within 0.1%. FEWER than expected from random, not more. This suggests the hits are NOT random — the beta integers produce fewer near-misses than random integers would, with the hits concentrated on physically meaningful targets.
+But IS it significant? The combinatoric scan tested ~500 rationals times π^{−1,0,1} against 8 targets = ~12,000 comparisons. Expected hits within 0.1% by chance: ~12 (12,000 × 0.001). The scan found ~3 hits within 0.1%. FEWER than expected from random, not more. This suggests the hits are NOT random,  the beta integers produce fewer near-misses than random integers would, with the hits concentrated on physically meaningful targets.
 
-However, the integers in the pool are not random — they are small integers with many relationships between them. Small integers produce more "accidental" hits than random large numbers. A proper statistical control would compare the beta-derived integers against random pools of the same size and range.
+However, the integers in the pool are not random,  they are small integers with many relationships between them. Small integers produce more "accidental" hits than random large numbers. A proper statistical control would compare the beta-derived integers against random pools of the same size and range.
 
 This is exactly what phys25_dm_ratio_test.py (from the QED-to-GR program tech spec) is designed to do. It has not been written or run.
 
 **Is the Ω_b hit at 1.05% significant?**
 
-The Ω_b formula (R₄ × α × 22) was not found by the original scans. It emerged in the beta unification test. It was NOT in the search space of the prior scans (which tested only rationals times R₂, R₄, and π). The formula involves a PRODUCT of three different types: a geometric constant (R₄), a measured coupling (α), and a beta-derived integer (22). The 1.05% miss is the largest in the prediction table — the weakest formula. But it chains through to produce Ω_DM at 0.98%, Ω_matter at 0.99%, and Ω_DE at 0.44% — all sub-percent.
+The Ω_b formula (R₄ × α × 22) was not found by the original scans. It emerged in the beta unification test. It was NOT in the search space of the prior scans (which tested only rationals times R₂, R₄, and π). The formula involves a PRODUCT of three different types: a geometric constant (R₄), a measured coupling (α), and a beta-derived integer (22). The 1.05% miss is the largest in the prediction table,  the weakest formula. But it chains through to produce Ω_DM at 0.98%, Ω_matter at 0.99%, and Ω_DE at 0.44%,  all sub-percent.
 
 The alternative formula from the combinatoric scan, Ω_b ≈ 2/(13π) = 0.04897, is closer to measured (0.06% miss) and involves only the integer 13 and π. If this simpler formula is the "right" one, the chain becomes: Ω_b = 2/(13π), Ω_DM = Ω_b × (22/13)π = 2×22/(13²) = 44/169 = 0.2604. Measured: 0.2607. Miss: 0.13%. This is BETTER than the R₄ × α × 22 chain (which gives 0.98% for Ω_DM). The 2/(13π) formula may be the correct baryon formula, not R₄ × α × 22.
 
@@ -215,7 +215,7 @@ Check: Ω_matter = 2/(13π) + 44/169 = 2/(13π) + 44/169. Converting: 2/(13π) =
 
 And Ω_DE = 1 − 0.30933 = 0.69067. Measured: 0.6903. Miss: 0.05%. Much better than 0.44%.
 
-**This suggests 2/(13π) is the better baryon formula.** It uses only the integer 13 and π — both from the beta structure. No R₄, no α needed. The entire cosmological density parameter set follows from one integer (13) and one geometric constant (π):
+**This suggests 2/(13π) is the better baryon formula.** It uses only the integer 13 and π,  both from the beta structure. No R₄, no α needed. The entire cosmological density parameter set follows from one integer (13) and one geometric constant (π):
 
 - Ω_b = 2/(13π) = 0.04897
 - Ω_DM = 44/169 = 0.26036
@@ -278,7 +278,7 @@ Taking the best formula for each observable from the combined scans:
 
 ### 11. THE EXACT ALGEBRAIC IDENTITIES
 
-These are not numerical coincidences — they are verified exact in Fraction arithmetic:
+These are not numerical coincidences,  they are verified exact in Fraction arithmetic:
 
 | Identity | Verified | Source |
 |---|---|---|
@@ -288,21 +288,21 @@ These are not numerical coincidences — they are verified exact in Fraction ari
 | 44/169 = (4×YM)/|b₂_mod_num|² | EXACT | Ω_DM from Set B |
 | DM × Ω_b = 44/169 | EXACT (in formulas) | Product of (22/13)π and 2/(13π) = 44/169 |
 
-The last identity is interesting: the π from DM/baryon cancels the π from Ω_b, leaving Ω_DM as a pure rational 44/169. The dark matter density parameter is a RATIONAL NUMBER in this framework — no transcendentals.
+The last identity is interesting: the π from DM/baryon cancels the π from Ω_b, leaving Ω_DM as a pure rational 44/169. The dark matter density parameter is a RATIONAL NUMBER in this framework,  no transcendentals.
 
 ---
 
 ### 12. WHAT MUST BE DONE NEXT
 
-**Priority 1 — Statistical control.** Write a script that generates 1000 random integer pools of the same size and range as the beta pool, applies the same scan methodology, and counts how many produce hits of equal or better quality. If the beta pool produces significantly better hits than random, the pattern is significant. If not, it is expected from small-integer statistics.
+**Priority 1,  Statistical control.** Write a script that generates 1000 random integer pools of the same size and range as the beta pool, applies the same scan methodology, and counts how many produce hits of equal or better quality. If the beta pool produces significantly better hits than random, the pattern is significant. If not, it is expected from small-integer statistics.
 
-**Priority 2 — Test Set B.** Write a script that uses Ω_b = 2/(13π) as the primary baryon formula and propagates through the full Ω chain. Compare to Set A. If Set B is consistently better, adopt it.
+**Priority 2,  Test Set B.** Write a script that uses Ω_b = 2/(13π) as the primary baryon formula and propagates through the full Ω chain. Compare to Set A. If Set B is consistently better, adopt it.
 
-**Priority 3 — The Λ interpolation.** The measured Λ sits between the SM (α^57) and VL ((α/3π)^39) predictions with interpolation fraction f = 0.44. Test whether f has a formula from the beta integers. For instance: f = 13/(13+19) = 13/32 = 0.40625, or f = 19/(19+22) = 19/41 = 0.46341. The latter is close to 0.44 and uses b₂_SM_num and b₁_SM_num. Check whether any simple beta-integer ratio reproduces f = 0.44.
+**Priority 3,  The Λ interpolation.** The measured Λ sits between the SM (α^57) and VL ((α/3π)^39) predictions with interpolation fraction f = 0.44. Test whether f has a formula from the beta integers. For instance: f = 13/(13+19) = 13/32 = 0.40625, or f = 19/(19+22) = 19/41 = 0.46341. The latter is close to 0.44 and uses b₂_SM_num and b₁_SM_num. Check whether any simple beta-integer ratio reproduces f = 0.44.
 
-**Priority 4 — The physical mechanism.** Even one formula with a physical derivation would transform the entire set from "pattern" to "physics." The most promising candidate: the VP step connection (Formula 3). If the per-boundary correction α²π²(20/13) can be derived from the vacuum polarization of a soliton boundary with SU(3) and SU(2) structure, the formula has a mechanism. The α² says "two-loop." The π² says "4D geometry." The 20/13 says "ratio of strong to weak beta numerators after VL modification." What process involves two-loop electromagnetic effects in 4D spacetime modulated by the strong-to-weak beta ratio?
+**Priority 4,  The physical mechanism.** Even one formula with a physical derivation would transform the entire set from "pattern" to "physics." The most promising candidate: the VP step connection (Formula 3). If the per-boundary correction α²π²(20/13) can be derived from the vacuum polarization of a soliton boundary with SU(3) and SU(2) structure, the formula has a mechanism. The α² says "two-loop." The π² says "4D geometry." The 20/13 says "ratio of strong to weak beta numerators after VL modification." What process involves two-loop electromagnetic effects in 4D spacetime modulated by the strong-to-weak beta ratio?
 
-**Priority 5 — Two-loop correction.** The 0.26-decade miss on Λ from α^57 may close with the two-loop correction to b₂_SM. The two-loop effective b₂ shifts the exponent from 57 to 57 + δ. If δ ≈ −0.5, the miss closes. The two-loop b₂ coefficients are known (Machacek-Vaughn 1983-84) and can be computed from the library's particle content.
+**Priority 5,  Two-loop correction.** The 0.26-decade miss on Λ from α^57 may close with the two-loop correction to b₂_SM. The two-loop effective b₂ shifts the exponent from 57 to 57 + δ. If δ ≈ −0.5, the miss closes. The two-loop b₂ coefficients are known (Machacek-Vaughn 1983-84) and can be computed from the library's particle content.
 
 ---
 
@@ -312,7 +312,7 @@ The last identity is interesting: the π from DM/baryon cancels the π from Ω_b
 
 **What it does NOT establish:** That the formulas are correct physics. That the matches are not coincidental. That the physical mechanism is known. That the formulas would survive independent statistical testing. That the formulas are unique (other integer sets might work as well).
 
-**The operational status:** This is the highest-priority finding in Session 4. It supersedes the QED-to-GR program (which specified these tests as future work — they are now done). It does NOT supersede the PHYS paper review (which provides the foundation). The finding is TRACKED ACTIVELY alongside all other work.
+**The operational status:** This is the highest-priority finding in Session 4. It supersedes the QED-to-GR program (which specified these tests as future work,  they are now done). It does NOT supersede the PHYS paper review (which provides the foundation). The finding is TRACKED ACTIVELY alongside all other work.
 
 ---
 

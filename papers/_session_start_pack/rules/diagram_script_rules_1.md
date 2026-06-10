@@ -60,7 +60,7 @@ D2.3. **Use library helpers for all boilerplate.** The mapping:
 
 D2.4. **Colors are provided by the library.** Never redefine BG, PAN, GOLD, SILVER, CYAN, MAG, BLUE, GREEN, RED, ORANGE, WHITE, DIM, PURPLE.
 
-D2.5. **Manual matplotlib only for custom geometry** — radial gradients, orbit ellipses, circulation arrows, boundary walls. Everything else goes through the library.
+D2.5. **Manual matplotlib only for custom geometry**,  radial gradients, orbit ellipses, circulation arrows, boundary walls. Everything else goes through the library.
 
 ---
 
@@ -233,7 +233,7 @@ D11.3. Header:
 ```python
 #!/usr/bin/env python3
 """
-HOWL PHYS-NN Diagrams — {paper_title}
+HOWL PHYS-NN Diagrams,  {paper_title}
 8 figures covering {brief description}.
 Output: PNG files to ../figures/
 Uses: data_5_diagram_lib for boilerplate reduction.
@@ -286,7 +286,7 @@ D13.2. Score each candidate independently of the D6 reference list:
 - −2 if it is a program flowchart or text-in-boxes (D5 prohibited)
 - −1 if a similar diagram already exists in a prior paper's atlas
 
-D13.3. A candidate that shows physics in a novel visual form not listed in D6 scores normally. The D6 list does not constrain enumeration — only the D5 prohibited list eliminates candidates by type.
+D13.3. A candidate that shows physics in a novel visual form not listed in D6 scores normally. The D6 list does not constrain enumeration,  only the D5 prohibited list eliminates candidates by type.
 
 ### Stage 2: Selection and Diversity Check
 
@@ -310,7 +310,7 @@ D14.1. After the script is written, provide a placement table:
 
 D14.2. Markdown uses relative path `./figures/` from paper root.
 
-D14.3. Captions are self-contained — a reader seeing only figure and caption understands what is shown.
+D14.3. Captions are self-contained,  a reader seeing only figure and caption understands what is shown.
 
 D14.4. Figures placed AFTER the first paragraph that references them, not collected at the end.
 
@@ -320,7 +320,7 @@ D14.4. Figures placed AFTER the first paragraph that references them, not collec
 
 D15.1. **Side-by-side panels** need explicit `figsize` width. Use (18, 9) not (18, 10). Use `wspace=0.30` minimum.
 
-D15.2. **Measurement bands** as two nested spans — 1σ (alpha 0.15) and 3σ (alpha 0.05). `measurement_band()` does this automatically.
+D15.2. **Measurement bands** as two nested spans,  1σ (alpha 0.15) and 3σ (alpha 0.05). `measurement_band()` does this automatically.
 
 D15.3. **Log scales need labeled landmarks.** M_Z, M_VL, M_GUT with vertical lines and text. Landmarks turn a number line into a map.
 
@@ -350,7 +350,7 @@ D15.8. **`transform=ax.transAxes` is forbidden on axis-bindable methods** (`axvl
 
 ### D16. PLACEMENT TABLE IS A REQUIRED DELIVERABLE
 
-D16.1. The placement table is produced TWICE in the diagram workflow — once as part of the script output, and once as a separate formatted table delivered in chat immediately after the script.
+D16.1. The placement table is produced TWICE in the diagram workflow,  once as part of the script output, and once as a separate formatted table delivered in chat immediately after the script.
 
 D16.2. The in-chat placement table is the PRIMARY deliverable for the human. It contains everything needed to integrate figures into the paper without re-reading the script. The script's print block is a backup.
 
@@ -366,7 +366,7 @@ D16.4. The table has exactly 5 columns:
 | Section | Target section number and name | §V.2 Nine Instances |
 | Markdown | Complete paste-ready markdown line | `![Fig. 3: Caption.](./figures/math1_03_isomorphism_grid.png)` |
 
-D16.5. **The Markdown column caption must be self-contained.** A reader seeing only the figure and caption understands what is shown without reading the paper. The caption is NOT the title — it is a one-sentence description of what the figure shows and why it matters.
+D16.5. **The Markdown column caption must be self-contained.** A reader seeing only the figure and caption understands what is shown without reading the paper. The caption is NOT the title,  it is a one-sentence description of what the figure shows and why it matters.
 
 D16.6. **Checklist before submitting:** Count the rows. There must be exactly 8. Count the columns. There must be exactly 5. Every Markdown entry must have the correct relative path `./figures/`. Every caption must be a complete sentence or phrase, not just the filename repeated.
 

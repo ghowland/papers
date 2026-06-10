@@ -10,7 +10,7 @@
 
 **Scope:** All diagram-producing Python scripts in the HOWL series from Session 4 forward
 
-**Companion document:** api_demo_script_rules.md (forthcoming — governs demo/experiment scripts)
+**Companion document:** api_demo_script_rules.md (forthcoming,  governs demo/experiment scripts)
 
 ---
 
@@ -18,9 +18,9 @@
 
 The v1.0 rules assumed every diagram script was self-contained: it defined its own colors, its own helpers, its own data, and its own style functions. This produced 600+ line scripts for 8 figures, with hardcoded physics values that had to be manually verified against papers.
 
-The v2.0 rules assume every diagram script imports data_5_diagram_lib.py and the platform libraries. The diagram library provides colors, helpers, figure creation, and provenance tracking. The platform libraries provide every physics value. The diagram script contains only figure-specific layout logic — typically 10-20 lines per figure instead of 50-80.
+The v2.0 rules assume every diagram script imports data_5_diagram_lib.py and the platform libraries. The diagram library provides colors, helpers, figure creation, and provenance tracking. The platform libraries provide every physics value. The diagram script contains only figure-specific layout logic,  typically 10-20 lines per figure instead of 50-80.
 
-The v1.0 rules (D1-D17) are inherited where they apply. The new rules add the library-driven workflow, provenance requirements, and the structural upgrade protocol. No v1.0 rule is removed — they are superseded where the new rules are more specific.
+The v1.0 rules (D1-D17) are inherited where they apply. The new rules add the library-driven workflow, provenance requirements, and the structural upgrade protocol. No v1.0 rule is removed,  they are superseded where the new rules are more specific.
 
 ---
 
@@ -106,7 +106,7 @@ as_pred = 0.11838  # DO NOT DO THIS
 
 ### B2. Provenance Report
 
-Every diagram script ends with `print_provenance()`. The output lists every value with its figure number and source. The report is the audit trail — a reviewer can verify that every plotted number traces to a library function.
+Every diagram script ends with `print_provenance()`. The output lists every value with its figure number and source. The report is the audit trail,  a reviewer can verify that every plotted number traces to a library function.
 
 ### B3. Zero Hardcoded Physics
 
@@ -191,7 +191,7 @@ concentric_shells(ax, shells)                # Nested boundary shells
 ```python
 #!/usr/bin/env python3
 """
-HOWL {Paper} Diagrams — {Title}
+HOWL {Paper} Diagrams,  {Title}
 {N} figures from platform library APIs.
 Every value from phys24_lib + extension libraries.
 Output: PNG files to ../figures/
@@ -234,7 +234,7 @@ save_fig(fig, "paper_NN_description.png")
 ```python
 print_provenance()
 print("=" * 70)
-print("  {PAPER} DIAGRAMS COMPLETE — {N} figures")
+print("  {PAPER} DIAGRAMS COMPLETE,  {N} figures")
 print("=" * 70)
 ```
 
@@ -247,7 +247,7 @@ print("=" * 70)
 | Complex (dual panel, many elements) | 20-30 lines | Structural parallel comparison |
 | Composite (use composite helper) | 1-3 lines | `convergence_bar_figure(...)` |
 
-With these targets, 40 figures in a single script is 400-800 lines — feasible for one prompt.
+With these targets, 40 figures in a single script is 400-800 lines,  feasible for one prompt.
 
 ---
 
@@ -311,11 +311,11 @@ All scripts and libraries are Python 3.8 compatible. No f-strings with `=`, no w
 
 ### G2. Matplotlib Backend
 
-Always `matplotlib.use('Agg')` before any plt import. This is handled by data_5_diagram_lib.py — the diagram script does not need to set it.
+Always `matplotlib.use('Agg')` before any plt import. This is handled by data_5_diagram_lib.py,  the diagram script does not need to set it.
 
 ### G3. Human Runs All Scripts
 
-All diagram scripts are written IN CHAT. The human copies, runs, and verifies. The provenance report is the verification — if it shows 0 hardcoded physics and all sources trace to library functions, the figures are trustworthy.
+All diagram scripts are written IN CHAT. The human copies, runs, and verifies. The provenance report is the verification,  if it shows 0 hardcoded physics and all sources trace to library functions, the figures are trustworthy.
 
 ---
 
@@ -323,20 +323,20 @@ All diagram scripts are written IN CHAT. The human copies, runs, and verifies. T
 
 The following v1.0 sections are inherited without change:
 
-- **D4: What Diagrams Are For** — diagrams show curves, scales, geometry, comparisons, connections that text cannot
-- **D5: Approved Diagram Types** — Types 1-8 unchanged
-- **D6: Prohibited Diagram Types** — program flowcharts, text-in-boxes, verification ledgers still prohibited
-- **D7.1-D7.4: Colors and fonts** — now defined in data_5_diagram_lib.py, same values
-- **D7.5: Figure sizes** — unchanged, defaults in `dark_fig(size=(16, 10))`
-- **D8: Spacing and Layout** — all spacing rules unchanged
-- **D9: Chart-Specific Rules** — log scales, curves, scatter, shading rules unchanged
-- **D10: Geometric Diagram Rules** — patches, nesting, paths, labels unchanged
-- **D11: Naming Convention** — `{paper_short}_{nn}_{description}.png` unchanged
-- **D13: Content Integrity** — now enforced by provenance system rather than manual review
-- **D14: Enumeration Process** — scoring system unchanged, figure count relaxed (E1)
-- **D15: Paper Integration** — placement tables and markdown unchanged
-- **D16: Bounding Box Safety** — all elements inside axis limits, unchanged
-- **D17: Lessons Learned** — all design lessons inherited
+- **D4: What Diagrams Are For**,  diagrams show curves, scales, geometry, comparisons, connections that text cannot
+- **D5: Approved Diagram Types**,  Types 1-8 unchanged
+- **D6: Prohibited Diagram Types**,  program flowcharts, text-in-boxes, verification ledgers still prohibited
+- **D7.1-D7.4: Colors and fonts**,  now defined in data_5_diagram_lib.py, same values
+- **D7.5: Figure sizes**,  unchanged, defaults in `dark_fig(size=(16, 10))`
+- **D8: Spacing and Layout**,  all spacing rules unchanged
+- **D9: Chart-Specific Rules**,  log scales, curves, scatter, shading rules unchanged
+- **D10: Geometric Diagram Rules**,  patches, nesting, paths, labels unchanged
+- **D11: Naming Convention**,  `{paper_short}_{nn}_{description}.png` unchanged
+- **D13: Content Integrity**,  now enforced by provenance system rather than manual review
+- **D14: Enumeration Process**,  scoring system unchanged, figure count relaxed (E1)
+- **D15: Paper Integration**,  placement tables and markdown unchanged
+- **D16: Bounding Box Safety**,  all elements inside axis limits, unchanged
+- **D17: Lessons Learned**,  all design lessons inherited
 
 ### What v1.0 Rules Are Superseded
 
@@ -402,5 +402,5 @@ Approximately 100-160 lines for 8 figures. Compare to 600+ lines in v1.0.
 
 ---
 
-*api_diagram_rules.md v2.0. Supersedes diagram_script_rules.md v1.0 (D1-D17) for all scripts using data_5_diagram_lib.py. No v1.0 rule is removed — they are inherited or superseded. The structural upgrade protocol ensures all scripts work across library versions. April 3, 2026.*
+*api_diagram_rules.md v2.0. Supersedes diagram_script_rules.md v1.0 (D1-D17) for all scripts using data_5_diagram_lib.py. No v1.0 rule is removed,  they are inherited or superseded. The structural upgrade protocol ensures all scripts work across library versions. April 3, 2026.*
 

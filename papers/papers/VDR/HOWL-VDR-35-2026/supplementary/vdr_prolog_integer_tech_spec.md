@@ -8,9 +8,9 @@
 
 ## 1. Scope
 
-This spec covers the layer between VDRProlog (the GPU compute API) and VDR-LLM-Prolog (the application architecture). VDRProlog provides integer arithmetic on GPU. VDR-LLM-Prolog provides KBs, Prolog, grammars, runners, sessions, builtins, safety, and the LLM-as-judgment-component model. This spec defines how the full system runs on VDRProlog hardware — the orchestration, data flow, memory management, scheduling, and lifecycle that turns raw integer GPU compute into the operational system described in the paper.
+This spec covers the layer between VDRProlog (the GPU compute API) and VDR-LLM-Prolog (the application architecture). VDRProlog provides integer arithmetic on GPU. VDR-LLM-Prolog provides KBs, Prolog, grammars, runners, sessions, builtins, safety, and the LLM-as-judgment-component model. This spec defines how the full system runs on VDRProlog hardware,  the orchestration, data flow, memory management, scheduling, and lifecycle that turns raw integer GPU compute into the operational system described in the paper.
 
-The paper's VDR-14 consolidated specification defines WHAT the system does. The VDRProlog spec defines HOW the GPU computes. This spec defines HOW THE SYSTEM RUNS — the integration contract between architecture and silicon.
+The paper's VDR-14 consolidated specification defines WHAT the system does. The VDRProlog spec defines HOW the GPU computes. This spec defines HOW THE SYSTEM RUNS,  the integration contract between architecture and silicon.
 
 ---
 
@@ -63,17 +63,17 @@ Five device-side engines. One host-side orchestration layer. One bridge. All com
 
 ```
 // ============================================================
-// VDR Value Types — the arithmetic foundation
+// VDR Value Types,  the arithmetic foundation
 // ============================================================
 
-// Q-basis enum — compile-time declaration, runtime-checked
+// Q-basis enum,  compile-time declaration, runtime-checked
 enum vlp_qbasis: i32 {
     VLP_Q16  = 16,    // D = 65536, inference
     VLP_Q32  = 32,    // D = 4294967296, intermediate
     VLP_Q335 = 335,   // D = 2^335, high precision / transcendental
 };
 
-// Q16 value — the primary operational type
+// Q16 value,  the primary operational type
 struct vlp_q16 {
     v: i32,       // numerator
     r0: i16,      // remainder level 0
@@ -90,7 +90,7 @@ struct vlp_q32 {
 };
 // sizeof(vlp_q32) = 16 bytes.
 
-// Q335 value — wide integer, limb-based
+// Q335 value,  wide integer, limb-based
 struct vlp_q335 {
     v: [6]i64,      // 384-bit value as 6 × 64-bit limbs
     r0: [6]i64,     // remainder level 0
@@ -103,10 +103,10 @@ struct vlp_q335 {
 // r3 tells you exactly what's lost if you don't go deeper.
 
 // ============================================================
-// KB Types — the data layer
+// KB Types,  the data layer
 // ============================================================
 
-// Fact tag — classifies what the fact represents
+// Fact tag,  classifies what the fact represents
 enum vlp_fact_tag: i32 {
     TAG_VALUE       = 0,   // plain VDR value
     TAG_TEXT        = 1,   // text reference (offset + length in text store)
@@ -123,7 +123,7 @@ enum vlp_fact_tag: i32 {
     TAG_EMPTY       = 255, // unoccupied slot
 };
 
-// Provenance — tracks where a fact came from
+// Provenance,  tracks where a fact came from
 struct vlp_provenance {
     source_type: i32,       // enum from confidence hierarchy (Appendix F)
     source_kb_id: i32,      // which KB produced this
@@ -134,7 +134,7 @@ struct vlp_provenance {
 };
 // sizeof(vlp_provenance) = 28 bytes.
 
-// Fact — the atomic unit of knowledge
+// Fact,  the atomic unit of knowledge
 struct vlp_fact {
     tag: vlp_fact_tag,           // what kind of value
     value: vlp_q16,              // the value (or offset for text/vector/matrix)
@@ -142,7 +142,7 @@ struct vlp_fact {
 };
 // sizeof(vlp_fact) = 40 bytes.
 
-// KB struct — the 26-field structure from paper Appendix K
+// KB struct,  the 26-field structure from paper Appendix K
 struct vlp_kb {
     // Identity (12 bytes)
     name_offset: i32,        // offset into text store
@@ -151,7 +151,7 @@ struct vlp_kb {
     path_length: i16,        // byte length
     id: i32,                 // sequential integer ID
 
-    // Persistent state — survives reset (offsets into respective stores)
+    // Persistent state,  survives reset (offsets into respective stores)
     facts_offset: i32,       // offset into fact store
     facts_count: i32,        // current count
     facts_capacity: i32,     // max count (set at creation)
@@ -166,7 +166,7 @@ struct vlp_kb {
     grammars_count: i32,
     iose_offset: i32,        // offset into IOSE declaration store (-1 if none)
 
-    // Live state — cleared by reset (inline, fixed-size)
+    // Live state,  cleared by reset (inline, fixed-size)
     working_data_offset: i32,   // offset into working data store
     lru_table_offset: i32,      // offset into LRU table
     lru_count: i16,
@@ -203,7 +203,7 @@ struct vlp_kb {
 // Alignment to 256 bytes for cache line efficiency → 256 bytes per KB.
 
 // ============================================================
-// Prolog Types — the deduction layer
+// Prolog Types,  the deduction layer
 // ============================================================
 
 // Term type enum
@@ -220,7 +220,7 @@ enum vlp_term_type: i8 {
     TERM_PAIR       = 9,   // key-value pair for dict-like structures
 };
 
-// Term — recursive, but bounded by depth limit
+// Term,  recursive, but bounded by depth limit
 struct vlp_term {
     type: vlp_term_type,
     // Union (tagged by type):
@@ -230,7 +230,7 @@ struct vlp_term {
     vdr_value: vlp_q16,     // for VDR
     text_offset: i32,       // for TEXT
     text_length: i16,
-    list_head_offset: i32,  // for LIST — offset into term store
+    list_head_offset: i32,  // for LIST,  offset into term store
     list_tail_offset: i32,
     functor_id: i32,        // for COMPOUND
     args_offset: i32,       // offset into term store
@@ -238,7 +238,7 @@ struct vlp_term {
 };
 // sizeof(vlp_term) = 24 bytes (union packing).
 
-// Rule — head :- body
+// Rule,  head :- body
 struct vlp_rule {
     id: i32,
     head: i32,              // offset to head term in term store
@@ -256,7 +256,7 @@ struct vlp_rule {
 };
 // sizeof(vlp_rule) = 44 bytes.
 
-// Binding — variable assignment from unification
+// Binding,  variable assignment from unification
 struct vlp_binding {
     var_id: i32,
     bound_term_offset: i32, // offset into term store
@@ -270,7 +270,7 @@ struct vlp_unification_result {
 };
 
 // ============================================================
-// Grammar Types — the structural token layer
+// Grammar Types,  the structural token layer
 // ============================================================
 
 // Slot type enum
@@ -307,7 +307,7 @@ struct vlp_grammar {
 };
 // sizeof(vlp_grammar) = 28 bytes.
 
-// Grammar fill — runtime value for a slot
+// Grammar fill,  runtime value for a slot
 struct vlp_grammar_fill {
     slot_index: i16,         // which slot in the grammar
     fill_type: vlp_slot_type,
@@ -320,7 +320,7 @@ struct vlp_grammar_fill {
 };
 
 // ============================================================
-// Session Types — the isolation layer
+// Session Types,  the isolation layer
 // ============================================================
 
 enum vlp_session_state: i8 {
@@ -369,7 +369,7 @@ struct vlp_session {
 // sizeof(vlp_session) ≈ 128 bytes.
 
 // ============================================================
-// Runner Types — the autonomy layer
+// Runner Types,  the autonomy layer
 // ============================================================
 
 enum vlp_runner_type: i8 {
@@ -411,7 +411,7 @@ struct vlp_runner {
 // sizeof(vlp_runner) = 72 bytes.
 
 // ============================================================
-// Grant Types — the safety layer
+// Grant Types,  the safety layer
 // ============================================================
 
 enum vlp_grant_class: i8 {
@@ -448,7 +448,7 @@ struct vlp_grant {
 // sizeof(vlp_grant) = 48 bytes.
 
 // ============================================================
-// Confidence Types — the provenance layer
+// Confidence Types,  the provenance layer
 // ============================================================
 
 enum vlp_source_type: i8 {
@@ -465,7 +465,7 @@ enum vlp_source_type: i8 {
     SOURCE_UNKNOWN           = 10,  // confidence 0/1
 };
 
-// Default confidence values — exact VDR fractions, immutable
+// Default confidence values,  exact VDR fractions, immutable
 // Stored in seed KB at system initialization
 const vlp_q16 CONFIDENCE_TABLE[11] = {
     { .v = 65536, .r0 = 0 },   // 1/1
@@ -482,7 +482,7 @@ const vlp_q16 CONFIDENCE_TABLE[11] = {
 };
 
 // ============================================================
-// Command Token Types — LLM→System interface
+// Command Token Types,  LLM→System interface
 // ============================================================
 
 enum vlp_command_type: i8 {
@@ -513,10 +513,10 @@ struct vlp_command {
     grant_required: vlp_grant_class,  // which grant class needed (-1 if none)
 };
 // sizeof(vlp_command) = 24 bytes.
-// ~8 LLM tokens to generate. Low entropy — small vocabulary selection.
+// ~8 LLM tokens to generate. Low entropy,  small vocabulary selection.
 
 // ============================================================
-// Audit Types — the accountability layer
+// Audit Types,  the accountability layer
 // ============================================================
 
 enum vlp_audit_action: i8 {
@@ -702,19 +702,19 @@ Total with model: ~58 GB (fits in single H100 80GB for model-parallel shard)
 // H100: 228 KB shared memory per SM (configurable L1/shared split)
 
 struct vlp_sm_shared_layout {
-    // KB cache — primary use of shared memory
+    // KB cache,  primary use of shared memory
     kb_cache: [16]vlp_kb,           // 16 KBs × 256 bytes = 4 KB
     fact_cache: [512]vlp_fact,      // 512 facts × 40 bytes = 20 KB
     // Covers: active KB subtree for current Prolog query or builtin
 
-    // Term scratch — for unification
+    // Term scratch,  for unification
     term_scratch: [256]vlp_term,    // 256 terms × 24 bytes = 6 KB
 
-    // Softmax scratch — for attention
+    // Softmax scratch,  for attention
     softmax_scratch: [4096]vlp_q16, // 4096 × 8 bytes = 32 KB
     // Covers: one head's attention scores for seq_len up to 4096
 
-    // Binding scratch — for Prolog results
+    // Binding scratch,  for Prolog results
     binding_scratch: [64]vlp_binding, // 64 bindings × 8 bytes = 512 bytes
 
     // Grammar render buffer
@@ -820,22 +820,22 @@ vlp_runner_scheduler_init(max_runners: i32) -> vlp_status
 vlp_runner_create_poller(config: *vlp_poller_config) -> vlp_runner_handle
   Allocates runner in runner table. Does not start.
   Config specifies:
-    session: vlp_session_handle — runner executes within this session's scope
-    interval_ms: i32 — poll frequency
-    poll_fn: callback — the function called each cycle
-    max_consecutive_errors: i32 — auto-stop threshold
+    session: vlp_session_handle,  runner executes within this session's scope
+    interval_ms: i32,  poll frequency
+    poll_fn: callback,  the function called each cycle
+    max_consecutive_errors: i32,  auto-stop threshold
   poll_fn signature: (session: vlp_session_handle) -> vlp_status
   Each invocation gets a fresh VDRProlog stream on the session.
-  The LLM context is fresh each cycle — no attention degradation.
+  The LLM context is fresh each cycle,  no attention degradation.
   Side effects: runner table entry allocated.
 
 vlp_runner_create_processor(config: *vlp_processor_config) -> vlp_runner_handle
   Config specifies:
     session: vlp_session_handle
-    source_config: *vlp_source_config — connection parameters
-    ingest_fn: callback — called per incoming data item
-    compact_fn: callback — transforms raw data into KB facts
-    max_turns_before_recycle: i32 — default 200
+    source_config: *vlp_source_config,  connection parameters
+    ingest_fn: callback,  called per incoming data item
+    compact_fn: callback,  transforms raw data into KB facts
+    max_turns_before_recycle: i32,  default 200
   Processor lifecycle:
     1. Establish connection to external source.
     2. Loop: receive data → ingest_fn → compact_fn → KB assert.
@@ -850,7 +850,7 @@ vlp_runner_create_internal(config: *vlp_internal_config) -> vlp_runner_handle
   Config specifies:
     session: vlp_session_handle
     interval_ms: i32
-    compute_fn: callback — internal computation
+    compute_fn: callback,  internal computation
   compute_fn: derives facts from existing facts. Rolling averages,
   trend detection, coverage gap analysis. No external connections.
   All computation on KB data via exact VDR arithmetic.
@@ -859,10 +859,10 @@ vlp_runner_create_internal(config: *vlp_internal_config) -> vlp_runner_handle
 vlp_runner_create_batch(config: *vlp_batch_config) -> vlp_runner_handle
   Config specifies:
     session: vlp_session_handle
-    task_queue_kb_id: i32 — KB containing task queue
-    task_queue_name: text — name of the queue primitive
-    process_fn: callback — processes one task
-    max_concurrent: i32 — max simultaneous task clones
+    task_queue_kb_id: i32,  KB containing task queue
+    task_queue_name: text,  name of the queue primitive
+    process_fn: callback,  processes one task
+    max_concurrent: i32,  max simultaneous task clones
   Batch lifecycle:
     1. Pop task from queue.
     2. Clone session for isolation.
@@ -1002,7 +1002,7 @@ vlp_command_execute(session: vlp_session_handle, command: *vlp_command) -> vlp_c
        CMD_KB_QUERY:
          Call VDRPrologKBFactQuery or VDRPrologKBFactScopedSearch.
          Return: matching facts (copied to session scratchpad for LLM inspection).
-         The LLM reads the scratchpad — a few tokens. Not the raw data.
+         The LLM reads the scratchpad,  a few tokens. Not the raw data.
 
        CMD_KB_RETRACT:
          Call VDRPrologKBFactRetract. Write audit entry.
@@ -1081,12 +1081,12 @@ vlp_access_check(session: vlp_session_handle, kb_id: i32) -> bool
   Every step is integer load + integer compare.
   No string matching. No regex. No LLM evaluation.
   No prompt can modify any integer in this check.
-  The LLM doesn't execute this check — the system does.
+  The LLM doesn't execute this check,  the system does.
   Side effects: none (pure check). Audit entry written by caller if denied.
 
 vlp_visibility_resolve(session: vlp_session_handle, scope_kb_id: i32, visible_kbs: *i32, max_kbs: i32, n_visible: *i32) -> vlp_status
   Enumerates all KBs visible from scope_kb_id for this session.
-  Used to build the session's "view" — everything the LLM can see.
+  Used to build the session's "view",  everything the LLM can see.
   Walks the KB tree from scope_kb_id, applies access_check at each node.
   Prunes subtrees when a parent fails (children inherit parent's restriction).
   Side effects: none.
@@ -1141,7 +1141,7 @@ vlp_llm_generate_command(session: vlp_session_handle) -> vlp_command
 vlp_llm_generate_prose(session: vlp_session_handle, max_tokens: i32, output: *i32, n_generated: *i32) -> vlp_status
   Unconstrained generation for judgment and framing.
   This is the only generation mode where the full vocabulary is active.
-  The LLM exercises judgment — decides what to say, how to frame it,
+  The LLM exercises judgment,  decides what to say, how to frame it,
   what matters. Everything else (data, structure, computation) is
   handled by other engines.
   Side effects: KV-cache updated, tokens written to output buffer.
@@ -1167,7 +1167,7 @@ vlp_kv_cache_append(session: vlp_session_handle, layer: i32, position: i32, K: *
 
 vlp_kv_cache_load(session: vlp_session_handle, layer: i32, start_pos: i32, end_pos: i32, K_out: *vlp_q16, V_out: *vlp_q16) -> vlp_status
   Loads K and V for position range. Contiguous read from fact store.
-  Coalesced memory access pattern — sequential integer offsets.
+  Coalesced memory access pattern,  sequential integer offsets.
   Side effects: none (read-only).
 
 vlp_kv_cache_truncate(session: vlp_session_handle, position: i32) -> vlp_status
@@ -1222,7 +1222,7 @@ vlp_kb_store_scoped_search(start_kb_id: i32, tag: vlp_fact_tag, max_depth: i32) 
     If found: return facts + kb_id where found.
     If not found: move to parent_id.
   Max_depth bounds the walk (default: 100, matching Prolog depth limit).
-  This is lexical scoping — resolution depends on starting position.
+  This is lexical scoping,  resolution depends on starting position.
   Side effects: none.
 
 vlp_kb_store_cow_init(parent_session: vlp_session_handle, clone_session: vlp_session_handle) -> vlp_status
@@ -1236,7 +1236,7 @@ vlp_kb_store_cow_init(parent_session: vlp_session_handle, clone_session: vlp_ses
 
 vlp_kb_store_cow_resolve(clone_session: vlp_session_handle) -> vlp_status
   Copies all dirty pages from parent to clone's private region.
-  After resolve, clone is fully independent — no shared pages.
+  After resolve, clone is fully independent,  no shared pages.
   Used before snapshot to ensure snapshot is self-contained.
   Side effects: memory copies, page table updated.
 ```
@@ -1313,7 +1313,7 @@ vlp_prolog_fire_and_commit(kb_store: *vlp_kb_store, kb_id: i32) -> i32
 
 ```
 vlp_grammar_engine_init() -> vlp_status
-  Minimal initialization. Grammar engine is stateless — all state
+  Minimal initialization. Grammar engine is stateless,  all state
   is in the grammar structs stored in KBs.
   Side effects: none.
 
@@ -1372,7 +1372,7 @@ vlp_grammar_inherit(kb_store: *vlp_kb_store, kb_id: i32, grammar_slot: i32) -> *
 vlp_builtin_executor_init() -> vlp_status
   Builds dispatch table: builtin_id → function pointer.
   448 entries. Each entry points to a device kernel or device function.
-  Table is in constant memory — one read per dispatch.
+  Table is in constant memory,  one read per dispatch.
   Side effects: constant memory initialized.
 
 vlp_builtin_dispatch(builtin_id: i32, args: *vlp_builtin_args) -> vlp_builtin_result
@@ -1465,7 +1465,7 @@ vlp_inference_cycle(session: vlp_session_handle, user_input: *u8, input_len: i32
       } else if (is_end_of_turn(next_token)) {
           break;
       } else {
-          // Prose token — LLM judgment and framing
+          // Prose token,  LLM judgment and framing
           vlp_output_write_token(output, next_token);
       }
   }
@@ -1491,7 +1491,7 @@ vlp_inference_cycle(session: vlp_session_handle, user_input: *u8, input_len: i32
 
 ## 8. Execution Levels
 
-### 8.1 L1 — Full LLM Judgment
+### 8.1 L1,  Full LLM Judgment
 
 ```
 // LLM exercises full judgment. 50-500 tokens per interaction.
@@ -1507,7 +1507,7 @@ vlp_execute_l1(session: vlp_session_handle, input: *u8, len: i32) -> vlp_status
   Next time this pattern is seen, the rule fires without LLM.
 ```
 
-### 8.2 L2 — LLM Invokes Stored Rule
+### 8.2 L2,  LLM Invokes Stored Rule
 
 ```
 // LLM recognizes that a stored rule applies. 8 tokens.
@@ -1519,7 +1519,7 @@ vlp_execute_l2(session: vlp_session_handle, pattern: *vlp_term) -> vlp_status
   Cost is ~3% of L1.
 ```
 
-### 8.3 L3 — Automatic Rule Firing
+### 8.3 L3,  Automatic Rule Firing
 
 ```
 // The Prolog rule fires automatically during polling or batch processing.
@@ -1625,7 +1625,7 @@ vlp_confidence_propagate(kb_store: *vlp_kb_store, fact_kb_id: i32, fact_slot_id:
 
 ```
 struct vlp_snapshot_header {
-    magic: [4]u8,            // "VLPS" — VLP Snapshot
+    magic: [4]u8,            // "VLPS",  VLP Snapshot
     version: i32,            // format version
     timestamp: i32,
     session_id: i32,
@@ -1680,7 +1680,7 @@ vlp_snapshot_save(snapshot: vlp_snapshot_handle, path: *u8) -> vlp_status
   Writes snapshot to host filesystem as a single file.
   Format: header + data regions, contiguous.
   File size: typically 10 KB - 500 KB for operational sessions.
-  (Model weights are NOT in the snapshot — they're shared and loaded separately.)
+  (Model weights are NOT in the snapshot,  they're shared and loaded separately.)
   The snapshot captures session state, not model state.
   Side effects: file written.
 
@@ -1693,7 +1693,7 @@ vlp_snapshot_load(path: *u8) -> vlp_snapshot_handle
 vlp_snapshot_diff(a: vlp_snapshot_handle, b: vlp_snapshot_handle) -> vlp_diff_result
   Binary diff between two snapshots.
   Reports: which KB facts differ, which rules differ, which live state differs.
-  Every difference is a real change — not float noise.
+  Every difference is a real change,  not float noise.
   Because integers. If two snapshots are supposed to be identical and
   the diff is non-empty, something changed. Find it.
   Side effects: none.
@@ -1782,8 +1782,8 @@ vlp_multi_device_init(n_devices: i32, model_config: *vlp_model_config) -> vlp_st
   Strategy: pipeline parallelism. Device 0 gets layers 0..n/k,
   device 1 gets layers n/k..2n/k, etc.
   Each device loads its shard from checkpoint.
-  KB store replicated on each device (small — ~2 GB).
-  Sessions bound to device 0 (or any single device — KB is small enough).
+  KB store replicated on each device (small,  ~2 GB).
+  Sessions bound to device 0 (or any single device,  KB is small enough).
   Forward pass: input enters device 0, hidden state transferred to device 1
   at layer boundary, continues through pipeline.
   Side effects: multi-device memory allocated, model shards loaded.
@@ -1853,7 +1853,7 @@ vlp_deployment_sre_status() -> vlp_sre_status
   Reports:
     - Runner states (all should be RUNNING)
     - KB counts (facts, rules, grammars accumulated)
-    - Level distribution (L1/L2/L3 percentages — exact fractions)
+    - Level distribution (L1/L2/L3 percentages,  exact fractions)
     - Auto-triage percentage (exact fraction)
     - Mean tokens per investigation (exact fraction, should decrease over time)
     - Rule hygiene: stale/failing/orphaned counts
@@ -2130,7 +2130,7 @@ Stage 2: Intelligence
 Stage 3: Precision
   - Q32 and Q335 types
   - Q-basis reprojection
-  - FRU operations (sqrt, exp, log, sin, cos) — software implementation
+  - FRU operations (sqrt, exp, log, sin, cos),  software implementation
   - Remainder resolution (compact, normalize)
   - Polynomial, finite field, discrete calculus builtins
   - Denominator management builtins

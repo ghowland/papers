@@ -49,7 +49,7 @@ Future papers must classify their main results accordingly.
 
 ## 3. The Arithmetic
 
-All computation in the series uses exact Fraction arithmetic from the `fractions` module. No floating-point value enters the computation chain. Conversion to mpf happens only at the display boundary — where a number leaves computation and enters a print statement or a comparison against an mpf reference. The Q335 = 2^335 basis provides 101-digit integer rational representations of all transcendental constants, verified against mpmath at 100+ digits.
+All computation in the series uses exact Fraction arithmetic from the `fractions` module. No floating-point value enters the computation chain. Conversion to mpf happens only at the display boundary,  where a number leaves computation and enters a print statement or a comparison against an mpf reference. The Q335 = 2^335 basis provides 101-digit integer rational representations of all transcendental constants, verified against mpmath at 100+ digits.
 
 The operational standard for all scripts from this paper forward is documented in phys24_script_rules.md (22 sections). The platform library phys24_lib.py provides every constant, every helper function, and every check function. Scripts import it with one line: `from phys24_lib import *`. If a value changes (new PDG, new CODATA), it changes in the library and nowhere else.
 
@@ -110,8 +110,8 @@ Every number below comes from a verified script. Any discrepancy with a paper re
 | m_s | 93.5 MeV | D3 | 3 |
 | m_c | 1273 MeV | D4 | 4 |
 | m_b | 4183 MeV | D5 | 4 |
-| Super-K bound | τ > 2.4 × 10^34 yr | PHYS-20, web verified | — |
-| CKM deficit | 0.00202 ± 0.00038 | PHYS-19, web verified | — |
+| Super-K bound | τ > 2.4 × 10^34 yr | PHYS-20, web verified |,  |
+| CKM deficit | 0.00202 ± 0.00038 | PHYS-19, web verified |,  |
 
 ---
 
@@ -127,9 +127,9 @@ Every number below comes from a verified script. Any discrepancy with a paper re
 
 ## 6. The Gap Ratio and the Boson Problem
 
-The SM gauge couplings do not unify at one loop. The gap ratio — the ratio (b₁−b₂)/(b₂−b₃) of exact rational beta differences — is 218/115 = 1.896 for the SM. The measured gap ratio from the three couplings at M_Z is 1.358. The miss is 39.6%. This is not a rounding error. It means the three inverse coupling lines do not meet at a point.
+The SM gauge couplings do not unify at one loop. The gap ratio,  the ratio (b₁−b₂)/(b₂−b₃) of exact rational beta differences,  is 218/115 = 1.896 for the SM. The measured gap ratio from the three couplings at M_Z is 1.358. The miss is 39.6%. This is not a rounding error. It means the three inverse coupling lines do not meet at a point.
 
-The miss is a boson problem. Complete fermion generations contribute (4/3, 4/3, 4/3) to the three betas — identical across all gauge groups. This is generation democracy: fermions are invisible to the gap ratio. The fermion contribution to both numerator and denominator of the gap ratio is exactly zero. The gap ratio decomposes as 96-101% gauge self-coupling, −0.9% to +4.3% Higgs correction, 0% fermion. The pure-gauge gap ratio (no Higgs, no fermions) is the Casimir ratio C₂(SU(2))/(C₂(SU(3))−C₂(SU(2))) = 2. The Higgs shifts this from 2 to 218/115. Fermions shift it by exactly zero.
+The miss is a boson problem. Complete fermion generations contribute (4/3, 4/3, 4/3) to the three betas,  identical across all gauge groups. This is generation democracy: fermions are invisible to the gap ratio. The fermion contribution to both numerator and denominator of the gap ratio is exactly zero. The gap ratio decomposes as 96-101% gauge self-coupling, −0.9% to +4.3% Higgs correction, 0% fermion. The pure-gauge gap ratio (no Higgs, no fermions) is the Casimir ratio C₂(SU(2))/(C₂(SU(3))−C₂(SU(2))) = 2. The Higgs shifts this from 2 to 218/115. Fermions shift it by exactly zero.
 
 Fixing the gap ratio requires changing the bosonic content, or adding a representation that breaks the fermion democracy by contributing unequally to the three betas.
 
@@ -141,7 +141,7 @@ The minimal single-multiplet extension that fixes the gap ratio is the Cabibbo D
 
 **Level 1 properties (fixed until falsified):**
 
-The beta shifts are computed from Dynkin index formulas: Δb₁ = (2/5)×dim(R₃)×dim(R₂)×Y² = 1/15, Δb₂ = (2/3)×dim(R₃)×S₂(R₂) = 1, Δb₃ = (1/3)×dim(R₂)×S₂(R₃) = 1/3. The modified gap ratio is (b₁'−b₂')/(b₂'−b₃') = 38/27 = 1.407, distance 0.049 from measured. For comparison, the full MSSM achieves 7/5 = 1.400, distance 0.042 — comparable quality from one multiplet versus the entire superpartner spectrum.
+The beta shifts are computed from Dynkin index formulas: Δb₁ = (2/5)×dim(R₃)×dim(R₂)×Y² = 1/15, Δb₂ = (2/3)×dim(R₃)×S₂(R₂) = 1, Δb₃ = (1/3)×dim(R₂)×S₂(R₃) = 1/3. The modified gap ratio is (b₁'−b₂')/(b₂'−b₃') = 38/27 = 1.407, distance 0.049 from measured. For comparison, the full MSSM achieves 7/5 = 1.400, distance 0.042,  comparable quality from one multiplet versus the entire superpartner spectrum.
 
 The asymmetry mechanism is Y = 1/6. Δb₁ depends on Y² = 1/36, while Δb₂ and Δb₃ do not depend on Y. The ratio Δb₂/Δb₁ = 15: the SU(2) beta shifts 15 times more than the U(1) beta. This is why the gap ratio decreases from 1.896 toward the measured 1.358.
 
@@ -179,11 +179,11 @@ What remains: the VL two-loop b_ij contribution (neglected, estimated ~0.1% effe
 
 ## 9. The Koide Status
 
-The Koide ratio K = (Σm)/(Σ√m)² equals 0.66666051147 for charged leptons — within 6 parts per million of 2/3. For quarks it deviates by 10-27%. The Koide amplitude a², defined by K = (1+a²/2)/3, is 1.9999630688 for leptons (not exactly 2 — this is a Level 2 measurement, not the Level 1 hypothesis), 2.3877254610 for down quarks, and 3.0927612855 for up quarks. The ordering a²_lep < a²_down < a²_up correlates with interaction strength.
+The Koide ratio K = (Σm)/(Σ√m)² equals 0.66666051147 for charged leptons,  within 6 parts per million of 2/3. For quarks it deviates by 10-27%. The Koide amplitude a², defined by K = (1+a²/2)/3, is 1.9999630688 for leptons (not exactly 2,  this is a Level 2 measurement, not the Level 1 hypothesis), 2.3877254610 for down quarks, and 3.0927612855 for up quarks. The ordering a²_lep < a²_down < a²_up correlates with interaction strength.
 
 **The C₃ path is closed.** The 120° spacing in the Koide parametrization √m_k = M(1 + a cos(θ₀ + 2πk/3)) is a tautology: three parameters (M, a, θ₀) fitting three data points is an exactly determined system. It always succeeds for any three positive masses. The spacing is a property of the parametrization, not of the physics. K = 2/3 is a saddle point of the Koide ratio under phase perturbation at a = √2: d²K/dε² = +0.4714 in one direction (minimum) and −0.3905 in another (maximum). The C₃ potential does not select K = 2/3.
 
-**The open problem is the amplitude.** Why a² = 2 for charged leptons? Requirements for any viable derivation: must produce a² = 2 specifically, must explain the three-sector ordering, must not reduce to a reformulation of K = 2/3 (all known reformulations — K = 2/3, a = √2, CV(√m) = 1, Var = Mean², midpoint of range, democratic matrix — are algebraically equivalent and contain no information beyond the three masses). Any future Koide paper that does not attack the amplitude directly is off-target.
+**The open problem is the amplitude.** Why a² = 2 for charged leptons? Requirements for any viable derivation: must produce a² = 2 specifically, must explain the three-sector ordering, must not reduce to a reformulation of K = 2/3 (all known reformulations,  K = 2/3, a = √2, CV(√m) = 1, Var = Mean², midpoint of range, democratic matrix,  are algebraically equivalent and contain no information beyond the three masses). Any future Koide paper that does not attack the amplitude directly is off-target.
 
 ---
 
@@ -191,13 +191,13 @@ The Koide ratio K = (Σm)/(Σ√m)² equals 0.66666051147 for charged leptons �
 
 The QED 2-loop coefficient A₂ decomposes into three pieces of distinct mathematical character: A₂ = 197/144 + (3/4)ζ(3) + R₄×(8/3 − 16 ln 2) = −0.32847896558. The rational piece (+1.368) is from algebraic reduction of 7 two-loop diagrams. The number-theoretic piece (+0.902) is from Feynman parameter integrals producing Li₃(1) = ζ(3). The geometric piece (−2.598) is from 4D momentum phase space, where R₄ = π²/32.
 
-The positive pieces (+2.270) cancel against the geometric piece (−2.598) by 87.4%. The net A₂ is only 12.6% of either side. A₂ is small not because QED converges rapidly but because geometry nearly cancels arithmetic. The smallness is accidental — no known symmetry requires the 87% cancellation.
+The positive pieces (+2.270) cancel against the geometric piece (−2.598) by 87.4%. The net A₂ is only 12.6% of either side. A₂ is small not because QED converges rapidly but because geometry nearly cancels arithmetic. The smallness is accidental,  no known symmetry requires the 87% cancellation.
 
 ---
 
 ## 11. The Search Record
 
-The PSLQ integer relation algorithm, applied to 82 constants from three categories — physical (59 tests, 4-15 digits), dynamical (3 tests, 10-30 digits), and analytical (10 tests, 100 digits) — finds zero relations against a 20-constant transcendental basis with maxcoeff 10,000. The sanity check confirms the algorithm is operational: PSLQ finds the known relation π² = 6ζ(2) as the integer vector [1, 0, −6]. The Bessel zeros j₁₁, j₀₁, j₁₂ are independent of the entire basis at 100-digit precision — the strongest independence statement in the series by 70 orders of magnitude over the SM parameter tests.
+The PSLQ integer relation algorithm, applied to 82 constants from three categories,  physical (59 tests, 4-15 digits), dynamical (3 tests, 10-30 digits), and analytical (10 tests, 100 digits),  finds zero relations against a 20-constant transcendental basis with maxcoeff 10,000. The sanity check confirms the algorithm is operational: PSLQ finds the known relation π² = 6ζ(2) as the integer vector [1, 0, −6]. The Bessel zeros j₁₁, j₀₁, j₁₂ are independent of the entire basis at 100-digit precision,  the strongest independence statement in the series by 70 orders of magnitude over the SM parameter tests.
 
 Every parameter reduction in the series came from physical derivation: θ_QCD = 0 from energy minimization (PHYS-7), α ↔ a_e at 4.3 ppb from QED perturbation theory (PHYS-9), Koide K = 2/3 conditional from a trigonometric identity (PHYS-8). Every PSLQ search returned null: 0/82. Derivation beats search. Future effort should prioritize physical derivation paths over numerical pattern hunting.
 
@@ -231,7 +231,7 @@ Complementary: DUNE (p → K⁺ν̄, the SUSY SU(5) channel, ~2028+), NA62 (rare
 
 | Step | Change | Method | Status |
 |---|---|---|---|
-| SM starting count | 19 | — | Established |
+| SM starting count | 19 |,  | Established |
 | θ_QCD = 0 | 19 → 18 | Energy minimization of QCD vacuum | **Confirmed** |
 | m_τ from Koide | 18 → 17 | K = (1+a²/2)/3 at a² = 2 | **Conditional** (C₃ closed, amplitude unresolved) |
 | +6 Cabibbo Doublet | 17 → 23 | Gap ratio enumeration + anomaly convergence | **Staged** (Type G, entries 124-129) |
@@ -305,10 +305,10 @@ Generic cosmological boundary speculation without a derived per-transit law. Re-
 |---|---|
 | Gap ratio framework | Discovery of a fourth complete generation (changes all betas) |
 | Cabibbo Doublet identification | LHC exclusion of VL quarks above 6 TeV, OR CKM first-row deficit disappearing with improved measurements |
-| Proton decay window 10^34-35 yr | Hyper-K null at τ > 10^35 yr excludes minimal SU(5) completion. The CD itself survives — the gap ratio and anomaly evidence are independent of the GUT completion. Only the lifetime prediction changes. |
+| Proton decay window 10^34-35 yr | Hyper-K null at τ > 10^35 yr excludes minimal SU(5) completion. The CD itself survives,  the gap ratio and anomaly evidence are independent of the GUT completion. Only the lifetime prediction changes. |
 | Generation democracy | Holds exactly at one loop. Higher-loop corrections are small but nonzero. Discovery of incomplete generations or split multiplets at low energy would break it. |
 | Koide K = 2/3 conditional | Improved m_τ measurement deviating by > 3σ from the Koide prediction 1776.97 MeV |
-| Two-loop improvement (66%) | Discovery of an error in the Machacek-Vaughn b_ij matrix (unlikely — used across the field for 40 years) |
+| Two-loop improvement (66%) | Discovery of an error in the Machacek-Vaughn b_ij matrix (unlikely,  used across the field for 40 years) |
 | 82/82 PSLQ null | Discovery of a compact relation for any tested constant. Would not invalidate the null for the other 81, but would change the methodological conclusion. |
 | Derivation beats search | A PSLQ identification of a previously untested quantity (e.g., Koide amplitudes). Would weaken the conclusion for future strategy, not invalidate the existing 3/3 derivation successes. |
 
@@ -324,7 +324,7 @@ This paper does not claim the integer anatomy is new physics. It is new presenta
 
 This paper does not claim all operational commitments are permanent. Every commitment has a stated falsification condition in Section 17. The lexicon is designed to be revised when evidence demands it.
 
-This paper does not claim PSLQ is the wrong tool. PSLQ is the correct tool for testing integer linear relations. The methodological conclusion (derivation beats search) is about priorities — where to spend effort — not about the validity of the algorithm.
+This paper does not claim PSLQ is the wrong tool. PSLQ is the correct tool for testing integer linear relations. The methodological conclusion (derivation beats search) is about priorities,  where to spend effort,  not about the validity of the algorithm.
 
 This paper does not claim the two-loop result is final. The VL two-loop b_ij contribution and GUT threshold corrections remain to be computed. The Δ = −0.40 is a partial result that improves on the one-loop Δ = −1.17 but is not the complete answer.
 
@@ -332,9 +332,9 @@ This paper does not claim the two-loop result is final. The VL two-loop b_ij con
 
 ## 19. What This Paper Seeds
 
-Every script in this paper is a template for future computation. The phys24_lib.py platform library provides all constants and helpers for Session 4+ scripts — change one import line to test against new data. The open questions list (Section 16) is the work queue. The falsification conditions (Section 17) are the kill criteria. The experimental timeline (Section 13) is the clock.
+Every script in this paper is a template for future computation. The phys24_lib.py platform library provides all constants and helpers for Session 4+ scripts,  change one import line to test against new data. The open questions list (Section 16) is the work queue. The falsification conditions (Section 17) are the kill criteria. The experimental timeline (Section 13) is the clock.
 
-The most immediate seeds: sin²θ_W from 3/8 is unblocked (~10 lines using Cabibbo Doublet betas for L_X). The VL two-loop b_ij computation is staged (formulas known, normalization to be resolved). The GUT threshold parametrization in minimal SU(5) is a defined computation. The Koide amplitude a² = 2 remains the deepest open problem in the series — no viable attack path is currently known, but the problem is sharply stated and the dead paths are documented.
+The most immediate seeds: sin²θ_W from 3/8 is unblocked (~10 lines using Cabibbo Doublet betas for L_X). The VL two-loop b_ij computation is staged (formulas known, normalization to be resolved). The GUT threshold parametrization in minimal SU(5) is a defined computation. The Koide amplitude a² = 2 remains the deepest open problem in the series,  no viable attack path is currently known, but the problem is sharply stated and the dead paths are documented.
 
 The Cabibbo Doublet is staged. The GUT arithmetic is staged. The database is staged. The lexicon is staged. If later work falsifies part of this ground, the ground will be revised. Until then, this is the ground.
 
@@ -366,11 +366,11 @@ The Cabibbo Doublet is staged. The GUT arithmetic is staged. The database is sta
 | Mass window | 1.5 − 6.0 TeV | 2 | LHC (lower), perturbativity (upper) |
 | Primary mixing |V_ub'| | ~0.045 | 2 | CKM first-row deficit |
 | New parameters | 6: M_VL, θ₁₄, θ₂₄, θ₃₄, δ₁, δ₂ | 2 | Extended 3×4 CKM |
-| DATA-4 entries | 124-129 (Type G, staged) | — | data_4.py |
+| DATA-4 entries | 124-129 (Type G, staged) |,  | data_4.py |
 | Anomaly evidence 1 | CKM deficit 2.5-4σ | 2 | Uses weak doublet quantum number |
 | Anomaly evidence 2 | A_FB^b ~3σ (LEP, 25+ yr persistent) | 2 | Uses color + weak quantum numbers |
 | Anomaly evidence 3 | Higgs μ ~2σ excess | 2 | Uses color triplet quantum number |
-| Independent roads | Gap ratio (top-down) + anomaly (bottom-up) | — | No shared data or methods |
+| Independent roads | Gap ratio (top-down) + anomaly (bottom-up) |,  | No shared data or methods |
 
 ---
 
@@ -440,7 +440,7 @@ The dominant entry b₃₃ = −26 slows SU(3) running at two loops, reducing th
 | Leptons (e, μ, τ) | 0.66666051147 | 1.9999630688 | −3.693 × 10⁻⁵ | 132.7° | B2, B3, B4 (pole) |
 | Down quarks (d, s, b) | 0.73128757683 | 2.3877254610 | +0.388 | 126.3° | D2, D3, D5 (MS-bar) |
 | Up quarks (u, c, t) | 0.84879354758 | 3.0927612855 | +1.093 | 124.3° | D1, D4, C4 (mixed) |
-| Koide hypothesis | 2/3 | 2 | 0 | any | — |
+| Koide hypothesis | 2/3 | 2 | 0 | any |,  |
 
 **Confirmed orderings:** K_lep < K_down < K_up. a²_lep < a²_down < a²_up.
 
@@ -508,7 +508,7 @@ A₂ = 197/144 + (3/4)ζ(3) + R₄ × (8/3 − 16 ln 2) = −0.32847896558
 | 5 | α_s prediction | Not started | Consistency check from unification condition | MEDIUM |
 | 6 | S, T oblique parameters | Not started | Compute from PHYS-12 EW infrastructure | MEDIUM |
 | 7 | Z-b-b vertex correction | Not started | Needs θ₃₄ estimate from A_FB^b | MEDIUM |
-| 8 | Koide amplitude a² = 2 | Open, no viable path | The real Koide problem — no known attack | LOW |
+| 8 | Koide amplitude a² = 2 | Open, no viable path | The real Koide problem,  no known attack | LOW |
 | 9 | A₃ decomposition (3-loop) | Not started | Extend A₂ method, needs Laporta-Remiddi result | LOW |
 | 10 | A₄ master integrals | Blocked externally | Await Laporta data or transcribe T+V+W+E | LOW |
 | 11 | CKM from mass ratios | Blocked | Wait for lattice improvement to ~1% light quarks | LOW |
@@ -568,7 +568,7 @@ The scripts compute and verify the gap ratio 218/115 and the measured gap ratio 
 
 **E3. Appendix C, "SM + CD (+ GUT thresholds)" row.**
 
-The row shows Δ ~ 0 and quality "Closable". No script computes this — it is a forward projection. The paper should mark this row as "(projected, not yet computed)" to distinguish it from the verified rows.
+The row shows Δ ~ 0 and quality "Closable". No script computes this,  it is a forward projection. The paper should mark this row as "(projected, not yet computed)" to distinguish it from the verified rows.
 
 **E4. Appendix D, gap ratio percentage decomposition.**
 
@@ -578,11 +578,11 @@ The percentages (gauge 100.9%, Higgs −0.9% for numerator; gauge 95.7%, Higgs 4
 
 **A1. The paper says "8 scripts, 62 checks" but the plan originally projected 30-40 checks.**
 
-The scripts grew during writing. 62 is correct — it's the sum from the actual script outputs: 5+10+10+8+10+7+4+8 = 62. The plan's estimate was conservative. No issue.
+The scripts grew during writing. 62 is correct,  it's the sum from the actual script outputs: 5+10+10+8+10+7+4+8 = 62. The plan's estimate was conservative. No issue.
 
 **A2. The paper has appendices despite the plan saying "No appendices."**
 
-The plan said "No appendices — everything in the body." The writing Claude put the core content in the body (Sections 1-19) and added appendices A-K as supporting tables. This is a reasonable deviation — the body is self-contained and readable without the appendices. The appendices serve as lookup tables for future sessions. The spirit of the plan is preserved even though the letter changed. No issue.
+The plan said "No appendices,  everything in the body." The writing Claude put the core content in the body (Sections 1-19) and added appendices A-K as supporting tables. This is a reasonable deviation,  the body is self-contained and readable without the appendices. The appendices serve as lookup tables for future sessions. The spirit of the plan is preserved even though the letter changed. No issue.
 
 **A3. Section 7 uses "gap ratio improvement from 40% miss to 3.6% miss."**
 
@@ -598,7 +598,7 @@ The table shows rational = 416% of |A₂|, number-theoretic = 274%, geometric = 
 
 **A6. Appendix J, sin²θ_W formula.**
 
-The formula sin²θ_W = 3/8 − (109/72)·L_X/α_EM⁻¹ is from the parked notebook. It is not script-verified. This is correct — the notebook is parked, and the formula is stated as "path forward" not as a verified result. The coefficient 109/72 should be checked when the computation is actually done, but for a parked notebook description this is fine.
+The formula sin²θ_W = 3/8 − (109/72)·L_X/α_EM⁻¹ is from the parked notebook. It is not script-verified. This is correct,  the notebook is parked, and the formula is stated as "path forward" not as a verified result. The coefficient 109/72 should be checked when the computation is actually done, but for a parked notebook description this is fine.
 
 **A7. The paper correctly uses a² = 1.9999630688 throughout, never 2.0000.**
 
@@ -615,7 +615,7 @@ Appendix K sums: 21 + 148 + 5 + 10 + 10 + 8 + 10 + 7 + 4 + 8 + 9 + 7 + 6 + 32 + 
 | E1 | Koide θ₀ values not script-verified | Mark as estimated or remove |
 | E2 | SM Δ = −6.58 source | Add "from sin2_theta_w_1.py" |
 | E3 | GUT threshold row projected | Mark "(projected, not yet computed)" |
-| E4 | Decomposition percentages | Correct, just not displayed at this precision in script — no action needed |
+| E4 | Decomposition percentages | Correct, just not displayed at this precision in script,  no action needed |
 
 Three fixes, all minor annotations. The paper is correct on every script-backed number. The structure follows the plan. The Level 1/Level 2 classification is consistent throughout. The falsification conditions and non-claims sections are strong.
 

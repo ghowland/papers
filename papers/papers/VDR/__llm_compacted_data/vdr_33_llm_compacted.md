@@ -1,4 +1,4 @@
-# HOWL-VDR-33-2026 — LLM-COMPACT FORM
+# HOWL-VDR-33-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: compound_axes → foundation → waste_analysis → elimination_mechanisms → token_reduction → scaling → rule_accumulation → hardware → diffusion → safety → session_model → llm_software → compound_economics → validation_status → industry
 
@@ -8,7 +8,7 @@ AX2|token elimination|grammars, builtins, KBs, Prolog, confidence fractions repl
 AX3|scaling behavior|KB-addressed state → linear cost vs attention re-read → quadratic|23:1 at turn 1 growing to 588:1 at turn 100|all multi-turn interactions
 AX4|rule accumulation|L1→L2→L3 progression; solved problems become Prolog rules at zero future LLM cost|83% reduction over 100 investigations|recurring enterprise workloads
 AX5|engineering cost elimination|determinism removes non-det testing/compliance/debugging; structural safety removes RLHF/red-teaming/filtering; exact arithmetic removes NaN/epsilon/drift management|qualitative|all production deployments
-# axes are independent — each applies regardless of others; compound effect is multiplicative
+# axes are independent,  each applies regardless of others; compound effect is multiplicative
 
 # waste_categories(id|category|description|cost_character)
 WC1|structural tokens|braces, brackets, colons, commas, field names, keywords, indentation|syntactically determined; 0.1 bits information through 15-bit pipeline
@@ -27,7 +27,7 @@ EM5|computed confidence|WC5|exact VDR fractions propagated through declared form
 EM6|sentence templates|prose (partial)|LLM emits semantic tuple (~8 command tokens); Prolog matches against ~5,000 structure templates; template fills slots; library grows through usage|~8 tokens vs 50-200 for full prose
 
 # grammar_vs_constrained_decoding(id|property|grammar_directed|constrained_decoding)
-GC1|forward pass per structural token|zero — grammar emits directly|yes — runs full forward pass, masks illegal candidates
+GC1|forward pass per structural token|zero,  grammar emits directly|yes,  runs full forward pass, masks illegal candidates
 GC2|mechanism|"emit known token, skip prediction"|"predict from 50,000 but mask 49,996"
 GC3|cost|template lookup|full transformer forward pass
 
@@ -38,7 +38,7 @@ CT3|free-form code|50,000+|~15.6|~50|~60.5% per invocation
 CT4|natural language reasoning|50,000+|~15.6|~100|~13.3% per invocation
 
 # llm_role(id|role|description)
-LR1|orchestration|reads KB facts, decides next action, selects builtins/Prolog queries, interprets results — pure judgment
+LR1|orchestration|reads KB facts, decides next action, selects builtins/Prolog queries, interprets results,  pure judgment
 LR2|prose generation|natural language where required; fills grammar content slots or generates freely
 LR3|novel rule creation|formalizes patterns as Prolog rules stored in KB; zero future token cost per reuse
 
@@ -97,7 +97,7 @@ EL3|L3|pure Prolog batch, zero LLM|0
 NA1|90-day staleness|rules not fired in 90 days flagged for review
 NA2|low success rate|rules with <20% success after 10+ firings retracted immediately
 NA3|missing grants|rules never successfully executed due to missing grants flagged
-# retraction is clean — provenance tracks dependencies and effects
+# retraction is clean,  provenance tracks dependencies and effects
 
 # bootstrap_sequence(id|stage|description)
 BS1|seeded|4 seed layers loaded: language templates, format grammars, operational rules, self-maintenance (~23,400 entries, 1.5 MB, <620ms load)
@@ -163,7 +163,7 @@ DD4|25,920,000|~2.6×10⁻⁷|0|2-hour film, 3 cycles
 
 # safety_mechanisms(id|mechanism|function|attack_resistance)
 SF1|KB visibility|integer comparison filters data before LLM receives it; public/internal/owner-only per KB|LLM cannot be prompted to reveal data it never received
-SF2|scope chain|query walks from user position upward through ancestors to root; siblings structurally unreachable|engineer cannot reach HR data — HR branch is sibling not ancestor
+SF2|scope chain|query walks from user position upward through ancestors to root; siblings structurally unreachable|engineer cannot reach HR data,  HR branch is sibling not ancestor
 SF3|grant authorization|all 44 operational primitives require positive credential grant; default denial; monotonic transitions (active→expired/exhausted/revoked, never back)|no re-increment, no un-revoke
 SF4|immutable session identity|user_id set at authentication, stored at -1.identity.user_id, immutable from token stream|prompt injection cannot change user_id that primitive layer reads
 
@@ -173,7 +173,7 @@ PI2|influence how LLM phrases prose|modify scope chain
 PI3|—|bypass visibility checks
 PI4|—|execute operations without grants
 PI5|—|surface unauthorized data
-# for data access: jailbreaking is impossible — attack surface does not exist
+# for data access: jailbreaking is impossible,  attack surface does not exist
 
 # session_scoring(id|aspect|mechanism)
 SS1|input classification|token matching against classification KB using string primitives
@@ -230,7 +230,7 @@ ST6|incident report|50%|400 of 800|template deviations
 ST7|English prose (no structure)|~5%|punctuation only|minimal
 
 # compound_economics_examples(id|scenario|axes_applied|combined_factor)
-CE1|single SRE investigation|AX1 (2×) × AX2 (33×)|66× (measured: 71× including human time — $0.39 vs $27.58)
+CE1|single SRE investigation|AX1 (2×) × AX2 (33×)|66× (measured: 71× including human time,  $0.39 vs $27.58)
 CE2|SRE over 6 months|AX1 (2×) × AX2 (33×) × AX3 (20× avg) × AX4 (6× rule accum)|~8,000×
 CE3|customer support|AX1 (2×) × AX2 (3.3×) × AX3 (5×) × AX4 (2×)|~66×
 CE4|creative writing|AX1 (2×) only|2×
@@ -304,7 +304,7 @@ DT2|PyTorch float32 + det mode|mostly|no|no
 DT3|JAX float32|yes (single device)|no|no
 DT4|llama.cpp INT8|no (float dequant)|no|n/a
 DT5|VDR Zig Q16|yes|yes|yes
-# VDR only entry achieving all three; structural — integer addition associative; cannot be removed
+# VDR only entry achieving all three; structural,  integer addition associative; cannot be removed
 
 # validation_statistics(id|paper|category|tests|passed|failed_test_error|failed_vdr_error)
 VS1|VDR-1|core arithmetic|68|68|0|0
@@ -314,7 +314,7 @@ VS4|VDR-4|LLM pipeline|198|196|2|0
 VS5|VDR-12|grammar compaction|179|178|1|0
 VS6|VDR-26|diffusion|37|33|4|0
 VS7|total|38 domains|921|903|18|0
-# all 18 failures: test-design errors; system remains falsifiable — any incorrect exact rational would falsify VDR
+# all 18 failures: test-design errors; system remains falsifiable,  any incorrect exact rational would falsify VDR
 
 # build_status(id|level|description|examples)
 BU1|built and validated|shipped code with passing tests|vdr-math 0.1.0 PyPI (921 tests); Zig toy (688ns forward, 5 verification tests); diffusion zero-drift roundtrip; example programs
@@ -324,7 +324,7 @@ BU3|specified but unbuilt|architecture documents with module counts|GPU kernels 
 # integration risk is real; individual operations will perform as documented
 
 # industry_context(id|claim|rationale)
-IC1|float limitations are mathematical not engineering|non-associative addition, softmax≠1, drift, NaN/Inf — properties of representation; no scaling/optimization changes them
+IC1|float limitations are mathematical not engineering|non-associative addition, softmax≠1, drift, NaN/Inf,  properties of representation; no scaling/optimization changes them
 IC2|industry trajectory amplifies VDR advantages|longer outputs → more drift; more structured tasks → more eliminable tokens; higher reliability → less tolerance for non-determinism; tighter cost → greater value of 20-70× reduction
 IC3|risk asymmetry|investigate: bounded cost (engineering team, months, existing hardware); don't investigate: unbounded (competitor at 20-70× less cost, no float optimization path to close gap)
 IC4|all projections conservative|first-gen kernels 75-85% util; no basis tuning per workload; no R depth profiling; no grammar compilation; no type dispatch specialization; all pure upside
@@ -438,10 +438,10 @@ CC|Hardware Availability|BU1
 # VDR: [V,D,R] triple; (V+R)/D = exact rational; D fixed power-of-two
 # Q8/Q16/Q32/Q64/Q335: D=2^8/2^16/2^32/2^64/2^335
 # divmod: integer division + modulo; at power-of-two D = shift+mask
-# SFU: Special Function Unit — GPU transcendental hardware, 32 ops/SM/cycle, 1/16 FP16 tensor rate
+# SFU: Special Function Unit,  GPU transcendental hardware, 32 ops/SM/cycle, 1/16 FP16 tensor rate
 # Barrett reduction: integer division via precomputed multiplicative inverse
 # quadratic surrogate: p_i=(x_i-shift)²/Σ(x_j-shift)²; replaces exp softmax; integer-only
-# KB: knowledge base — scoped storage at integer addresses; dotted path or UUID access
+# KB: knowledge base,  scoped storage at integer addresses; dotted path or UUID access
 # builtin: typed deterministic primitive; ~8 command tokens per invocation; 448 across 25 categories
 # grammar: persistent KB template providing structural tokens; zero forward passes; recursive nesting
 # Prolog: depth-first search with backtracking over exact integer facts; unification via cross-multiplication

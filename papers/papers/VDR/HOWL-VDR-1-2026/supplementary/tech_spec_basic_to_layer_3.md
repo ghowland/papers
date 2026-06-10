@@ -4,7 +4,7 @@
 
 VDR is an exact arithmetic system implemented as a Python library. It represents all values as finite trees of integer triples. There are no floats, no decimals, no limits, no epsilon tests, and no infinity inside the system. Every operation either returns an exact finite result or fails explicitly.
 
-The system replaces approximation-dominant scalar arithmetic with structure-preserving exact computation. It extends beyond rational arithmetic through functional remainders — Python callables embedded in the remainder slot that produce exact structure on demand through recursion, not limits.
+The system replaces approximation-dominant scalar arithmetic with structure-preserving exact computation. It extends beyond rational arithmetic through functional remainders,  Python callables embedded in the remainder slot that produce exact structure on demand through recursion, not limits.
 
 The implementation target is Python 3.8+ with no required external dependencies beyond the standard library. mpmath is optional, used only at the lossy decimal export boundary.
 
@@ -70,19 +70,19 @@ A VDR object is valid if and only if:
 - R is a valid Remainder (atomic, composite with valid VDR children, or functional with a callable)
 - Every child VDR in a composite remainder is itself valid
 - The full recursive expansion of any concrete (non-functional) tree is finite: finite depth, finite branching at every node, finite total node count
-- The object is exact as written — no hidden continuation, no deferred tail, no limit interpretation
+- The object is exact as written,  no hidden continuation, no deferred tail, no limit interpretation
 
 Validity is enforced at construction time. Invalid objects cannot be created through the public API.
 
 ## 5. Closed vs Active
 
-**Closed:** `[V, D, 0]` — the remainder is zero at the top level. Projects to V/D as an exact rational.
+**Closed:** `[V, D, 0]`,  the remainder is zero at the top level. Projects to V/D as an exact rational.
 
 **Globally closed:** The remainder is zero at every level of the recursive tree. No descendant carries unresolved state.
 
-**Active:** `[V, D, R]` with R ≠ 0 — the object carries exact residual state. Under the system's semantics, `[2, 5, 1]` is not the same object as `[3, 5, 0]`. The remainder is meaningful native state, not a delayed simplification.
+**Active:** `[V, D, R]` with R ≠ 0,  the object carries exact residual state. Under the system's semantics, `[2, 5, 1]` is not the same object as `[3, 5, 0]`. The remainder is meaningful native state, not a delayed simplification.
 
-**Functional:** `[V, D, fn]` — the remainder is a callable. The object cannot be projected to a scalar until the function is expanded via `resolve(obj, depth)`. Functional objects are a subclass of active objects.
+**Functional:** `[V, D, fn]`,  the remainder is a callable. The object cannot be projected to a scalar until the function is expanded via `resolve(obj, depth)`. Functional objects are a subclass of active objects.
 
 ```python
 x = VDR(1, 2)          # x.is_closed → True
@@ -165,9 +165,9 @@ where ρ_D(R) interprets the remainder as numerator-side completion relative to 
 
 ```python
 x = VDR(1, 7)
-x.to_fraction()        # Fraction(1, 7) — exact
-float(x)               # 0.14285714285714285 — lossy
-to_decimal(x, 50)      # "0.14285714285714285714285714285714285714285714285714" — lossy
+x.to_fraction()        # Fraction(1, 7),  exact
+float(x)               # 0.14285714285714285,  lossy
+to_decimal(x, 50)      # "0.14285714285714285714285714285714285714285714285714",  lossy
 ```
 
 ## 9. Closed Arithmetic
@@ -244,8 +244,8 @@ All results are normalized. Commutativity, associativity, and distributivity hol
 Division by a closed object with V ≠ 0 is multiplication by `[D₂, V₂, 0]`. Division by an active object goes through the projection boundary: the divisor is projected to an exact Fraction, inverted, and the quotient is computed via active multiplication. The projected value is exact (no precision loss), but the divisor's structural remainder information is not preserved in the result. This is the v1 compromise. Division by any object projecting to zero raises `ArithmeticFailure`.
 
 ```python
-VDR(2, 5, 1) * VDR(3, 7, -1)    # projects to 6/35 — exact
-VDR(2, 5, 1) / VDR(1, 3, 1)     # projects to 9/10 — exact via projection
+VDR(2, 5, 1) * VDR(3, 7, -1)    # projects to 6/35,  exact
+VDR(2, 5, 1) / VDR(1, 3, 1)     # projects to 9/10,  exact via projection
 ```
 
 ## 11. Lift
@@ -282,13 +282,13 @@ rebase([V, D, R], B) = [Q, B, [S, D, 0] + lift(R, B)]
 
 The mismatch witness `[S, D, 0]` captures the exact denominator mismatch. `lift(R, B)` transports existing remainder into the new frame. If S = 0 and the lifted remainder resolves to zero, the result collapses to a closed form.
 
-**Same-denominator rebase:** Identity — `rebase(x, x.d)` returns x unchanged.
+**Same-denominator rebase:** Identity,  `rebase(x, x.d)` returns x unchanged.
 
 Rebase preserves value equality, not structural equality. It is deterministic, finite, and exact.
 
 ```python
 x = VDR(1, 2)
-x.rebase(3)    # [1, 3, [1, 2, 0]] — projects to 1/2
+x.rebase(3)    # [1, 3, [1, 2, 0]],  projects to 1/2
 x.rebase(4)    # [2, 4, 0] → normalizes to [1, 2, 0]
 ```
 
@@ -338,9 +338,9 @@ resolved = resolve_recursive(nested_obj, depth=5)
 
 ### Semantics
 
-A functional remainder is exact at every finite depth of expansion. Depth 0 produces one exact result. Depth N produces another exact result. Neither is an approximation — each is a complete exact VDR object. The function is a recursive specification, not a convergent series.
+A functional remainder is exact at every finite depth of expansion. Depth 0 produces one exact result. Depth N produces another exact result. Neither is an approximation,  each is a complete exact VDR object. The function is a recursive specification, not a convergent series.
 
-Functional remainders cannot be projected to scalars without expansion. Calling `to_fraction()` on a functional VDR raises an error. This is by design — projection requires a concrete structure, and the function must be expanded to a chosen depth first.
+Functional remainders cannot be projected to scalars without expansion. Calling `to_fraction()` on a functional VDR raises an error. This is by design,  projection requires a concrete structure, and the function must be expanded to a chosen depth first.
 
 Functional remainders support negation (negate the output), lift (scale the output), and combination (compose two functions with addition or subtraction).
 
@@ -348,7 +348,7 @@ Functional remainders support negation (negate the output), lift (scale the outp
 
 **Newton-Raphson for √2:** At depth 7, produces a fraction with >100 correct digits of √2. Every intermediate step is an exact VDR rational. The squared result differs from 2 by a fraction with a 97-digit denominator. No floats used anywhere in the computation.
 
-**Leibniz series for π/4:** Each partial sum is an exact VDR rational. 101 terms produce π accurate to ~2 decimal places (Leibniz converges slowly). The exact fraction at 101 terms has a 250+ digit numerator and denominator — fully exact, not rounded.
+**Leibniz series for π/4:** Each partial sum is an exact VDR rational. 101 terms produce π accurate to ~2 decimal places (Leibniz converges slowly). The exact fraction at 101 terms has a 250+ digit numerator and denominator,  fully exact, not rounded.
 
 **Basel problem for π²/6:** Exact rational partial sums of 1/n². 101 terms give π accurate to ~1.5 decimal places. Every partial sum is a single exact VDR fraction.
 
@@ -364,7 +364,7 @@ from vdr import discrete_derivative, discrete_derivative_nth
 f = lambda x: x * x
 df = discrete_derivative(f, VDR(1, 1000))
 
-df(VDR(3))    # exactly 6001/1000 — not a float approximation
+df(VDR(3))    # exactly 6001/1000,  not a float approximation
 ```
 
 The discrete derivative of f at x with step size h is:
@@ -387,10 +387,10 @@ ddf(VDR(2))   # exact second derivative of x³ at x=2
 ```python
 from vdr import discrete_integral, discrete_integral_trapz
 
-# Left Riemann sum — every term exact
+# Left Riemann sum,  every term exact
 result = discrete_integral(lambda x: x*x, VDR(0), VDR(1), 100)
 
-# Trapezoidal rule — more accurate, still exact
+# Trapezoidal rule,  more accurate, still exact
 result = discrete_integral_trapz(lambda x: x*x, VDR(0), VDR(1), 100)
 ```
 
@@ -447,14 +447,14 @@ m.solve(b)     # exact solve via Cramer's rule
 
 ### Exact Matrix Inverse
 
-The inverse is computed via the adjugate method: `A⁻¹ = adj(A) / det(A)`. Every element of the cofactor matrix is an exact VDR determinant. The final division is exact VDR division. The result is exactly correct — `A × A⁻¹` produces exactly the identity matrix with no rounding error.
+The inverse is computed via the adjugate method: `A⁻¹ = adj(A) / det(A)`. Every element of the cofactor matrix is an exact VDR determinant. The final division is exact VDR division. The result is exactly correct,  `A × A⁻¹` produces exactly the identity matrix with no rounding error.
 
 ### Demonstrated Capability: Hilbert Matrix
 
 The 4×4 Hilbert matrix H[i,j] = 1/(i+j+1) is notoriously ill-conditioned. Float systems lose all precision on inversion. VDR inverts it exactly:
 
-- `H × H⁻¹ = I` — exactly, every element
-- `inv(inv(H)) = H` — exactly, every element
+- `H × H⁻¹ = I`,  exactly, every element
+- `inv(inv(H)) = H`,  exactly, every element
 - 40 matrix operations (multiply by B, multiply by B⁻¹, repeated 20 times) produce exactly the original matrix
 
 No float system can do this. This is the practical demonstration that VDR matters.
@@ -480,7 +480,7 @@ import json
 d = vdr_to_dict(x)        # VDR → dict
 j = json.dumps(d)         # dict → JSON string
 x2 = vdr_from_dict(json.loads(j))  # JSON string → VDR
-x.structural_eq(x2)       # True — lossless roundtrip
+x.structural_eq(x2)       # True,  lossless roundtrip
 ```
 
 Format:
@@ -546,10 +546,10 @@ from vdr import VDR, Vec, Mat, resolve, discrete_derivative, discrete_integral
 
 All errors inherit from `VDRError`. Failure is a first-class outcome, not a silent degradation.
 
-- `ZeroDenominatorError` — D = 0 in construction or operation result
-- `InvalidStructureError` — wrong types in slots, invalid remainder structure
-- `RebaseError` — invalid target denominator or rebase impossible
-- `ArithmeticFailure` — division by zero, unsupported operation
+- `ZeroDenominatorError`,  D = 0 in construction or operation result
+- `InvalidStructureError`,  wrong types in slots, invalid remainder structure
+- `RebaseError`,  invalid target denominator or rebase impossible
+- `ArithmeticFailure`,  division by zero, unsupported operation
 
 No operation silently approximates. No operation silently truncates. No operation silently drops remainder structure. If exact finite representation is impossible, the operation raises.
 

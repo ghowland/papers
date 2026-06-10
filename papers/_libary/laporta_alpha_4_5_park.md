@@ -1,8 +1,8 @@
 ## NOTEBOOK: Laporta Convention Mapping & Master Integral Decomposition
 
 **Created:** April 5, 2026
-**Status:** PARKED — return when MATH-3 PSLQ is ready
-**Priority:** Medium — unblocks 4900-digit A₄/A₅ precision (currently not limiting)
+**Status:** PARKED,  return when MATH-3 PSLQ is ready
+**Priority:** Medium,  unblocks 4900-digit A₄/A₅ precision (currently not limiting)
 
 ---
 
@@ -13,25 +13,25 @@
 **What we know:**
 - C81a + C81b + C81c = 107.71 (from our laporta_to_json.py output)
 - Standard A₄ = −1.912245764926 (from PHYS-9, verified at 4.3 ppb)
-- These are different numbers — different convention, not an error
+- These are different numbers,  different convention, not an error
 
 **Probable convention:**
 - "C8" = 8th order in coupling e (= 4th order in α)
 - "1" = mass class 1 (electron only, no muon/tau contributions)
 - (a,b,c) = number of closed lepton loops: (a) none, (b) one VP insertion, (c) two (light-by-light)
-- The expansion parameter is likely (α/π) but with a different overall normalization — possibly missing a combinatoric factor from diagram counting, or using a different subtraction scheme
+- The expansion parameter is likely (α/π) but with a different overall normalization,  possibly missing a combinatoric factor from diagram counting, or using a different subtraction scheme
 
 **Method to resolve:**
-1. Read hep-ph/9602417 (Laporta & Remiddi 1996) — this paper gives BOTH the individual diagram contributions AND the standard A₃. The normalization convention is stated explicitly in the paper.
-2. Read PLB 772 (Laporta 2017) — the 4-loop paper. Section 2 should define the expansion convention. The relationship between the 891 diagram contributions and A₄ will be stated.
+1. Read hep-ph/9602417 (Laporta & Remiddi 1996),  this paper gives BOTH the individual diagram contributions AND the standard A₃. The normalization convention is stated explicitly in the paper.
+2. Read PLB 772 (Laporta 2017),  the 4-loop paper. Section 2 should define the expansion convention. The relationship between the 891 diagram contributions and A₄ will be stated.
 3. Compare: if A₃(paper) uses the same convention as C81, the ratio A₃(standard)/A₃(paper convention) gives the conversion factor. Apply to C81 sum to get A₄. Verify against the known A₄ = −1.9122.
 4. Alternative: the factor might be (−1)ⁿ × (n!/something) or involve the number of diagrams. Try: A₄ = C81_total / (−4! × some_factor) or similar combinatoric rescaling.
 
 **Files needed:**
-- `data/laporta.dat` — the raw coefficients (already stored)
-- `data/values_qed_laporta_v0.json` — the 8 value nodes (already in DATA-6)
-- hep-ph/9602417 PDF — fetch from arXiv
-- PLB 772 (2017) Laporta — fetch from ScienceDirect or arXiv:1704.06996
+- `data/laporta.dat`,  the raw coefficients (already stored)
+- `data/values_qed_laporta_v0.json`,  the 8 value nodes (already in DATA-6)
+- hep-ph/9602417 PDF,  fetch from arXiv
+- PLB 772 (2017) Laporta,  fetch from ScienceDirect or arXiv:1704.06996
 
 **Expected outcome:** A single conversion formula: A₄ = f(C81a, C81b, C81c) and A₅ = f(C83a, C83b, C83c). Once known, store as a derivation `qed_laporta_convention_map_v0` in DATA-6.
 
@@ -50,7 +50,7 @@
 - Q335 basis: 31 constants at 100 digits (need extension to 5000 digits for PSLQ)
 - Elliptic integrals K and E at k² = 1/4, 1/2, 3/4 at 100 digits (need 5000)
 - PSLQ algorithm (implemented in MATH-6, tested at 82/82 null)
-- No MI values yet — must extract from Laporta 2017 or request
+- No MI values yet,  must extract from Laporta 2017 or request
 
 **What we need to do:**
 1. Extract or obtain the six MI values at 4800+ digits
@@ -61,13 +61,13 @@
 6. If PSLQ returns null at 5000 digits: the MIs define genuinely new transcendentals beyond our basis
 
 **Prerequisites:**
-- Convention mapping (Task 1) must be done first — we need to know which published numbers are the MIs vs the diagram sums
+- Convention mapping (Task 1) must be done first,  we need to know which published numbers are the MIs vs the diagram sums
 - MATH-3 infrastructure for extended-precision PSLQ (specified but not yet built)
 - Computational resources: PSLQ at 5000 digits with ~40 candidate constants is feasible but slow (~hours per MI)
 
 **What this gives Laporta:**
 - If positive: the analytical decomposition he's been seeking for 20 years. His 4800-digit numerical values expressed as exact combinations of named constants. This is the collaboration-worthy result.
-- If null: proof that the MIs are NOT in the standard transcendental basis (including elliptics). This is also valuable — it narrows the search space.
+- If null: proof that the MIs are NOT in the standard transcendental basis (including elliptics). This is also valuable,  it narrows the search space.
 
 ---
 
@@ -79,7 +79,7 @@
 - Our framework stores hadronic VP as a measured value node with full uncertainty
 - If we add the mass-dependent QED corrections to our a_e chain (Tier 1 on the fitting board), we'll have a precise α that feeds into the muon g-2 prediction
 - The muon g-2 prediction chain: α(from a_e) → a_μ(QED) + a_μ(hadronic) + a_μ(EW) → compare to Fermilab measurement
-- This is experiment_muon_g2_v0 on the attack list — priority 9
+- This is experiment_muon_g2_v0 on the attack list,  priority 9
 
 **Not ready yet.** We need the Tier 1 corrections first, then the muon-specific mass-dependent terms.
 
@@ -100,11 +100,11 @@
 
 ---
 
-## NOTEBOOK: Laporta Collaboration — Session 4 Update
+## NOTEBOOK: Laporta Collaboration,  Session 4 Update
 
 **Created:** April 5, 2026 (update to original notebook)
-**Status:** PARKED — upgraded from original. More to offer now.
-**Priority:** Medium-High — we have results worth sharing when ready
+**Status:** PARKED,  upgraded from original. More to offer now.
+**Priority:** Medium-High,  we have results worth sharing when ready
 
 ---
 
@@ -192,7 +192,7 @@ This framework could verify any proposed analytical decomposition of A₄. If so
 We used Volkov's A₅ = 5.891. With our framework we could:
 - Run the extraction with AHKN's A₅ = 6.678 instead
 - Compare both α⁻¹ results to the Rb recoil measurement (most precise independent α)
-- The difference is only 0.04 ppb — currently not discriminating
+- The difference is only 0.04 ppb,  currently not discriminating
 - BUT if the mass-dependent and hadronic corrections are added (closing α to <1 ppb), the A₅ choice starts to matter at the ~0.5 ppb level
 - This could provide a weak independent constraint on which A₅ is correct
 
@@ -221,7 +221,7 @@ The Laporta convention mismatch (2752 ppb error, caught by forward check within 
 - The diagnostic output (forward residual) pointed directly to the cause
 - The resolution path (use verified PHYS-9 A₄, archive Laporta values for future mapping) was systematic
 
-This could be useful to Laporta as evidence that our verification framework is robust — it catches its own mistakes.
+This could be useful to Laporta as evidence that our verification framework is robust,  it catches its own mistakes.
 
 ---
 
@@ -256,16 +256,16 @@ This could be useful to Laporta as evidence that our verification framework is r
 - This changes the data-driven HVP evaluation
 - The 2025 White Paper says the SM prediction has 62 × 10⁻¹¹ precision and "is in good agreement with the experimental world average"
 - This means the original muon g-2 anomaly (~4.2σ) may have weakened or disappeared
-- Our framework doesn't resolve this — it stores the values and runs the chain
+- Our framework doesn't resolve this,  it stores the values and runs the chain
 
 ---
 
 ### TASK 5: WHAT TO INCLUDE IN THE EMAIL (when ready)
 
 **Triggers to send:**
-1. Convention mapping resolved from papers (Task 1) — send even without PSLQ
-2. PSLQ result on any master integral — send immediately whether positive or null
-3. Muon g-2 chain working — send with his HVP values as inputs
+1. Convention mapping resolved from papers (Task 1),  send even without PSLQ
+2. PSLQ result on any master integral,  send immediately whether positive or null
+3. Muon g-2 chain working,  send with his HVP values as inputs
 
 **Content for trigger 1 (convention mapping):**
 - "We resolved the C81/C83 convention from your 2017 paper"

@@ -170,7 +170,7 @@ The real numbers do the calculus. The fractions do the counting. Both are needed
 
 ### The Ceiling
 
-Real-number physics has a ceiling. The ceiling is not computational — modern computers handle floating-point arithmetic to fifteen or sixteen significant digits, far beyond most experimental precision. The ceiling is structural.
+Real-number physics has a ceiling. The ceiling is not computational,  modern computers handle floating-point arithmetic to fifteen or sixteen significant digits, far beyond most experimental precision. The ceiling is structural.
 
 In real-number physics, the three force strengths at the Z boson energy scale are three points on the number line: 63.21, 31.69, and 8.47 (expressed as inverse couplings, which makes them easier to compare). These three points don't look special. They don't suggest any particular ratio. They don't hint at a pattern. They are just three numbers.
 

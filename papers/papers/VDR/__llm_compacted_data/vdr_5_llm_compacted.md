@@ -1,4 +1,4 @@
-# EXACT ARITHMETIC MEETS LOGICAL PROVENANCE — LLM-COMPACT FORM
+# EXACT ARITHMETIC MEETS LOGICAL PROVENANCE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → three layers → prolog → scoped KBs → working data → constraints → topics → surfacing → accounts → memory → relationships → sections
 
@@ -55,7 +55,7 @@ WD3|Inheritance and shadowing|Lookup walks current dataset up to root like lexic
 WD4|History|Every binding logged with turn number; "when did we decide Bob was 32?" has exact answer
 WD5|Snapshots and diffs|Frozen copy at point in time; structured comparison: added/removed/changed bindings with exact values
 WD6|Type discipline|Bindings carry exact VDR types; schema enforcement prevents type errors (number vs atom)
-WD7|Operations|set, get, delete, list, list_local, snapshot, restore, diff, merge, clear — all logged
+WD7|Operations|set, get, delete, list, list_local, snapshot, restore, diff, merge, clear,  all logged
 
 # constraint_system(id|aspect|detail)
 CS1|First-class objects|Structured object in KB with name, scope, status, condition, violation policy, activation time, source
@@ -108,7 +108,7 @@ SF7|Query|Prolog query results|None (direct)|Query engine
 SF8|History|Binding change log|None (direct)|Binding history
 SF9|Pending|Open items list|None (direct)|Topic pending lists
 SF10|Context|Active scope summary|Optional summary|KB tree + topic state
-# KB data blocks cannot be hallucinated — retrieved not generated
+# KB data blocks cannot be hallucinated,  retrieved not generated
 # Addressable references: live links that resolve to current value; LLM text is static, references are dynamic
 
 # permission_model(id|role|sees_llm|sees_public|sees_internal|sees_owner_only|sees_reasoning)
@@ -118,7 +118,7 @@ PM3|End user|Yes|Yes|No|No|No
 PM4|Auditor|Yes|Yes|Yes (read-only)|Yes (read-only)|Yes (read-only)
 
 # accounts_as_kbs(id|aspect|detail)
-AK1|Insight|User account is collection of facts (identity, preferences), rules (permissions), constraints (limits) — this is what a KB is; account should be a KB
+AK1|Insight|User account is collection of facts (identity, preferences), rules (permissions), constraints (limits),  this is what a KB is; account should be a KB
 AK2|Account KB contents|user_name, role, preferences, personal constraints, working_data (session state), children (project KBs, story KBs)
 AK3|Group accounts as parent KBs|Group KB is parent; user KBs are children; group constraints apply to all members through inheritance
 AK4|Nested hierarchy|org → department → team → user; each level is KB with constraints propagating downward; constraint set determined entirely by position in KB tree
@@ -127,7 +127,7 @@ AK6|Per-user customization|Constraints from self (preferences), admin (access gr
 AK7|Querying hierarchy|effective_constraints(user), constraint_source(user, constraint), users_with_constraint(c), constraints_from_level(user, level)
 AK8|Session state in account KB|Active topics, parked topics, working data all inside user KB; login loads KB; multi-session shares KB as single source of truth
 AK9|Portable accounts|Export user KB (facts+rules+constraints+working_data); personal constraints travel; company-specific constraints stripped on detach from parent
-AK10|Testable configurations|hypothetical_add(kb, new_constraint, affected); hypothetical_override(team, constraint, new_condition, conflicts) — all queryable before deployment
+AK10|Testable configurations|hypothetical_add(kb, new_constraint, affected); hypothetical_override(team, constraint, new_condition, conflicts),  all queryable before deployment
 
 # data_flows(id|flow|description)
 DF1|Forward pass|User input → tokenization → embedding → attention scores → softmax → value mixing → feedforward → logits → output probs → sampling; every arrow exact VDR; every step asserts provenance fact; constraints checked at normalization points

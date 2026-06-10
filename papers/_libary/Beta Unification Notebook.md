@@ -1,4 +1,4 @@
-## Beta Unification Notebook — Update: Integer Traceability Chain CONFIRMED
+## Beta Unification Notebook,  Update: Integer Traceability Chain CONFIRMED
 
 **Status:** Active critical-path research. Updated after PHYS-26 (20/20 EXACT).
 **This update:** The integers 13 and 20 are now derived from first principles. The traceability chain is complete from the SU(5) embedding condition through to every cosmological formula.
@@ -19,13 +19,13 @@ Script: phys26_normalization.py S1 (3 checks, all EXACT).
 
 The one-loop beta shift for U(1) from a vector-like fermion pair uses coefficient C₁ = 2k₁/3 = 2(3/5)/3 = 2/5. The 2/3 is the standard Dynkin index normalization for Dirac fermions. The k₁ provides the GUT normalization. Their product is the coefficient that enters every U(1) beta shift computation.
 
-Not a separate check — it's the definition. But the MSSM gate (S3, EXACT) verifies the coefficient produces the known MSSM gap ratio 7/5.
+Not a separate check,  it's the definition. But the MSSM gate (S3, EXACT) verifies the coefficient produces the known MSSM gap ratio 7/5.
 
 **Link 3 → Link 4: C₁ = 2/5 applied to (3,2,1/6) produces Δb₁ = 1/15.**
 
 Δb₁ = (2/5) × dim(3) × dim(2) × (1/6)² = (2/5) × 3 × 2 × (1/36) = (2/5) × (1/6) = 2/30 = 1/15.
 
-The Y = 1/6 is the smallest hypercharge giving standard quark charges (+2/3, −1/3). The Y² = 1/36 makes Δb₁ small. This is the root of the asymmetry mechanism — the SU(2) shift Δb₂ = 1 is fifteen times larger because it does not depend on Y.
+The Y = 1/6 is the smallest hypercharge giving standard quark charges (+2/3, −1/3). The Y² = 1/36 makes Δb₁ small. This is the root of the asymmetry mechanism,  the SU(2) shift Δb₂ = 1 is fifteen times larger because it does not depend on Y.
 
 Script: phys26_normalization.py S2 (Δb₁ = 1/15 EXACT), S4 (two routes both give 1/15 EXACT).
 
@@ -98,17 +98,17 @@ SU(5) embedding: Tr(Y²) = k₁ Tr(T₃²)
 
 **The normalization resolution is not a bookkeeping task.** It is the ROOT of the integer traceability chain. If k₁ were 2/5 instead of 3/5, the coefficient would be C₁ = 4/15 instead of 2/5, giving Δb₁ = 2/15 instead of 1/15, and b₂' would still be −13/6 (because Δb₂ doesn't use k₁), but the gap ratio would be 64/45 instead of 38/27. The cosmological integers would be unchanged (13 and 20 come from b₂' and b₃', not from b₁'), but the unification quality would degrade by 30%.
 
-The fact that the cosmological integers 13 and 20 are INDEPENDENT of the normalization factor k₁ is itself a structural finding. The normalization affects only Δb₁ (the U(1) shift), which enters the gap ratio but not the cosmological formulas. The cosmological formulas use b₂' and b₃', which involve Δb₂ and Δb₃ — these use coefficients 2/3 and 1/3 that do NOT contain k₁. The GUT normalization factor is invisible to the cosmological program. The unification program needs k₁ correct. The cosmology program does not.
+The fact that the cosmological integers 13 and 20 are INDEPENDENT of the normalization factor k₁ is itself a structural finding. The normalization affects only Δb₁ (the U(1) shift), which enters the gap ratio but not the cosmological formulas. The cosmological formulas use b₂' and b₃', which involve Δb₂ and Δb₃,  these use coefficients 2/3 and 1/3 that do NOT contain k₁. The GUT normalization factor is invisible to the cosmological program. The unification program needs k₁ correct. The cosmology program does not.
 
 **This means Track B is independent of the normalization resolution.** Even if the normalization had been wrong (producing a different gap ratio), the integers 13 and 20 would be unchanged, and the cosmological formulas would still produce the same predictions. The two tracks (A: unification, B: cosmology) share the Cabibbo Doublet but depend on DIFFERENT aspects of its beta shifts: Track A depends on all three (Δb₁, Δb₂, Δb₃) including the k₁-sensitive Δb₁. Track B depends only on Δb₂ and Δb₃, which are k₁-independent.
 
-This is a robustness finding. The cosmological predictions are insulated from the normalization convention. They depend only on the SU(2) and SU(3) Dynkin indices of the (3,2,1/6) representation, which are determined by dim(R₃), dim(R₂), S₂(R₂), and S₂(R₃) — quantities that have nothing to do with U(1) normalization.
+This is a robustness finding. The cosmological predictions are insulated from the normalization convention. They depend only on the SU(2) and SU(3) Dynkin indices of the (3,2,1/6) representation, which are determined by dim(R₃), dim(R₂), S₂(R₂), and S₂(R₃),  quantities that have nothing to do with U(1) normalization.
 
 ---
 
 ### THE INTEGER 22 TRACEABILITY
 
-The integer 22 = 2 × 11 was not derived in PHYS-26 from the Cabibbo Doublet — it comes from the Yang-Mills structure, which is pre-CD. Its chain:
+The integer 22 = 2 × 11 was not derived in PHYS-26 from the Cabibbo Doublet,  it comes from the Yang-Mills structure, which is pre-CD. Its chain:
 
 **Yang-Mills theorem:** The gauge self-coupling coefficient is −(11/3)C₂(G) for any non-abelian group G. The 11 comes from Lorentz invariance + gauge invariance + renormalizability. For SU(2): C₂ = 2, giving b₂_gauge = −22/3. The magnitude of the numerator (times 3) is 22.
 
@@ -118,7 +118,7 @@ The 22 enters cosmology through the DM ratio (22/13)π and the baryon density (S
 - 13 and 20: from the Cabibbo Doublet's modification of b₂ and b₃ (traced through Links 1–6)
 - 22: from the Yang-Mills gauge self-coupling (pre-CD, Level 1, from the 11)
 
-Together: the cosmological formulas use integers from TWO independent Level 1 sources — the Yang-Mills theorem (giving 11→22) and the Cabibbo Doublet Dynkin indices (giving 13 and 20). Neither source is cosmological. Both are gauge-group arithmetic.
+Together: the cosmological formulas use integers from TWO independent Level 1 sources,  the Yang-Mills theorem (giving 11→22) and the Cabibbo Doublet Dynkin indices (giving 13 and 20). Neither source is cosmological. Both are gauge-group arithmetic.
 
 ---
 
@@ -133,7 +133,7 @@ Together: the cosmological formulas use integers from TWO independent Level 1 so
 | 22 | 2×11 | 2 × Yang-Mills | YM theorem → 11 → 22 | Pre-existing (not from CD) |
 | 3 | N_gen | Anomaly cancellation | SM generation count | Pre-existing |
 
-The two integers newly confirmed by PHYS-26 are 13 and 20 — exactly the two that the Cabibbo Doublet creates. The other four (11, 19, 22, 3) were already established from the SM structure before the CD was added.
+The two integers newly confirmed by PHYS-26 are 13 and 20,  exactly the two that the Cabibbo Doublet creates. The other four (11, 19, 22, 3) were already established from the SM structure before the CD was added.
 
 ---
 
@@ -141,7 +141,7 @@ The two integers newly confirmed by PHYS-26 are 13 and 20 — exactly the two th
 
 The integers are traced. The formulas are documented. The statistical significance is not yet established (PHYS-31). The physical mechanism is not known (PHYS-34). The traceability chain answers WHERE the integers come from. It does not answer WHY they appear in cosmological formulas.
 
-The chain terminates at the SU(5) embedding condition k₁ = 3/5 (for the integer 13) and at the Yang-Mills theorem (for the integer 11). Both are Level 1 — theorems about gauge groups, not observations about our universe. If the cosmological formulas are correct physics (pending PHYS-31), the cosmological parameters are determined by two mathematical theorems about symmetry groups.
+The chain terminates at the SU(5) embedding condition k₁ = 3/5 (for the integer 13) and at the Yang-Mills theorem (for the integer 11). Both are Level 1,  theorems about gauge groups, not observations about our universe. If the cosmological formulas are correct physics (pending PHYS-31), the cosmological parameters are determined by two mathematical theorems about symmetry groups.
 
 ---
 
@@ -149,11 +149,11 @@ The chain terminates at the SU(5) embedding condition k₁ = 3/5 (for the intege
 
 ---
 
-## Supporting Appendix Tables — Beta Unification Notebook: Integer Traceability Update
+## Supporting Appendix Tables,  Beta Unification Notebook: Integer Traceability Update
 
 ---
 
-### TABLE BU.1: THE SEVEN-LINK CHAIN — COMPLETE SPECIFICATION
+### TABLE BU.1: THE SEVEN-LINK CHAIN,  COMPLETE SPECIFICATION
 
 | Link | Input | Operation | Output | Script Check | Precision |
 |---|---|---|---|---|---|
@@ -172,7 +172,7 @@ Every link verified. Every output EXACT. No measurement enters. The chain is Lev
 
 ---
 
-### TABLE BU.2: THE TRACE COMPUTATION — EVERY TERM
+### TABLE BU.2: THE TRACE COMPUTATION,  EVERY TERM
 
 | Representation | Y | Y² | States | Y² contribution | T₃ values | T₃² contribution |
 |---|---|---|---|---|---|---|
@@ -187,7 +187,7 @@ Ratio: k₁ = Tr(T₃²)/Tr(Y²) = 2/(10/3) = 6/10 = **3/5**.
 
 ---
 
-### TABLE BU.3: THE THREE DYNKIN COEFFICIENTS — DERIVATION
+### TABLE BU.3: THE THREE DYNKIN COEFFICIENTS,  DERIVATION
 
 | Coefficient | Formula | Value | Source of each factor | Applies to |
 |---|---|---|---|---|
@@ -199,7 +199,7 @@ Ratio: k₁ = Tr(T₃²)/Tr(Y²) = 2/(10/3) = 6/10 = **3/5**.
 
 ---
 
-### TABLE BU.4: NORMALIZATION DEPENDENCE — WHAT DEPENDS ON k₁ AND WHAT DOESN'T
+### TABLE BU.4: NORMALIZATION DEPENDENCE,  WHAT DEPENDS ON k₁ AND WHAT DOESN'T
 
 | Quantity | Depends on k₁? | Why | Consequence |
 |---|---|---|---|
@@ -219,7 +219,7 @@ Ratio: k₁ = Tr(T₃²)/Tr(Y²) = 2/(10/3) = 6/10 = **3/5**.
 
 ---
 
-### TABLE BU.5: TWO ROUTES TO 1/15 — STEP BY STEP
+### TABLE BU.5: TWO ROUTES TO 1/15,  STEP BY STEP
 
 | Step | Route A (Dynkin direct) | Route B (scalar counting) |
 |---|---|---|
@@ -227,14 +227,14 @@ Ratio: k₁ = Tr(T₃²)/Tr(Y²) = 2/(10/3) = 6/10 = **3/5**.
 | × dim(R₃) | (2/5) × 3 = 6/5 | (1/5) × 3 = 3/5 |
 | × dim(R₂) | (6/5) × 2 = 12/5 | (3/5) × 2 = 6/5 |
 | × Y² | (12/5) × (1/36) = 12/180 = 1/15 | (6/5) × (1/36) = 6/180 = 1/30 |
-| × VL multiplier | — (already absorbed in C₁) | × 2 = 2/30 = 1/15 |
+| × VL multiplier |,  (already absorbed in C₁) | × 2 = 2/30 = 1/15 |
 | **Result** | **1/15** | **1/15** |
 
 Both routes produce the same Fraction. The VL multiplier (×2) appears in Route A as the factor of 2 in C₁ = 2k₁/3, and in Route B as the explicit doubling of the scalar result. Verified: S4 Route A = Route B EXACT.
 
 ---
 
-### TABLE BU.6: THE WRONG CONVENTION — QUANTIFIED IMPACT
+### TABLE BU.6: THE WRONG CONVENTION,  QUANTIFIED IMPACT
 
 | Quantity | Correct (C₁ = 2/5) | Wrong (C₁ = 4/5) | Difference | Impact |
 |---|---|---|---|---|
@@ -250,7 +250,7 @@ The wrong convention degrades the unification quality by 30% but leaves the cosm
 
 ---
 
-### TABLE BU.7: THE HIGGS CROSS-CHECK — SCALAR FORMULA VERIFICATION
+### TABLE BU.7: THE HIGGS CROSS-CHECK,  SCALAR FORMULA VERIFICATION
 
 | Higgs (1,2,1/2) | Scalar formula | Computed | Known SM value | Match |
 |---|---|---|---|---|
@@ -262,7 +262,7 @@ This is an independent verification of the scalar counting convention. The Higgs
 
 ---
 
-### TABLE BU.8: EVERY COSMOLOGICAL INTEGER — COMPLETE TRACEABILITY
+### TABLE BU.8: EVERY COSMOLOGICAL INTEGER,  COMPLETE TRACEABILITY
 
 | Integer | Value | Origin Type | Chain Start | Chain End | # Links | First Appearance |
 |---|---|---|---|---|---|---|
@@ -295,7 +295,7 @@ The two dominant sources are Yang-Mills (giving 11) and the Cabibbo Doublet (giv
 
 ---
 
-### TABLE BU.10: TRACK INDEPENDENCE — WHAT EACH TRACK USES
+### TABLE BU.10: TRACK INDEPENDENCE,  WHAT EACH TRACK USES
 
 | Beta shift | Value | Used by Track A? | Used by Track B? | Depends on k₁? |
 |---|---|---|---|---|
@@ -306,7 +306,7 @@ The two dominant sources are Yang-Mills (giving 11) and the Cabibbo Doublet (giv
 | b₂' = −13/6 | Modified SU(2) | **YES** (running) | **YES** (all formulas) | No |
 | b₃' = −20/3 | Modified SU(3) | **YES** (running) | **YES** (H₀ formula) | No |
 
-Track A uses all six quantities. Track B uses four of six — the four that are k₁-independent. If the normalization were wrong, Track A would break (wrong gap ratio) but Track B would be unaffected (same 13, same 20).
+Track A uses all six quantities. Track B uses four of six,  the four that are k₁-independent. If the normalization were wrong, Track A would break (wrong gap ratio) but Track B would be unaffected (same 13, same 20).
 
 ---
 
@@ -324,7 +324,7 @@ Track A uses all six quantities. Track B uses four of six — the four that are 
 
 ---
 
-### TABLE BU.12: THE FORMULA SET — NOW WITH FULL TRACEABILITY
+### TABLE BU.12: THE FORMULA SET,  NOW WITH FULL TRACEABILITY
 
 | # | Formula | Predicted | Measured | Miss | Integer trace (PHYS-26 chain) |
 |---|---|---|---|---|---|

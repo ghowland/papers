@@ -1,4 +1,4 @@
-# Terminating VDR — Technical Specification
+# Terminating VDR,  Technical Specification
 
 ## 1. What VDR Is
 
@@ -10,7 +10,7 @@ The primitive object is:
 [V, D, R]
 ```
 
-where V is an integer (the value slot), D is a nonzero integer (the denominator slot), and R is a remainder (the residual slot). R is either an integer or an integer plus a finite list of child VDR triples. Recursion exists only in R — never in V or D. Every valid object is a finite tree.
+where V is an integer (the value slot), D is a nonzero integer (the denominator slot), and R is a remainder (the residual slot). R is either an integer or an integer plus a finite list of child VDR triples. Recursion exists only in R,  never in V or D. Every valid object is a finite tree.
 
 A closed object has R = 0. It behaves like an exact rational number: `[3, 4, 0]` corresponds to 3/4. An active object has R ≠ 0. It carries exact unresolved state that has not been collapsed into the value slot. The remainder is not error, not noise, not approximation residue. It is exact structure required to complete the object.
 
@@ -36,17 +36,17 @@ A VDR object is valid if and only if:
 - R is a valid remainder (atomic integer, or integer base plus finite list of valid VDR children)
 - Every child VDR in R is itself valid (recursive)
 - The full recursive expansion is finite: finite depth, finite branching at every node, finite total node count
-- The object is exact as written — no hidden continuation, no deferred tail, no limit interpretation
+- The object is exact as written,  no hidden continuation, no deferred tail, no limit interpretation
 
 Validity does not require normalization. Both `[2, 4, 0]` and `[1, 2, 0]` are valid. Both `[1, -2, 0]` and `[-1, 2, 0]` are valid. Normalization is a separate layer for canonical comparison, not a condition of existence.
 
 ## 4. Closed vs Active
 
-**Closed:** `[V, D, 0]` — the remainder is zero at the top level.
+**Closed:** `[V, D, 0]`,  the remainder is zero at the top level.
 
 **Globally closed:** The remainder is zero at every level of the recursive tree. No descendant carries unresolved state.
 
-**Active:** `[V, D, R]` with R ≠ 0 — the object carries exact residual structure. Under Path B semantics (chosen for this system), an active object is an exact operation-state object, not an ordinary scalar value. `[2, 5, 1]` is not the same object as `[3, 5, 0]`. The remainder is meaningful native state, not a delayed simplification waiting to be folded into V.
+**Active:** `[V, D, R]` with R ≠ 0,  the object carries exact residual structure. Under Path B semantics (chosen for this system), an active object is an exact operation-state object, not an ordinary scalar value. `[2, 5, 1]` is not the same object as `[3, 5, 0]`. The remainder is meaningful native state, not a delayed simplification waiting to be folded into V.
 
 ## 5. Equality
 
@@ -74,7 +74,7 @@ The normalization rules, applied recursively bottom-up:
 
 **Atomic remainder consolidation:** At each remainder level, all integer contributions are summed into a single integer base. `1 + 2 + [X] + [Y]` becomes `3 + [X] + [Y]`.
 
-**Canonical child ordering:** Immediate remainder children are sorted by a fixed deterministic rule — by denominator magnitude, then by value slot, then by remainder structure.
+**Canonical child ordering:** Immediate remainder children are sorted by a fixed deterministic rule,  by denominator magnitude, then by value slot, then by remainder structure.
 
 **Same-denominator child merge:** If two immediate children share the same denominator and a merge rule is defined and exact, they are combined into one child.
 
@@ -197,11 +197,11 @@ The critical design decision: lift scales V and R of a child, but does not touch
 
 Properties of lift:
 
-- `lift(R, 1) = R` — identity
-- `lift(R, -1) = -R` — negation
-- `lift(lift(R, a), b) = lift(R, a·b)` — multiplicative composition
-- `lift(R₁ + R₂, k) = lift(R₁, k) + lift(R₂, k)` — distributes over remainder addition
-- `lift(0, k) = 0` — preserves closure
+- `lift(R, 1) = R`,  identity
+- `lift(R, -1) = -R`,  negation
+- `lift(lift(R, a), b) = lift(R, a·b)`,  multiplicative composition
+- `lift(R₁ + R₂, k) = lift(R₁, k) + lift(R₂, k)`,  distributes over remainder addition
+- `lift(0, k) = 0`,  preserves closure
 - Preserves validity, finiteness, and equality
 
 Lift is exact integer-structural transport. No approximation, no float conversion, no decimal fitting. It terminates in finite time because every valid VDR object is finite.
@@ -216,7 +216,7 @@ For a closed object `[V, D, 0]` and target denominator B ≠ 0:
 
 **Result:** `[V·B/D, B, 0]`
 
-**Same-denominator rebase:** Identity — `rebase([V, D, R], D) = [V, D, R]`.
+**Same-denominator rebase:** Identity,  `rebase([V, D, R], D) = [V, D, R]`.
 
 If `V·B/D` is not an integer, closed rebase fails. This is the trigger for active rebase.
 
@@ -224,31 +224,31 @@ Closed rebase preserves value equality, not structural equality. It changes repr
 
 ## 12. Active Rebase
 
-Active rebase handles the case where closed rebase fails — the value cannot be expressed as a closed triple with the target denominator.
+Active rebase handles the case where closed rebase fails,  the value cannot be expressed as a closed triple with the target denominator.
 
 **The core algorithm for `[V, D, R]` rebased to denominator B:**
 
-Step 1 — Scale the numerator demand:
+Step 1,  Scale the numerator demand:
 ```
 N = V · B
 ```
 
-Step 2 — Integer divide by source denominator:
+Step 2,  Integer divide by source denominator:
 ```
 N = Q · D + S
 ```
 where Q is the quotient and S is the remainder from integer division.
 
-Step 3 — Build the mismatch witness: `[S, D, 0]` — a closed child capturing the exact denominator mismatch.
+Step 3,  Build the mismatch witness: `[S, D, 0]`,  a closed child capturing the exact denominator mismatch.
 
-Step 4 — Lift the existing remainder into the new frame: `lift(R, B)`.
+Step 4,  Lift the existing remainder into the new frame: `lift(R, B)`.
 
-Step 5 — Combine into the rebased form:
+Step 5,  Combine into the rebased form:
 ```
 rebase([V, D, R], B) = [Q, B, [S, D, 0] + lift(R, B)]
 ```
 
-Step 6 — Normalize. If S = 0 and lift(R, B) resolves to zero, the result collapses back to a closed form.
+Step 6,  Normalize. If S = 0 and lift(R, B) resolves to zero, the result collapses back to a closed form.
 
 **Correctness check via legacy conversion:** For a closed source `[V, D, 0]` rebased to `[Q, B, [S, D, 0]]`, the legacy conversion gives:
 
@@ -256,7 +256,7 @@ Step 6 — Normalize. If S = 0 and lift(R, B) resolves to zero, the result colla
 Π([Q, B, [S, D, 0]]) = (Q + S/D) / B = (QD + S) / (BD) = VB / (BD) = V/D
 ```
 
-which equals the original value. The denominator-sensitive completion semantics are what make this work — the child `[S, D, 0]` contributes through the parent's denominator frame B, not as an external additive term.
+which equals the original value. The denominator-sensitive completion semantics are what make this work,  the child `[S, D, 0]` contributes through the parent's denominator frame B, not as an external additive term.
 
 **Recursive rebase:** The mismatch child `[S, D, 0]` may itself be rebased into denominator B if that rebase terminates finitely. This can deepen the tree but must terminate. If repeated rebasing of residual children would produce an infinite chain, the target denominator is invalid for this object in terminating VDR.
 
@@ -279,16 +279,16 @@ Q_min = floor(λ(X) · B) - 1
 Q_max = ceil(λ(X) · B) + 1
 ```
 
-This gives at most about 4 integer candidates. Floor and ceiling are used only as search fence generators — they do not define the selection semantics.
+This gives at most about 4 integer candidates. Floor and ceiling are used only as search fence generators,  they do not define the selection semantics.
 
 **The selection ordering (lexicographic, applied to each candidate's normalized rebased form):**
 
-1. **Exact admissibility** — the candidate must produce a finite exact VDR completion that is value-equal to the source. Non-admissible candidates are discarded.
-2. **Minimum recursive depth** — prefer shallower completion trees.
-3. **Minimum denominator complexity** — measured as the tuple (number of distinct denominator magnitudes, sum of all denominator magnitudes, total denominator-bearing nodes), compared lexicographically. Rewards shared denominators.
-4. **Minimum structural size** — counts one unit per VDR node plus one unit per atomic remainder base.
-5. **Minimum |Q|** — smaller absolute quotient magnitude.
-6. **Deterministic tie-break** — fixed system-wide rule (e.g., prefer positive Q).
+1. **Exact admissibility**,  the candidate must produce a finite exact VDR completion that is value-equal to the source. Non-admissible candidates are discarded.
+2. **Minimum recursive depth**,  prefer shallower completion trees.
+3. **Minimum denominator complexity**,  measured as the tuple (number of distinct denominator magnitudes, sum of all denominator magnitudes, total denominator-bearing nodes), compared lexicographically. Rewards shared denominators.
+4. **Minimum structural size**,  counts one unit per VDR node plus one unit per atomic remainder base.
+5. **Minimum |Q|**,  smaller absolute quotient magnitude.
+6. **Deterministic tie-break**,  fixed system-wide rule (e.g., prefer positive Q).
 
 **Zero-completion preference:** If any Q yields remainder zero (closed rebase), that Q must be selected. Closure always wins.
 
@@ -306,13 +306,13 @@ The completion operator `complete(L)` takes an exact leftover value L and produc
 
 **Otherwise:** Fails. Non-rational leftovers without known finite VDR representations are outside the current system.
 
-This means that for the rational domain — which is the entire working domain of v1 — the rebase algorithm never fails due to completion impossibility. The real question is never "does a rebased form exist?" but "which one is simplest?"
+This means that for the rational domain,  which is the entire working domain of v1,  the rebase algorithm never fails due to completion impossibility. The real question is never "does a rebased form exist?" but "which one is simplest?"
 
 ## 15. Completion Semantics
 
 The native reading of a VDR object is completion-based, not additive.
 
-`[Q, B, [S, D, 0]]` reads as "Q/B with exact completion [S, D, 0]" — the child is the exact residual structure that finishes what the top-level frame started. It is not "Q/B plus S/D". The additive reading is valid only in legacy conversion mode, when leaving VDR for scalar comparison.
+`[Q, B, [S, D, 0]]` reads as "Q/B with exact completion [S, D, 0]",  the child is the exact residual structure that finishes what the top-level frame started. It is not "Q/B plus S/D". The additive reading is valid only in legacy conversion mode, when leaving VDR for scalar comparison.
 
 This distinction is what prevents active VDR from collapsing into decorated fraction arithmetic. The remainder is ontological state, not a pending calculation. Two objects with different remainder structures are natively different objects even if some external projection might map them to the same scalar.
 
@@ -365,7 +365,7 @@ VDR = { v: Int, d: NonZeroInt, r: Remainder }
 Remainder = Atomic(Int) | Composite { base: Int, children: List<VDR> }
 ```
 
-Atomic remainder `r` can be treated as `Composite { base: r, children: [] }` for uniformity. Integers must be arbitrary-precision exact integers. No floats anywhere. No pointer cycles — tree structure only.
+Atomic remainder `r` can be treated as `Composite { base: r, children: [] }` for uniformity. Integers must be arbitrary-precision exact integers. No floats anywhere. No pointer cycles,  tree structure only.
 
 Required operations: validate, normalize, structural_equal, value_equal, project_closed, project_legacy, add, sub, mul, div, neg, rebase, lift, parse, serialize. Each operation either returns a valid result or explicit failure. No silent approximation.
 
@@ -391,7 +391,7 @@ The working v1 system handles:
 - Exact rational arithmetic (add, sub, mul, div)
 - Exact normalization and equality testing
 - Exact closed rebasing (when denominator divides cleanly)
-- Exact active rebasing (when it doesn't — producing finite completion structure)
+- Exact active rebasing (when it doesn't,  producing finite completion structure)
 - Exact remainder transport via lift
 - Canonical quotient selection for rebase
 - Exact scalar projection at the boundary

@@ -17,19 +17,19 @@
 
 ## Abstract
 
-Current GPU compute stacks route integer inference through hardware designed for floating-point arithmetic, then compensate with conversion layers, precision negotiation, NaN handling, loss scaling, and rounding mode management. VDR-LLM-Prolog eliminates floating-point computation entirely — the model's forward pass, attention mechanism, softmax, training loop, and all infrastructure operations run on exact integer arithmetic with fixed denominators. VDRProlog is the GPU compute layer built for this architecture. It defines: a type system with three fixed-denominator Q-bases (Q16, Q32, Q335) and no float types; an instruction set where multiply-accumulate is a widening integer multiply plus bit shift; a memory model organized around fixed-size knowledge base structs at integer addresses; session-scoped streams with integer credential enforcement; a Prolog engine parallelized as batched cross-multiply unification across warps; grammar-directed structural token generation that bypasses the LLM forward pass; a runner system that provides autonomous background execution with snapshot-based recycling; and a server layer that clones sessions per connection with time-bounded integer credentials. The spec covers 23 modules, approximately 580 API functions (versus ~4,000+ in CUDA), approximately 30,000 lines of implementation across 168 files, and builds in six phases from pure-Zig CPU arithmetic through GCP GPU deployment. The entire float software stack — cuBLAS precision variants, cuDNN mixed-precision management, TensorRT quantization calibration, NCCL non-deterministic allreduce, loss scaling, gradient clipping, NaN recovery, and the Transformer Engine — is replaced, not optimized.
+Current GPU compute stacks route integer inference through hardware designed for floating-point arithmetic, then compensate with conversion layers, precision negotiation, NaN handling, loss scaling, and rounding mode management. VDR-LLM-Prolog eliminates floating-point computation entirely,  the model's forward pass, attention mechanism, softmax, training loop, and all infrastructure operations run on exact integer arithmetic with fixed denominators. VDRProlog is the GPU compute layer built for this architecture. It defines: a type system with three fixed-denominator Q-bases (Q16, Q32, Q335) and no float types; an instruction set where multiply-accumulate is a widening integer multiply plus bit shift; a memory model organized around fixed-size knowledge base structs at integer addresses; session-scoped streams with integer credential enforcement; a Prolog engine parallelized as batched cross-multiply unification across warps; grammar-directed structural token generation that bypasses the LLM forward pass; a runner system that provides autonomous background execution with snapshot-based recycling; and a server layer that clones sessions per connection with time-bounded integer credentials. The spec covers 23 modules, approximately 580 API functions (versus ~4,000+ in CUDA), approximately 30,000 lines of implementation across 168 files, and builds in six phases from pure-Zig CPU arithmetic through GCP GPU deployment. The entire float software stack,  cuBLAS precision variants, cuDNN mixed-precision management, TensorRT quantization calibration, NCCL non-deterministic allreduce, loss scaling, gradient clipping, NaN recovery, and the Transformer Engine,  is replaced, not optimized.
 
 ---
 
 ## 1. The Problem
 
-A GPU streaming multiprocessor contains integer ALUs, floating-point ALUs, tensor cores that handle multiple float formats, and special function units for transcendentals. The software stack that drives this hardware — CUDA, cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL — manages the interactions between these unit types. A single matrix multiply may negotiate between FP16 inputs, FP32 accumulators, TF32 tensor core operations, and FP8 output quantization. The Transformer Engine dynamically selects between FP8 and FP16 per layer. Mixed-precision training requires loss scaling to prevent gradient underflow, gradient clipping to prevent overflow, warmup schedules to avoid early-training float instability, and NaN detection and recovery for when these mitigations fail.
+A GPU streaming multiprocessor contains integer ALUs, floating-point ALUs, tensor cores that handle multiple float formats, and special function units for transcendentals. The software stack that drives this hardware,  CUDA, cuBLAS, cuDNN, cuFFT, cuSOLVER, TensorRT, NCCL,  manages the interactions between these unit types. A single matrix multiply may negotiate between FP16 inputs, FP32 accumulators, TF32 tensor core operations, and FP8 output quantization. The Transformer Engine dynamically selects between FP8 and FP16 per layer. Mixed-precision training requires loss scaling to prevent gradient underflow, gradient clipping to prevent overflow, warmup schedules to avoid early-training float instability, and NaN detection and recovery for when these mitigations fail.
 
 This complexity exists because floating-point arithmetic has failure modes. NaN propagates silently through computation. Infinity results from overflow. Subnormals lose precision without warning. Rounding is platform-dependent when thread scheduling varies. Addition is non-associative, so distributed allreduce produces different sums depending on reduction tree topology. Two training runs on the same hardware with the same data produce different models because float accumulation order varies between runs.
 
 Integer arithmetic has none of these failure modes. Integers cannot be NaN. Integers cannot be infinity. Integers have no subnormals. Integer addition is associative regardless of evaluation order. Integer arithmetic is deterministic across all platforms, all thread schedules, all reduction topologies. The result of an integer multiply on a GPU in Tokyo is identical to the result on a CPU in Dublin.
 
-VDR arithmetic fixes the denominator at creation, represents every value as three integers (Value, Denominator, Remainder), and pushes overflow into an inspectable remainder slot rather than discarding it silently. When the denominator is a power of two, the divmod operation that separates quotient from remainder is a bit shift — zero logic gates in hardware, a single instruction on CPU, fixed wiring on an ASIC. The Q16 multiply-accumulate sequence (widening multiply, accumulate, right-shift by 16) is instruction-identical to INT8/INT16 quantized inference on existing tensor cores.
+VDR arithmetic fixes the denominator at creation, represents every value as three integers (Value, Denominator, Remainder), and pushes overflow into an inspectable remainder slot rather than discarding it silently. When the denominator is a power of two, the divmod operation that separates quotient from remainder is a bit shift,  zero logic gates in hardware, a single instruction on CPU, fixed wiring on an ASIC. The Q16 multiply-accumulate sequence (widening multiply, accumulate, right-shift by 16) is instruction-identical to INT8/INT16 quantized inference on existing tensor cores.
 
 VDRProlog is the compute layer that results from removing float arithmetic from the GPU programming model and replacing it with VDR integer operations, knowledge base addressing, Prolog unification, grammar-directed generation, session lifecycle management, and autonomous runner execution.
 
@@ -41,11 +41,11 @@ VDRProlog is the compute layer that results from removing float arithmetic from 
 
 VDRProlog provides three fixed-denominator VDR types. No float types exist anywhere in the system.
 
-**Q16** is the primary operational type. D = 65536 = 2^16. The struct is 8 bytes: a 32-bit integer value, a 16-bit integer remainder, and 16 bits of padding for alignment. Precision floor is 1/65536 ≈ 1.53 × 10⁻⁵. This is the inference type — model weights, activations, attention scores, gradients, and optimizer state all live in Q16.
+**Q16** is the primary operational type. D = 65536 = 2^16. The struct is 8 bytes: a 32-bit integer value, a 16-bit integer remainder, and 16 bits of padding for alignment. Precision floor is 1/65536 ≈ 1.53 × 10⁻⁵. This is the inference type,  model weights, activations, attention scores, gradients, and optimizer state all live in Q16.
 
 **Q32** is the intermediate precision type. D = 2^32. The struct is 16 bytes: a 64-bit value, a 32-bit remainder at depth 0, and a 32-bit remainder at depth 1. Used for accumulation across long sequences where Q16 remainder builds up, and for representing values greater than 1.0 at full precision (Q16 can represent values > 1.0 via the i32 numerator, but the fractional precision remains 1/65536).
 
-**Q335** is the high-precision type for transcendental computation. D = 2^335. The struct is 240 bytes: six 64-bit limbs for the value (384-bit integer), plus four remainder levels at the same width. The remainder depth is fixed at 4. This is the engineering choice the paper series identifies: measure your workload, pick your depth, fix the struct. Depth 4 means anything beyond R3 is truncated, and R3 tells you exactly how much precision you left on the table. This is not rounding error — it is a declared, bounded, inspectable truncation at a known depth.
+**Q335** is the high-precision type for transcendental computation. D = 2^335. The struct is 240 bytes: six 64-bit limbs for the value (384-bit integer), plus four remainder levels at the same width. The remainder depth is fixed at 4. This is the engineering choice the paper series identifies: measure your workload, pick your depth, fix the struct. Depth 4 means anything beyond R3 is truncated, and R3 tells you exactly how much precision you left on the table. This is not rounding error,  it is a declared, bounded, inspectable truncation at a known depth.
 
 The denominator is never stored. It is a compile-time constant. The compiler tracks Q-basis per register and per pointer. Assigning a Q16 value to a Q32 register is a compile error. Converting between bases requires an explicit `reproject` call that computes exact remainders. There are no implicit conversions, no silent widening, no precision mode flags.
 
@@ -55,17 +55,17 @@ Every numerical operation in the system reduces to one instruction pattern:
 
 Widening multiply: i16 × i16 → i32 (for Q16). Shift right by 16: quotient becomes the new value. Mask low 16 bits: remainder becomes R0.
 
-On existing GPU tensor cores, this is the INT8/INT16 multiply-accumulate path. H100 delivers 3,958 TOPS on INT8 tensor cores versus 1,979 TFLOPS on FP16 — the integer path is 2× the float path on the same silicon, because integer multiplication is simpler than float multiplication (no exponent handling, no mantissa alignment, no normalization, no rounding logic).
+On existing GPU tensor cores, this is the INT8/INT16 multiply-accumulate path. H100 delivers 3,958 TOPS on INT8 tensor cores versus 1,979 TFLOPS on FP16,  the integer path is 2× the float path on the same silicon, because integer multiplication is simpler than float multiplication (no exponent handling, no mantissa alignment, no normalization, no rounding logic).
 
 What disappears when you use only this path: the entire float pipeline. No FP4/FP6/FP8/FP16/BF16/TF32/FP32/FP64 type hierarchy. No conversion functions between these types. No mixed-precision orchestration. No Transformer Engine switching between FP8 and FP16 per layer. No special function units for transcendentals (the quadratic softmax surrogate uses integer multiply and integer divide; exact transcendentals via FRU use iterative integer recurrence). No NaN/Inf/subnormal branches, which means no warp divergence from data-dependent special cases, which means full warp utilization on every cycle.
 
 ### 2.3 Softmax
 
-Conventional softmax computes exp(xᵢ) / Σexp(xⱼ) using the GPU's special function units. SFUs are shared across warps and serialize — they are a throughput bottleneck on attention-heavy workloads.
+Conventional softmax computes exp(xᵢ) / Σexp(xⱼ) using the GPU's special function units. SFUs are shared across warps and serialize,  they are a throughput bottleneck on attention-heavy workloads.
 
 VDR uses a quadratic surrogate: shift all logits so the minimum is zero, square each shifted value, divide each by the sum of all squares. The output is exact VDR fractions that sum to D by construction. Not approximately D. Exactly D. The toy LLM implementation confirms this: softmax_sum = 65536 on every epoch, every forward pass, every generation step, verified by integer equality.
 
-The surrogate uses only integer multiply, integer add, and integer divide — full warp throughput, no SFU, no data-dependent divergence. Whether the quadratic gradient landscape matches exp-softmax at production scale is an open empirical question. The FRU (Functional Remainder Unit) on dedicated hardware makes exact exp-softmax available at competitive latency, so both paths are available as a configuration choice, not an architectural constraint [@HOWL-VDR-23-2026].
+The surrogate uses only integer multiply, integer add, and integer divide,  full warp throughput, no SFU, no data-dependent divergence. Whether the quadratic gradient landscape matches exp-softmax at production scale is an open empirical question. The FRU (Functional Remainder Unit) on dedicated hardware makes exact exp-softmax available at competitive latency, so both paths are available as a configuration choice, not an architectural constraint [@HOWL-VDR-23-2026].
 
 ### 2.4 Validation
 
@@ -81,19 +81,19 @@ Conventional LLM systems put data in the context window. A 1 KB JSON response fr
 
 VDR-LLM-Prolog stores data in knowledge bases at integer addresses. A KB is a fixed-size struct (256 bytes, padded for cache alignment) containing 26 fields: identity (name, path, sequential integer ID), persistent state (facts, rules, constraints, connections, grammars), live state (working data, LRU caches, counters, locks, queues, stacks, ring buffers, bitsets), structural links (parent ID, children IDs, mounts), and metadata (visibility level, frozen flag, owner, timestamps).
 
-Accessing a fact is two integer operations: kb_id to locate the KB struct, slot_id to index into the fact store. O(1). The data never enters the token stream. The LLM emits an 8-token command referencing a dotted path, the system resolves the path to an integer via a hash map, and the compiled builtin operates directly on the data at that address. The 1 KB JSON file is parsed by a compiled parser, stored as KB facts, and queried via 8-token commands — at turn 1 or turn 1,000, the cost is identical [@HOWL-VDR-5-2026].
+Accessing a fact is two integer operations: kb_id to locate the KB struct, slot_id to index into the fact store. O(1). The data never enters the token stream. The LLM emits an 8-token command referencing a dotted path, the system resolves the path to an integer via a hash map, and the compiled builtin operates directly on the data at that address. The 1 KB JSON file is parsed by a compiled parser, stored as KB facts, and queried via 8-token commands,  at turn 1 or turn 1,000, the cost is identical [@HOWL-VDR-5-2026].
 
 ### 3.2 GPU Memory Layout
 
-KB structs occupy a contiguous region of GPU global memory. Fixed struct size means zero fragmentation and predictable cache behavior. A reference deployment with 100,000 KBs, 10 million facts, 100,000 rules, and 10,000 sessions requires approximately 2.2 GB of device memory for the entire infrastructure — negligible relative to model weights (56 GB for a 7B-parameter Q16 model). The infrastructure overhead is smaller than most float precision-management bookkeeping.
+KB structs occupy a contiguous region of GPU global memory. Fixed struct size means zero fragmentation and predictable cache behavior. A reference deployment with 100,000 KBs, 10 million facts, 100,000 rules, and 10,000 sessions requires approximately 2.2 GB of device memory for the entire infrastructure,  negligible relative to model weights (56 GB for a 7B-parameter Q16 model). The infrastructure overhead is smaller than most float precision-management bookkeeping.
 
-Shared memory on each SM serves as a KB cache. 16 KB structs and 512 facts fit in approximately 24 KB of shared memory, well within the H100's 228 KB per SM. A Prolog query loads candidate facts into this cache, runs cross-multiply unification in parallel across warps, and writes results back. The access pattern is small random reads by integer ID, not large sequential tile loads — the opposite of conventional weight-matrix access. This means the memory controller should optimize for latency rather than bandwidth when serving KB operations, a scheduling hint that VDRProlog exposes through distinct kernel launch types (MAC kernels for matrix work, Prolog kernels for KB-heavy work).
+Shared memory on each SM serves as a KB cache. 16 KB structs and 512 facts fit in approximately 24 KB of shared memory, well within the H100's 228 KB per SM. A Prolog query loads candidate facts into this cache, runs cross-multiply unification in parallel across warps, and writes results back. The access pattern is small random reads by integer ID, not large sequential tile loads,  the opposite of conventional weight-matrix access. This means the memory controller should optimize for latency rather than bandwidth when serving KB operations, a scheduling hint that VDRProlog exposes through distinct kernel launch types (MAC kernels for matrix work, Prolog kernels for KB-heavy work).
 
 ### 3.3 Bounded Data Primitives
 
 Seven data primitive types provide working memory within KBs: LRU caches (1–1,000 entries, oldest evicted on overflow), counters (i32 range, clamp at declared min/max, never wrap), locks (non-blocking coordination signals), queues (bounded FIFO, 1–1,000 entries, push returns false when full), stacks (bounded LIFO, same constraints), ring buffers (fixed-size, oldest overwritten), and bitsets (1–10,000 bits, fixed at creation).
 
-No primitive can grow beyond its declared bound. Memory footprint per session is fixed at creation and cannot increase. This is why sessions with thousands of active KBs and thousands of data primitives maintain constant memory footprint indefinitely — the invariant is structural, not managed by garbage collection or memory pressure heuristics.
+No primitive can grow beyond its declared bound. Memory footprint per session is fixed at creation and cannot increase. This is why sessions with thousands of active KBs and thousands of data primitives maintain constant memory footprint indefinitely,  the invariant is structural, not managed by garbage collection or memory pressure heuristics.
 
 ---
 
@@ -101,13 +101,13 @@ No primitive can grow beyond its declared bound. Memory footprint per session is
 
 ### 4.1 Why Prolog
 
-The LLM generates reasoning as prose — "if the error rate exceeds 15% and a recent deploy changed the connection pool size, then the root cause is likely pool undersizing." This costs 50–200 tokens, exercises a full forward pass per token, and is discarded when the session ends. The next time the same pattern appears, the LLM generates the same reasoning from scratch.
+The LLM generates reasoning as prose,  "if the error rate exceeds 15% and a recent deploy changed the connection pool size, then the root cause is likely pool undersizing." This costs 50–200 tokens, exercises a full forward pass per token, and is discarded when the session ends. The next time the same pattern appears, the LLM generates the same reasoning from scratch.
 
 A Prolog rule captures the same logic as a deterministic pattern: if error_rate_high(Service, Rate) and config_change(Service, max_pool_size, OldSize, NewSize) and NewSize < OldSize, then root_cause(pool_undersized, Service). The rule costs 25–40 tokens to formalize. It fires automatically on every future matching pattern at zero LLM cost. By investigation 100, 150+ such rules handle 93% of triage automatically.
 
 ### 4.2 GPU-Parallel Unification
 
-Unification — determining whether two Prolog terms can be made identical by substituting variables — is the core operation. For VDR values, unification is cross-multiply comparison: a.v × b.D versus b.v × a.D. Since all values in a session share the same Q-basis, this simplifies to comparing integer numerators directly.
+Unification,  determining whether two Prolog terms can be made identical by substituting variables,  is the core operation. For VDR values, unification is cross-multiply comparison: a.v × b.D versus b.v × a.D. Since all values in a session share the same Q-basis, this simplifies to comparing integer numerators directly.
 
 On GPU, fact matching is parallelized as follows: load candidate facts into shared memory (one SM's KB cache holds 512 facts). Distribute candidates across warps (32 threads per warp, each thread handles one candidate). Each thread performs the cross-multiply comparison for its candidate. Filter matches via warp-level vote. Collect surviving candidates for recursive body evaluation. This is structurally identical to a parallel database join where the comparison operator is integer equality rather than float distance.
 
@@ -119,7 +119,7 @@ Depth-first search with backtracking remains sequential within a branch, but ind
 
 ### 5.1 The Token Waste
 
-Measured structural token percentages by output type: Python code ~40%, JSON ~55%, formatted tables ~65%, English prose with data ~30%, compacted pipe-delimited tables ~80%. Every structural token — every brace, bracket, colon, comma, pipe, header, indentation character — is predicted through a full forward pass over 50,000+ vocabulary items with softmax normalization. The prediction is probabilistic. The LLM can and does produce malformed JSON, mismatched brackets, and broken table formatting.
+Measured structural token percentages by output type: Python code ~40%, JSON ~55%, formatted tables ~65%, English prose with data ~30%, compacted pipe-delimited tables ~80%. Every structural token,  every brace, bracket, colon, comma, pipe, header, indentation character,  is predicted through a full forward pass over 50,000+ vocabulary items with softmax normalization. The prediction is probabilistic. The LLM can and does produce malformed JSON, mismatched brackets, and broken table formatting.
 
 ### 5.2 Grammar Replacement
 
@@ -135,15 +135,15 @@ Grammars persist in KBs. They inherit through the KB tree (a child KB inherits i
 
 ### 6.1 Session Isolation
 
-Each session has: a user_id (i32), a visibility level (enum), a KB root (i32), a set of grants, and bounded resource limits. The session's VDRProlog stream carries these credentials. Every kernel launched on that stream inherits them. Every KB access checks them — two integer comparisons per ancestor in the scope walk. Data that fails the check is absent from the session's view. Not filtered. Not redacted. Absent. The query path never touches the data.
+Each session has: a user_id (i32), a visibility level (enum), a KB root (i32), a set of grants, and bounded resource limits. The session's VDRProlog stream carries these credentials. Every kernel launched on that stream inherits them. Every KB access checks them,  two integer comparisons per ancestor in the scope walk. Data that fails the check is absent from the session's view. Not filtered. Not redacted. Absent. The query path never touches the data.
 
 ### 6.2 Snapshots
 
-A snapshot is an atomic capture of all session state: KB structs, facts, rules, terms, text, grammars, live state (all seven primitive types), and grants. The format is a contiguous binary blob with a header containing region sizes and a CRC32 checksum computed over integer data. The checksum is an integer — deterministic.
+A snapshot is an atomic capture of all session state: KB structs, facts, rules, terms, text, grammars, live state (all seven primitive types), and grants. The format is a contiguous binary blob with a header containing region sizes and a CRC32 checksum computed over integer data. The checksum is an integer,  deterministic.
 
 Restore overwrites session state from the snapshot after validating the checksum. After restore, the session is in exactly the state at snapshot time. Not approximately. The word "exactly" is meaningful here because the representation is integer. A float snapshot can be exactly restored in the sense that the same bits are loaded, but the first operation on those bits may produce a different result due to thread scheduling or rounding mode. An integer snapshot is restored and the first operation produces the same result. Always.
 
-Typical snapshot size: 10 KB to 500 KB for operational sessions. Model weights are not in the snapshot — they are shared and loaded separately. The snapshot captures session state, not model state.
+Typical snapshot size: 10 KB to 500 KB for operational sessions. Model weights are not in the snapshot,  they are shared and loaded separately. The snapshot captures session state, not model state.
 
 ### 6.3 Clones
 
@@ -151,7 +151,7 @@ Cloning creates a new session that shares the parent's persistent KBs via copy-o
 
 Clone-from-snapshot is the operational primitive for freshness. A processor runner that has been ingesting data for 200 turns has accumulated KV-cache state and live working memory. Some of this state may have drifted from the session's intended behavior. The fix: snapshot the session (capturing all accumulated knowledge), kill the session (destroying all live state including any drift), clone from the snapshot (fresh session with identical knowledge). The paper's phrase is: "the snapshot is the factory. Clones are disposable. Knowledge persists. Drift dies."
 
-This mechanism depends on exact reproduction. The clone must start from a state bit-identical to the snapshot. If the snapshot contained float values, the clone's first operation on those values could diverge from the original due to different thread scheduling on the new session's stream. With integers, the clone's first operation produces the same result as the original would have — the clone is a perfect fork. Over hundreds of recycle cycles across months of operation, each clone generation starts from exact state. There is no generational drift from copy-of-a-copy degradation because integer copying is exact [@HOWL-VDR-8-2026].
+This mechanism depends on exact reproduction. The clone must start from a state bit-identical to the snapshot. If the snapshot contained float values, the clone's first operation on those values could diverge from the original due to different thread scheduling on the new session's stream. With integers, the clone's first operation produces the same result as the original would have,  the clone is a perfect fork. Over hundreds of recycle cycles across months of operation, each clone generation starts from exact state. There is no generational drift from copy-of-a-copy degradation because integer copying is exact [@HOWL-VDR-8-2026].
 
 ---
 
@@ -179,7 +179,7 @@ Zero LLM tokens are spent on safety. The entire access control, grant enforcemen
 
 ## 8. The Universal Execution Cycle
 
-Every operation in the system — interactive chat, polling runner, processor ingest, batch task, HTTP request, WebSocket message — is an instantiation of one function.
+Every operation in the system,  interactive chat, polling runner, processor ingest, batch task, HTTP request, WebSocket message,  is an instantiation of one function.
 
 ### 8.1 Phase 0: Pre-LLM Rule Evaluation
 
@@ -195,7 +195,7 @@ Context size is approximately constant regardless of turn number. Turn 1: ~350 t
 
 ### 8.3 Phase 2: LLM Generation + Command Dispatch
 
-The LLM reads the context and generates a response — a mix of command tokens (dispatched to the system), prose tokens (passed through to output), and direct-output references (resolved from KB).
+The LLM reads the context and generates a response,  a mix of command tokens (dispatched to the system), prose tokens (passed through to output), and direct-output references (resolved from KB).
 
 Command tokens use a constrained vocabulary of ~300 known operation names. Each command is approximately 8 tokens at ~2 bits of entropy per token (selecting from a small known set). Reliability is ~99.2% per command, versus ~86% for conventional JSON function calling which generates every brace and parameter name through full-vocabulary softmax.
 
@@ -209,11 +209,11 @@ Update session counters (turn number, tokens consumed, commands executed). Updat
 
 ### 8.5 Execution Levels
 
-**L1 — Full LLM judgment.** 50–500 tokens. No stored rule covers the situation. The LLM exercises full reasoning. At the end, it may formalize its judgment as a Prolog rule (25–40 tokens), transitioning this pattern from L1 to L2 for future encounters.
+**L1,  Full LLM judgment.** 50–500 tokens. No stored rule covers the situation. The LLM exercises full reasoning. At the end, it may formalize its judgment as a Prolog rule (25–40 tokens), transitioning this pattern from L1 to L2 for future encounters.
 
-**L2 — LLM invokes stored rule.** ~8 tokens. The LLM recognizes that a stored rule applies, emits a query command, and wraps the result in prose framing. Total cost: ~18 tokens.
+**L2,  LLM invokes stored rule.** ~8 tokens. The LLM recognizes that a stored rule applies, emits a query command, and wraps the result in prose framing. Total cost: ~18 tokens.
 
-**L3 — Automatic rule firing.** 0 tokens. The Prolog rule fires during Phase 0 without LLM involvement. The cycle resolves from grammar-rendered KB data.
+**L3,  Automatic rule firing.** 0 tokens. The Prolog rule fires during Phase 0 without LLM involvement. The cycle resolves from grammar-rendered KB data.
 
 The accumulation curve from the paper: investigation 1 costs 329 command tokens with 0 auto-firing rules. Investigation 10: 92 tokens, 65% auto-triage. Investigation 100: 55 tokens, 93% auto-triage. The system gets cheaper and more capable simultaneously because solved problems stay solved as persistent Prolog rules at integer addresses [@HOWL-VDR-19-2026].
 
@@ -269,13 +269,13 @@ Authentication extracts a token from the protocol handshake (HTTP Authorization 
 
 A credential is issued: user_id (i32), visibility_level (i8), a set of pre-resolved grants, issued_at timestamp (i32), and expires_at timestamp (i32). The credential is valid as long as: the valid flag is true AND the current timestamp is less than expires_at. Two integer comparisons. Checked before every request in the connection's message loop.
 
-When the credential expires, the server sends a protocol-appropriate response (HTTP 401, WebSocket close frame with code 4001, SMTP 535) and the connection enters the draining state. There is no "approximately expired" — the timestamp comparison is integer.
+When the credential expires, the server sends a protocol-appropriate response (HTTP 401, WebSocket close frame with code 4001, SMTP 535) and the connection enters the draining state. There is no "approximately expired",  the timestamp comparison is integer.
 
 ### 10.3 Request Processing
 
 Each request is transformed into a vlp_input and passed to the universal cycle. The cycle runs on the connection's session-bound VDRProlog stream. The output is transformed into a protocol response via grammar templates.
 
-Protocol grammars handle wire format. An HTTP response consists of: a status line grammar (`HTTP/1.1 {status_code:integer} {reason:text}`), header grammars (`{name:text}: {value:text}`), and a body grammar appropriate to the content type. Every structural byte of the HTTP response — every colon after a header name, every , every brace in JSON — comes from the grammar. The LLM generates content that fills grammar slots. The grammar generates everything else.
+Protocol grammars handle wire format. An HTTP response consists of: a status line grammar (`HTTP/1.1 {status_code:integer} {reason:text}`), header grammars (`{name:text}: {value:text}`), and a body grammar appropriate to the content type. Every structural byte of the HTTP response,  every colon after a header name, every , every brace in JSON,  comes from the grammar. The LLM generates content that fills grammar slots. The grammar generates everything else.
 
 For stateless protocols (HTTP without keepalive), the session clone is destroyed after the response. For stateful protocols (WebSocket, SMTP sessions), the session persists across messages within the connection, accumulating KB state and rules. Snapshot on disconnect preserves the session for future restoration.
 
@@ -331,7 +331,7 @@ VDRProlog consists of 23 modules totaling approximately 580 functions.
 
 **Confidence** (5 functions): assign from source type, combine agreeing, combine conflicting, chain, propagate through derivation.
 
-**Distributed** (10 functions): allreduce (deterministic — integer sum is associative), broadcast, allgather, reduce-scatter, communicator management, KB sync across devices, snapshot broadcast.
+**Distributed** (10 functions): allreduce (deterministic,  integer sum is associative), broadcast, allgather, reduce-scatter, communicator management, KB sync across devices, snapshot broadcast.
 
 **Transform** (4 functions): exact DFT/IDFT (roundtrip returns original values exactly), 1D and 2D convolution.
 
@@ -369,7 +369,7 @@ The system has no dependency on PyTorch, TensorFlow, JAX, ONNX, or any ML framew
 
 ### 13.2 Build Phases
 
-The system builds in six phases. Each phase produces a testable system. Each phase's tests remain valid for all subsequent phases. Nothing is rewritten — later phases add modules.
+The system builds in six phases. Each phase produces a testable system. Each phase's tests remain valid for all subsequent phases. Nothing is rewritten,  later phases add modules.
 
 **Phase 1: Arithmetic + KB Store.** VDR Q16 type and operations, KB store with fact CRUD, tree relationships, path index, visibility checks, text store. ~2,500 lines. Testable locally on any machine, no GPU. Deliverable: the system can create KBs, assert facts, query facts, enforce visibility. All integer, all exact.
 
@@ -379,7 +379,7 @@ The system builds in six phases. Each phase produces a testable system. Each pha
 
 **Phase 4: Runners + Server.** Thread pool for runner scheduling. Four runner types (poller, processor with recycle, internal, batch with clone-per-task). HTTP and WebSocket server (accept loop, connection handler with clone-from-template, authentication via auth KB, credential lifecycle with integer expiry, rate limiting via bounded counters, health/metrics endpoint with grammar-rendered JSON, idle connection reaper, graceful shutdown with session snapshotting). Grant-gated operational builtins (filesystem, network, execute, compile, process). Configuration file parsing. ~6,000 lines. Testable locally. Deliverable: the system is a network-accessible daemon with autonomous background processing.
 
-**Phase 5: VDRProlog GPU Kernels.** Device initialization and memory layout. GPU kernels: Q16 matrix multiply-accumulate, quadratic softmax, fused attention, exact layer normalization, elementwise operations, parallel Prolog unification, parallel sort. KB store on device memory. Host-device transfer. Profiling. ~6,000 lines (Zig + CUDA C). Requires GPU — first GCP phase. Deliverable: all operations from Phases 1–4 run on GPU with identical results (verified by cross-platform determinism tests comparing GPU output to CPU reference, byte-by-byte).
+**Phase 5: VDRProlog GPU Kernels.** Device initialization and memory layout. GPU kernels: Q16 matrix multiply-accumulate, quadratic softmax, fused attention, exact layer normalization, elementwise operations, parallel Prolog unification, parallel sort. KB store on device memory. Host-device transfer. Profiling. ~6,000 lines (Zig + CUDA C). Requires GPU,  first GCP phase. Deliverable: all operations from Phases 1–4 run on GPU with identical results (verified by cross-platform determinism tests comparing GPU output to CPU reference, byte-by-byte).
 
 **Phase 6: Production Integration.** Multi-device model parallelism. Distributed deterministic allreduce. KB replication and sync. Load balancing. Monitoring (Prometheus-compatible metrics export). Full protocol implementations (SMTP, MQTT, DNS). ~3,000 lines. Requires multi-GPU GCP instances. Deliverable: production-scale deployment.
 
@@ -469,7 +469,7 @@ Estimated total GCP cost for development and testing: approximately $2,200. T4 d
 
 ### 15.2 Deployment Procedure
 
-Upload source to GCP instance. Build with Zig. Run all CPU tests first — they must produce identical results to local testing (integer arithmetic is platform-independent; any difference is a bug). Then run GPU tests. Cross-platform determinism test: compare GPU output to local CPU output saved as reference files. Byte-identical match expected and required.
+Upload source to GCP instance. Build with Zig. Run all CPU tests first,  they must produce identical results to local testing (integer arithmetic is platform-independent; any difference is a bug). Then run GPU tests. Cross-platform determinism test: compare GPU output to local CPU output saved as reference files. Byte-identical match expected and required.
 
 Start the system with a configuration file specifying model checkpoint, server port, runner configuration, authentication KB, and seed snapshot path. The system loads model weights, initializes the KB store, loads the seed snapshot, starts all configured runners, and begins accepting connections.
 
@@ -485,7 +485,7 @@ Kernel launch, stream management, device memory allocation, host-device transfer
 
 ### 16.2 What Changes
 
-The type system collapses from a dozen float formats to three integer Q-bases. The instruction vocabulary shrinks to integer arithmetic (multiply-accumulate, shift, compare, add, subtract). Warp divergence from data-dependent float special cases disappears — every thread executes the same instruction in the same cycle count regardless of operand values. Occupancy calculation simplifies because there are no divergent branches to model.
+The type system collapses from a dozen float formats to three integer Q-bases. The instruction vocabulary shrinks to integer arithmetic (multiply-accumulate, shift, compare, add, subtract). Warp divergence from data-dependent float special cases disappears,  every thread executes the same instruction in the same cycle count regardless of operand values. Occupancy calculation simplifies because there are no divergent branches to model.
 
 The runtime library shrinks from ~4,000+ functions to ~580. One GEMM function replaces dozens. One softmax function replaces float and quantized variants. The compiler drops precision tracking, mixed-precision optimization, loss scaling insertion, and NaN propagation analysis. The profiler drops float utilization metrics, SFU bottleneck detection, and tensor-core-versus-CUDA-core breakdown (there is one compute type).
 
@@ -499,7 +499,7 @@ These capabilities have no equivalent in CUDA, cuDNN, TensorRT, or any component
 
 NCCL's allreduce is non-deterministic for float types because float addition is non-associative. Different reduction tree topologies (ring, tree, butterfly) produce different sums. Two training runs on the same hardware with the same data produce different models.
 
-VDRProlog's allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce bit-identical results. Same data, same hyperparameters, same model. Every time, on every cluster topology. This single property eliminates the entire category of distributed training non-reproducibility, which is a significant source of engineering cost and debugging difficulty in production ML systems.
+VDRProlog's allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce,  all produce bit-identical results. Same data, same hyperparameters, same model. Every time, on every cluster topology. This single property eliminates the entire category of distributed training non-reproducibility, which is a significant source of engineering cost and debugging difficulty in production ML systems.
 
 ---
 
@@ -509,7 +509,7 @@ VDRProlog's allreduce operates on integers. Integer addition is associative. Rin
 
 Running VDR on H100's existing INT8 tensor core path provides 2× FP16 throughput on GEMM operations using published specifications. The additional benefit from eliminating SFU serialization, warp divergence from float special cases, and mixed-precision management overhead is difficult to quantify precisely without workload-specific profiling but is conservatively nonzero.
 
-Energy per operation: integer multiply at equivalent precision costs approximately 2.6× less energy than float multiply at 4nm, from published comparisons of integer and float ALU energy. The saving comes from eliminating exponent handling, mantissa alignment, normalization, and rounding logic — transistors that switch on every float operation and are absent from integer datapaths.
+Energy per operation: integer multiply at equivalent precision costs approximately 2.6× less energy than float multiply at 4nm, from published comparisons of integer and float ALU energy. The saving comes from eliminating exponent handling, mantissa alignment, normalization, and rounding logic,  transistors that switch on every float operation and are absent from integer datapaths.
 
 ### 17.2 On Retooled Hardware
 
@@ -527,7 +527,7 @@ The paper does not project performance numbers for this scenario because it has 
 
 **Protocol completeness.** Phase 4 implements HTTP and WebSocket. Full SMTP, MQTT, and DNS implementations are Phase 6. The grammar-directed protocol architecture is validated by HTTP; extending to other protocols is construction work using the same mechanisms.
 
-**Active division.** Dividing by a VDR value with nonzero remainder projects the divisor to an exact rational via scalar projection, losing the divisor's remainder structure. This is a permanent v1 design boundary — declared, bounded, and logged at every occurrence. It affects the exact-ness of operations that divide by computed values (as opposed to constants with zero remainder). The practical impact depends on workload: inference with constant-weight division is unaffected; training with gradient-derived divisors encounters it proportionally to remainder magnitude.
+**Active division.** Dividing by a VDR value with nonzero remainder projects the divisor to an exact rational via scalar projection, losing the divisor's remainder structure. This is a permanent v1 design boundary,  declared, bounded, and logged at every occurrence. It affects the exact-ness of operations that divide by computed values (as opposed to constants with zero remainder). The practical impact depends on workload: inference with constant-weight division is unaffected; training with gradient-derived divisors encounters it proportionally to remainder magnitude.
 
 ---
 
@@ -535,11 +535,11 @@ The paper does not project performance numbers for this scenario because it has 
 
 VDRProlog is what the GPU compute layer looks like when you remove the assumption that ML computation requires floating-point arithmetic. The type system is simpler (3 types instead of 12+). The instruction set is simpler (integer MAC instead of format-negotiated mixed-precision). The warp model is simpler (no divergence from data-dependent special cases). The runtime library is simpler (580 functions instead of 4,000+). The compiler is simpler (no precision tracking, no NaN propagation). The profiler is simpler (one compute type). The distributed training story is simpler (deterministic allreduce from associative integer addition). The debugging story is simpler (two runs either match bit-for-bit or there is a bug, and the bug cannot hide in float tolerance).
 
-What's added — KB operations, Prolog unification, grammar rendering, session management, runner scheduling, and structural safety — are capabilities that conventional CUDA cannot provide because they require persistent state, deterministic comparison, and autonomous execution, none of which are possible when the fundamental arithmetic is non-deterministic.
+What's added,  KB operations, Prolog unification, grammar rendering, session management, runner scheduling, and structural safety,  are capabilities that conventional CUDA cannot provide because they require persistent state, deterministic comparison, and autonomous execution, none of which are possible when the fundamental arithmetic is non-deterministic.
 
 The system builds in six phases totaling approximately 30,000 lines of Zig and CUDA C across 168 files, with approximately 5,000 lines of tests covering 612 test cases. Each phase is independently testable. The arithmetic foundation is validated by 884 existing tests with zero errors. Cross-platform determinism is verified by byte-comparing GPU output to CPU reference. The estimated GCP cost for complete development and testing is approximately $2,200.
 
-Nothing described here requires hardware that does not exist. H100 INT8 tensor cores deliver 3,958 TOPS today. The Zig Q16 implementation runs at 1.42 million tokens per second on a 2019 laptop today. The gap between these measured baselines and a production deployment is construction — writing modules, running tests, fixing bugs that are findable because the arithmetic is deterministic, and discovering optimizations that become visible when the full surface area exists as running code.
+Nothing described here requires hardware that does not exist. H100 INT8 tensor cores deliver 3,958 TOPS today. The Zig Q16 implementation runs at 1.42 million tokens per second on a 2019 laptop today. The gap between these measured baselines and a production deployment is construction,  writing modules, running tests, fixing bugs that are findable because the arithmetic is deterministic, and discovering optimizations that become visible when the full surface area exists as running code.
 
 ---
 
@@ -555,14 +555,14 @@ Nothing described here requires hardware that does not exist. H100 INT8 tensor c
 | VDR math | 17 | cuBLAS (~200+ functions) | Exact arithmetic with remainder monitoring |
 | Attention | 3 | cuDNN attention (~50+ functions) | Exact softmax verification (zero violations expected) |
 | Training | 10 | Custom training loops + AMP + GradScaler | Exact gradients, no loss scaling, no clipping |
-| Knowledge bases | 14 | — (no equivalent) | Persistent data at integer addresses |
-| KB primitives | 30 | — (no equivalent) | Bounded working memory |
-| Prolog | 8 | — (no equivalent) | Deterministic deduction with GPU parallelism |
-| Grammar | 7 | — (no equivalent) | Structural token generation bypassing LLM |
-| Runner | 8 | — (no equivalent) | Autonomous background execution |
-| Session | 10 | — (no equivalent) | Exact snapshot/clone/kill lifecycle |
+| Knowledge bases | 14 |,  (no equivalent) | Persistent data at integer addresses |
+| KB primitives | 30 |,  (no equivalent) | Bounded working memory |
+| Prolog | 8 |,  (no equivalent) | Deterministic deduction with GPU parallelism |
+| Grammar | 7 |,  (no equivalent) | Structural token generation bypassing LLM |
+| Runner | 8 |,  (no equivalent) | Autonomous background execution |
+| Session | 10 |,  (no equivalent) | Exact snapshot/clone/kill lifecycle |
 | Safety | 6 | Guardrail frameworks | Integer access control and grant enforcement |
-| Confidence | 5 | — (no equivalent) | Exact provenance propagation |
+| Confidence | 5 |,  (no equivalent) | Exact provenance propagation |
 | Distributed | 10 | NCCL (~100+ functions) | Deterministic allreduce |
 | Transform | 4 | cuFFT (~80+ functions) | Exact DFT roundtrip |
 | Linear algebra | 8 | cuSOLVER (~200+ functions) | Exact decompositions |
@@ -690,7 +690,7 @@ test/             ~50 test files covering all modules
 build.zig         Build configuration
 ```
 
-# HOWL-VDR-35-2026 — Extended Appendices
+# HOWL-VDR-35-2026,  Extended Appendices
 
 ---
 
@@ -724,7 +724,7 @@ Projected from measured CPU values (VDR-32 Zig), FPGA estimates (VDR-21), and pu
 
 CPU Zig: measured from VDR-32 and Phase 1–3 benchmarks on scalar CPU. T4/H100 INT8: projected from published TOPS and memory bandwidth, adjusted for kernel launch overhead. Theoretical peak: sustained throughput assuming full warp occupancy and zero memory stalls.
 
-Grammar render is host-side string operations — does not benefit from GPU. Session snapshot is host-device transfer dominated — scales with PCIe/NVLink bandwidth, not compute.
+Grammar render is host-side string operations,  does not benefit from GPU. Session snapshot is host-device transfer dominated,  scales with PCIe/NVLink bandwidth, not compute.
 
 The Q335 divmod row illustrates the hardware progression. On CPU it is a 384-bit shift (15 ns). On T4 it maps to multiple 64-bit shifts (~2 ns using SIMD). On H100 the wider datapath handles it in ~1 ns. On dedicated ASIC hardware it is fixed wiring (0 ns beyond wire delay). The most frequent operation in Q335 computation approaches zero cost as hardware specialization increases.
 
@@ -775,7 +775,7 @@ Cumulative warp efficiency loss from these sources in conventional float inferen
 
 ---
 
-## Appendix J: Token Cost Comparison — VDRProlog Command Tokens vs Conventional Function Calling
+## Appendix J: Token Cost Comparison,  VDRProlog Command Tokens vs Conventional Function Calling
 
 Measured from VDR-8 command token structure and compared against published function-calling token costs from major LLM API providers.
 
@@ -812,7 +812,7 @@ Measured from Phase 3 testing with varying KB and fact counts.
 | Full SRE deployment (month 6) | 300 | 50,000 | 200 | 45 | 100 | 2.8 MB | ~5 ms | ~4 ms |
 | Maximum tested | 1,000 | 200,000 | 500 | 100 | 200 | 11 MB | ~20 ms | ~15 ms |
 
-Snapshot size scales linearly with fact count (40 bytes per fact dominates). Save/restore time scales linearly with snapshot size (dominated by memcpy). A processor runner recycling at 200 turns with a standard SRE session snapshots in ~500 μs — negligible relative to the 60-second poll interval or the milliseconds-per-forward-pass LLM cost.
+Snapshot size scales linearly with fact count (40 bytes per fact dominates). Save/restore time scales linearly with snapshot size (dominated by memcpy). A processor runner recycling at 200 turns with a standard SRE session snapshots in ~500 μs,  negligible relative to the 60-second poll interval or the milliseconds-per-forward-pass LLM cost.
 
 The maximum tested configuration (11 MB snapshot, 200,000 facts) represents an extreme case. Typical operational sessions remain under 1 MB. For comparison, a single H100's HBM3 bandwidth of 3.35 TB/s can transfer an 11 MB snapshot in ~3 μs, meaning snapshot I/O is not a bottleneck at any realistic session size.
 
@@ -830,9 +830,9 @@ Measured from Phase 2 clone independence tests. Page size: 4,096 bytes (~100 fac
 | Heavy modification (new rules + facts) | 200 | 35 | 17.5% | 140 KB |
 | Full fork (all pages modified) | 200 | 200 | 100% | 800 KB |
 
-Most clone workloads dirty a small fraction of pages. A standard investigation clone modifies ~6% of its parent's pages — 94% of the parent's KB data is shared without copying. This is why clone-per-task in the batch runner is memory-efficient: 10 concurrent clones of a 200-page session share ~94% of their memory.
+Most clone workloads dirty a small fraction of pages. A standard investigation clone modifies ~6% of its parent's pages,  94% of the parent's KB data is shared without copying. This is why clone-per-task in the batch runner is memory-efficient: 10 concurrent clones of a 200-page session share ~94% of their memory.
 
-The full-fork case (100% dirty) is equivalent to a full copy and happens only when every KB in the session is modified. In practice this means the clone is doing work that touches every service, every metric, and every rule — more typical of a system-wide migration than a single investigation.
+The full-fork case (100% dirty) is equivalent to a full copy and happens only when every KB in the session is modified. In practice this means the clone is doing work that touches every service, every metric, and every rule,  more typical of a system-wide migration than a single investigation.
 
 ---
 
@@ -904,7 +904,7 @@ Without conflict (both agreeing): would be ~95.5%. The penalty reduced the combi
 | ACTIVE → EXPIRED | current_time >= expires_at | Integer comparison during cleanup | No |
 | ACTIVE → EXHAUSTED | remaining_uses == 0 | Atomic decrement reaches zero | No |
 | ACTIVE → REVOKED | Admin calls revoke | Manual, permanent | No |
-| Any → Any (other) | — | Not possible | — |
+| Any → Any (other) |,  | Not possible |,  |
 
 All terminal states are permanent. A revoked grant cannot be unrevoked. An exhausted grant cannot be refilled. An expired grant cannot be extended. To restore capability: create a new grant. The old grant's audit trail remains intact as historical record.
 
@@ -926,7 +926,7 @@ Structural token percentage by protocol, measured from actual wire format analys
 | WebSocket text frame (JSON) | 280 | 195 | 70% | 85 (content values) |
 | Raw TCP (pipe-delimited table) | 500 | 400 | 80% | 100 (cell values) |
 
-DNS has the highest grammar coverage because the wire format is almost entirely structural (header flags, question count, record type, TTL, record length fields). The LLM's contribution to a DNS response is the 4-byte IP address — everything else is deterministic protocol structure.
+DNS has the highest grammar coverage because the wire format is almost entirely structural (header flags, question count, record type, TTL, record length fields). The LLM's contribution to a DNS response is the 4-byte IP address,  everything else is deterministic protocol structure.
 
 HTTP JSON responses have lower grammar coverage because the body content is variable, but the structural scaffolding (status line, headers, JSON delimiters) is entirely grammar-produced. A malformed HTTP response is structurally impossible when the grammar handles all non-content bytes.
 
@@ -949,7 +949,7 @@ Time to execute a builtin compared to time to generate the equivalent output via
 | KB fact query (by ID) | ~0.01 μs | ~20–50 tokens (state reconstruction) | ~1–2.5 ms | 100,000–250,000× |
 | Prolog rule fire (matching) | ~0.1 μs | ~50–200 tokens (reasoning chain) | ~2.5–10 ms | 25,000–100,000× |
 
-The KB fact query row is the most extreme: reconstructing previously established state from the context window costs 20–50 tokens of attention over the full conversation history. Querying it from an integer address costs ~10 nanoseconds. The ratio exceeds 100,000×. This is not an optimization — it is the difference between re-reading a book to find a phone number and looking up an address in an index.
+The KB fact query row is the most extreme: reconstructing previously established state from the context window costs 20–50 tokens of attention over the full conversation history. Querying it from an integer address costs ~10 nanoseconds. The ratio exceeds 100,000×. This is not an optimization,  it is the difference between re-reading a book to find a phone number and looking up an address in an index.
 
 The Prolog rule fire row shows the accumulation benefit mechanically. A reasoning chain that the LLM generates as prose (50–200 tokens) is captured once as a rule and then fires at ~100 nanoseconds on every future match. The first invocation costs tokens. Every subsequent invocation is effectively free.
 
@@ -980,7 +980,7 @@ Derived metrics (exact fractions, not floats):
 - Command efficiency: command_tokens_consumed / primitive_calls (approaches 8 as system matures)
 - Rule reuse rate: rules_fired / prolog_queries (> 1 means rules fire without explicit query)
 
-These counters are included in snapshots and restored exactly. A session restored from a month-old snapshot reports the exact counts from the moment of snapshot — not approximations. Monitoring dashboards plotting these values over time show the accumulation curve directly: l3_count growing as a fraction of total, llm_tokens_consumed per turn declining, rules_fired growing.
+These counters are included in snapshots and restored exactly. A session restored from a month-old snapshot reports the exact counts from the moment of snapshot,  not approximations. Monitoring dashboards plotting these values over time show the accumulation curve directly: l3_count growing as a fraction of total, llm_tokens_consumed per turn declining, rules_fired growing.
 
 ---
 
@@ -1004,7 +1004,7 @@ Based on operation frequencies from the SRE deployment model.
 
 At the default audit ring capacity of 1,000,000 entries (28 MB), the ring holds approximately 430–1,120 hours (18–47 days) of audit history before oldest entries are overwritten. For compliance requirements demanding longer retention, the audit ring can be drained to persistent storage periodically via an internal runner.
 
-The volume increase from fresh to mature is dominated by rule fires: mature systems fire far more rules automatically (L3), and each firing generates an audit entry. This is desirable — the audit trail documents that automated actions were taken, providing the same accountability as human-initiated actions.
+The volume increase from fresh to mature is dominated by rule fires: mature systems fire far more rules automatically (L3), and each firing generates an audit entry. This is desirable,  the audit trail documents that automated actions were taken, providing the same accountability as human-initiated actions.
 
 ---
 
@@ -1026,9 +1026,9 @@ Every cell in this matrix must produce byte-identical output for the same input.
 | Allreduce (sum) | N/A | N/A | N/A | N/A | ✓ identical |
 | Training step | ✓ | ✓ | ✓ | ✓ | ✓ |
 
-This test matrix is the definitive validation of the determinism guarantee. In conventional float ML, this matrix cannot be populated with "identical" — float thread scheduling produces different results across platforms, and non-associative allreduce produces different results across topology changes. The matrix would contain "within tolerance" at best, with the tolerance band hiding bugs.
+This test matrix is the definitive validation of the determinism guarantee. In conventional float ML, this matrix cannot be populated with "identical",  float thread scheduling produces different results across platforms, and non-associative allreduce produces different results across topology changes. The matrix would contain "within tolerance" at best, with the tolerance band hiding bugs.
 
-The allreduce row is particularly significant. Conventional NCCL allreduce is non-deterministic for float sums because different reduction trees produce different results from non-associative float addition. VDRProlog allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce — all produce the same sum. This cell can be "✓ identical" because the mathematical property guarantees it.
+The allreduce row is particularly significant. Conventional NCCL allreduce is non-deterministic for float sums because different reduction trees produce different results from non-associative float addition. VDRProlog allreduce operates on integers. Integer addition is associative. Ring reduce, tree reduce, butterfly reduce,  all produce the same sum. This cell can be "✓ identical" because the mathematical property guarantees it.
 
 ---
 
@@ -1048,7 +1048,7 @@ Data continuity gap is the time during which the processor runner is not receivi
 
 Connection state save/restore adds approximately 1–5 ms depending on protocol and buffer sizes. Total recycle including connection restoration: under 15 ms for the maximum typical case.
 
-The recycle frequency at 200-turn threshold with a 1-second ingest interval is once every ~3.3 minutes. Over 24 hours: ~436 recycles. Each recycle creates a fresh session with zero accumulated attention drift, zero live state bloat, and identical knowledge (from the snapshot). The cost of 436 recycles at 10 ms each: 4.36 seconds out of 86,400 seconds — 0.005% overhead for complete drift elimination.
+The recycle frequency at 200-turn threshold with a 1-second ingest interval is once every ~3.3 minutes. Over 24 hours: ~436 recycles. Each recycle creates a fresh session with zero accumulated attention drift, zero live state bloat, and identical knowledge (from the snapshot). The cost of 436 recycles at 10 ms each: 4.36 seconds out of 86,400 seconds,  0.005% overhead for complete drift elimination.
 
 ---
 
@@ -1075,7 +1075,7 @@ Every error code maps to a specific recovery action. No ambiguous failures.
 | DEVICE_OUT_OF_MEMORY | Device | Kill oldest idle clone, retry | Yes | If recurrent |
 | COMMAND_PARSE_ERROR | Engine | Write error to scratchpad, LLM self-corrects | Yes | Never |
 
-"Automated: Yes" means the system handles the error without human involvement. "Human Review" indicates when human attention is warranted despite automated handling. The system does not require human intervention for any routine error — only for resource exhaustion, corruption, or policy decisions.
+"Automated: Yes" means the system handles the error without human involvement. "Human Review" indicates when human attention is warranted despite automated handling. The system does not require human intervention for any routine error,  only for resource exhaustion, corruption, or policy decisions.
 
 No entry in this table involves "retry and hope float non-determinism produces a different result." Every error has a deterministic cause and a deterministic recovery.
 
@@ -1125,9 +1125,9 @@ Projected from published 4nm CMOS energy measurements for integer versus float A
 | Subnormal handling | ~2.0 | 0 | 0 | 0 | ∞ |
 | Loss scale check | ~1.0 | 0 | 0 | 0 | ∞ |
 
-Q16 VDR energy equals INT16 energy for add and multiply because the instruction is the same (widening multiply + shift). The shift is a register rename or single-cycle barrel shift — negligible energy. The energy savings come from: not needing the float pipeline at all (3.3× per MAC), not needing SFUs for softmax (7.5× per softmax element), and not needing any of the float bookkeeping operations (NaN, subnormal, loss scale — each individually small but collectively present on every operation).
+Q16 VDR energy equals INT16 energy for add and multiply because the instruction is the same (widening multiply + shift). The shift is a register rename or single-cycle barrel shift,  negligible energy. The energy savings come from: not needing the float pipeline at all (3.3× per MAC), not needing SFUs for softmax (7.5× per softmax element), and not needing any of the float bookkeeping operations (NaN, subnormal, loss scale,  each individually small but collectively present on every operation).
 
-Over a 7B-parameter forward pass with ~14 billion MACs: the energy difference between float32 and Q16 VDR is approximately (5.0 − 1.5) × 14 × 10⁹ pJ = 49 mJ per forward pass saved. At 100 tokens per second inference, that is 4.9 W of continuous power reduction per GPU — meaningful at datacenter scale where thousands of GPUs operate continuously.
+Over a 7B-parameter forward pass with ~14 billion MACs: the energy difference between float32 and Q16 VDR is approximately (5.0 − 1.5) × 14 × 10⁹ pJ = 49 mJ per forward pass saved. At 100 tokens per second inference, that is 4.9 W of continuous power reduction per GPU,  meaningful at datacenter scale where thousands of GPUs operate continuously.
 
 ---
 

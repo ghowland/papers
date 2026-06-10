@@ -1,11 +1,11 @@
 ```zig
 // ============================================================
-// vdr_types.zig — VDR structs for LLM and Diffusion workloads
+// vdr_types.zig,  VDR structs for LLM and Diffusion workloads
 // ============================================================
 
 // --- Element Types ---
 // D is implicit (owned by container). V and R pack adjacent for SIMD.
-// Atomic remainder only — no tree. Sufficient for bounded ML domains.
+// Atomic remainder only,  no tree. Sufficient for bounded ML domains.
 
 const Vdr16 = struct {
     v: i16,
@@ -195,7 +195,7 @@ const DiffusionTrajectory = struct {
 // No arithmetic error between prediction and schedule application.
 
 const NoisePredictor = struct {
-    backbone: TransformerModel,    // or UNet — same VDR types either way
+    backbone: TransformerModel,    // or UNet,  same VDR types either way
     schedule: *DiffusionSchedule,
 };
 
@@ -237,8 +237,8 @@ Key structural decisions:
 
 **D is never stored per-element.** It lives on the container. Every element in a vector or matrix shares the same basis, which is what makes SIMD uniform.
 
-**Mixed precision via mixed basis.** Weights at Q16, activations at Q32, gradients at Q64. Rebase between them explicitly — the remainder catches the mismatch, nothing is silently truncated.
+**Mixed precision via mixed basis.** Weights at Q16, activations at Q32, gradients at Q64. Rebase between them explicitly,  the remainder catches the mismatch, nothing is silently truncated.
 
-**Softmax carries a sum witness.** `sum_v` should equal D exactly. If it doesn't, something is wrong. Not approximately wrong — wrong. Binary check.
+**Softmax carries a sum witness.** `sum_v` should equal D exactly. If it doesn't, something is wrong. Not approximately wrong,  wrong. Binary check.
 
 **Diffusion trajectory is flat.** Frames × latent size, single allocation, sequential access along the chaining dimension. The whole point is that stepping through this array for a million frames doesn't accumulate error.

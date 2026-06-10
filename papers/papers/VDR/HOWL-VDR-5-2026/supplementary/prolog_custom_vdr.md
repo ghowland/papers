@@ -2,9 +2,9 @@
 
 ### The Inversion
 
-The Zig Prolog was built for a game engine — entities, spatial queries, frame-rate performance. The question is not "how do we bolt VDR onto this" but "what would a Prolog look like if it were designed from scratch for VDR-LLM provenance?"
+The Zig Prolog was built for a game engine,  entities, spatial queries, frame-rate performance. The question is not "how do we bolt VDR onto this" but "what would a Prolog look like if it were designed from scratch for VDR-LLM provenance?"
 
-The game Prolog has Terms that carry spatial types (vec2, rect, circle) because the game needs spatial reasoning. A VDR-LLM Prolog needs Terms that carry exact fractions, weight matrices, gradient histories, attention maps, and token sequences — because the LLM needs arithmetic and derivation reasoning.
+The game Prolog has Terms that carry spatial types (vec2, rect, circle) because the game needs spatial reasoning. A VDR-LLM Prolog needs Terms that carry exact fractions, weight matrices, gradient histories, attention maps, and token sequences,  because the LLM needs arithmetic and derivation reasoning.
 
 ### What the VDR-LLM System Actually Needs to Track
 
@@ -113,22 +113,22 @@ A weight in the model is a fraction. Its provenance is a chain of facts:
 
 ```
 Fact: parameter_value("layer.1.weight[0][0]", step(0), fraction(1, 4))
-  — "at step 0, this weight is exactly 1/4"
+ ,  "at step 0, this weight is exactly 1/4"
 
 Fact: initialized_from("layer.1.weight[0][0]", xavier_rational, seed(42))
-  — "this weight was initialized by xavier_rational with seed 42"
+ ,  "this weight was initialized by xavier_rational with seed 42"
 
 Fact: gradient_at("layer.1.weight[0][0]", step(0), fraction(-3, 7))
-  — "the gradient of the loss with respect to this weight at step 0 is -3/7"
+ ,  "the gradient of the loss with respect to this weight at step 0 is -3/7"
 
 Fact: updated_by("layer.1.weight[0][0]", step(0), sgd, lr(fraction(1, 10)))
-  — "this weight was updated by SGD with learning rate 1/10"
+ ,  "this weight was updated by SGD with learning rate 1/10"
 
 Fact: parameter_value("layer.1.weight[0][0]", step(1), fraction(31, 140))
-  — "at step 1, this weight is exactly 31/140 = 1/4 + (1/10)(3/7)"
+ ,  "at step 1, this weight is exactly 31/140 = 1/4 + (1/10)(3/7)"
 ```
 
-The chain is complete. You can query: "what is the current value?" "what was the value at step 0?" "what gradient caused the change?" "what learning rate was used?" "is the derivation consistent?" — and the answers are exact fractions with logical proofs.
+The chain is complete. You can query: "what is the current value?" "what was the value at step 0?" "what gradient caused the change?" "what learning rate was used?" "is the derivation consistent?",  and the answers are exact fractions with logical proofs.
 
 ---
 
@@ -140,16 +140,16 @@ An input token's journey through the model:
 Fact: raw_text(doc(1), "the cat sat")
 Fact: tokenized(doc(1), [token(0, "the"), token(1, "cat"), token(2, "sat")])
 Fact: token_id(doc(1), pos(0), id(42))
-  — "position 0 in document 1 is token id 42"
+ ,  "position 0 in document 1 is token id 42"
 
 Fact: embedding(doc(1), pos(0), fraction_vec([3/7, 1/2, ...]))
-  — "the embedding for position 0 is this exact vector"
+ ,  "the embedding for position 0 is this exact vector"
   
 Fact: derived_from(embedding(doc(1), pos(0)), lookup, [token_id(doc(1), pos(0)), embed_table])
-  — "this embedding came from looking up token 42 in the embedding table"
+ ,  "this embedding came from looking up token 42 in the embedding table"
 
 Fact: attention_score(doc(1), pos(0), pos(1), fraction(5/12))
-  — "attention from position 0 to position 1 has score 5/12"
+ ,  "attention from position 0 to position 1 has score 5/12"
 
 Fact: derived_from(attention_score(doc(1), pos(0), pos(1)), dot_product, 
         [query(doc(1), pos(0)), key(doc(1), pos(1))])
@@ -202,7 +202,7 @@ Rule: attention_valid(Doc, Pos) :-
     forall(member(W, Weights), W >= 0).
 ```
 
-These rules are not decorative documentation. They are executable constraints that the system checks after every computation. `weight_consistent` verifies that the recorded value at step N matches the recorded value at step N-1 updated by the recorded gradient with the recorded learning rate. If it doesn't match, the provenance chain has an error — and the error is detectable exactly, because every value is an exact fraction.
+These rules are not decorative documentation. They are executable constraints that the system checks after every computation. `weight_consistent` verifies that the recorded value at step N matches the recorded value at step N-1 updated by the recorded gradient with the recorded learning rate. If it doesn't match, the provenance chain has an error,  and the error is detectable exactly, because every value is an exact fraction.
 
 ---
 
@@ -235,7 +235,7 @@ KnowledgeBase = struct {
 };
 ```
 
-The separation matters for memory management. Model facts and rules are persistent — they describe the architecture and its invariants. Parameter facts grow with training steps but can be pruned to checkpoints (keep every 100th step, discard intermediate). Data facts are transient — they describe a specific forward pass and can be discarded after the output is verified and the gradients are propagated.
+The separation matters for memory management. Model facts and rules are persistent,  they describe the architecture and its invariants. Parameter facts grow with training steps but can be pruned to checkpoints (keep every 100th step, discard intermediate). Data facts are transient,  they describe a specific forward pass and can be discarded after the output is verified and the gradients are propagated.
 
 This mirrors the game Prolog's frame allocator strategy. The game discards per-frame facts at frame end. The VDR-LLM discards per-batch data facts after the batch is processed. The pruning is explicit and the pruning policy is a declared rule in the knowledge base itself:
 
@@ -252,7 +252,7 @@ Rule: retain_parameter_history(Param, Step) :- constraint_violated_at(Param, Ste
 
 ### Constraint System
 
-The game Prolog does not have an explicit constraint system — spatial queries are just fact lookups. The VDR-LLM Prolog needs constraints as first-class objects because the entire point is to guarantee properties of the computation.
+The game Prolog does not have an explicit constraint system,  spatial queries are just fact lookups. The VDR-LLM Prolog needs constraints as first-class objects because the entire point is to guarantee properties of the computation.
 
 ```
 ConstraintType = enum {
@@ -375,7 +375,7 @@ This means queries like "find all parameters whose value at step 100 equals thei
 ?- parameter_value(Param, step(S), V), 
    denominator(V, D), D > 2^64.
 % "Which parameters have denominators exceeding 2^64?"
-% This is the denominator growth monitor — a VDR-specific diagnostic.
+% This is the denominator growth monitor,  a VDR-specific diagnostic.
 
 ?- gradient_at(Param, step(S), G), abs(G) > fraction(100, 1).
 % "Which gradients exceed 100 in absolute value?"
@@ -386,15 +386,15 @@ This means queries like "find all parameters whose value at step 100 equals thei
 
 ### The Memory Model
 
-The game Prolog uses a frame allocator — facts allocated per frame, freed at frame end. The VDR-LLM Prolog needs a tiered memory model:
+The game Prolog uses a frame allocator,  facts allocated per frame, freed at frame end. The VDR-LLM Prolog needs a tiered memory model:
 
 **Tier 1: Persistent.** Model architecture, rules, constraints, hyperparameters. Never freed. Small.
 
-**Tier 2: Checkpoint.** Parameter values at checkpoint steps. Retained long-term. Grows linearly with checkpoint count. Each checkpoint is a set of exact fractions — the full model state, reproducible to the last digit.
+**Tier 2: Checkpoint.** Parameter values at checkpoint steps. Retained long-term. Grows linearly with checkpoint count. Each checkpoint is a set of exact fractions,  the full model state, reproducible to the last digit.
 
-**Tier 3: Training step.** Gradients, update details, intermediate activations for the current step. Retained until the step is committed and the checkpoint policy decides whether to keep it. Most steps are pruned — only the parameter delta matters.
+**Tier 3: Training step.** Gradients, update details, intermediate activations for the current step. Retained until the step is committed and the checkpoint policy decides whether to keep it. Most steps are pruned,  only the parameter delta matters.
 
-**Tier 4: Batch transient.** Per-batch data provenance — tokenization, embeddings, attention maps, output distributions for the current batch. Retained only if flagged for audit or anomaly. Most batches are pruned after gradient propagation.
+**Tier 4: Batch transient.** Per-batch data provenance,  tokenization, embeddings, attention maps, output distributions for the current batch. Retained only if flagged for audit or anomaly. Most batches are pruned after gradient propagation.
 
 The pruning policy is itself a set of Prolog rules, so it is declarative, inspectable, and modifiable without changing code:
 
@@ -410,9 +410,9 @@ Rule: retain_batch(Batch) :- output_contains_anomaly(Batch).
 
 ### How This Differs From the Game Prolog
 
-The game Prolog is optimized for per-frame queries on spatial data — "which entities are within this rectangle?" The unification is simple, the fact sets are small, the rules are few, and everything resets at frame boundaries.
+The game Prolog is optimized for per-frame queries on spatial data,  "which entities are within this rectangle?" The unification is simple, the fact sets are small, the rules are few, and everything resets at frame boundaries.
 
-The VDR-LLM Prolog is optimized for provenance chains on exact arithmetic data — "what sequence of exact computations produced this exact value?" The unification includes exact rational comparison, the fact sets grow with training history, the rules encode mathematical invariants, and retention is governed by audit policy.
+The VDR-LLM Prolog is optimized for provenance chains on exact arithmetic data,  "what sequence of exact computations produced this exact value?" The unification includes exact rational comparison, the fact sets grow with training history, the rules encode mathematical invariants, and retention is governed by audit policy.
 
 The structural parallel is exact. Both have Terms, Facts, Rules, FactSets, RuleSets, and KnowledgeBases. Both use the same unification and backtracking machinery. Both separate mutable facts from stable rules. Both have memory management strategies that prune transient data.
 
@@ -428,7 +428,7 @@ The differences are in what the Terms carry (spatial geometry vs exact fractions
 
 **Targeted recomputation.** When a parameter is found to be wrong (corrupted checkpoint, buggy gradient), Prolog traces every downstream value that depends on it. Only those values are recomputed. The rest of the model state is known to be unaffected, because the dependency graph is complete.
 
-**Constraint-driven architecture search.** Express desired properties as Prolog constraints (attention weights must be non-negative, no gradient exceeds bound B, denominator complexity stays within budget C). The system can search for architectures or hyperparameters that satisfy all constraints — Prolog's backtracking search explores alternatives when constraints fail.
+**Constraint-driven architecture search.** Express desired properties as Prolog constraints (attention weights must be non-negative, no gradient exceeds bound B, denominator complexity stays within budget C). The system can search for architectures or hyperparameters that satisfy all constraints,  Prolog's backtracking search explores alternatives when constraints fail.
 
 **Self-documenting models.** The knowledge base is the documentation. "What is this model?" Query the architecture facts. "How was it trained?" Query the parameter history. "What does it do on this input?" Query the data provenance. "Is it correct?" Query the constraint verification. The answers are exact, complete, and machine-readable.
 
@@ -446,7 +446,7 @@ The differences are in what the Terms carry (spatial geometry vs exact fractions
 
 **Step 5:** Implement the tiered memory model with Prolog-rule-driven retention policies. Test on actual training runs to verify that pruning works and that retained provenance supports the required queries.
 
-**Step 6:** Build the query interface for the use cases above — weight archaeology, data lineage, constraint verification, anomaly detection. This is where the system becomes useful rather than just correct.
+**Step 6:** Build the query interface for the use cases above,  weight archaeology, data lineage, constraint verification, anomaly detection. This is where the system becomes useful rather than just correct.
 
 ---
 
@@ -454,6 +454,6 @@ The differences are in what the Terms carry (spatial geometry vs exact fractions
 
 The game Prolog shows the pattern works: embed a logic engine into a computational system, use it to reason about the system's state, let the logic layer carry structured types that the computation needs. The VDR-LLM Prolog takes the same pattern and applies it to exact arithmetic and ML provenance.
 
-The result would be a system where data is not just stored — it is grounded. Every value has a reason. Every reason has a derivation. Every derivation is exact. Every constraint is verified. And the whole thing is queryable in a logic language that can explain any result by producing its proof.
+The result would be a system where data is not just stored,  it is grounded. Every value has a reason. Every reason has a derivation. Every derivation is exact. Every constraint is verified. And the whole thing is queryable in a logic language that can explain any result by producing its proof.
 
 That is what data with full provenance looks like.

@@ -1,12 +1,12 @@
-# VDR-20 OPERATIONAL DEPLOYMENT — LLM-COMPACT FORM
+# VDR-20 OPERATIONAL DEPLOYMENT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → runner_types → directories → coverage → task_lifecycle → concurrency → scaling → relationships → sections
 
 # principles(id|principle|rationale)
-P1|Runners differ only in trigger and grants|All four runner types share identical VDR infrastructure — same primitives, same KB access model, same audit; differentiation is trigger pattern and grant scope only
+P1|Runners differ only in trigger and grants|All four runner types share identical VDR infrastructure,  same primitives, same KB access model, same audit; differentiation is trigger pattern and grant scope only
 P2|Fresh LLM every cycle|Pollers and internal processors terminate after each cycle; processors respawn at threshold; no attention degradation; accumulated knowledge at integer addresses
 P3|Owner directs, system executes|Owner uses any tool for planning; every decision becomes facts and rules that runners execute; planning tool irrelevant, output format irrelevant
-P4|Coverage Remainder is operational|Coverage gap is not a percentage — it is a typed, decomposable, actionable description of specific missing items; queryable like knowledge
+P4|Coverage Remainder is operational|Coverage gap is not a percentage,  it is a typed, decomposable, actionable description of specific missing items; queryable like knowledge
 P5|Local first|Local directories as bootstrap path: zero external dependencies, validates pipeline in isolation, builds owner confidence on known material
 P6|Directory interface as control surface|Owner drops files in designated directories; pollers detect and route; no API keys, no authentication complexity for owner interaction
 P7|All security from VDR-16|Multi-runner deployment introduces no new access paths; every runner operates through same primitive pipeline with same visibility, scope, grants, audit
@@ -15,13 +15,13 @@ P8|Knowledge efficiency increases monotonically|Compaction rules, classification
 # claims(id|claim|type|depends_on)
 CL1|Four runner types cover all operational patterns: human-driven, timer-driven, stream-driven, self-directed|observation|P1
 CL2|No runner can escalate its own grants; grant modification requires admin grants no runner holds|observation|P7
-CL3|Coverage loop is standard task chains — no special mechanism; tasks trigger tasks through template instantiation|derivation|P4
+CL3|Coverage loop is standard task chains,  no special mechanism; tasks trigger tasks through template instantiation|derivation|P4
 CL4|After 200+ owner hierarchy corrections, proposal accuracy reaches ~99%|observation|P3
 CL5|Avg tokens per compaction: 180 at hour 2 → 18 at day 30 → 8 at year 1|observation|P8
 CL6|Rule-handled percentage: 15% day 1 → 88% month 1 → 97% year 1|observation|P8
 CL7|Owner time investment: 2-4 hrs/week initial → 0.25-0.5 hrs/week at month 6+|observation|P3
 CL8|Cross-runner collusion cannot bypass security; per-session visibility checks on every fact access regardless of initiation path|observation|P7
-CL9|Concurrent KB access requires no locking — append-only arenas, atomic queue ops, snapshot consistency|observation|
+CL9|Concurrent KB access requires no locking,  append-only arenas, atomic queue ops, snapshot consistency|observation|
 CL10|Query latency <1ms up to 1M facts; <5ms at 50M facts|observation|
 CL11|Meta-rules about document structure in general accelerate every future ingestion regardless of domain|derivation|P8
 
@@ -34,7 +34,7 @@ C5|Internal processing runner|Self-directed; evaluates KB state on schedule; con
 C6|Owner-local interface|Filesystem directory conventions watched by pollers: ingress, tasks, config, output, review|interface
 C7|Coverage loop|Topic specification → coverage evaluation → Remainder as gap descriptions → gap-to-task conversion → fetch → compact → re-evaluate; continues until targets met|mechanism
 C8|Coverage Remainder|Typed decomposable list of specific gaps (not percentage); each gap is queryable fact with enough specificity to become fetch task|mechanism
-C9|Meta-rules|Rules about document structure in general — how reference material differs from narrative, how cross-referencing works, how hierarchies map to KB trees; accelerate all future ingestion|capability
+C9|Meta-rules|Rules about document structure in general,  how reference material differs from narrative, how cross-referencing works, how hierarchies map to KB trees; accelerate all future ingestion|capability
 C10|Task chaining|Completed task triggers follow-up tasks via template instantiation; coverage loop implemented as standard task chains|mechanism
 C11|Manifest|Processing record per file: path, hash, type, compaction rule used, target KB, facts extracted, timestamp, processor session|tracking
 C12|Hierarchy convergence|System proposes KB hierarchy from classification rules; owner corrects; corrections become rules; proposals improve: ~40% accuracy initial → ~99% after 200 corrections|process
@@ -124,14 +124,14 @@ TA5|report|Query spec|Generate formatted output from KB queries
 TA6|export|Output path + format|Write KB content to files
 
 # concurrency_model(resource|read_pattern|write_pattern|contention)
-KB fact table|Non-blocking snapshot read|Atomic bump-pointer append|Zero — reads and writes independent
-KB predicate index|Non-blocking lookup|Append on new fact|Minimal — atomic update
-Task queue|Atomic dequeue|Atomic enqueue|Zero — separate read/write positions
-Counter|Atomic read|Atomic increment|Zero — single instruction
-Coverage metrics KB|Non-blocking read|Periodic bulk write by internal processor|Minimal — infrequent writes
-Manifest KB|Non-blocking read|Append per processed file|Zero — append-only
-Audit KB|Non-blocking read (rare)|Append per operation|Zero — append-only
-Arena allocator|N/A|Atomic bump pointer|Zero — one instruction
+KB fact table|Non-blocking snapshot read|Atomic bump-pointer append|Zero,  reads and writes independent
+KB predicate index|Non-blocking lookup|Append on new fact|Minimal,  atomic update
+Task queue|Atomic dequeue|Atomic enqueue|Zero,  separate read/write positions
+Counter|Atomic read|Atomic increment|Zero,  single instruction
+Coverage metrics KB|Non-blocking read|Periodic bulk write by internal processor|Minimal,  infrequent writes
+Manifest KB|Non-blocking read|Append per processed file|Zero,  append-only
+Audit KB|Non-blocking read (rare)|Append per operation|Zero,  append-only
+Arena allocator|N/A|Atomic bump pointer|Zero,  one instruction
 
 # local_sources(id|source|volume|file_count|format_uniformity|cross_ref_density|compaction_rules_needed)
 LS1|Project Gutenberg|5-50 GB|60,000+|High (standard headers)|Medium (author/period/theme)|2-3 base + literary extraction

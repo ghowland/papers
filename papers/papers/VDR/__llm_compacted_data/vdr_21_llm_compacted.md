@@ -1,11 +1,11 @@
-# VDR-21 FPGA 10-CORE Q335 PROCESSOR — LLM-COMPACT FORM
+# VDR-21 FPGA 10-CORE Q335 PROCESSOR,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → core_design → isa → microprograms → system → scaling → dev_phases → relationships → sections
 
 # principles(id|principle|rationale)
-P1|Q335 divmod is free in hardware|Denominator 2^335 is fixed power of two; division is bit extraction — bits above 335 are quotient, bits below are remainder; fixed wiring, zero logic cells, zero power
+P1|Q335 divmod is free in hardware|Denominator 2^335 is fixed power of two; division is bit extraction,  bits above 335 are quotient, bits below are remainder; fixed wiring, zero logic cells, zero power
 P2|Host control plane, FPGA data plane|ARM runs Zig runtime (orchestration, KB tree, sessions, grammar, LLM passes); FPGA runs parallel numeric ops (fact matching, batch arithmetic, attention, constraints, softmax)
-P3|Bit-identical results required|Every FPGA operation must match software path exactly; verified against 884-test suite across 37 domains with zero errors; integer arithmetic is deterministic — no rounding modes, no platform dependence
+P3|Bit-identical results required|Every FPGA operation must match software path exactly; verified against 884-test suite across 37 domains with zero errors; integer arithmetic is deterministic,  no rounding modes, no platform dependence
 P4|Same core scales linearly|Same core, dispatcher, ISA, microprograms on any device; more cores = proportionally more throughput; reduction network grows logarithmically
 P5|Shared die minimizes transfer|Zynq-7020 puts ARM + FPGA on same die sharing DDR3; AXI GP0 (32-bit registers) for control, AXI HP0 (64-bit DMA) for bulk
 
@@ -20,7 +20,7 @@ CL7|Active spill rate expected below 1%; Q335 frame provides 290 orders of magni
 CL8|Design resource-estimated but not yet synthesized; utilization and timing are pre-synthesis estimates|observation|CL1
 CL9|100M parameter model needs ~4.8 GB; exceeds Zynq-7020 DDR3 (512 MB); limits to thousands-tens of thousands params|observation|
 CL10|150 MHz clock is 10-20× slower than GPU (1.5-2.5 GHz); FPGA compensates with architectural advantages not raw speed|observation|
-CL11|FPGA targets embedded, edge, dev platforms, power-constrained — not datacenter GPU competition|observation|CL10
+CL11|FPGA targets embedded, edge, dev platforms, power-constrained,  not datacenter GPU competition|observation|CL10
 CL12|Shadow mode enables real-time FPGA vs software comparison at 2× compute cost|observation|P3
 
 # concepts(id|name|definition|category)
@@ -153,7 +153,7 @@ NF2|Functional remainder resolution|Newton/Taylor inherently sequential; FPGA ac
 NF3|KB tree structure management|Irregular pointer-chasing; hash tables, arena allocators better in software
 NF4|Grammar matching + scoring|Mixed deterministic-probabilistic; unsuitable for pure HW unless profiling shows bottleneck
 NF5|Session snapshot/restore|Bulk memory copies; infrequent; Zig arena allocators efficient
-NF6|LLM pass orchestration|Layer sequencing, residual connections, loss computation — control flow on host
+NF6|LLM pass orchestration|Layer sequencing, residual connections, loss computation,  control flow on host
 
 # scaling(platform|luts_avail|dsp48_avail|bram_avail|max_cores|limiting_resource)
 Zynq-7020|53,200|220|140|10|FF (73.4%)

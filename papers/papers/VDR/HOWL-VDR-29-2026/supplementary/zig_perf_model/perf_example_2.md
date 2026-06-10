@@ -1,4 +1,4 @@
-## H100 Architecture — The Relevant Numbers
+## H100 Architecture,  The Relevant Numbers
 
 **H100 SMs have separate execution units:**
 
@@ -21,7 +21,7 @@ Tensor cores do small matrix multiplies in one operation. On H100:
 
 VDR i16 weights × i16 activations → i32 accumulator maps directly onto INT8 tensor core paths. Two i8 pairs per i16, or use the INT16 mode where available. The key point: the tensor cores already do integer multiply-accumulate with widening into i32. That's exactly the VDR inner product.
 
-## Matmul on Tensor Cores — Float vs VDR
+## Matmul on Tensor Cores,  Float vs VDR
 
 **FP16 path (current production):**
 ```
@@ -53,15 +53,15 @@ VDR i16 weights × i16 activations → i32 accumulator maps directly onto INT8 t
 // Precision: exact
 ```
 
-**2× throughput on the dominant operation, with exact results.** Not because VDR is clever — because the INT8 tensor cores are already there, already 2× FP16, and VDR's fixed-basis arithmetic maps directly onto them.
+**2× throughput on the dominant operation, with exact results.** Not because VDR is clever,  because the INT8 tensor cores are already there, already 2× FP16, and VDR's fixed-basis arithmetic maps directly onto them.
 
-## Warp Execution — No Divergence
+## Warp Execution,  No Divergence
 
 A warp is 32 threads executing the same instruction in lockstep. Divergence happens when threads take different branches.
 
 **Float warp hazards:**
 
-Denormals: if any thread in the warp produces a denormal, the SM either flushes to zero (losing information) or takes a slow path. CUDA defaults to flush-to-zero mode for exactly this reason — the alternative is divergence or stall. FTZ loses information silently.
+Denormals: if any thread in the warp produces a denormal, the SM either flushes to zero (losing information) or takes a slow path. CUDA defaults to flush-to-zero mode for exactly this reason,  the alternative is divergence or stall. FTZ loses information silently.
 
 NaN propagation: if any thread produces NaN (0/0, inf-inf), NaN propagates through all subsequent operations for that thread. The computation is dead but the thread keeps executing garbage. No divergence, but wasted work.
 
@@ -69,7 +69,7 @@ Infinity: overflow to inf. Subsequent operations produce inf or NaN. Same proble
 
 Conditional normalization: softmax, layer norm, batch norm all require reduction operations that can trigger special-case handling for extreme values. Not divergence per se, but pipeline stalls and edge cases.
 
-**VDR warp — zero hazards:**
+**VDR warp,  zero hazards:**
 
 Every thread does the same sequence: integer multiply, shift right, bitwise AND, integer add. There is no value of i16 or i32 that causes a special case. No denormals (integers don't have them). No NaN (integers don't have it). No infinity (integers overflow deterministically via wrapping, and with proper bit width selection they don't overflow at all). No flush-to-zero because there's nothing to flush.
 
@@ -90,28 +90,28 @@ No predication. No branch. No special case. Every cycle, all 32 threads do usefu
 ```
 // Typical: 128×128 tile in shared memory
 // FP16: 128 × 128 × 2 bytes = 32KB per tile
-// Two tiles (A and B): 64KB — exactly fills H100 shared memory config
+// Two tiles (A and B): 64KB,  exactly fills H100 shared memory config
 ```
 
 **VDR tiling:**
 ```
 // V values only for the multiply (R is computed, not loaded for weights)
 // INT8 V values: 128 × 128 × 1 byte = 16KB per tile
-// Two tiles: 32KB — half the shared memory pressure
+// Two tiles: 32KB,  half the shared memory pressure
 // Room for double-buffering: load next tile while computing current
-// Or: 256×256 tiles at same memory footprint — better arithmetic intensity
+// Or: 256×256 tiles at same memory footprint,  better arithmetic intensity
 ```
 
 Smaller elements mean either better double-buffering (hiding latency) or larger tiles (better compute-to-memory ratio). Both improve effective throughput.
 
-## Softmax on GPU — Float vs VDR
+## Softmax on GPU,  Float vs VDR
 
-**Float softmax — the standard pain:**
+**Float softmax,  the standard pain:**
 ```
 // Phase 1: find max across sequence (warp reduce)
 // Phase 2: subtract max, compute exp() per element
 //   exp() on GPU: ~20 instructions of polynomial approximation (SFU or software)
-//   SFU throughput: 1/4 of CUDA core throughput — this is the bottleneck
+//   SFU throughput: 1/4 of CUDA core throughput,  this is the bottleneck
 // Phase 3: sum (warp reduce again)
 // Phase 4: divide each element by sum
 //   float divide: ~10 cycles on SFU, again 1/4 throughput
@@ -120,11 +120,11 @@ Smaller elements mean either better double-buffering (hiding latency) or larger 
 // SFU is the limiter: 32 ops/cycle vs 128 for FP32 cores
 ```
 
-**VDR softmax — table lookup:**
+**VDR softmax,  table lookup:**
 ```
 // Phase 1: find max (same warp reduce, integer version)
 // Phase 2: table lookup for exp
-//   inputs are bounded i16 or i8 — finite table
+//   inputs are bounded i16 or i8,  finite table
 //   table lives in shared memory or L1: 64KB for i16 inputs easily
 //   one load per element, full throughput, no SFU
 // Phase 3: sum (same warp reduce, integer version)
@@ -137,7 +137,7 @@ Smaller elements mean either better double-buffering (hiding latency) or larger 
 
 Float softmax is SFU-bottlenecked at 1/4 core throughput. VDR softmax runs entirely on integer cores and shared memory at full throughput. This alone could be a 3-4× speedup on softmax, which is a significant fraction of attention compute.
 
-## Global Memory Bandwidth — H100
+## Global Memory Bandwidth,  H100
 
 H100 has ~3.35 TB/s HBM bandwidth. For memory-bound workloads (inference, long-sequence attention), this is the ceiling.
 
@@ -147,7 +147,7 @@ H100 has ~3.35 TB/s HBM bandwidth. For memory-bound workloads (inference, long-s
 
 For memory-bound inference, VDR INT8 doubles the throughput ceiling. And during the matmul those bytes hit INT8 tensor cores at 1024 ops/SM/cycle instead of FP16 tensor cores at 512. The memory bandwidth advantage and the compute throughput advantage stack.
 
-## Full Transformer Forward Pass — Pipelined
+## Full Transformer Forward Pass,  Pipelined
 
 ```
 Embedding lookup:     INT8 table → i16 VDR activations. Pure memory.
@@ -186,6 +186,6 @@ Every SFU-dependent operation in the float path (exp, gelu, rsqrt for layer norm
 
 For compute-bound training with large batches, FP16 tensor cores are mature and well-optimized. The software ecosystem (cuBLAS, cuDNN, Flash Attention) is built for them. VDR would need its own kernel library to match the engineering polish.
 
-For inference — memory-bound, single-batch or small-batch — VDR INT8 on tensor cores has a structural advantage. 2× throughput on tensor cores, 2× memory bandwidth utilization, no SFU bottleneck on softmax/activation, zero warp divergence, zero drift. The hardware already supports it because the quantization community already demanded INT8 tensor cores.
+For inference,  memory-bound, single-batch or small-batch,  VDR INT8 on tensor cores has a structural advantage. 2× throughput on tensor cores, 2× memory bandwidth utilization, no SFU bottleneck on softmax/activation, zero warp divergence, zero drift. The hardware already supports it because the quantization community already demanded INT8 tensor cores.
 
 The irony is that the GPU industry built INT8 tensor cores to run approximate quantized models faster. VDR uses the same hardware to run exact integer models at the same speed. The infrastructure is already there. It just needs someone to write the kernels with the divmod-into-R discipline instead of the truncate-and-pray discipline.

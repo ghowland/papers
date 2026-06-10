@@ -1,10 +1,10 @@
-# EXACT-FRACTION LANGUAGE MODEL ARCHITECTURE — LLM-COMPACT FORM
+# EXACT-FRACTION LANGUAGE MODEL ARCHITECTURE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → modules → components → test results → findings → limitations → relationships → sections
 
 # principles(id|principle|rationale)
 P1|Every LM component expressible as exact rational arithmetic|Complete path from raw text to logits to training update uses only exact VDR fractions
-P2|Approximation boundary is design choice not hardware constraint|Truncation depth for exp, Q-basis precision, slice point for chaos — all chosen, not forced
+P2|Approximation boundary is design choice not hardware constraint|Truncation depth for exp, Q-basis precision, slice point for chaos,  all chosen, not forced
 P3|Bit-identical reproducibility|Same model + same params + same input = same exact output on any machine/OS/Python version; impossible with float ML
 P4|Zero VDR computation errors across 705 cumulative tests|13 failures all test-design errors across entire project
 
@@ -66,7 +66,7 @@ C11|Momentum optimizer|v ← μv + grad; W ← W - lr·v; exact velocity accumul
 C12|Attention|Score=QK^T; causal mask (upper-triangle with large negative fill); row-wise softmax; value mixing (weighted sum)|Every attention weight row sums to exactly 1; 2-position standard softmax: 43545600/59565131 and 16019531/59565131; surrogate: 16/25 and 9/25; causal masking zeros future positions exactly
 C13|TinyTransformerLM|Embedding → TransformerBlock (attention+residual → feedforward+residual) → logits head|3-token vocab, 2-dim embedding, context 3; every logit exact fraction; cache exposes all intermediates; 6 parameter groups all exact; attention weights sum to exactly 1 at every position
 C14|Q-basis conversion|Model converted to shared-denominator Q-basis representation|Forward passes produce identical exact results after conversion; Q-basis embedding lookup returns same fractions; Q-basis logits match original
-C15|Training loop|Forward → loss → backward via autodiff → optimizer step → gradient zero|Single step produces exact loss; epoch of training produces measurably lower average loss — model is learning; every step exact
+C15|Training loop|Forward → loss → backward via autodiff → optimizer step → gradient zero|Single step produces exact loss; epoch of training produces measurably lower average loss,  model is learning; every step exact
 C16|Deterministic RNG|Linear congruential generator with exact integer state|Same seed → identical sequences, fractions, shuffles, permutations; 5-element sequences reproduced exactly
 C17|Sampling|Categorical from exact probability vectors via CDF + rational threshold|One-hot [1,0,0] always returns index 0; top-k zeros all but k largest then renormalizes to exact sum 1; nucleus keeps minimal prefix exceeding threshold
 C18|Checkpoints|Exact parameter serialization/deserialization|Every weight, bias, fraction saved and loaded with zero precision loss; bit-identical outputs after reload
@@ -82,7 +82,7 @@ FN2|Full inspectability|Every intermediate value is exact printable fraction; at
 FN3|Platform independence|VDR fractions are platform-independent; no hardware-dependent float rounding; checkpoints preserve exact state across machines
 FN4|Softmax engineering boundary|Truncated Taylor at moderate depth poor on large negative shifted logits; range reduction and Padé approximants are path forward
 FN5|Denominator growth|Single forward pass produces denominators in tens of millions; training hundreds of steps → billions; manageable for research-scale tiny models, not production-scale
-FN6|Approximation is explicit|Truncated Taylor exp is approximation — exact rational differing from true transcendental by known bounded amount; truncation depth chosen not forced
+FN6|Approximation is explicit|Truncated Taylor exp is approximation,  exact rational differing from true transcendental by known bounded amount; truncation depth chosen not forced
 
 # limitations(id|limitation|detail)
 L1|Not practical at production scale|Denominator growth through operations; tiny model forward pass → millions in denominators; training → billions+
@@ -97,7 +97,7 @@ FW2|Better exponential evaluation|Padé approximants, range reduction with exact
 FW3|Exact cross-entropy loss|Integrate logarithm.py into loss module for standard LM training objective
 FW4|Exact optimizer dynamics study|With exact gradients and updates, determine if training instabilities are arithmetic artifacts (float rounding) or algorithmic (inherent to optimization landscape)
 FW5|Denominator growth tracking|How fast do parameter denominators grow during training? Natural precision budget? Periodic Q-basis re-projection to control growth?
-FW6|Rational surrogate architectures|Replace transcendental nonlinearities with rational ones native to VDR; rational activations, normalization, attention kernels — not copies of float-era transformers
+FW6|Rational surrogate architectures|Replace transcendental nonlinearities with rational ones native to VDR; rational activations, normalization, attention kernels,  not copies of float-era transformers
 FW7|Q-basis scaling path|Project all parameters onto 2^k grid at each training step; controlled bounded explicit precision loss analogous to quantization but with exact error bounds
 
 # complete_path(id|step|description)

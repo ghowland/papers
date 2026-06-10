@@ -1,4 +1,4 @@
-# VDR-13 PHYSICAL COMPUTATION — LLM-COMPACT FORM
+# VDR-13 PHYSICAL COMPUTATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → domains → qed → quantum → signal → control → orbital → structural → thermo → crystal → geodesy → optics → gym → float_failures → conservation → convergence → gauss_scaling → denom_comparison → relationships → section_index → decode_legend
 

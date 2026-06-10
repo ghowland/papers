@@ -50,7 +50,7 @@ The historical names stay. The structural names are added. Both coexist. The str
 
 **Audience:** Self-learners, students frustrated with conventional curricula, engineers who want physics competence without a physics degree.
 
-**Format:** Start with the structural map. Give the student lifetime navigation of physics in six weeks. Then layer the historical names on top as optional decoration — performative fluency for when you want to sound fancy in traditional contexts.
+**Format:** Start with the structural map. Give the student lifetime navigation of physics in six weeks. Then layer the historical names on top as optional decoration,  performative fluency for when you want to sound fancy in traditional contexts.
 
 **The inversion:** Current pedagogy forces students to memorize names before understanding structure. This guide teaches structure first, then attaches names to a structure the student already understands. Names become easier, not harder, because they have a place to attach.
 
@@ -107,7 +107,7 @@ Physics is the first application. The methodology transfers.
 
 **Leverage the distributed database.** The pool already has 165+ values with provenance. The taxonomy is the schema. Others can populate nodes via fork-compute-merge. You don't have to build every entry yourself.
 
-**Don't rename — add.** The historical names stay. The taxonomy adds structural names alongside them. Nobody has to give up what they learned. Everyone gains a new layer.
+**Don't rename,  add.** The historical names stay. The taxonomy adds structural names alongside them. Nobody has to give up what they learned. Everyone gains a new layer.
 
 **Protect with bidirectional mapping.** The lexicon mapper going both ways is what makes the taxonomy unkillable. The institution can't dismiss a system that indexes its own vocabulary.
 

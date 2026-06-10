@@ -2,7 +2,7 @@
 
 ## How to Think About Numbers Differently
 
-You've been taught that 1/3 is 0.333... — an infinite repeating decimal that must be truncated. Every calculator, every programming language, every spreadsheet does this. They throw away the part that doesn't fit.
+You've been taught that 1/3 is 0.333...,  an infinite repeating decimal that must be truncated. Every calculator, every programming language, every spreadsheet does this. They throw away the part that doesn't fit.
 
 VDR doesn't.
 
@@ -33,7 +33,7 @@ Every VDR object has exactly three slots:
 
 **V** is the value. An integer. How much of the quantity fits cleanly in the current frame.
 
-**D** is the denominator. An integer. The frame. Think of it as the resolution or grid you're working in. Sevenths, hundredths, powers of two — any nonzero integer.
+**D** is the denominator. An integer. The frame. Think of it as the resolution or grid you're working in. Sevenths, hundredths, powers of two,  any nonzero integer.
 
 **R** is the remainder. The exact part that doesn't fit in the frame. This is what every other system throws away. VDR keeps it.
 
@@ -72,7 +72,7 @@ print(c.to_fraction())   # Fraction(10, 21)
 print(d.to_fraction())   # Fraction(1, 21)
 ```
 
-Now the key test — what happens over many operations?
+Now the key test,  what happens over many operations?
 
 ```python
 x = VDR(1, 7)
@@ -101,7 +101,7 @@ VDR doesn't have this problem. The 8.6-millionth operation is as exact as the fi
 
 You might ask: Python has `fractions.Fraction`. Why not just use that?
 
-For closed arithmetic — addition, subtraction, multiplication, division of rationals — `Fraction` and VDR give the same answers. The closed subclass of VDR is isomorphic to rational arithmetic.
+For closed arithmetic,  addition, subtraction, multiplication, division of rationals,  `Fraction` and VDR give the same answers. The closed subclass of VDR is isomorphic to rational arithmetic.
 
 The difference is the remainder slot.
 
@@ -166,7 +166,7 @@ When R is nonzero, the object carries structure beyond the closed rational.
 x = VDR(1, 3, Remainder(1))
 ```
 
-This means: in the frame of thirds, V=1 with remainder 1. The total value is (1 + 1)/3 = 2/3. The remainder is interpreted within the parent's frame — divided by D, not added externally.
+This means: in the frame of thirds, V=1 with remainder 1. The total value is (1 + 1)/3 = 2/3. The remainder is interpreted within the parent's frame,  divided by D, not added externally.
 
 This is **denominator-sensitive completion**. `[3, 7, 2]` means (3 + 2)/7 = 5/7, not 3/7 + 2.
 
@@ -177,7 +177,7 @@ a = VDR(1, 3, Remainder(1))   # (1+1)/3 = 2/3
 b = VDR(1, 5, Remainder(2))   # (1+2)/5 = 3/5
 
 c = a + b
-print(c.to_fraction())   # 19/15 — exact
+print(c.to_fraction())   # 19/15,  exact
 ```
 
 The remainders are lifted into a common frame, combined, and normalized. The mechanics are handled automatically. You just use `+`.
@@ -186,7 +186,7 @@ The remainders are lifted into a common frame, combined, and normalized. The mec
 
 ## Remainders Can Be Nested
 
-The R slot can contain child VDR objects, each with their own V, D, R. This is the only place recursion happens — V and D are always plain integers.
+The R slot can contain child VDR objects, each with their own V, D, R. This is the only place recursion happens,  V and D are always plain integers.
 
 ```python
 from vdr.core import Remainder
@@ -208,7 +208,7 @@ Different VDR triples can represent the same value. `[2, 4, 0]` and `[1, 2, 0]` 
 ```python
 VDR(2, 4).normalize()     # VDR(1, 2)
 VDR(6, 10).normalize()    # VDR(3, 5)
-VDR(1, -3).normalize()    # VDR(-1, 3) — D always positive
+VDR(1, -3).normalize()    # VDR(-1, 3),  D always positive
 ```
 
 Normalization happens automatically in arithmetic results. The rules, in order:
@@ -244,9 +244,9 @@ val = resolve(obj, depth=10)
 
 At depth 10, this gives >100 correct digits of sqrt(2). At depth 7, ~150 fraction digits. At depth 5, ~30 digits. At depth 1, 1 digit.
 
-Each depth is a **complete exact rational** — not an approximation of a limit. There is no limit process inside VDR. The function returns a VDR, and that VDR is exact. Deeper calls return more refined exact values.
+Each depth is a **complete exact rational**,  not an approximation of a limit. There is no limit process inside VDR. The function returns a VDR, and that VDR is exact. Deeper calls return more refined exact values.
 
-The residual `x^2 - 2` is itself an exact inspectable rational. You know precisely how far from sqrt(2) you are — not approximately, exactly.
+The residual `x^2 - 2` is itself an exact inspectable rational. You know precisely how far from sqrt(2) you are,  not approximately, exactly.
 
 **This is the precision knob.** Float gives you ~15.7 digits, fixed, with rounding at every operation that compounds silently. VDR gives you one inspectable residual at a location you chose, and everything downstream is exact.
 
@@ -258,7 +258,7 @@ When you write:
 sqrt2_fn = make_newton_fn("sqrt2", lambda x: (x + VDR(2)/x) / VDR(2))
 ```
 
-This creates a `FnRemainder` object — a callable that, given a depth, applies Newton's method that many times starting from VDR(1).
+This creates a `FnRemainder` object,  a callable that, given a depth, applies Newton's method that many times starting from VDR(1).
 
 Depth 0: returns VDR(1). That's the starting guess.
 Depth 1: one Newton step. x = (1 + 2/1)/2 = 3/2.
@@ -302,7 +302,7 @@ This is background you need to understand why VDR exists.
 
 Among the first 100 denominators, only ~12 terminate. The other ~88 repeat. The decimal trap is the norm, not the exception.
 
-This means: every time you divide by 3, or average 3 values, or invert a matrix with a factor of 3 in any entry, or compute a Bernoulli number (every B_{2n} has odd prime denominators), or use a Runge-Kutta method of order ≥ 2 (all have coefficients with factor of 3) — you're truncating.
+This means: every time you divide by 3, or average 3 values, or invert a matrix with a factor of 3 in any entry, or compute a Bernoulli number (every B_{2n} has odd prime denominators), or use a Runge-Kutta method of order ≥ 2 (all have coefficients with factor of 3),  you're truncating.
 
 Arbitrary precision doesn't solve this. mpmath at 1000 digits still truncates 1/3. It gives you 1000 correct digits and then a wrong one. Each operation discards information. N operations means N truncations.
 
@@ -314,7 +314,7 @@ VDR is categorically different. `[1, 3, 0]` is exact. The denominator is stored 
 
 Is a computed value exactly zero, or merely small?
 
-In decimal arithmetic, this question is unanswerable. Is 10^-15 zero? Maybe. Compute at higher precision — is 10^-300 zero? Still can't tell.
+In decimal arithmetic, this question is unanswerable. Is 10^-15 zero? Maybe. Compute at higher precision,  is 10^-300 zero? Still can't tell.
 
 In VDR: the value is `[0, 1, 0]` or it isn't. Binary answer. Exact.
 
@@ -325,7 +325,7 @@ This matters because zero-testing determines correctness in:
 - **Matrix rank:** is this pivot zero?
 - **LLL reduction:** is μ > 1/2?
 
-Get the zero-test wrong and the entire algorithm follows a different path. Not an imprecise result — a categorically wrong one.
+Get the zero-test wrong and the entire algorithm follows a different path. Not an imprecise result,  a categorically wrong one.
 
 ```python
 from vdr.math.control import cayley_hamilton_verify
@@ -333,7 +333,7 @@ from vdr.linalg import Mat
 
 A = Mat.from_ints([[1, 2], [2, 3]])
 result = cayley_hamilton_verify(A)
-print(result == Mat.zero(2, 2))   # True — every entry is exactly [0, 1, 0]
+print(result == Mat.zero(2, 2))   # True,  every entry is exactly [0, 1, 0]
 # Float: every entry is ~1e-15. Is that zero? You have to decide a tolerance.
 ```
 
@@ -341,7 +341,7 @@ print(result == Mat.zero(2, 2))   # True — every entry is exactly [0, 1, 0]
 
 ## Thinking in Frames
 
-The denominator D is a frame — the resolution or grid you're working in.
+The denominator D is a frame,  the resolution or grid you're working in.
 
 When D = 1, you're working with integers. When D = 7, you're working in sevenths. When D = 100, you're working in hundredths. When D = 2^335, you're working with 100-digit precision transcendental constants.
 
@@ -357,7 +357,7 @@ VDR(7) * VDR(6)   # VDR(42)
 **Working in thirds:** D = 3.
 
 ```python
-VDR(1, 3) + VDR(2, 3)   # VDR(1) — stays in thirds until it can simplify
+VDR(1, 3) + VDR(2, 3)   # VDR(1),  stays in thirds until it can simplify
 ```
 
 **Binary fixed-point (signal processing):** D = 2^16.
@@ -436,7 +436,7 @@ def hilbert(n):
 H = hilbert(5)
 H_inv = H.inv()
 product = H.matmul(H_inv)
-print(product == Mat.identity(5))   # True — exactly zero off-diagonal
+print(product == Mat.identity(5))   # True,  exactly zero off-diagonal
 ```
 
 Float64 gives residual ~1e-9 for H5. For H8, it might get the sign wrong on some entries. For H10, the result is meaningless. For H20, it's impossible.
@@ -445,7 +445,7 @@ VDR computes H30 routinely. Determinant denominator has ~400 digits. Numerator i
 
 **The Gaussian elimination breakthrough:**
 
-The library dispatches automatically. For small matrices (n ≤ 4), it uses cofactor expansion. For n ≥ 5, it uses Gaussian elimination — O(n³) instead of O(n!).
+The library dispatches automatically. For small matrices (n ≤ 4), it uses cofactor expansion. For n ≥ 5, it uses Gaussian elimination,  O(n³) instead of O(n!).
 
 ```python
 # 10x10 Hilbert inverse: 1100 operations, exact
@@ -479,13 +479,13 @@ Finite difference tables verify this:
 from vdr.fn import discrete_derivative_nth
 
 d3f = discrete_derivative_nth(lambda x: x*x*x, VDR(1), order=3)
-print(d3f(VDR(0)))   # VDR(6) — exactly 3! for cubic
+print(d3f(VDR(0)))   # VDR(6),  exactly 3! for cubic
 
 d4f = discrete_derivative_nth(lambda x: x*x*x, VDR(1), order=4)
-print(d4f(VDR(0)))   # VDR(0) — exactly zero, no float noise floor
+print(d4f(VDR(0)))   # VDR(0),  exactly zero, no float noise floor
 ```
 
-In float, the fourth finite difference of x^3 gives something like 2.4e-13 — a noise floor that you have to decide is "close enough to zero." In VDR, it's structurally zero. No decision needed.
+In float, the fourth finite difference of x^3 gives something like 2.4e-13,  a noise floor that you have to decide is "close enough to zero." In VDR, it's structurally zero. No decision needed.
 
 ---
 
@@ -533,17 +533,17 @@ This is the deeper contribution of VDR beyond "more digits."
 
 In float, arithmetic error and model error are conflated. When your diffusion model produces a slightly wrong image, you can't tell whether the problem is the neural network or the arithmetic. When your Kalman filter drifts, you can't tell whether it's sensor noise or accumulation error.
 
-VDR eliminates arithmetic error entirely. Whatever error remains is model error — identifiable, measurable, addressable independently.
+VDR eliminates arithmetic error entirely. Whatever error remains is model error,  identifiable, measurable, addressable independently.
 
 ```python
 from vdr.diffusion.sampling import make_oracle_predictor
 
-# Oracle knows the exact noise — separates arithmetic from model
+# Oracle knows the exact noise,  separates arithmetic from model
 oracle = make_oracle_predictor(x0, schedule)
 
 # With oracle: roundtrip error measures only arithmetic
 err = verify_forward_reverse_roundtrip(x0, schedule, epsilon)
-# err < 1e-50 — that's the Newton residual, constant regardless of chain length
+# err < 1e-50,  that's the Newton residual, constant regardless of chain length
 
 # With real model: roundtrip error measures arithmetic + model
 # Since we know arithmetic is < 1e-50, all observed error is model error.
@@ -576,7 +576,7 @@ from vdr.basis import qb_mul
 Every operation in the library is exact. Chain them without worrying about drift.
 
 ```python
-# 200 Markov chain steps — zero drift
+# 200 Markov chain steps,  zero drift
 from vdr.math.probability import markov_step
 state = initial_state
 for _ in range(200):
@@ -586,7 +586,7 @@ for _ in range(200):
 
 ### Step 3: Use Functional Remainders for Irrational-Like Quantities
 
-When you need sqrt, sin, cos, exp, log — use functional remainders.
+When you need sqrt, sin, cos, exp, log,  use functional remainders.
 
 ```python
 from vdr.math.transcendental import sqrt_newton, sin_series, exp_series
@@ -614,7 +614,7 @@ assert result == expected
 
 # Or for functional remainders, check the residual:
 residual = s * s - VDR(2)
-print(residual.to_fraction())   # exact rational — you know precisely how close
+print(residual.to_fraction())   # exact rational,  you know precisely how close
 ```
 
 ### Step 5: Export When Needed
@@ -640,13 +640,13 @@ The library covers 38 domains. But VDR arithmetic is general. To extend to a new
 
 1. **Express your quantities as VDR rationals.** If you're working with measurements, represent them as exact rationals in appropriate units.
 
-2. **Build your algorithms from VDR operations.** Matrix operations, polynomial operations, iteration — everything is available and exact.
+2. **Build your algorithms from VDR operations.** Matrix operations, polynomial operations, iteration,  everything is available and exact.
 
-3. **Use functional remainders for non-rational quantities.** Square roots, trig functions, exponentials — resolve at the precision you need.
+3. **Use functional remainders for non-rational quantities.** Square roots, trig functions, exponentials,  resolve at the precision you need.
 
 4. **Verify conservation laws with equality.** If something should be conserved, check with `==`, not tolerance.
 
-**Example: a new domain — exact rational Bezier curves.**
+**Example: a new domain,  exact rational Bezier curves.**
 
 ```python
 from vdr import VDR
@@ -673,7 +673,7 @@ def bezier_point(control_points, t, n):
 points = [(VDR(0), VDR(0)), (VDR(1, 3), VDR(1)), 
           (VDR(2, 3), VDR(1)), (VDR(1), VDR(0))]
 
-# Evaluate at t = 1/4 — exact
+# Evaluate at t = 1/4,  exact
 x, y = bezier_point(points, VDR(1, 4), 3)
 # x and y are exact VDR rationals. No approximation.
 ```
@@ -710,7 +710,7 @@ VDR error model:    total ≈ ε_residual      (constant, independent of N)
 
 **Memory:** VDR objects are larger than float64. A Q335 value is ~48 bytes vs 8 bytes for float. In Python with arbitrary precision, individual values can be larger depending on denominator size.
 
-**Practical path:** VDR for validation — compute exact ground truth on smaller instances, use that to verify float implementations on larger systems.
+**Practical path:** VDR for validation,  compute exact ground truth on smaller instances, use that to verify float implementations on larger systems.
 
 **When to use VDR:**
 - Exactness matters more than throughput
@@ -727,7 +727,7 @@ VDR error model:    total ≈ ε_residual      (constant, independent of N)
 
 ## Summary
 
-VDR is three integers. The third one — the remainder — is what every other system throws away. VDR keeps it. This one decision eliminates rounding, eliminates drift, eliminates the distinction between "exact" and "approximate," and makes it possible to verify conservation laws with equality instead of tolerance.
+VDR is three integers. The third one,  the remainder,  is what every other system throws away. VDR keeps it. This one decision eliminates rounding, eliminates drift, eliminates the distinction between "exact" and "approximate," and makes it possible to verify conservation laws with equality instead of tolerance.
 
 The library gives you:
 - **Exact rational arithmetic** with active objects carrying unresolved structure
@@ -742,7 +742,7 @@ Every claim verified by executable tests. 921 tests. 38 domains. Zero VDR comput
 ```python
 from vdr import VDR
 
-x = VDR(1, 3)   # exact. not 0.333... — exact.
+x = VDR(1, 3)   # exact. not 0.333...,  exact.
 ```
 
 That's where it starts. Everything else follows.

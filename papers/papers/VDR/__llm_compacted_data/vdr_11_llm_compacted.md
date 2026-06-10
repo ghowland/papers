@@ -1,4 +1,4 @@
-# VDR-11 IMPLEMENTATION BLUEPRINT — LLM-COMPACT FORM
+# VDR-11 IMPLEMENTATION BLUEPRINT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → stages → modules → layers → builtins → invariants → design_decisions → integration → test_targets → zig_mapping → falsification → relationships → section_index → decode_legend
 

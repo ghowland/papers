@@ -21,7 +21,7 @@ HOWL-VDR-1-2026 introduced VDR, an exact finite arithmetic system in irreducible
 
 The eight new gyms produced 157 tests. 152 passed. 5 failed, all with identifiable causes: one max-flow implementation error, one test threshold too tight for a discrete-time system that had not yet converged, and three tests that incorrectly assumed multiplication of two Q335 numerators would stay within Q335 precision (a known limitation documented in MATH-4 Section X). Zero failures were caused by incorrect VDR arithmetic.
 
-The central finding of this paper is not the gym results themselves but the position they establish. VDR-2 concluded with a list of domains thought to be impossible: transcendental functions, elliptic integrals, spectral methods, continuous probability distributions. Integration with MATH-3 (convergent rational series for elliptic integrals and accelerated zeta values) and MATH-4 (Q335 universal power-of-two basis for 22 transcendental constants) eliminates every item on that list. Nothing is computationally impossible for VDR. The system's only constraint is the information-theoretic cost of representing chaotic orbits exactly — a constraint shared by every arithmetic system, which float hides by silent truncation and VDR exposes honestly.
+The central finding of this paper is not the gym results themselves but the position they establish. VDR-2 concluded with a list of domains thought to be impossible: transcendental functions, elliptic integrals, spectral methods, continuous probability distributions. Integration with MATH-3 (convergent rational series for elliptic integrals and accelerated zeta values) and MATH-4 (Q335 universal power-of-two basis for 22 transcendental constants) eliminates every item on that list. Nothing is computationally impossible for VDR. The system's only constraint is the information-theoretic cost of representing chaotic orbits exactly,  a constraint shared by every arithmetic system, which float hides by silent truncation and VDR exposes honestly.
 
 ---
 
@@ -63,17 +63,17 @@ Every exercise passed except one. The gym implements Dijkstra's algorithm with e
 
 **Dijkstra.** A 4-node graph with rational edge weights (1/3, 1/4, 1/2, etc.) is solved exactly. The shortest path from node 0 to node 3 passes through edges with weights 1/3, 1/4, and 1/2, giving a total distance of exactly 13/12. Every intermediate comparison and addition is exact VDR rational arithmetic. No priority queue rounding. No floating-point comparison errors.
 
-**Bellman-Ford with negative weights.** A graph with edge weight -3/2 is solved correctly. The shortest path through the negative edge produces distance -1/2 at the target node. Exact negative rational arithmetic throughout — no issues with float subtraction cancellation near zero.
+**Bellman-Ford with negative weights.** A graph with edge weight -3/2 is solved correctly. The shortest path through the negative edge produces distance -1/2 at the target node. Exact negative rational arithmetic throughout,  no issues with float subtraction cancellation near zero.
 
 **Prim's MST.** A triangle with rational weights 1/3, 1/4, 1/2 produces an MST of total weight 7/12 (selecting edges 1/4 and 1/3). Exact comparison determines which edge is minimum at each step.
 
 **Floyd-Warshall.** All-pairs shortest paths on a 3-node graph. The shortest path from node 2 to node 1 goes via node 0 with total distance 5/6 (= 1/2 + 1/3). Exact rational addition and comparison at every relaxation step.
 
-**PageRank.** A 4-page web graph with damping factor 1/2 (rational). The PageRank vector is computed by solving the linear system (I - dT)r = ((1-d)/n)·1 using exact VDR Cramer's rule. The resulting ranks are exact rationals that sum to exactly 1. Page 2 has the highest rank (most inlinks). No eigenvalue computation needed — direct linear algebra suffices for the steady state, and every entry is an exact rational.
+**PageRank.** A 4-page web graph with damping factor 1/2 (rational). The PageRank vector is computed by solving the linear system (I - dT)r = ((1-d)/n)·1 using exact VDR Cramer's rule. The resulting ranks are exact rationals that sum to exactly 1. Page 2 has the highest rank (most inlinks). No eigenvalue computation needed,  direct linear algebra suffices for the steady state, and every entry is an exact rational.
 
 **Adjacency matrix properties.** The weighted adjacency matrix of K₄ is verified to be symmetric. The weighted degree of node 0 is exactly 11/6. The square A² gives exact weighted 2-step path counts, with A²[0,0] = 49/36.
 
-**The failure.** The Ford-Fulkerson max-flow implementation returned 0 instead of the expected 7/12. This is a BFS augmenting-path implementation issue where the inner loop termination was incorrect — the BFS found the sink but the outer loop did not capture the path correctly in all cases. The VDR arithmetic is not at fault. The algorithm implementation needs a fix to its loop structure. The expected max-flow of 7/12 (paths 0→1→3 with bottleneck 1/4 and 0→2→3 with bottleneck 1/3) is correct by manual analysis.
+**The failure.** The Ford-Fulkerson max-flow implementation returned 0 instead of the expected 7/12. This is a BFS augmenting-path implementation issue where the inner loop termination was incorrect,  the BFS found the sink but the outer loop did not capture the path correctly in all cases. The VDR arithmetic is not at fault. The algorithm implementation needs a fix to its loop structure. The expected max-flow of 7/12 (paths 0→1→3 with bottleneck 1/4 and 0→2→3 with bottleneck 1/3) is correct by manual analysis.
 
 ---
 
@@ -87,7 +87,7 @@ Every exercise passed. The gym implements 2×2 zero-sum minimax, matching pennie
 
 **Battle of the sexes.** The mixed Nash equilibrium for payoff matrices [[3,0],[0,2]] and [[2,0],[0,3]] gives p* = 3/5 and q* = 2/5, with player 1's expected payoff at the mixed equilibrium exactly 6/5. The indifference conditions that determine the equilibrium are exact VDR equations solved by direct rational arithmetic.
 
-**Shapley values.** A 3-player cooperative game with characteristic function v({1,2}) = 1/2, v({1,3}) = 1/3, v({2,3}) = 1/4, v({1,2,3}) = 1. The Shapley values are computed by the standard permutation formula. All three values are exact rationals. Their sum is verified to equal v(N) = 1 exactly — the efficiency property holds without rounding.
+**Shapley values.** A 3-player cooperative game with characteristic function v({1,2}) = 1/2, v({1,3}) = 1/3, v({2,3}) = 1/4, v({1,2,3}) = 1. The Shapley values are computed by the standard permutation formula. All three values are exact rationals. Their sum is verified to equal v(N) = 1 exactly,  the efficiency property holds without rounding.
 
 **Cournot duopoly.** Two firms with rational cost parameters (c₁ = 1, c₂ = 2) in a linear demand market (P = 10 - Q/2). The Nash equilibrium quantities are q₁* = 20/3 and q₂* = 14/3. The equilibrium price is 13/3. Firm 1's profit is exactly 200/9. All computed by direct rational solution of the first-order conditions.
 
@@ -113,7 +113,7 @@ Every exercise passed. The gym implements GF(p) field arithmetic, Hamming(7,4) e
 
 Every exercise passed. The gym implements simplicial boundary operators, verifies the fundamental chain complex property d∘d = 0, computes Betti numbers via exact rank computation, and verifies Euler characteristics for triangles, hollow triangles, tetrahedra, and disconnected components.
 
-**Triangle boundary operators.** The boundary matrices B₁ (edges → vertices, 3×3) and B₂ (faces → edges, 1×3) are constructed with exact integer entries (+1, -1, 0). The composition ∂₁ ∘ ∂₂ is computed as the matrix product B₁ᵀ · B₂ᵀ and verified to be the zero matrix. This is the fundamental property of chain complexes — the boundary of a boundary is zero — verified by exact VDR integer matrix multiplication.
+**Triangle boundary operators.** The boundary matrices B₁ (edges → vertices, 3×3) and B₂ (faces → edges, 1×3) are constructed with exact integer entries (+1, -1, 0). The composition ∂₁ ∘ ∂₂ is computed as the matrix product B₁ᵀ · B₂ᵀ and verified to be the zero matrix. This is the fundamental property of chain complexes,  the boundary of a boundary is zero,  verified by exact VDR integer matrix multiplication.
 
 **Betti numbers of the filled triangle.** β₀ = 3 - rank(B₁) = 3 - 2 = 1 (one connected component). β₁ = 3 - rank(B₁) - rank(B₂) = 3 - 2 - 1 = 0 (no holes, because the face fills the loop). All ranks computed by exact VDR Gaussian elimination.
 
@@ -123,7 +123,7 @@ Every exercise passed. The gym implements simplicial boundary operators, verifie
 
 **Disconnected components.** Two isolated edges on 4 vertices give β₀ = 4 - 2 = 2, correctly detecting two connected components.
 
-Every Betti number is computed from exact matrix rank. No numerical tolerance is needed for the rank computation — VDR's exact Gaussian elimination determines whether a pivot is zero or nonzero without epsilon comparisons.
+Every Betti number is computed from exact matrix rank. No numerical tolerance is needed for the rank computation,  VDR's exact Gaussian elimination determines whether a pivot is zero or nonzero without epsilon comparisons.
 
 ---
 
@@ -131,7 +131,7 @@ Every Betti number is computed from exact matrix rank. No numerical tolerance is
 
 Every exercise passed. The gym implements min-plus (tropical) matrix multiplication, tropical determinant, shortest path as tropical matrix power, lattice Gram matrices, exact Gram-Schmidt coefficients, lattice size reduction, and the Lovász condition for LLL.
 
-**Tropical matrix multiplication.** The min-plus product of two 3×3 distance matrices is computed. Each entry C[i][j] = min over k of (A[i][k] + B[k][j]). The 2-hop shortest path from node 0 to node 2 is correctly computed as 3 (path 0→1→2, costs 2+1). Every comparison is exact VDR rational comparison — no floating-point ordering errors.
+**Tropical matrix multiplication.** The min-plus product of two 3×3 distance matrices is computed. Each entry C[i][j] = min over k of (A[i][k] + B[k][j]). The 2-hop shortest path from node 0 to node 2 is correctly computed as 3 (path 0→1→2, costs 2+1). Every comparison is exact VDR rational comparison,  no floating-point ordering errors.
 
 **Tropical determinant.** Defined as the minimum over all permutations of the sum of entries along the permutation. For a 3×3 matrix, all 6 permutations are evaluated exactly. The tropical identity matrix (0 on diagonal, ∞ off diagonal) has tropical determinant 0.
 
@@ -139,7 +139,7 @@ Every exercise passed. The gym implements min-plus (tropical) matrix multiplicat
 
 **Lattice Gram-Schmidt.** For the 2D lattice basis v₁ = (3,1), v₂ = (1,2), the Gram matrix has entries g₁₁ = 10, g₁₂ = 5, g₂₂ = 5, with determinant 25 (the square of the fundamental domain volume). The Gram-Schmidt coefficient μ₂₁ = 5/10 = 1/2, computed as an exact VDR rational. The orthogonalized vector v₂* = (-1/2, 3/2) is verified to satisfy v₁ · v₂* = 0 exactly.
 
-**LLL conditions.** The Lovász condition |v₂*|² ≥ (3/4 - μ²)|v₁|² is checked exactly: 5/2 < 5 fails, indicating a swap is needed. After swap and size reduction, the reduced basis (1,2), (2,-1) satisfies the Lovász condition: 5 ≥ 15/4. Every comparison is exact rational — no rounding in the LLL condition check, which is a notorious source of correctness issues in floating-point LLL implementations.
+**LLL conditions.** The Lovász condition |v₂*|² ≥ (3/4 - μ²)|v₁|² is checked exactly: 5/2 < 5 fails, indicating a swap is needed. After swap and size reduction, the reduced basis (1,2), (2,-1) satisfies the Lovász condition: 5 ≥ 15/4. Every comparison is exact rational,  no rounding in the LLL condition check, which is a notorious source of correctness issues in floating-point LLL implementations.
 
 ---
 
@@ -149,7 +149,7 @@ Every exercise passed except one. The gym implements state space models, control
 
 **Controllability and observability.** For the 2-state system with A = [[0,1],[-2,-3]], B = [[0],[1]], C = [[1,0]], the controllability matrix [B, AB] has rank 2 (full) and the observability matrix [C; CA] has rank 2 (full). Both ranks computed exactly by VDR Gaussian elimination. The system is controllable and observable.
 
-**Cayley-Hamilton.** The characteristic polynomial of A is s² + 3s + 2 (trace = -3, det = 2). The identity A² + 3A + 2I = 0 is verified exactly — every entry of the resulting matrix is exactly zero. This is the Cayley-Hamilton theorem verified by exact VDR matrix arithmetic, not by approximate numerical evaluation.
+**Cayley-Hamilton.** The characteristic polynomial of A is s² + 3s + 2 (trace = -3, det = 2). The identity A² + 3A + 2I = 0 is verified exactly,  every entry of the resulting matrix is exactly zero. This is the Cayley-Hamilton theorem verified by exact VDR matrix arithmetic, not by approximate numerical evaluation.
 
 **Transfer function.** H(s) = C(sI - A)⁻¹B evaluated at s = 1 gives H(1) = 1/6 exactly. The DC gain H(0) = 1/2 exactly. Each evaluation requires exact matrix inversion of (sI - A) followed by exact matrix multiplication. Every intermediate value is a VDR rational.
 
@@ -157,7 +157,7 @@ Every exercise passed except one. The gym implements state space models, control
 
 **Controllability Gramian.** The finite-horizon Gramian W_c = Σ A_d^k B_d B_d^T (A_d^T)^k for 3 steps is computed exactly. The determinant and trace are both positive, confirming controllability. The Gramian is verified to be symmetric.
 
-**The failure.** The decay test checked whether |x₅|² < |x₀|² = 1, expecting the stable system (eigenvalues -1, -2 for continuous A) to have decayed within 5 Euler steps. With h = 1/10, x₅ = (8533/10000, -26281/50000), giving |x₅|² = 8533²/10000² + 26281²/50000² ≈ 1.004, which slightly exceeds 1 because 5 Euler steps at this step size are not enough for the transient to decay below the initial magnitude. The system is stable and will decay eventually — the test threshold was too tight for the discretization parameters chosen. VDR computed the exact trajectory correctly. The test expectation was wrong.
+**The failure.** The decay test checked whether |x₅|² < |x₀|² = 1, expecting the stable system (eigenvalues -1, -2 for continuous A) to have decayed within 5 Euler steps. With h = 1/10, x₅ = (8533/10000, -26281/50000), giving |x₅|² = 8533²/10000² + 26281²/50000² ≈ 1.004, which slightly exceeds 1 because 5 Euler steps at this step size are not enough for the transient to decay below the initial magnitude. The system is stable and will decay eventually,  the test threshold was too tight for the discretization parameters chosen. VDR computed the exact trajectory correctly. The test expectation was wrong.
 
 ---
 
@@ -165,17 +165,17 @@ Every exercise passed except one. The gym implements state space models, control
 
 Every exercise passed. The gym implements the Haar wavelet transform, perfect reconstruction at multiple levels, rational signal processing, Parseval energy preservation, matrix formulation of the Haar transform, wavelet denoising by thresholding, and large-signal roundtrip.
 
-**Haar forward and inverse.** The signal [1, 3, 5, 7] transforms to averages [2, 6] and details [-1, -1]. Inverse reconstruction recovers [1, 3, 5, 7] exactly. This is perfect reconstruction — not reconstruction within tolerance, but exact structural recovery where every output value is identical to the input.
+**Haar forward and inverse.** The signal [1, 3, 5, 7] transforms to averages [2, 6] and details [-1, -1]. Inverse reconstruction recovers [1, 3, 5, 7] exactly. This is perfect reconstruction,  not reconstruction within tolerance, but exact structural recovery where every output value is identical to the input.
 
 **Multi-level decomposition.** An 8-sample signal is decomposed through 3 levels. Each level produces exact rational averages and details. Reconstruction through all 3 levels recovers the original signal exactly.
 
-**Rational signals.** The signal [1/3, 1/7, 2/5, 3/11] is transformed. The first average is (1/3 + 1/7)/2 = 5/21, an exact VDR rational. Perfect reconstruction recovers all four rational samples exactly. This is where VDR's advantage over float-based wavelet transforms is most visible — the averaging of 1/3 and 1/7 produces an exact rational, not a float approximation that drifts through repeated transform/inverse cycles.
+**Rational signals.** The signal [1/3, 1/7, 2/5, 3/11] is transformed. The first average is (1/3 + 1/7)/2 = 5/21, an exact VDR rational. Perfect reconstruction recovers all four rational samples exactly. This is where VDR's advantage over float-based wavelet transforms is most visible,  the averaging of 1/3 and 1/7 produces an exact rational, not a float approximation that drifts through repeated transform/inverse cycles.
 
 **Parseval energy conservation.** The energy identity E(signal) = 2·(E(averages) + E(details)) is verified exactly for the Haar transform with the 1/2 normalization. The left side and right side are equal as exact VDR rationals.
 
 **Matrix formulation.** The 4-point Haar transform is expressed as a 4×4 matrix H₄. The matrix-vector product H₄ · signal produces the same averages and details as the direct algorithm. The inverse matrix H₄⁻¹ is computed by exact VDR matrix inversion, and H₄⁻¹ · (H₄ · signal) = signal exactly.
 
-**Wavelet denoising.** A noisy signal near [10,10,10,10,20,20,20,20] is decomposed, small detail coefficients are zeroed (hard thresholding), and the signal is reconstructed. The denoised signal preserves the large-scale structure: the average of the first half is exactly 10 and the average of the second half is exactly 20. All values remain exact rationals throughout — the thresholding operation (comparison and zeroing) is exact.
+**Wavelet denoising.** A noisy signal near [10,10,10,10,20,20,20,20] is decomposed, small detail coefficients are zeroed (hard thresholding), and the signal is reconstructed. The denoised signal preserves the large-scale structure: the average of the first half is exactly 10 and the average of the second half is exactly 20. All values remain exact rationals throughout,  the thresholding operation (comparison and zeroing) is exact.
 
 **64-sample roundtrip.** A 64-sample ramp signal x[n] = n/64 is decomposed through 6 Haar levels and perfectly reconstructed. All 64 output samples match the input exactly. This confirms that VDR's exact arithmetic preserves perfect reconstruction even through deep decomposition trees where float-based implementations accumulate rounding errors.
 
@@ -189,13 +189,13 @@ Thirteen exercises passed. Three failed due to a known precision boundary, not a
 
 **QED A₂ coefficient.** The 2-loop electron anomalous magnetic moment coefficient A₂ = 197/144 + π²/12 + 3ζ(3)/4 - (π²/2)·ln(2) is computed using Q335 numerators with exact Fraction arithmetic for the rational coefficients. The result is approximately -0.328479, matching the known value. Every intermediate operation is exact integer or Fraction arithmetic.
 
-**Elliptic integral K(1/2).** The hypergeometric series ₂F₁(1/2, 1/2; 1; 1/4) is computed to 80 terms as an exact Fraction. Multiplied by the Q335 representation of π/2, this gives K(1/2). The test expected a value near 1.854, but the computation returned approximately 3.864. This is because the hypergeometric series ₂F₁(1/2, 1/2; 1; z) at z = 1/4 converges to K(k)/( π/2) where k² = z = 1/4, meaning k = 1/2. The value K(1/2) ≈ 1.8541 is (π/2) times the hypergeometric sum, but the test multiplied by π/2 twice — once in the series definition and once explicitly. The hypergeometric sum itself at 80 terms gives approximately 1.1803, and multiplied by π/2 ≈ 1.5708 gives ≈ 1.854. The doubled multiplication produced ≈ 3.864. This is a test-authoring error in the application of the series formula.
+**Elliptic integral K(1/2).** The hypergeometric series ₂F₁(1/2, 1/2; 1; 1/4) is computed to 80 terms as an exact Fraction. Multiplied by the Q335 representation of π/2, this gives K(1/2). The test expected a value near 1.854, but the computation returned approximately 3.864. This is because the hypergeometric series ₂F₁(1/2, 1/2; 1; z) at z = 1/4 converges to K(k)/( π/2) where k² = z = 1/4, meaning k = 1/2. The value K(1/2) ≈ 1.8541 is (π/2) times the hypergeometric sum, but the test multiplied by π/2 twice,  once in the series definition and once explicitly. The hypergeometric sum itself at 80 terms gives approximately 1.1803, and multiplied by π/2 ≈ 1.5708 gives ≈ 1.854. The doubled multiplication produced ≈ 3.864. This is a test-authoring error in the application of the series formula.
 
-**The three multiplication failures.** Tests 11 and 12 attempted to verify √2² ≈ 2 and ln(2)² ≈ ln²(2) by multiplying Q335 numerators directly. The product of two ~102-digit integers is a ~204-digit integer, living in denominator frame 2⁶⁷⁰, not 2³³⁵. The residual when comparing this against the Q335 representation of the squared value (which was independently projected from the true transcendental) is on the order of 10¹⁰⁰ — far larger than the test's threshold of 10⁵.
+**The three multiplication failures.** Tests 11 and 12 attempted to verify √2² ≈ 2 and ln(2)² ≈ ln²(2) by multiplying Q335 numerators directly. The product of two ~102-digit integers is a ~204-digit integer, living in denominator frame 2⁶⁷⁰, not 2³³⁵. The residual when comparing this against the Q335 representation of the squared value (which was independently projected from the true transcendental) is on the order of 10¹⁰⁰,  far larger than the test's threshold of 10⁵.
 
 This is the multiplication precision boundary documented in MATH-4 Section X: "Multiplication of two basis constants produces a result with denominator 2⁶⁷⁰, not 2³³⁵. The product can be projected back onto the 2³³⁵ grid (by right-shifting 335 bits and rounding), losing precision below the 100-digit floor."
 
-The test should have projected the product back to the 2³³⁵ grid before comparison, or compared in the 2⁶⁷⁰ frame against the squared constant also expressed in that frame. The VDR arithmetic is exact — the product of two 102-digit integers is computed without error. The test's comparison was performed across incompatible precision frames.
+The test should have projected the product back to the 2³³⁵ grid before comparison, or compared in the 2⁶⁷⁰ frame against the squared constant also expressed in that frame. The VDR arithmetic is exact,  the product of two 102-digit integers is computed without error. The test's comparison was performed across incompatible precision frames.
 
 ---
 
@@ -219,11 +219,11 @@ VDR-2 concluded with a list of domains believed to be impossible for VDR. The in
 
 ### 12.1 Transcendental Functions
 
-VDR-2 stated: "Anything requiring transcendental functions as native objects — sin, cos, exp, log as exact values rather than rational approximations" is impossible.
+VDR-2 stated: "Anything requiring transcendental functions as native objects,  sin, cos, exp, log as exact values rather than rational approximations" is impossible.
 
 This was wrong. VDR handles transcendentals through two complementary mechanisms.
 
-**Functional remainders** wrap convergent rational series. Each depth produces an exact rational. Newton-Raphson for √2 at depth 7 gives an exact 49-digit fraction whose square differs from 2 by 1/10⁹⁷. The Leibniz series at 101 terms gives an exact rational for π/4 with 250+ digit numerator and denominator. These are not approximations in the float sense — they are exact rationals at each depth. The precision is chosen, not truncated.
+**Functional remainders** wrap convergent rational series. Each depth produces an exact rational. Newton-Raphson for √2 at depth 7 gives an exact 49-digit fraction whose square differs from 2 by 1/10⁹⁷. The Leibniz series at 101 terms gives an exact rational for π/4 with 250+ digit numerator and denominator. These are not approximations in the float sense,  they are exact rationals at each depth. The precision is chosen, not truncated.
 
 **Q335 projection** from MATH-4 represents 22 fundamental transcendental constants as single integers over the shared denominator 2³³⁵, verified at 100 digits against mpmath. Addition of any two constants is one integer addition. The rounding error is 10⁶⁶ times smaller than the Planck length. For higher precision, increase the exponent: 2⁶⁶⁸ for 200 digits, 2³³²² for 1000 digits.
 
@@ -237,11 +237,11 @@ K(1/2) at 500 terms gives approximately 300 digits. K(√3/2) at 500 terms gives
 
 ### 12.3 Higher Zeta Values
 
-VDR-2 did not test odd zeta values beyond what VDR-1 demonstrated. MATH-3 shows the Borwein acceleration gives ζ(5), ζ(7), ζ(9) — any ζ(odd) — to 100 digits in 210 terms with geometric convergence at ratio 3⁻ⁿ. The Borwein coefficients d_k are rational (sums of binomial terms). The accelerated sum is an exact Fraction. The old bottleneck in MATH-2 (10²⁰ terms for 100 digits of ζ(5) via direct alternating series) is eliminated.
+VDR-2 did not test odd zeta values beyond what VDR-1 demonstrated. MATH-3 shows the Borwein acceleration gives ζ(5), ζ(7), ζ(9),  any ζ(odd),  to 100 digits in 210 terms with geometric convergence at ratio 3⁻ⁿ. The Borwein coefficients d_k are rational (sums of binomial terms). The accelerated sum is an exact Fraction. The old bottleneck in MATH-2 (10²⁰ terms for 100 digits of ζ(5) via direct alternating series) is eliminated.
 
 ### 12.4 Numerically Known Constants
 
-Constants known only to high-precision decimal digits — such as Laporta's six 4-loop QED master integrals known to 4800 digits — are representable as exact rationals matching all known digits. The denominator is 10⁴⁸⁰⁰ or a sufficiently large power of 2. VDR handles arbitrary-precision integers. The representation is a standard closed object [p, q, 0]. All VDR arithmetic works on it identically. The 4-loop QED wall is not a computational barrier for VDR — it is an open question in analytical number theory about whether those numbers have clean closed forms.
+Constants known only to high-precision decimal digits,  such as Laporta's six 4-loop QED master integrals known to 4800 digits,  are representable as exact rationals matching all known digits. The denominator is 10⁴⁸⁰⁰ or a sufficiently large power of 2. VDR handles arbitrary-precision integers. The representation is a standard closed object [p, q, 0]. All VDR arithmetic works on it identically. The 4-loop QED wall is not a computational barrier for VDR,  it is an open question in analytical number theory about whether those numbers have clean closed forms.
 
 ### 12.5 Continuous Probability Distributions
 
@@ -249,7 +249,7 @@ VDR-2 listed normal, exponential, and chi-squared distributions as impossible be
 
 ### 12.6 Spectral Methods
 
-VDR-2 listed Fourier transforms and spectral decomposition as blocked by the absence of complex numbers and transcendentals. Complex numbers remain absent as a native type (planned for a future extension). However, for real-valued signal processing, the discrete cosine transform has rational coefficients at rational frequency arguments, and the Haar wavelet transform (demonstrated in Gym 22 with perfect reconstruction) is entirely rational. The DFT requires complex roots of unity, which would need the complex extension — but this is an engineering task, not a mathematical impossibility.
+VDR-2 listed Fourier transforms and spectral decomposition as blocked by the absence of complex numbers and transcendentals. Complex numbers remain absent as a native type (planned for a future extension). However, for real-valued signal processing, the discrete cosine transform has rational coefficients at rational frequency arguments, and the Haar wavelet transform (demonstrated in Gym 22 with perfect reconstruction) is entirely rational. The DFT requires complex roots of unity, which would need the complex extension,  but this is an engineering task, not a mathematical impossibility.
 
 ### 12.7 The Revised Boundary
 
@@ -257,7 +257,7 @@ After MATH-3/MATH-4 integration, VDR's position is:
 
 **Nothing is computationally impossible.** Every transcendental function with a known convergent series is reachable through functional remainders or Q335 projection. Every numerically known constant is representable as an exact rational to its known precision. Complete elliptic integrals are standard VDR objects. All odd zeta values are computable to 100+ digits.
 
-**The only constraint is computational cost.** Chaotic dynamics have exponential representation cost — but this is an information-theoretic fact about chaos, not a VDR limitation. Float has the same constraint but hides it by silently truncating, losing all significant digits after approximately 50 iterations of the logistic map at r=4 while continuing to produce meaningless numbers at full speed. VDR produces correct numbers honestly, and the cost is manageable through engineering techniques such as precision slicing with exact error bounds.
+**The only constraint is computational cost.** Chaotic dynamics have exponential representation cost,  but this is an information-theoretic fact about chaos, not a VDR limitation. Float has the same constraint but hides it by silently truncating, losing all significant digits after approximately 50 iterations of the logistic map at r=4 while continuing to produce meaningless numbers at full speed. VDR produces correct numbers honestly, and the cost is manageable through engineering techniques such as precision slicing with exact error bounds.
 
 ---
 
@@ -311,17 +311,17 @@ Total: 434 tests across 23 domains. 424 passed. 10 failed due to test-authoring 
 
 The gym program has not yet covered representation theory of finite groups, statistical mechanics partition functions, Gröbner bases, tensor algebra, higher-dimensional cubature, or category-theoretic computations. All of these involve rational or integer arithmetic at their core and are expected to work without difficulty at sizes that fit within VDR's current cofactor-expansion limitation (matrices up to approximately 6×6). Gaussian elimination (the top priority on VDR's development roadmap) would extend the practical matrix size to 20-50+, bringing all of these domains into comfortable reach.
 
-The complex number extension remains unimplemented. This blocks native eigenvalue computation, the discrete Fourier transform on complex signals, and complex polynomial root finding. The extension is planned and the design space is understood — it is engineering work, not a mathematical obstacle.
+The complex number extension remains unimplemented. This blocks native eigenvalue computation, the discrete Fourier transform on complex signals, and complex polynomial root finding. The extension is planned and the design space is understood,  it is engineering work, not a mathematical obstacle.
 
 ---
 
 ## 16. Conclusion
 
-Twenty-three mathematical domains tested. 434 tests executed. Zero VDR computation errors. Ten test-authoring errors identified and documented. Two domains (chaotic iteration) terminated due to exponential representation cost — a mathematical fact about chaos that VDR exposes honestly while float hides behind silent truncation.
+Twenty-three mathematical domains tested. 434 tests executed. Zero VDR computation errors. Ten test-authoring errors identified and documented. Two domains (chaotic iteration) terminated due to exponential representation cost,  a mathematical fact about chaos that VDR exposes honestly while float hides behind silent truncation.
 
 The integration of MATH-3 and MATH-4 resolves the transcendental question that VDR-2 left open. Complete elliptic integrals are rational hypergeometric series times π/2. All odd zeta values are computable to 100+ digits via Borwein acceleration. Twenty-two fundamental transcendental constants are single integers over 2³³⁵. Numerically known constants of any precision are representable as exact rationals over sufficiently large denominators. Nothing is computationally impossible.
 
-VDR has no unique boundaries. Every limitation it has — chaotic dynamics cost, large denominators for transcendentals, algorithm scaling for big matrices — is shared by every other arithmetic system. The difference is that VDR makes costs visible and honest, allows precision to be chosen rather than fixed at 53 bits, and never silently produces garbage while pretending to compute.
+VDR has no unique boundaries. Every limitation it has,  chaotic dynamics cost, large denominators for transcendentals, algorithm scaling for big matrices,  is shared by every other arithmetic system. The difference is that VDR makes costs visible and honest, allows precision to be chosen rather than fixed at 53 bits, and never silently produces garbage while pretending to compute.
 
 The code is published. The tests are executable. The results are reproducible. Every number in every gym was computed by VDR.
 
@@ -524,7 +524,7 @@ The code is published. The tests are executable. The results are reproducible. E
 | Test threshold too tight (Euler decay) | 1 | No |
 | Formula application error (K(1/2) double π/2) | 1 | No |
 | Precision frame mismatch (Q335 × Q335 vs Q335) | 2 | No |
-| VDR computation error | 0 | — |
+| VDR computation error | 0 |,  |
 | **Total** | **5** | **Zero VDR errors** |
 
 ---
@@ -539,7 +539,7 @@ All 22 constants as VDR closed objects [p, 2³³⁵, 0]. The integer numerators 
 
 | Paper | Domains | Tests | Passed | Failed (test error) | Failed (VDR error) |
 |-------|---------|-------|--------|--------------------|--------------------|
-| VDR-1 | — | 68 | 68 | 0 | 0 |
+| VDR-1 |,  | 68 | 68 | 0 | 0 |
 | VDR-2 | 15 | 282 | 276 | 6 | 0 |
 | VDR-3 | 8 | 157 | 152 | 5 | 0 |
 | **Total** | **23** | **507** | **496** | **11** | **0** |
@@ -555,7 +555,7 @@ Across 507 tests spanning 23 mathematical domains, 4 test layers, and 3 papers: 
 **Domain:** Applied Philosophy / Computational Mathematics
 **Central Result:** 23 domains tested, 507 total tests, zero VDR computation errors. MATH-3/MATH-4 integration eliminates all previously identified impossibility claims. VDR has no unique computational boundaries.
 **Method:** Eight new domain gyms (graph theory, game theory, coding theory, algebraic topology, tropical/lattice algebra, control theory, wavelets, Q335 transcendental arithmetic) plus integration of MATH-3 elliptic integrals and MATH-4 Q335 universal basis.
-**Key Finding:** Nothing is computationally impossible for VDR. Every limitation is shared with every other arithmetic system. The difference is honesty — VDR makes costs visible, allows precision to be chosen, and never silently produces garbage.
+**Key Finding:** Nothing is computationally impossible for VDR. Every limitation is shared with every other arithmetic system. The difference is honesty,  VDR makes costs visible, allows precision to be chosen, and never silently produces garbage.
 **Foundation:** VDR-1, VDR-2, MATH-3, MATH-4
 **Limitations:** Complex number extension not yet implemented. Cofactor expansion limits practical matrix size. Max-flow implementation needs BFS fix. Five test-design errors documented for correction.
 **Falsification:** Any test where VDR produces an incorrect exact rational from correct inputs would falsify the system. 507 tests have not produced one.

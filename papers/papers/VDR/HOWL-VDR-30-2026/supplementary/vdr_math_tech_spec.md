@@ -67,9 +67,9 @@ The foundation. Everything else imports from here.
 
 **Classes:**
 
-`Remainder(base: int, children: list[VDR])` — the R slot. Atomic when children is empty. Composite otherwise. Never subclassed except by `FnRemainder` in `vdr.fn`.
+`Remainder(base: int, children: list[VDR])`,  the R slot. Atomic when children is empty. Composite otherwise. Never subclassed except by `FnRemainder` in `vdr.fn`.
 
-`VDR(v: int, d: int = 1, r: Remainder | int | None = None)` — the triple. V and D are always integers. D is never zero. R defaults to `Remainder(0)`.
+`VDR(v: int, d: int = 1, r: Remainder | int | None = None)`,  the triple. V and D are always integers. D is never zero. R defaults to `Remainder(0)`.
 
 **Errors (all subclass `VDRError`):**
 
@@ -81,7 +81,7 @@ The foundation. Everything else imports from here.
 
 Closed arithmetic is defined directly on VDR. Active cases delegate to `vdr.active` if installed, otherwise raise `ArithmeticFailure`.
 
-**Normalization — the fix list:**
+**Normalization,  the fix list:**
 
 Current normalization performs: sign convention, GCD reduction, child normalization, canonical ordering, same-D merge, closed-form preference (N7).
 
@@ -89,15 +89,15 @@ Current normalization performs: sign convention, GCD reduction, child normalizat
 
 **Rebase:**
 
-`VDR.rebase(target_d: int) -> VDR` — change D while preserving exact value. Uses divmod. Mismatch witness in R.
+`VDR.rebase(target_d: int) -> VDR`,  change D while preserving exact value. Uses divmod. Mismatch witness in R.
 
 **Lift:**
 
-`VDR._lift_vdr(k: int) -> VDR` — scale V and R by k, preserve child D.
+`VDR._lift_vdr(k: int) -> VDR`,  scale V and R by k, preserve child D.
 
 **Structural metrics:**
 
-`depth()`, `size()`, `den_complexity()` — unchanged from current.
+`depth()`, `size()`, `den_complexity()`,  unchanged from current.
 
 **Coercion:**
 
@@ -109,13 +109,13 @@ Current normalization performs: sign convention, GCD reduction, child normalizat
 
 **Public API:**
 
-`active_mul(a: VDR, b: VDR) -> VDR` — exact multiplication including active operands. Cross-terms V₁·R₂, V₂·R₁, R₁·R₂ captured as remainder structure. Frame is D₁·D₂, closed part is V₁·V₂.
+`active_mul(a: VDR, b: VDR) -> VDR`,  exact multiplication including active operands. Cross-terms V₁·R₂, V₂·R₁, R₁·R₂ captured as remainder structure. Frame is D₁·D₂, closed part is V₁·V₂.
 
-`active_div(a: VDR, b: VDR) -> VDR` — division. By closed: multiply by reciprocal. By active: v1 compromise (project divisor, invert, multiply; divisor remainder structure lost).
+`active_div(a: VDR, b: VDR) -> VDR`,  division. By closed: multiply by reciprocal. By active: v1 compromise (project divisor, invert, multiply; divisor remainder structure lost).
 
-`install()` — patches `VDR.__mul__`, `__rmul__`, `__truediv__`, `__rtruediv__` so operators handle active objects.
+`install()`,  patches `VDR.__mul__`, `__rmul__`, `__truediv__`, `__rtruediv__` so operators handle active objects.
 
-`uninstall()` — restores original operators.
+`uninstall()`,  restores original operators.
 
 **Change from current:** `install()` is called automatically by `vdr.__init__` so active arithmetic works out of the box. No manual patching required. `uninstall()` remains available for testing the core in isolation.
 
@@ -123,39 +123,39 @@ Current normalization performs: sign convention, GCD reduction, child normalizat
 
 **Classes:**
 
-`FnRemainder(func, name, meta)` — subclass of `Remainder`. Callable stored in R slot. `f(depth: int) -> VDR`. Name string for inspectability.
+`FnRemainder(func, name, meta)`,  subclass of `Remainder`. Callable stored in R slot. `f(depth: int) -> VDR`. Name string for inspectability.
 
 **Public API:**
 
-`resolve(x: VDR, depth: int) -> VDR` — expand functional remainder at given depth.
+`resolve(x: VDR, depth: int) -> VDR`,  expand functional remainder at given depth.
 
-`resolve_recursive(x: VDR, depth: int) -> VDR` — resolve all functional remainders in tree.
+`resolve_recursive(x: VDR, depth: int) -> VDR`,  resolve all functional remainders in tree.
 
-`is_functional(x: VDR) -> bool` — check if R is `FnRemainder`.
+`is_functional(x: VDR) -> bool`,  check if R is `FnRemainder`.
 
 **Factories:**
 
-`make_newton_fn(name, step_fn) -> FnRemainder` — Newton-Raphson iteration. Quadratic convergence. ~8 steps for 100 digits.
+`make_newton_fn(name, step_fn) -> FnRemainder`,  Newton-Raphson iteration. Quadratic convergence. ~8 steps for 100 digits.
 
-`make_series_fn(name, term_fn, initial) -> FnRemainder` — series partial sums. Each depth is exact rational.
+`make_series_fn(name, term_fn, initial) -> FnRemainder`,  series partial sums. Each depth is exact rational.
 
-`make_iterative_fn(name, step, start) -> FnRemainder` — general iteration.
+`make_iterative_fn(name, step, start) -> FnRemainder`,  general iteration.
 
-`make_constant_fn(name, value_func) -> FnRemainder` — named constant.
+`make_constant_fn(name, value_func) -> FnRemainder`,  named constant.
 
 **Discrete calculus:**
 
-`discrete_derivative(f, h) -> callable` — Dₕf(x) = (f(x+h) − f(x))/h
+`discrete_derivative(f, h) -> callable`,  Dₕf(x) = (f(x+h) − f(x))/h
 
-`discrete_derivative_nth(f, h, order) -> callable` — repeated application.
+`discrete_derivative_nth(f, h, order) -> callable`,  repeated application.
 
-`discrete_integral(f, a, b, n) -> VDR` — left Riemann sum, exact.
+`discrete_integral(f, a, b, n) -> VDR`,  left Riemann sum, exact.
 
-`discrete_integral_trapz(f, a, b, n) -> VDR` — trapezoidal, exact.
+`discrete_integral_trapz(f, a, b, n) -> VDR`,  trapezoidal, exact.
 
 **Decorator:**
 
-`@vdr_fn(name)` — marks a function as VDR remainder function.
+`@vdr_fn(name)`,  marks a function as VDR remainder function.
 
 **Change from current:** `install()` called automatically by `vdr.__init__`. Patches `is_closed`, `is_active`, `to_fraction` to be aware of `FnRemainder`.
 
@@ -163,9 +163,9 @@ Current normalization performs: sign convention, GCD reduction, child normalizat
 
 **Classes:**
 
-`Vec(data: list[VDR | int])` — exact vector. `+`, `-`, `*` (scalar), `dot`, `==`.
+`Vec(data: list[VDR | int])`,  exact vector. `+`, `-`, `*` (scalar), `dot`, `==`.
 
-`Mat(rows: list[list | Vec])` — exact matrix. `+`, `-`, `*` (scalar, matrix, vector), `det()`, `inv()`, `solve(b)`, `rank()`, `T`, `trace()`.
+`Mat(rows: list[list | Vec])`,  exact matrix. `+`, `-`, `*` (scalar, matrix, vector), `det()`, `inv()`, `solve(b)`, `rank()`, `T`, `trace()`.
 
 **Constructors:**
 
@@ -173,7 +173,7 @@ Current normalization performs: sign convention, GCD reduction, child normalizat
 
 `Mat.from_ints(data)`, `Mat.from_fracs(data)`, `Mat.identity(n)`, `Mat.zero(nrows, ncols)`
 
-**Change from current — Gaussian elimination for det and inv:**
+**Change from current,  Gaussian elimination for det and inv:**
 
 Current `det()` uses cofactor expansion O(n!). Current `inv()` uses adjugate. Current `solve()` uses Cramer's rule. `rank()` already uses Gaussian.
 
@@ -181,21 +181,21 @@ Current `det()` uses cofactor expansion O(n!). Current `inv()` uses adjugate. Cu
 
 **Serialization (stays here):**
 
-`parse_vdr(text) -> VDR` — bracket notation parser.
+`parse_vdr(text) -> VDR`,  bracket notation parser.
 
-`vdr_to_dict(x) -> dict` / `vdr_from_dict(d) -> VDR` — JSON round-trip.
+`vdr_to_dict(x) -> dict` / `vdr_from_dict(d) -> VDR`,  JSON round-trip.
 
-`vdr_to_latex(x) -> str` — LaTeX export.
+`vdr_to_latex(x) -> str`,  LaTeX export.
 
 ### 2.5 `vdr.export` (stays `export.py`)
 
 The lossy boundary. Loss belongs to the target format.
 
-`to_fraction(x: VDR) -> Fraction` — exact for closed. Legacy-flattened for active.
+`to_fraction(x: VDR) -> Fraction`,  exact for closed. Legacy-flattened for active.
 
-`to_float(x: VDR) -> float` — lossy IEEE 754.
+`to_float(x: VDR) -> float`,  lossy IEEE 754.
 
-`to_decimal(x: VDR, digits: int = 50) -> str` — decimal string. Uses mpmath if available, manual long division otherwise.
+`to_decimal(x: VDR, digits: int = 50) -> str`,  decimal string. Uses mpmath if available, manual long division otherwise.
 
 No changes from current beyond ensuring FnRemainder raises cleanly (resolve first).
 
@@ -205,15 +205,15 @@ D-frame management. This is where the configurable denominator lives.
 
 **Public API:**
 
-`q_basis_denominator(bits: int) -> int` — returns `2**bits`. Q335 is `q_basis_denominator(335)`.
+`q_basis_denominator(bits: int) -> int`,  returns `2**bits`. Q335 is `q_basis_denominator(335)`.
 
-`to_qbasis(x, bits: int) -> VDR` — project a value onto the `2**bits` grid as `[round(x * 2**bits), 2**bits, 0]`.
+`to_qbasis(x, bits: int) -> VDR`,  project a value onto the `2**bits` grid as `[round(x * 2**bits), 2**bits, 0]`.
 
-`vec_to_qbasis(v, bits) -> Vec` / `mat_to_qbasis(m, bits) -> Mat` — batch projection.
+`vec_to_qbasis(v, bits) -> Vec` / `mat_to_qbasis(m, bits) -> Mat`,  batch projection.
 
-`qb_rebase_add(a, b, bits) -> VDR` — addition staying in basis frame.
+`qb_rebase_add(a, b, bits) -> VDR`,  addition staying in basis frame.
 
-`qb_rebase_mul(a, b, bits) -> VDR` — multiplication with divmod back to basis frame. D stays `2**bits`. Overflow in R.
+`qb_rebase_mul(a, b, bits) -> VDR`,  multiplication with divmod back to basis frame. D stays `2**bits`. Overflow in R.
 
 **Default basis:** Q335 (bits=335). Configurable per-call.
 
@@ -271,7 +271,7 @@ if nr.is_zero or nr.is_globally_zero:
     return VDR(v_total, d, Remainder(0))
 ```
 
-**Scope:** fixes 4 VDR-26 test failures and normalization presentation issues from VDR-28. Zero arithmetic impact — only display and structural comparison affected.
+**Scope:** fixes 4 VDR-26 test failures and normalization presentation issues from VDR-28. Zero arithmetic impact,  only display and structural comparison affected.
 
 ---
 
@@ -321,19 +321,19 @@ if nr.is_zero or nr.is_globally_zero:
 
 **Core tests (must pass before any release):**
 
-`test_core.py` — construction, normalization (including the fix), sign convention, GCD reduction, N7 collapse, closed arithmetic (add/sub/mul/div), rebase, lift, equality (structural and value), hash, comparison operators, coercion from int and Fraction.
+`test_core.py`,  construction, normalization (including the fix), sign convention, GCD reduction, N7 collapse, closed arithmetic (add/sub/mul/div), rebase, lift, equality (structural and value), hash, comparison operators, coercion from int and Fraction.
 
-`test_active.py` — active add (same-D, different-D), active mul (closed×closed, closed×active, active×active), cross-term structure, active div (by closed, by active with projection), negation of active objects.
+`test_active.py`,  active add (same-D, different-D), active mul (closed×closed, closed×active, active×active), cross-term structure, active div (by closed, by active with projection), negation of active objects.
 
-`test_fn.py` — FnRemainder construction, resolve at multiple depths, Newton √2 (verify residual < 10⁻⁵⁰ at depth 10), make_series_fn, make_newton_fn, discrete derivative (x² at x=3 h=1/1000 = 6001/1000), discrete integral (∫x² [0,1] n=10 = 57/200), finite difference tables (Δ³(x³) = [6,6], Δ⁴(x³) = [0]).
+`test_fn.py`,  FnRemainder construction, resolve at multiple depths, Newton √2 (verify residual < 10⁻⁵⁰ at depth 10), make_series_fn, make_newton_fn, discrete derivative (x² at x=3 h=1/1000 = 6001/1000), discrete integral (∫x² [0,1] n=10 = 57/200), finite difference tables (Δ³(x³) = [6,6], Δ⁴(x³) = [0]).
 
-`test_linalg.py` — Vec arithmetic, Mat arithmetic, det (cofactor and Gaussian agree), inv (Hilbert 3×3, 4×4, 5×5 residual = exactly 0), solve, rank (full rank and deficient), identity properties, Gaussian elimination correctness.
+`test_linalg.py`,  Vec arithmetic, Mat arithmetic, det (cofactor and Gaussian agree), inv (Hilbert 3×3, 4×4, 5×5 residual = exactly 0), solve, rank (full rank and deficient), identity properties, Gaussian elimination correctness.
 
-`test_export.py` — to_fraction roundtrip, to_float lossy, to_decimal at various digit counts, mpmath path and fallback path.
+`test_export.py`,  to_fraction roundtrip, to_float lossy, to_decimal at various digit counts, mpmath path and fallback path.
 
-`test_basis.py` — Q335 construction, to_qbasis roundtrip, qb_rebase_mul divmod rule (D stays 2³³⁵, overflow in R), DEFAULT_BITS configuration, non-Q335 bases (D=7, D=2¹⁶).
+`test_basis.py`,  Q335 construction, to_qbasis roundtrip, qb_rebase_mul divmod rule (D stays 2³³⁵, overflow in R), DEFAULT_BITS configuration, non-Q335 bases (D=7, D=2¹⁶).
 
-`test_normalize.py` — the specific fix: √4 Newton reduces to [2, 1, 0], √9 to [3, 1, 0], √(1/4) to [1, 2, 0], large unreduced fractions collapse, value-zero remainders collapse.
+`test_normalize.py`,  the specific fix: √4 Newton reduces to [2, 1, 0], √9 to [3, 1, 0], √(1/4) to [1, 2, 0], large unreduced fractions collapse, value-zero remainders collapse.
 
 **Gym tests (ported, run as integration suite):**
 
@@ -539,7 +539,7 @@ src/vdr/
 ## Usage
 
 ```python
-# Direct domain use — no setup code needed
+# Direct domain use,  no setup code needed
 from vdr.math.probability import bayes_update, binom_pmf
 from vdr.math.game_theory import shapley_3
 from vdr.math.transcendental import Q335_PI, borwein_zeta
@@ -554,7 +554,7 @@ from vdr.signal.dft import exact_dft, exact_idft
 
 ## What Tests Become
 
-Tests don't implement the math — they exercise the built-in modules. The gym scripts become thin test files that call library functions and assert results:
+Tests don't implement the math,  they exercise the built-in modules. The gym scripts become thin test files that call library functions and assert results:
 
 ```python
 # tests/gym/test_gym_01.py
@@ -572,15 +572,15 @@ def test_totient_100():
 
 Phases 1–6 unchanged (core, active, fn, linalg, export, basis).
 
-Phase 7: `vdr.math.*` — port all 23 gym implementations into library modules.
+Phase 7: `vdr.math.*`,  port all 23 gym implementations into library modules.
 
-Phase 8: `vdr.signal.*` — port signal processing.
+Phase 8: `vdr.signal.*`,  port signal processing.
 
-Phase 9: `vdr.physics.*` — port physical computation.
+Phase 9: `vdr.physics.*`,  port physical computation.
 
-Phase 10: `vdr.ml.*` — port ML pipeline.
+Phase 10: `vdr.ml.*`,  port ML pipeline.
 
-Phase 11: `vdr.diffusion.*` — port diffusion.
+Phase 11: `vdr.diffusion.*`,  port diffusion.
 
 Phase 12: Tests call library modules. Gym tests become thin assertion layers.
 

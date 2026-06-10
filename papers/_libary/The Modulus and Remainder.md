@@ -1,10 +1,10 @@
-## Notebook: The Modulus and Remainder — Complete Tracking Through Session 4
+## Notebook: The Modulus and Remainder,  Complete Tracking Through Session 4
 
 ---
 
 ### 1. WHERE THIS STARTS
 
-The series begins with R₂ = π/4. This is the remainder when you inscribe a circle in a square. The circle has area πr² = π(d/2)² = (π/4)d². The square has area d². The ratio is π/4. The remainder — what the square has that the circle doesn't — is 1 − π/4 = (4−π)/4.
+The series begins with R₂ = π/4. This is the remainder when you inscribe a circle in a square. The circle has area πr² = π(d/2)² = (π/4)d². The square has area d². The ratio is π/4. The remainder,  what the square has that the circle doesn't,  is 1 − π/4 = (4−π)/4.
 
 But the series doesn't use "remainder" to mean "what's left over." It uses R₂ to mean the FRACTION of the square that the circle FILLS. R₂ = π/4 ≈ 0.7854. The circle fills 78.54% of its bounding square. This is the geometric conversion factor between circular and rectilinear geometry.
 
@@ -22,11 +22,11 @@ Every gauge coupling runs according to:
 
 1/α_i(μ₂) = 1/α_i(μ₁) − b_i × ln(μ₂/μ₁)/(2π)
 
-The 2π in the denominator is 8R₂. This is the same geometric constant appearing in a completely different context — the virtual loop integral in quantum field theory. The loop is a closed circular path in momentum space. The 2π is the circumference of the unit circle. The factor 1/(2π) = 1/(8R₂) is the geometric conversion from the circular loop integral to the linear coupling change.
+The 2π in the denominator is 8R₂. This is the same geometric constant appearing in a completely different context,  the virtual loop integral in quantum field theory. The loop is a closed circular path in momentum space. The 2π is the circumference of the unit circle. The factor 1/(2π) = 1/(8R₂) is the geometric conversion from the circular loop integral to the linear coupling change.
 
-In MATH-1 language: Q = F × β × d² × Z becomes Δ(1/α) = ln(μ₂/μ₁) × (1/(8R₂)) × 1 × b_i. The "area" d² = 1 (dimensionless — the loop is in momentum space, not position space). The coordinator Z = b_i (the integer rule). The geometric factor β = 1/(8R₂) = 1/(2π). The driver F = ln(μ₂/μ₁).
+In MATH-1 language: Q = F × β × d² × Z becomes Δ(1/α) = ln(μ₂/μ₁) × (1/(8R₂)) × 1 × b_i. The "area" d² = 1 (dimensionless,  the loop is in momentum space, not position space). The coordinator Z = b_i (the integer rule). The geometric factor β = 1/(8R₂) = 1/(2π). The driver F = ln(μ₂/μ₁).
 
-The modulus here is R₂ acting as the conversion between the circular topology of the loop integral and the linear change in the coupling. Without R₂, you can't convert from loops to running. The 2π is not a convention — it is the geometry of the circle entering the physics through the loop.
+The modulus here is R₂ acting as the conversion between the circular topology of the loop integral and the linear change in the coupling. Without R₂, you can't convert from loops to running. The 2π is not a convention,  it is the geometry of the circle entering the physics through the loop.
 
 ---
 
@@ -36,15 +36,15 @@ The gap ratio is (b₁ − b₂)/(b₂ − b₃). This is a ratio of differences
 
 This is the first R₂ cancellation in the gauge coupling context. The gap ratio is R₂-free because it is a RATIO of quantities that each contain R₂ in the same position. Like wire resistance × capacitance = ρε₀L/t (R₂ cancels), the gap ratio takes the R₂ out by dividing.
 
-What remains after R₂ cancels is the pure integer content — the numerators and denominators that trace to the gauge group structure. 218 = 2 × 109. 115 = 5 × 23. 38 = 2 × 19. 27 = 3³. The gap ratio lives in the integer world because the geometric modulus has been divided out.
+What remains after R₂ cancels is the pure integer content,  the numerators and denominators that trace to the gauge group structure. 218 = 2 × 109. 115 = 5 × 23. 38 = 2 × 19. 27 = 3³. The gap ratio lives in the integer world because the geometric modulus has been divided out.
 
-The measured gap ratio (1.358) is computed from measured couplings (α_EM, sin²θ_W, α_s) — Level 2 values. The theoretical gap ratios (218/115, 38/27) are Level 1 — computed from the gauge group integers. The comparison between them (SM: 40% miss, CD: 3.6% miss) is the comparison between the geometric modulus of the universe (measured couplings) and the integer structure (group theory). The gap ratio is where the modulus meets the integers.
+The measured gap ratio (1.358) is computed from measured couplings (α_EM, sin²θ_W, α_s),  Level 2 values. The theoretical gap ratios (218/115, 38/27) are Level 1,  computed from the gauge group integers. The comparison between them (SM: 40% miss, CD: 3.6% miss) is the comparison between the geometric modulus of the universe (measured couplings) and the integer structure (group theory). The gap ratio is where the modulus meets the integers.
 
 ---
 
 ### 4. THE MODULUS IN SIN²θ_W
 
-sin²θ_W is the fraction of the electroweak coupling that goes into the weak sector. At tree level (GUT scale): sin²θ_W = 3/8 = 0.375. This is a pure Fraction — Level 1, determined by the SU(5) embedding geometry. No R₂.
+sin²θ_W is the fraction of the electroweak coupling that goes into the weak sector. At tree level (GUT scale): sin²θ_W = 3/8 = 0.375. This is a pure Fraction,  Level 1, determined by the SU(5) embedding geometry. No R₂.
 
 Running from M_GUT to M_Z changes this to 0.22845 (one-loop) or 0.23133 (two-loop). The running carries R₂ through the loop integrals. The CORRECTION to sin²θ_W is:
 
@@ -54,11 +54,11 @@ At one loop, this correction is exactly 15/104:
 
 3/8 − 3/13 = (39 − 24)/104 = 15/104 = 0.14423
 
-The 3/13 comes from N_gen/|b₂' numerator| = 3/13. This is another pure Fraction — the number of generations divided by the absolute value of the modified SU(2) beta numerator. No R₂.
+The 3/13 comes from N_gen/|b₂' numerator| = 3/13. This is another pure Fraction,  the number of generations divided by the absolute value of the modified SU(2) beta numerator. No R₂.
 
-The correction 15/104 is the MODULUS of the running — the total change accumulated over the entire M_Z → M_GUT range through 14 decades of energy. This modulus is R₂-free (it's a ratio of quantities each containing R₂). The integers 15 and 104 trace to the gauge group: 15 = 3 × 5 (generations × GUT normalization), 104 = 8 × 13 (crossing condition × CD SU(2) beta).
+The correction 15/104 is the MODULUS of the running,  the total change accumulated over the entire M_Z → M_GUT range through 14 decades of energy. This modulus is R₂-free (it's a ratio of quantities each containing R₂). The integers 15 and 104 trace to the gauge group: 15 = 3 × 5 (generations × GUT normalization), 104 = 8 × 13 (crossing condition × CD SU(2) beta).
 
-PHYS-34 found that the two-loop correction overshoots 3/13, giving sin²θ_W = 0.23133 > 0.23077 = 3/13 > 0.23122 (measured). The overshoot is 0.048% — within method uncertainty. The modulus at two loops is slightly different from the one-loop modulus because the two-loop terms carry additional R₂ factors (each two-loop b_ij entry is multiplied by α_j/(4π) = α_j/(16R₂)).
+PHYS-34 found that the two-loop correction overshoots 3/13, giving sin²θ_W = 0.23133 > 0.23077 = 3/13 > 0.23122 (measured). The overshoot is 0.048%,  within method uncertainty. The modulus at two loops is slightly different from the one-loop modulus because the two-loop terms carry additional R₂ factors (each two-loop b_ij entry is multiplied by α_j/(4π) = α_j/(16R₂)).
 
 The hierarchy: tree-level sin²θ_W = 3/8 (pure Fraction, no R₂) → one-loop correction 15/104 (pure Fraction, R₂ cancels in ratio) → two-loop correction (small, carries R₂ through α_j/(16R₂)).
 
@@ -77,13 +77,13 @@ Numerator sum: −33 + 12 + 0 + 1 = −20. Denominator: 3.
 
 Each constituent is a Fraction. The gauge contribution −11 is an integer. The fermion contribution 4 is an integer. The CD contribution 1/3 is a Fraction. The Higgs contribution 0 is trivially exact.
 
-These numbers are MODULI of the gauge group geometry. The 11 in the gauge contribution is the Yang-Mills one-loop coefficient — it appears because the SU(N) adjoint representation has a specific geometric structure (the Lie algebra) that produces exactly (11/3) × N when contracted through the loop integral. The 11 is not arbitrary — it comes from the trace over adjoint generators, which counts the degrees of freedom of the gauge field weighted by their coupling structure.
+These numbers are MODULI of the gauge group geometry. The 11 in the gauge contribution is the Yang-Mills one-loop coefficient,  it appears because the SU(N) adjoint representation has a specific geometric structure (the Lie algebra) that produces exactly (11/3) × N when contracted through the loop integral. The 11 is not arbitrary,  it comes from the trace over adjoint generators, which counts the degrees of freedom of the gauge field weighted by their coupling structure.
 
-The 4/3 per generation is the fermion modulus — it counts how many colored Weyl fermions exist per generation (4: two in Q_L doublet, one u_R, one d_R) weighted by the Dynkin index (1/2) and the fermion coefficient (2/3). The 4/3 = (4 × 1/2 × 2/3) = (Weyl count × S₂ × coefficient).
+The 4/3 per generation is the fermion modulus,  it counts how many colored Weyl fermions exist per generation (4: two in Q_L doublet, one u_R, one d_R) weighted by the Dynkin index (1/2) and the fermion coefficient (2/3). The 4/3 = (4 × 1/2 × 2/3) = (Weyl count × S₂ × coefficient).
 
-The 1/3 for the CD is the VL modulus — (1/3) × dim(SU(2)) × S₂(fund SU(3)) = (1/3) × 2 × (1/2) = 1/3. The coefficient 1/3 (instead of 2/3 for chiral) is the VL pair's specific geometric structure: the Dirac pairing changes how the SU(3) index enters.
+The 1/3 for the CD is the VL modulus,  (1/3) × dim(SU(2)) × S₂(fund SU(3)) = (1/3) × 2 × (1/2) = 1/3. The coefficient 1/3 (instead of 2/3 for chiral) is the VL pair's specific geometric structure: the Dirac pairing changes how the SU(3) index enters.
 
-Every one of these numbers is a geometric modulus — a fraction that measures how much a specific representation "fills" the available gauge structure, analogous to R₂ measuring how much a circle fills its bounding square.
+Every one of these numbers is a geometric modulus,  a fraction that measures how much a specific representation "fills" the available gauge structure, analogous to R₂ measuring how much a circle fills its bounding square.
 
 ---
 
@@ -91,17 +91,17 @@ Every one of these numbers is a geometric modulus — a fraction that measures h
 
 The Koide ratio K = sum_m / (sum_sqrt_m)² = 2/3 for leptons. This is a dimensionless ratio that measures the "shape" of the mass spectrum. K = 2/3 corresponds to a² = 2, where a is the amplitude parameter in the Koide decomposition.
 
-The formula K = (1 + a²/2)/3 is a pure identity — it holds for ANY three numbers parameterized by (M, a, θ). The value K = 2/3 is special because it corresponds to a² = 2, which means the mass spectrum has a specific geometric shape: the three masses are distributed on a circle in √m space with a specific amplitude relative to the mean.
+The formula K = (1 + a²/2)/3 is a pure identity,  it holds for ANY three numbers parameterized by (M, a, θ). The value K = 2/3 is special because it corresponds to a² = 2, which means the mass spectrum has a specific geometric shape: the three masses are distributed on a circle in √m space with a specific amplitude relative to the mean.
 
 Think of it this way: three masses (m_e, m_mu, m_tau) define three points in √m space. Their mean is M = (√m_e + √m_mu + √m_tau)/3. Their deviation from the mean is parameterized by amplitude a and phase θ. The Koide formula says: the amplitude squared is exactly 2.
 
-a² = 2 is a modulus. It measures how "spread out" the lepton masses are relative to their mean. If a² = 0, all three masses would be equal (m_e = m_mu = m_tau). If a² = 3, one mass would be zero. a² = 2 is in between — the masses are spread significantly but none is zero.
+a² = 2 is a modulus. It measures how "spread out" the lepton masses are relative to their mean. If a² = 0, all three masses would be equal (m_e = m_mu = m_tau). If a² = 3, one mass would be zero. a² = 2 is in between,  the masses are spread significantly but none is zero.
 
-The REMAINDER in the Koide context: K = 2/3 means sum_m = (2/3)(sum_sqrt)². The remaining 1/3 is the "Koide deficit" — the amount by which the sum of masses falls short of (sum_sqrt)². This deficit is what makes the masses unequal. If K = 1 (no deficit), all masses would be equal. If K = 1/3 (maximum deficit), one mass would dominate.
+The REMAINDER in the Koide context: K = 2/3 means sum_m = (2/3)(sum_sqrt)². The remaining 1/3 is the "Koide deficit",  the amount by which the sum of masses falls short of (sum_sqrt)². This deficit is what makes the masses unequal. If K = 1 (no deficit), all masses would be equal. If K = 1/3 (maximum deficit), one mass would dominate.
 
-PHYS-33 used K = 2/3 to predict m_tau = 1776.97 MeV from m_e and m_mu. Miss: 0.006% from measured 1776.86 MeV. The modulus a² = 2 is precise enough to predict the tau mass within experimental uncertainty. The other quadratic root (3.317 MeV) is the "shadow solution" — the mass that would give the same K = 2/3 with the same m_e and m_mu.
+PHYS-33 used K = 2/3 to predict m_tau = 1776.97 MeV from m_e and m_mu. Miss: 0.006% from measured 1776.86 MeV. The modulus a² = 2 is precise enough to predict the tau mass within experimental uncertainty. The other quadratic root (3.317 MeV) is the "shadow solution",  the mass that would give the same K = 2/3 with the same m_e and m_mu.
 
-The Koide modulus (a² = 2) is Level 2 — it is measured, not derived. The series does not know WHY a² = 2 for leptons (a² = 2.39 for down quarks, a² = 3.09 for up quarks). If a derivation existed, it would reduce the parameter count by 1 (from 18 to 17, conditional). The modulus is observed but unexplained.
+The Koide modulus (a² = 2) is Level 2,  it is measured, not derived. The series does not know WHY a² = 2 for leptons (a² = 2.39 for down quarks, a² = 3.09 for up quarks). If a derivation existed, it would reduce the parameter count by 1 (from 18 to 17, conditional). The modulus is observed but unexplained.
 
 ---
 
@@ -115,13 +115,13 @@ The nine entries of the VL db_ij matrix are:
 1/45    1        40/9
 ```
 
-Each entry is a Fraction. Each is a geometric modulus — it measures how much the CD's (3,2,1/6) representation couples the i-th gauge group to the j-th gauge group at two loops.
+Each entry is a Fraction. Each is a geometric modulus,  it measures how much the CD's (3,2,1/6) representation couples the i-th gauge group to the j-th gauge group at two loops.
 
-The diagonal entries (7/15, 15/4, 40/9) measure self-coupling amplification — how much the CD's presence in gauge group i modifies the two-loop running of gauge group i through its own Casimir. The off-diagonal entries (1/15, 16/135, 1/30, 8/3, 1/45, 1) measure cross-coupling — how the CD's charge under gauge group j modifies the running of gauge group i.
+The diagonal entries (7/15, 15/4, 40/9) measure self-coupling amplification,  how much the CD's presence in gauge group i modifies the two-loop running of gauge group i through its own Casimir. The off-diagonal entries (1/15, 16/135, 1/30, 8/3, 1/45, 1) measure cross-coupling,  how the CD's charge under gauge group j modifies the running of gauge group i.
 
 The CRITICAL pitfall (N3) was about the diagonal modulus: the full Machacek-Vaughn diagonal is 2C_G + (10/3)C_R, but the 2C_G is the gauge self-coupling already in the SM b_ij. Adding a new fermion adds ONLY (10/3)C_R. The wrong modulus (39/4 = 2×2 + (10/3)×(3/4)×3) includes the gauge piece twice. The correct modulus (15/4 = (10/3)×(1/2)×3×(3/4)) counts only the fermion piece.
 
-This is a modulus error — using the wrong geometric fraction for the representation's contribution. The series learned: the modulus of a new particle's contribution is NOT the full coupling formula; it is the INCREMENTAL coupling, because the gauge self-coupling is already accounted for.
+This is a modulus error,  using the wrong geometric fraction for the representation's contribution. The series learned: the modulus of a new particle's contribution is NOT the full coupling formula; it is the INCREMENTAL coupling, because the gauge self-coupling is already accounted for.
 
 ---
 
@@ -129,13 +129,13 @@ This is a modulus error — using the wrong geometric fraction for the represent
 
 PHYS-35 found that the no-threshold configuration (CD betas from M_Z, R₂-weighted running everywhere) outperforms the step-function threshold by 12×. The step function sets the CD's geometric modulus to zero below M_VL and to its full value above M_VL.
 
-In modulus language: the step function rounds the CD's contribution from "suppressed" to "zero" below the inertia scale. The suppression factor is (μ/M_VL)², which for μ = 91 GeV and M_VL = 500 GeV is (91/500)² ≈ 0.033. The CD's modulus at M_Z is not zero — it is 3.3% of its full value. The step function rounds 3.3% to 0%. The no-threshold rounds it to 100%. The data says 100% is 12× closer to reality than 0%.
+In modulus language: the step function rounds the CD's contribution from "suppressed" to "zero" below the inertia scale. The suppression factor is (μ/M_VL)², which for μ = 91 GeV and M_VL = 500 GeV is (91/500)² ≈ 0.033. The CD's modulus at M_Z is not zero,  it is 3.3% of its full value. The step function rounds 3.3% to 0%. The no-threshold rounds it to 100%. The data says 100% is 12× closer to reality than 0%.
 
-The remainder in the threshold context: the "decoupling remainder" is 1 − (μ/M_VL)², the fraction of the CD's contribution that is suppressed below threshold. At M_Z, this remainder is 96.7% — almost all of the CD's contribution is "missing" according to the suppression formula. The step function sets the remainder to 100% (full suppression). The no-threshold sets it to 0% (no suppression). The truth is between them but much closer to 0%.
+The remainder in the threshold context: the "decoupling remainder" is 1 − (μ/M_VL)², the fraction of the CD's contribution that is suppressed below threshold. At M_Z, this remainder is 96.7%,  almost all of the CD's contribution is "missing" according to the suppression formula. The step function sets the remainder to 100% (full suppression). The no-threshold sets it to 0% (no suppression). The truth is between them but much closer to 0%.
 
-The PHYS-35 addendum reframes this in vortex language: the CD's geometric overlaps with the gauge configurations are topological properties — moduli of the representation embedding. These moduli do not depend on energy. The CD is a (3,2,1/6) at every scale. Its Dynkin indices are 1/2 at every scale. Its hypercharge is 1/6 at every scale. The modulus is the SAME at M_Z as at M_GUT. What changes at M_VL is the excitation threshold — the energy cost to produce a real CD particle. But the geometric modulus (the representation's coupling to the gauge fields) is scale-independent.
+The PHYS-35 addendum reframes this in vortex language: the CD's geometric overlaps with the gauge configurations are topological properties,  moduli of the representation embedding. These moduli do not depend on energy. The CD is a (3,2,1/6) at every scale. Its Dynkin indices are 1/2 at every scale. Its hypercharge is 1/6 at every scale. The modulus is the SAME at M_Z as at M_GUT. What changes at M_VL is the excitation threshold,  the energy cost to produce a real CD particle. But the geometric modulus (the representation's coupling to the gauge fields) is scale-independent.
 
-This is the deepest statement about moduli in the series: the geometric modulus of a vortex is a property of its topology, not of the available energy. The running changes the coupling VALUES (Level 2), but the integer RULES (Level 1) — the moduli — are fixed by the representation.
+This is the deepest statement about moduli in the series: the geometric modulus of a vortex is a property of its topology, not of the available energy. The running changes the coupling VALUES (Level 2), but the integer RULES (Level 1),  the moduli,  are fixed by the representation.
 
 ---
 
@@ -147,7 +147,7 @@ Wire resistance: R = ρL/(R₂d²). Capacitance: C = ε₀R₂d²/t. Product: RC
 
 Josephson constant × von Klitzing constant: K_J × R_K = (2e/h)(h/e²) = 2/e. R₂ cancels (it enters through h = 2πℏ in both).
 
-The MODULUS cancels in ratios where it appears symmetrically. What remains is the non-geometric physics — resistivity, permittivity, charge, length. The modulus is the geometric conversion factor; the remainder after cancellation is the physical content.
+The MODULUS cancels in ratios where it appears symmetrically. What remains is the non-geometric physics,  resistivity, permittivity, charge, length. The modulus is the geometric conversion factor; the remainder after cancellation is the physical content.
 
 This is the same pattern as the gap ratio: R₂ enters through the loop integrals in each beta coefficient, but the gap ratio divides b₁−b₂ by b₂−b₃, and R₂ cancels, leaving pure integers.
 
@@ -155,9 +155,9 @@ And it is the same pattern as the Koide formula: K = sum_m/(sum_sqrt)² cancels 
 
 The series tracks three levels of modulus:
 
-1. **R₂ = π/4** — the 2D circular-to-rectilinear modulus, appears in 22+ domains
-2. **Integer Fractions (b_i, Δb_i, gap ratios)** — the gauge group moduli, appear in coupling running
-3. **Koide a² = 2** — the mass spectrum modulus, appears in lepton masses
+1. **R₂ = π/4**,  the 2D circular-to-rectilinear modulus, appears in 22+ domains
+2. **Integer Fractions (b_i, Δb_i, gap ratios)**,  the gauge group moduli, appear in coupling running
+3. **Koide a² = 2**,  the mass spectrum modulus, appears in lepton masses
 
 Each modulus measures how much of one geometric structure "fills" another. R₂ measures circle-in-square. The beta coefficients measure representation-in-gauge-group. Koide a² measures spread-in-mass-space.
 
@@ -165,7 +165,7 @@ Each modulus measures how much of one geometric structure "fills" another. R₂ 
 
 ### 10. THE MODULUS IN THE PROTON MASS
 
-The proton's mass is 938.3 MeV. The current quark masses (u + u + d) total about 9.4 MeV — 1% of the proton mass. The remaining 99% is QCD binding energy — the energy of the confined gluon field and the kinetic energy of the quarks bouncing inside the confinement boundary.
+The proton's mass is 938.3 MeV. The current quark masses (u + u + d) total about 9.4 MeV,  1% of the proton mass. The remaining 99% is QCD binding energy,  the energy of the confined gluon field and the kinetic energy of the quarks bouncing inside the confinement boundary.
 
 The modulus here is the ratio: visible constituent mass / total mass = 1%. The remainder: pattern energy / total mass = 99%. The proton is a system where the geometric structure (the confined field pattern) dominates the inertia. The quarks are trace constituents in a vortex whose inertia is determined by the confinement geometry.
 
@@ -173,9 +173,9 @@ The confinement scale Λ_QCD is set by the integer b₃ = −7 through the runni
 
 Λ_QCD = M_Z × exp(−2π/(b₃ × α_s(M_Z)))
 
-The 2π = 8R₂ appears again. The confinement scale — which sets the proton mass — is determined by the integer modulus b₃ = −7 acting through the geometric modulus R₂ on the measured coupling α_s. The proton mass is literally: an integer (−7) × a geometric constant (R₂) × a measured value (α_s) → a mass scale (Λ_QCD) → the proton's inertia.
+The 2π = 8R₂ appears again. The confinement scale,  which sets the proton mass,  is determined by the integer modulus b₃ = −7 acting through the geometric modulus R₂ on the measured coupling α_s. The proton mass is literally: an integer (−7) × a geometric constant (R₂) × a measured value (α_s) → a mass scale (Λ_QCD) → the proton's inertia.
 
-The decomposition of b₃ = −7 from PHYS-32: gauge (−11) + fermion (+4) + Higgs (0). The gauge modulus (−11) dominates. The Yang-Mills coefficient 11/3 times the adjoint Casimir 3 gives 11 — the geometric measure of how strongly the SU(3) gauge field antiscreens. This antiscreening is what produces confinement, which is what produces the proton mass, which is 99% of the visible mass of the universe.
+The decomposition of b₃ = −7 from PHYS-32: gauge (−11) + fermion (+4) + Higgs (0). The gauge modulus (−11) dominates. The Yang-Mills coefficient 11/3 times the adjoint Casimir 3 gives 11,  the geometric measure of how strongly the SU(3) gauge field antiscreens. This antiscreening is what produces confinement, which is what produces the proton mass, which is 99% of the visible mass of the universe.
 
 The chain: R₂ (geometry) × 11 (Yang-Mills modulus) × 3 (SU(3) Casimir modulus) → b₃_gauge = −11 → confinement → proton mass → visible universe mass.
 
@@ -183,9 +183,9 @@ The chain: R₂ (geometry) × 11 (Yang-Mills modulus) × 3 (SU(3) Casimir modulu
 
 ### 11. THE MODULUS IN THE GENERATION DEMOCRACY
 
-PHYS-17 established generation democracy: each complete SM generation contributes (4/3, 4/3, 4/3) to the beta coefficients. The three values are equal. This means the fermion contribution to the gap ratio is zero: (4/3 − 4/3)/(4/3 − 4/3) = 0/0 (indeterminate). The gap ratio is set entirely by the gauge and Higgs contributions — the "boson problem."
+PHYS-17 established generation democracy: each complete SM generation contributes (4/3, 4/3, 4/3) to the beta coefficients. The three values are equal. This means the fermion contribution to the gap ratio is zero: (4/3 − 4/3)/(4/3 − 4/3) = 0/0 (indeterminate). The gap ratio is set entirely by the gauge and Higgs contributions,  the "boson problem."
 
-The modulus 4/3 per generation is the fermion geometric fraction — how much one generation "fills" the available beta function space. The fact that this modulus is the SAME for all three gauge groups is generation democracy. The fact that EQUAL moduli cancel in ratios is the same R₂ cancellation pattern: when the modulus appears symmetrically, it divides out.
+The modulus 4/3 per generation is the fermion geometric fraction,  how much one generation "fills" the available beta function space. The fact that this modulus is the SAME for all three gauge groups is generation democracy. The fact that EQUAL moduli cancel in ratios is the same R₂ cancellation pattern: when the modulus appears symmetrically, it divides out.
 
 The boson problem says: the gap ratio (which determines unification quality) depends only on the bosonic moduli (gauge: −22/3 for SU(2), −11 for SU(3); Higgs: 1/6 for SU(2), 0 for SU(3)). The fermion modulus, despite dominating the individual betas in absolute value, contributes NOTHING to the ratio.
 
@@ -195,9 +195,9 @@ This is structurally identical to R₂ cancellation in RC circuits. The resistan
 
 ### 12. THE MODULUS IN THE CD'S Y = 1/6
 
-The CD's hypercharge Y = 1/6 is the smallest hypercharge of any representation that modifies the gap ratio sufficiently for unification. PHYS-18 documented the 1/Y² scaling: the U(1) beta shift scales as Y², so Y = 1/6 gives Δb₁ = (2/5) × 3 × 2 × (1/36) = 1/15. This is tiny — the smallest one-loop shift. But the SU(2) shift (Δb₂ = 1) and SU(3) shift (Δb₃ = 1/3) are not Y-dependent and are much larger.
+The CD's hypercharge Y = 1/6 is the smallest hypercharge of any representation that modifies the gap ratio sufficiently for unification. PHYS-18 documented the 1/Y² scaling: the U(1) beta shift scales as Y², so Y = 1/6 gives Δb₁ = (2/5) × 3 × 2 × (1/36) = 1/15. This is tiny,  the smallest one-loop shift. But the SU(2) shift (Δb₂ = 1) and SU(3) shift (Δb₃ = 1/3) are not Y-dependent and are much larger.
 
-The hypercharge 1/6 is a modulus — it measures the CD's geometric overlap with the U(1) gauge configuration. The CD "fills" 1/36 of the U(1)² coupling space (Y² = 1/36). For comparison, the electron has Y = −1, filling 1/1 = 100%. The CD fills 2.8% of the electron's U(1) coupling.
+The hypercharge 1/6 is a modulus,  it measures the CD's geometric overlap with the U(1) gauge configuration. The CD "fills" 1/36 of the U(1)² coupling space (Y² = 1/36). For comparison, the electron has Y = −1, filling 1/1 = 100%. The CD fills 2.8% of the electron's U(1) coupling.
 
 The asymmetry between the CD's gauge couplings (Δb₁ = 1/15, Δb₂ = 1, Δb₃ = 1/3) reflects the different moduli of the (3,2,1/6) representation in each gauge group:
 
@@ -223,13 +223,13 @@ At each step, a modulus enters:
 
 **Prediction:** α_s = 1/(1/α₃_predicted). The predicted coupling depends on how far 1/α₃ ran from its GUT starting point. The modulus b₃ determines the rate. The GUT starting point depends on where 1/α₁ and 1/α₂ crossed.
 
-The prediction quality (0.33% miss) measures how well the integer moduli (b₁' = 25/6, b₂' = −13/6, b₃' = −20/3) combined with the measured moduli (α_EM, sin²θ_W) reproduce the independent measurement (α_s). The 0.33% miss is the REMAINDER — the part not captured by the one-loop + two-loop integer structure. This remainder could come from three-loop corrections, threshold effects, or physics beyond the current framework.
+The prediction quality (0.33% miss) measures how well the integer moduli (b₁' = 25/6, b₂' = −13/6, b₃' = −20/3) combined with the measured moduli (α_EM, sin²θ_W) reproduce the independent measurement (α_s). The 0.33% miss is the REMAINDER,  the part not captured by the one-loop + two-loop integer structure. This remainder could come from three-loop corrections, threshold effects, or physics beyond the current framework.
 
 ---
 
 ### 14. THE MODULUS IN THE SOLITON BOUNDARY
 
-R5 says: crossing a soliton boundary changes the integer transformation law. The integer rules are moduli — they measure the geometric structure of the active vortex content. At each boundary, the moduli change by exact rational increments (Δb₁, Δb₂, Δb₃).
+R5 says: crossing a soliton boundary changes the integer transformation law. The integer rules are moduli,  they measure the geometric structure of the active vortex content. At each boundary, the moduli change by exact rational increments (Δb₁, Δb₂, Δb₃).
 
 The complete boundary stack from phys24_boundaries.py is a sequence of modulus changes:
 
@@ -277,7 +277,7 @@ The principle: the modulus enters through the geometry of the computation (circu
 
 The series has identified moduli at multiple scales:
 
-**Level 0: Pure geometry.** R₂ = π/4 (2D), R₄ = π²/32 (4D). These are mathematical constants — volume fractions of n-balls in n-cubes. They are exact, transcendental, and universal. They enter every computation that involves circular or spherical geometry.
+**Level 0: Pure geometry.** R₂ = π/4 (2D), R₄ = π²/32 (4D). These are mathematical constants,  volume fractions of n-balls in n-cubes. They are exact, transcendental, and universal. They enter every computation that involves circular or spherical geometry.
 
 **Level 1: Group theory.** Beta coefficients (41/10, −19/6, −7), Casimirs (4/3, 3/4, 3, 2), Dynkin indices (1/2), dimensions (3, 2), hypercharges (1/6, 2/3, −1/3, −1/2, −1). These are exact rational numbers determined by the gauge group structure. They enter every computation that involves representations of SU(3)×SU(2)×U(1).
 
@@ -289,7 +289,7 @@ The hierarchy:
 - Level 0 moduli are the same in every domain (R₂ in pipes, wires, loops).
 - Level 1 moduli are the same in every computation within one gauge group (b₃ = −7 in all SU(3) running).
 - Level 2 moduli are the same at one energy scale (α_s = 0.1180 at M_Z).
-- Level 3 moduli are the output — the predictions that test the framework.
+- Level 3 moduli are the output,  the predictions that test the framework.
 
 ---
 
@@ -297,13 +297,13 @@ The hierarchy:
 
 The PHYS-35 addendum introduces the vortex view: everything is vortexes (R4), mass is inertia (R3), boundaries change the integer rules (R5). In this framework, every modulus is a property of a vortex's geometric embedding:
 
-- R₂ = the modulus of circular geometry (the vortex IS circular — energy circulates)
+- R₂ = the modulus of circular geometry (the vortex IS circular,  energy circulates)
 - b_i = the modulus of the vortex's coupling to gauge group i (determined by representation)
 - Δb_i = the modulus change when a new vortex activates at a boundary
 - K = 2/3 = the modulus of the lepton mass spectrum (the shape of the three-vortex system)
 - sin²θ_W = the modulus of the EW mixing (the fraction of EM coupling in SU(2))
 
-Every modulus measures an OVERLAP — how much one geometric structure fits within another. R₂ measures circle-in-square. Beta coefficients measure representation-in-gauge-group. sin²θ_W measures weak-in-electromagnetic. Koide K measures mass-spread-in-mass-space.
+Every modulus measures an OVERLAP,  how much one geometric structure fits within another. R₂ measures circle-in-square. Beta coefficients measure representation-in-gauge-group. sin²θ_W measures weak-in-electromagnetic. Koide K measures mass-spread-in-mass-space.
 
 The vortex framework says: these are all the same kind of thing. A vortex has a geometry. The geometry determines how it overlaps with other vortexes. The overlap is the modulus. The modulus determines the physics.
 
@@ -343,7 +343,7 @@ Every modulus tracked in the series:
 | 4/3 | 4/3 | Level 1 | Generation democracy modulus |
 | 3/5 | 3/5 | Level 1 | GUT normalization modulus (k₁) |
 | 1/2 | 1/2 | Level 1 | Dynkin index (fundamental of any SU(N)) |
-| 4/3, 3/4 | — | Level 1 | Fundamental Casimirs SU(3), SU(2) |
+| 4/3, 3/4 |,  | Level 1 | Fundamental Casimirs SU(3), SU(2) |
 | 1/6 | 1/6 | Level 1 | CD hypercharge |
 | K = 2/3 | 2/3 | Level 1 (identity) / Level 2 (value) | Koide lepton modulus |
 | a² = 2 | 2 | Level 2 | Koide amplitude modulus |
@@ -373,9 +373,9 @@ b₃ = −7: the net fraction of the SU(3) coupling space filled by all active v
 K = 2/3: the fraction of the mass-sum space filled by the root-mass-sum squared.
 sin²θ_W = 0.231: the fraction of the EM coupling space filled by the weak coupling.
 
-Every modulus is a FILLING FRACTION. Every remainder is what's LEFT. The physics lives in the interplay between what fills and what remains. The integer rules determine the filling. The measured values determine the scale. The moduli — the geometric fractions — are the bridge between them.
+Every modulus is a FILLING FRACTION. Every remainder is what's LEFT. The physics lives in the interplay between what fills and what remains. The integer rules determine the filling. The measured values determine the scale. The moduli,  the geometric fractions,  are the bridge between them.
 
-The no-threshold finding says: the filling fractions do not depend on energy. They are topological properties of the vortex geometry. A (3,2,1/6) vortex fills 1/15 of the U(1) beta space, 1 of the SU(2) beta space, and 1/3 of the SU(3) beta space — at every energy, at every scale, always. The only thing that changes at a threshold is whether you can EXCITE the vortex. The filling fraction — the modulus — is permanent.
+The no-threshold finding says: the filling fractions do not depend on energy. They are topological properties of the vortex geometry. A (3,2,1/6) vortex fills 1/15 of the U(1) beta space, 1 of the SU(2) beta space, and 1/3 of the SU(3) beta space,  at every energy, at every scale, always. The only thing that changes at a threshold is whether you can EXCITE the vortex. The filling fraction,  the modulus,  is permanent.
 
 This is what R₂ taught the series from the beginning: π/4 is the same in pipes, wires, speakers, discs, antennas, fibers, wafers, beams, and loop integrals. The modulus is universal. The coordinator Z (velocity, resistivity, beta coefficient) is what makes each domain different. The modulus is what makes them the same.
 
@@ -389,7 +389,7 @@ This is what R₂ taught the series from the beginning: π/4 is the same in pipe
 
 ---
 
-### TABLE MR.1: THE R₂ FAMILY — GEOMETRIC FILLING FRACTIONS BY DIMENSION
+### TABLE MR.1: THE R₂ FAMILY,  GEOMETRIC FILLING FRACTIONS BY DIMENSION
 
 | n | Rₙ | Exact form | Decimal | Meaning | Series use |
 |---|---|---|---|---|---|
@@ -406,7 +406,7 @@ Key ratios: R₄/R₂ = π/8. R₆/R₄ = π/12. Each step multiplies by π/(4+2
 
 ---
 
-### TABLE MR.2: THE 22 R₂ EQUATIONS — MODULUS IN ENGINEERING DOMAINS
+### TABLE MR.2: THE 22 R₂ EQUATIONS,  MODULUS IN ENGINEERING DOMAINS
 
 | # | Domain | Equation | Coordinator Z | R₂ role | Precision |
 |---|---|---|---|---|---|
@@ -457,7 +457,7 @@ Items 8–10 added by Session 4. The pattern: R₂ (or the generation democracy 
 
 ---
 
-### TABLE MR.4: LEVEL 0 MODULI — PURE GEOMETRY
+### TABLE MR.4: LEVEL 0 MODULI,  PURE GEOMETRY
 
 | Modulus | Value | Fraction | Transcendental? | Where it enters |
 |---|---|---|---|---|
@@ -470,11 +470,11 @@ Items 8–10 added by Session 4. The pattern: R₂ (or the generation democracy 
 | C_c = π/(π+2) | 0.61102... | 4R₂/(4R₂+2) | Yes | Vena contracta |
 | 1/√(2π) = 1/√(8R₂) | 0.39894... | Gaussian norm | Yes | Probability, statistics |
 
-These moduli are universal — they appear identically in every domain. They are Level 0 because they derive from pure mathematics, not from any physical theory.
+These moduli are universal,  they appear identically in every domain. They are Level 0 because they derive from pure mathematics, not from any physical theory.
 
 ---
 
-### TABLE MR.5: LEVEL 1 MODULI — GAUGE GROUP STRUCTURE
+### TABLE MR.5: LEVEL 1 MODULI,  GAUGE GROUP STRUCTURE
 
 | Modulus | Value | Fraction | Origin | First appears | Papers |
 |---|---|---|---|---|---|
@@ -503,7 +503,7 @@ All exact Fractions. All determined by the gauge group SU(3)×SU(2)×U(1) and th
 
 ---
 
-### TABLE MR.6: LEVEL 1 MODULI — DERIVED RATIOS
+### TABLE MR.6: LEVEL 1 MODULI,  DERIVED RATIOS
 
 | Modulus | Value | Fraction | Derivation | Papers |
 |---|---|---|---|---|
@@ -523,7 +523,7 @@ All exact. All derivable from Level 1 inputs. R₂ cancels in every ratio.
 
 ---
 
-### TABLE MR.7: LEVEL 2 MODULI — MEASURED PARAMETERS
+### TABLE MR.7: LEVEL 2 MODULI,  MEASURED PARAMETERS
 
 | Modulus | Value | DATA-4 ID | Unit | Digits | Role |
 |---|---|---|---|---|---|
@@ -534,14 +534,14 @@ All exact. All derivable from Level 1 inputs. R₂ cancels in every ratio.
 | m_mu | 105.658 MeV | B3 | MeV | 10 | Second charged lepton |
 | m_tau | 1776.86 MeV | B4 | MeV | 6 | Third charged lepton |
 | K(leptons) | 0.66666 | K8 | dimensionless | 10 | Koide shape parameter |
-| a²(leptons) | 1.99996 | — | dimensionless | 5 | Koide amplitude squared |
+| a²(leptons) | 1.99996 |,  | dimensionless | 5 | Koide amplitude squared |
 | M_Z | 91187.6 MeV | C1 | MeV | 6 | EW scale reference |
 
 These are the moduli the universe supplies. Each enters the computation chain at specific points. Each is a filling fraction: sin²θ_W is the weak fraction of EM; α_s is the strong coupling fraction; K is the mass-sum fraction.
 
 ---
 
-### TABLE MR.8: LEVEL 3 MODULI — PREDICTIONS (DERIVED FROM LEVELS 0+1+2)
+### TABLE MR.8: LEVEL 3 MODULI,  PREDICTIONS (DERIVED FROM LEVELS 0+1+2)
 
 | Prediction | Value | Miss from measured | Moduli used | Paper |
 |---|---|---|---|---|
@@ -552,10 +552,10 @@ These are the moduli the universe supplies. Each enters the computation chain at
 | sin²θ_W (2-loop SM) | 0.23108 | 0.060% | + SM b_ij | PHYS-34 |
 | sin²θ_W (2-loop full) | 0.23133 | **0.048%** | + VL db_ij | PHYS-34 |
 | m_tau (Koide, K=2/3) | 1776.97 MeV | **0.006%** | m_e, m_mu, K=2/3 | PHYS-33 |
-| Δ (1-loop, M_VL=500) | −1.17 | — | One-loop miss | PHYS-28 |
-| Δ (2-loop, full b_ij) | −0.04 | — | Near-zero (no-thresh) | PHYS-30 |
+| Δ (1-loop, M_VL=500) | −1.17 |,  | One-loop miss | PHYS-28 |
+| Δ (2-loop, full b_ij) | −0.04 |,  | Near-zero (no-thresh) | PHYS-30 |
 
-The miss is the REMAINDER — the fraction not captured by the integer moduli acting through the geometric moduli on the measured inputs.
+The miss is the REMAINDER,  the fraction not captured by the integer moduli acting through the geometric moduli on the measured inputs.
 
 ---
 
@@ -583,11 +583,11 @@ The miss is the REMAINDER — the fraction not captured by the integer moduli ac
 | **Total numerator** | | | **−13** | −44 + 24 + 1 + 6 |
 | **b₂'** | **−13/6** | **Fraction(-13, 6)** | | |
 
-Each constituent is a geometric modulus — a filling fraction weighted by its group theory coefficients.
+Each constituent is a geometric modulus,  a filling fraction weighted by its group theory coefficients.
 
 ---
 
-### TABLE MR.10: THE VL TWO-LOOP MATRIX — NINE CROSS-COUPLING MODULI
+### TABLE MR.10: THE VL TWO-LOOP MATRIX,  NINE CROSS-COUPLING MODULI
 
 | Entry | Fraction | Decimal | Formula | What it measures |
 |---|---|---|---|---|
@@ -632,18 +632,18 @@ Level 0 is the same in all domains. Level 1 is the same in all computations with
 
 ---
 
-### TABLE MR.13: THE NO-THRESHOLD PRINCIPLE — MODULUS vs INERTIA
+### TABLE MR.13: THE NO-THRESHOLD PRINCIPLE,  MODULUS vs INERTIA
 
 | Property | At μ < M_VL | At μ > M_VL | Scale-dependent? |
 |---|---|---|---|
-| CD representation (3,2,1/6) | (3,2,1/6) | (3,2,1/6) | **NO** — topological |
-| Δb₁ = 1/15 | 1/15 | 1/15 | **NO** — topological |
-| Δb₂ = 1 | 1 | 1 | **NO** — topological |
-| Δb₃ = 1/3 | 1/3 | 1/3 | **NO** — topological |
-| S₂(fund) = 1/2 | 1/2 | 1/2 | **NO** — topological |
-| Y = 1/6 | 1/6 | 1/6 | **NO** — topological |
-| Can produce real CD particle? | No | Yes | **YES** — energy-dependent |
-| Virtual contribution to running | Suppressed by (μ/M_VL)² | Full | **YES** — energy-dependent |
+| CD representation (3,2,1/6) | (3,2,1/6) | (3,2,1/6) | **NO**,  topological |
+| Δb₁ = 1/15 | 1/15 | 1/15 | **NO**,  topological |
+| Δb₂ = 1 | 1 | 1 | **NO**,  topological |
+| Δb₃ = 1/3 | 1/3 | 1/3 | **NO**,  topological |
+| S₂(fund) = 1/2 | 1/2 | 1/2 | **NO**,  topological |
+| Y = 1/6 | 1/6 | 1/6 | **NO**,  topological |
+| Can produce real CD particle? | No | Yes | **YES**,  energy-dependent |
+| Virtual contribution to running | Suppressed by (μ/M_VL)² | Full | **YES**,  energy-dependent |
 | Step-function approximation | Sets modulus to 0 | Sets modulus to full | Creates artificial discontinuity |
 | No-threshold treatment | Uses full modulus | Uses full modulus | No discontinuity → 12× better |
 
@@ -657,14 +657,14 @@ The modulus is the geometric filling fraction. The inertia is the excitation cos
 |---|---|---|---|---|
 | 1. Extract couplings | α_EM (L2), sin²θ_W (L2) | 1/α₂ = sin²θ_W × α_EM⁻¹ | 1/α₁, 1/α₂ | No (ratio) |
 | 2. One-loop crossing | 1/α₁, 1/α₂ (L2), b₁', b₂' (L1) | L_GUT = (1/α₁−1/α₂)/(b₁'−b₂') | L_GUT | No (ratio) |
-| 3. One-loop running | L_GUT, b₃' (L1), 1/(2π) (L0) | 1/α₃(GUT) = 1/α₃(M_Z) − b₃'L | 1/α₃ at GUT | Yes — via L = ln(μ/M_Z)/(8R₂) |
-| 4. Two-loop correction | b_ij (L1), α_j (L2), 1/(4π) (L0) | d(1/αᵢ)/dL += −b_ij×α_j/(16R₂) | Corrected 1/αᵢ | Yes — via 1/(16R₂) |
+| 3. One-loop running | L_GUT, b₃' (L1), 1/(2π) (L0) | 1/α₃(GUT) = 1/α₃(M_Z) − b₃'L | 1/α₃ at GUT | Yes,  via L = ln(μ/M_Z)/(8R₂) |
+| 4. Two-loop correction | b_ij (L1), α_j (L2), 1/(4π) (L0) | d(1/αᵢ)/dL += −b_ij×α_j/(16R₂) | Corrected 1/αᵢ | Yes,  via 1/(16R₂) |
 | 5. GUT crossing | 1/α₁=1/α₂ at L_GUT | Average → 1/α_GUT | 1/α_GUT | R₂ cancels in crossing condition |
 | 6. Back-run | 1/α_GUT, b₃', b_ij | Run from GUT to M_Z | Predicted 1/α₃ | Yes |
 | 7. Extract α_s | 1/α₃_predicted | α_s = 1/(1/α₃) | α_s = 0.11838 | R₂ divides out in final ratio |
 | 8. Compare | α_s_pred vs α_s_meas | Miss = \|pred−meas\|/meas | 0.33% | The REMAINDER |
 
-The remainder (0.33%) is what the Level 0+1+2 moduli do not capture. It could come from three-loop corrections (more R₂ factors), threshold effects (modulus discontinuity — which PHYS-35 shows is a poor approximation), or physics beyond the current framework.
+The remainder (0.33%) is what the Level 0+1+2 moduli do not capture. It could come from three-loop corrections (more R₂ factors), threshold effects (modulus discontinuity,  which PHYS-35 shows is a poor approximation), or physics beyond the current framework.
 
 ---
 
@@ -672,7 +672,7 @@ The remainder (0.33%) is what the Level 0+1+2 moduli do not capture. It could co
 
 ---
 
-## Notebook: The Modulus and Remainder — Complete Tracking Through Session 4
+## Notebook: The Modulus and Remainder,  Complete Tracking Through Session 4
 
 ---
 
@@ -681,11 +681,11 @@ The remainder (0.33%) is what the Level 0+1+2 moduli do not capture. It could co
 
 ## The Circle and the Square
 
-Draw a circle. Now draw the smallest square that fits around it — just touching the circle on all four sides. Look at the corners. The circle doesn't reach them. There's space left over, four little crescents between the round edge and the straight walls.
+Draw a circle. Now draw the smallest square that fits around it,  just touching the circle on all four sides. Look at the corners. The circle doesn't reach them. There's space left over, four little crescents between the round edge and the straight walls.
 
 How much of the square does the circle fill?
 
-It doesn't matter how big the circle is. A penny on a napkin. A manhole cover in its frame. The Moon fitted into a box. The answer is always the same: the circle fills 78.54% of the square. The leftover — the four crescents — is always 21.46%.
+It doesn't matter how big the circle is. A penny on a napkin. A manhole cover in its frame. The Moon fitted into a box. The answer is always the same: the circle fills 78.54% of the square. The leftover,  the four crescents,  is always 21.46%.
 
 That number, 78.54%, is π/4. It's the ratio between round area and straight-edged area for every circle ever drawn. It never changes. It can't change. It's built into the geometry of circles and squares, and no amount of stretching, shrinking, or wishing makes it anything other than what it is.
 
@@ -697,15 +697,15 @@ A copper wire is round. The electrician who calculates its resistance needs the 
 
 A satellite dish is round. The RF engineer who calculates how much signal it captures needs the dish's area. Same formula. πd²/4. She calls it "the effective aperture."
 
-A speaker cone is round. A laser beam is round. A semiconductor wafer is round. A capacitor plate is round. A thermal radiator is round. Every one of these systems, in every one of these engineering departments, uses the same number — π/4 — to convert between the round thing they're working with and the straight-line measurements they're working in.
+A speaker cone is round. A laser beam is round. A semiconductor wafer is round. A capacitor plate is round. A thermal radiator is round. Every one of these systems, in every one of these engineering departments, uses the same number,  π/4,  to convert between the round thing they're working with and the straight-line measurements they're working in.
 
 Twenty-two equations across nine departments. All using the same geometric conversion. All calling it something different. The pipe engineer calls it "cross-sectional area." The antenna engineer calls it "effective aperture." The optics engineer calls it "beam area." The thermal engineer calls it "radiating surface." Nine names for one number.
 
-Nobody noticed they were all doing the same thing because they were in different departments, reading different textbooks, attending different conferences, publishing in different journals. The number was hiding in plain sight — not because it was hard to find, but because nobody looked across the walls.
+Nobody noticed they were all doing the same thing because they were in different departments, reading different textbooks, attending different conferences, publishing in different journals. The number was hiding in plain sight,  not because it was hard to find, but because nobody looked across the walls.
 
-This is the first example of a pattern that repeats throughout this book: a single thing, appearing everywhere, invisible because it has different names in different places. The circle-to-square ratio is simple enough that you can see it with your eyes. The deeper examples — the ones that connect quantum physics to cosmology — are harder to see. But the principle is the same. One thing. Many names. The names hide the unity.
+This is the first example of a pattern that repeats throughout this book: a single thing, appearing everywhere, invisible because it has different names in different places. The circle-to-square ratio is simple enough that you can see it with your eyes. The deeper examples,  the ones that connect quantum physics to cosmology,  are harder to see. But the principle is the same. One thing. Many names. The names hide the unity.
 
-The ratio π/4 has a name in this book: β. It is the geometric bridge between round and straight. Whenever you see πd²/4 in any equation, in any field, that's β × d² — the area of the circle expressed as a fraction of its bounding square. The fraction is always the same. The only things that change are the field-specific details: what's flowing through the circle, what's resisting the flow, what you're trying to calculate. The geometry is invariant. The departments are variant. Recognizing the invariant is the first step.
+The ratio π/4 has a name in this book: β. It is the geometric bridge between round and straight. Whenever you see πd²/4 in any equation, in any field, that's β × d²,  the area of the circle expressed as a fraction of its bounding square. The fraction is always the same. The only things that change are the field-specific details: what's flowing through the circle, what's resisting the flow, what you're trying to calculate. The geometry is invariant. The departments are variant. Recognizing the invariant is the first step.
 
 ---
 
@@ -717,21 +717,21 @@ You've seen β in pipes, wires, dishes, and speakers. Round things measured with
 
 Now something stranger. The same ratio appears in particle physics.
 
-When physicists calculate how strongly two particles interact — how hard an electron pulls on another electron, or how tightly a quark is bound inside a proton — they use a number called a coupling constant. It measures the strength of the interaction. A bigger coupling means a stronger pull.
+When physicists calculate how strongly two particles interact,  how hard an electron pulls on another electron, or how tightly a quark is bound inside a proton,  they use a number called a coupling constant. It measures the strength of the interaction. A bigger coupling means a stronger pull.
 
-But the coupling isn't fixed. It changes depending on how closely you look. Zoom in on an electron and the electromagnetic coupling gets slightly stronger. Zoom in on a quark and the strong coupling gets slightly weaker. This isn't a quirk of the math — it's measured. The coupling at one distance is different from the coupling at another distance. Physicists call this "running."
+But the coupling isn't fixed. It changes depending on how closely you look. Zoom in on an electron and the electromagnetic coupling gets slightly stronger. Zoom in on a quark and the strong coupling gets slightly weaker. This isn't a quirk of the math,  it's measured. The coupling at one distance is different from the coupling at another distance. Physicists call this "running."
 
 How much does the coupling change when you zoom in? That depends on three things.
 
-First: how far you zoomed. The difference between your starting scale and your ending scale. This is the driver — the thing that causes the change.
+First: how far you zoomed. The difference between your starting scale and your ending scale. This is the driver,  the thing that causes the change.
 
-Second: which particles are active at that scale. Heavier particles don't contribute at low energies because there isn't enough energy to involve them. Lighter particles contribute everywhere. The particle content determines a number called the beta coefficient — an integer fraction, like −7 or −19/6, that comes from counting which particles exist and how they interact with the force in question. This is the integer rule. It's exact because it counts particles, and you can't have half a particle.
+Second: which particles are active at that scale. Heavier particles don't contribute at low energies because there isn't enough energy to involve them. Lighter particles contribute everywhere. The particle content determines a number called the beta coefficient,  an integer fraction, like −7 or −19/6, that comes from counting which particles exist and how they interact with the force in question. This is the integer rule. It's exact because it counts particles, and you can't have half a particle.
 
 Third: 2π.
 
-There it is. The circumference of the unit circle. The same geometric constant that converts round to straight in every pipe, wire, and antenna equation. It appears here because the calculation involves a loop — a virtual particle traveling in a closed circular path and returning to where it started. The circular path meets the linear change in coupling strength, and the conversion between them is 2π. Which is 8 × β. Eight times the circle-to-square ratio.
+There it is. The circumference of the unit circle. The same geometric constant that converts round to straight in every pipe, wire, and antenna equation. It appears here because the calculation involves a loop,  a virtual particle traveling in a closed circular path and returning to where it started. The circular path meets the linear change in coupling strength, and the conversion between them is 2π. Which is 8 × β. Eight times the circle-to-square ratio.
 
-This is not a coincidence and not a convention. The 2π in particle physics is doing the same job as the π/4 in pipe flow. Round geometry meets straight-line measurement. The loop integral is circular. The coupling change is linear. The conversion factor between them is the same geometric ratio that appears whenever circles meet straight edges — dressed up in the notation of quantum field theory, but performing the identical operation.
+This is not a coincidence and not a convention. The 2π in particle physics is doing the same job as the π/4 in pipe flow. Round geometry meets straight-line measurement. The loop integral is circular. The coupling change is linear. The conversion factor between them is the same geometric ratio that appears whenever circles meet straight edges,  dressed up in the notation of quantum field theory, but performing the identical operation.
 
 The pipe engineer writes πd²/4 and calls it "cross-sectional area." The particle physicist writes 1/(2π) and calls it "the loop factor." Same ratio. Different name. Different department. Same geometry.
 
@@ -742,43 +742,43 @@ The pipe engineer writes πd²/4 and calls it "cross-sectional area." The partic
 
 ## When the Geometry Cancels
 
-Remember the wire and the capacitor from the previous section. The wire's resistance uses π/4 — the round cross-section of the copper conductor. The capacitor's capacitance uses π/4 — the round area of the plate. When you multiply resistance by capacitance to get the RC time constant, the π/4 in the numerator and the π/4 in the denominator cancel. What's left is pure material properties — resistivity, permittivity, length, thickness. The geometry drops out because it appeared in both pieces in the same way.
+Remember the wire and the capacitor from the previous section. The wire's resistance uses π/4,  the round cross-section of the copper conductor. The capacitor's capacitance uses π/4,  the round area of the plate. When you multiply resistance by capacitance to get the RC time constant, the π/4 in the numerator and the π/4 in the denominator cancel. What's left is pure material properties,  resistivity, permittivity, length, thickness. The geometry drops out because it appeared in both pieces in the same way.
 
 The same thing happens in particle physics, and it reveals something extraordinary.
 
-There are three forces in the Standard Model: electromagnetic, weak, and strong. Each one has its own coupling constant — a number that says how strong that force is. Each coupling runs with energy — it changes as you zoom in or out. And each one's running rate is set by its own beta coefficient — an integer fraction determined by counting which particles feel that force.
+There are three forces in the Standard Model: electromagnetic, weak, and strong. Each one has its own coupling constant,  a number that says how strong that force is. Each coupling runs with energy,  it changes as you zoom in or out. And each one's running rate is set by its own beta coefficient,  an integer fraction determined by counting which particles feel that force.
 
 The three beta coefficients are:
 
-b₁ = 41/10 — for the electromagnetic-like force
+b₁ = 41/10,  for the electromagnetic-like force
 
-b₂ = −19/6 — for the weak force
+b₂ = −19/6,  for the weak force
 
-b₃ = −7 — for the strong force
+b₃ = −7,  for the strong force
 
-Each of these contains the geometric loop factor 2π buried in its derivation. But now ask a simple question: do the three forces ever converge to the same strength? If you zoom in far enough — to high enough energy — do the three coupling constants meet at a single point?
+Each of these contains the geometric loop factor 2π buried in its derivation. But now ask a simple question: do the three forces ever converge to the same strength? If you zoom in far enough,  to high enough energy,  do the three coupling constants meet at a single point?
 
 To answer this, you don't need the individual running rates. You need the *ratio* of how fast one pair converges compared to another. This is the gap ratio:
 
 Gap ratio = (b₁ − b₂) / (b₂ − b₃)
 
-And here something important happens. The geometric factor 2π appears in every beta coefficient in exactly the same position — it comes from the loop integral that every force shares. When you subtract one beta from another, the 2π is in both terms identically. When you divide one difference by another, the 2π cancels completely. It drops out, just like π/4 drops out of the RC time constant.
+And here something important happens. The geometric factor 2π appears in every beta coefficient in exactly the same position,  it comes from the loop integral that every force shares. When you subtract one beta from another, the 2π is in both terms identically. When you divide one difference by another, the 2π cancels completely. It drops out, just like π/4 drops out of the RC time constant.
 
 What's left is pure integers.
 
 For the Standard Model particles: the gap ratio is 218/115. Two integers. No geometry. No measurement. Just the count of which particles exist and how they transform under each force.
 
-218/115 tells you whether the three forces meet. They don't — not quite. The gap ratio predicts a near-miss. The three couplings get close but don't converge to a single point. This has been known since the 1970s, and it's why textbooks say "the Standard Model forces do not unify."
+218/115 tells you whether the three forces meet. They don't,  not quite. The gap ratio predicts a near-miss. The three couplings get close but don't converge to a single point. This has been known since the 1970s, and it's why textbooks say "the Standard Model forces do not unify."
 
 But that conclusion assumed the current particle content is complete.
 
-Add one particle — one specific representation called the Cabibbo Doublet, with quantum numbers (3, 2, 1/6) — and the three beta coefficients shift by small exact fractions: 1/15, 1, and 1/3. The new gap ratio becomes:
+Add one particle,  one specific representation called the Cabibbo Doublet, with quantum numbers (3, 2, 1/6),  and the three beta coefficients shift by small exact fractions: 1/15, 1, and 1/3. The new gap ratio becomes:
 
 38/27
 
 Smaller integers. Cleaner structure. And when you run the three couplings with these modified betas, they converge 218 times more closely than before. The near-miss becomes a near-hit. The gap shrinks from 5.88 to 0.027.
 
-Both gap ratios — 218/115 and 38/27 — are exact. They aren't rounded. They aren't approximated. They're ratios of integers that come from counting particles, and the geometry has cancelled out completely. The integers are the physics. The geometry was the carrier. Once you form the ratio, the carrier drops away and the integer structure is exposed.
+Both gap ratios,  218/115 and 38/27,  are exact. They aren't rounded. They aren't approximated. They're ratios of integers that come from counting particles, and the geometry has cancelled out completely. The integers are the physics. The geometry was the carrier. Once you form the ratio, the carrier drops away and the integer structure is exposed.
 
-This is the pattern that repeats throughout the book: the geometric conversion factor — β, 2π, the loop integral — enters every calculation, but cancels in every ratio that's about *structure* rather than *scale*. What survives the cancellation is always integers. And the integers are where unification lives.
+This is the pattern that repeats throughout the book: the geometric conversion factor,  β, 2π, the loop integral,  enters every calculation, but cancels in every ratio that's about *structure* rather than *scale*. What survives the cancellation is always integers. And the integers are where unification lives.
 

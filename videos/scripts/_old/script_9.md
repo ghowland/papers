@@ -1,19 +1,19 @@
 
-# Video 9 Script: Gravity Is Not What You Think — Time as Reading Depth
+# Video 9 Script: Gravity Is Not What You Think,  Time as Reading Depth
 
 ## Delivery Notes
 
-This is the most speculative video in the series and the most carefully honest. You're proposing a new interpretation of general relativity — not new equations, not new math, but a new understanding of what the existing equations describe. The energy is "explorer at the edge of the map, showing you exactly where the ground might give way." Every claim comes with its kill condition. The emotional structure: here's what I think → here's the evidence → here's exactly what would prove me wrong → here's the experiment.
+This is the most speculative video in the series and the most carefully honest. You're proposing a new interpretation of general relativity,  not new equations, not new math, but a new understanding of what the existing equations describe. The energy is "explorer at the edge of the map, showing you exactly where the ground might give way." Every claim comes with its kill condition. The emotional structure: here's what I think → here's the evidence → here's exactly what would prove me wrong → here's the experiment.
 
 ---
 
-## SECTION 1: Opening — The Most Radical Chapter (1 minute)
+## SECTION 1: Opening,  The Most Radical Chapter (1 minute)
 
 *[In frame, talking to camera. No slides.]*
 
 ### TECHNICAL VERSION
 
-Eight videos of standard physics reorganized — the same equations in a new computational framework. This video goes further. The equations are still Einstein's, still 1915, still general relativity. What changes is the interpretation: what those equations are telling us about the nature of time and the fourth coordinate.
+Eight videos of standard physics reorganized,  the same equations in a new computational framework. This video goes further. The equations are still Einstein's, still 1915, still general relativity. What changes is the interpretation: what those equations are telling us about the nature of time and the fourth coordinate.
 
 This is the most speculative part of the framework and I will state that explicitly at every stage. I will show you the evidence, the precision, and the kill conditions. If the interpretation is wrong, I'll tell you exactly what experiment will kill it, and I'll tell you before the experiment runs.
 
@@ -21,7 +21,7 @@ This is the most speculative part of the framework and I will state that explici
 
 Everything I've shown you so far uses standard physics. Published equations. Published data. Reorganized, not reinvented.
 
-This video goes further. This is where the model proposes something genuinely new. Not new equations — the equations are still Einstein's, still general relativity, still 1915. The math doesn't change. What changes is what the math is telling us about what time actually is.
+This video goes further. This is where the model proposes something genuinely new. Not new equations,  the equations are still Einstein's, still general relativity, still 1915. The math doesn't change. What changes is what the math is telling us about what time actually is.
 
 This might be wrong. I'll show you exactly where it could be wrong and what experiment would kill it. The prediction is on the record before the experiment runs.
 
@@ -33,17 +33,17 @@ Open by acknowledging the shift. The audience knows you from eight videos of doc
 
 ## SECTION 2: Gravity Is a Reading (3 minutes)
 
-**SLIDE: talk9_01_four_forces_readings.png** — Show during force comparison
+**SLIDE: talk9_01_four_forces_readings.png**,  Show during force comparison
 
-**SLIDE: talk9_02_g_scatter.png** — Show during measurement scatter
+**SLIDE: talk9_02_g_scatter.png**,  Show during measurement scatter
 
 ### TECHNICAL VERSION
 
-The framework treats every gauge coupling as a reading at a soliton boundary. The electromagnetic coupling α_em runs from 1/137.036 at low energy to 1/127.9 at M_Z to ~1/42 at M_GUT — different readings at different boundaries. This is established physics since Gell-Mann and Low (1954), measured at LEP and the LHC.
+The framework treats every gauge coupling as a reading at a soliton boundary. The electromagnetic coupling α_em runs from 1/137.036 at low energy to 1/127.9 at M_Z to ~1/42 at M_GUT,  different readings at different boundaries. This is established physics since Gell-Mann and Low (1954), measured at LEP and the LHC.
 
-The strong coupling α_s runs from ~1 inside the proton to 0.1184 at M_Z to ~1/42 at M_GUT. Asymptotic freedom — established physics since Gross, Wilczek, and Politzer (1973).
+The strong coupling α_s runs from ~1 inside the proton to 0.1184 at M_Z to ~1/42 at M_GUT. Asymptotic freedom,  established physics since Gross, Wilczek, and Politzer (1973).
 
-The framework proposes that gravity follows the same pattern: Newton's constant G is a reading at a boundary, not a universal constant. All precision measurements of G have been performed on Earth's surface, inside Earth's gravitational boundary (the Hill sphere). The measurements show anomalous scatter — approximately 500 ppm between laboratories, compared to individual measurement uncertainties of ~15 ppm. This 17× excess scatter is unique among fundamental constants.
+The framework proposes that gravity follows the same pattern: Newton's constant G is a reading at a boundary, not a universal constant. All precision measurements of G have been performed on Earth's surface, inside Earth's gravitational boundary (the Hill sphere). The measurements show anomalous scatter,  approximately 500 ppm between laboratories, compared to individual measurement uncertainties of ~15 ppm. This 17× excess scatter is unique among fundamental constants.
 
 For comparison: the electron magnetic moment agrees to 15 digits across every laboratory on Earth. The Penning trap experiments that measure a_e are far more delicate than the torsion balance experiments that measure G. If measurement difficulty explained the G scatter, the electron measurement should scatter far more. It doesn't.
 
@@ -55,7 +55,7 @@ In the model, every force is a reading at a boundary. Electromagnetism reads 1/1
 
 The strong force does the same. 0.118 outside the proton. About 1 inside. 1/42 at unification. Accepted since the 1970s.
 
-Gravity should follow the same pattern — if it belongs to the same unified structure. But here's the problem: we've only ever measured G at one boundary. Earth's surface. Every torsion balance, every beam balance, every atom interferometer — all on Earth, all inside the same gravitational boundary.
+Gravity should follow the same pattern,  if it belongs to the same unified structure. But here's the problem: we've only ever measured G at one boundary. Earth's surface. Every torsion balance, every beam balance, every atom interferometer,  all on Earth, all inside the same gravitational boundary.
 
 And the measurements don't agree. Newton's constant G has more scatter between laboratories than any other fundamental constant. 500 parts per million of spread, when individual labs claim 15 ppm precision. The scatter is 17 times larger than the error bars.
 
@@ -65,29 +65,29 @@ Maybe G scatters because G isn't constant. Maybe it's a reading, like every othe
 
 ### MERGE NOTES
 
-The "17× excess scatter" is a striking number and it's published data. The electron comparison is powerful — "if difficulty were the explanation, the electron should scatter too, it doesn't." You understand the pattern (readings at boundaries) because it's your framework. The key line: "we've only ever measured G at one boundary."
+The "17× excess scatter" is a striking number and it's published data. The electron comparison is powerful,  "if difficulty were the explanation, the electron should scatter too, it doesn't." You understand the pattern (readings at boundaries) because it's your framework. The key line: "we've only ever measured G at one boundary."
 
 ---
 
 ## SECTION 3: The Thought Experiment (2 minutes)
 
-**SLIDE: talk9_03_ocean_one_depth.png** — Show during analogy
+**SLIDE: talk9_03_ocean_one_depth.png**,  Show during analogy
 
-**SLIDE: talk9_04_everything_dynamic_except_g.png** — Show during GR comparison
+**SLIDE: talk9_04_everything_dynamic_except_g.png**,  Show during GR comparison
 
 ### TECHNICAL VERSION
 
-G is declared a universal constant — the same value everywhere in the universe, at every scale, at every epoch. This declaration is not derived from GR; it is an assumption embedded in the field equations. GR itself treats the metric g_μν as dynamic (varies with mass-energy distribution), the Ricci tensor R_μν as dynamic (varies with curvature), and the stress-energy tensor T_μν as dynamic (varies with matter content). Everything in the theory varies except the coupling constant G.
+G is declared a universal constant,  the same value everywhere in the universe, at every scale, at every epoch. This declaration is not derived from GR; it is an assumption embedded in the field equations. GR itself treats the metric g_μν as dynamic (varies with mass-energy distribution), the Ricci tensor R_μν as dynamic (varies with curvature), and the stress-energy tensor T_μν as dynamic (varies with matter content). Everything in the theory varies except the coupling constant G.
 
-Every other force in the Standard Model resolved this asymmetry decades ago. The electromagnetic, weak, and strong couplings all run with energy scale — they are functions, not constants. The running is derived from the renormalization group equations and confirmed experimentally.
+Every other force in the Standard Model resolved this asymmetry decades ago. The electromagnetic, weak, and strong couplings all run with energy scale,  they are functions, not constants. The running is derived from the renormalization group equations and confirmed experimentally.
 
-Gravity's coupling is granted an exemption: it is declared fixed while everything else is dynamic. The exemption is not justified by the theory. It is an assumption that could be tested by measuring G at multiple gravitational potentials — measurements that have never been performed.
+Gravity's coupling is granted an exemption: it is declared fixed while everything else is dynamic. The exemption is not justified by the theory. It is an assumption that could be tested by measuring G at multiple gravitational potentials,  measurements that have never been performed.
 
 The analogy: measuring ocean temperature at one depth and declaring it constant everywhere. The temperature might vary with depth. You would never know from a single measurement location. To confirm constancy, you need measurements at multiple depths. For G, we have zero such measurements.
 
 ### NON-TECHNICAL VERSION
 
-G is declared a universal constant — the same everywhere in the universe, at every time, at every scale.
+G is declared a universal constant,  the same everywhere in the universe, at every time, at every scale.
 
 But think about what that claim requires. It requires that this one number, out of everything in general relativity, doesn't change. The shape of spacetime changes. The curvature changes. The matter distribution changes. Everything in Einstein's equations varies with position and time. Everything except G.
 
@@ -99,15 +99,15 @@ It's like measuring the ocean temperature at one depth and declaring the whole o
 
 ### MERGE NOTES
 
-"Everything else varies except G" is an observation that surprises most audiences. The ocean analogy is yours and it works. "Nobody has ever tested this" is a factual claim — no one has measured G at a fundamentally different gravitational potential. Keep this section clean and short.
+"Everything else varies except G" is an observation that surprises most audiences. The ocean analogy is yours and it works. "Nobody has ever tested this" is a factual claim,  no one has measured G at a fundamentally different gravitational potential. Keep this section clean and short.
 
 ---
 
 ## SECTION 4: Time as Reading Depth (4 minutes)
 
-**SLIDE: talk9_05_two_interpretations.png** — Show during formula comparison
+**SLIDE: talk9_05_two_interpretations.png**,  Show during formula comparison
 
-**SLIDE: talk9_06_soliton_depth_clock.png** — Show during hierarchy
+**SLIDE: talk9_06_soliton_depth_clock.png**,  Show during hierarchy
 
 ### TECHNICAL VERSION
 
@@ -119,13 +119,13 @@ The reading depth interpretation: time dilation is the reading depth in the soli
 
 Mathematically: the same formula. dτ/dt = √(1 − 2Φ/c²). No modification. No additional terms. No corrections. The predictions are numerically identical for all 17 passing GR tests.
 
-Conceptually: the fourth coordinate is not "time" in the sense of a dimension you move through. It's "depth" — your position in the boundary stack. Deeper means slower, not because spacetime is warped, but because more boundaries mean more attenuation of the reading.
+Conceptually: the fourth coordinate is not "time" in the sense of a dimension you move through. It's "depth",  your position in the boundary stack. Deeper means slower, not because spacetime is warped, but because more boundaries mean more attenuation of the reading.
 
-The interpretation adds no new predictions to standard GR for any test that involves a single force — all such tests are structurally identical under both interpretations. The one testable difference arises when multiple forces contribute differently to the reading depth: sector splitting.
+The interpretation adds no new predictions to standard GR for any test that involves a single force,  all such tests are structurally identical under both interpretations. The one testable difference arises when multiple forces contribute differently to the reading depth: sector splitting.
 
 ### NON-TECHNICAL VERSION
 
-General relativity predicts that clocks run slower in gravitational fields. The GPS system corrects for this every day — satellite clocks run 38 microseconds per day faster than ground clocks. This is measured, confirmed, and applied to your phone's navigation.
+General relativity predicts that clocks run slower in gravitational fields. The GPS system corrects for this every day,  satellite clocks run 38 microseconds per day faster than ground clocks. This is measured, confirmed, and applied to your phone's navigation.
 
 The standard interpretation: spacetime is curved by mass. Clocks in curved spacetime tick slower. Time is a dimension, and curvature warps it.
 
@@ -133,7 +133,7 @@ The reading depth interpretation: time dilation is your depth in the soliton hie
 
 The formula is the same. The square root of 1 minus 2 Phi over c squared. Same formula. Same numbers. Same GPS corrections. Same Mercury precession. Same Hulse-Taylor pulsar. Everything that standard GR predicts, this interpretation predicts identically.
 
-What changes is the meaning. The fourth coordinate isn't "when." It's "how deep." Deeper means slower — not because spacetime is warped, but because your position in the boundary stack determines your reading rate.
+What changes is the meaning. The fourth coordinate isn't "when." It's "how deep." Deeper means slower,  not because spacetime is warped, but because your position in the boundary stack determines your reading rate.
 
 GPS works not because satellites are in a different part of curved spacetime, but because satellites are at a different depth in the gravitational boundary stack. Same formula. Same correction. Different understanding.
 
@@ -141,21 +141,21 @@ And one testable difference. If reading depth is real, different forces contribu
 
 ### MERGE NOTES
 
-"Same formula, different meaning" is the core of this section. You understand the GPS example from daily life. The shift from "when" to "how deep" is your conceptual contribution. The key technical point: "the interpretation adds no new predictions except sector splitting." Don't overclaim — say "same formula" repeatedly to emphasize that nothing changes mathematically.
+"Same formula, different meaning" is the core of this section. You understand the GPS example from daily life. The shift from "when" to "how deep" is your conceptual contribution. The key technical point: "the interpretation adds no new predictions except sector splitting." Don't overclaim,  say "same formula" repeatedly to emphasize that nothing changes mathematically.
 
 ---
 
 ## SECTION 5: The 18 Tests (5 minutes)
 
-**SLIDE: talk9_07_eighteen_tests.png** — Show during result overview
+**SLIDE: talk9_07_eighteen_tests.png**,  Show during result overview
 
-**SLIDE: talk9_08_precision_cascade.png** — Show during precision ranking
+**SLIDE: talk9_08_precision_cascade.png**,  Show during precision ranking
 
-*[Terminal demo: run experiment_gr_time_dilation_v0 — this is the centerpiece]*
+*[Terminal demo: run experiment_gr_time_dilation_v0,  this is the centerpiece]*
 
 ### TECHNICAL VERSION
 
-The GR time dilation experiment suite comprises 18 comparisons spanning from the Pound-Rebka experiment (22.6 m tower, 1960) to cosmological supernova redshifts (z ≈ 0.5). The formula used is the standard GR prediction at each scale — no modifications, no additional terms.
+The GR time dilation experiment suite comprises 18 comparisons spanning from the Pound-Rebka experiment (22.6 m tower, 1960) to cosmological supernova redshifts (z ≈ 0.5). The formula used is the standard GR prediction at each scale,  no modifications, no additional terms.
 
 Results (selected):
 - Pound-Rebka (22.6 m): predicted vs measured fractional shift, miss 0.06%. PASS.
@@ -178,35 +178,35 @@ Let me run the experiment and let you watch the results.
 
 18 comparisons. Spanning from a 22-meter tower in a laboratory to the expansion of the universe. Sixty orders of magnitude. One formula. Let's see what happens.
 
-Pound-Rebka — a tower in Harvard. Gravitational redshift measured over 22 meters. Miss: 0.06%. PASS.
+Pound-Rebka,  a tower in Harvard. Gravitational redshift measured over 22 meters. Miss: 0.06%. PASS.
 
-GPS — satellites at 20,200 kilometers. 38 microseconds per day correction. Miss: 0.35%. PASS.
+GPS,  satellites at 20,200 kilometers. 38 microseconds per day correction. Miss: 0.35%. PASS.
 
-Solar redshift — the surface of the Sun. Miss: 16 parts per million. PASS.
+Solar redshift,  the surface of the Sun. Miss: 16 parts per million. PASS.
 
-Mercury — the precession of its orbit. Miss: 2.8 parts per million. That's extraordinary — 2.8 parts per million for a formula from 1915.
+Mercury,  the precession of its orbit. Miss: 2.8 parts per million. That's extraordinary,  2.8 parts per million for a formula from 1915.
 
-Cassini Shapiro delay — the slowing of a radio signal passing near the Sun. Gamma equals exactly 1. PASS.
+Cassini Shapiro delay,  the slowing of a radio signal passing near the Sun. Gamma equals exactly 1. PASS.
 
-Hulse-Taylor binary pulsar — two neutron stars spiraling toward each other. The orbital decay matches to 42 parts per million. PASS.
+Hulse-Taylor binary pulsar,  two neutron stars spiraling toward each other. The orbital decay matches to 42 parts per million. PASS.
 
-Speed of light from Planck units — 9 digits, zero miss. PASS.
+Speed of light from Planck units,  9 digits, zero miss. PASS.
 
-And... Gravity Probe A — the suborbital rocket. 2.47% miss. FAIL.
+And... Gravity Probe A,  the suborbital rocket. 2.47% miss. FAIL.
 
-17 pass. 1 fails. The one failure from Video 6 — still there, still unresolved.
+17 pass. 1 fails. The one failure from Video 6,  still there, still unresolved.
 
 60 orders of magnitude covered. One formula. No modifications. No fitting. No adjustable parameters. The formula works everywhere we've tested it.
 
 ### MERGE NOTES
 
-This is the visual centerpiece. Let the results scroll. Point at each one. The Mercury result at 2.8 ppm is genuinely impressive — let your voice convey that. The GPA FAIL should land with weight — the audience knows by now that you don't hide failures. "60 orders of magnitude, one formula" is a strong summary line.
+This is the visual centerpiece. Let the results scroll. Point at each one. The Mercury result at 2.8 ppm is genuinely impressive,  let your voice convey that. The GPA FAIL should land with weight,  the audience knows by now that you don't hide failures. "60 orders of magnitude, one formula" is a strong summary line.
 
 ---
 
 ## SECTION 6: The GPA FAIL (1 minute)
 
-**SLIDE: talk9_09_gpa_fail.png** — Show during anatomy
+**SLIDE: talk9_09_gpa_fail.png**,  Show during anatomy
 
 ### TECHNICAL VERSION
 
@@ -218,29 +218,29 @@ Status unchanged from Video 6. Three hypotheses: round altitude approximation, r
 
 The GPA failure. Same as Video 6. Still there. Still unresolved.
 
-The derivation uses 10,000 km — a round number — for a suborbital trajectory that was at varying altitudes throughout the flight. The miss is 2.47%, outside the 1% gate. The three hypotheses: round altitude, reference rounding, or a genuine problem. I don't know which.
+The derivation uses 10,000 km,  a round number,  for a suborbital trajectory that was at varying altitudes throughout the flight. The miss is 2.47%, outside the 1% gate. The three hypotheses: round altitude, reference rounding, or a genuine problem. I don't know which.
 
 The 17 passes don't erase the 1 failure.
 
 ### MERGE NOTES
 
-Keep this very brief — the audience saw it in Video 6. One sentence on the miss, one on the hypotheses, one on the status. Move on.
+Keep this very brief,  the audience saw it in Video 6. One sentence on the miss, one on the hypotheses, one on the status. Move on.
 
 ---
 
 ## SECTION 7: The Clock Decomposition and Sector Splitting (4 minutes)
 
-**SLIDE: talk9_10_dk_decomposition.png** — Show during D/K split
+**SLIDE: talk9_10_dk_decomposition.png**,  Show during D/K split
 
-**SLIDE: talk9_11_sector_splitting.png** — Show during prediction
+**SLIDE: talk9_11_sector_splitting.png**,  Show during prediction
 
 ### TECHNICAL VERSION
 
 The framework proposes that observed gravitational time dilation decomposes into two separable components:
 
-**D (Reading Depth)**: the spatial position in the soliton hierarchy, computable at frozen time (no time evolution needed). This determines the geometric structure of the gravitational effect. 89% of all GR effects (10 of 15 classified observables) are pure D — they can be computed from spatial structure alone without invoking time passage. Mercury precession, solar redshift, Shapiro delay, Pound-Rebka, GPS (gravitational part), lensing, frame dragging, Nordtvedt effect, geodetic precession, planetary perihelion advances.
+**D (Reading Depth)**: the spatial position in the soliton hierarchy, computable at frozen time (no time evolution needed). This determines the geometric structure of the gravitational effect. 89% of all GR effects (10 of 15 classified observables) are pure D,  they can be computed from spatial structure alone without invoking time passage. Mercury precession, solar redshift, Shapiro delay, Pound-Rebka, GPS (gravitational part), lensing, frame dragging, Nordtvedt effect, geodetic precession, planetary perihelion advances.
 
-**K (Tick)**: the Planck-scale heartbeat, a monotonic counter that makes events actual. 1 observable is pure K — muon lifetime dilation, which requires actual time passage to manifest.
+**K (Tick)**: the Planck-scale heartbeat, a monotonic counter that makes events actual. 1 observable is pure K,  muon lifetime dilation, which requires actual time passage to manifest.
 
 4 observables are mixed D×K: Hulse-Taylor orbital decay, gravitational waves, binary inspiral, time-delay interferometry.
 
@@ -256,19 +256,19 @@ Here's the deeper proposal. And this is where the model makes a genuine predicti
 
 The model says observed time dilation has two separable pieces.
 
-The first piece: the **reading**. Where you sit in the boundary stack. This is the spatial part — your depth in the hierarchy. You can compute it by freezing time and just looking at the geometry. 89% of all general relativistic effects — Mercury's orbit, gravitational lensing, GPS corrections, the Shapiro delay — are this. Just spatial structure. No time evolution needed.
+The first piece: the **reading**. Where you sit in the boundary stack. This is the spatial part,  your depth in the hierarchy. You can compute it by freezing time and just looking at the geometry. 89% of all general relativistic effects,  Mercury's orbit, gravitational lensing, GPS corrections, the Shapiro delay,  are this. Just spatial structure. No time evolution needed.
 
-The second piece: the **tick**. The Planck-scale heartbeat that makes things actually happen. One observable — muon lifetime dilation — requires this. It needs actual time to pass.
+The second piece: the **tick**. The Planck-scale heartbeat that makes things actually happen. One observable,  muon lifetime dilation,  requires this. It needs actual time to pass.
 
 Standard GR combines both pieces into one formula. You can't separate them. The model asks: what if you can?
 
-If the reading is force-dependent — if different forces contribute differently to your depth — then a nuclear clock and an optical clock should show slightly different time dilation in the same gravitational field.
+If the reading is force-dependent,  if different forces contribute differently to your depth,  then a nuclear clock and an optical clock should show slightly different time dilation in the same gravitational field.
 
 A nuclear clock uses the thorium-229 nucleus. It probes the strong force and the electromagnetic force. An optical clock uses strontium-87 electron transitions. It probes only the electromagnetic force.
 
 Standard GR says: both clocks show identical dilation. Period. No difference. The gravitational field doesn't care what kind of clock you use.
 
-The reading depth model says: a tiny difference — about one part in a trillion. Six orders of magnitude above what current clocks can detect.
+The reading depth model says: a tiny difference,  about one part in a trillion. Six orders of magnitude above what current clocks can detect.
 
 That's a real prediction. Testable. Specific. Labs at PTB in Germany and JILA in Colorado are building the nuclear clocks right now. Results expected 2028 to 2032.
 
@@ -278,15 +278,15 @@ If they disagree: new physics. A discovery. The fourth coordinate is depth, not 
 
 ### MERGE NOTES
 
-The D/K decomposition is conceptually accessible: "89% of gravity is spatial structure" is a striking claim you can back with the 10-1-4 classification. The sector splitting prediction is the payoff — one specific experiment, one specific timeline, one specific outcome that distinguishes your interpretation from standard GR. Deliver the prediction with precision: "one part in a trillion, six orders above detection." The binary outcome — "agree means dead, disagree means discovery" — is the cleanest possible framing.
+The D/K decomposition is conceptually accessible: "89% of gravity is spatial structure" is a striking claim you can back with the 10-1-4 classification. The sector splitting prediction is the payoff,  one specific experiment, one specific timeline, one specific outcome that distinguishes your interpretation from standard GR. Deliver the prediction with precision: "one part in a trillion, six orders above detection." The binary outcome,  "agree means dead, disagree means discovery",  is the cleanest possible framing.
 
 ---
 
 ## SECTION 8: Five Kill Switches (2 minutes)
 
-**SLIDE: talk9_12_five_gravity_kills.png** — Show during kill switch list
+**SLIDE: talk9_12_five_gravity_kills.png**,  Show during kill switch list
 
-**SLIDE: talk9_13_dies_vs_survives.png** — Show during modularity
+**SLIDE: talk9_13_dies_vs_survives.png**,  Show during modularity
 
 ### TECHNICAL VERSION
 
@@ -322,51 +322,51 @@ Any one of these fires, this part of the model dies. The rest of the model survi
 
 ### MERGE NOTES
 
-Run through the five quickly — the audience understands kill switches from Videos 6 and 7. The new content is the specificity: named labs, named datasets, named timelines. The firewall point is crucial: "this part dies, everything else lives."
+Run through the five quickly,  the audience understands kill switches from Videos 6 and 7. The new content is the specificity: named labs, named datasets, named timelines. The firewall point is crucial: "this part dies, everything else lives."
 
 ---
 
 ## SECTION 9: What This Means If Right (2 minutes)
 
-**SLIDE: talk9_14_fourth_coordinate.png** — Show during conceptual contrast
+**SLIDE: talk9_14_fourth_coordinate.png**,  Show during conceptual contrast
 
-**SLIDE: talk9_15_gps_depth.png** — Show during GPS reinterpretation
+**SLIDE: talk9_15_gps_depth.png**,  Show during GPS reinterpretation
 
 ### TECHNICAL VERSION
 
 If the reading depth interpretation is correct and sector splitting is detected:
 
-The fourth coordinate of spacetime is not temporal but hierarchical. "When" becomes "how deep" — your position in the nested soliton boundary stack. The distinction is not merely semantic: it implies that gravitational time dilation is force-dependent, that different sectors of the gauge group contribute differently to the reading depth, and that the effective gravitational constant G may run with boundary depth analogously to the gauge couplings.
+The fourth coordinate of spacetime is not temporal but hierarchical. "When" becomes "how deep",  your position in the nested soliton boundary stack. The distinction is not merely semantic: it implies that gravitational time dilation is force-dependent, that different sectors of the gauge group contribute differently to the reading depth, and that the effective gravitational constant G may run with boundary depth analogously to the gauge couplings.
 
 GPS operates not because satellites are in a different region of curved spacetime but because they are at a different depth in the gravitational boundary stack. Same formula. Same correction. Different ontology.
 
-The practical consequences for physics: every GR calculation remains valid (the formula is unchanged), but the interpretive framework opens new avenues — force-dependent gravitational effects, boundary-dependent G running, and a potential connection between gauge coupling unification and gravitational coupling evolution.
+The practical consequences for physics: every GR calculation remains valid (the formula is unchanged), but the interpretive framework opens new avenues,  force-dependent gravitational effects, boundary-dependent G running, and a potential connection between gauge coupling unification and gravitational coupling evolution.
 
 ### NON-TECHNICAL VERSION
 
-If this is right — if the clocks disagree and sector splitting is real — what changes?
+If this is right,  if the clocks disagree and sector splitting is real,  what changes?
 
 The fourth coordinate isn't time. It's depth. Your position in the boundary stack.
 
-GPS works not because satellites are in curved spacetime, but because they're at a different depth. Your phone's navigation doesn't care which interpretation is correct — the formula is the same, the correction is the same. But the understanding changes.
+GPS works not because satellites are in curved spacetime, but because they're at a different depth. Your phone's navigation doesn't care which interpretation is correct,  the formula is the same, the correction is the same. But the understanding changes.
 
-And here's what opens up: if time dilation is force-dependent, then gravity connects to the gauge group. The three forces we already understand — electromagnetic, weak, strong — would now connect to gravity through the boundary hierarchy. That's the connection the model has been missing.
+And here's what opens up: if time dilation is force-dependent, then gravity connects to the gauge group. The three forces we already understand,  electromagnetic, weak, strong,  would now connect to gravity through the boundary hierarchy. That's the connection the model has been missing.
 
 Same formula. Same predictions. Same GPS. But a different understanding of what the formula is telling us about the structure of the universe.
 
 ### MERGE NOTES
 
-Keep this aspirational but grounded. "Same formula, same GPS" prevents overclaiming. The gauge-gravity connection through boundary hierarchy is the speculative payoff — state it as a possibility, not a certainty.
+Keep this aspirational but grounded. "Same formula, same GPS" prevents overclaiming. The gauge-gravity connection through boundary hierarchy is the speculative payoff,  state it as a possibility, not a certainty.
 
 ---
 
 ## SECTION 10: What This Means If Wrong (1 minute)
 
-**SLIDE: talk9_16_clock_kill_sequence.png** — Show during kill sequence
+**SLIDE: talk9_16_clock_kill_sequence.png**,  Show during kill sequence
 
 ### TECHNICAL VERSION
 
-If the Th-229/Sr-87 comparison shows identical dilation at ≥2 gravitational potentials to 10⁻¹⁸ precision: sector splitting is killed. The reading depth interpretation loses its only testable distinction from standard GR and becomes unfalsifiable — a relabeling rather than a theory. Program status changes to KILLED. Documentation published.
+If the Th-229/Sr-87 comparison shows identical dilation at ≥2 gravitational potentials to 10⁻¹⁸ precision: sector splitting is killed. The reading depth interpretation loses its only testable distinction from standard GR and becomes unfalsifiable,  a relabeling rather than a theory. Program status changes to KILLED. Documentation published.
 
 The kill sequence: experiment runs → result: null → kill switch fires → status: KILLED → cause of death: clock comparison null → documentation published → all other RUM programs: unaffected.
 
@@ -374,9 +374,9 @@ Pre-registered. On the record. Before the experiment runs.
 
 ### NON-TECHNICAL VERSION
 
-If the clocks agree — no difference between nuclear and optical dilation — sector splitting is dead. The reading depth interpretation becomes just a relabeling of GR with no testable consequences. At that point, I park it.
+If the clocks agree,  no difference between nuclear and optical dilation,  sector splitting is dead. The reading depth interpretation becomes just a relabeling of GR with no testable consequences. At that point, I park it.
 
-The kill switch fires. The program status changes to KILLED. The documentation is published. The cause of death: clock comparison null. And every other part of the model — QED, electroweak, BBN, everything — is unaffected.
+The kill switch fires. The program status changes to KILLED. The documentation is published. The cause of death: clock comparison null. And every other part of the model,  QED, electroweak, BBN, everything,  is unaffected.
 
 The kill is pre-registered. The prediction is on the record before the experiment runs. That's how science should work. Predict, then test. Not test, then explain.
 
@@ -388,9 +388,9 @@ The kill is pre-registered. The prediction is on the record before the experimen
 
 ## SECTION 11: The D/K Classification and the Frozen Scan (2 minutes)
 
-**SLIDE: talk9_17_dk_classification.png** — Show during classification
+**SLIDE: talk9_17_dk_classification.png**,  Show during classification
 
-**SLIDE: talk9_18_frozen_scan_89.png** — Show during 89% coverage
+**SLIDE: talk9_18_frozen_scan_89.png**,  Show during 89% coverage
 
 ### TECHNICAL VERSION
 
@@ -408,31 +408,31 @@ The frozen scan: freeze time, compute the spatial structure, and 89% of all GR e
 
 Here's a question the classification raises.
 
-I classified every general relativistic effect into three categories. Effects you can compute by freezing time and looking at spatial structure alone — the reading. Effects that require actual time to pass — the tick. And effects that need both.
+I classified every general relativistic effect into three categories. Effects you can compute by freezing time and looking at spatial structure alone,  the reading. Effects that require actual time to pass,  the tick. And effects that need both.
 
-The result: 89% of GR is spatial structure. Ten out of fifteen effects. Mercury's orbit, gravitational lensing, GPS corrections, the Shapiro delay — all of them computable from geometry alone. No time evolution needed. Just freeze the universe and compute the spatial arrangement.
+The result: 89% of GR is spatial structure. Ten out of fifteen effects. Mercury's orbit, gravitational lensing, GPS corrections, the Shapiro delay,  all of them computable from geometry alone. No time evolution needed. Just freeze the universe and compute the spatial arrangement.
 
-Only one effect — muon lifetime dilation — genuinely requires time to pass.
+Only one effect,  muon lifetime dilation,  genuinely requires time to pass.
 
 If 89% of gravity is spatial structure, why do we call the fourth coordinate "time"?
 
 ### MERGE NOTES
 
-The 89% number is dramatic and unexpected. "Freeze time and 89% of gravity falls out" is a line that sticks. Don't overexplain — let the question hang: "if 89% is spatial, why do we call it time?"
+The 89% number is dramatic and unexpected. "Freeze time and 89% of gravity falls out" is a line that sticks. Don't overexplain,  let the question hang: "if 89% is spatial, why do we call it time?"
 
 ---
 
 ## SECTION 12: Close (1 minute)
 
-**SLIDE: talk9_19_prediction_timeline.png** — Show briefly
+**SLIDE: talk9_19_prediction_timeline.png**,  Show briefly
 
-**SLIDE: talk9_20_radical_vs_falsifiable.png** — Hold as closing frame
+**SLIDE: talk9_20_radical_vs_falsifiable.png**,  Hold as closing frame
 
 *[In frame, talking to camera.]*
 
 ### TECHNICAL VERSION
 
-The gravity sector is the frontier — the least established, most speculative part of the framework. 17 of 18 GR tests pass. 1 fails. The reading depth interpretation is proposed, not confirmed. One genuine prediction — sector splitting between nuclear and optical clocks — distinguishes it from standard GR.
+The gravity sector is the frontier,  the least established, most speculative part of the framework. 17 of 18 GR tests pass. 1 fails. The reading depth interpretation is proposed, not confirmed. One genuine prediction,  sector splitting between nuclear and optical clocks,  distinguishes it from standard GR.
 
 The experiment is being built. Results expected 2028-2032. Five kill switches named. The prediction is on the record before the experiment runs.
 
@@ -518,4 +518,4 @@ Total: ~28 minutes.
 | 17 | talk9_17_dk_classification.png | "10-1-4 ratio" |
 | 18 | talk9_18_frozen_scan_89.png | "89% spatial" |
 | 19 | talk9_19_prediction_timeline.png | "prediction before experiment" |
-| 20 | talk9_20_radical_vs_falsifiable.png | "closing frame — hold" |
+| 20 | talk9_20_radical_vs_falsifiable.png | "closing frame,  hold" |

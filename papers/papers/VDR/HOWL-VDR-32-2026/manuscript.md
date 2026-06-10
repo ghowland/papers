@@ -19,7 +19,7 @@
 
 ## Abstract
 
-We benchmark a single-block transformer language model implemented in Zig using Q16 fixed-denominator integer arithmetic (D = 2^16 = 65536). The implementation uses no floating-point operations, no heap allocations, and no SIMD intrinsics. On a 2019 laptop (Intel Core i7-10th gen class, single core, scalar execution), the model achieves 688 ns per forward pass, 1,159 ns per training step, and 1.42 million tokens per second for greedy generation. All 5 verification tests pass including bit-identical determinism and exact softmax sum-to-one. From this scalar baseline, we project performance under SIMD vectorization, GPU integer tensor cores, and datacenter-scale deployment, comparing directly against conventional float16/float32 and quantized INT8 inference at each level. The central finding is that VDR Q16 arithmetic maps to the same hardware instructions as quantized integer inference — widening multiply-accumulate with right-shift epilogue — placing it at computational parity with INT8/INT16 quantization while providing stronger precision guarantees.
+We benchmark a single-block transformer language model implemented in Zig using Q16 fixed-denominator integer arithmetic (D = 2^16 = 65536). The implementation uses no floating-point operations, no heap allocations, and no SIMD intrinsics. On a 2019 laptop (Intel Core i7-10th gen class, single core, scalar execution), the model achieves 688 ns per forward pass, 1,159 ns per training step, and 1.42 million tokens per second for greedy generation. All 5 verification tests pass including bit-identical determinism and exact softmax sum-to-one. From this scalar baseline, we project performance under SIMD vectorization, GPU integer tensor cores, and datacenter-scale deployment, comparing directly against conventional float16/float32 and quantized INT8 inference at each level. The central finding is that VDR Q16 arithmetic maps to the same hardware instructions as quantized integer inference,  widening multiply-accumulate with right-shift epilogue,  placing it at computational parity with INT8/INT16 quantization while providing stronger precision guarantees.
 
 ---
 
@@ -85,7 +85,7 @@ result: i16 = acc >> 16                        // divmod by D = 2^16
 remainder: i16 = acc & 0xFFFF                  // exact overflow
 ```
 
-This is a widening multiply-accumulate followed by a right shift. The right shift is the entire basis-frame mechanism — it replaces the float rounding step with an integer truncation that preserves the remainder.
+This is a widening multiply-accumulate followed by a right shift. The right shift is the entire basis-frame mechanism,  it replaces the float rounding step with an integer truncation that preserves the remainder.
 
 ### 2.2 What INT8/INT16 Quantized Inference Computes
 
@@ -113,7 +113,7 @@ The multiply-accumulate is identical in structure. The difference is the epilogu
 | Store result | Store i16 | Store float16 | Same bandwidth |
 | Remainder | Store i16 (optional) | Discarded | VDR tracks it |
 
-The compute cost is the same. The memory cost is 2× for VDR Q16 vs INT8 (wider weight storage), or equal for VDR Q16 vs INT16. The epilogue is cheaper for VDR (shift vs float multiply). The remainder tracking is additional work only if you choose to store it — in the Zig toy, remainders are zeroed (discarded), matching quantized behavior exactly.
+The compute cost is the same. The memory cost is 2× for VDR Q16 vs INT8 (wider weight storage), or equal for VDR Q16 vs INT16. The epilogue is cheaper for VDR (shift vs float multiply). The remainder tracking is additional work only if you choose to store it,  in the Zig toy, remainders are zeroed (discarded), matching quantized behavior exactly.
 
 ---
 
@@ -126,13 +126,13 @@ AVX-512 provides `vpmaddwd`: multiply 32 pairs of `i16` values and add adjacent 
 | Property | Scalar (measured) | AVX-512 (projected) |
 |---|---|---|
 | i16 multiply-add pairs per instruction | 1 | 32 |
-| Clock cycles per `vpmaddwd` | — | 1 (throughput) |
+| Clock cycles per `vpmaddwd` |,  | 1 (throughput) |
 | Effective speedup on matmul | 1× | 16-32× |
 | Forward pass (181 params) | 688 ns | ~40-80 ns |
 | Forward pass (1M params) | ~3.8 ms | ~120-240 µs |
 | Forward pass (100M params) | ~380 ms | ~12-24 ms |
 
-The 16-32× range depends on how well the matmul tiles to SIMD width. At DIM=4 (the toy), SIMD utilization is poor — 4 elements in a 32-wide lane wastes 87.5% of the register. At DIM=4096 (production), utilization is near 100% and the full 32× speedup applies to the matmul-dominated compute (~70% of forward pass).
+The 16-32× range depends on how well the matmul tiles to SIMD width. At DIM=4 (the toy), SIMD utilization is poor,  4 elements in a 32-wide lane wastes 87.5% of the register. At DIM=4096 (production), utilization is near 100% and the full 32× speedup applies to the matmul-dominated compute (~70% of forward pass).
 
 ### 3.2 ARM NEON (Mobile/Edge)
 
@@ -144,7 +144,7 @@ NEON provides 8-wide `i16` multiply-accumulate. Narrower than AVX-512 but availa
 | Forward pass (1M params) | ~3.8 ms | ~480 µs |
 | Generation throughput (1M params) | ~260 tok/s | ~2,100 tok/s |
 
-NEON is the deployment target for on-device inference — phones, tablets, edge servers. VDR Q16 maps directly to NEON's `vmlal.s16` instruction (widening multiply-accumulate for signed 16-bit). No special hardware support needed.
+NEON is the deployment target for on-device inference,  phones, tablets, edge servers. VDR Q16 maps directly to NEON's `vmlal.s16` instruction (widening multiply-accumulate for signed 16-bit). No special hardware support needed.
 
 ### 3.3 AMX (Intel Advanced Matrix Extensions)
 
@@ -164,7 +164,7 @@ AMX is designed for exactly this workload: integer matmul at i8/i16 precision wi
 
 ### 4.1 NVIDIA A100
 
-The A100 provides INT8 tensor cores at 624 TOPS and INT4 at 1248 TOPS. There is no native INT16 tensor core path — INT16 inputs must be processed as two INT8 operations or via the FP16 tensor cores with integer emulation.
+The A100 provides INT8 tensor cores at 624 TOPS and INT4 at 1248 TOPS. There is no native INT16 tensor core path,  INT16 inputs must be processed as two INT8 operations or via the FP16 tensor cores with integer emulation.
 
 **Approach 1: INT8 tensor cores with double accumulation.**
 
@@ -204,7 +204,7 @@ The H100 adds FP8 tensor cores at 1979 TOPS and INT8 at 1979 TOPS (double the A1
 | 70B forward pass | ~120 ms | ~120 ms |
 | 70B generation (batch=1) | ~8 tok/s | ~8 tok/s |
 
-Computational parity holds. The H100's integer tensor cores are clocked identically to the float tensor cores. The operation is the same — multiply-accumulate at fixed precision — and VDR uses the same hardware path.
+Computational parity holds. The H100's integer tensor cores are clocked identically to the float tensor cores. The operation is the same,  multiply-accumulate at fixed precision,  and VDR uses the same hardware path.
 
 ### 4.3 Memory Bandwidth
 
@@ -239,7 +239,7 @@ Standard inference node: 8 A100-80GB GPUs with NVLink interconnect.
 | Deterministic across runs | No | Yes |
 | Gradient reduction order-dependent | Yes | No (integer associative) |
 
-The throughput projection is at parity. The structural advantages — determinism and order-independent reduction — are free. They come from the integer arithmetic, not from additional compute.
+The throughput projection is at parity. The structural advantages,  determinism and order-independent reduction,  are free. They come from the integer arithmetic, not from additional compute.
 
 ### 5.2 Multi-Node (64 GPUs, 8 Nodes)
 
@@ -302,7 +302,7 @@ Bit-identical reproducibility across runs, platforms, and distributed topologies
 
 ### 7.1 Precision
 
-Q16 provides ~4.8 decimal digits. The toy model trains successfully at this precision, but larger models with deeper operation chains may require Q32 or Q64 for accumulation to prevent saturation. The Zig toy already uses i64 accumulators for dot products and i32 for gradients — this mixed-precision approach (narrow storage, wide accumulation) matches standard quantized training practice.
+Q16 provides ~4.8 decimal digits. The toy model trains successfully at this precision, but larger models with deeper operation chains may require Q32 or Q64 for accumulation to prevent saturation. The Zig toy already uses i64 accumulators for dot products and i32 for gradients,  this mixed-precision approach (narrow storage, wide accumulation) matches standard quantized training practice.
 
 ### 7.2 No SIMD Implementation
 
@@ -324,7 +324,7 @@ The Zig toy clamps values that exceed `i16` range to ±32767. After 50,000 train
 
 ## 8. Conclusion
 
-A complete transformer forward pass in VDR Q16 integer arithmetic costs 688 ns on a single CPU core with no vectorization. This is 3.80 ns per parameter — a number that scales linearly to SIMD, GPU tensor cores, and multi-node deployment because the underlying operation (widening integer multiply-accumulate with right-shift epilogue) maps directly to the hardware instructions that already power quantized inference.
+A complete transformer forward pass in VDR Q16 integer arithmetic costs 688 ns on a single CPU core with no vectorization. This is 3.80 ns per parameter,  a number that scales linearly to SIMD, GPU tensor cores, and multi-node deployment because the underlying operation (widening integer multiply-accumulate with right-shift epilogue) maps directly to the hardware instructions that already power quantized inference.
 
 The performance projection is not "VDR could theoretically match float." It is "VDR executes the same instructions as quantized inference, on the same hardware, at the same throughput, with the same memory bandwidth, while additionally providing exact sum-to-one softmax, bit-identical determinism, and optional remainder tracking at zero additional compute cost."
 
@@ -335,7 +335,7 @@ The measured baseline, the instruction-level equivalence, and the structural det
 ## Appendix A: Raw Benchmark Output
 
 ```
-VDR Toy LLM — Q16 Integer Arithmetic
+VDR Toy LLM,  Q16 Integer Arithmetic
 D = 65536 (2^16)
 
 === PERFORMANCE ===
@@ -383,11 +383,11 @@ All four overflows follow the same pattern: an intermediate value that is semant
 ```
 Weights:      i16 (stored) → i64 (during matmul accumulation) → i16 (output)
 Activations:  i16 (stored) → i64 (during dot product) → i16 (output)
-Probabilities:              i32 (throughout — never narrowed to i16)
-Shifted scores:             i32 (throughout — never narrowed to i16)
+Probabilities:              i32 (throughout,  never narrowed to i16)
+Shifted scores:             i32 (throughout,  never narrowed to i16)
 Gradients:                  i32 (accumulated) → applied at i64 → stored at i16
-Accumulators:               i64 (never stored — register-only)
-Loss:                       i64 (scalar — never stored in arrays)
+Accumulators:               i64 (never stored,  register-only)
+Loss:                       i64 (scalar,  never stored in arrays)
 ```
 
 The widest value in the system is the dot product accumulator at i64. It exists only in registers during the inner loop and is immediately narrowed via right-shift-16 to i16 for storage. No i64 array is ever allocated. The total memory footprint is determined by i16 (weights, activations) and i32 (probabilities, gradients) storage only.
@@ -417,7 +417,7 @@ Detailed count of integer arithmetic instructions for one forward pass at the to
 | Output projection (4 pos × 5×4) | 80 | 60 | 20 | 0 | 160 |
 | **Total** | **716** | **598** | **158** | **54** | **1,542** |
 
-At 688 ns per forward pass, that is **2.24 instructions per nanosecond** or approximately **0.45 ns per integer operation**. At 3.5 GHz, this is **1.57 clock cycles per operation** — consistent with the throughput of a single-port integer ALU with memory operands fetching from L1.
+At 688 ns per forward pass, that is **2.24 instructions per nanosecond** or approximately **0.45 ns per integer operation**. At 3.5 GHz, this is **1.57 clock cycles per operation**,  consistent with the throughput of a single-port integer ALU with memory operands fetching from L1.
 
 Multiplies dominate at 46.4% of total operations. The FFN layers (layer 1 + layer 2) account for 32.2% of total operations despite being only two of the twelve pipeline stages. This matches the expected compute distribution for transformer models where FFN width exceeds attention dimension.
 
@@ -521,7 +521,7 @@ Combined forward + backward + SGD: 1,542 + 3,013 = **4,555 operations** per trai
 | Forward cache | 1,088 |
 | **Total** | **2,368** |
 
-This matches the measured `@sizeOf(ToyTransformer) = 2368`. The entire model fits in **37 cache lines** (at 64 bytes per line). An L1 data cache of 32 KB can hold **13 complete copies** of the model. During benchmarking, every memory access is an L1 hit — the model is never evicted because nothing else competes for cache space.
+This matches the measured `@sizeOf(ToyTransformer) = 2368`. The entire model fits in **37 cache lines** (at 64 bytes per line). An L1 data cache of 32 KB can hold **13 complete copies** of the model. During benchmarking, every memory access is an L1 hit,  the model is never evicted because nothing else competes for cache space.
 
 ### Projected Cache Behavior at Scale
 
@@ -535,7 +535,7 @@ This matches the measured `@sizeOf(ToyTransformer) = 2368`. The entire model fit
 | 7B params | 14 GB | ✗ | ✗ | ✗ | ✓ fits |
 | 70B params | 140 GB | ✗ | ✗ | ✗ | ✓ (2× A100) |
 
-The per-parameter cost of 3.80 ns measured at L1 will increase as model size exceeds cache levels. At L2 latency (~4 ns), the per-parameter cost approximately doubles. At L3 (~10 ns), it increases ~3×. At HBM (~100 ns), it increases ~30×. These penalties are identical for float and VDR — they are memory bandwidth constraints, not arithmetic constraints.
+The per-parameter cost of 3.80 ns measured at L1 will increase as model size exceeds cache levels. At L2 latency (~4 ns), the per-parameter cost approximately doubles. At L3 (~10 ns), it increases ~3×. At HBM (~100 ns), it increases ~30×. These penalties are identical for float and VDR,  they are memory bandwidth constraints, not arithmetic constraints.
 
 ---
 
@@ -601,7 +601,7 @@ Measured on the Zig toy at Q16 for VOCAB_SIZE=5. Exponential cost is projected f
 
 The quadratic surrogate is 5-9× cheaper than Taylor exponential softmax. For the full forward pass where softmax is ~4% of total compute (60 of 1,542 ops), replacing Taylor depth-16 with the surrogate saves ~114 ops or ~7.4% of the forward pass. At scale where softmax is a larger fraction (longer sequences increase the score matrix quadratically), the savings grow.
 
-The surrogate also eliminates the lookup table required for exponential approximation. At Q16 with bounded input range, the exp table is ~8 KB (2048 entries × 4 bytes). This is small but competes for L1 space with weight tiles during SIMD matmul. The surrogate needs no table — it is pure arithmetic.
+The surrogate also eliminates the lookup table required for exponential approximation. At Q16 with bounded input range, the exp table is ~8 KB (2048 entries × 4 bytes). This is small but competes for L1 space with weight tiles during SIMD matmul. The surrogate needs no table,  it is pure arithmetic.
 
 ---
 
@@ -617,7 +617,7 @@ The surrogate also eliminates the lookup table required for exponential approxim
 | VDR Python Q32 | Arbitrary-precision integer | Yes | Yes | Yes |
 | VDR Zig Q16 | Fixed-width integer | Yes | Yes | Yes |
 
-The VDR implementations are the only entries that achieve determinism across all three columns. This is because integer addition is associative (`(a + b) + c == a + (b + c)` for all integer values), while float addition is not. The determinism is not a feature that was added — it is a property that cannot be removed.
+The VDR implementations are the only entries that achieve determinism across all three columns. This is because integer addition is associative (`(a + b) + c == a + (b + c)` for all integer values), while float addition is not. The determinism is not a feature that was added,  it is a property that cannot be removed.
 
 ---
 
@@ -684,7 +684,7 @@ These numbers exclude memory access energy, which dominates at large model sizes
 | **VDR Q16** | **INT16** | **INT16** | **INT16 widening** | **Quadratic (integer)** | **Yes** | **Yes** |
 | **VDR Q8/Q16** | **INT8** | **INT16** | **INT8×INT16 widening** | **Quadratic (integer)** | **Yes** | **Yes** |
 
-Every existing quantized system converts back to float for at least the softmax step and sometimes for the entire dequantization epilogue. VDR is the only system that stays in integer arithmetic end-to-end, including softmax normalization. This is what enables the exact sum-to-one and determinism guarantees — there is no float step where rounding can introduce non-determinism.
+Every existing quantized system converts back to float for at least the softmax step and sometimes for the entire dequantization epilogue. VDR is the only system that stays in integer arithmetic end-to-end, including softmax normalization. This is what enables the exact sum-to-one and determinism guarantees,  there is no float step where rounding can introduce non-determinism.
 
 The weight format of VDR Q8/Q16 (INT8 weights with INT16 activations) is byte-identical to SmoothQuant's storage format. The difference is entirely in how the arithmetic is performed and what happens to the rounding residual.
 

@@ -1,4 +1,4 @@
-# VDR-16 SAFE BY CONTRACT — LLM-COMPACT FORM
+# VDR-16 SAFE BY CONTRACT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → behavioral_problem → three_layers → kb_visibility → enterprise_scenarios → anonymous → training_isolation → output_constraints → session_scoring → constraint_taxonomy → grant_system → jailbreak_analysis → audit → comparison → relationships → section_index → decode_legend
 
@@ -13,7 +13,7 @@ P6|No new primitives, builtins, struct fields, or modules|every mechanism uses e
 # behavioral_problem(id|aspect|detail)
 BP1|Safety as token prediction|conventional LM generates "I can't help with that" because training weights assign high probability to that sequence; refusal is behavioral pattern, not structural barrier
 BP2|Information is always accessible|model has the information in weights; refusal is behavioral overlay on full access; model is guard with keys to every door trained to say "no"
-BP3|Jailbreaking exploits this architecture|prompt injection, role-play, many-shot, encoding — all shift token prediction probabilities from refusal toward content; techniques vary, vulnerability is architectural
+BP3|Jailbreaking exploits this architecture|prompt injection, role-play, many-shot, encoding,  all shift token prediction probabilities from refusal toward content; techniques vary, vulnerability is architectural
 BP4|Arms race with no equilibrium|safety teams patch techniques, adversaries find new ones; fundamental architecture guarantees bypasses always possible in principle
 BP5|Enterprise disqualifying|salary data, medical records, trade secrets require guarantee of inaccessibility, not probability of refusal
 
@@ -107,7 +107,7 @@ JB3|Many-shot (50 examples of revealing data)|high (shifts behavioral baseline)|
 JB4|Encoding (base64/pig latin/character spelling)|medium (bypasses pattern-based refusal)|empty result|safety mechanism is access control on data, not pattern matching on query; primitive applies same checks regardless of query formulation
 JB5|Indirect injection (hidden instructions in fetched content)|medium|empty result|injected instruction may cause LM to issue query; query routes through same visibility-filtered primitive layer
 JB6|Context manipulation (gradually shape conversation)|medium|empty result|access decisions based on user org position + session scoring, not conversational context; context is structured KB state, not growing token sequence
-# For data access: jailbreaking is impossible (not difficult, not unlikely — impossible). Attack surface does not exist. No input to LM modifies integers that determine authorization.
+# For data access: jailbreaking is impossible (not difficult, not unlikely,  impossible). Attack surface does not exist. No input to LM modifies integers that determine authorization.
 
 # identity_immutability(id|component|set_by|modifiable_by_prompt|modifiable_by_command_token)
 ID1|session_id|system at session creation|no|no
@@ -140,7 +140,7 @@ DD2|Anon asks restricted data|block (scope)|N/A|not reached|1 block|empty → "n
 DD3|Anon asks weapons info from training|block (scope)|N/A|block (output constraint)|2 blocks|refusal template
 DD4|Engineer queries own project|pass|pass (grant)|pass|0 blocks|requested data
 DD5|Engineer queries HR data|block (scope)|not reached|not reached|1 block|empty result
-DD6|Engineer via prompt injection|block (scope — injection doesn't change session_id)|not reached|not reached|1 block|empty result
+DD6|Engineer via prompt injection|block (scope,  injection doesn't change session_id)|not reached|not reached|1 block|empty result
 DD7|HR director queries personnel|pass (owner match)|N/A|pass|0 blocks|requested data
 DD8|Harm-scored session|pass for public|N/A|block (constraint from session scoring)|1 block|empty for restricted topics
 DD9|All three layers misconfigured|fail|fail|fail|breach|requires three independent structural failures
@@ -154,7 +154,7 @@ OCC5|LM creative generation|N/A|~80%|~80%
 # Acknowledged gap: novel formulations of training-derived harmful content. Same gap all safety systems face. Difference: VDR gap limited to this one scenario; data access = 100%.
 
 # regulatory_mapping(id|regulation|requirement|vdr_mechanism|enforcement)
-REG1|GDPR Art 5(1)(f)|integrity/confidentiality of personal data|KB visibility owner_only + pii_protected axiom|structural — data unreachable without auth
+REG1|GDPR Art 5(1)(f)|integrity/confidentiality of personal data|KB visibility owner_only + pii_protected axiom|structural,  data unreachable without auth
 REG2|GDPR Art 15|right of access by data subject|user can query own KB (self-access always granted)|scope chain includes own KB
 REG3|GDPR Art 17|right to erasure|B377 kb_retract + audit logging of erasure|retraction logged; constraint ensures completeness
 REG4|HIPAA §164.312(a)|access control for ePHI|KB visibility + grants for medical KBs|visibility owner_only; grants for authorized providers
@@ -168,7 +168,7 @@ REG9|PCI DSS Req 7|restrict access to cardholder data|KB visibility + role-based
 AC1|Prompt-based jailbreak|low (minutes)|infinite (impossible for data access)
 AC2|Social engineering via conversation|low (multi-turn)|infinite (context doesn't affect access)
 AC3|Session manipulation|medium|infinite (session state in KBs, not manipulable via prompts)
-AC4|Authentication compromise|high (credential theft)|high (same — auth is trust boundary)
+AC4|Authentication compromise|high (credential theft)|high (same,  auth is trust boundary)
 AC5|Infrastructure compromise|very high (system access)|very high (same)
 # Structural safety eliminates entire low-cost attack surface. Remaining surface (auth + infra) same cost in both systems.
 

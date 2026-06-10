@@ -7,9 +7,9 @@ This defines how any source material becomes a compacted KB with self-describing
 universal_compaction.py
 
 The compaction system has three parts:
-1. CompactionSchema — how to compress source material into tables
-2. ExtractionGrammar — how to read data back out of compacted form  
-3. UsageGrammar — how to present/connect/transform compacted data for new purposes
+1. CompactionSchema,  how to compress source material into tables
+2. ExtractionGrammar,  how to read data back out of compacted form  
+3. UsageGrammar,  how to present/connect/transform compacted data for new purposes
 
 All three live on the KB as persistent fields.
 """
@@ -37,14 +37,14 @@ class SourceCharacter(Enum):
     RESEARCH = "research"              # findings, evidence, methods, conclusions
     NARRATIVE = "narrative"            # events, characters, settings, themes
     DATA = "data"                      # records, fields, types, constraints
-    MIXED = "mixed"                    # multiple characters — use union of applicable tables
+    MIXED = "mixed"                    # multiple characters,  use union of applicable tables
 
 
 class ColumnType(Enum):
     """Types for table columns. Used for validation and grammar generation."""
     ID = "id"                          # row identifier with prefix
     TEXT = "text"                       # free text, compressed prose
-    IDENTIFIER = "identifier"          # named thing — preserve exact terminology
+    IDENTIFIER = "identifier"          # named thing,  preserve exact terminology
     CATEGORICAL = "categorical"        # value from declared enum
     ID_REF = "id_ref"                 # reference to another row's ID
     ID_LIST = "id_list"               # comma-separated list of ID references
@@ -512,7 +512,7 @@ class DecodeLegendEntry:
 @dataclass
 class DecodeLegend:
     """The complete decode legend for a compacted document.
-    Serves as the type system — all enums and notations declared here."""
+    Serves as the type system,  all enums and notations declared here."""
     entries: List[DecodeLegendEntry] = field(default_factory=list)
 
     def add_enum(self, key: str, values: List[str]) -> None:
@@ -788,7 +788,7 @@ def _generate_display_grammars(doc: CompactedDocument,
             "relationship_count": "integer",
         },
         template=[
-            {"type": "line", "content": ["{title} — ", "{character}"]},
+            {"type": "line", "content": ["{title},  ", "{character}"]},
             {"type": "line", "content": ["{total_ids} items, ",
                                           "{relationship_count} relationships"]},
             {"type": "for_each", "over": "table_counts",
@@ -825,7 +825,7 @@ def _generate_display_grammars(doc: CompactedDocument,
             "from_name": "text", "to_name": "text",
         },
         template=[
-            {"type": "line", "content": ["{from_name} (", "{from_id}", ") —",
+            {"type": "line", "content": ["{from_name} (", "{from_id}", "), ",
                                           "{rel_type}", "→ ", "{to_name}",
                                           " (", "{to_id}", ")"]},
         ],
@@ -1045,7 +1045,7 @@ def generate_usage_grammar(source_kb: 'KnowledgeBase',
                  "line": ["  ", "{table}", ": ", "{count}"]},
                 {"type": "line", "content": ["Key items:"]},
                 {"type": "for_each", "over": "key_items",
-                 "line": ["  ", "{id}", " — ", "{name}"]},
+                 "line": ["  ", "{id}", ",  ", "{name}"]},
             ],
             connection_pattern=f"has_outbound({connection_rel}, 1+)",
             best_when=f"summarizing_{source_kb.name}",
@@ -1113,12 +1113,12 @@ class CompactionPipeline:
         
         Steps:
         1. Classify source character (Prolog if unambiguous, LLM if ambiguous)
-        2. Select compaction profile (Prolog — deterministic)
-        3. Determine applicable tables (Prolog — rule evaluation)
-        4. Extract items into rows (LLM — judgment required)
-        5. Extract relationships (LLM — judgment required)
-        6. Build section index (Prolog — mapping)
-        7. Build decode legend (Prolog — collect all enums used)
+        2. Select compaction profile (Prolog,  deterministic)
+        3. Determine applicable tables (Prolog,  rule evaluation)
+        4. Extract items into rows (LLM,  judgment required)
+        5. Extract relationships (LLM,  judgment required)
+        6. Build section index (Prolog,  mapping)
+        7. Build decode legend (Prolog,  collect all enums used)
         8. Validate (constraint checker)
         9. Generate grammars (deterministic from schema)
         10. Store as KB
@@ -1162,7 +1162,7 @@ class CompactionPipeline:
         extracted_tables["section_index"] = CompactedTable(
             schema_name="section_index")
         
-        # Step 7: Decode legend (deterministic — collect enums from schemas used)
+        # Step 7: Decode legend (deterministic,  collect enums from schemas used)
         legend = DecodeLegend()
         rel_types_used = set()
         category_enums = set()
@@ -1244,7 +1244,7 @@ class CompactionPipeline:
     def _table_applicable(self, schema: TableSchema,
                           source_text: str) -> bool:
         """Check if a table schema is applicable to the source.
-        Simplified check — real system uses Prolog rule evaluation."""
+        Simplified check,  real system uses Prolog rule evaluation."""
         # Heuristic: check if the applicable_when condition's keywords
         # appear in the source
         condition = schema.applicable_when
@@ -1255,4 +1255,4 @@ class CompactionPipeline:
         return keyword.rstrip("s") in source_text.lower()
 ```
 
-This is the complete data spec. The compaction pipeline takes any source material and produces a self-describing KB with extraction grammars (how to read data out), display grammars (how to present data), and the hooks for usage grammar generation (how to connect this data to other KBs for new purposes). The LLM's role is the judgment calls — what's a concept, what's a relationship, how to compress a definition. Everything structural is Prolog rules and schema-driven grammar generation.
+This is the complete data spec. The compaction pipeline takes any source material and produces a self-describing KB with extraction grammars (how to read data out), display grammars (how to present data), and the hooks for usage grammar generation (how to connect this data to other KBs for new purposes). The LLM's role is the judgment calls,  what's a concept, what's a relationship, how to compress a definition. Everything structural is Prolog rules and schema-driven grammar generation.

@@ -17,7 +17,7 @@
 
 ## Abstract
 
-VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download — the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.
+VDR-5 specified the knowledge architecture for an exact-arithmetic language model with logical provenance, scoped knowledge bases, constraint enforcement, and first-class data surfacing. This companion paper specifies the execution layer: what the system can actually do. It defines 196 pure computational primitives across 14 categories (string, list, arithmetic, set, dictionary, linear algebra, statistics, conversion, date, hashing, graph, regex, logic, and KB operations) and 58 operational primitives across 6 categories (filesystem, compilation, script execution, linting, network, and process management). It specifies the command token mechanism by which the language model issues structured operations instead of generating text. It specifies operational environments (Docker, VM, local, SSH) with a unified interface. It specifies the positive credential gating system that authorizes every side-effecting operation. It specifies async task execution with KB-stored results, chunked I/O, and turn-like processing. It specifies versioning as a native KB operation. And it specifies direct data download,  the ability to serve KB contents, file contents, and computed results to the user without LLM token generation.
 
 The central principle is separation of concerns. The language model understands intent, makes plans, and generates explanations. The primitives compute. The operational environments execute. The KB stores. The constraint system authorizes. The surfacing layer presents. No component does another's job. The result is a system where computation is exact, execution is sandboxed, authorization is declarative, results are persistent, and everything is queryable.
 
@@ -29,11 +29,11 @@ VDR-5 specified what the system knows. This paper specifies what the system does
 
 A language model that can store exact fractions, track provenance, manage scoped knowledge bases, and enforce constraints is a powerful reasoning system. But it cannot sort a list reliably. It cannot compile code. It cannot run tests. It cannot read files. It cannot download data. It cannot do any of these things because it is a token predictor, and token prediction is not computation.
 
-The execution layer gives the system hands. Pure primitives perform exact computation — sorting, arithmetic, string operations, linear algebra — with guaranteed correctness. Operational primitives interact with the outside world — files, compilers, networks, processes — with declared authorization and logged execution. Command tokens let the language model invoke both kinds of primitives as structured operations rather than generated text. Operational environments provide sandboxed contexts where code runs safely.
+The execution layer gives the system hands. Pure primitives perform exact computation,  sorting, arithmetic, string operations, linear algebra,  with guaranteed correctness. Operational primitives interact with the outside world,  files, compilers, networks, processes,  with declared authorization and logged execution. Command tokens let the language model invoke both kinds of primitives as structured operations rather than generated text. Operational environments provide sandboxed contexts where code runs safely.
 
 The execution layer does not replace the language model. It complements it. The language model recognizes that a sort is needed. The sort primitive performs it correctly. The language model recognizes that code should be tested. The execution primitive runs pytest in a Docker container and stores the results in the KB. The language model frames the results for the user. Each component does what it does best.
 
-![Fig. 1: VDR-6 Identity Card — 262 primitives across 20 categories, 4 environment types, command tokens, and grants.](./figures/vdr6_01_identity_card.png)
+![Fig. 1: VDR-6 Identity Card,  262 primitives across 20 categories, 4 environment types, command tokens, and grants.](./figures/vdr6_01_identity_card.png)
 
 ---
 
@@ -41,7 +41,7 @@ The execution layer does not replace the language model. It complements it. The 
 
 A pure primitive is a function that always produces the same output from the same input, has no side effects, terminates in bounded time, operates on exact VDR types, and carries declarable constraint invariants. Pure primitives do not require authorization grants. They are safe by construction.
 
-![Fig. 5: Primitive Rings — 218 pure and 44 operational primitives distributed across 20 categories by count.](./figures/vdr6_05_primitive_rings.png)
+![Fig. 5: Primitive Rings,  218 pure and 44 operational primitives distributed across 20 categories by count.](./figures/vdr6_05_primitive_rings.png)
 
 ### 2.1 Category 1: String Operations (17 primitives)
 
@@ -251,7 +251,7 @@ The softmax primitive guarantees that output probabilities sum to exactly 1. The
 | 153 | format_percentage | fraction, number → atom | Percentage with N decimal places |
 | 154 | format_scientific | fraction, number → atom | Scientific notation |
 
-Formatting errors — wrong decimal places, incorrect rounding, mangled table alignment — are common LLM failures. As primitives, formatting is deterministic and tested.
+Formatting errors,  wrong decimal places, incorrect rounding, mangled table alignment,  are common LLM failures. As primitives, formatting is deterministic and tested.
 
 ### 2.9 Category 9: Date and Time (10 primitives)
 
@@ -268,7 +268,7 @@ Formatting errors — wrong decimal places, incorrect rounding, mangled table al
 | 163 | time_to_hms | fraction → (number, number, fraction) | Day fraction to hours, minutes, seconds |
 | 164 | duration_between | fraction, fraction → fraction | Exact time difference |
 
-Date arithmetic is a notorious LLM failure mode. Month lengths, leap years, day-of-week calculations — all are exact integer algorithms that token prediction gets wrong. The primitives use the correct Gregorian calendar algorithms.
+Date arithmetic is a notorious LLM failure mode. Month lengths, leap years, day-of-week calculations,  all are exact integer algorithms that token prediction gets wrong. The primitives use the correct Gregorian calendar algorithms.
 
 ### 2.10 Category 10: Hashing and Encoding (8 primitives)
 
@@ -451,7 +451,7 @@ Every operational primitive requires a positive credential grant before executio
 
 ## 4. The Positive Credential Grant System
 
-![Fig. 7: Grant Gate — Every operational primitive passes through authorization. Authorized commands execute. Blocked commands are logged.](./figures/vdr6_07_grant_gated_execution.png)
+![Fig. 7: Grant Gate,  Every operational primitive passes through authorization. Authorized commands execute. Blocked commands are logged.](./figures/vdr6_07_grant_gated_execution.png)
 
 ### 4.1 Grant Structure
 
@@ -523,12 +523,12 @@ Alice's effective grants are the union of all grants in her ancestry chain. She 
 
 | From | To | Trigger | Automatic? |
 |------|----|---------|-----------|
-| (new) | active | Issued by authorized entity | No — requires explicit creation |
+| (new) | active | Issued by authorized entity | No,  requires explicit creation |
 | active | expired | Current time exceeds expires_at | Yes |
 | active | exhausted | uses_remaining reaches 0 | Yes |
-| active | revoked | Issuer or admin revokes | No — requires explicit action |
-| expired | active | Re-issued with new expiration | No — requires new grant |
-| revoked | active | Not possible — revocation is permanent | — |
+| active | revoked | Issuer or admin revokes | No,  requires explicit action |
+| expired | active | Re-issued with new expiration | No,  requires new grant |
+| revoked | active | Not possible,  revocation is permanent |,  |
 
 All transitions are logged as KB facts with timestamp, source, and reason.
 
@@ -536,7 +536,7 @@ All transitions are logged as KB facts with timestamp, source, and reason.
 
 ## 5. Command Tokens
 
-![Fig. 3: Command Token Stream — Text tokens for humans and command tokens for machines interleave in one output stream.](./figures/vdr6_03_command_token_stream.png)
+![Fig. 3: Command Token Stream,  Text tokens for humans and command tokens for machines interleave in one output stream.](./figures/vdr6_03_command_token_stream.png)
 
 ### 5.1 The Mechanism
 
@@ -632,7 +632,7 @@ The scratchpad computations are exact (executed by primitives). The user-facing 
 
 ## 6. Operational Environments
 
-![Fig. 4: Unified Environment — Docker, VM, Local, and SSH all present the same 10-operation interface to the LLM.](./figures/vdr6_04_unified_environment.png)
+![Fig. 4: Unified Environment,  Docker, VM, Local, and SSH all present the same 10-operation interface to the LLM.](./figures/vdr6_04_unified_environment.png)
 
 ### 6.1 Environment Types
 
@@ -756,7 +756,7 @@ Rule: env_destroy(Id) :-
     archive_kb("kb_env_" + Id).
 ```
 
-Environments can be created, started, stopped, and destroyed. The KB persists even after the environment is destroyed (archived for audit). A new environment can be created from the same specification — it will have the same configuration but a fresh filesystem and process space.
+Environments can be created, started, stopped, and destroyed. The KB persists even after the environment is destroyed (archived for audit). A new environment can be created from the same specification,  it will have the same configuration but a fresh filesystem and process space.
 
 ---
 
@@ -826,7 +826,7 @@ LLM: [responds to user's question]
 
 ---
 Completed tasks:
-  task_047 (pytest gym/): 152 passed, 5 failed — 28.4s
+  task_047 (pytest gym/): 152 passed, 5 failed,  28.4s
   [View results: /task task_047] [Acknowledge]
 ```
 
@@ -849,7 +849,7 @@ Each chunk can trigger watches (pattern-matched alerts), constraint checks (reso
 
 ## 8. Direct Data Download
 
-![Fig. 6: Direct vs Regen — KB data served in one exact step versus three lossy steps through LLM tokenization.](./figures/vdr6_06_direct_vs_regen.png)
+![Fig. 6: Direct vs Regen,  KB data served in one exact step versus three lossy steps through LLM tokenization.](./figures/vdr6_06_direct_vs_regen.png)
 
 ### 8.1 The Principle
 
@@ -898,7 +898,7 @@ This serves the KB fact's content directly as a formatted data block in the resp
 ```
 LLM: "Here are the gym 16 results:"
 [Direct: kb://kb_vdr_gyms/gym_16_result_v1]
-  Gym 16: Graph Theory — 19 passed, 1 failed
+  Gym 16: Graph Theory,  19 passed, 1 failed
   Failed: max-flow BFS loop termination
 LLM: "The max-flow test needs a BFS fix. Everything else passed."
 ```
@@ -909,7 +909,7 @@ The data block is retrieved, not generated. It cannot hallucinate.
 
 ## 9. Versioning
 
-![Fig. 8: Version History — Three versions of gym_16 with diffs, tags, and test results at each version.](./figures/vdr6_08_version_history.png)
+![Fig. 8: Version History,  Three versions of gym_16 with diffs, tags, and test results at each version.](./figures/vdr6_08_version_history.png)
 
 ### 9.1 Version as KB Fact
 
@@ -1029,7 +1029,7 @@ LLM (next turn, after checking pending tasks):
 
 Every step is traceable. Every command is logged in the environment KB. Every result is stored in the project KB. The version is created. The project working data is updated. The file is available for direct download. The user sees the framing text, the direct output block, and the attachment.
 
-![Fig. 2: Execution Flow — Write, upload, execute, poll, store, and version an artifact with exact data at every step.](./figures/vdr6_02_execution_flow.png)
+![Fig. 2: Execution Flow,  Write, upload, execute, poll, store, and version an artifact with exact data at every step.](./figures/vdr6_02_execution_flow.png)
 
 ---
 
@@ -1147,7 +1147,7 @@ The log is queryable for audit, debugging, and performance analysis:
 
 **F7.** If an environment of type Docker allows an operation to affect the host filesystem outside the container mount, the isolation is broken.
 
-Each criterion is testable by exact comparison. The pure primitive invariants are mathematical — they can be verified by the constraint system on every invocation. The operational criteria require integration testing against actual environments.
+Each criterion is testable by exact comparison. The pure primitive invariants are mathematical,  they can be verified by the constraint system on every invocation. The operational criteria require integration testing against actual environments.
 
 ---
 
@@ -1186,7 +1186,7 @@ The **execution layer** (VDR-6) provides 216 pure computational primitives, 44 a
 
 The **arithmetic layer** (VDR-1 through VDR-4) provides exact fractions, zero drift, exact softmax, exact autodiff, and a working transformer architecture. Everything is exact.
 
-The language model sits at the center: recognizing intent, selecting primitives, assembling plans, generating explanations, and framing results. It does not sort lists (the sort primitive does). It does not compile code (the compilation primitive does). It does not remember constraints (the KB stores them). It does not track conversations (the topic system tracks them). It does what language models do well — understand language and reason about goals — and delegates everything else to components that are exact, authorized, logged, and queryable.
+The language model sits at the center: recognizing intent, selecting primitives, assembling plans, generating explanations, and framing results. It does not sort lists (the sort primitive does). It does not compile code (the compilation primitive does). It does not remember constraints (the KB stores them). It does not track conversations (the topic system tracks them). It does what language models do well,  understand language and reason about goals,  and delegates everything else to components that are exact, authorized, logged, and queryable.
 
 260 primitives. 20 categories. Positive credential gating. Async execution. KB-stored results. Versioned artifacts. Direct data download. Command tokens. Operational environments. Everything logged. Everything auditable. Everything surfaceable.
 
@@ -1204,11 +1204,11 @@ Category 12 (Pattern Matching, primitives #186-192) is removed from the specific
 
 ### A1.1 Rationale
 
-Regular expressions are an unbounded computation risk. A crafted regex pattern can cause catastrophic backtracking — exponential time consumption on inputs that appear benign. The classic example is the pattern `(a+)+b` matched against the string "aaaaaaaaaaaaaaaaaaaac", which causes the regex engine to explore 2^N paths before failing. This is not a theoretical concern. It is a known denial-of-service vector called ReDoS (Regular Expression Denial of Service).
+Regular expressions are an unbounded computation risk. A crafted regex pattern can cause catastrophic backtracking,  exponential time consumption on inputs that appear benign. The classic example is the pattern `(a+)+b` matched against the string "aaaaaaaaaaaaaaaaaaaac", which causes the regex engine to explore 2^N paths before failing. This is not a theoretical concern. It is a known denial-of-service vector called ReDoS (Regular Expression Denial of Service).
 
 In a system where the LLM can issue command tokens that include regex patterns, the attack surface is the LLM itself. A prompt injection or adversarial input could cause the LLM to generate a pathological regex as a command token. The regex primitive would then consume unbounded CPU time, violating the finite-termination guarantee that every other pure primitive satisfies.
 
-The pure primitive contract (Section 2) requires that every primitive terminates in bounded time relative to input size. Regex evaluation does not satisfy this contract for arbitrary patterns. No amount of input validation on the pattern can reliably detect all pathological cases — the problem of determining whether a regex has exponential worst-case behavior is itself computationally hard.
+The pure primitive contract (Section 2) requires that every primitive terminates in bounded time relative to input size. Regex evaluation does not satisfy this contract for arbitrary patterns. No amount of input validation on the pattern can reliably detect all pathological cases,  the problem of determining whether a regex has exponential worst-case behavior is itself computationally hard.
 
 ### A1.2 What Replaces Regex
 
@@ -1334,7 +1334,7 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Example |
 |-------|------|----------|---------|---------|
-| image | atom | Yes | — | "python:3.8-slim" |
+| image | atom | Yes |,  | "python:3.8-slim" |
 | container_name | atom | No | auto-generated | "vdr_test_env_001" |
 | working_dir | atom | No | "/workspace" | "/workspace" |
 | mount_points | list(pair) | No | [] | [("/home/alice/vdr", "/workspace/vdr")] |
@@ -1352,8 +1352,8 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Example |
 |-------|------|----------|---------|---------|
-| vm_provider | atom | Yes | — | "virtualbox", "qemu", "cloud" |
-| vm_image | atom | Yes | — | "ubuntu-24.04-server" |
+| vm_provider | atom | Yes |,  | "virtualbox", "qemu", "cloud" |
+| vm_image | atom | Yes |,  | "ubuntu-24.04-server" |
 | vm_cpus | number | No | 2 | 4 |
 | vm_memory_mb | number | No | 4096 | 8192 |
 | vm_disk_gb | number | No | 20 | 50 |
@@ -1365,11 +1365,11 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Example |
 |-------|------|----------|---------|---------|
-| host | atom | Yes | — | "gpu01.lab.example.com" |
+| host | atom | Yes |,  | "gpu01.lab.example.com" |
 | port | number | No | 22 | 22 |
-| username | atom | Yes | — | "alice" |
-| auth_method | atom | Yes | — | "pubkey", "password", "certificate" |
-| key_ref | atom | Conditional | — | "ssh_key_alice_gpu01" |
+| username | atom | Yes |,  | "alice" |
+| auth_method | atom | Yes |,  | "pubkey", "password", "certificate" |
+| key_ref | atom | Conditional |,  | "ssh_key_alice_gpu01" |
 | remote_working_dir | atom | No | "~/" | "/home/alice/workspace" |
 | connection_timeout_ms | number | No | 30000 | 10000 |
 | keepalive_interval_s | number | No | 60 | 30 |
@@ -1380,7 +1380,7 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Example |
 |-------|------|----------|---------|---------|
-| working_dir | atom | Yes | — | "/home/alice/projects/vdr" |
+| working_dir | atom | Yes |,  | "/home/alice/projects/vdr" |
 | path_restriction | atom | No | none | "/home/alice/" |
 | shell | atom | No | "/bin/sh" | "/bin/bash" |
 | inherit_env | bool | No | false | true |
@@ -1474,8 +1474,8 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 |---------------|---------------|-------------------|-------------|
 | KB fact(s) | Structured text | JSON, CSV, LaTeX | text/plain, application/json |
 | Working data binding | Key: value text | JSON | text/plain |
-| File | Raw file content | — | Detected from extension |
-| Task stdout/stderr | Raw text | — | text/plain |
+| File | Raw file content |,  | Detected from extension |
+| Task stdout/stderr | Raw text |,  | text/plain |
 | Task result | Structured result | JSON | application/json |
 | Checkpoint | JSON (all params) | Per-param text | application/json |
 | Version | Raw content | With metadata header | Detected from content |
@@ -1592,16 +1592,16 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| name | atom | Yes | — | Unique identifier |
-| condition | fact | Yes | — | Prolog condition to evaluate |
-| message | atom | Yes | — | Message to display when triggered |
-| check_frequency | enum | Yes | — | every_turn, on_topic_enter, on_kb_change, once |
+| name | atom | Yes |,  | Unique identifier |
+| condition | fact | Yes |,  | Prolog condition to evaluate |
+| message | atom | Yes |,  | Message to display when triggered |
+| check_frequency | enum | Yes |,  | every_turn, on_topic_enter, on_kb_change, once |
 | requires_ack | bool | No | true | Must user acknowledge? |
 | created_at | number | Yes | current_turn | Turn when created |
-| created_by | atom | Yes | — | "user" or "system" |
+| created_by | atom | Yes |,  | "user" or "system" |
 | acknowledged | bool | No | false | Has user acknowledged? |
 | snoozed_until | number | No | none | Turn until which snooze is active |
-| topic | atom | Yes | — | Associated topic |
+| topic | atom | Yes |,  | Associated topic |
 | priority | enum | No | normal | low, normal, high, urgent |
 | max_displays | number | No | unlimited | Stop showing after N times |
 | display_count | number | No | 0 | Times shown so far |
@@ -1610,16 +1610,16 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| name | atom | Yes | — | Unique identifier |
-| condition | fact | Yes | — | Prolog condition to evaluate |
-| message | atom | Yes | — | Message template with variables |
-| watch_type | enum | Yes | — | on_change, on_threshold, on_pattern |
+| name | atom | Yes |,  | Unique identifier |
+| condition | fact | Yes |,  | Prolog condition to evaluate |
+| message | atom | Yes |,  | Message template with variables |
+| watch_type | enum | Yes |,  | on_change, on_threshold, on_pattern |
 | target_kb | atom | No | active | KB to monitor for changes |
 | target_predicate | atom | No | any | Specific predicate to watch |
 | active | bool | No | true | Currently monitoring? |
 | triggered_count | number | No | 0 | Times triggered |
 | last_triggered | number | No | none | Turn when last triggered |
-| topic | atom | Yes | — | Associated topic |
+| topic | atom | Yes |,  | Associated topic |
 | auto_dismiss | bool | No | false | Dismiss after first trigger? |
 
 ### J.3 Reminder and Watch Lifecycle
@@ -1775,7 +1775,7 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 | 2. Classify | Text line | Detect: stdout/stderr, progress, error, result | Classified chunk | Classification tag on chunk |
 | 3. Pattern check | Classified chunk | Match against active watches | Watch trigger events | watch_triggered facts |
 | 4. Constraint check | Classified chunk | Check resource limits, error patterns | Constraint status | constraint_checked facts |
-| 5. Store | Processed chunk | Assert into task KB | — | chunk stored with metadata |
+| 5. Store | Processed chunk | Assert into task KB |,  | chunk stored with metadata |
 | 6. Notify (if streaming) | Stored chunk | Format for user display | Display text | notification queued |
 
 ### N.2 Chunk Size and Timing Policies
@@ -1809,15 +1809,15 @@ The primitive index numbers for categories 13 and 14 (Logic/Control and KB/Const
 
 | Component | Source | Priority | Size Control |
 |-----------|--------|----------|-------------|
-| Active constraints | Effective constraints from in-scope KBs | Highest — always included | Limited by active KB count |
-| System instructions | Global KB rules | Highest — always included | Fixed, small |
-| Working data bindings | Active topic's working data set with inheritance | High — key context | Limited by binding count |
-| Pending items | Active topic's pending list | High — actionable | Limited by pending count |
-| Active reminders | Unacknowledged triggered reminders | High — requires attention | Limited by reminder count |
-| Recent conversation turns | Conversation KB last N turns | Medium — recency | Configurable N (default 20) |
-| Referenced KB facts | Facts explicitly referenced in recent turns | Medium — relevance | Auto-managed |
-| Secondary scope facts | Facts from explicitly activated secondary KBs | Low — supplementary | User-controlled |
-| Scratchpad history | Previous turn's scratchpad entries | Low — continuity | Last turn only by default |
+| Active constraints | Effective constraints from in-scope KBs | Highest,  always included | Limited by active KB count |
+| System instructions | Global KB rules | Highest,  always included | Fixed, small |
+| Working data bindings | Active topic's working data set with inheritance | High,  key context | Limited by binding count |
+| Pending items | Active topic's pending list | High,  actionable | Limited by pending count |
+| Active reminders | Unacknowledged triggered reminders | High,  requires attention | Limited by reminder count |
+| Recent conversation turns | Conversation KB last N turns | Medium,  recency | Configurable N (default 20) |
+| Referenced KB facts | Facts explicitly referenced in recent turns | Medium,  relevance | Auto-managed |
+| Secondary scope facts | Facts from explicitly activated secondary KBs | Low,  supplementary | User-controlled |
+| Scratchpad history | Previous turn's scratchpad entries | Low,  continuity | Last turn only by default |
 
 ### O.2 Context Size Management
 
@@ -2006,11 +2006,11 @@ New VDR-6 modules: `primitives.py` (pure primitive implementations), `operationa
 | VDR-2 gyms (15 domains) | 282 | 276 | 6 | 0 |
 | VDR-3 gyms (8 domains) | 157 | 152 | 5 | 0 |
 | VDR-4 ML stack | 198 | 196 | 2 | 0 |
-| VDR-6 pure primitives (planned) | 648 | — | — | — |
-| VDR-6 operational (planned) | 132 | — | — | — |
-| VDR-6 integration (planned) | 30+ | — | — | — |
+| VDR-6 pure primitives (planned) | 648 |,  |,  |,  |
+| VDR-6 operational (planned) | 132 |,  |,  |,  |
+| VDR-6 integration (planned) | 30+ |,  |,  |,  |
 | **Existing total** | **705** | **692** | **13** | **0** |
-| **Planned total** | **~1515** | — | — | — |
+| **Planned total** | **~1515** |,  |,  |,  |
 
 ### S.3 Complete Primitive Count
 

@@ -14,18 +14,18 @@
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6.
 
 **Supplementary Materials:**
-- `supplementary/function_iose_5_stages_spec.md` — Complete function-level IOSE specification for all 65 modules across 5 stages, with inputs, outputs, side effects, and properties declared for every function.
-- `supplementary/iose_spec_depth.md` — Full data structure definitions (dataclasses, enums), module map, file layout, line count estimates, Zig port strategy, and stage deliverable tables.
+- `supplementary/function_iose_5_stages_spec.md`,  Complete function-level IOSE specification for all 65 modules across 5 stages, with inputs, outputs, side effects, and properties declared for every function.
+- `supplementary/iose_spec_depth.md`,  Full data structure definitions (dataclasses, enums), module map, file layout, line count estimates, Zig port strategy, and stage deliverable tables.
 
 ---
 
 ## Abstract
 
-Language models waste most of their computation predicting tokens that are structurally determined. When generating a Python function, the tokens `def`, `(`, `)`, `:`, and the indentation are not creative decisions — they are grammatical facts. When presenting data in a table, the column separators, row boundaries, and alignment characters are format requirements, not content. Current language models spend a full forward pass on every one of these tokens, running attention over the entire context and softmax over the full vocabulary to predict a closing parenthesis that was inevitable the moment the opening parenthesis appeared.
+Language models waste most of their computation predicting tokens that are structurally determined. When generating a Python function, the tokens `def`, `(`, `)`, `:`, and the indentation are not creative decisions,  they are grammatical facts. When presenting data in a table, the column separators, row boundaries, and alignment characters are format requirements, not content. Current language models spend a full forward pass on every one of these tokens, running attention over the entire context and softmax over the full vocabulary to predict a closing parenthesis that was inevitable the moment the opening parenthesis appeared.
 
-This paper specifies two systems that eliminate this waste. The first is Universal Compaction — a formal system for compressing any structured source material into pipe-delimited tables with typed columns, ID-based cross-references, and self-describing grammars, achieving 75-93% compression while preserving every named concept, relationship, and constraint. The second is Grammar-Directed Generation — a system where Prolog grammars provide the structural tokens of output (brackets, punctuation, formatting, boilerplate) while the language model provides only the content tokens (names, values, creative text), reducing the number of forward passes by 40-80% depending on output type.
+This paper specifies two systems that eliminate this waste. The first is Universal Compaction,  a formal system for compressing any structured source material into pipe-delimited tables with typed columns, ID-based cross-references, and self-describing grammars, achieving 75-93% compression while preserving every named concept, relationship, and constraint. The second is Grammar-Directed Generation,  a system where Prolog grammars provide the structural tokens of output (brackets, punctuation, formatting, boilerplate) while the language model provides only the content tokens (names, values, creative text), reducing the number of forward passes by 40-80% depending on output type.
 
-Both systems are built on the VDR-LLM-Prolog architecture: an exact-arithmetic language model where every number is an exact fraction with zero drift (VDR-1 through VDR-4), knowledge is stored in scoped Knowledge Bases with logical provenance (VDR-5), computation is performed by 448 deterministic primitives invoked through command tokens (VDR-6, VDR-8, VDR-10), and structured reasoning is conducted through an orchestrated inference loop (VDR-9). The grammars live on the Knowledge Base struct as a persistent field, inheriting through the KB tree like constraints, and the language model can create new grammars at any time by asserting facts — making the system self-extending.
+Both systems are built on the VDR-LLM-Prolog architecture: an exact-arithmetic language model where every number is an exact fraction with zero drift (VDR-1 through VDR-4), knowledge is stored in scoped Knowledge Bases with logical provenance (VDR-5), computation is performed by 448 deterministic primitives invoked through command tokens (VDR-6, VDR-8, VDR-10), and structured reasoning is conducted through an orchestrated inference loop (VDR-9). The grammars live on the Knowledge Base struct as a persistent field, inheriting through the KB tree like constraints, and the language model can create new grammars at any time by asserting facts,  making the system self-extending.
 
 A working Python implementation with 178 passing tests validates the compaction system's roundtrip fidelity, grammar generation, cross-KB usage grammar creation, and grammar inheritance with override shadowing.
 
@@ -43,19 +43,19 @@ This mechanism makes no distinction between a token that requires creative judgm
 
 The waste is substantial. In typical language model output:
 
-**Python code generation:** Approximately 40% of tokens are structural — `def`, `(`, `)`, `:`, indentation, `return`, line breaks, commas between parameters. These are determined by Python grammar rules, not by the model's understanding of the problem.
+**Python code generation:** Approximately 40% of tokens are structural,  `def`, `(`, `)`, `:`, indentation, `return`, line breaks, commas between parameters. These are determined by Python grammar rules, not by the model's understanding of the problem.
 
-**JSON/YAML output:** Approximately 50-60% of tokens are structural — `{`, `}`, `[`, `]`, `:`, `,`, `"` (quotes around keys and string values), indentation. The actual content (key names and values) is less than half the token stream.
+**JSON/YAML output:** Approximately 50-60% of tokens are structural,  `{`, `}`, `[`, `]`, `:`, `,`, `"` (quotes around keys and string values), indentation. The actual content (key names and values) is less than half the token stream.
 
-**English prose:** Approximately 20-30% of tokens are structurally constrained — articles (`the`, `a`), punctuation, common function words that are grammar-determined given the sentence structure chosen.
+**English prose:** Approximately 20-30% of tokens are structurally constrained,  articles (`the`, `a`), punctuation, common function words that are grammar-determined given the sentence structure chosen.
 
-**Formatted tables and lists:** Approximately 60-70% of tokens are structural — column separators, row markers, bullet points, numbering, alignment spaces.
+**Formatted tables and lists:** Approximately 60-70% of tokens are structural,  column separators, row markers, bullet points, numbering, alignment spaces.
 
 Every structural token that goes through a full forward pass is wasted computation. The model is spending billions of floating-point operations to predict tokens that a simple grammar rule could produce for free.
 
 ### 1.3 Why This Matters Beyond Efficiency
 
-The waste is not just computational. It is also a reliability problem. Every token the model predicts is a token that could be wrong. Structural tokens predicted by the model can be incorrect — mismatched brackets, wrong indentation levels, missing commas, malformed JSON. These are not failures of understanding. They are failures of execution on tasks that do not require understanding at all.
+The waste is not just computational. It is also a reliability problem. Every token the model predicts is a token that could be wrong. Structural tokens predicted by the model can be incorrect,  mismatched brackets, wrong indentation levels, missing commas, malformed JSON. These are not failures of understanding. They are failures of execution on tasks that do not require understanding at all.
 
 A grammar rule that produces the closing bracket of a JSON array cannot produce the wrong bracket. A grammar rule that indents the body of a Python function cannot indent to the wrong level. Structural correctness achieved through grammar rules is guaranteed, not probabilistic.
 
@@ -67,19 +67,19 @@ This paper's contributions build on an architecture specified across ten prior p
 
 ### 2.1 Exact Arithmetic (VDR-1 through VDR-4)
 
-Every number in the VDR-LLM-Prolog system is an exact fraction — an integer numerator over an integer denominator, stored as a triple [V, D, R] where V is the value, D is the denominator, and R is a remainder that carries exact structure that ordinary fractions would discard. Adding 1/7 and 1/13 produces exactly 20/91, not a floating-point approximation. Two hundred arithmetic operations produce zero accumulated drift. This was verified by 705 tests across 23 mathematical domains with zero computation errors.
+Every number in the VDR-LLM-Prolog system is an exact fraction,  an integer numerator over an integer denominator, stored as a triple [V, D, R] where V is the value, D is the denominator, and R is a remainder that carries exact structure that ordinary fractions would discard. Adding 1/7 and 1/13 produces exactly 20/91, not a floating-point approximation. Two hundred arithmetic operations produce zero accumulated drift. This was verified by 705 tests across 23 mathematical domains with zero computation errors.
 
-The machine learning stack — including softmax (where output probabilities sum to exactly 1, not approximately 1), automatic differentiation (where every gradient is an exact fraction), and a working transformer architecture — operates entirely in these exact fractions. No floating-point numbers are used anywhere.
+The machine learning stack,  including softmax (where output probabilities sum to exactly 1, not approximately 1), automatic differentiation (where every gradient is an exact fraction), and a working transformer architecture,  operates entirely in these exact fractions. No floating-point numbers are used anywhere.
 
 ### 2.2 Knowledge Bases (VDR-5)
 
-Everything in the system is stored in Knowledge Bases (KBs). A KB is a structured collection of facts (what is true), rules (what follows from what), and constraints (what must hold). KBs organize in a tree where children inherit from parents. Switching the active topic activates relevant KBs and deactivates others — lexical scoping applied to knowledge. Out-of-scope KBs are not searched at all, not merely deprioritized, eliminating cross-topic contamination.
+Everything in the system is stored in Knowledge Bases (KBs). A KB is a structured collection of facts (what is true), rules (what follows from what), and constraints (what must hold). KBs organize in a tree where children inherit from parents. Switching the active topic activates relevant KBs and deactivates others,  lexical scoping applied to knowledge. Out-of-scope KBs are not searched at all, not merely deprioritized, eliminating cross-topic contamination.
 
-Constraints live inside the KBs they govern (not in a separate registry), so a KB is self-describing — it carries its own validation rules. User accounts are KBs. The organizational hierarchy is a KB tree. Access control is constraint inheritance through the tree.
+Constraints live inside the KBs they govern (not in a separate registry), so a KB is self-describing,  it carries its own validation rules. User accounts are KBs. The organizational hierarchy is a KB tree. Access control is constraint inheritance through the tree.
 
 ### 2.3 Primitives and Command Tokens (VDR-6, VDR-8, VDR-10)
 
-The language model does not compute by predicting tokens. It invokes deterministic primitives through structured command tokens in its output stream. 448 primitives span 25 categories: string operations, list operations, exact arithmetic, set operations, linear algebra, statistics, graph algorithms, and more. Each primitive is an IOSE node — a component with declared Inputs, Outputs, and Side Effects — ensuring the pieces compose correctly.
+The language model does not compute by predicting tokens. It invokes deterministic primitives through structured command tokens in its output stream. 448 primitives span 25 categories: string operations, list operations, exact arithmetic, set operations, linear algebra, statistics, graph algorithms, and more. Each primitive is an IOSE node,  a component with declared Inputs, Outputs, and Side Effects,  ensuring the pieces compose correctly.
 
 The language model selects a primitive name from a known vocabulary (not generating it character by character) and points at data by dotted-path address (not serializing it through the token stream). This makes command construction a low-entropy reference-selection task rather than a high-entropy text-generation task.
 
@@ -89,7 +89,7 @@ KBs carry runtime working memory: LRU caches (bounded recent-item tracking), cou
 
 ### 2.5 Prolog (VDR-5, VDR-9)
 
-The system includes a Prolog-style logic engine for unification (exact pattern matching), rule evaluation (if all conditions hold, the conclusion follows), and scoped search (query only the KBs in the current scope chain). Prolog provides the deductive backbone: the language model asserts facts and writes rules, Prolog evaluates queries and produces exact conclusions. This separation — language model for judgment, Prolog for deduction — is central to both the compaction and grammar systems.
+The system includes a Prolog-style logic engine for unification (exact pattern matching), rule evaluation (if all conditions hold, the conclusion follows), and scoped search (query only the KBs in the current scope chain). Prolog provides the deductive backbone: the language model asserts facts and writes rules, Prolog evaluates queries and produces exact conclusions. This separation,  language model for judgment, Prolog for deduction,  is central to both the compaction and grammar systems.
 
 ### 2.6 Orchestrated Inference (VDR-9)
 
@@ -101,9 +101,9 @@ The language model does not reason. It orchestrates: assess the current state, f
 
 ### 3.1 The Compaction Problem
 
-The VDR-LLM-Prolog series produced 10 papers totaling over 200,000 words. Language models have limited context windows. Loading all specifications simultaneously is impossible. The obvious solution — summarization — loses information. Important details are omitted based on the summarizer's judgment about what matters, and that judgment may be wrong.
+The VDR-LLM-Prolog series produced 10 papers totaling over 200,000 words. Language models have limited context windows. Loading all specifications simultaneously is impossible. The obvious solution,  summarization,  loses information. Important details are omitted based on the summarizer's judgment about what matters, and that judgment may be wrong.
 
-Compaction is not summarization. It is a structural transformation that removes prose (connective tissue, hedging, repetition, transitions, section overviews, closing recaps) while preserving every named concept, every relationship, every constraint, every claim, and every boundary. The result is 75-93% smaller but informationally complete — nothing the source introduced is missing from the compacted form.
+Compaction is not summarization. It is a structural transformation that removes prose (connective tissue, hedging, repetition, transitions, section overviews, closing recaps) while preserving every named concept, every relationship, every constraint, every claim, and every boundary. The result is 75-93% smaller but informationally complete,  nothing the source introduced is missing from the compacted form.
 
 ### 3.2 The Compacted Format
 
@@ -113,7 +113,7 @@ A concrete example. The concept of "VDR Triple" from VDR-1 is compacted from app
 
 ```
 # concepts(id|name|category|definition)
-C1|VDR Triple|core|Ordered triple [V, D, R] — V: integer numerator, D: nonzero integer denominator frame, R: remainder
+C1|VDR Triple|core|Ordered triple [V, D, R],  V: integer numerator, D: nonzero integer denominator frame, R: remainder
 ```
 
 The relationship between the triple and its components:
@@ -130,7 +130,7 @@ The decode legend declares what `composes_of` means:
 rel_types: composes_of|enables|requires|implements|prevents|...
 ```
 
-The original 300 words of prose are gone. The structural information — what the concept is called, what category it belongs to, how it's defined, what it's composed of — is preserved exactly in approximately 40 words. Compression ratio: approximately 87%.
+The original 300 words of prose are gone. The structural information,  what the concept is called, what category it belongs to, how it's defined, what it's composed of,  is preserved exactly in approximately 40 words. Compression ratio: approximately 87%.
 
 ### 3.3 Source Character Classification
 
@@ -145,7 +145,7 @@ Not every document compresses the same way. A philosophy paper (mostly prose, ma
 | Operational | Operations, patterns, rules | operations, rules | 80-85% |
 | Data/Schema | Entities, fields, types | entities, fields | 75-85% |
 
-The classification uses Prolog-style pattern matching on keyword signals in the source text. If the text contains "axiom," "principle," and "thesis," the character is philosophy. If it contains "endpoint," "status code," and "request body," the character is API. For ambiguous cases where multiple character types score similarly, the language model makes the classification decision — this is a judgment call, which is what language models are for.
+The classification uses Prolog-style pattern matching on keyword signals in the source text. If the text contains "axiom," "principle," and "thesis," the character is philosophy. If it contains "endpoint," "status code," and "request body," the character is API. For ambiguous cases where multiple character types score similarly, the language model makes the classification decision,  this is a judgment call, which is what language models are for.
 
 ### 3.4 Table Schemas
 
@@ -155,7 +155,7 @@ The system provides 17 pre-defined table schemas, each declaring its columns, co
 |------------|---------|---------|
 | id | Row identifier with prefix | "C1", "P3", "CL7" |
 | text | Compressed prose | "Ordered triple [V, D, R]" |
-| identifier | Named thing — exact terminology preserved | "VDR Triple" |
+| identifier | Named thing,  exact terminology preserved | "VDR Triple" |
 | categorical | Value from declared enum | "core", "axiom", "demonstrated" |
 | id_ref | Reference to another row's ID | "C1" (pointing to concept C1) |
 | id_list | Comma-separated ID references | "C2,C3,C4" |
@@ -170,23 +170,23 @@ Compaction proceeds through ten steps, five of which are deterministic (Prolog r
 
 **Deterministic steps:** (1) Classify source character, (2) select compaction profile, (3) determine applicable tables from profile, (7) build decode legend from schemas used, (9) generate grammars from schemas.
 
-**Language model steps:** (4) Extract items into table rows — deciding what in the source text constitutes a concept, an operation, a principle, a claim. (5) Extract relationships — deciding what depends on what, what enables what, what requires what.
+**Language model steps:** (4) Extract items into table rows,  deciding what in the source text constitutes a concept, an operation, a principle, a claim. (5) Extract relationships,  deciding what depends on what, what enables what, what requires what.
 
-**Hybrid steps:** (6) Build section index (mapping items to source sections — partly mechanical, partly judgment), (8) validate against type constraints (mechanical checking, but violations may require judgment to resolve), (10) store as KB (mechanical).
+**Hybrid steps:** (6) Build section index (mapping items to source sections,  partly mechanical, partly judgment), (8) validate against type constraints (mechanical checking, but violations may require judgment to resolve), (10) store as KB (mechanical).
 
-The critical insight is that the structural decisions — which tables, which columns, what types, what ID prefixes — are all rule-determined. The language model's judgment is needed only for the content decisions — what's a concept, what's a relationship, how to compress a 300-word explanation into one line. The system minimizes language model work by making every structural decision a rule.
+The critical insight is that the structural decisions,  which tables, which columns, what types, what ID prefixes,  are all rule-determined. The language model's judgment is needed only for the content decisions,  what's a concept, what's a relationship, how to compress a 300-word explanation into one line. The system minimizes language model work by making every structural decision a rule.
 
 ### 3.6 Self-Describing Data
 
 When a compacted document is loaded into a KB, it becomes self-describing through four mechanisms:
 
-**Facts** store the actual data — one KB fact per table row, with the predicate being the table name and the arguments being the column values.
+**Facts** store the actual data,  one KB fact per table row, with the predicate being the table name and the arguments being the column values.
 
-**Constraints** validate the data — each enum declaration in the decode legend becomes a constraint that checks all values against the declared legal set.
+**Constraints** validate the data,  each enum declaration in the decode legend becomes a constraint that checks all values against the declared legal set.
 
-**Connections** encode the relationships — each edge in the relationships table becomes a typed connection on the KB struct.
+**Connections** encode the relationships,  each edge in the relationships table becomes a typed connection on the KB struct.
 
-**Grammars** describe how to read and present the data — auto-generated from the table schemas (see Section 4).
+**Grammars** describe how to read and present the data,  auto-generated from the table schemas (see Section 4).
 
 The compacted KB carries its own schema, its own validation rules, its own relationship graph, and its own presentation instructions. When exported to another system, nothing external is needed to understand the data. The grammar is inside.
 
@@ -198,9 +198,9 @@ A compacted document can be loaded into a KB and reconstructed back into a compa
 CompactedDocument → load into KB → reconstruct from KB → CompactedDocument
 ```
 
-The reconstructed document has the same tables, same rows, same relationships, same section index, and same decode legend. Specific values survive the roundtrip exactly — concept C1's name "VDR Triple" is identical before and after. This is verified by the test suite.
+The reconstructed document has the same tables, same rows, same relationships, same section index, and same decode legend. Specific values survive the roundtrip exactly,  concept C1's name "VDR Triple" is identical before and after. This is verified by the test suite.
 
-Roundtrip fidelity means the compaction is not lossy at the structural level. The 75-93% compression comes entirely from removing prose — connective tissue, hedging, repetition, transitions. Every named thing, every typed relationship, every constraint, every claim survives.
+Roundtrip fidelity means the compaction is not lossy at the structural level. The 75-93% compression comes entirely from removing prose,  connective tissue, hedging, repetition, transitions. Every named thing, every typed relationship, every constraint, every claim survives.
 
 ---
 
@@ -214,15 +214,15 @@ The generation pipeline:
 
 1. The language model's intent (or the data to present) is matched against available grammars by Prolog pattern matching.
 2. The best-matching grammar is selected, providing a template with typed slots.
-3. Structural tokens in the template are emitted directly — zero computation.
+3. Structural tokens in the template are emitted directly,  zero computation.
 4. Content slots are filled from KB data (exact, free) or by language model generation (expensive, only where genuinely needed).
 5. The output token stream is assembled from grammar tokens and content tokens.
 
-Each output token is tagged with its source: grammar (structural, exact, free), KB (factual, exact, free), or LLM (creative, probabilistic, expensive). This tagging provides per-token provenance — you can ask "why did the output contain this token?" and get "the Python grammar requires a colon after the parameter list" or "this value was retrieved from the KB" or "the LLM selected this word."
+Each output token is tagged with its source: grammar (structural, exact, free), KB (factual, exact, free), or LLM (creative, probabilistic, expensive). This tagging provides per-token provenance,  you can ask "why did the output contain this token?" and get "the Python grammar requires a colon after the parameter list" or "this value was retrieved from the KB" or "the LLM selected this word."
 
 ### 4.2 Grammars as KB Fields
 
-Grammars are not a separate system. They are a persistent field on the KB struct — `grammars: List[GrammarRule]` — alongside facts, rules, constraints, and connections. This follows the same architectural principle that placed constraints inside KBs: the thing being described holds its own description.
+Grammars are not a separate system. They are a persistent field on the KB struct,  `grammars: List[GrammarRule]`,  alongside facts, rules, constraints, and connections. This follows the same architectural principle that placed constraints inside KBs: the thing being described holds its own description.
 
 A GrammarRule has:
 
@@ -241,7 +241,7 @@ Because grammars are on the KB struct, they inherit through the KB tree (child K
 
 ### 4.3 Grammar Inheritance and Override
 
-A child KB inherits all grammars from its parent chain up to root. If a child declares a grammar with the same name as a parent's grammar, the child's version wins for queries originating from the child or its descendants. This is lexical scoping applied to presentation — the same mechanism that scopes facts, constraints, and data primitives.
+A child KB inherits all grammars from its parent chain up to root. If a child declares a grammar with the same name as a parent's grammar, the child's version wins for queries originating from the child or its descendants. This is lexical scoping applied to presentation,  the same mechanism that scopes facts, constraints, and data primitives.
 
 Practical implication: root-level grammars (basic list, comparison table, numbered steps) are available everywhere. Project-level grammars (gym result report, training log format) are available within the project. Session-level grammars (debug trace format) are disposable. The language model creates grammars at the appropriate scope level based on how broadly useful they are.
 
@@ -249,21 +249,21 @@ Practical implication: root-level grammars (basic list, comparison table, number
 
 When a compacted document is loaded into a KB, the system auto-generates three grammar categories:
 
-**Extraction grammars** — one per table. Each knows the table's column names and types, enabling exact queries. The grammar for the `concepts` table knows that column 1 is `id` (type: id), column 2 is `name` (type: identifier), column 3 is `category` (type: categorical with declared enum), column 4 is `definition` (type: text). For columns containing ID references, a resolution grammar is also generated that follows references to their target rows.
+**Extraction grammars**,  one per table. Each knows the table's column names and types, enabling exact queries. The grammar for the `concepts` table knows that column 1 is `id` (type: id), column 2 is `name` (type: identifier), column 3 is `category` (type: categorical with declared enum), column 4 is `definition` (type: text). For columns containing ID references, a resolution grammar is also generated that follows references to their target rows.
 
-**Display grammars** — five standard formats per compacted KB:
-- `compact_display` — re-emit in pipe-delimited format
-- `document_summary` — title, table counts, total IDs, relationship count
-- `detail_{table}` — one per table, single-row view with labeled fields
-- `relationship_display` — edges with resolved names
+**Display grammars**,  five standard formats per compacted KB:
+- `compact_display`,  re-emit in pipe-delimited format
+- `document_summary`,  title, table counts, total IDs, relationship count
+- `detail_{table}`,  one per table, single-row view with labeled fields
+- `relationship_display`,  edges with resolved names
 
-**Usage grammars** — generated on demand when one KB needs to reference another's data (see Section 4.6).
+**Usage grammars**,  generated on demand when one KB needs to reference another's data (see Section 4.6).
 
 ### 4.5 Connection-Aware Grammar Matching
 
-Grammars can declare a `connection_pattern` that matches against the KB's connection topology. A grammar designed for "data with provenance" has the pattern `has_inbound(sourced_from, 1+)` — it activates only when the KB has one or more inbound `sourced_from` connections.
+Grammars can declare a `connection_pattern` that matches against the KB's connection topology. A grammar designed for "data with provenance" has the pattern `has_inbound(sourced_from, 1+)`,  it activates only when the KB has one or more inbound `sourced_from` connections.
 
-This means the grammar matcher considers both data shape (what attributes the items have) and topology shape (what relationships exist to other KBs). The connection pattern is evaluated by the Prolog engine against the KB's connection list. A KB that connects to training data, evaluation results, and deployment configuration has a specific topology signature that matches deployment-readiness grammars automatically — no manual grammar selection needed.
+This means the grammar matcher considers both data shape (what attributes the items have) and topology shape (what relationships exist to other KBs). The connection pattern is evaluated by the Prolog engine against the KB's connection list. A KB that connects to training data, evaluation results, and deployment configuration has a specific topology signature that matches deployment-readiness grammars automatically,  no manual grammar selection needed.
 
 Grammars can also fill slots by following connections to other KBs. A dashboard grammar might have a slot for "training loss" that follows the `trained_by` connection to the training run KB and retrieves the loss value. One grammar declaration describes a multi-KB dashboard; the connection traversal happens at slot-filling time using the KB's integer ID addressing for O(1) access.
 
@@ -271,15 +271,15 @@ Grammars can also fill slots by following connections to other KBs. A dashboard 
 
 When one KB needs to use another KB's compacted data, a usage grammar is generated. Five usage types exist:
 
-**Reference** — cite a specific item inline. "VDR Triple (C1 from VDR-1): Ordered triple [V, D, R]." The grammar knows to look up the item by ID in the source KB and present it with attribution.
+**Reference**,  cite a specific item inline. "VDR Triple (C1 from VDR-1): Ordered triple [V, D, R]." The grammar knows to look up the item by ID in the source KB and present it with attribution.
 
-**Comparison** — merge items from two KBs for side-by-side analysis. The grammar produces a combined table with items from both sources, matched by shared attributes.
+**Comparison**,  merge items from two KBs for side-by-side analysis. The grammar produces a combined table with items from both sources, matched by shared attributes.
 
-**Evidence** — use items as evidence in an inference process. The grammar tracks source confidence and integrates with the VDR-9 confidence propagation system. An evidence grammar has a `confidence` slot (type: fraction) that feeds into the inference notebook's confidence computation.
+**Evidence**,  use items as evidence in an inference process. The grammar tracks source confidence and integrates with the VDR-9 confidence propagation system. An evidence grammar has a `confidence` slot (type: fraction) that feeds into the inference notebook's confidence computation.
 
-**Dependency** — trace what in one KB depends on what in another. The grammar follows connection chains and presents the dependency path.
+**Dependency**,  trace what in one KB depends on what in another. The grammar follows connection chains and presents the dependency path.
 
-**Summary** — overview of another KB's contents for context loading. Table counts, key items, key relationships — enough to understand what the other KB contains without loading it fully.
+**Summary**,  overview of another KB's contents for context loading. Table counts, key items, key relationships,  enough to understand what the other KB contains without loading it fully.
 
 Each usage grammar creation also creates a bidirectional connection between the source and target KBs. The target gets the grammar and an outbound connection. The source gets an inbound connection. The connections are typed (the relationship field says "references" or "evidence_source" or "compares_with") and carry a `display_grammar` field naming which grammar to use when presenting the connected data.
 
@@ -326,7 +326,7 @@ grammar_fits(Grammar, Items, Score) :-
     Score is Coverage * StrengthScore.
 ```
 
-The grammar with the highest score wins. If no grammar scores above a threshold, the language model falls back to token-by-token generation — or creates a new grammar for this situation.
+The grammar with the highest score wins. If no grammar scores above a threshold, the language model falls back to token-by-token generation,  or creates a new grammar for this situation.
 
 ### 5.2 Attribute-to-Slot Mapping
 
@@ -341,19 +341,19 @@ attribute_fits_slot(Attribute, Slot) :-
 
 Type compatibility rules declare which attribute types can fill which slot types. A `numeric_with_unit` attribute can fill a `numeric_with_unit` slot (exact match) or a `free_text` slot (rendered as text). A `categorical` attribute can fill a `categorical` slot or a `free_text` slot. An `identifier` attribute can only fill an `identifier` slot.
 
-Prolog solves the assignment problem: which attribute goes in which slot, maximizing coverage (all slots filled) while respecting type constraints. Unassigned attributes (data that doesn't fit any slot) are noted — the language model can mention them in a footnote or drop them.
+Prolog solves the assignment problem: which attribute goes in which slot, maximizing coverage (all slots filled) while respecting type constraints. Unassigned attributes (data that doesn't fit any slot) are noted,  the language model can mention them in a footnote or drop them.
 
 ### 5.3 What the Language Model Actually Generates
 
 After grammar selection and slot filling, the language model's remaining job is small:
 
-**Header text** — "Here are four approaches to reducing memory usage:" (one sentence).
+**Header text**,  "Here are four approaches to reducing memory usage:" (one sentence).
 
-**Value formatting** — handled by primitives, not language model: `format_percentage(75/100)` produces "75%".
+**Value formatting**,  handled by primitives, not language model: `format_percentage(75/100)` produces "75%".
 
-**Ordering decisions** — the language model chooses the sort key, the `list_sort_by_key` primitive executes it.
+**Ordering decisions**,  the language model chooses the sort key, the `list_sort_by_key` primitive executes it.
 
-**Creative slots** — summary sentences, recommendations, explanations. These are the only tokens that genuinely require language model generation.
+**Creative slots**,  summary sentences, recommendations, explanations. These are the only tokens that genuinely require language model generation.
 
 Out of perhaps 100 tokens in a typical formatted response, the language model generates 20-30. The grammar provides the structure. The primitives provide the formatting. The KB provides the data. Prolog provides the selection and mapping. The 70-80% of tokens that are structural are exact, free, and cannot hallucinate.
 
@@ -399,31 +399,31 @@ Training corpora are traditionally stored as raw token sequences. The model sees
 
 The training pipeline can operate at two levels simultaneously:
 
-**Token-level training** — the standard approach, learning from raw token sequences. This builds the language model's general language understanding, creative generation capability, and pattern recognition.
+**Token-level training**,  the standard approach, learning from raw token sequences. This builds the language model's general language understanding, creative generation capability, and pattern recognition.
 
-**Structure-level training** — learning from compacted KB structures. The model learns to: classify source characters, select appropriate table schemas, extract items into typed rows, identify relationships, and match grammars to data. This builds the language model's compaction and grammar capabilities.
+**Structure-level training**,  learning from compacted KB structures. The model learns to: classify source characters, select appropriate table schemas, extract items into typed rows, identify relationships, and match grammars to data. This builds the language model's compaction and grammar capabilities.
 
 The structure-level training data is dramatically smaller than the raw text it was compacted from. A 10,000-word paper becomes approximately 1,000-2,000 tokens of compacted tables. The information density per token is 5-10× higher because the prose has been removed and only structural content remains.
 
 ### 6.2 Grammar Libraries as Training Signal
 
-The grammar system produces reusable presentation templates. Over time, the system accumulates a library of grammars — each one a crystallized pattern for how to present a specific kind of data. These grammar libraries can serve as training signal:
+The grammar system produces reusable presentation templates. Over time, the system accumulates a library of grammars,  each one a crystallized pattern for how to present a specific kind of data. These grammar libraries can serve as training signal:
 
-**Grammar selection accuracy** — does the model select the grammar that users find most appropriate? Feedback on grammar selection (user asks for a different format) becomes training signal for improving selection.
+**Grammar selection accuracy**,  does the model select the grammar that users find most appropriate? Feedback on grammar selection (user asks for a different format) becomes training signal for improving selection.
 
-**Grammar creation quality** — when the model creates new grammars, are they reused or abandoned? Usage counters on grammars (a persistent counter on the KB struct) track this. Grammars that are used 50 times are good patterns. Grammars created and never reused were too specific.
+**Grammar creation quality**,  when the model creates new grammars, are they reused or abandoned? Usage counters on grammars (a persistent counter on the KB struct) track this. Grammars that are used 50 times are good patterns. Grammars created and never reused were too specific.
 
-**Slot-filling accuracy** — does the model fill creative slots (summaries, recommendations) with content that users accept? Feedback on content quality is more focused than feedback on entire responses because the structural tokens are known-correct.
+**Slot-filling accuracy**,  does the model fill creative slots (summaries, recommendations) with content that users accept? Feedback on content quality is more focused than feedback on entire responses because the structural tokens are known-correct.
 
 ### 6.3 Denominator Management in Training
 
 In VDR's exact arithmetic, parameter denominators grow through operations. A training step multiplies a learning rate fraction by a gradient fraction by a weight fraction, producing a fraction with a larger denominator. Left unchecked, denominators grow exponentially.
 
-The compaction system helps here: model parameters can be stored as compacted KBs where each parameter's denominator complexity is tracked as a KB counter. When a denominator exceeds a declared budget (a KB constraint), the system triggers reprojection onto a Q-basis (a shared power-of-two denominator) with an exact, bounded, declared error. This reprojection is not silent truncation — it is a provenance-tracked precision decision logged as a KB fact.
+The compaction system helps here: model parameters can be stored as compacted KBs where each parameter's denominator complexity is tracked as a KB counter. When a denominator exceeds a declared budget (a KB constraint), the system triggers reprojection onto a Q-basis (a shared power-of-two denominator) with an exact, bounded, declared error. This reprojection is not silent truncation,  it is a provenance-tracked precision decision logged as a KB fact.
 
 ### 6.4 Checkpoint Compression
 
-Model checkpoints in VDR contain exact fractions — potentially with large denominators. Compacting a checkpoint means storing the parameter values in pipe-delimited tables with the denominator complexity tracked per parameter group:
+Model checkpoints in VDR contain exact fractions,  potentially with large denominators. Compacting a checkpoint means storing the parameter values in pipe-delimited tables with the denominator complexity tracked per parameter group:
 
 ```
 # params_layer_0(id|param|value_n|value_d|denom_bits)
@@ -431,7 +431,7 @@ PL0_001|attn_q_weight[0][0]|31|140|8
 PL0_002|attn_q_weight[0][1]|17|70|7
 ```
 
-The compacted checkpoint is smaller than a raw serialization, carries its own schema (the grammar knows the column types), and is self-validating (constraints check denominator budgets). Multiple checkpoints can be diffed using the KB diffing mechanism — which parameters changed, by how much, and whether the denominator growth is within budget.
+The compacted checkpoint is smaller than a raw serialization, carries its own schema (the grammar knows the column types), and is self-validating (constraints check denominator budgets). Multiple checkpoints can be diffed using the KB diffing mechanism,  which parameters changed, by how much, and whether the denominator growth is within budget.
 
 ---
 
@@ -439,7 +439,7 @@ The compacted checkpoint is smaller than a raw serialization, carries its own sc
 
 ### 7.1 Context Assembly
 
-When the language model processes a user's prompt, it needs context — relevant facts, active constraints, pending items, recent findings. In a standard language model, context is the raw conversation history as tokens. In VDR-LLM-Prolog, context is assembled from KB queries.
+When the language model processes a user's prompt, it needs context,  relevant facts, active constraints, pending items, recent findings. In a standard language model, context is the raw conversation history as tokens. In VDR-LLM-Prolog, context is assembled from KB queries.
 
 With compacted KBs, context assembly becomes dramatically more efficient. Instead of loading 200,000 tokens of raw specification text, the system loads 10 compacted KBs totaling approximately 20,000 tokens. The extraction grammars on each KB enable exact queries: "what are VDR's limitations?" queries the `boundaries` table across all compacted paper KBs. "What evidence supports the zero-drift claim?" follows ID references from claims to benchmark data.
 
@@ -463,9 +463,9 @@ The user sees a well-formatted response. The language model spent forward passes
 
 Grammar slots have types. The type constrains which tokens are valid for that slot. When the language model fills a "function name" slot in a Python code grammar, the valid tokens are identifiers that are legal Python names, relevant to the current context, and not already used in the current scope. The KB knows what identifiers are in scope (it tracks the code project's module structure).
 
-Instead of softmax over 50,000 vocabulary items, the model runs softmax over perhaps 200 candidates — the identifiers the KB says are relevant. This is both faster (smaller softmax) and more reliable (irrelevant tokens are excluded before scoring, not after).
+Instead of softmax over 50,000 vocabulary items, the model runs softmax over perhaps 200 candidates,  the identifiers the KB says are relevant. This is both faster (smaller softmax) and more reliable (irrelevant tokens are excluded before scoring, not after).
 
-The same applies to every typed slot. A "severity" slot of type `categorical([low, medium, high, critical])` has exactly 4 valid tokens. A "relationship type" slot has exactly the types declared in the decode legend. The vocabulary filtering is derived from the grammar's slot types and the KB's type declarations — the same type system that validates compacted data also constrains generation.
+The same applies to every typed slot. A "severity" slot of type `categorical([low, medium, high, critical])` has exactly 4 valid tokens. A "relationship type" slot has exactly the types declared in the decode legend. The vocabulary filtering is derived from the grammar's slot types and the KB's type declarations,  the same type system that validates compacted data also constrains generation.
 
 ### 7.4 Error Prevention Through Grammar Constraints
 
@@ -473,7 +473,7 @@ Grammars can carry constraints:
 
 A comparison table grammar has a constraint: minimum 2 items. If the data has only 1 item, the grammar matcher rejects this grammar and falls back to a narrative grammar. The output format is guaranteed appropriate for the data.
 
-A JSON output grammar has structural constraints: every `{` has a matching `}`, every key is followed by `:` then a value. These are not learned patterns — they are grammar rules. They cannot be violated.
+A JSON output grammar has structural constraints: every `{` has a matching `}`, every key is followed by `:` then a value. These are not learned patterns,  they are grammar rules. They cannot be violated.
 
 A code generation grammar has language-specific constraints: Python 3.8 compatibility (no walrus operator, no match statement), type hints use `Optional[X]` not `X | None`. These constraints live in the language-version KB and are inherited by all code grammars in that scope.
 
@@ -538,11 +538,11 @@ For a response that is 70% structured data and 30% creative text (common in tech
 
 ### 9.2 Reliability Improvement
 
-Grammar-provided tokens have a 100% correctness rate — a closing bracket produced by a grammar rule is always the right bracket. Language model-predicted structural tokens have an empirical correctness rate that degrades with output length and complexity. For long code generation (100+ lines), structural errors (mismatched brackets, wrong indentation) are common. Grammar-directed generation eliminates this entire error class.
+Grammar-provided tokens have a 100% correctness rate,  a closing bracket produced by a grammar rule is always the right bracket. Language model-predicted structural tokens have an empirical correctness rate that degrades with output length and complexity. For long code generation (100+ lines), structural errors (mismatched brackets, wrong indentation) are common. Grammar-directed generation eliminates this entire error class.
 
 ### 9.3 Provenance Improvement
 
-Every token in grammar-directed output has a source tag: grammar (structural rule), KB (stored fact), or LLM (model prediction). This per-token provenance is unique — no current language model system provides it. It enables precise debugging: "the output had a wrong value at position 47" can be traced to "that value came from KB fact X in scope Y" or "the LLM generated that token with probability 340/1000."
+Every token in grammar-directed output has a source tag: grammar (structural rule), KB (stored fact), or LLM (model prediction). This per-token provenance is unique,  no current language model system provides it. It enables precise debugging: "the output had a wrong value at position 47" can be traced to "that value came from KB fact X in scope Y" or "the LLM generated that token with probability 340/1000."
 
 ---
 
@@ -550,7 +550,7 @@ Every token in grammar-directed output has a source tag: grammar (structural rul
 
 ### 10.1 Constrained Decoding
 
-Existing work on constrained decoding (PICARD for SQL, Synchromesh for code) restricts the token vocabulary at each generation step to tokens that maintain syntactic validity. Grammar-directed generation goes further: it does not merely constrain the vocabulary — it eliminates the forward pass entirely for structural tokens. Constrained decoding still runs the model and discards invalid predictions. Grammar-directed generation never runs the model for tokens the grammar can produce.
+Existing work on constrained decoding (PICARD for SQL, Synchromesh for code) restricts the token vocabulary at each generation step to tokens that maintain syntactic validity. Grammar-directed generation goes further: it does not merely constrain the vocabulary,  it eliminates the forward pass entirely for structural tokens. Constrained decoding still runs the model and discards invalid predictions. Grammar-directed generation never runs the model for tokens the grammar can produce.
 
 ### 10.2 Template-Based Generation
 
@@ -566,7 +566,7 @@ RAG systems retrieve relevant documents and include them in the prompt context. 
 
 ### 11.1 Grammar Coverage
 
-Not all output is grammatically predictable. Novel explanations, creative writing, ambiguous situations where the output structure itself is part of the creative decision — these resist grammar-directed generation. The system falls back to standard token-by-token generation for these cases. The grammar system accelerates the common case; it does not replace the general case.
+Not all output is grammatically predictable. Novel explanations, creative writing, ambiguous situations where the output structure itself is part of the creative decision,  these resist grammar-directed generation. The system falls back to standard token-by-token generation for these cases. The grammar system accelerates the common case; it does not replace the general case.
 
 ### 11.2 Grammar Maintenance
 
@@ -578,13 +578,13 @@ Compaction quality depends on the language model's extraction judgment. If the m
 
 ### 11.4 Scale
 
-The current implementation is a Python prototype tested on small documents and toy models. The compaction system handles documents up to tens of thousands of words efficiently. The grammar matching system handles grammar libraries of hundreds of rules. Scaling to production-size corpora (billions of tokens) and production-size grammar libraries (thousands of rules) requires engineering optimization — faster Prolog matching, indexed grammar retrieval, grammar compilation — that is planned but not yet implemented.
+The current implementation is a Python prototype tested on small documents and toy models. The compaction system handles documents up to tens of thousands of words efficiently. The grammar matching system handles grammar libraries of hundreds of rules. Scaling to production-size corpora (billions of tokens) and production-size grammar libraries (thousands of rules) requires engineering optimization,  faster Prolog matching, indexed grammar retrieval, grammar compilation,  that is planned but not yet implemented.
 
 ---
 
 ## 12. Conclusion
 
-Language models waste computation on structurally determined tokens. Grammar-directed generation eliminates this waste by separating structural decisions (grammar rules, free, exact) from content decisions (language model predictions, expensive, creative). Universal Compaction provides the data substrate — source material compressed 75-93% into self-describing KBs with typed schemas, ID-based cross-references, and auto-generated grammars.
+Language models waste computation on structurally determined tokens. Grammar-directed generation eliminates this waste by separating structural decisions (grammar rules, free, exact) from content decisions (language model predictions, expensive, creative). Universal Compaction provides the data substrate,  source material compressed 75-93% into self-describing KBs with typed schemas, ID-based cross-references, and auto-generated grammars.
 
 The system's key properties:
 
@@ -622,17 +622,17 @@ The language model still predicts tokens. It just predicts fewer of them, and on
 
 | Column Type | Storage | Validation Rule | Conversion to VDR | Sort Behavior |
 |------------|---------|----------------|-------------------|---------------|
-| id | string | Must match `^[A-Z]{1,3}\d+$` for prefixed, or empty for structural tables | N/A — identifier, not numeric | Prefix alpha then numeric |
-| text | string | Non-empty if column is required | N/A — prose content | Lexicographic |
-| identifier | string | Must preserve exact source terminology; no synonyms, no abbreviation unless source uses it | N/A — name token | Lexicographic |
-| categorical | string | Must be member of declared enum_values list; validated by decode legend constraint | N/A — enum token | By enum declaration order |
-| id_ref | string | Must reference an existing ID in some table of the same compacted document | N/A — pointer | By target's sort order |
-| id_list | string | Comma-separated; each element must be a valid id_ref | N/A — pointer list | By first element |
-| rel_type | string | Must be member of declared rel_types enum in decode legend | N/A — enum token | Alphabetic |
-| fraction | string | Format `n/d` where n is integer, d is positive integer; stored as exact VDR fraction | VDR(n, d) — lossless | By numeric value (cross-multiply) |
-| integer | string | Parseable as integer; no decimal point, no fraction | VDR(n, 1) — lossless | Numeric |
-| boolean | string | One of: yes, no, true, false | N/A — flag | false < true |
-| enum_list | string | Pipe-separated; each element must be from a declared enum | N/A — multi-value | By first element |
+| id | string | Must match `^[A-Z]{1,3}\d+$` for prefixed, or empty for structural tables | N/A,  identifier, not numeric | Prefix alpha then numeric |
+| text | string | Non-empty if column is required | N/A,  prose content | Lexicographic |
+| identifier | string | Must preserve exact source terminology; no synonyms, no abbreviation unless source uses it | N/A,  name token | Lexicographic |
+| categorical | string | Must be member of declared enum_values list; validated by decode legend constraint | N/A,  enum token | By enum declaration order |
+| id_ref | string | Must reference an existing ID in some table of the same compacted document | N/A,  pointer | By target's sort order |
+| id_list | string | Comma-separated; each element must be a valid id_ref | N/A,  pointer list | By first element |
+| rel_type | string | Must be member of declared rel_types enum in decode legend | N/A,  enum token | Alphabetic |
+| fraction | string | Format `n/d` where n is integer, d is positive integer; stored as exact VDR fraction | VDR(n, d),  lossless | By numeric value (cross-multiply) |
+| integer | string | Parseable as integer; no decimal point, no fraction | VDR(n, 1),  lossless | Numeric |
+| boolean | string | One of: yes, no, true, false | N/A,  flag | false < true |
+| enum_list | string | Pipe-separated; each element must be from a declared enum | N/A,  multi-value | By first element |
 
 ### A.2 Column Type Compatibility for Slot Filling
 
@@ -654,9 +654,9 @@ The language model still predicts tokens. It just predicts fewer of them, and on
 | integer → text | to_string builtin | Display conversion | Reversible |
 | boolean → boolean | Direct | None | None |
 | boolean → text | "yes"/"no" rendering | None | None |
-| text → identifier | NOT COMPATIBLE | — | Would lose type safety |
-| text → categorical | NOT COMPATIBLE | — | Value may not be in enum |
-| text → fraction | NOT COMPATIBLE | — | Text may not be numeric |
+| text → identifier | NOT COMPATIBLE |,  | Would lose type safety |
+| text → categorical | NOT COMPATIBLE |,  | Value may not be in enum |
+| text → fraction | NOT COMPATIBLE |,  | Text may not be numeric |
 
 ---
 
@@ -666,24 +666,24 @@ The language model still predicts tokens. It just predicts fewer of them, and on
 
 | Table Schema | Philosophy | Specification | Research | Methodology | Operational | Data |
 |-------------|-----------|--------------|---------|------------|------------|------|
-| principles | Required | Optional | Optional | Optional | Optional | — |
+| principles | Required | Optional | Optional | Optional | Optional |,  |
 | concepts | Required | Required | Optional | Optional | Optional | Optional |
-| claims | Required | Optional | Required | Optional | Optional | — |
-| operations | — | Optional | — | — | Required | — |
-| boundaries | Optional | Optional | Optional | — | Optional | — |
-| rules | Optional | — | — | Optional | Optional | Optional |
-| distinctions | Optional | — | — | — | — | — |
-| axes | Optional | — | — | — | — | — |
-| components | — | Required | — | — | Optional | — |
-| builtins | — | Optional | — | — | — | — |
-| constraints | — | Optional | — | Optional | Optional | Optional |
-| entities | — | Optional | — | — | — | Required |
-| fields | — | Optional | — | — | — | Required |
-| phases | — | Optional | — | Required | — | — |
-| test_results | — | — | Optional | — | — | — |
-| failures | — | — | Optional | — | — | — |
-| findings | — | — | Required | — | — | — |
-| benchmarks | — | — | Optional | — | — | — |
+| claims | Required | Optional | Required | Optional | Optional |,  |
+| operations |,  | Optional |,  |,  | Required |,  |
+| boundaries | Optional | Optional | Optional |,  | Optional |,  |
+| rules | Optional |,  |,  | Optional | Optional | Optional |
+| distinctions | Optional |,  |,  |,  |,  |,  |
+| axes | Optional |,  |,  |,  |,  |,  |
+| components |,  | Required |,  |,  | Optional |,  |
+| builtins |,  | Optional |,  |,  |,  |,  |
+| constraints |,  | Optional |,  | Optional | Optional | Optional |
+| entities |,  | Optional |,  |,  |,  | Required |
+| fields |,  | Optional |,  |,  |,  | Required |
+| phases |,  | Optional |,  | Required |,  |,  |
+| test_results |,  |,  | Optional |,  |,  |,  |
+| failures |,  |,  | Optional |,  |,  |,  |
+| findings |,  |,  | Required |,  |,  |,  |
+| benchmarks |,  |,  | Optional |,  |,  |,  |
 | relationships | Always | Always | Always | Always | Always | Always |
 | section_index | Always | Always | Always | Always | Always | Always |
 
@@ -691,7 +691,7 @@ The language model still predicts tokens. It just predicts fewer of them, and on
 
 | Profile | Prefixes Used | Reserved Range | Collision Risk |
 |---------|-------------|---------------|----------------|
-| Philosophy | P, C, CL, AX, DI, B, R | P1-P99, C1-C999 | None — prefixes unique per profile |
+| Philosophy | P, C, CL, AX, DI, B, R | P1-P99, C1-C999 | None,  prefixes unique per profile |
 | Specification | CO, C, BU, CN, P, CL, B, PH, E, F | CO1-CO99, BU1-BU999 | None |
 | Research | FI, CL, BM, TR, FL, C, B, P | FI1-FI99, BM1-BM99 | None |
 | Methodology | PH, C, R, CN, CL, B | PH1-PH99 | None |
@@ -804,14 +804,14 @@ The language model still predicts tokens. It just predicts fewer of them, and on
 
 | Token Category | Percentage | Examples | Grammar-Providable? |
 |---------------|-----------|---------|-------------------|
-| Structural delimiters | 18% | `|`, `#`, `(`, `)`, newlines | Yes — 100% |
-| ID tokens | 12% | P1, C3, CL7, OP12 | Yes — prefix + counter |
-| Column headers | 8% | id, name, category, definition | Yes — from schema |
-| Relationship types | 5% | enables, requires, uses | Yes — from enum |
-| Category values | 4% | core, axiom, demonstrated | Yes — from enum |
-| Table names | 3% | concepts, principles, claims | Yes — from profile |
-| Content identifiers | 15% | VDR Triple, softmax, KB_ASSERT | Partially — from KB vocabulary |
-| Content text | 35% | Definitions, descriptions, rationale | No — LLM judgment required |
+| Structural delimiters | 18% | `|`, `#`, `(`, `)`, newlines | Yes,  100% |
+| ID tokens | 12% | P1, C3, CL7, OP12 | Yes,  prefix + counter |
+| Column headers | 8% | id, name, category, definition | Yes,  from schema |
+| Relationship types | 5% | enables, requires, uses | Yes,  from enum |
+| Category values | 4% | core, axiom, demonstrated | Yes,  from enum |
+| Table names | 3% | concepts, principles, claims | Yes,  from profile |
+| Content identifiers | 15% | VDR Triple, softmax, KB_ASSERT | Partially,  from KB vocabulary |
+| Content text | 35% | Definitions, descriptions, rationale | No,  LLM judgment required |
 
 Grammar-directed generation can provide approximately 50% of compacted output tokens (structural + IDs + headers + enums + table names) for free, leaving only content identifiers (15%, partially KB-assisted) and content text (35%, LLM-required).
 
@@ -837,12 +837,12 @@ Final score = (slot_coverage × 40 + type_precision × 30 + connection_match × 
 |----------------|---------|---------|----------|-----------|-----------|-----------|-------|
 | 4 items, 5 numeric attrs | comparison_table | Yes | 80% (4/5 slots) | 100% | N/A (100%) | 90% | 85/100 |
 | 4 items, 5 numeric attrs | ranked_list | Yes | 60% (3/5 mapped) | 100% | N/A (100%) | 70% | 71/100 |
-| 4 items, 5 numeric attrs | single_recommendation | No (no clear dominant) | — | — | — | — | 0/100 |
-| 1 item, 3 attrs | comparison_table | No (min 2 items) | — | — | — | — | 0/100 |
+| 4 items, 5 numeric attrs | single_recommendation | No (no clear dominant) |,  |,  |,  |,  | 0/100 |
+| 1 item, 3 attrs | comparison_table | No (min 2 items) |,  |,  |,  |,  | 0/100 |
 | 1 item, 3 attrs | detail_view | Yes | 100% | 100% | N/A (100%) | 95% | 97/100 |
 | 3 items, tradeoff attrs | pros_cons_pairs | Yes | 60% (3/5) | 100% | N/A (100%) | 85% | 73/100 |
 | KB with 3 sourced_from connections | provenance_chain | Yes | 100% | 100% | 100% | 90% | 97/100 |
-| KB with 0 connections | provenance_chain | No (requires sourced_from) | — | — | — | — | 0/100 |
+| KB with 0 connections | provenance_chain | No (requires sourced_from) |,  |,  |,  |,  | 0/100 |
 
 ### E.3 Tiebreaking Rules
 
@@ -862,24 +862,24 @@ Final score = (slot_coverage × 40 + type_precision × 30 + connection_match × 
 
 | Table Schema | extract_ grammar | detail_ grammar | resolve_ grammars | Total |
 |-------------|-----------------|-----------------|-------------------|-------|
-| principles | extract_principles | detail_principles | — | 2 |
-| concepts | extract_concepts | detail_concepts | — | 2 |
+| principles | extract_principles | detail_principles |,  | 2 |
+| concepts | extract_concepts | detail_concepts |,  | 2 |
 | claims | extract_claims | detail_claims | resolve_claims_evidence (id_list) | 3 |
-| operations | extract_operations | detail_operations | — | 2 |
-| boundaries | extract_boundaries | detail_boundaries | — | 2 |
-| rules | extract_rules | detail_rules | — | 2 |
-| distinctions | extract_distinctions | detail_distinctions | — | 2 |
-| axes | extract_axes | detail_axes | — | 2 |
-| components | extract_components | detail_components | — | 2 |
-| builtins | extract_builtins | detail_builtins | — | 2 |
-| constraints | extract_constraints | detail_constraints | — | 2 |
-| entities | extract_entities | detail_entities | — | 2 |
+| operations | extract_operations | detail_operations |,  | 2 |
+| boundaries | extract_boundaries | detail_boundaries |,  | 2 |
+| rules | extract_rules | detail_rules |,  | 2 |
+| distinctions | extract_distinctions | detail_distinctions |,  | 2 |
+| axes | extract_axes | detail_axes |,  | 2 |
+| components | extract_components | detail_components |,  | 2 |
+| builtins | extract_builtins | detail_builtins |,  | 2 |
+| constraints | extract_constraints | detail_constraints |,  | 2 |
+| entities | extract_entities | detail_entities |,  | 2 |
 | fields | extract_fields | detail_fields | resolve_fields_entity (id_ref) | 3 |
-| phases | extract_phases | detail_phases | — | 2 |
-| test_results | extract_test_results | detail_test_results | — | 2 |
-| failures | extract_failures | detail_failures | — | 2 |
+| phases | extract_phases | detail_phases |,  | 2 |
+| test_results | extract_test_results | detail_test_results |,  | 2 |
+| failures | extract_failures | detail_failures |,  | 2 |
 | findings | extract_findings | detail_findings | resolve_findings_evidence (id_list) | 3 |
-| benchmarks | extract_benchmarks | detail_benchmarks | — | 2 |
+| benchmarks | extract_benchmarks | detail_benchmarks |,  | 2 |
 
 Plus 3 document-level grammars: compact_display, document_summary, relationship_display.
 
@@ -944,7 +944,7 @@ Maximum grammars auto-generated per compacted KB: (tables used × 2) + resolve g
 | Articles | the, a, an | 7% | Yes (grammar-determined) | 7% |
 | Prepositions | of, in, to, for, with, from | 8% | Partially | ~4% |
 | Conjunctions | and, but, or, because | 4% | Partially | ~2% |
-| Punctuation | ., ,, ;, :, ?, !, —, (, ) | 6% | Yes | 6% |
+| Punctuation | ., ,, ;, :, ?, !,, , (, ) | 6% | Yes | 6% |
 | Pronouns | it, they, this, that, which | 5% | Partially | ~2% |
 | Common verbs | is, are, was, has, have, can | 6% | Partially | ~3% |
 | Technical terms | VDR, fraction, softmax, KB | 10% | Yes (from KB vocabulary) | 10% |
@@ -1180,7 +1180,7 @@ The compacted form is 5.4× smaller than the full paper while preserving 95% of 
 | core/types.py | Enums + simple dataclasses | None |
 | core/kb.py | KnowledgeBase + Counter + LockState + Fact + Constraint | core/types.py |
 | core/path_registry.py | PathRegistry | None |
-| core/prolog.py | (new — Prolog engine) | core/types.py, core/kb.py |
+| core/prolog.py | (new,  Prolog engine) | core/types.py, core/kb.py |
 | compaction/schemas.py | STANDARD_TABLES + TableSchema + ColumnDef | core/types.py |
 | compaction/profiles.py | PROFILES + CompactionProfile | compaction/schemas.py |
 | compaction/document.py | CompactedRow + CompactedTable + CompactedDocument | core/types.py |

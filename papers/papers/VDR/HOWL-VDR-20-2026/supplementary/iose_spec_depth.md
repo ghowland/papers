@@ -13,17 +13,17 @@
 
 ### 1.1 Comprehensive Then Incremental
 
-The specification is comprehensive — VDR-1 through VDR-10 define the whole system. The build is incremental — five stages, each producing a testable, runnable system that does more than the last. At no stage is the system incomplete in the aggregated sense — each stage is a complete, internally consistent system that handles a full lifecycle at its level of capability.
+The specification is comprehensive,  VDR-1 through VDR-10 define the whole system. The build is incremental,  five stages, each producing a testable, runnable system that does more than the last. At no stage is the system incomplete in the aggregated sense,  each stage is a complete, internally consistent system that handles a full lifecycle at its level of capability.
 
 ### 1.2 Python First, Zig Final
 
-Python 3.8 is the prototype language. It has the existing VDR-1 through VDR-4 codebase (vdr.py, active_mul.py, fn.py, linalg.py, export.py, softmax.py, autodiff.py, nn.py, losses.py, optim.py, rng.py, init.py, sampling.py, datasets.py, metrics.py, checkpoint.py, basis.py, tensor.py, attention.py, transformer.py, trainer.py, exp.py, logarithm.py). The prototype validates every design decision. The final implementation in Zig 0.15.1 is a port of the validated prototype — same interfaces, same tests, better performance and memory characteristics.
+Python 3.8 is the prototype language. It has the existing VDR-1 through VDR-4 codebase (vdr.py, active_mul.py, fn.py, linalg.py, export.py, softmax.py, autodiff.py, nn.py, losses.py, optim.py, rng.py, init.py, sampling.py, datasets.py, metrics.py, checkpoint.py, basis.py, tensor.py, attention.py, transformer.py, trainer.py, exp.py, logarithm.py). The prototype validates every design decision. The final implementation in Zig 0.15.1 is a port of the validated prototype,  same interfaces, same tests, better performance and memory characteristics.
 
 Python dataclasses map cleanly to Zig structs. Python dicts map to Zig HashMaps. Python lists map to Zig ArrayLists. Python enums map to Zig enums. The prototype is designed for portability from the start.
 
 ### 1.3 IOSE Throughout
 
-Every module, every class, every function is an IOSE node. Inputs, outputs, side effects declared. This discipline starts at Stage 1 and never relaxes. The IOSE declarations ARE the test specifications — test each node by providing declared inputs, verifying declared outputs, confirming declared side effects.
+Every module, every class, every function is an IOSE node. Inputs, outputs, side effects declared. This discipline starts at Stage 1 and never relaxes. The IOSE declarations ARE the test specifications,  test each node by providing declared inputs, verifying declared outputs, confirming declared side effects.
 
 ---
 
@@ -152,7 +152,7 @@ vdr_llm_prolog/
 
 ## 3. Core Data Structures
 
-These dataclasses are the foundation. Everything builds on them. They are introduced in Stage 1 and never change shape — only gain methods in later stages.
+These dataclasses are the foundation. Everything builds on them. They are introduced in Stage 1 and never change shape,  only gain methods in later stages.
 
 ### 3.1 Number Types
 
@@ -163,7 +163,7 @@ from enum import Enum
 from fractions import Fraction
 
 
-# VDR triple — the ground truth numeric type
+# VDR triple,  the ground truth numeric type
 # Wraps the existing VDR class from core/vdr.py
 # This dataclass is the IOSE-declared interface layer
 
@@ -681,7 +681,7 @@ class InferenceConclusion:
 @dataclass
 class InferenceNotebook:
     """An inference notebook is a KB with additional schema fields.
-    The notebook IS a KnowledgeBase — these fields are stored as
+    The notebook IS a KnowledgeBase,  these fields are stored as
     facts and data primitives within the KB."""
     kb: KnowledgeBase
     problem_statement: str = ""
@@ -894,33 +894,33 @@ def register_text_builtins(registry: BuiltinRegistry):
 core/vdr.py              [EXISTS]
 core/active_mul.py       [EXISTS]
 core/linalg.py           [EXISTS]
-core/types.py            [NEW — type hierarchy, VDRFraction wrapper, dispatch]
-core/errors.py           [NEW — Result type, error codes]
+core/types.py            [NEW,  type hierarchy, VDRFraction wrapper, dispatch]
+core/errors.py           [NEW,  Result type, error codes]
 
-kb/knowledge_base.py     [NEW — KB struct with all fields]
-kb/fact_store.py         [NEW — assert, retract, query by predicate scan]
-kb/rule_engine.py        [NEW — basic unification, depth-first search, backtracking]
-kb/working_data.py       [NEW — scoped key-value bindings]
+kb/knowledge_base.py     [NEW,  KB struct with all fields]
+kb/fact_store.py         [NEW,  assert, retract, query by predicate scan]
+kb/rule_engine.py        [NEW,  basic unification, depth-first search, backtracking]
+kb/working_data.py       [NEW,  scoped key-value bindings]
 
-primitives/arithmetic.py     [NEW — wraps vdr.py: add, sub, mul, div, neg, abs, pow, reciprocal]
-primitives/comparison.py     [NEW — compare, equal, lt, le, min, max, sign, is_zero]
-primitives/rounding.py       [NEW — floor, ceil, round, truncate, numerator, denominator, simplify]
-primitives/list_aggregates.py [NEW — sum, product, mean, dot_product]
-primitives/text.py           [NEW — 17 string ops]
-primitives/collections.py   [NEW — 36 list ops]
-primitives/sets.py           [NEW — 14 set ops]
-primitives/mappings.py       [NEW — 15 dict ops]
-primitives/conversion.py    [NEW — to_string, parse_json, format_json, parse_csv, to/from fraction]
-primitives/logic.py          [NEW — if_then_else, for_each, try_catch, findall, assert_that]
-primitives/integer_ops.py    [NEW — int add/sub/mul/div/mod, range, bit ops]
+primitives/arithmetic.py     [NEW,  wraps vdr.py: add, sub, mul, div, neg, abs, pow, reciprocal]
+primitives/comparison.py     [NEW,  compare, equal, lt, le, min, max, sign, is_zero]
+primitives/rounding.py       [NEW,  floor, ceil, round, truncate, numerator, denominator, simplify]
+primitives/list_aggregates.py [NEW,  sum, product, mean, dot_product]
+primitives/text.py           [NEW,  17 string ops]
+primitives/collections.py   [NEW,  36 list ops]
+primitives/sets.py           [NEW,  14 set ops]
+primitives/mappings.py       [NEW,  15 dict ops]
+primitives/conversion.py    [NEW,  to_string, parse_json, format_json, parse_csv, to/from fraction]
+primitives/logic.py          [NEW,  if_then_else, for_each, try_catch, findall, assert_that]
+primitives/integer_ops.py    [NEW,  int add/sub/mul/div/mod, range, bit ops]
 
 data_primitives/counter.py       [NEW]
 data_primitives/lock.py          [NEW]
 data_primitives/queue.py         [NEW]
 data_primitives/stack.py         [NEW]
 
-iose/registry.py         [NEW — IOSE declaration storage]
-iose/principles.py       [NEW — OSO axioms, core facts, priority rules]
+iose/registry.py         [NEW,  IOSE declaration storage]
+iose/principles.py       [NEW,  OSO axioms, core facts, priority rules]
 ```
 
 **IOSE for Stage 1 as a whole:**
@@ -987,37 +987,37 @@ print("Accuracy:", query_result)
 
 ### 5.2 Stage 2: Upgraded Toy
 
-**Goal:** Add command tokens, path addressing, constraint engine, scope resolution, the full comparison and statistics builtins, and a scratchpad. The system can now process command token streams instead of just Python API calls. It has real scoping — switching topics activates and deactivates KBs. It has constraints that fire on violations. Still toy-sized data, but the architecture is real.
+**Goal:** Add command tokens, path addressing, constraint engine, scope resolution, the full comparison and statistics builtins, and a scratchpad. The system can now process command token streams instead of just Python API calls. It has real scoping,  switching topics activates and deactivates KBs. It has constraints that fire on violations. Still toy-sized data, but the architecture is real.
 
 **New modules activated:**
 
 ```
-kb/constraint_engine.py  [NEW — check constraints, enforce on_violation]
-kb/scope_resolver.py     [NEW — scope chain walking, inheritance, shadowing]
+kb/constraint_engine.py  [NEW,  check constraints, enforce on_violation]
+kb/scope_resolver.py     [NEW,  scope chain walking, inheritance, shadowing]
 
-path/registry.py         [NEW — path-to-ID, slot IDs]
-path/resolver.py         [NEW — dotted path resolution, relative paths]
+path/registry.py         [NEW,  path-to-ID, slot IDs]
+path/resolver.py         [NEW,  dotted path resolution, relative paths]
 
-command/token_types.py   [NEW — CommandToken, CommandType]
-command/parser.py        [NEW — parse text+command stream]
-command/executor.py      [NEW — dispatch to primitives via IOSE registry]
-command/scratchpad.py    [NEW — RingBuffer-based scratchpad]
+command/token_types.py   [NEW,  CommandToken, CommandType]
+command/parser.py        [NEW,  parse text+command stream]
+command/executor.py      [NEW,  dispatch to primitives via IOSE registry]
+command/scratchpad.py    [NEW,  RingBuffer-based scratchpad]
 
-primitives/active_arithmetic.py  [NEW — wraps active_mul.py]
-primitives/structure_ops.py      [NEW — lift, rebase, projection]
-primitives/number_theory.py      [NEW — GCD, LCM, mod, factorial, binomial, etc.]
-primitives/linalg_builtins.py    [NEW — wraps linalg.py with IOSE]
-primitives/statistics.py         [NEW — mean, variance, softmax, normalize]
-primitives/probability.py        [NEW — Bayes, CDF, joint, conditional]
-primitives/time_ops.py           [NEW — date arithmetic]
-primitives/identity.py           [NEW — hash, base64, hex, CRC32]
-primitives/graphs.py             [NEW — BFS, DFS, shortest path, components]
+primitives/active_arithmetic.py  [NEW,  wraps active_mul.py]
+primitives/structure_ops.py      [NEW,  lift, rebase, projection]
+primitives/number_theory.py      [NEW,  GCD, LCM, mod, factorial, binomial, etc.]
+primitives/linalg_builtins.py    [NEW,  wraps linalg.py with IOSE]
+primitives/statistics.py         [NEW,  mean, variance, softmax, normalize]
+primitives/probability.py        [NEW,  Bayes, CDF, joint, conditional]
+primitives/time_ops.py           [NEW,  date arithmetic]
+primitives/identity.py           [NEW,  hash, base64, hex, CRC32]
+primitives/graphs.py             [NEW,  BFS, DFS, shortest path, components]
 
 data_primitives/lru.py           [NEW]
 data_primitives/ring_buffer.py   [NEW]
 data_primitives/bitset.py        [NEW]
 
-iose/validator.py        [NEW — type check chains, SE preview, contract verify]
+iose/validator.py        [NEW,  type check chains, SE preview, contract verify]
 ```
 
 **What Stage 2 adds to the lifecycle:**
@@ -1159,10 +1159,10 @@ ops/network.py           [NEW]
 ops/process.py           [NEW]
 ops/grants.py            [NEW]
 
-inference/modes.py       [NEW — all four modes with tool signatures]
+inference/modes.py       [NEW,  all four modes with tool signatures]
 
 lifecycle/data_pipeline.py [NEW]
-lifecycle/training.py      [NEW — wraps VDR-4 trainer with KB integration]
+lifecycle/training.py      [NEW,  wraps VDR-4 trainer with KB integration]
 lifecycle/evaluation.py    [NEW]
 ```
 
@@ -1219,7 +1219,7 @@ eval_kb = evaluate(training_kb.latest_checkpoint, benchmarks)
 
 ### 5.5 Stage 5: Production Completion
 
-**Goal:** Add Docker and SSH environments, compilation primitives, linting, feedback collection, reward modeling, deployment configuration, monitoring, canary deployment, rollback, retirement. The system is complete — every feature specified in VDR-1 through VDR-10 is implemented.
+**Goal:** Add Docker and SSH environments, compilation primitives, linting, feedback collection, reward modeling, deployment configuration, monitoring, canary deployment, rollback, retirement. The system is complete,  every feature specified in VDR-1 through VDR-10 is implemented.
 
 **New modules activated:**
 
@@ -1348,7 +1348,7 @@ The Python prototype is designed for Zig portability:
 | dict comprehension | loop with put | Mechanical translation |
 | list comprehension | loop with append | Mechanical translation |
 
-The Zig port happens after Stage 5 validates the complete system in Python. The port is mechanical — same IOSE interfaces, same tests, same behavior. The IOSE declarations serve as the Zig interface specifications.
+The Zig port happens after Stage 5 validates the complete system in Python. The port is mechanical,  same IOSE interfaces, same tests, same behavior. The IOSE declarations serve as the Zig interface specifications.
 
 ---
 
@@ -1361,10 +1361,10 @@ vdr_llm_prolog/
 ├── __init__.py
 ├── core/
 │   ├── __init__.py
-│   ├── vdr.py                  # [EXISTS — copy from VDR-4]
-│   ├── active_mul.py           # [EXISTS — copy from VDR-4]
-│   ├── fn.py                   # [EXISTS — copy from VDR-4]
-│   ├── linalg.py               # [EXISTS — copy from VDR-4]
+│   ├── vdr.py                  # [EXISTS,  copy from VDR-4]
+│   ├── active_mul.py           # [EXISTS,  copy from VDR-4]
+│   ├── fn.py                   # [EXISTS,  copy from VDR-4]
+│   ├── linalg.py               # [EXISTS,  copy from VDR-4]
 │   ├── types.py                # ~200 lines
 │   └── errors.py               # ~50 lines
 ├── kb/
@@ -1523,13 +1523,13 @@ vdr_llm_prolog/
 | Metric | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 | Total |
 |--------|---------|---------|---------|---------|---------|-------|
 | New code (lines) | 2,800 | 3,200 | 3,000 | 3,500 | 3,000 | 15,500 |
-| Existing code reused | ~5,000 | — | — | — | — | ~5,000 |
+| Existing code reused | ~5,000 |,  |,  |,  |,  | ~5,000 |
 | New modules | 24 | 13 | 12 | 9 | 7 | 65 |
 | Tests | 150 | 200 | 250 | 300 | 350 | 1,250 |
 | Builtins active | ~150 | ~300 | ~400 | ~420 | 448 | 448 |
 | Cumulative tests | 150 | 350 | 600 | 900 | 1,250 | 1,250 |
 
-The complete Python prototype is approximately 20,500 lines including existing VDR-4 code — a manageable codebase for one or two developers, staged across five increments that each produce a testable, runnable system.
+The complete Python prototype is approximately 20,500 lines including existing VDR-4 code,  a manageable codebase for one or two developers, staged across five increments that each produce a testable, runnable system.
 
 ---
 

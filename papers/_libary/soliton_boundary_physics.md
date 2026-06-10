@@ -15,13 +15,13 @@ This notebook proposes a framework that connects established physics results in 
 
 A new reader must consciously override three default assumptions before the argument will be legible:
 
-**Override 1: "Constants are constant."** The institution labels α, αs, G as "fundamental constants." The institution's own data shows α varies 8% between atomic and Z-boson scales (LEP confirmed, Nobel Prize context). αs varies by orders of magnitude (Nobel Prize 2004). The word "constant" is the label. The data contradicts the label. This is not disputed — it is taught in every QFT course. The framework in this notebook treats all "constants" as scale-dependent boundary readings, which is what the data shows them to be.
+**Override 1: "Constants are constant."** The institution labels α, αs, G as "fundamental constants." The institution's own data shows α varies 8% between atomic and Z-boson scales (LEP confirmed, Nobel Prize context). αs varies by orders of magnitude (Nobel Prize 2004). The word "constant" is the label. The data contradicts the label. This is not disputed,  it is taught in every QFT course. The framework in this notebook treats all "constants" as scale-dependent boundary readings, which is what the data shows them to be.
 
 - Logic: a quantity that changes with measurement scale is not constant by the definition of the word.
 - Empirical: α = 1/137.036 at atomic scale, α ≈ 1/127 at 91 GeV. Measured at LEP, SLD, LHC by independent groups.
 - Math: the running is computed in exact Fraction arithmetic to 0.02 ppm (HOWL-PHYS-5, companion script alpha_EM_final.py).
 
-**Override 2: "Planetary orbits are historical accidents."** The standard treatment computes orbits from initial conditions set during solar system formation. The orbital parameters are not derived from any structural principle — they are measured and simulated backward. This notebook proposes that orbital parameters may be structural properties of the gravitational soliton, derivable from boundary geometry the same way atomic energy levels are derivable from the Coulomb potential. This is a hypothesis, not an established result. The evidence (Titius-Bode, Kepler compact multis, Kirkwood gaps, ring structure) is presented for evaluation.
+**Override 2: "Planetary orbits are historical accidents."** The standard treatment computes orbits from initial conditions set during solar system formation. The orbital parameters are not derived from any structural principle,  they are measured and simulated backward. This notebook proposes that orbital parameters may be structural properties of the gravitational soliton, derivable from boundary geometry the same way atomic energy levels are derivable from the Coulomb potential. This is a hypothesis, not an established result. The evidence (Titius-Bode, Kepler compact multis, Kirkwood gaps, ring structure) is presented for evaluation.
 
 - Logic: if a system has standing wave modes, the mode spectrum is determined by boundary conditions, not by history. This is proved for every quantum system.
 - Empirical: Titius-Bode predicted Ceres and Uranus before discovery. Kepler data shows regular spacing in compact multi-planet systems. Kirkwood gaps fall at resonance positions. Saturn's rings show standing wave density patterns.
@@ -43,9 +43,9 @@ This chapter extracts the specific results from the HOWL series that this notebo
 
 The first paper in the series connects results from six physics departments that have not been connected because no single department holds all the pieces.
 
-Logic: Newton's F = ma defines mass as resistance to acceleration. Resistance to acceleration is the definition of inertia. These are the same definition. The equivalence principle (gravitational mass = inertial mass, confirmed to 10⁻¹⁵ by MICROSCOPE) becomes a tautology: inertia = inertia. QCD lattice calculations show 99% of proton mass is binding energy — the energy of the pattern maintaining itself. Mass is pattern resistance to disruption. The Higgs mechanism determines coupling to the field that resists acceleration — it is an inertia-determination mechanism. Connected: mass is inertia across all operational definitions.
+Logic: Newton's F = ma defines mass as resistance to acceleration. Resistance to acceleration is the definition of inertia. These are the same definition. The equivalence principle (gravitational mass = inertial mass, confirmed to 10⁻¹⁵ by MICROSCOPE) becomes a tautology: inertia = inertia. QCD lattice calculations show 99% of proton mass is binding energy,  the energy of the pattern maintaining itself. Mass is pattern resistance to disruption. The Higgs mechanism determines coupling to the field that resists acceleration,  it is an inertia-determination mechanism. Connected: mass is inertia across all operational definitions.
 
-Empirical: MICROSCOPE satellite confirms equivalence to 10⁻¹⁵. LHC confirms Higgs mechanism. Lattice QCD confirms 99% binding energy. Three measurement anomalies — Hubble tension (H₀ = 67.4 vs 73.0), proton radius puzzle (0.842 fm vs 0.877 fm), muon g−2 (4.2σ discrepancy) — correlate with boundary transit count or probe interaction depth. The quantity measured at greater boundary depth or through more boundary transits gives a different reading.
+Empirical: MICROSCOPE satellite confirms equivalence to 10⁻¹⁵. LHC confirms Higgs mechanism. Lattice QCD confirms 99% binding energy. Three measurement anomalies,  Hubble tension (H₀ = 67.4 vs 73.0), proton radius puzzle (0.842 fm vs 0.877 fm), muon g−2 (4.2σ discrepancy),  correlate with boundary transit count or probe interaction depth. The quantity measured at greater boundary depth or through more boundary transits gives a different reading.
 
 Math: no computation in PHYS-1. Conceptual paper establishing the framework. The computation begins in PHYS-5.
 
@@ -53,7 +53,7 @@ The key concept for this notebook: every coherent self-sustaining structure has 
 
 ### 1.2 Every "Constant" Runs; The Transformation Law Is Fundamental (PHYS-2)
 
-Logic: α varies from 1/137 to 1/127 depending on probe energy. αs varies by orders of magnitude. The weak coupling varies from apparently weak to comparable to electromagnetic at the electroweak scale. Each variation corresponds to the measurement crossing a coherent structure boundary — the vacuum polarization cloud (QED), the confinement zone (QCD), the mass threshold (weak). The beta functions that describe the running are structural properties of the theory — they depend on the gauge group and particle content, not on where you measure. The coupling is the reading. The beta function is the law connecting readings. The law is more fundamental than any single reading.
+Logic: α varies from 1/137 to 1/127 depending on probe energy. αs varies by orders of magnitude. The weak coupling varies from apparently weak to comparable to electromagnetic at the electroweak scale. Each variation corresponds to the measurement crossing a coherent structure boundary,  the vacuum polarization cloud (QED), the confinement zone (QCD), the mass threshold (weak). The beta functions that describe the running are structural properties of the theory,  they depend on the gauge group and particle content, not on where you measure. The coupling is the reading. The beta function is the law connecting readings. The law is more fundamental than any single reading.
 
 Empirical: α running confirmed at LEP/SLD/LHC. αs running confirmed at every hadron collider (Nobel Prize 2004). Electroweak unification confirmed (Nobel Prize 1979). Flavor thresholds modeled precisely with matching conditions at each quark mass. The institution confirms all of this, models it, teaches it, and calls the quantities "constants."
 
@@ -63,9 +63,9 @@ The key concept for this notebook: the transformation law (beta function, runnin
 
 ### 1.3 G Never Tested Outside Earth's Hill Sphere (PHYS-3)
 
-Logic: the Hill sphere is the institution's own concept from orbital mechanics — the boundary of Earth's coherent gravitational domain at ~1.5 million km. Every direct G measurement in the 227-year record is on Earth's surface at ≤0.45% of this boundary distance. The ISS is at 0.027%. The Moon is at 25%, orbiting inside. No direct measurement has been taken at or beyond the boundary. Indirect evidence (pulsar timing, gravitational waves) receives signals inside the boundary and interprets them using models that assume universal G. The assumption does the work. Reproducibility within one boundary configuration is not universality across configurations. The effective sample size for cross-boundary G universality is zero.
+Logic: the Hill sphere is the institution's own concept from orbital mechanics,  the boundary of Earth's coherent gravitational domain at ~1.5 million km. Every direct G measurement in the 227-year record is on Earth's surface at ≤0.45% of this boundary distance. The ISS is at 0.027%. The Moon is at 25%, orbiting inside. No direct measurement has been taken at or beyond the boundary. Indirect evidence (pulsar timing, gravitational waves) receives signals inside the boundary and interprets them using models that assume universal G. The assumption does the work. Reproducibility within one boundary configuration is not universality across configurations. The effective sample size for cross-boundary G universality is zero.
 
-Empirical: the persistent disagreement between G measurements (BIPM 6.67545, LENS 6.67191, HUST 6.67484/6.67349 — two values from the same lab) has not been resolved by two centuries of systematic error investigation. L1 and L2 Lagrange points are at the Hill sphere boundary. Spacecraft operate there (JWST, DSCOVR, Gaia). None has measured G. The measurement has not been made because the question has not been framed.
+Empirical: the persistent disagreement between G measurements (BIPM 6.67545, LENS 6.67191, HUST 6.67484/6.67349,  two values from the same lab) has not been resolved by two centuries of systematic error investigation. L1 and L2 Lagrange points are at the Hill sphere boundary. Spacecraft operate there (JWST, DSCOVR, Gaia). None has measured G. The measurement has not been made because the question has not been framed.
 
 Math: no computation. Factual documentation of experimental record plus proposed experiment.
 
@@ -73,9 +73,9 @@ The key concept for this notebook: reproducibility within one boundary configura
 
 ### 1.4 The Boundary Test Program (PHYS-4)
 
-Logic: the test program connects MATH-1 (geometric framework Q = F · β · d² · Z), PHYS-1 (boundary catalog), and PHYS-3 (G gap) into seven ordered tests. Boundaries are classified as geometric (sphere, ellipsoid — framework applies) or non-geometric (momentum-space confinement — outside scope). The calibration-first principle: reproduce known results (running of α) before applying to unknown cases. The kill switch: if Tests 0, 1, 2 all produce null results, stop. The decision tree specifies every possible outcome before any test is run.
+Logic: the test program connects MATH-1 (geometric framework Q = F · β · d² · Z), PHYS-1 (boundary catalog), and PHYS-3 (G gap) into seven ordered tests. Boundaries are classified as geometric (sphere, ellipsoid,  framework applies) or non-geometric (momentum-space confinement,  outside scope). The calibration-first principle: reproduce known results (running of α) before applying to unknown cases. The kill switch: if Tests 0, 1, 2 all produce null results, stop. The decision tree specifies every possible outcome before any test is run.
 
-Empirical: six of seven boundaries are geometric. Hadron confinement is the exception (momentum-space scale, no spatial sphere). Three tests use published data requiring no new experiments. The kill switch is genuine — if easy tests fail, hard tests are not pursued.
+Empirical: six of seven boundaries are geometric. Hadron confinement is the exception (momentum-space scale, no spatial sphere). Three tests use published data requiring no new experiments. The kill switch is genuine,  if easy tests fail, hard tests are not pursued.
 
 Math: decision tree with complete outcome enumeration. Falsification matrix for every test. Sensitivity analysis for the G depth trend test (likely underpowered but costless).
 
@@ -85,7 +85,7 @@ The key concepts for this notebook: calibrate before extending (Chapter 9 resear
 
 Logic: the QED running of α_EM from M_Z to atomic scale is a transformation law connecting readings at different boundary depths. The law is determined by particle counting (lepton charges, color factors) and the VP integral structure (boundary constant 1/3 from the subtracted VP, O(m²/q²) coefficients 4 and −6 from the expansion). Seven measured rationals enter. All transcendentals are MATH-2 integer pairs. Every intermediate is a Python Fraction.
 
-Empirical: the result 1/α_EM = 137.0360025 matches CODATA 2022 (137.0359992) to 0.02 ppm. The error decreased by four orders of magnitude across six stages, each from adding boundary structure. No free parameters were tuned. The hadronic VP measurement (±73 ppm) is the floor — the integer arithmetic reached the measurement limit.
+Empirical: the result 1/α_EM = 137.0360025 matches CODATA 2022 (137.0359992) to 0.02 ppm. The error decreased by four orders of magnitude across six stages, each from adding boundary structure. No free parameters were tuned. The hadronic VP measurement (±73 ppm) is the floor,  the integer arithmetic reached the measurement limit.
 
 Math: companion script alpha_EM_final.py runs in ~60 seconds, produces a Fraction with 28,293-bit numerator. The gap ratio 218/115 is a pure integer prediction: no measured value enters, no transcendental appears. 218 and 115 come entirely from counting particle species and their charges.
 
@@ -93,13 +93,13 @@ The key concepts for this notebook: exact rational arithmetic is achievable for 
 
 ### 1.6 The Confinement Boundary Has Two Faces (PHYS-6)
 
-Logic: the 5/6 confinement correction from PHYS-5 is not universal — it is the α_EM kernel's weighted average of two distinct regions. Above 2 GeV: perturbative correct, ratio ~1.0, R-ratio is exact rational (2, 10/3, 11/3, 5). Below 2 GeV: confinement reorganizes spectrum, ratio ~0.61, spectrum is resonances not free quarks. The muon g−2 kernel weights the below-2-GeV region far more heavily and the perturbative calculation fails qualitatively (factor ~1300). The correction is kernel-dependent, not universal.
+Logic: the 5/6 confinement correction from PHYS-5 is not universal,  it is the α_EM kernel's weighted average of two distinct regions. Above 2 GeV: perturbative correct, ratio ~1.0, R-ratio is exact rational (2, 10/3, 11/3, 5). Below 2 GeV: confinement reorganizes spectrum, ratio ~0.61, spectrum is resonances not free quarks. The muon g−2 kernel weights the below-2-GeV region far more heavily and the perturbative calculation fails qualitatively (factor ~1300). The correction is kernel-dependent, not universal.
 
-Empirical: the perturbative R-ratio above 2 GeV matches e⁺e⁻ → hadrons data within a few percent (quark-hadron duality). Below 2 GeV, the physical spectrum (ρ, ω, φ resonances, pion threshold at 280 MeV) has no perturbative analog. The muon g−2 tension (3.5σ) lives entirely in the hadronic sector — the below-2-GeV region. The QED sector shows no tension.
+Empirical: the perturbative R-ratio above 2 GeV matches e⁺e⁻ → hadrons data within a few percent (quark-hadron duality). Below 2 GeV, the physical spectrum (ρ, ω, φ resonances, pion threshold at 280 MeV) has no perturbative analog. The muon g−2 tension (3.5σ) lives entirely in the hadronic sector,  the below-2-GeV region. The QED sector shows no tension.
 
 Math: decomposition: 0.54 × 1.0 + 0.46 × 0.61 = 0.82 ≈ 5/6. The below-2-GeV ratio ~0.61 has ±5% uncertainty. Rational candidates: 3/5 (0.600), 11/18 (0.611), 8/13 (0.615). Precision insufficient to identify exact rational.
 
-The key concept for this notebook: corrections are kernel-dependent. Different measurement methods see the same boundary differently because they weight the boundary's two faces differently. This applies to H₀ measurements (Chapter 2.4) — each method is a different kernel.
+The key concept for this notebook: corrections are kernel-dependent. Different measurement methods see the same boundary differently because they weight the boundary's two faces differently. This applies to H₀ measurements (Chapter 2.4),  each method is a different kernel.
 
 ### 1.7 θ_QCD = 0 Is the Ground State (PHYS-7)
 
@@ -113,13 +113,13 @@ The key concepts for this notebook: don't declare problems where the answer is i
 
 ### 1.8 R₂ = π/4 Is Universal; R₄ = π²/32 Enters Through 4D Operations (PHYS-11, MATH-1, MATH-5)
 
-Logic: MATH-1 proves β = π/4 = R₂ as the geometric invariant across nine engineering domains (Q = F · β · d² · Z). MATH-5 proves the n-ball remainder R_n = π^(n/2)/(2^n · Γ(n/2+1)) separates in every equation performing an n-ball-volume operation. n = 2 and n = 4 are uniquely "doubly native" to binary arithmetic. PHYS-11 shows R₂ appears in all nine physics domains: as the modular period 8R₂ in seven (Subgroup A, phase-periodic), as the step size 1/(12R₂) in one (Subgroup B, monotonic accumulation — the VP running), and in the exponential of the ninth (Subgroup C, Chern-Simons). R₄ enters through energy eigenvalues (π² = 32R₄) and 4D normalizations (1/(8π²) = 1/(256R₄)).
+Logic: MATH-1 proves β = π/4 = R₂ as the geometric invariant across nine engineering domains (Q = F · β · d² · Z). MATH-5 proves the n-ball remainder R_n = π^(n/2)/(2^n · Γ(n/2+1)) separates in every equation performing an n-ball-volume operation. n = 2 and n = 4 are uniquely "doubly native" to binary arithmetic. PHYS-11 shows R₂ appears in all nine physics domains: as the modular period 8R₂ in seven (Subgroup A, phase-periodic), as the step size 1/(12R₂) in one (Subgroup B, monotonic accumulation,  the VP running), and in the exponential of the ninth (Subgroup C, Chern-Simons). R₄ enters through energy eigenvalues (π² = 32R₄) and 4D normalizations (1/(8π²) = 1/(256R₄)).
 
 Empirical: the nine physics domains are established: theta vacuum, Bohr-Sommerfeld, Berry phase, Brillouin zones, Aharonov-Bohm, flux quantization, AC Josephson, RG running, Chern-Simons. All decompositions verified as exact Fraction identities. The three-subgroup classification is provably irreducible (no smooth bijection converts monotonic to periodic).
 
 Math: eight framework identities verified in Fraction arithmetic: 2π = 8R₂, π = 4R₂, π/2 = 2R₂, π² = 32R₄, 8π² = 256R₄, 1/(3π) = 1/(12R₂), 1/(8π²) = 1/(256R₄), 4π = 16R₂. All exact.
 
-The key concept for this notebook: R₂ appears in every 2D geometric operation (circles, phases — spherical boundaries). R₄ appears in every 4D operation (loop integrals, energy eigenvalues — and, this notebook proposes, toroidal boundaries where T² = S¹ × S¹ produces R₂² = 2R₄). The geometry of the boundary determines which R_n appears in the correction factor. Spherical → R₂. Toroidal → R₄.
+The key concept for this notebook: R₂ appears in every 2D geometric operation (circles, phases,  spherical boundaries). R₄ appears in every 4D operation (loop integrals, energy eigenvalues,  and, this notebook proposes, toroidal boundaries where T² = S¹ × S¹ produces R₂² = 2R₄). The geometry of the boundary determines which R_n appears in the correction factor. Spherical → R₂. Toroidal → R₄.
 
 ### 1.9 The Arithmetic Infrastructure (MATH-2 through MATH-6)
 
@@ -145,7 +145,7 @@ Five H₀ measurements, ordered by effective soliton boundary transit count alon
 | DES + BAO + BBN | 67.4 | ±1.2 | High | Cosmological scale |
 | Planck CMB | 67.4 | ±0.5 | Maximum | Full observable universe |
 
-Logic: PHYS-2 establishes that every coupling runs with boundary depth. The transformation law (running curve) is the fundamental object, not any single reading. If H₀ is a boundary-dependent reading — which it must be if the framework is consistent — then measurements at different boundary depths give different values. The five measurements above are not five attempts to measure one number. They are five points on a curve H₀(N).
+Logic: PHYS-2 establishes that every coupling runs with boundary depth. The transformation law (running curve) is the fundamental object, not any single reading. If H₀ is a boundary-dependent reading,  which it must be if the framework is consistent,  then measurements at different boundary depths give different values. The five measurements above are not five attempts to measure one number. They are five points on a curve H₀(N).
 
 Empirical: the trend is monotonic. More boundary transits → lower H₀. No measurement with high transit count gives high H₀. No measurement with low transit count gives low H₀. The intermediate values (69.8, 73.3) fall between the endpoints, consistent with a continuous curve rather than a binary tension or random scatter.
 
@@ -208,7 +208,7 @@ F5: if the Hubble tension resolves through systematic error identification in ei
 
 ### 3.1 The Coherence Spectrum
 
-Every persistent structure in the universe can be placed on a spectrum from maximum coherence (black hole — the boundary IS the defining feature, 100% absorption) through high coherence (stars, planets — self-sustaining, compact, sharp boundary), medium coherence (clusters, filaments — collectively bound, diffuse boundary), low coherence (nebulae — persistent but not self-sustaining), to anti-coherence (voids — defined by the absence of structure).
+Every persistent structure in the universe can be placed on a spectrum from maximum coherence (black hole,  the boundary IS the defining feature, 100% absorption) through high coherence (stars, planets,  self-sustaining, compact, sharp boundary), medium coherence (clusters, filaments,  collectively bound, diffuse boundary), low coherence (nebulae,  persistent but not self-sustaining), to anti-coherence (voids,  defined by the absence of structure).
 
 The per-transit correction factor r(C) is a function of coherence C. At maximum coherence, r = 0 (nothing escapes). At zero coherence, r = 1 (no correction). Everything between follows a function to be determined.
 
@@ -220,7 +220,7 @@ Empirical: the complete enumeration by coherence class:
 
 | Object | Boundary | Interior vs exterior | Correction expected |
 |---|---|---|---|
-| Black hole | Event horizon | Maximum possible — information cannot cross | Maximum: r = 0 |
+| Black hole | Event horizon | Maximum possible,  information cannot cross | Maximum: r = 0 |
 | Neutron star | Neutron surface + magnetosphere | Nuclear density vs vacuum | Very large |
 | White dwarf | Degenerate surface | Electron degeneracy vs vacuum | Large |
 | Main sequence star | Photosphere + Hill sphere | Fusion dynamics vs stellar wind | Moderate-large |
@@ -243,20 +243,20 @@ Empirical: the complete enumeration by coherence class:
 
 | Structure | Energy source | Self-sustaining? | Boundary exists? | Correction expected |
 |---|---|---|---|---|
-| Molecular cloud | Self-gravity | Partially | Yes — self-shielding edge | Small |
+| Molecular cloud | Self-gravity | Partially | Yes,  self-shielding edge | Small |
 | Dark nebula | None (absorbing) | No | Absorption edge only | Minimal |
-| Planetary nebula | Central white dwarf UV | Decaying | Expanding shell — yes | Small, time-dependent |
-| Emission nebula (HII) | External hot star | No | Ionization front — weak | Minimal |
-| Supernova remnant | Explosion kinetic energy | Decaying | Shock front — yes initially | Moderate initially, decaying |
+| Planetary nebula | Central white dwarf UV | Decaying | Expanding shell,  yes | Small, time-dependent |
+| Emission nebula (HII) | External hot star | No | Ionization front,  weak | Minimal |
+| Supernova remnant | Explosion kinetic energy | Decaying | Shock front,  yes initially | Moderate initially, decaying |
 | Reflection nebula | Reflected starlight | No | None intrinsic | Zero |
 
 **Standing wave patterns (persistent, not material):**
 
 | Pattern | Mechanism | Material? | Boundary? | Correction expected |
 |---|---|---|---|---|
-| Galactic spiral arm | Density wave | No — stars move through | Density enhancement edge | Unknown — depends on whether standing waves have soliton boundaries |
-| Cosmic filament | Gravitational collapse | Yes — gas and galaxies | Density ridge | Moderate collective |
-| Cosmic void wall | Gravitational evacuation | Yes — the boundary of nothing | Sharp density transition | Moderate (possibly opposite sign) |
+| Galactic spiral arm | Density wave | No,  stars move through | Density enhancement edge | Unknown,  depends on whether standing waves have soliton boundaries |
+| Cosmic filament | Gravitational collapse | Yes,  gas and galaxies | Density ridge | Moderate collective |
+| Cosmic void wall | Gravitational evacuation | Yes,  the boundary of nothing | Sharp density transition | Moderate (possibly opposite sign) |
 
 **Anti-coherence:**
 
@@ -290,7 +290,7 @@ Math: the threshold condition for collective boundary formation is an open quest
 
 Logic: a nebula is a persistent structure that lacks self-sustaining coherence. In Conway's Life terms: a star is a still life or oscillator (internally stable), a nebula is a pattern that exists only with external input or is a transient decaying from an initial impulse. The question is whether persistence without self-sustainability is sufficient for a soliton boundary.
 
-Empirical: nebulae have physical boundaries — ionization fronts, shock fronts, absorption edges, expanding shells. These boundaries produce known effects on light (absorption, emission, scattering). The question is whether they produce ADDITIONAL effects from the soliton boundary mechanism, beyond the known absorption/emission/scattering.
+Empirical: nebulae have physical boundaries,  ionization fronts, shock fronts, absorption edges, expanding shells. These boundaries produce known effects on light (absorption, emission, scattering). The question is whether they produce ADDITIONAL effects from the soliton boundary mechanism, beyond the known absorption/emission/scattering.
 
 Math: if the correction scales with coherence, nebulae contribute very small corrections (low coherence). The cumulative effect of many nebulae along a line of sight might be detectable if the individual corrections, though small, are numerous. The number of nebulae along a typical CMB line of sight is not well-constrained.
 
@@ -298,7 +298,7 @@ Open question: is there a minimum coherence below which a structure has no solit
 
 ### 3.4 Voids as Anti-Boundaries
 
-Logic: a void is a region of underdensity. If overdense structures (clusters, filaments) produce corrections that reduce H₀, underdense structures might produce corrections that increase H₀. The void boundary (the filament wall) is a transition from low density (interior) to high density (exterior) — the opposite of a cluster boundary (high density interior, low density exterior). If the correction sign depends on the density gradient direction, voids contribute opposite-sign corrections.
+Logic: a void is a region of underdensity. If overdense structures (clusters, filaments) produce corrections that reduce H₀, underdense structures might produce corrections that increase H₀. The void boundary (the filament wall) is a transition from low density (interior) to high density (exterior),  the opposite of a cluster boundary (high density interior, low density exterior). If the correction sign depends on the density gradient direction, voids contribute opposite-sign corrections.
 
 Empirical: the Eridanus supervoid aligns with the CMB cold spot. BAO measurements, which are sensitive to void structure, give H₀ values (67.4) consistent with the CMB rather than local measurements. Lines of sight through more voids would show different net corrections than lines of sight through more clusters.
 
@@ -320,7 +320,7 @@ Logic: the series works with exact rationals. Simple geometries produce simple r
 
 Empirical: every astrophysical soliton boundary observed so far is one of: sphere (Hill spheres, halos, VP clouds), oblate spheroid (galaxies, rotating stars), disk (protoplanetary disks, galactic disks, accretion disks), torus (rings, belts), or shell (planetary nebulae, supernova remnants). No astrophysical boundary is a dodecahedron or truncated icosahedron. The polyhedral geometries enter for standing wave node structures (quark configurations inside hadrons, crystal structures) rather than macroscopic boundaries.
 
-Math: each geometry has a characteristic ratio — the shape's measure (area, volume, or cross-section) divided by its rectilinear bounding box. This ratio determines the rational correction factor.
+Math: each geometry has a characteristic ratio,  the shape's measure (area, volume, or cross-section) divided by its rectilinear bounding box. This ratio determines the rational correction factor.
 
 ### 4.2 Spherical Boundaries: R₂ Content
 
@@ -380,17 +380,17 @@ The constraint ≤32 faces admits:
 | Icosahedron | 20 | I_h | Involves φ | Virus capsids, C₆₀ dual |
 | Truncated icosahedron | 32 | I_h | Involves φ | C₆₀ (Buckyball), maximum allowed |
 
-Empirical: polyhedral structures appear at the molecular and nuclear scale (crystal symmetries, virus capsids, fullerenes). At astrophysical scales, they do not appear directly — astrophysical boundaries are smooth. However, standing wave patterns INSIDE astrophysical solitons may have polyhedral node structure. The mode structure of a vibrating sphere produces spherical harmonics Y_l^m, whose node patterns for low l correspond to the Platonic solids.
+Empirical: polyhedral structures appear at the molecular and nuclear scale (crystal symmetries, virus capsids, fullerenes). At astrophysical scales, they do not appear directly,  astrophysical boundaries are smooth. However, standing wave patterns INSIDE astrophysical solitons may have polyhedral node structure. The mode structure of a vibrating sphere produces spherical harmonics Y_l^m, whose node patterns for low l correspond to the Platonic solids.
 
 Math: for each polyhedron, the face area divided by the bounding rectangle gives a pure rational (for faces with rational angles) or an algebraic number (for pentagonal faces, involving φ). These rationals are different from the R₂/R₄ rationals of curved shapes. A correction factor from polyhedral node structure would be purely rational (no π), distinguishable from the curved-geometry corrections.
 
 ### 4.5 The Quark Geometry Question
 
-Logic: the proton contains three quarks in a color-singlet configuration. The spatial geometry of this configuration is not directly observable — it is inferred from form factor measurements and lattice QCD calculations. Multiple geometries are energetically competitive: Y-junction (three flux tubes meeting at a center), Delta loop (closed triangular loop), and rotating versions of both. A rotating Delta loop sweeps out a toroidal configuration.
+Logic: the proton contains three quarks in a color-singlet configuration. The spatial geometry of this configuration is not directly observable,  it is inferred from form factor measurements and lattice QCD calculations. Multiple geometries are energetically competitive: Y-junction (three flux tubes meeting at a center), Delta loop (closed triangular loop), and rotating versions of both. A rotating Delta loop sweeps out a toroidal configuration.
 
 Empirical: proton form factor measurements at high Q² show the electric and magnetic form factors differ, implying non-spherical charge distribution. Lattice QCD studies of flux tube geometry show both Y and Delta configurations at different quark separations. The internal geometry is a quantum superposition, but the time-averaged geometry (which determines the form factor) may have dominant toroidal character for the rotating proton.
 
-Math: the VL beta shifts (Δb₁, Δb₂, Δb₃) depend on the representation quantum numbers (color, weak isospin, hypercharge), not on the internal geometry. But the boundary correction for light or other particles crossing a hadron's soliton boundary DOES depend on the internal geometry — spherical vs toroidal interior structure would produce different correction factors (R₂ vs R₄). This could be tested by comparing the proton's form factor (which encodes the boundary structure) to the predictions of spherical vs toroidal models.
+Math: the VL beta shifts (Δb₁, Δb₂, Δb₃) depend on the representation quantum numbers (color, weak isospin, hypercharge), not on the internal geometry. But the boundary correction for light or other particles crossing a hadron's soliton boundary DOES depend on the internal geometry,  spherical vs toroidal interior structure would produce different correction factors (R₂ vs R₄). This could be tested by comparing the proton's form factor (which encodes the boundary structure) to the predictions of spherical vs toroidal models.
 
 ### 4.6 Connection to R₂/R₄ Framework
 
@@ -403,7 +403,7 @@ The geometry catalog is organized by which geometric constant appears in the cor
 | Torus | R₄ = π²/32 | Two circles (T² = S¹ × S¹) |
 | Oblate spheroid | R₂ × eccentricity | Circle deformed by flattening |
 | Shell | R₂ × thickness ratio | Two concentric spheres |
-| Polyhedron | Pure rationals | No circular content — flat faces |
+| Polyhedron | Pure rationals | No circular content,  flat faces |
 
 The R_n value indexes the geometric complexity of the boundary. Simple boundaries (sphere, disk) produce R₂. Compound boundaries (torus) produce R₄. Non-circular boundaries (polyhedra) produce pure rationals without π. This hierarchy constrains the correction: if the empirically extracted per-transit rational involves π² (= 32R₄), the dominant boundary type is toroidal. If it involves only π (= 4R₂), the dominant type is spherical. If it involves no π, the dominant type is polyhedral or non-geometric.
 
@@ -421,7 +421,7 @@ Track 2: Preferred alignment with structured deviations. A ground state orientat
 
 Track 3: No preferred alignment. Orientations follow some other structural principle, or are random. The else clause. Prediction: not Track 1 or 2.
 
-### 5.2 Track 1 — Universal Alignment
+### 5.2 Track 1,  Universal Alignment
 
 Logic: if the parent boundary imposes an energy minimum at alignment, and perturbations are negligible compared to the alignment energy, all children align exactly. This is the zero-temperature limit of the orientation energy landscape.
 
@@ -429,7 +429,7 @@ Empirical: no known system is perfectly Track 1. The closest is Saturn's rings (
 
 Math: Track 1 requires E_alignment ≫ E_perturbation. The alignment energy for a child soliton in a parent's field depends on the parent's geometry. A toroidal parent produces alignment energy proportional to the departure from the torus plane. A spherical parent produces zero alignment energy (no preferred direction). Track 1 is therefore only possible for non-spherical parents.
 
-### 5.3 Track 2 — Preferred Alignment with Structured Deviations
+### 5.3 Track 2,  Preferred Alignment with Structured Deviations
 
 Logic: the theta-vacuum argument from PHYS-7 applied to spatial orientation. The energy landscape is E(θ) = E₀ − χ · cos(θ), where θ is the misalignment angle and χ is the alignment strength determined by the parent geometry. The ground state is θ = 0 (aligned). Perturbations produce a Boltzmann distribution P(θ) ∝ exp(χ · cos(θ) / T_eff), where T_eff is the effective perturbation temperature (kinetic energy from formation, tidal torques, encounters). At low T_eff/χ, the distribution is sharply peaked (near Track 1). At high T_eff/χ, the distribution is nearly uniform (approaching Track 3).
 
@@ -446,13 +446,13 @@ Empirical: Track 2 dominates at every scale where data exists:
 
 The pattern: alignment strength decreases and T_eff/χ increases with scale. The effective temperature grows faster than the alignment energy as the system size increases. This is consistent with the alignment energy scaling with the parent's asphericity (which decreases for larger, more relaxed systems) while the perturbation energy scales with the formation violence (which increases for larger systems).
 
-Math: the measurable quantity is the distribution of orientation angles at each scale. The distribution shape determines T_eff/χ. From T_eff/χ and the known T_eff (from velocity dispersions, tidal torque estimates), χ is extracted. From χ and the parent geometry, the alignment energy per unit asphericity is determined. This is a structural property of the soliton boundary — the analog of the topological susceptibility χ_top in the theta vacuum.
+Math: the measurable quantity is the distribution of orientation angles at each scale. The distribution shape determines T_eff/χ. From T_eff/χ and the known T_eff (from velocity dispersions, tidal torque estimates), χ is extracted. From χ and the parent geometry, the alignment energy per unit asphericity is determined. This is a structural property of the soliton boundary,  the analog of the topological susceptibility χ_top in the theta vacuum.
 
-### 5.4 Track 3 — No Preferred Alignment
+### 5.4 Track 3,  No Preferred Alignment
 
 Logic: either the parent boundary is spherical (χ = 0, no preferred direction exists), or the alignment mechanism is something other than parent-axis inheritance, or the distribution is truly random (maximum entropy).
 
-Empirical: the Oort cloud is the clearest Track 3 system — orbits are approximately isotropic, consistent with a spherical parent boundary (the solar system's gravitational Hill sphere is approximately spherical at the Oort cloud distance). Long-period comets arrive from all directions on the sky with no strong directional preference.
+Empirical: the Oort cloud is the clearest Track 3 system,  orbits are approximately isotropic, consistent with a spherical parent boundary (the solar system's gravitational Hill sphere is approximately spherical at the Oort cloud distance). Long-period comets arrive from all directions on the sky with no strong directional preference.
 
 Math: for a spherical parent, E(θ) = E₀ (no θ dependence). All orientations are energetically equivalent. The distribution is uniform on S². Any deviation from uniformity at this scale indicates non-spherical parent structure or a non-gravitational alignment mechanism.
 
@@ -496,9 +496,9 @@ The law: a_n ≈ 0.4 + 0.3 × 2^n AU, where n = −∞ (Mercury), 0 (Venus), 1 (
 | 4 | 5.2 | Jupiter | 5.203 | 0.1% |
 | 5 | 10.0 | Saturn | 9.537 | 5% |
 | 6 | 19.6 | Uranus | 19.19 | 2% |
-| 7 | 38.8 | Neptune | 30.07 | 29% — FAILS |
+| 7 | 38.8 | Neptune | 30.07 | 29%,  FAILS |
 
-Logic: the geometric progression (factor of 2 between successive orbits) is octave spacing. In standing wave physics, octave spacing means each mode is one octave above the previous — the fundamental frequency and its doublings. This is the mode spectrum of a specific class of potentials: those with logarithmic radial dependence. A self-gravitating thin disk has V(r) ∝ ln(r) at radii larger than the disk scale height. The solar system's protoplanetary disk was a self-gravitating thin disk. The standing wave condition on this potential produces geometric spacing.
+Logic: the geometric progression (factor of 2 between successive orbits) is octave spacing. In standing wave physics, octave spacing means each mode is one octave above the previous,  the fundamental frequency and its doublings. This is the mode spectrum of a specific class of potentials: those with logarithmic radial dependence. A self-gravitating thin disk has V(r) ∝ ln(r) at radii larger than the disk scale height. The solar system's protoplanetary disk was a self-gravitating thin disk. The standing wave condition on this potential produces geometric spacing.
 
 The factor of 2 specifically is the most fundamental integer in the series' binary arithmetic framework. MATH-4 shows the universal denominator is 2³³⁵. MATH-5 shows n = 2 and n = 4 are uniquely doubly native to binary arithmetic. The Titius-Bode factor of 2 may be the geometric expression of binary arithmetic at the planetary scale.
 
@@ -514,25 +514,25 @@ Math: the derivation program: (1) compute the gravitational potential of a self-
 
 Logic: if orbits are soliton modes, every planetary system has a mode spectrum determined by its boundary parameters (host star mass, disk mass, outer boundary radius). Different boundary parameters produce different mode spectra. The diversity of observed exoplanetary systems (hot Jupiters, compact multis, widely spaced giants, resonant chains) corresponds to different boundary parameters, not different formation histories.
 
-Empirical: Kepler discovered that compact multi-planet systems show regular spacing ("peas in a pod" — adjacent planets have similar sizes and nearly-equal period ratios). TRAPPIST-1 has seven planets in an unbroken resonant chain with period ratios close to small integers (8:5, 5:3, 3:2, 3:2, 4:3, 3:2). In the mode picture, the resonant chain IS the mode spectrum — the integer period ratios are integer relationships between mode numbers.
+Empirical: Kepler discovered that compact multi-planet systems show regular spacing ("peas in a pod",  adjacent planets have similar sizes and nearly-equal period ratios). TRAPPIST-1 has seven planets in an unbroken resonant chain with period ratios close to small integers (8:5, 5:3, 3:2, 3:2, 4:3, 3:2). In the mode picture, the resonant chain IS the mode spectrum,  the integer period ratios are integer relationships between mode numbers.
 
 Math: the test is whether the mode spectrum from the host star's soliton potential reproduces the observed orbital architecture. For each system: (1) estimate the potential from the star's mass and radius. (2) Apply the standing wave condition. (3) Predict the orbital radii and period ratios. (4) Compare to observations. The test is falsifiable per system: if the predicted mode spectrum doesn't match the observed architecture for a specific system, the model fails for that system.
 
 ### 6.4 Kirkwood Gaps and Ring Gaps as Standing Wave Nodes
 
-Logic: a standing wave has nodes (zeros) and antinodes (maxima). Objects accumulate at antinodes (stable positions) and are expelled from nodes (unstable positions). The Kirkwood gaps in the asteroid belt are at orbital radii where the period is a simple fraction of Jupiter's period (3:1, 5:2, 7:3, 2:1). In the mode picture, these ratios are the zeros of the standing wave — the nodes of the solar system soliton's mode spectrum, set by Jupiter as the dominant mode.
+Logic: a standing wave has nodes (zeros) and antinodes (maxima). Objects accumulate at antinodes (stable positions) and are expelled from nodes (unstable positions). The Kirkwood gaps in the asteroid belt are at orbital radii where the period is a simple fraction of Jupiter's period (3:1, 5:2, 7:3, 2:1). In the mode picture, these ratios are the zeros of the standing wave,  the nodes of the solar system soliton's mode spectrum, set by Jupiter as the dominant mode.
 
 Empirical: the Kirkwood gaps are precisely located at the predicted resonance positions. The gap widths correlate with the resonance strength (low-order resonances produce wider gaps). Saturn's ring gaps (Cassini division, Encke gap, etc.) show the same structure: gaps at resonance positions with Saturn's moons, gap widths correlated with resonance strength.
 
-Math: the node positions are determined by the mode spectrum. For a dominant mode at frequency ω_J (Jupiter's orbital frequency), the nodes are at radii where ω(r) = (p/q) × ω_J for small integers p, q. The node positions from this condition match the observed Kirkwood gap locations. The match has been known since Kirkwood (1866) — the standard explanation is orbital resonance clearing, which is the same mathematics (resonance = mode relationship) with a different interpretation (clearing by perturbation vs node of standing wave).
+Math: the node positions are determined by the mode spectrum. For a dominant mode at frequency ω_J (Jupiter's orbital frequency), the nodes are at radii where ω(r) = (p/q) × ω_J for small integers p, q. The node positions from this condition match the observed Kirkwood gap locations. The match has been known since Kirkwood (1866),  the standard explanation is orbital resonance clearing, which is the same mathematics (resonance = mode relationship) with a different interpretation (clearing by perturbation vs node of standing wave).
 
 ### 6.5 Galaxy Rotation Curves
 
-Logic: the flat rotation curve is one of the strongest pieces of evidence for dark matter. The observed rotation velocity stays constant at large radii instead of falling as 1/√r (Keplerian). The standard explanation adds dark matter mass. The soliton mode explanation proposes that the rotation curve IS the mode spectrum of the galactic soliton, and the "missing mass" is the missing boundary correction — the depth-dependent reading of enclosed mass from inside the soliton boundary.
+Logic: the flat rotation curve is one of the strongest pieces of evidence for dark matter. The observed rotation velocity stays constant at large radii instead of falling as 1/√r (Keplerian). The standard explanation adds dark matter mass. The soliton mode explanation proposes that the rotation curve IS the mode spectrum of the galactic soliton, and the "missing mass" is the missing boundary correction,  the depth-dependent reading of enclosed mass from inside the soliton boundary.
 
 Empirical: the Tully-Fisher relation (luminosity ∝ v⁴, where v is the flat rotation velocity) holds across galaxies spanning orders of magnitude in luminosity. This tight correlation is naturally explained if both luminosity and rotation velocity are determined by the same structural parameter (the galactic soliton's mass/boundary configuration). The relation's tightness (small scatter) is difficult to explain if dark matter halos have independent properties from the visible galaxy.
 
-MOND (Modified Newtonian Dynamics) phenomenology successfully predicts rotation curves from visible matter alone using a single acceleration scale a₀ ≈ 1.2 × 10⁻¹⁰ m/s². In the soliton framework, a₀ would be the acceleration at the galactic soliton boundary — the scale where the boundary correction becomes significant.
+MOND (Modified Newtonian Dynamics) phenomenology successfully predicts rotation curves from visible matter alone using a single acceleration scale a₀ ≈ 1.2 × 10⁻¹⁰ m/s². In the soliton framework, a₀ would be the acceleration at the galactic soliton boundary,  the scale where the boundary correction becomes significant.
 
 Math: derive the rotation curve from the galactic soliton geometry (oblate spheroid or thick torus) and the R₂/R₄ framework. The flat rotation curve requires that the enclosed "effective mass" (including boundary corrections) grows linearly with radius at large r. This constrains the soliton boundary's radial profile. The specific derivation is a primary research target.
 
@@ -552,7 +552,7 @@ Math: the counting for b₃ = (2/3) × n_f − 11. The counting for an orbital r
 
 Logic: a torus has two fundamentally different direction classes. Through the hole (short path across the void in the center): the line of sight crosses two boundary surfaces with a void between them. Around the ring (long path through the torus body): the line of sight stays inside the torus material. The boundary transit count and the correction factor differ dramatically between these two directions.
 
-Empirical: the observed universe has large voids (KBC void, Eridanus supervoid — hundreds of Mpc across) and dense filaments (the cosmic web). If the large-scale structure has toroidal character, the voids might be views through the hole — directions with less material and fewer boundary transits. The KBC void (~600 Mpc local underdensity) has been proposed as a partial explanation for the Hubble tension through a local outflow effect. In the toroidal picture, it is the geometric signature of the hole.
+Empirical: the observed universe has large voids (KBC void, Eridanus supervoid,  hundreds of Mpc across) and dense filaments (the cosmic web). If the large-scale structure has toroidal character, the voids might be views through the hole,  directions with less material and fewer boundary transits. The KBC void (~600 Mpc local underdensity) has been proposed as a partial explanation for the Hubble tension through a local outflow effect. In the toroidal picture, it is the geometric signature of the hole.
 
 Math: through-hole correction = r_torus_boundary × r_void(d) × r_torus_boundary, where d is the path through the hole. Around-ring correction = r_torus_body^(N_ring), where N_ring is the number of internal boundaries crossed around the full ring. The ratio of these two corrections determines the maximum directional H₀ variation.
 
@@ -562,17 +562,17 @@ Logic: if boundary corrections vary by direction (because the line-of-sight boun
 
 Empirical: the CMB has unexplained large-scale anomalies: the hemispherical asymmetry (one half of the sky has slightly more power than the other), the quadrupole-octopole alignment ("axis of evil"), the cold spot (aligned with the Eridanus supervoid), and the lack of large-angle correlations. All of these are consistent with a directional component imposed by large-scale structure along the line of sight. None has been conclusively explained by standard ΛCDM cosmology.
 
-The acoustic peaks in the CMB power spectrum are NOT explained by the boundary framework — they come from baryon acoustic oscillations at recombination and are well-predicted by ΛCDM with specific cosmological parameters. The boundary component would be a SMALL ADDITION to the well-understood acoustic signal, detectable primarily at large angular scales (low multipoles) where the primordial signal is weak and the anomalies reside.
+The acoustic peaks in the CMB power spectrum are NOT explained by the boundary framework,  they come from baryon acoustic oscillations at recombination and are well-predicted by ΛCDM with specific cosmological parameters. The boundary component would be a SMALL ADDITION to the well-understood acoustic signal, detectable primarily at large angular scales (low multipoles) where the primordial signal is weak and the anomalies reside.
 
-Math: the Planck lensing map measures the projected mass density along each line of sight. The boundary correction map should correlate with the lensing map (more mass = more boundaries = more correction). The cross-correlation between CMB temperature residuals (after removing best-fit ΛCDM) and the lensing map would contain the boundary signal if it exists. This cross-correlation has been measured by Planck — the question is whether the measured signal contains a component beyond standard lensing theory.
+Math: the Planck lensing map measures the projected mass density along each line of sight. The boundary correction map should correlate with the lensing map (more mass = more boundaries = more correction). The cross-correlation between CMB temperature residuals (after removing best-fit ΛCDM) and the lensing map would contain the boundary signal if it exists. This cross-correlation has been measured by Planck,  the question is whether the measured signal contains a component beyond standard lensing theory.
 
 Falsification: if CMB temperature residuals show zero correlation with the projected mass density beyond what standard lensing predicts, the directional boundary correction is absent at the CMB's precision.
 
 ### 7.3 Nested Boundaries: Torus in Sphere, Torus in Torus
 
-Logic: the correction through the hole of a torus depends on what fills the hole — the outer boundary's interior regime. A torus inside a sphere sees spherical-interior properties through the hole (isotropic, R₂-based correction across the gap). A torus inside another torus sees the outer torus's body or hole depending on relative orientation (anisotropic, R₄-based correction varying with angle).
+Logic: the correction through the hole of a torus depends on what fills the hole,  the outer boundary's interior regime. A torus inside a sphere sees spherical-interior properties through the hole (isotropic, R₂-based correction across the gap). A torus inside another torus sees the outer torus's body or hole depending on relative orientation (anisotropic, R₄-based correction varying with angle).
 
-The nesting hierarchy for our observing position: Earth's Hill sphere (sphere) → solar system disk (torus) → solar system Hill sphere (sphere) → Milky Way disk (torus) → Milky Way halo (sphere) → Local Group (irregular) → Virgo/Laniakea supercluster (flattened) → cosmic web (filaments + voids — toroidal or more complex topology).
+The nesting hierarchy for our observing position: Earth's Hill sphere (sphere) → solar system disk (torus) → solar system Hill sphere (sphere) → Milky Way disk (torus) → Milky Way halo (sphere) → Local Group (irregular) → Virgo/Laniakea supercluster (flattened) → cosmic web (filaments + voids,  toroidal or more complex topology).
 
 Each level contributes its geometry's rational correction factor. The total correction for a specific direction is the product of all factors along that line of sight.
 
@@ -588,7 +588,7 @@ where (θ, φ) is the sky direction and each level contributes its factor. This 
 
 Logic: if the universe (or our local patch) has toroidal structure, "expansion" has richer meaning than for a sphere. A torus can: expand its major radius R (the ring grows), expand its minor radius r (the tube thickens), circulate material through the cross-section (flow around the tube), or do all three simultaneously. What we call "Hubble expansion" is dR/dt. The circulation velocity adds a direction-dependent component to the apparent recession velocity.
 
-Empirical: observed galaxy flows show bulk motion toward the Great Attractor and along filaments. These flows are attributed to gravitational attraction from overdensities. In the toroidal picture, they could also include the circulation component — material flowing through the torus cross-section, which would appear as systematic motion toward/away from specific directions on the sky.
+Empirical: observed galaxy flows show bulk motion toward the Great Attractor and along filaments. These flows are attributed to gravitational attraction from overdensities. In the toroidal picture, they could also include the circulation component,  material flowing through the torus cross-section, which would appear as systematic motion toward/away from specific directions on the sky.
 
 Math: the apparent recession velocity for an object at angle α relative to the torus axis and distance d along the torus body:
 
@@ -612,7 +612,7 @@ The five concept threads connect through a single chain:
 
 **The mode spectrum determines the running curve.** Each boundary has a mode structure. Light crossing the boundary interacts with the mode structure. The per-transit correction depends on the mode density and geometry. The cumulative correction along a line of sight is the running curve. This is established for α running (VP modes → 1/(12R₂) per flavor) and proposed for H₀ running.
 
-**The running curve determines the observables.** H₀(direction), CMB anisotropies, rotation curves, planetary spacing — all derivable from the same framework. Each observable is a measurement through a specific set of soliton boundaries, and the measurement result is the local value modified by the cumulative boundary corrections.
+**The running curve determines the observables.** H₀(direction), CMB anisotropies, rotation curves, planetary spacing,  all derivable from the same framework. Each observable is a measurement through a specific set of soliton boundaries, and the measurement result is the local value modified by the cumulative boundary corrections.
 
 **Everything connects through R₂/R₄.** The geometric constants from MATH-1 and MATH-5 appear at every level. R₂ for spherical/2D operations. R₄ for toroidal/4D operations. The binary arithmetic of MATH-4 (2³³⁵ denominator) provides the computational substrate. The factor of 2 in Titius-Bode is the same factor of 2 that makes n = 2 and n = 4 doubly native to binary arithmetic.
 
@@ -771,7 +771,7 @@ Each chapter can die independently without killing the others, EXCEPT Chapter 1 
 | Jupiter | 5.203 | 5.2 | 0.1 | 4 |
 | Saturn | 9.537 | 10.0 | 4.9 | 5 |
 | Uranus | 19.19 | 19.6 | 2.1 | 6 |
-| Neptune | 30.07 | 38.8 | 29.0 | FAILS — mode family transition |
+| Neptune | 30.07 | 38.8 | 29.0 | FAILS,  mode family transition |
 
 ### C.3 Kirkwood Gap Positions
 
@@ -789,7 +789,7 @@ Each chapter can die independently without killing the others, EXCEPT Chapter 1 
 |---|---|---|---|
 | Hemispherical asymmetry | l = 2–600 | One hemisphere has ~7% more power | Asymmetric boundary correction from off-center position in local structure |
 | Quadrupole-octopole alignment | l = 2, 3 | Low multipoles aligned along a common axis | Toroidal boundary axis |
-| Cold spot | ~10° | Anomalously cold region | Eridanus supervoid — fewer boundary transits in this direction |
+| Cold spot | ~10° | Anomalously cold region | Eridanus supervoid,  fewer boundary transits in this direction |
 | Low quadrupole power | l = 2 | Quadrupole amplitude lower than expected | Boundary correction partially cancels primordial quadrupole |
 
 ## APPENDIX D: ORIENTATION TRACKS PER SCALE

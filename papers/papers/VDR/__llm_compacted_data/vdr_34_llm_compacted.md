@@ -1,15 +1,15 @@
-# HOWL-VDR-34-2026 — LLM-COMPACT FORM
+# HOWL-VDR-34-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: problem → vdr_foundation → exact_llm → system_components → five_axes → sre_deep_dive → applications → hardware_path → compound_accounting → build_status → open_boundaries
 
 # core_problem(id|aspect|description)
-CP1|single-component architecture|LLM used for arithmetic, data access, state tracking, formatting, deduction, safety, confidence — work of 10 components at cost/error rate of most expensive
+CP1|single-component architecture|LLM used for arithmetic, data access, state tracking, formatting, deduction, safety, confidence,  work of 10 components at cost/error rate of most expensive
 CP2|structural tokens|brackets, commas, indentation predicted through full forward passes despite carrying 0.1 bits of information through 15-bit pipeline
 CP3|arithmetic as text|digit prediction at 2-5% error rate per op through multi-billion-parameter forward pass; 500-position correlation matrix impossible
 CP4|quadratic state reconstruction|every turn re-reads entire history; turn 50 processes 3.9M cumulative tokens; quality degrades as history grows
 CP5|behavioral safety|refusal trained into model; bypassable by rephrasing; costs tokens on every response
-CP6|hedging as confidence|"approximately," "it appears" — no computational basis; full forward pass for zero quantifiable information
-CP7|compensatory infrastructure|RAG, function calling, guardrails, context window arms race — all compensate for routing all work through token prediction
+CP6|hedging as confidence|"approximately," "it appears",  no computational basis; full forward pass for zero quantifiable information
+CP7|compensatory infrastructure|RAG, function calling, guardrails, context window arms race,  all compensate for routing all work through token prediction
 
 # vdr_foundation(id|principle|detail)
 VF1|triple [V,D,R]|V=integer numerator, D=nonzero denominator, R=exact remainder; R is first-class structure not error
@@ -19,7 +19,7 @@ VF4|denominator explosion solved|Python Fraction/GMP: 10 multiplications → D r
 VF5|validation|884 tests, 37 domains, zero VDR computation errors; all 14 failures traced to test-design errors
 
 # exact_llm(id|aspect|description)
-EL1|complete pipeline in exact fractions|embedding, attention, softmax, backprop, SGD, checkpointing — zero float operations; 198 tests (196 pass, 2 test errors, 0 VDR errors)
+EL1|complete pipeline in exact fractions|embedding, attention, softmax, backprop, SGD, checkpointing,  zero float operations; 198 tests (196 pass, 2 test errors, 0 VDR errors)
 EL2|quadratic softmax surrogate|(shifted input)²/Σ(shifted inputs)²; sums to exactly 1/1 by construction; no transcendentals; uniform work per element
 EL3|Zig Q16 implementation|688 ns/forward, 1.42M tok/s, 2,368 bytes, zero heap allocs, zero float ops, byte-identical determinism; 2019 laptop scalar CPU
 EL4|instruction equivalence|VDR Q16 multiply-accumulate = same instruction sequence as INT8/INT16 quantized inference (widening multiply, accumulate, right-shift)
@@ -35,7 +35,7 @@ SC6|computed confidence|exact VDR fractions propagated through declared formulas
 SC7|sentence templates|LLM emits semantic tuple (~8 tokens); Prolog matches against ~5,000 structure templates; library grows through usage|~8 tokens vs 50-200 for full prose
 
 # grammar_vs_constrained_decoding(id|property|grammar_directed|constrained_decoding)
-GD1|forward pass per structural token|zero — grammar emits directly|yes — full forward pass, masks illegal candidates
+GD1|forward pass per structural token|zero,  grammar emits directly|yes,  full forward pass, masks illegal candidates
 GD2|mechanism|emit known token, skip prediction|predict from 50,000 but mask 49,996
 
 # command_token_entropy(id|mode|vocab|bits_per_token|tokens_per_action|error_free_prob)
@@ -64,7 +64,7 @@ AX2|token elimination|grammars, builtins, KBs, Prolog, confidence fractions, sen
 AX3|linear vs quadratic scaling|KB addresses vs context-window re-read; turn 100 ratio 588:1|grows continuously|multi-turn interactions
 AX4|rule accumulation|L1→L2→L3; solved problems become Prolog rules; 329→55 tokens over 100 investigations (83% reduction)|logarithmic improvement|recurring workloads
 AX5|engineering elimination|determinism removes non-det testing/compliance/debugging; structural safety removes RLHF/red-teaming; exact arithmetic removes NaN/epsilon/drift|qualitative|all deployments
-# axes are independent — multiply for compound effect
+# axes are independent,  multiply for compound effect
 
 # execution_levels(id|level|tokens|description)
 LV1|L1|50-500|full LLM judgment; no stored rule covers situation
@@ -130,7 +130,7 @@ SF7|7|close investigation, record artifacts|35
 SF8|total|7 turns|570
 
 # sre_mature_month6(id|turn|action|tokens)
-SM1|background|polling/processor runners detect, auto-triage via 150+ rules, populate inference notebook — all at zero LLM cost|0
+SM1|background|polling/processor runners detect, auto-triage via 150+ rules, populate inference notebook,  all at zero LLM cost|0
 SM2|1|receive auto-triage notification, render findings via grammar|40
 SM3|2|query pre-populated deploy/metric KBs|32
 SM4|3|triage rule already fired, report stored root cause|15
@@ -144,7 +144,7 @@ ND1|data|KB facts are integers at integer addresses; fact 47 returns exactly wha
 ND2|working memory|every data primitive bounded at creation; LRU capacity 1000 cannot grow to 1001; snapshots capture atomically; clones disposable
 ND3|computation|LLM forward pass on exact integer attention; softmax = exactly 1/1; no float accumulation in data, working memory, or model computation
 ND4|context|LLM context at turn 7 same volume as turn 1: current query + scratchpad + scope reference; nothing accumulated in attention buffer
-ND5|formatting|grammar produces every structural character deterministically; LLM never generates JSON/tables — grammar generates from KB data
+ND5|formatting|grammar produces every structural character deterministically; LLM never generates JSON/tables,  grammar generates from KB data
 
 # degradation_mechanisms_eliminated(id|mechanism|conventional_rate|vdr_state|method)
 DG1|context filling|every turn|constant context size|data at KB addresses not token stream
@@ -373,11 +373,11 @@ OB4|mitigated_by|CH1
 2|VDR Arithmetic: The Foundation|VF1-VF5
 3|Exact Integer LLM|EL1-EL5
 4|The Complete System|SC1-SC7,GD1-GD2,CT1-CT4,KB1-KB5,DP1-DP7,GR1-GR6,SS1-SS5
-5|Axis 1 — Hardware|AX1,HG1-HG5,HE1-HE7,EL3,EL4
-6|Axis 2 — Token Elimination|AX2,TO1-TO12,TE1-TE9,ST1-ST7
-7|Axis 3 — Scaling|AX3,SR1-SR7,DS1-DS5
-8|Axis 4 — Accumulation|AX4,LV1-LV3,AC1-AC4,NA1-NA3,TF1-TF5
-9|Axis 5 — Determinism|AX5,HE1-HE7
+5|Axis 1,  Hardware|AX1,HG1-HG5,HE1-HE7,EL3,EL4
+6|Axis 2,  Token Elimination|AX2,TO1-TO12,TE1-TE9,ST1-ST7
+7|Axis 3,  Scaling|AX3,SR1-SR7,DS1-DS5
+8|Axis 4,  Accumulation|AX4,LV1-LV3,AC1-AC4,NA1-NA3,TF1-TF5
+9|Axis 5,  Determinism|AX5,HE1-HE7
 10|SRE Deep Dive|SF1-SF8,SM1-SM7,ND1-ND5,DG1-DG7
 11|Applications|AP1-AP7
 12|Hardware Path|HP1-HP6,IL1-IL7,EI1-EI4
@@ -409,19 +409,19 @@ S|Paper Series Cross-Reference|BU1
 # Q8/Q16/Q32/Q64/Q335: D=2^8/2^16/2^32/2^64/2^335
 # divmod: integer division + modulo; at power-of-two D = bit shift + mask (zero logic gates in silicon)
 # quadratic surrogate: p_i=(x_i-shift)²/Σ(x_j-shift)²; sums to exactly 1/1; no transcendentals
-# SFU: Special Function Unit — GPU transcendental hardware, 32 ops/SM/cycle, 1/16 FP16 tensor rate; eliminated by VDR
-# KB: knowledge base — 26-field struct at integer address; scoped tree; O(1) via kb_id+slot_id
+# SFU: Special Function Unit,  GPU transcendental hardware, 32 ops/SM/cycle, 1/16 FP16 tensor rate; eliminated by VDR
+# KB: knowledge base,  26-field struct at integer address; scoped tree; O(1) via kb_id+slot_id
 # builtin: typed deterministic primitive; ~8 command tokens per invocation; 448 across 25 categories
 # grammar: persistent KB template; emits structural tokens with zero forward passes; nests recursively
 # Prolog: depth-first search with backtracking over exact integer facts; unification via cross-multiplication
 # execution levels: L1 (full LLM 50-500 tok), L2 (LLM+Prolog ~8 tok), L3 (pure Prolog 0 tok)
 # command token: from ~500-item vocab at ~6 bits; 99.2% per-token accuracy vs 86% for JSON function calling
 # session model: -1 root; sign-bit lifecycle (positive=global, negative=ephemeral); snapshot/clone/kill
-# FRU: Functional Remainder Unit — per-QIU sequencer for transcendental evaluation and active-value unification
-# QIU: Q335 Integer Unit — one of 5,120 processing elements in ASIC design
+# FRU: Functional Remainder Unit,  per-QIU sequencer for transcendental evaluation and active-value unification
+# QIU: Q335 Integer Unit,  one of 5,120 processing elements in ASIC design
 # SHR335: right-shift-by-335 = fixed wiring in silicon; zero gates, zero power, zero latency
 # compound axes: AX1 (hardware 2×) × AX2 (tokens 3-33×) × AX3 (scaling linear vs quadratic) × AX4 (accumulation) × AX5 (engineering)
 # confidence: exact VDR fractions from declared propagation formulas; agreeing sources 1−∏(1−Cᵢ); chain Cᴺ
 # monotonic: counters/grants increment/transition one-way only; no re-increment, no un-revoke
-# IOSE: Input, Output, Side Effects, Properties — declaration model for every component
+# IOSE: Input, Output, Side Effects, Properties,  declaration model for every component
 # rel_types: motivates|eliminated_by|enables|solves|validates|measures|independent_of|multiplies_with|partially_replaces|matures_to|demonstrates|prevents|baseline_for|enhanced_by|floor_of|compounds_to|blends_to|specifies|declared_in|mitigated_by

@@ -16,7 +16,7 @@ These items are mathematically correct regardless of whether CKS is true.
 
 **M1.** N=3M² constraint: 3-regular graph on 2-sphere with C₃ symmetry requires N=3M² nodes. Sequence: 3, 12, 27, 48, 75... This is real discrete geometry.
 
-**M2.** Geometric frustration on z=3 sphere: mandatory non-trivial phase structure. On a 3-regular graph with Kuramoto coupling, the triangular faces create frustration — no global phase minimum exists. Real result from Kuramoto theory on graphs.
+**M2.** Geometric frustration on z=3 sphere: mandatory non-trivial phase structure. On a 3-regular graph with Kuramoto coupling, the triangular faces create frustration,  no global phase minimum exists. Real result from Kuramoto theory on graphs.
 
 **M4.** Three-sector saddle point: equal phases at 0, 2π/3, 4π/3 on a frustrated z=3 graph is a saddle, not a minimum. System departs from 120° equal spacing. Connects to quark Koide angle analysis.
 
@@ -30,11 +30,11 @@ These items are mathematically correct regardless of whether CKS is true.
 
 **M76.** 7-bubble hex nucleus (1+6): kissing number for 2D circles is 6, giving the centered hex cluster of 7. Real topology.
 
-**M85.** Torus is the unique closed orientable surface admitting a non-vanishing vector field (hairy ball theorem — sphere doesn't, torus does). The argument that stable phase flow requires toroidal topology is mathematically valid.
+**M85.** Torus is the unique closed orientable surface admitting a non-vanishing vector field (hairy ball theorem,  sphere doesn't, torus does). The argument that stable phase flow requires toroidal topology is mathematically valid.
 
 **M105.** Hex shell sequence: cumulative centered hexagonal numbers 1, 7, 19, 37, 61, 91, 127, 169... Formula: 3n²+3n+1 for shell n. Real discrete geometry.
 
-**M110.** 144 = F₁₂ (12th Fibonacci number) AND 12² — the only nontrivial perfect square in the Fibonacci sequence (Cohn 1964). Real number theory.
+**M110.** 144 = F₁₂ (12th Fibonacci number) AND 12²,  the only nontrivial perfect square in the Fibonacci sequence (Cohn 1964). Real number theory.
 
 **M117.** Confirmed hex sequence with closed form: a(n) = 3n²+3n+1 cumulative. The numbers 7, 19, 37, 61, 91, 127 are all centered hexagonal numbers.
 
@@ -48,7 +48,7 @@ These items are mathematically correct regardless of whether CKS is true.
 
 These have some quantitative or structural content that might connect to real physics.
 
-**M8.** Original α formula: α⁻¹ = [144√3·e·N^(1/3)]/[(4√3-1)·2π·ln(N)]. With N≈9×10⁶⁰, gives 137.036 to 10 decimals. N is tuned from H₀ to hit the target — this is a fit, not a prediction.
+**M8.** Original α formula: α⁻¹ = [144√3·e·N^(1/3)]/[(4√3-1)·2π·ln(N)]. With N≈9×10⁶⁰, gives 137.036 to 10 decimals. N is tuned from H₀ to hit the target,  this is a fit, not a prediction.
 
 **M11.** sin²θ_W = 1/4 = 0.25 from hex geometry (π/6 sector twist). 7.5% below measured 0.23122. Closer than SU(5) GUT bare value 3/8=0.375. The running value passes through 1/4 at some intermediate energy scale.
 
@@ -68,7 +68,7 @@ These have some quantitative or structural content that might connect to real ph
 
 **M98.** 3 dipole pairs from 6 hex edges: three-phase oscillation model for spin on a hexagonal node.
 
-**M99.** 12 elements minus 1 constraint = 11 independent DOF on hexagonal node. If the 12-bond electron loop has one closure constraint, there are 11 free parameters — tantalizingly close to the 12 SM gauge bosons minus 1 photon = 11 massive/mixed bosons.
+**M99.** 12 elements minus 1 constraint = 11 independent DOF on hexagonal node. If the 12-bond electron loop has one closure constraint, there are 11 free parameters,  tantalizingly close to the 12 SM gauge bosons minus 1 photon = 11 massive/mixed bosons.
 
 **M103-M108.** NEW α formula: α⁻¹ = (144 - 163/19) × J where J ≈ 1.012 is reverse-engineered. Base value 2573/19 ≈ 135.42. J never derived in any paper. Python code openly computes J = measured/base.
 
@@ -86,7 +86,7 @@ These have some quantitative or structural content that might connect to real ph
 
 **M122.** Primes as anti-resonance on discrete lattice: incommensurate frequencies prevent mode-locking. Connects to KAM theorem in Hamiltonian mechanics and quasicrystal physics.
 
-**M123.** 2π/N for prime N gives irrational phase per node — phase never recurs in fewer than N steps. Standard number theory applied to phase dynamics. Composites allow early recurrence.
+**M123.** 2π/N for prime N gives irrational phase per node,  phase never recurs in fewer than N steps. Standard number theory applied to phase dynamics. Composites allow early recurrence.
 
 **M124.** {19, 137, 163} all prime. Probability of three random integers near these values all being prime ≈ 1.3%. Unlikely but not extraordinary.
 
@@ -102,11 +102,11 @@ These have some quantitative or structural content that might connect to real ph
 
 **M138.** Autogenetic clock: expansion as frustration relief on discrete manifold. N=1 violates z=3, creating tension that forces N→N+1. Discrete analog of cosmological expansion driven by topological defect.
 
-**M139.** Write-only memory: N monotonically increases, enforcing arrow of time and irreversibility. Thermodynamic arrow from discrete counting — expanding phase space → entropy increase.
+**M139.** Write-only memory: N monotonically increases, enforcing arrow of time and irreversibility. Thermodynamic arrow from discrete counting,  expanding phase space → entropy increase.
 
 **M142.** Integer arithmetic with remainder carry for lossless stability computation. Real technique related to exact arithmetic and fixed-point computation. Potentially useful for control systems.
 
-**M146.** Integer-quantized control commands eliminate actuator jitter. Real engineering insight — physical actuators operate in discrete steps, so integer-optimal commands reduce hunting/oscillation.
+**M146.** Integer-quantized control commands eliminate actuator jitter. Real engineering insight,  physical actuators operate in discrete steps, so integer-optimal commands reduce hunting/oscillation.
 
 **M147.** Kalman covariance P as exact quantized tension rather than Gaussian statistical uncertainty. For truly discrete systems, integer error tracking could outperform Gaussian Kalman. Connects to particle filtering.
 
@@ -160,9 +160,9 @@ These have some quantitative or structural content that might connect to real ph
 
 **M33/M50.** Tau mass formula fails (factor ~38 off); muon formula is fitted not derived.
 
-**M39.** WARNING: Paper claims 7-bond heptagon is minimal positive curvature defect on z=3 lattice. WRONG — pentagons create positive curvature, heptagons create negative.
+**M39.** WARNING: Paper claims 7-bond heptagon is minimal positive curvature defect on z=3 lattice. WRONG,  pentagons create positive curvature, heptagons create negative.
 
-**M51.** "5 proofs continuous spacetime impossible" — all invalid.
+**M51.** "5 proofs continuous spacetime impossible",  all invalid.
 
 **M54.** Force ratio 8:1:2 doesn't match SM at any known scale.
 
@@ -204,12 +204,12 @@ These have some quantitative or structural content that might connect to real ph
 | 7 | 1st hex shell (1+6) | b₃ = -7 (QCD beta function) | Real geometry |
 | 12 | D·S² = 3·4, minimal loop | 12 SM gauge bosons | Real geometry |
 | 19 | 2nd hex shell (1+6+12) | ~19 SM free parameters | Real geometry |
-| 32 | 2^(D+S) = 2^5 | — | Derived |
-| 144 | 12², F₁₂ | — | Real number theory |
-| 163 | 144+19, largest Heegner | — | Real number theory |
+| 32 | 2^(D+S) = 2^5 |,  | Derived |
+| 144 | 12², F₁₂ |,  | Real number theory |
+| 163 | 144+19, largest Heegner |,  | Real number theory |
 | 1/4 | sin²(π/6) | sin²θ_W ≈ 0.231 (8% off) | Interesting |
-| 2π/(3√3) ≈ 1.209 | hex-circle area ratio | — | Pure geometry |
-| 8π/(3√3) ≈ 4.837 | sphere/hex area ratio | — | Pure geometry |
+| 2π/(3√3) ≈ 1.209 | hex-circle area ratio |,  | Pure geometry |
+| 8π/(3√3) ≈ 4.837 | sphere/hex area ratio |,  | Pure geometry |
 | 8π²/(3√3) ≈ 15.19 | geometric constant | ~15ms flicker fusion | Pure geometry |
 | 2573/19 ≈ 135.42 | 144 - 163/19 | α⁻¹ base (needs J ≈ 1.012) | Interesting |
 
@@ -232,15 +232,15 @@ All three are either fitted or wrong. No CKS formula for α⁻¹ is both paramet
 For the goal of SM parameter reduction using geometric/topological content:
 
 1. **M1/M105/M117**: The hex shell sequence 1, 7, 19, 37... as a structural scaffold
-2. **M15**: 12 pentagons on hex sphere — topological constraint
-3. **M11/M34**: sin²θ_W = 1/4 from hex geometry — worth investigating at what scale this is exact
-4. **M99**: 12 bonds minus 1 constraint = 11 DOF — tantalizing near-match to SM gauge structure
-5. **M122/M123**: Primes as anti-resonance on discrete lattice — real physics connection
-6. **M4**: Three-sector saddle point and departure from 120° spacing — connects to quark mass ratios via Koide
-7. **M85**: Toroidal topology requirement for stable phase flow — connects to Skyrme models
-8. **M110**: 144 = F₁₂ = 12² uniqueness — number theory bridge between Fibonacci and squares
+2. **M15**: 12 pentagons on hex sphere,  topological constraint
+3. **M11/M34**: sin²θ_W = 1/4 from hex geometry,  worth investigating at what scale this is exact
+4. **M99**: 12 bonds minus 1 constraint = 11 DOF,  tantalizing near-match to SM gauge structure
+5. **M122/M123**: Primes as anti-resonance on discrete lattice,  real physics connection
+6. **M4**: Three-sector saddle point and departure from 120° spacing,  connects to quark mass ratios via Koide
+7. **M85**: Toroidal topology requirement for stable phase flow,  connects to Skyrme models
+8. **M110**: 144 = F₁₂ = 12² uniqueness,  number theory bridge between Fibonacci and squares
 9. **M129**: Compact generating chain (3,2) → all CKS integers
-10. **M142/M146**: Integer arithmetic techniques for engineering — practically useful regardless of physics
+10. **M142/M146**: Integer arithmetic techniques for engineering,  practically useful regardless of physics
 
 ---
 

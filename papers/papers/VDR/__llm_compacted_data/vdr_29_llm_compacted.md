@@ -1,18 +1,18 @@
-# HOWL-VDR-29-2026 — LLM-COMPACT FORM
+# HOWL-VDR-29-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → core_concept → basis_assignments → operations_cpu → operations_gpu → pipeline_workloads → costs → hardware_units → kernel_roadmap → lookup_tables → overflow_analysis → error_model → rebase_ops → quantization_comparison → reproducibility → float_special_values → relationships → section_index
 
 # principles(id|principle|rationale)
 P1|VDR triple [V, D, R] represents exact rational (V+R)/D|R is remainder within D frame, not external addend; R=0 is closed, R≠0 is active
-P2|divmod rule: product>>bits gives V, product&mask gives R|when D is power-of-two, integer division reduces to shift+mask — one instruction each
+P2|divmod rule: product>>bits gives V, product&mask gives R|when D is power-of-two, integer division reduces to shift+mask,  one instruction each
 P3|exactness guarantee: V+R always equals true integer numerator|no operation discards any portion of any intermediate; chain length irrelevant to error
 P4|D is configuration choice not system constant|exactness holds at any D; choice affects dynamic range and hardware efficiency only
 P5|Q335 is wrong for ML workloads|335-bit integers require multi-precision libraries (50-200× overhead); ML needs modest precision used exactly
-P6|deinterleaved memory layout: separate V and R arrays|enables pure vertical SIMD — no shuffle/permute; one register load fills entirely with V or R values
+P6|deinterleaved memory layout: separate V and R arrays|enables pure vertical SIMD,  no shuffle/permute; one register load fills entirely with V or R values
 P7|no D field stored per element|D is module-level constant per domain, known at compile time; type encodes domain
 P8|lookup tables replace transcendental functions|bounded integer inputs have finite domain; precompute exact results at Q335, project to target basis via divmod
 P9|Barrett reduction replaces float division|precompute multiplicative inverse of divisor; per-element cost is one multiply + one shift instead of 10-14 cycle vdivps
-P10|schedule values precomputed at Q335 then projected to inference basis|projection via divmod is exact — remainder captures what target basis cannot absorb
+P10|schedule values precomputed at Q335 then projected to inference basis|projection via divmod is exact,  remainder captures what target basis cannot absorb
 
 # basis_assignments(id|stage|D|element_type|bytes_per_element|remainder_stored|rationale)
 B1|weights (inference)|2^8|i8 V only|1|no (R=0 for frozen weights)|matches INT8 tensor cores; half FP16 memory
@@ -37,8 +37,8 @@ Z10|DiffusionLatent|latent tensor, deinterleaved|channels/height/width: i32, v_d
 HW1|FP32 CUDA cores|128|float multiply, add, FMA
 HW2|FP16 Tensor Cores|512|float matrix multiply-accumulate
 HW3|INT32 CUDA cores|64|integer multiply, add, shift, bitwise
-HW4|INT8 Tensor Cores|1024|integer matrix multiply-accumulate — 2× FP16 rate
-HW5|Special Function Unit (SFU)|32|exp, log, rsqrt, sin, cos, division — 1/16 tensor core rate; bottleneck for all float transcendentals
+HW4|INT8 Tensor Cores|1024|integer matrix multiply-accumulate,  2× FP16 rate
+HW5|Special Function Unit (SFU)|32|exp, log, rsqrt, sin, cos, division,  1/16 tensor core rate; bottleneck for all float transcendentals
 
 # sfu_operations(id|operation|instruction|latency_cycles|throughput_ops_SM_cycle|used_by)
 SFU1|exp2|MUFU.EX2|22|32|softmax
@@ -61,10 +61,10 @@ OC6|residual add|1 vaddps, 16 elem|V add + R add + carry check, 6 ops/32 elem|~1
 
 # operations_gpu_h100(id|operation|fp16_method|vdr_method|fp16_rate|vdr_rate|vdr_vs_float|bottleneck_eliminated)
 OG1|GEMM|FP16 tensor 16×16×16 tile, FP32 accum, 512 ops/SM/cyc|INT8 tensor 16×16×32 tile, INT32 accum (exact), 1024 ops/SM/cyc + shift+mask epilogue|~990 TFLOPS peak, 85-95% util|~1980 TOPS peak, 75-85% util (new kernels)|1.6-1.8× (effective)|memory bandwidth (INT8 weights half size)
-OG2|softmax|SFU exp (32 ops/SM/cyc) + SFU div — bottleneck|shared memory table lookup (full BW) + Barrett (INT32 rate)|SFU-bottlenecked|full bandwidth|3-4×|SFU eliminated
+OG2|softmax|SFU exp (32 ops/SM/cyc) + SFU div,  bottleneck|shared memory table lookup (full BW) + Barrett (INT32 rate)|SFU-bottlenecked|full bandwidth|3-4×|SFU eliminated
 OG3|activation (GeLU/SiLU)|SFU tanh/sigmoid, 32 ops/SM/cyc|table lookup shared memory, full BW|SFU-bottlenecked|full bandwidth|4-6×|SFU eliminated
 OG4|layer norm|SFU rsqrt, 32 ops/SM/cyc|table or integer Newton + bit shift for division|SFU-bottlenecked|full rate|2-3×|SFU eliminated
-OG5|warp divergence|denormals trigger FTZ or slow-path; NaN/Inf propagate; data-dependent masking|no special cases — no denormal, NaN, Inf, -0; every thread identical instructions every cycle|data-dependent|zero divergence|qualitative|entire category of edge-case handling eliminated
+OG5|warp divergence|denormals trigger FTZ or slow-path; NaN/Inf propagate; data-dependent masking|no special cases,  no denormal, NaN, Inf, -0; every thread identical instructions every cycle|data-dependent|zero divergence|qualitative|entire category of edge-case handling eliminated
 
 # memory_bandwidth(id|metric|fp16|vdr_int8)
 MB1|bytes per weight|2|1
@@ -110,7 +110,7 @@ DR5|100,000|~1×10^-10|0|1.2 hours
 DR6|1,000,000|~1×10^-9|0|4.6 days continuous
 DR7|8,640,000|~1.9×10^-8|0|2-hour film (24fps × 150 steps)
 DR8|25,920,000|~2.6×10^-7|0|2-hour film 3 cycles
-# VDR drift is structurally zero — mathematical property of integer arithmetic, not empirical measurement
+# VDR drift is structurally zero,  mathematical property of integer arithmetic, not empirical measurement
 
 # qualitative_properties(id|property|float_fp16_fp32|vdr_int8_16_64)
 QP1|per-operation precision loss|up to 0.5 ULP|zero
@@ -172,7 +172,7 @@ ER1|representation error|rounds to nearest representable|exactly represented as 
 ER2|arithmetic error|rounds per IEEE 754|exactly represented via divmod
 ER3|accumulation error|grows with chain length|zero (no per-step error)
 ER4|cancellation error|catastrophic precision loss possible|exact (integer subtraction exact)
-ER5|method error|present (inherent to algorithm)|present (same — VDR is exact arithmetic not exact mathematics)
+ER5|method error|present (inherent to algorithm)|present (same,  VDR is exact arithmetic not exact mathematics)
 ER6|model error|present|present
 ER7|quantization error|mantissa truncation|basis-width truncation captured in R
 # VDR eliminates ER1-ER4 entirely; ER5-ER6 unchanged; ER7 captured not lost
@@ -194,11 +194,11 @@ PE7|Q335 (VDR physics)|n/a (~101 decimal)|D=2^335|multi-precision|~84 per V
 # float allocates bits to mantissa+exponent; VDR integer uses all bits for value precision within fixed range
 
 # float_special_values(id|value|how_it_arises|effect|vdr_equivalent)
-FS1|denormal|gradients near zero, weight decay products|10-100× slower or FTZ (silent precision loss)|impossible — no subnormal representation
+FS1|denormal|gradients near zero, weight decay products|10-100× slower or FTZ (silent precision loss)|impossible,  no subnormal representation
 FS2|+Inf|overflow in exp(), large accumulations|propagates through multiply, poisons sums|impossible
 FS3|-Inf|log(0), negative overflow|same propagation|impossible
 FS4|NaN|0/0, Inf-Inf, Inf×0|propagates through everything, silent corruption|impossible
-FS5|-0|rounding, sign preservation|comparison anomaly: -0==+0 but 1/-0=-Inf|impossible — integers have one zero
+FS5|-0|rounding, sign preservation|comparison anomaly: -0==+0 but 1/-0=-Inf|impossible,  integers have one zero
 
 # float_mitigations(id|event|frequency|mitigation|mitigation_cost|vdr_status)
 FM1|gradient underflow to denormal|every batch|FTZ or loss scaling|FTZ: silent loss; scaling: extra multiply per op|impossible
@@ -235,7 +235,7 @@ LT3|reciprocal sqrt (layer norm)|n/a|n/a|9900 (practical)|~40 KB|shared memory; 
 BA1|GPT/LLaMA (decoder-only)|2^8|2^16|standard transformer, well-bounded activations
 BA2|BERT/encoder models|2^8|2^16|same structure, shorter sequences
 BA3|Vision Transformer (ViT)|2^8|2^16|patch embeddings may need wider activation basis
-BA4|U-Net (diffusion backbone)|2^8|2^16|skip connections accumulate — monitor for overflow
+BA4|U-Net (diffusion backbone)|2^8|2^16|skip connections accumulate,  monitor for overflow
 BA5|DiT (diffusion transformer)|2^8|2^16|standard transformer structure
 BA6|Mixture of Experts|2^8|2^16|router softmax benefits from exact sum=1
 BA7|State Space Models (Mamba)|2^8|2^32|recurrent accumulation may need wider basis
@@ -293,7 +293,7 @@ RU4|vmovdqu8 (VDR weight raw)|64|8|8
 
 # Q335_validation
 # 921 tests across 38 mathematical/computational domains
-# 903 passed, 18 failed — all 18 failures traced to test-design errors
+# 903 passed, 18 failed,  all 18 failures traced to test-design errors
 # zero failures from incorrect VDR arithmetic
 # Zig implementation targets same arithmetic on same foundations
 # fixed-basis ML specialization is simpler subset (closed arithmetic, power-of-two bases only)
@@ -406,13 +406,13 @@ S|Reproducibility Guarantees|NR1-NR6,VR1-VR6
 
 # decode_legend
 # basis: D = 2^n, power-of-two denominator; divmod = shift+mask
-# element types: i8|i16|i32|i64 — signed integers at stated width
+# element types: i8|i16|i32|i64,  signed integers at stated width
 # V: value slot (quotient in D frame); R: remainder slot (exact residual); D: denominator (never stored per-element)
 # closed: R=0; active: R≠0
 # throughput units: ops/SM/cycle (GPU), instructions or cycles per N elements (CPU)
-# ULP: unit in last place — minimum float precision unit
-# FTZ: flush to zero — GPU mode that silences denormals by replacing with 0
-# SFU: Special Function Unit — dedicated GPU hardware for transcendentals, 32 ops/SM/cycle on H100
+# ULP: unit in last place,  minimum float precision unit
+# FTZ: flush to zero,  GPU mode that silences denormals by replacing with 0
+# SFU: Special Function Unit,  dedicated GPU hardware for transcendentals, 32 ops/SM/cycle on H100
 # Barrett reduction: integer division via precomputed multiplicative inverse + shift
 # mma.sync: tensor core matrix multiply-accumulate instruction
 # vpmaddwd: AVX-512 packed multiply-add word to doubleword (32 i16×i16 → 16 i32 pairwise sums)

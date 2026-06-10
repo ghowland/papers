@@ -12,7 +12,7 @@
 | W1.2 | Every concept required for understanding must be explained within the paper itself | If a reader needs PHYS-13 to understand PHYS-15, PHYS-15 is dead. |
 | W1.3 | References to other HOWL papers are pointers for priority and provenance, never for comprehension | "This was first computed in PHYS-13" is acceptable. "See PHYS-13 for the derivation" is not. |
 | W1.4 | Every formula used must be derived or stated with enough context to follow | A reader should be able to verify any claim by reading only this paper. |
-| W1.5 | Define all terms on first use, even if defined in prior papers | sin²θ_W, the gap ratio, R₂, vector-like — all must be explained each time. |
+| W1.5 | Define all terms on first use, even if defined in prior papers | sin²θ_W, the gap ratio, R₂, vector-like,  all must be explained each time. |
 
 ---
 
@@ -33,7 +33,7 @@
 | Rule | Statement | Rationale |
 |---|---|---|
 | W3.1 | One topic per paper | A paper about the gap ratio is not also about the Koide formula. Separate findings get separate papers. |
-| W3.2 | Every paper must raise the series platform | A paper doesn't need to reduce free parameters. It needs to give a future session firmer ground. Closing a dead path, documenting a finding, specifying a particle — all raise the platform. |
+| W3.2 | Every paper must raise the series platform | A paper doesn't need to reduce free parameters. It needs to give a future session firmer ground. Closing a dead path, documenting a finding, specifying a particle,  all raise the platform. |
 | W3.3 | Papers are published and never edited retroactively | New information goes in new papers. If PHYS-13 understates a finding, PHYS-15 states it fully. PHYS-13 is not changed. |
 | W3.4 | Papers are markdown in chat, never docx | Operational rule for this series. |
 | W3.5 | Scripts are shown as code blocks in chat, never as files | Operational rule for this series. |
@@ -48,7 +48,7 @@
 | Rule | Statement | Rationale |
 |---|---|---|
 | W4.1 | Nulls are published with the same prominence as positives | A null result (82/82 PSLQ) is a finding. It prevents future sessions from repeating dead searches. |
-| W4.2 | Every scope limitation must be stated explicitly | "One-loop with 6-flavor approximation (0.2% effect)" — not hidden, not apologized for, just stated. |
+| W4.2 | Every scope limitation must be stated explicitly | "One-loop with 6-flavor approximation (0.2% effect)",  not hidden, not apologized for, just stated. |
 | W4.3 | Distinguish between derived results and stated results | "The gap ratio IS 218/115 (exact)" vs "sin²θ_W is approximately 0.21 (textbook result, not recomputed here)." |
 | W4.4 | Never use the word "prediction" without qualification | "The integers identify..." or "The arithmetic constrains..." or "Conditional on unification being real..." Not "we predict the particle exists." |
 | W4.5 | State what is integer-forced (Level 1) and what is measured (Level 2) for every result | The boundary between what mathematics forces and what the universe supplies must be explicit in every paper. |
@@ -62,7 +62,7 @@
 | Rule | Statement | Rationale |
 |---|---|---|
 | W5.1 | Papers serve two audiences: future LLM sessions and human researchers | MATH and PHYS papers seed future sessions. They also educate humans who find them. |
-| W5.2 | A postdoc who has never seen the series should be able to read any single paper and learn the finding | "Today I learn about X" — the paper IS the education. |
+| W5.2 | A postdoc who has never seen the series should be able to read any single paper and learn the finding | "Today I learn about X",  the paper IS the education. |
 | W5.3 | DISC papers are for humans only; they encode lessons about the discovery process | DISC papers are not fed to future sessions. They document methodology for human benefit. |
 | W5.4 | MATH and PHYS papers are the only working documents for future sessions | If a finding is only in a DISC paper or a notebook, it doesn't exist for future computation. |
 | W5.5 | Every novel finding must be in its own MATH or PHYS paper | A finding buried in a section of a paper about something else will not be found by a future session looking for it specifically. |
@@ -77,7 +77,7 @@
 | 1 | Author specifies paper | States which paper from the master list | Paper number and finding number(s) |
 | 2 | Planning Claude writes plan | Outline, structure, section list, decision gates | Plan document for review |
 | 3 | Review Claude gives feedback | Corrections, missing content, source material list | Feedback document |
-| 4 | Author assembles prompt | Source scripts, data, tables, feedback, plan — all in prompt | Complete prompt for writing |
+| 4 | Author assembles prompt | Source scripts, data, tables, feedback, plan,  all in prompt | Complete prompt for writing |
 | 5 | Writing Claude writes paper | Uses ONLY in-prompt source material | Paper draft |
 | 6 | Review Claude reviews | Checks numbers against scripts, checks self-containment, writes errata if needed | Errata/annotations |
 | 7 | Author appends errata if any | Errata go at end, never change paper body | Final paper |

@@ -1,8 +1,8 @@
-# VDR-19 PLAN — SELF-EXTENDING ARCHITECTURE
+# VDR-19 PLAN,  SELF-EXTENDING ARCHITECTURE
 
 ## Paper scope
 
-VDR-19 describes how a VDR system bootstraps from an initial seed, extends itself through normal usage, and accumulates capability monotonically over time. It covers the bootstrap pipeline, the operational lifecycle, the compaction format as a bridge between conventional LLM prose and VDR's typed storage, and the LM's role as a runtime programmer — writing Prolog rules and Python scripts that become permanent infrastructure.
+VDR-19 describes how a VDR system bootstraps from an initial seed, extends itself through normal usage, and accumulates capability monotonically over time. It covers the bootstrap pipeline, the operational lifecycle, the compaction format as a bridge between conventional LLM prose and VDR's typed storage, and the LM's role as a runtime programmer,  writing Prolog rules and Python scripts that become permanent infrastructure.
 
 This paper introduces no new primitives, builtins, struct fields, or modules. Everything described uses existing VDR-1 through VDR-18 components.
 
@@ -10,53 +10,53 @@ This paper introduces no new primitives, builtins, struct fields, or modules. Ev
 
 ## Section plan
 
-### Section 1 — What self-extending means
+### Section 1,  What self-extending means
 
 Brief introduction for new readers. VDR is a hybrid architecture where an LLM generates only judgment and prose while exact primitives handle computation, state, formatting, and deduction at integer addresses. The LM emits structured command tokens (~8 tokens each) that invoke primitives over data it references by path or ID but never processes through its token stream.
 
 Self-extending: the system's knowledge base, rule set, and executable capabilities grow as a natural byproduct of usage. The LM writes Prolog rules, Python scripts, and KB facts while doing work. Those persist, compose with prior state, and are available to all future sessions within scope. Using the system trains the system.
 
-Key properties to establish: accumulation is immediate (no batch retraining), inspectable (readable rules and provenanced facts), reversible (retract removes cleanly), scoped (knowledge doesn't leak across visibility boundaries), and incremental (no catastrophic forgetting — facts at integer addresses, not distributed across weights).
+Key properties to establish: accumulation is immediate (no batch retraining), inspectable (readable rules and provenanced facts), reversible (retract removes cleanly), scoped (knowledge doesn't leak across visibility boundaries), and incremental (no catastrophic forgetting,  facts at integer addresses, not distributed across weights).
 
-### Section 2 — The compaction format
+### Section 2,  The compaction format
 
-Brief intro: conventional LLM output is 80–95% infrastructure tokens — formatting, hedging, state reconstruction, arithmetic. Compaction strips infrastructure while preserving all named entities, properties, and relationships in a structured tabular form.
+Brief intro: conventional LLM output is 80–95% infrastructure tokens,  formatting, hedging, state reconstruction, arithmetic. Compaction strips infrastructure while preserving all named entities, properties, and relationships in a structured tabular form.
 
-Describe the current compaction format: pipe-delimited tables, ID-prefixed rows, typed relationship tables, decode legends, section indexes. Show how this is structurally close to KB facts and Prolog rules — each row is a fact, each relationship entry is a rule, each table is a predicate-major column group.
+Describe the current compaction format: pipe-delimited tables, ID-prefixed rows, typed relationship tables, decode legends, section indexes. Show how this is structurally close to KB facts and Prolog rules,  each row is a fact, each relationship entry is a rule, each table is a predicate-major column group.
 
-Introduce the adjusted compaction format: modifications to align with Prolog clause syntax, columnar storage layout (predicate-major as specified in VDR-18 C4), and direct parseability into Zig/Python structs. The adjusted format is a direct load file — parse and store, no transformation.
+Introduce the adjusted compaction format: modifications to align with Prolog clause syntax, columnar storage layout (predicate-major as specified in VDR-18 C4), and direct parseability into Zig/Python structs. The adjusted format is a direct load file,  parse and store, no transformation.
 
 Provide a worked example: one section from a VDR paper in current compaction format, then the same section in adjusted format, then the resulting KB facts and Prolog rules after loading.
 
-### Section 3 — The bootstrap pipeline
+### Section 3,  The bootstrap pipeline
 
-Brief intro: the system needs an initial seed of operational competence before it can self-extend. The seed is not domain knowledge — it is the ability to read, write, parse, compose, and manage its own structures.
+Brief intro: the system needs an initial seed of operational competence before it can self-extend. The seed is not domain knowledge,  it is the ability to read, write, parse, compose, and manage its own structures.
 
-**Seed layer 1 — Language.** English sentence structure templates (grammar library for output generation). Typo correction KB (pattern-to-correction mappings). Input classification KB (pattern-to-tag mappings for session scoring and routing). These enable the system to read user input and generate grammatically correct output without full-vocabulary token prediction for structural tokens.
+**Seed layer 1,  Language.** English sentence structure templates (grammar library for output generation). Typo correction KB (pattern-to-correction mappings). Input classification KB (pattern-to-tag mappings for session scoring and routing). These enable the system to read user input and generate grammatically correct output without full-vocabulary token prediction for structural tokens.
 
-**Seed layer 2 — Format handling.** Grammars for JSON, CSV, markdown, pipe-delimited tables, the compaction format itself. Input parsing grammars and output generation grammars for every standard data format. These enable data ingestion and export.
+**Seed layer 2,  Format handling.** Grammars for JSON, CSV, markdown, pipe-delimited tables, the compaction format itself. Input parsing grammars and output generation grammars for every standard data format. These enable data ingestion and export.
 
-**Seed layer 3 — Operational environment.** Rules for primitive composition — which builtins to call for which tasks, how to sequence pipeline stages, when to write a Prolog rule versus store a flat fact, how to manage queues, counters, LRU caches, ring buffers, stacks. The primitives exist as executable code; the operational KB is the knowledge of how and when to compose them. Includes rules for the compaction process itself — how to identify named entities, relationships, and structure in incoming documents and map them to KB facts and Prolog rules.
+**Seed layer 3,  Operational environment.** Rules for primitive composition,  which builtins to call for which tasks, how to sequence pipeline stages, when to write a Prolog rule versus store a flat fact, how to manage queues, counters, LRU caches, ring buffers, stacks. The primitives exist as executable code; the operational KB is the knowledge of how and when to compose them. Includes rules for the compaction process itself,  how to identify named entities, relationships, and structure in incoming documents and map them to KB facts and Prolog rules.
 
-**Seed layer 4 — Self-maintenance.** Rules for grammar creation when encountering novel structure. Rules for detecting when a new compaction pattern is needed. Rules for project lifecycle management — snapshot, clone, version, compare.
+**Seed layer 4,  Self-maintenance.** Rules for grammar creation when encountering novel structure. Rules for detecting when a new compaction pattern is needed. Rules for project lifecycle management,  snapshot, clone, version, compare.
 
 Describe the staged bootstrap: conventional LLM compacts seed documents → parsed into KBs → system begins operating → initially depends on external LLM for new document compaction → accumulates enough compaction rules to self-compact → conventional LLM no longer needed.
 
-### Section 4 — The operational lifecycle
+### Section 4,  The operational lifecycle
 
 Brief intro: once bootstrapped, the system operates in a continuous cycle of intake, processing, rule generation, and accumulation.
 
-**Intake.** Documents enter through web fetch, paste, upload, or API. The system compacts them using accumulated grammars and classification rules — identifying named entities, relationships, structure, mapping to KB facts and Prolog rules. Each document is stored with full provenance (source, time, original format, conversion method).
+**Intake.** Documents enter through web fetch, paste, upload, or API. The system compacts them using accumulated grammars and classification rules,  identifying named entities, relationships, structure, mapping to KB facts and Prolog rules. Each document is stored with full provenance (source, time, original format, conversion method).
 
-**Processing.** The LM queries existing KBs, existing Prolog rules fire against new facts, contradictions and confirmations surface automatically through rule evaluation. The LM makes judgment calls — what matters, what to investigate, what to flag.
+**Processing.** The LM queries existing KBs, existing Prolog rules fire against new facts, contradictions and confirmations surface automatically through rule evaluation. The LM makes judgment calls,  what matters, what to investigate, what to flag.
 
 **Rule generation.** The LM writes new Prolog rules encoding discovered relationships, classifications, patterns. It writes Python scripts for analysis that primitives can't handle directly. Both persist in project KBs with provenance.
 
 **Accumulation.** Facts, rules, scripts, grammars, and project state accumulate monotonically within scope. Session state promotes to project state through explicit LM judgment (this finding is worth keeping). Project state is available to all future sessions with scope access.
 
-**Versioning.** Project state snapshots at meaningful points. Comparison rules (written by LM, stored as Prolog) can diff current state against prior snapshots. Second run on similar work is cheaper because accumulated rules and scripts already exist (VDR-18 CL10 — 42% cheaper on second run).
+**Versioning.** Project state snapshots at meaningful points. Comparison rules (written by LM, stored as Prolog) can diff current state against prior snapshots. Second run on similar work is cheaper because accumulated rules and scripts already exist (VDR-18 CL10,  42% cheaper on second run).
 
-### Section 5 — The LM as runtime programmer
+### Section 5,  The LM as runtime programmer
 
 Brief intro: the LM doesn't just call primitives. It writes new rules and scripts that extend the system's capability. This is the mechanism behind self-extension.
 
@@ -68,9 +68,9 @@ Prolog rule amortization: rules written once, reused across all future queries w
 
 **Writing grammars.** When the LM encounters a novel document structure, it can write a new grammar for that format. The grammar persists and handles all future documents of that type without LM involvement.
 
-**Writing compaction rules.** As the system processes more documents, the LM writes rules about how to compact specific document types — which entities to extract, which relationships to encode, which structure to preserve. These rules enable self-compaction of future documents of the same type.
+**Writing compaction rules.** As the system processes more documents, the LM writes rules about how to compact specific document types,  which entities to extract, which relationships to encode, which structure to preserve. These rules enable self-compaction of future documents of the same type.
 
-### Section 6 — The SRE operational environment
+### Section 6,  The SRE operational environment
 
 Brief intro: SRE incident investigation as a concrete demonstration of self-extending architecture. References VDR-15 UC1 and VDR-18 CS1–CS7 for token economics and performance data.
 
@@ -96,7 +96,7 @@ Walk through the tenth investigation:
 - Project KB contains full history, queryable, provenanced
 - New engineer on the team inherits all accumulated rules and scripts through scope access
 
-### Section 7 — Data flow architecture
+### Section 7,  Data flow architecture
 
 Brief intro: in VDR the LM orchestrates by reference. Data stays at integer addresses in KBs, queues, caches, buffers. The LM points at data with dotted paths and IDs. It never ingests data to manipulate it.
 
@@ -112,28 +112,28 @@ Contrast with conventional: data enters context window as tokens, LM processes b
 
 Queue-based multi-instance orchestration: one LM instance writes findings to KB, puts summary on queue. Another instance picks up from queue with full provenance, continues work. Each instance stays fresh (clone economics from VDR-15 CL1–CL4). Knowledge accumulates across instances.
 
-### Section 8 — Train-as-you-go
+### Section 8,  Train-as-you-go
 
 Brief intro: the conventional distinction between training and inference dissolves. Using the system extends its knowledge and inference capability continuously.
 
 Properties of live training vs weight-based training:
-- Immediate (no batch process, no gradient computation — one kb_assert and it's live)
+- Immediate (no batch process, no gradient computation,  one kb_assert and it's live)
 - Inspectable (every rule is a readable Prolog clause, every fact has provenance)
-- Reversible (retract removes cleanly — no weight poisoning)
-- Scoped (knowledge in one project doesn't leak to another — visibility and scope gates apply)
-- Incremental (document 500 builds on documents 1–499 — no catastrophic forgetting)
+- Reversible (retract removes cleanly,  no weight poisoning)
+- Scoped (knowledge in one project doesn't leak to another,  visibility and scope gates apply)
+- Incremental (document 500 builds on documents 1–499,  no catastrophic forgetting)
 - Auditable (full provenance chain on every fact and rule)
 - Composable (rules from different sources interact through Prolog unification automatically)
 
-Describe the accumulation curve: early sessions are mostly LM judgment writing foundational rules. Later sessions increasingly trigger existing rules with LM judgment focused on novel cases. The ratio of LM tokens to accumulated-rule evaluations shifts over time — the system does more per LM token as it accumulates.
+Describe the accumulation curve: early sessions are mostly LM judgment writing foundational rules. Later sessions increasingly trigger existing rules with LM judgment focused on novel cases. The ratio of LM tokens to accumulated-rule evaluations shifts over time,  the system does more per LM token as it accumulates.
 
-### Section 9 — Capability growth model
+### Section 9,  Capability growth model
 
 Brief intro: quantify how the system's capability grows with usage.
 
 Metrics:
 - KB facts (total stored, queryable)
-- Prolog rules (total, by scope level — project, department, organization)
+- Prolog rules (total, by scope level,  project, department, organization)
 - Python scripts (total, re-execution count)
 - Grammars (total, documents parsed per grammar)
 - Compaction rules (total, documents compacted per rule)
@@ -145,7 +145,7 @@ Project illustrative growth curves for SRE use case:
 - Investigation 20: ~800 facts, ~80 rules, ~15 scripts, routine triage largely automated
 - Investigation 50: comprehensive domain KB, novel incidents only require LM judgment for genuinely new patterns
 
-### Section 10 — Security properties of self-extension
+### Section 10,  Security properties of self-extension
 
 Brief intro for new readers: VDR enforces access control structurally through KB visibility (public/internal/owner_only), scope chains (sibling branches unreachable), grants (default denial on all operations), and output constraints (grammar validation post-generation). These are described fully in VDR-16.
 
@@ -159,13 +159,13 @@ Self-extension inherits all security properties:
 
 No new attack surface: the LM writes rules and scripts through the same command token → primitive → grant check pipeline as every other operation. Self-extension doesn't bypass access control because it uses the same access-controlled mechanisms.
 
-### Section 11 — Language and dialect as KB selection
+### Section 11,  Language and dialect as KB selection
 
 Brief intro: the LM's judgment about what to say is decoupled from how to say it in a particular language or register.
 
-The LM emits a semantic tuple — subject, verb, object, location, weight criteria — as command tokens. Prolog rules match against sentence structure templates in the mounted language/dialect KB. The template provides all structural tokens. Content words fill typed slots.
+The LM emits a semantic tuple,  subject, verb, object, location, weight criteria,  as command tokens. Prolog rules match against sentence structure templates in the mounted language/dialect KB. The template provides all structural tokens. Content words fill typed slots.
 
-Switching language or dialect is a scope change — mount a different KB. No model fine-tuning, no prompt engineering. Consistent dialect throughout a document because structural rules are deterministic. Mix dialects intentionally by switching mounted KB per output segment (narrator vs dialogue).
+Switching language or dialect is a scope change,  mount a different KB. No model fine-tuning, no prompt engineering. Consistent dialect throughout a document because structural rules are deterministic. Mix dialects intentionally by switching mounted KB per output segment (narrator vs dialogue).
 
 This falls out of self-extension naturally: sentence template KBs are just another accumulated knowledge base, written and refined through usage, scoped and versioned like everything else.
 
@@ -194,7 +194,7 @@ References VDR-15 for token economics, primitive patterns, clone model, Prolog r
 1. Self-extension is a consequence of the architecture, not a feature added to it
 2. The compaction format bridges conventional LLM prose and VDR typed storage
 3. The bootstrap requires only operational competence, not domain knowledge
-4. Usage is training — the conventional distinction dissolves
+4. Usage is training,  the conventional distinction dissolves
 5. Capability growth is monotonic, inspectable, reversible, and scoped
 6. Self-extension inherits all security and alignment properties from the underlying architecture
 7. The LM's role shifts from doing work to programming the system that does work

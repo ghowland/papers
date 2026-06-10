@@ -11,7 +11,7 @@
 
 - The Cabibbo Doublet prediction is testable, and the Hyper-Kamiokande experiment in Japan starts in 2027.  If protons decay at the predicted 3 × 10^34 to 10^35 years in the p → e⁺π⁰ channel.  
 
-- A proton (p) decays by breaking into a positron (e⁺, an anti-electron) and a neutral pion (π⁰, a short-lived particle made of a quark and antiquark), with the arrow meaning "decays into" and the whole expression describing one specific break pattern — the "channel" — out of several possible patterns different unification models predict.
+- A proton (p) decays by breaking into a positron (e⁺, an anti-electron) and a neutral pion (π⁰, a short-lived particle made of a quark and antiquark), with the arrow meaning "decays into" and the whole expression describing one specific break pattern,  the "channel",  out of several possible patterns different unification models predict.
 
 
 - If it isn't confirmed, then I will falsify the prediction, and invalidate any paths of the series that relied on it.  The same way I did with CKS.

@@ -1,8 +1,8 @@
-**Video 4 Outline: What Unification Actually Gets You — From Fiber Optics to Drug Design**
+**Video 4 Outline: What Unification Actually Gets You,  From Fiber Optics to Drug Design**
 
 ---
 
-**Opening — in frame, reframing the question (1 minute)**
+**Opening,  in frame, reframing the question (1 minute)**
 
 - Three videos in, you've seen the model, you've seen why it was missed, you've seen the complete stack
 - The natural question now is: so what
@@ -10,7 +10,7 @@
 - It's not, it's an engineering achievement that affects every industry that depends on physical constants
 - This video is about what happens when the derivation chains extend into the real world
 
-**The general principle — state it once (2 minutes)**
+**The general principle,  state it once (2 minutes)**
 
 - Every engineering problem depends on a material property or physical constant
 - That property traces back through atomic and molecular physics to the fundamental couplings
@@ -21,7 +21,7 @@
 - The only thing missing is the computation and the willingness to cross departmental walls
 - This is not a vague philosophical claim, I'm going to show you specific chains with specific targets
 
-**Fiber optics — the most concrete example (5 minutes)**
+**Fiber optics,  the most concrete example (5 minutes)**
 
 - Current DWDM systems deliver about 100 terabits per second commercially
 - Lab records have reached 430 terabits
@@ -30,14 +30,14 @@
 - The Sellmeier coefficients, six fitted parameters that determine refractive index, no first principles derivation exists
 - The Kerr nonlinear coefficient, measured at plus or minus 5 percent, governs self-phase modulation, cross-phase modulation, four-wave mixing
 - Channel spacing safety margins are set conservatively because the models are approximate
-- Show image or diagram — here's a DWDM channel plan, here's where the safety margins are, here's the gap between current and theoretical
+- Show image or diagram,  here's a DWDM channel plan, here's where the safety margins are, here's the gap between current and theoretical
 - If you derive these parameters from integers with greater precision than current empirical methods, you can operate closer to the true limits
 - Tighter channel spacing, more accurate interference prediction, higher usable bandwidth
 - Not a hardware upgrade, a physics upgrade applied to hardware already deployed
 - The chain: alpha through atomic structure through silicon and oxygen nuclear charges through molecular bonds through bulk optical properties through Sellmeier coefficients
 - Every link is standard physics, nobody has run the chain in exact arithmetic
 
-**Handset radio — the same principle different domain (3 minutes)**
+**Handset radio,  the same principle different domain (3 minutes)**
 
 - 5G systems operate well below theoretical capacity
 - Impedance matching guaranteed only to plus or minus 5 percent
@@ -47,9 +47,9 @@
 - Same principle as fiber: derive tighter values for underlying parameters, operate closer to true limits on existing hardware
 - The FFT that every OFDM modem runs uses floating point pi, every twiddle factor inherits the approximation, every butterfly compounds the error
 - Q335 eliminates that, exact integer arithmetic for the FFT, zero arithmetic error contribution to EVM
-- Show briefly — remember the Q335 pi from video 1, that's what goes into the FFT, the error drops to 10 to the negative 100
+- Show briefly,  remember the Q335 pi from video 1, that's what goes into the FFT, the error drops to 10 to the negative 100
 
-**The Q335 FFT — the patent example (3 minutes)**
+**The Q335 FFT,  the patent example (3 minutes)**
 
 - This is a concrete example of a patentable device that can only exist because of the methodology
 - Every digital signal processing system on Earth runs the FFT with floating point pi
@@ -63,7 +63,7 @@
 - One building block, made exact, applicable everywhere
 - This patent space is currently empty, no prior art for integer arithmetic FFT above 64 bits
 
-**Semiconductor physics — the chain exists (2 minutes)**
+**Semiconductor physics,  the chain exists (2 minutes)**
 
 - Silicon band gap is 1.12 electron volts
 - This number determines every transistor, every solar cell, every integrated circuit
@@ -73,7 +73,7 @@
 - But the starting point, alpha to 12 digits from the QED chain, is already in place
 - The path exists, the computation is hard, both facts stated plainly
 
-**Medicine — the longest chain (3 minutes)**
+**Medicine,  the longest chain (3 minutes)**
 
 - Drug design currently works by trial and error guided by computation
 - 10 to 15 years per approved drug, 1 to 2 billion dollars, 90 percent failure rate
@@ -90,7 +90,7 @@
 - The endpoint, predicting drug efficacy from gauge integers, is decades away
 - But every percentage point improvement in binding prediction saves billions in failed clinical trials
 
-**Climate — the most tractable applied chain (2 minutes)**
+**Climate,  the most tractable applied chain (2 minutes)**
 
 - CO2 absorption spectrum determines how much infrared the atmosphere traps
 - The spectrum comes from vibrational and rotational energy levels of the CO2 molecule
@@ -126,7 +126,7 @@
 - The walls are departmental not physical
 - The discovery is done, the universe is rational, what remains is computation
 
-**Close — in frame, talking to camera (1 minute)**
+**Close,  in frame, talking to camera (1 minute)**
 
 - Unification isn't an abstract achievement for physicists
 - It's the thing that connects the gauge group to the bandwidth of your internet connection and the price of your medication
@@ -143,4 +143,4 @@
 
 One or two terminal demonstrations: showing the Q335 FFT concept briefly and possibly running one of the existing experiments to remind viewers the system works. This video is more conceptual than the previous three so the terminal time is lighter and the talking to camera time is heavier.
 
-The arc moves from abstract to concrete to visionary. Start with the general principle, move through four specific industries with decreasing proximity to current capability, acknowledge what's computed and what isn't, close with the implication for everyone. Each industry section follows the same template: here's the current state, here's the gap, here's the chain from integers, here's what's missing. The repetition of the template is the argument — same structure every time, because it's the same principle every time.
+The arc moves from abstract to concrete to visionary. Start with the general principle, move through four specific industries with decreasing proximity to current capability, acknowledge what's computed and what isn't, close with the implication for everyone. Each industry section follows the same template: here's the current state, here's the gap, here's the chain from integers, here's what's missing. The repetition of the template is the argument,  same structure every time, because it's the same principle every time.

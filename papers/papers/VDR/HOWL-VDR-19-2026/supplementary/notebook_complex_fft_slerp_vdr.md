@@ -8,7 +8,7 @@ The current papers handle multiplication of two Q335 constants like this:
 [p₁, 2³³⁵, 0] × [p₂, 2³³⁵, 0] = [p₁·p₂, 2⁶⁷⁰, 0]
 ```
 
-Then they project back to 2³³⁵ by right-shifting 335 bits and rounding. This is the one place in all three papers where VDR voluntarily discards information. It's a concession to scalar thinking — the assumption that the result must live in the same flat frame as the inputs.
+Then they project back to 2³³⁵ by right-shifting 335 bits and rounding. This is the one place in all three papers where VDR voluntarily discards information. It's a concession to scalar thinking,  the assumption that the result must live in the same flat frame as the inputs.
 
 But VDR already has the mechanism to avoid this. The remainder slot exists precisely to carry what the denominator frame cannot absorb.
 
@@ -33,7 +33,7 @@ p₁·p₂·p₃ = q₁·2³³⁵ + s₁  (first layer)
 s₁ = ... (already a Q335-scale integer, nests as remainder)
 ```
 
-The result is a VDR tree of depth proportional to the number of multiplications, each level a Q335 object. The denominator never changes. The tree grows instead. Depth is the cost — not precision loss.
+The result is a VDR tree of depth proportional to the number of multiplications, each level a Q335 object. The denominator never changes. The tree grows instead. Depth is the cost,  not precision loss.
 
 
 ## 2. Q335 Division via Remainder Nesting
@@ -58,7 +58,7 @@ This gives [q, 1, [s, p₂, 0]]. Now rebase the whole object into the 2³³⁵ f
 [q·2³³⁵, 2³³⁵, [s, p₂, 0] lifted by 2³³⁵]
 ```
 
-The remainder [s, p₂, 0] carries the exact residual of the division. The top-level frame stays Q335. The odd denominator p₂ is confined to the remainder slot — it doesn't infect the working frame.
+The remainder [s, p₂, 0] carries the exact residual of the division. The top-level frame stays Q335. The odd denominator p₂ is confined to the remainder slot,  it doesn't infect the working frame.
 
 This is the VDR native way to handle division. The papers' AA5 compromise (project divisor to scalar, lose structure) is unnecessary when the divisor is a Q335 constant, because the structure being "lost" is just the lower-precision bits, and those are exactly what R preserves.
 
@@ -67,15 +67,15 @@ This is the VDR native way to handle division. The papers' AA5 compromise (proje
 
 Denominator growth isn't specific to Q335 or to chaos. It's the fundamental cost of exact rational arithmetic. Every multiplication of two rationals a/b × c/d produces a denominator b·d. After n multiplications starting from denominators of size D, the denominator is potentially D^(2^n) in the worst case (repeated squaring) or D^n in the chain case.
 
-The conventional response is: reduce by GCD at every step. This helps when factors cancel (and in many practical cases they do), but it cannot help when they don't — which is exactly the chaotic dynamics case where denominators grow exponentially because no cancellation occurs.
+The conventional response is: reduce by GCD at every step. This helps when factors cancel (and in many practical cases they do), but it cannot help when they don't,  which is exactly the chaotic dynamics case where denominators grow exponentially because no cancellation occurs.
 
 VDR's remainder nesting offers a different response: don't let the denominator grow. Pick a working frame D (such as 2³³⁵). Every operation that would push the result out of that frame instead deposits the overflow into R. The denominator stays fixed. The tree grows.
 
-This transforms the problem from "denominators explode" to "trees deepen." The information is the same — you cannot avoid representing the information content of the exact result. But the representation changes from a single enormous fraction to a tree of bounded-denominator nodes.
+This transforms the problem from "denominators explode" to "trees deepen." The information is the same,  you cannot avoid representing the information content of the exact result. But the representation changes from a single enormous fraction to a tree of bounded-denominator nodes.
 
-The key question is whether this tree representation enables operations that the flat fraction does not. For linear operations (addition, subtraction, scalar multiplication), the answer is yes — same-frame addition is just integer addition at the top level, with remainder combination that stays within the frame. For nonlinear operations (multiplication of two active objects, comparison), the tree must be traversed, and the cost reappears.
+The key question is whether this tree representation enables operations that the flat fraction does not. For linear operations (addition, subtraction, scalar multiplication), the answer is yes,  same-frame addition is just integer addition at the top level, with remainder combination that stays within the frame. For nonlinear operations (multiplication of two active objects, comparison), the tree must be traversed, and the cost reappears.
 
-But the cost reappears as tree depth, which can be managed — pruned, lazily evaluated, or bounded by precision policy. A 200-digit flat denominator offers no such handles.
+But the cost reappears as tree depth, which can be managed,  pruned, lazily evaluated, or bounded by precision policy. A 200-digit flat denominator offers no such handles.
 
 
 ## 4. Complex Numbers as VDR Pairs
@@ -100,7 +100,7 @@ This is not a new type. It's a convention on a pair of existing objects. The ari
 
 All of these are compositions of existing VDR operations. If A and B are Q335 objects, the products stay in the Q335 frame via remainder nesting (Section 1). If they're general VDR active objects, the active arithmetic rules from VDR-1 apply unchanged.
 
-The reason the VDR-3 papers list complex numbers as "unimplemented" and "engineering work" is exactly this: there's no mathematical obstacle, just the need to define the pair convention and implement the four operations as compositions. It doesn't block anything in principle — it blocks things in the codebase.
+The reason the VDR-3 papers list complex numbers as "unimplemented" and "engineering work" is exactly this: there's no mathematical obstacle, just the need to define the pair convention and implement the four operations as compositions. It doesn't block anything in principle,  it blocks things in the codebase.
 
 
 ## 5. Roots of Unity and the Twiddle Factor Table
@@ -123,7 +123,7 @@ cos(2πk/N) = Σ (-1)^n (2πk/N)^(2n) / (2n)!
 
 Each partial sum is a rational number (since 2πk/N is represented as a Q335 value, and the series coefficients are rational). At depth d, you have an exact rational approximation. Project to Q335 and you have a twiddle factor pair (cos component, sin component) as two Q335 integers.
 
-For a length-N DFT, you need N/2 distinct twiddle factors (by symmetry). Each is a pair of Q335 integers. Total storage: N integers of ~102 digits each. For N = 1024, that's about 105K digits — trivial.
+For a length-N DFT, you need N/2 distinct twiddle factors (by symmetry). Each is a pair of Q335 integers. Total storage: N integers of ~102 digits each. For N = 1024, that's about 105K digits,  trivial.
 
 The twiddle table is computed once. After that, the entire FFT is integer arithmetic in the Q335 frame.
 
@@ -149,9 +149,9 @@ Four Q335 integer multiplications, each producing a ~204-digit product, integer-
 
 Per butterfly: 4 multiplications + 4 additions/subtractions on each of real and imaginary parts. All integer operations. All in the Q335 frame. Remainders nest at each multiplication, adding one tree level per butterfly stage.
 
-An N-point FFT has log₂(N) stages, each with N/2 butterflies. For N = 1024: 10 stages × 512 butterflies = 5120 butterflies. Each butterfly's multiplications add at most one remainder level. After 10 stages, the deepest remainder tree is 10 levels — each node a Q335 integer. The top-level denominator is still 2³³⁵.
+An N-point FFT has log₂(N) stages, each with N/2 butterflies. For N = 1024: 10 stages × 512 butterflies = 5120 butterflies. Each butterfly's multiplications add at most one remainder level. After 10 stages, the deepest remainder tree is 10 levels,  each node a Q335 integer. The top-level denominator is still 2³³⁵.
 
-If you only need the top-level precision (100 digits), you can prune the tree at any point. If you need full exactness, the tree is there. This is the precision knob that float FFT lacks — float FFT silently accumulates rounding at every butterfly, with no mechanism to recover what was lost.
+If you only need the top-level precision (100 digits), you can prune the tree at any point. If you need full exactness, the tree is there. This is the precision knob that float FFT lacks,  float FFT silently accumulates rounding at every butterfly, with no mechanism to recover what was lost.
 
 
 ## 7. Slerp via Functional Remainders
@@ -164,7 +164,7 @@ slerp(q₀, q₁, t) = sin((1-t)θ)/sin(θ) · q₀ + sin(tθ)/sin(θ) · q₁
 
 where θ = arccos(q₀ · q₁).
 
-A quaternion is four real components — four VDR objects. The dot product q₀ · q₁ is a sum of four VDR multiplications: a single VDR value.
+A quaternion is four real components,  four VDR objects. The dot product q₀ · q₁ is a sum of four VDR multiplications: a single VDR value.
 
 arccos is computed as a functional remainder. The Taylor series for arccos(x) around x = 0 has rational coefficients (involving central binomial coefficients divided by powers of 4). At depth d, you get an exact rational. For arccos near 1 (small angles), use the identity arccos(x) = 2·arcsin(√((1-x)/2)) and the arcsin series instead, which converges faster there.
 
@@ -172,7 +172,7 @@ sin of a rational argument: Taylor series, rational coefficients, exact rational
 
 The division sin(tθ)/sin(θ) is a ratio of two functional remainders evaluated at the same depth. At any given depth, both are exact rationals, so the division is exact rational division.
 
-The entire slerp, at any evaluation depth, is four rational linear combinations of the input quaternion components. The trig functions never leave the VDR framework — they exist as functional remainders that produce exact rationals on demand.
+The entire slerp, at any evaluation depth, is four rational linear combinations of the input quaternion components. The trig functions never leave the VDR framework,  they exist as functional remainders that produce exact rationals on demand.
 
 For an LLM system using rotary position embeddings (RoPE), slerp between position encodings is this same structure. The rotation angles are rational multiples of a base frequency, the sines and cosines are Q335 projections or functional remainders, and the interpolation parameter t is rational. The entire rotation stays in integer arithmetic.
 
@@ -183,15 +183,15 @@ VDR's remainder slot is structurally a modular residue system. When you compute 
 
 This connects to several things simultaneously:
 
-**Modular arithmetic proper.** GF(p) operations in coding theory (VDR-3, Gym 18) are already remainder operations. Hamming codes, CRT, RSA — all operate on integer residues mod some modulus. VDR performs these natively because its core operations are integer operations. The Q335 frame with remainder nesting is a weighted positional system in base 2³³⁵, where each "digit" is a Q335 integer and the "position" is the remainder depth.
+**Modular arithmetic proper.** GF(p) operations in coding theory (VDR-3, Gym 18) are already remainder operations. Hamming codes, CRT, RSA,  all operate on integer residues mod some modulus. VDR performs these natively because its core operations are integer operations. The Q335 frame with remainder nesting is a weighted positional system in base 2³³⁵, where each "digit" is a Q335 integer and the "position" is the remainder depth.
 
-**Continued fractions.** A continued fraction [a₀; a₁, a₂, ...] is a nested quotient-remainder structure: x = a₀ + 1/(a₁ + 1/(a₂ + ...)). This is a VDR tree where each level performs a division and nests the residual. The VDR-2 gym on continued fractions (Gym 03) already demonstrated exact roundtrip conversion. The connection isn't metaphorical — CF representation is a specific case of VDR remainder nesting where each denominator frame is determined by the CF coefficient.
+**Continued fractions.** A continued fraction [a₀; a₁, a₂, ...] is a nested quotient-remainder structure: x = a₀ + 1/(a₁ + 1/(a₂ + ...)). This is a VDR tree where each level performs a division and nests the residual. The VDR-2 gym on continued fractions (Gym 03) already demonstrated exact roundtrip conversion. The connection isn't metaphorical,  CF representation is a specific case of VDR remainder nesting where each denominator frame is determined by the CF coefficient.
 
-**Chinese Remainder Theorem.** CRT reconstructs a value from its residues mod coprime moduli. A VDR object with composite remainder children at different denominators is carrying the same information — the value decomposed across multiple denominator frames. Normalization rule N6 (same-denominator child merge) is the analogue of combining residues within a single modulus. The pairwise-distinct-denominator axiom A13 is the structural reflection of CRT's coprimality requirement.
+**Chinese Remainder Theorem.** CRT reconstructs a value from its residues mod coprime moduli. A VDR object with composite remainder children at different denominators is carrying the same information,  the value decomposed across multiple denominator frames. Normalization rule N6 (same-denominator child merge) is the analogue of combining residues within a single modulus. The pairwise-distinct-denominator axiom A13 is the structural reflection of CRT's coprimality requirement.
 
-**Residue number systems.** In hardware, residue number systems represent integers as tuples of residues mod chosen moduli, enabling parallel addition and multiplication. VDR's composite remainder with multiple children at different denominators is the exact same idea lifted to rational arithmetic — each child carries the value's projection onto a different denominator frame, and same-D children merge.
+**Residue number systems.** In hardware, residue number systems represent integers as tuples of residues mod chosen moduli, enabling parallel addition and multiplication. VDR's composite remainder with multiple children at different denominators is the exact same idea lifted to rational arithmetic,  each child carries the value's projection onto a different denominator frame, and same-D children merge.
 
-The pattern is: modular arithmetic, continued fractions, CRT, RNS, and VDR remainder nesting are all manifestations of the same structural principle — decompose a value into what a given frame absorbs and what it doesn't, then recurse on the residual. VDR's contribution is making this recursive and carrying it as a first-class part of the value, rather than discarding it (float) or requiring reconstruction (CRT/RNS).
+The pattern is: modular arithmetic, continued fractions, CRT, RNS, and VDR remainder nesting are all manifestations of the same structural principle,  decompose a value into what a given frame absorbs and what it doesn't, then recurse on the residual. VDR's contribution is making this recursive and carrying it as a first-class part of the value, rather than discarding it (float) or requiring reconstruction (CRT/RNS).
 
 
 ## 9. Putting It Together: What This Solves
@@ -204,9 +204,9 @@ Of the four open problems:
 
 **Max-flow BFS.** A bug fix. Not discussed here.
 
-**Denominator growth.** This is the one this notebook directly addresses. The Q335 remainder nesting pattern — keep the working frame fixed, nest overflow into R — transforms denominator explosion into tree deepening. For the chaotic dynamics case (logistic map, denominator growing as 2^n digits), each step adds one remainder level instead of doubling the denominator size. The information content is the same, but the structure is manageable: prunable, lazily evaluable, and bounded by precision policy.
+**Denominator growth.** This is the one this notebook directly addresses. The Q335 remainder nesting pattern,  keep the working frame fixed, nest overflow into R,  transforms denominator explosion into tree deepening. For the chaotic dynamics case (logistic map, denominator growing as 2^n digits), each step adds one remainder level instead of doubling the denominator size. The information content is the same, but the structure is manageable: prunable, lazily evaluable, and bounded by precision policy.
 
-The untested question from VDR-2 FW2 — "functional remainder representing n logistic steps without materializing intermediate fractions" — becomes concrete in this framework. A functional remainder f(depth) could compute the nth iterate of the logistic map at a given precision depth, producing a Q335 object at each depth without building the full remainder tree. The tree exists implicitly in the function. Each call returns an exact rational. The denominator never grows beyond 2³³⁵.
+The untested question from VDR-2 FW2,  "functional remainder representing n logistic steps without materializing intermediate fractions",  becomes concrete in this framework. A functional remainder f(depth) could compute the nth iterate of the logistic map at a given precision depth, producing a Q335 object at each depth without building the full remainder tree. The tree exists implicitly in the function. Each call returns an exact rational. The denominator never grows beyond 2³³⁵.
 
 This doesn't make chaos cheap. The information-theoretic cost is real. But it makes chaos *representable* within the VDR framework without abandoning the fixed-frame discipline, and it gives the precision knob that lets you choose how much of that cost to pay.
 
@@ -216,7 +216,7 @@ This doesn't make chaos cheap. The information-theoretic cost is real. But it ma
 
 ## Conventions
 
-D = 2³³⁵ throughout. All values are `[p, D, 0]` or `[q, D, [s, D, 0]]` with possible deeper nesting. `p(x)` means the Q335 numerator for constant x. Remainder is never residual — it is first-class structure.
+D = 2³³⁵ throughout. All values are `[p, D, 0]` or `[q, D, [s, D, 0]]` with possible deeper nesting. `p(x)` means the Q335 numerator for constant x. Remainder is never residual,  it is first-class structure.
 
 
 ## G01: Multiplication Preserving Frame
@@ -233,13 +233,13 @@ Verify: Π = (q + s/D) / D = (qD + s) / D² = P / D² = p(π)·p(e) / D². Exact
 
 **Problem:** Compute π²·ln(2).
 
-Option A — use precomputed p(π²):
+Option A,  use precomputed p(π²):
 ```
 p(π²)·p(ln2) = P₁ = q₁·D + s₁
 Result: [q₁, D, [s₁, D, 0]]
 ```
 
-Option B — compute from p(π):
+Option B,  compute from p(π):
 ```
 p(π)² = P₀ = q₀·D + s₀        → π² as [q₀, D, [s₀, D, 0]]
 ```
@@ -321,7 +321,7 @@ Term 2: p(π²) / 12 → integer division: p(π²) = q·12 + s → [q, D, [s, 12
          Result: [q'', D/4, [s'', 3, [s', D, 0]]]
 ```
 
-Simpler approach — keep everything over D and handle the rational coefficient:
+Simpler approach,  keep everything over D and handle the rational coefficient:
 
 ```
 π²/12: the value is p(π²)/(12·D). Multiply numerator and denominator:
@@ -416,7 +416,7 @@ After log₂(N) = 10 stages for N = 1024: remainder depth ≤ 10. Each node is a
 x = ([1,D,0], [2,D,0], [3,D,0], [4,D,0])   (real signal, Q335 frame)
 ```
 
-4-point DFT twiddle factors: ω₄⁰ = 1, ω₄¹ = -i, ω₄² = -1, ω₄³ = i. All components in {-1, 0, 1}. No Q335 projection needed — exact closed VDR.
+4-point DFT twiddle factors: ω₄⁰ = 1, ω₄¹ = -i, ω₄² = -1, ω₄³ = i. All components in {-1, 0, 1}. No Q335 projection needed,  exact closed VDR.
 
 ```
 X[0] = 1 + 2 + 3 + 4 = 10
@@ -425,7 +425,7 @@ X[2] = 1 + 2·(-1) + 3·(1) + 4·(-1) = -2
 X[3] = 1 + 2·(i) + 3·(-1) + 4·(-i) = -2 - 2i
 ```
 
-All integer. IFFT divides by N = 4 and conjugates twiddles. Every intermediate value is exact. Roundtrip is exact by construction — no float butterfly error to accumulate.
+All integer. IFFT divides by N = 4 and conjugates twiddles. Every intermediate value is exact. Roundtrip is exact by construction,  no float butterfly error to accumulate.
 
 **Parseval:** |X[0]|² + |X[1]|² + |X[2]|² + |X[3]|² = 100 + 8 + 4 + 8 = 120 = 4·(1 + 4 + 9 + 16) = 4·30. Exact.
 
@@ -466,12 +466,12 @@ q = (p(1/√2)/D, 0, 0, p(1/√2)/D)   as (w, x, y, z) components over D
 Quaternion rotation: v' = q·v·q⁻¹. For unit quaternion, q⁻¹ = q*.
 
 ```
-v as quaternion: (0, 1, 0, 0) — exact integer, closed
+v as quaternion: (0, 1, 0, 0),  exact integer, closed
 
 q·v: quaternion multiplication, 16 component multiplies, all integer
 (q·v)·q*: another 16 component multiplies
 
-Result should be (0, 0, 1, 0) — rotated to y-axis
+Result should be (0, 0, 1, 0),  rotated to y-axis
 ```
 
 Each component multiply involving p(1/√2) uses G01: product mod D goes to V, remainder nests. After two quaternion multiplications, remainder depth ≤ 2. The result's real-part (w) and the components should collapse: top-level integers giving 0, 0, 1, 0 plus a remainder tree. If the remainder tree sums to zero (it should, since the exact answer is integer), normalization collapses it to closed form.
@@ -504,7 +504,7 @@ sin((2/3)·π/3) / sin(π/3)  and  sin((1/3)·π/3) / sin(π/3)
 = sin(2π/9) / sin(π/3)     and  sin(π/9) / sin(π/3)
 ```
 
-sin(π/3) = √3/2 — Q335 as p(√3)/2. sin(π/9) and sin(2π/9) — no closed forms. These are functional remainders: Taylor series of sin at rational multiples of π, each depth giving an exact rational. The division by sin(π/3) is G02-style division. At any evaluation depth, the slerp coefficients are exact rationals. The quaternion result is four exact rational components.
+sin(π/3) = √3/2,  Q335 as p(√3)/2. sin(π/9) and sin(2π/9),  no closed forms. These are functional remainders: Taylor series of sin at rational multiples of π, each depth giving an exact rational. The division by sin(π/3) is G02-style division. At any evaluation depth, the slerp coefficients are exact rationals. The quaternion result is four exact rational components.
 
 
 ## G11: RoPE (Rotary Position Embedding)
@@ -532,7 +532,7 @@ cos(7/100) and sin(7/100): Taylor series converges fast (small argument). At 20 
 
 Each is a 2D rotation = complex multiplication. If x₀, x₁ are Q335 integers and cos(7), sin(7) are Q335 projections, each product is G01, each rotation is G05. Two complex multiplications for the full RoPE application.
 
-The point: every position embedding in an integer-based LLM is exact. No drift across sequence positions. Position 1 and position 100000 have the same arithmetic precision. Float-based RoPE accumulates error at large positions — VDR does not.
+The point: every position embedding in an integer-based LLM is exact. No drift across sequence positions. Position 1 and position 100000 have the same arithmetic precision. Float-based RoPE accumulates error at large positions,  VDR does not.
 
 
 ## G12: Modular Reduction as Remainder Nesting
@@ -549,7 +549,7 @@ By Fermat's little theorem: 7¹² ≡ 1 (mod 13). So 7¹⁰⁰ = 7^(12·8 + 4) =
 
 7⁴ = 2401 = 184·13 + 9. So 7¹⁰⁰ mod 13 = 9.
 
-VDR representation: [184, 1, [9, 13, 0]]. The remainder [9, 13, 0] is the modular residue. It's not something left over — it's the answer.
+VDR representation: [184, 1, [9, 13, 0]]. The remainder [9, 13, 0] is the modular residue. It's not something left over,  it's the answer.
 
 The VDR object [184, 1, [9, 13, 0]] carries both the quotient (184 = 2401/13 floored) and the modular residue (9) as first-class structure. Discarding V and keeping R gives modular arithmetic. Keeping both gives exact division.
 
@@ -612,9 +612,9 @@ x₂ = 4/7     > 1/2 → x₃ = 2(1-4/7) = 6/7
 x₃ = 6/7     > 1/2 → x₄ = 2(1-6/7) = 2/7 = x₁
 ```
 
-Period 3 (cycle: 2/7 → 4/7 → 6/7 → 2/7). Denominator stays 7 forever. In Q335 frame: p(1/7) = round(D/7), and the orbit visits p(2/7), p(4/7), p(6/7) cyclically. All Q335 integers. No remainder nesting needed — the map is piecewise linear with rational coefficients, and 1/7 generates a finite orbit.
+Period 3 (cycle: 2/7 → 4/7 → 6/7 → 2/7). Denominator stays 7 forever. In Q335 frame: p(1/7) = round(D/7), and the orbit visits p(2/7), p(4/7), p(6/7) cyclically. All Q335 integers. No remainder nesting needed,  the map is piecewise linear with rational coefficients, and 1/7 generates a finite orbit.
 
-This confirms VDR-2's finding (CH6): periodic rational orbits under chaotic maps are free. The denominator doesn't grow because the orbit is finite. VDR detects periodicity by exact equality comparison — something float cannot do because it drifts off the cycle.
+This confirms VDR-2's finding (CH6): periodic rational orbits under chaotic maps are free. The denominator doesn't grow because the orbit is finite. VDR detects periodicity by exact equality comparison,  something float cannot do because it drifts off the cycle.
 
 
 ## G16: Gram-Schmidt with Complex Vectors
@@ -668,7 +668,7 @@ X[2] = 1/3 - 1/7 + 1/11 - 1/13
 X[3] = conjugate of X[1] (real input) = 8/33 - 6/91·i
 ```
 
-Every DFT coefficient is an exact rational (real and imaginary parts). The twiddle factors at N = 4 are in {1, -1, i, -i}, so no Q335 projection needed. For N = 8 you'd need 1/√2 (Q335). For general N, the twiddle table is precomputed Q335 pairs. The DFT of any rational signal over any N is exact VDR arithmetic — complex pairs with Q335 remainder nesting at each butterfly.
+Every DFT coefficient is an exact rational (real and imaginary parts). The twiddle factors at N = 4 are in {1, -1, i, -i}, so no Q335 projection needed. For N = 8 you'd need 1/√2 (Q335). For general N, the twiddle table is precomputed Q335 pairs. The DFT of any rational signal over any N is exact VDR arithmetic,  complex pairs with Q335 remainder nesting at each butterfly.
 
 **Parseval check:** Σ|x[n]|² = 1/9 + 1/49 + 1/121 + 1/169. Σ|X[k]|²/N should equal the same. Both sides exact rationals, verifiable by VDR closed arithmetic.
 
@@ -716,7 +716,7 @@ s = iπ/4 → s² = -π²/16
 H(iπ/4) = 1/(-π²/16 + 3iπ/4 + 2) = 1/((2 - π²/16) + 3πi/4)
 ```
 
-Denominator is complex with Q335 components. Rationalize by conjugate multiplication — all G05-style complex arithmetic. Result is a VDR complex pair with Q335 components and remainder nesting from the multiplications.
+Denominator is complex with Q335 components. Rationalize by conjugate multiplication,  all G05-style complex arithmetic. Result is a VDR complex pair with Q335 components and remainder nesting from the multiplications.
 
 
 ## G20: Residue Number System Correspondence
@@ -743,7 +743,7 @@ Axiom A13 holds: denominators 7, 11, 13 are pairwise distinct (and coprime). The
 500 mod 7 = 3, mod 11 = 5, mod 13 = 6
 Sum: (6+3 mod 7, 10+5 mod 11, 12+6 mod 13) = (2, 4, 5)
 ```
-Each channel adds independently — parallel. VDR: same-D children merge (N6), and modular reduction within each denominator frame. The structural parallel is exact.
+Each channel adds independently,  parallel. VDR: same-D children merge (N6), and modular reduction within each denominator frame. The structural parallel is exact.
 
 
 ---
@@ -764,7 +764,7 @@ Each channel adds independently — parallel. VDR: same-D children merge (N6), a
 
 ---
 
-# VDR Q335 Remainder Nesting Gym — Part 2: Functional Remainder Compositions
+# VDR Q335 Remainder Nesting Gym,  Part 2: Functional Remainder Compositions
 
 ## Conventions (continued)
 
@@ -906,7 +906,7 @@ def composed_rotation(depth):
 result = VDR(0, 1, FnRemainder(composed_rotation, "R3·R2·R1·(1,0)"))
 ```
 
-At any depth, resolving gives the exact rational vector. No drift between the three multiplications — each is exact rational matrix-vector multiply. The functional remainder defers the computation until precision is needed. The total rotation angle √2 + π/7 + ln(3) is itself representable as a functional remainder sum.
+At any depth, resolving gives the exact rational vector. No drift between the three multiplications,  each is exact rational matrix-vector multiply. The functional remainder defers the computation until precision is needed. The total rotation angle √2 + π/7 + ln(3) is itself representable as a functional remainder sum.
 
 
 ## G24: IIR Filter with Irrational Coefficients
@@ -930,7 +930,7 @@ def iir_response(N):
 
 y[0] = 1. y[1] = 1/√2. y[2] = 1/2. y[3] = 1/(2√2). y[n] = (1/√2)^n.
 
-Each step multiplies by Q335 1/√2 — one G01 operation, one remainder level. After 20 steps: remainder depth 20, denominator still D. The output y[20] = (1/√2)^20 = 1/1024 = exact closed rational. The remainder tree should collapse (normalization rule N7) because the exact answer is rational.
+Each step multiplies by Q335 1/√2,  one G01 operation, one remainder level. After 20 steps: remainder depth 20, denominator still D. The output y[20] = (1/√2)^20 = 1/1024 = exact closed rational. The remainder tree should collapse (normalization rule N7) because the exact answer is rational.
 
 This is a test of the system's ability to detect when an irrational coefficient raised to an integer power produces a rational result. (1/√2)^20 = 2^(-10) = 1/1024. If the remainder nesting collapses to closed form, the system has effectively discovered this algebraic identity through computation.
 
@@ -969,7 +969,7 @@ denominator = numerator + alt_term     # addition in D-frame
 posterior = numerator / denominator    # G02: division, remainder nests
 ```
 
-The posterior P(H|D) is an exact VDR object with Q335 frame and remainder nesting. It is not an approximation of Bayes' theorem — it is Bayes' theorem computed in integer arithmetic with the irrational prior and likelihood captured as Q335 integers. The remainder carries the exact sub-100-digit structure.
+The posterior P(H|D) is an exact VDR object with Q335 frame and remainder nesting. It is not an approximation of Bayes' theorem,  it is Bayes' theorem computed in integer arithmetic with the irrational prior and likelihood captured as Q335 integers. The remainder carries the exact sub-100-digit structure.
 
 Verify: posterior must be in (0, 1). The top-level V/D ratio gives 100-digit confidence. The remainder refines.
 
@@ -998,7 +998,7 @@ def horner_eval(depth):
 p_at_1_7 = VDR(0, 1, FnRemainder(horner_eval, "p(1/7)"))
 ```
 
-At each depth, all four coefficients are exact rationals, x = 1/7 is exact closed, and Horner's method performs 3 multiplications and 3 additions — all exact rational. The result at any depth is exact. The functional remainder wraps the whole evaluation, deferring coefficient precision until needed.
+At each depth, all four coefficients are exact rationals, x = 1/7 is exact closed, and Horner's method performs 3 multiplications and 3 additions,  all exact rational. The result at any depth is exact. The functional remainder wraps the whole evaluation, deferring coefficient precision until needed.
 
 **Freeze to Q335:**
 ```python
@@ -1020,7 +1020,7 @@ def lazy_det(matrix_fn):
     def det_fn(depth):
         # Resolve each matrix entry at this depth
         M = resolve_matrix(matrix_fn, depth)
-        # Cofactor expansion — all exact rational at this depth
+        # Cofactor expansion,  all exact rational at this depth
         return M.det()
     return FnRemainder(det_fn, f"det(M)")
 
@@ -1032,7 +1032,7 @@ M_fn = lambda depth: Mat([
 det_M = VDR(0, 1, lazy_det(M_fn))
 ```
 
-At depth 7: √2 and π are rationals with ~128 correct digits. det = √2·π - 3. Exact rational at every depth. The determinant is lazy — not computed until resolved. For a 10×10 matrix with transcendental entries, this defers the O(n!) cofactor cost until you actually need the value, and then computes it at exactly the precision you request.
+At depth 7: √2 and π are rationals with ~128 correct digits. det = √2·π - 3. Exact rational at every depth. The determinant is lazy,  not computed until resolved. For a 10×10 matrix with transcendental entries, this defers the O(n!) cofactor cost until you actually need the value, and then computes it at exactly the precision you request.
 
 **Compose:** Use det_M in Cramer's rule to solve a linear system.
 
@@ -1046,7 +1046,7 @@ def cramers_x1(depth):
 x1 = VDR(0, 1, FnRemainder(cramers_x1, "x₁ via Cramer"))
 ```
 
-The entire linear solve is a functional remainder. No precision is committed until resolution. The depth parameter flows through the determinant computations, the matrix entry resolutions, and the final division — all at the same depth, all exact rational.
+The entire linear solve is a functional remainder. No precision is committed until resolution. The depth parameter flows through the determinant computations, the matrix entry resolutions, and the final division,  all at the same depth, all exact rational.
 
 
 ## G28: Power Series Composition
@@ -1067,7 +1067,7 @@ def sin_series(x):
 
 def exp_series(x_fn):
     def fn(depth):
-        x = resolve(x_fn, depth)  # sin(1/5) at this depth — exact rational
+        x = resolve(x_fn, depth)  # sin(1/5) at this depth,  exact rational
         result = VDR(1, 1, 0)
         term = VDR(1, 1, 0)
         for n in range(1, depth + 1):
@@ -1108,7 +1108,7 @@ for k in range(3):
 
 Each `x[k] * h[j]` is a Q335 × Q335 multiplication (G01), producing depth 1. The accumulated sums stay at depth 1 (addition doesn't deepen). Output: 4 Q335 values at depth 1.
 
-**Now do it via DFT:** zero-pad both to length 4, DFT each (G17 style), pointwise complex multiply (G05), IDFT. Same result, more butterflies, same depth bound. The DFT path demonstrates that VDR convolution via FFT gives the same exact result as direct convolution — something float FFT convolution does not guarantee due to butterfly rounding.
+**Now do it via DFT:** zero-pad both to length 4, DFT each (G17 style), pointwise complex multiply (G05), IDFT. Same result, more butterflies, same depth bound. The DFT path demonstrates that VDR convolution via FFT gives the same exact result as direct convolution,  something float FFT convolution does not guarantee due to butterfly rounding.
 
 
 ## G30: Functional Remainder Wrapping Matrix Exponential
@@ -1137,9 +1137,9 @@ def mat_exp_diag(A_diag, t):
 eAt = mat_exp_diag([VDR(-1,1,0), VDR(-2,1,0)], VDR(1,3,0))
 ```
 
-At depth 15: e^(-1/3) and e^(-2/3) each computed to 15 Taylor terms. Each term involves (−1/3)^n / n! — exact rational with denominator 3^n · n!. The matrix exponential is a 2×2 diagonal of exact rationals.
+At depth 15: e^(-1/3) and e^(-2/3) each computed to 15 Taylor terms. Each term involves (−1/3)^n / n!,  exact rational with denominator 3^n · n!. The matrix exponential is a 2×2 diagonal of exact rationals.
 
-**Non-diagonal case:** A = [[0, 1],[-1, 0]] (rotation). e^(At) = [[cos(t), sin(t)],[-sin(t), cos(t)]]. Each entry is a trig functional remainder (G22 style). At t = 1/3, cos(1/3) and sin(1/3) are Taylor series with rational coefficients — exact rational at every depth.
+**Non-diagonal case:** A = [[0, 1],[-1, 0]] (rotation). e^(At) = [[cos(t), sin(t)],[-sin(t), cos(t)]]. Each entry is a trig functional remainder (G22 style). At t = 1/3, cos(1/3) and sin(1/3) are Taylor series with rational coefficients,  exact rational at every depth.
 
 ```python
 def mat_exp_rotation(t):
@@ -1150,7 +1150,7 @@ def mat_exp_rotation(t):
     return FnRemainder(fn, f"exp(rot·{t})")
 ```
 
-The functional remainder wraps the matrix. Resolve at any depth to get the exact rational rotation matrix. Multiply matrices at the same depth — exact. Chain 100 rotations — still exact at each depth.
+The functional remainder wraps the matrix. Resolve at any depth to get the exact rational rotation matrix. Multiply matrices at the same depth,  exact. Chain 100 rotations,  still exact at each depth.
 
 
 ## G31: Fixed-Frame Logistic Map via Functional Remainder
@@ -1174,7 +1174,7 @@ def logistic_fn(x0, r, n_steps):
 x5 = VDR(0, 1, logistic_fn(VDR(1,3,0), 4, 5))
 ```
 
-Wait — this still materializes the intermediate fractions inside the functional remainder. The denominators still grow as 3^(2^5) = 3^32 inside `fn`. The functional remainder wraps it but doesn't compress it.
+Wait,  this still materializes the intermediate fractions inside the functional remainder. The denominators still grow as 3^(2^5) = 3^32 inside `fn`. The functional remainder wraps it but doesn't compress it.
 
 **Actual compression requires a different approach:**
 
@@ -1201,7 +1201,7 @@ The compression comes from the frame discipline: instead of letting the denomina
 
 **But is the tree value actually equal to the flat Fraction value?**
 
-Yes. Each nesting step is exact: qD + s = p₁p₂ exactly. The scalar projection Π of the depth-10 tree equals p₁p₂/D² at each multiplication, which equals the exact flat Fraction. The tree is a different representation of the same exact value. No information is lost — it's rearranged.
+Yes. Each nesting step is exact: qD + s = p₁p₂ exactly. The scalar projection Π of the depth-10 tree equals p₁p₂/D² at each multiplication, which equals the exact flat Fraction. The tree is a different representation of the same exact value. No information is lost,  it's rearranged.
 
 **Precision policy:** If you only need 100 digits, read the top level. If you need 200 digits, read two levels. Each level gives ~100 additional digits (since each Q335 integer is ~102 digits). Precision is proportional to tree depth read, not tree depth stored.
 
@@ -1226,7 +1226,7 @@ assert energy_time == energy_freq  # exact equality, not ≈
 Now filter with h = [p(π/4)/D, p(1/√2)/D] (Q335 coefficients):
 
 ```python
-y = convolve(x, h)  # G29 — Q335 × rational at each step
+y = convolve(x, h)  # G29,  Q335 × rational at each step
 # Each y[n] has Q335 frame with depth-1 remainder from the multiplications
 # Energy of y in time domain: sum of y[n]², each y[n] active
 energy_y_time = sum(yi * yi for yi in y)  # active × active, depth grows
@@ -1237,11 +1237,11 @@ Y = [complex_mul(Xk, Hk) for Xk, Hk in zip(X_padded, H)]
 energy_y_freq = sum(abs2(Yk) for Yk in Y) / VDR(len(y), 1, 0)
 
 # Parseval: these must be equal
-# Both are VDR active objects — equality checked after normalization
+# Both are VDR active objects,  equality checked after normalization
 assert normalize(energy_y_time) == normalize(energy_y_freq)
 ```
 
-The test verifies that Parseval's identity holds exactly through the entire pipeline: rational signal → Q335 filter → convolution → DFT → energy comparison. Float would give agreement to ~15 digits. VDR gives structural equality after normalization — the remainder trees are identical.
+The test verifies that Parseval's identity holds exactly through the entire pipeline: rational signal → Q335 filter → convolution → DFT → energy comparison. Float would give agreement to ~15 digits. VDR gives structural equality after normalization,  the remainder trees are identical.
 
 
 ## G33: Functional Remainder as Lazy Inverse
@@ -1282,12 +1282,12 @@ def lazy_solve(mat_fn, b_fn, name):
     return FnRemainder(fn, f"solve({name})")
 ```
 
-The entire solve chain — matrix entry resolution, determinant, adjugate, inversion, matrix-vector product — is deferred until `resolve(fn, depth)` is called. The depth parameter propagates through every sub-computation. One depth value controls precision everywhere.
+The entire solve chain,  matrix entry resolution, determinant, adjugate, inversion, matrix-vector product,  is deferred until `resolve(fn, depth)` is called. The depth parameter propagates through every sub-computation. One depth value controls precision everywhere.
 
 
 ## G34: Wavelet Transform with Q335 Coefficients
 
-**Problem:** Haar wavelet on signal [π, e, √2, ln(3)] — all Q335 values.
+**Problem:** Haar wavelet on signal [π, e, √2, ln(3)],  all Q335 values.
 
 ```python
 x = [VDR(p_pi, D, 0), VDR(p_e, D, 0), VDR(p_sqrt2, D, 0), VDR(p_ln3, D, 0)]
@@ -1301,9 +1301,9 @@ avg2 = [(avg[0]+avg[1]) * VDR(D,2*D,0)]
 det2 = [(avg[0]-avg[1]) * VDR(D,2*D,0)]
 ```
 
-Division by 2 is a right-shift in the Q335 frame: if p is even, p/2 is exact with no remainder. If p is odd, [p>>1, D, [1, 2*D, 0]] — one bit of remainder. Haar wavelet on Q335 values produces Q335 values with at most 1-bit remainder at each level.
+Division by 2 is a right-shift in the Q335 frame: if p is even, p/2 is exact with no remainder. If p is odd, [p>>1, D, [1, 2*D, 0]],  one bit of remainder. Haar wavelet on Q335 values produces Q335 values with at most 1-bit remainder at each level.
 
-**Inverse:** reconstruct from coefficients. avg[0] = avg2[0] + det2[0], avg[1] = avg2[0] - det2[0], etc. Integer addition/subtraction. Perfect reconstruction if the forward/inverse paths use the same bit-level rounding — which they do, because VDR carries the remainder explicitly.
+**Inverse:** reconstruct from coefficients. avg[0] = avg2[0] + det2[0], avg[1] = avg2[0] - det2[0], etc. Integer addition/subtraction. Perfect reconstruction if the forward/inverse paths use the same bit-level rounding,  which they do, because VDR carries the remainder explicitly.
 
 VDR-3 Gym 22 demonstrated this for integer signals. This extends to Q335 signals with the same perfect reconstruction guarantee, because the remainder nesting captures the half-bit lost in each /2 operation.
 
@@ -1320,7 +1320,7 @@ def compose(outer_fn, inner_fn, name):
         return resolve_with_input(outer_fn, inner_val, depth)
     return FnRemainder(fn, name)
 
-sin_1_4 = sin_series_fn(VDR(1, 4, 0))           # sin(1/4) — fn remainder
+sin_1_4 = sin_series_fn(VDR(1, 4, 0))           # sin(1/4),  fn remainder
 plus_one = lambda_fn(sin_1_4, lambda v: v + VDR(1,1,0))  # sin(1/4) + 1
 sqrt_val = newton_sqrt_fn(plus_one)               # √(sin(1/4) + 1)
 result = exp_series_fn(sqrt_val)                   # exp(√(sin(1/4) + 1))
@@ -1361,7 +1361,7 @@ p_result = round(val.to_fraction() * D)
 | G34 | Haar wavelet | Q335 signal | shift + remainder | Q335 depth-1 |
 | G35 | 4-level compose | sin→+1→√→exp | chained fn remainders | fn remainder → Q335 |
 
-The pattern across all compositions: functional remainders defer computation, Q335 captures results as integers, remainder nesting preserves exactness within a fixed frame, and depth is the universal cost currency. Every operation composes with every other because they all speak the same language — exact rationals at a requested depth, projected into a shared integer frame when needed for arithmetic.
+The pattern across all compositions: functional remainders defer computation, Q335 captures results as integers, remainder nesting preserves exactness within a fixed frame, and depth is the universal cost currency. Every operation composes with every other because they all speak the same language,  exact rationals at a requested depth, projected into a shared integer frame when needed for arithmetic.
 
 ---
 
@@ -1481,13 +1481,13 @@ Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments a
 
 **B19: compose(f, g)**
 - I: two FnRemainder builtins f, g
-- O: f(g(x)) — resolves g at depth, passes result to f at same depth
+- O: f(g(x)),  resolves g at depth, passes result to f at same depth
 - S: Pure iff both f and g are pure
 - E: Type mismatch if g output is outside f input domain.
 
 **B20: freeze(fn, depth)**
 - I: FnRemainder fn, integer depth
-- O: Q335 closed object — resolves fn at depth, projects to [round(val·D), D, 0]
+- O: Q335 closed object,  resolves fn at depth, projects to [round(val·D), D, 0]
 - S: Pure. Lossy below 100-digit floor by design. One-way: Q335 → FnRemainder not recoverable.
 - E: Insufficient depth for desired precision returns valid but less precise Q335 integer.
 
@@ -1559,7 +1559,7 @@ Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments a
 
 **B32: detect_period(step_fn, x0, max_steps)**
 - I: callable step_fn, VDR initial x0, integer max_steps
-- O: VDR integer period length, or closed [0,1,0] if no period found within max_steps. Uses exact equality (normalized) at each step — no epsilon.
+- O: VDR integer period length, or closed [0,1,0] if no period found within max_steps. Uses exact equality (normalized) at each step,  no epsilon.
 - S: Pure
 - E: Aperiodic orbit within max_steps → returns 0. Floyd or Brent cycle detection on exact VDR equality.
 
@@ -1571,7 +1571,7 @@ Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments a
 
 **B34: haar_forward(signal)**
 - I: list of VDR objects, length power of 2
-- O: list of VDR objects — Haar wavelet coefficients. Averages via integer add + right-shift, differences via integer sub + right-shift, remainder nesting for odd numerators.
+- O: list of VDR objects,  Haar wavelet coefficients. Averages via integer add + right-shift, differences via integer sub + right-shift, remainder nesting for odd numerators.
 - S: Pure
 - E: Length not power of 2 → error. Length 1 → identity.
 
@@ -1589,7 +1589,7 @@ Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments a
 
 **B37: mat_fn(entry_fn, rows, cols)**
 - I: callable entry_fn(i,j) → VDR or FnRemainder, integers rows, cols
-- O: lazy matrix — entries not computed until resolved. Supports det, inverse, mul via deferred evaluation.
+- O: lazy matrix,  entries not computed until resolved. Supports det, inverse, mul via deferred evaluation.
 - S: Pure iff entry_fn is pure
 - E: rows or cols ≤ 0 → error.
 
@@ -1607,7 +1607,7 @@ Each builtin is a factory that returns a `FnRemainder`. All take VDR arguments a
 
 **B40: resolve_to_depth(fn, depth)**
 - I: FnRemainder fn, integer depth ≥ 0
-- O: concrete VDR object — the exact rational result of fn(depth)
+- O: concrete VDR object,  the exact rational result of fn(depth)
 - S: Pure
 - E: depth=0 → initial guess / first term. Negative depth → error.
 

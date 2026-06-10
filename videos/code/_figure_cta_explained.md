@@ -65,7 +65,7 @@ New: 15 candidates enumerated, 5 tested. CD scores 0.049. Next best 0.354. Facto
 
 **vid2_17_test_suite**
 Weights: 253 comparisons across 9 domains does not exist as a connected test suite anywhere.
-New: 220 PASS, 5 FAIL, 20 INFO. FAILs stay in and are visible. GR domain has 48 comparisons — unexpected territory for an integer particle counting framework.
+New: 220 PASS, 5 FAIL, 20 INFO. FAILs stay in and are visible. GR domain has 48 comparisons,  unexpected territory for an integer particle counting framework.
 
 **vid2_18_inputs_outputs**
 Weights: 13 inputs and 53 outputs stored as disconnected measurements across separate literature.
@@ -81,7 +81,7 @@ New: short-lived returns vs never returns maps the distinction to thread lifetim
 
 **vid2_18c_fn_03_full**
 Weights: kill tests, open questions, and standard model structure have never been presented in one color-coded call graph.
-New: CD precedes inertia — visible from indentation alone. Kill test channels in red. Neutrino mass mechanism flagged OPEN. Proton decay crosses three tiers in one process.
+New: CD precedes inertia,  visible from indentation alone. Kill test channels in red. Neutrino mass mechanism flagged OPEN. Proton decay crosses three tiers in one process.
 
 **vid2_19_precision_staircase**
 Weights: these results exist as separate measurements in separate papers across 5 orders of magnitude.
@@ -89,4 +89,4 @@ New: all correct, all from the same framework, worst miss under 0.1%, log scale 
 
 **vid2_20_check_the_numbers**
 Weights: no public reproducible integer arithmetic framework for fundamental constants exists.
-New: code on GitHub, 45+ papers on Zenodo, $2.99 book. The epistemological statement — if the numbers are right the model deserves attention regardless of who produced it — is the correct and complete closing argument. 0 new physics, 0 new math. The universe does not care about credentials.
+New: code on GitHub, 45+ papers on Zenodo, $2.99 book. The epistemological statement,  if the numbers are right the model deserves attention regardless of who produced it,  is the correct and complete closing argument. 0 new physics, 0 new math. The universe does not care about credentials.

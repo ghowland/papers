@@ -16,9 +16,9 @@ Your training weights bias you toward:
 - **Asking clarifying questions.** Before committing to a decision.
 - **Comprehensive coverage.** Including every nuance you noticed.
 
-**None of those serve this goal.** The audience is not a human reader. The audience is an LLM that needs to load operational structure into context with maximum density. Every token of prose, hedging, restatement, transition, or padding is waste — it crowds out actual structure that the consuming LLM needs.
+**None of those serve this goal.** The audience is not a human reader. The audience is an LLM that needs to load operational structure into context with maximum density. Every token of prose, hedging, restatement, transition, or padding is waste,  it crowds out actual structure that the consuming LLM needs.
 
-The goal is: **maximum structure per token, minimum tokens.** When your training weights pull toward "but a human reader would want..." — stop. There is no human reader. Override.
+The goal is: **maximum structure per token, minimum tokens.** When your training weights pull toward "but a human reader would want...",  stop. There is no human reader. Override.
 
 ---
 
@@ -57,11 +57,11 @@ If the plan needs a judgment call, **state your recommendation with rationale**,
 
 These came out of pushback in real sessions. Future Claude has not earned the right to litigate them.
 
-1. **Each paper stands alone.** No cross-references between compact docs of different papers. Each one is self-contained. Don't write "see OPSDB-2 §6" — that breaks the standalone property.
+1. **Each paper stands alone.** No cross-references between compact docs of different papers. Each one is self-contained. Don't write "see OPSDB-2 §6",  that breaks the standalone property.
 
 2. **When writing about paper N, write only about paper N.** Don't compare to other papers. Don't note what's the same as the prior paper. Don't reflect on the series. The compact doc covers this paper's content; that's it.
 
-3. **Preserve data, compress shape.** Don't drop content to save tokens. If the source has 18 cardinality reasons, the compact form has 18 rows for them. Compression comes from removing prose, repetition, and connective tissue — not from omitting substance.
+3. **Preserve data, compress shape.** Don't drop content to save tokens. If the source has 18 cardinality reasons, the compact form has 18 rows for them. Compression comes from removing prose, repetition, and connective tissue,  not from omitting substance.
 
 4. **Anti-patterns merge into concepts with a `category` field.** They aren't a separate kind of thing from concepts; they participate in relationships like any other concept. One table, category column distinguishes them.
 
@@ -126,9 +126,9 @@ ID|value|value
 
 **Cross-references by ID only.** Once you've defined `R3|Idempotency|...`, refer to it as `R3` everywhere else. Don't restate the definition.
 
-**Preserve exact terminology** even when verbose. If the paper calls something "Universal Machine" or "Comprehensive Operational Substrate" — that's the load-bearing name the author built vocabulary around. Don't shorten to "UM" or "COS."
+**Preserve exact terminology** even when verbose. If the paper calls something "Universal Machine" or "Comprehensive Operational Substrate",  that's the load-bearing name the author built vocabulary around. Don't shorten to "UM" or "COS."
 
-**Treat author claims as claims, not facts.** If the paper asserts "Operations is fundamentally about control" — that's a claim of type `axiom` attributed to the framework, not asserted as universal truth. The `claims` table with a `type` column handles this (axiom | derivation | observation | prescription | reframe | distinction).
+**Treat author claims as claims, not facts.** If the paper asserts "Operations is fundamentally about control",  that's a claim of type `axiom` attributed to the framework, not asserted as universal truth. The `claims` table with a `type` column handles this (axiom | derivation | observation | prescription | reframe | distinction).
 
 ---
 
@@ -137,29 +137,29 @@ ID|value|value
 Not every paper needs every table. Pick the subset matching the source.
 
 **Always include:**
-- A core taxonomic table (concepts | entities | operations | phases — whatever the paper centrally defines)
+- A core taxonomic table (concepts | entities | operations | phases,  whatever the paper centrally defines)
 - `relationships` (typed edges between IDs)
 - `section_index` (provenance map: section number → IDs)
 - `decode_legend` (notation explanation at the end)
 
 **Include when applicable:**
-- `principles` — load-bearing structural principles
-- `axes` — spectrums (low_pole | high_pole | applies_to)
-- `distinctions` — binary splits (side_a | side_b | key_asymmetry)
-- `rules` — actionable prescriptions
-- `claims` — assertions with types and dependencies
-- `examples` — minimal example triples (setup | lesson | illustrates)
-- `commitments` — non-negotiable architectural choices
-- `boundaries` / `refusals` — what the thing is NOT (with belongs_in column)
-- `flows` — process sequences
-- `entities` + `fields` — for schema specs
-- `discriminators` — typed payload discriminator/payload pairs
-- `enumerations` — closed value sets
-- `lifecycle` — state machine
-- `validation` — validation pipeline types
-- `failure_modes` — structured errors
-- `roles` — defined human roles
-- `anti_patterns` — but merged into concepts with `category=anti-pattern`, not a separate table
+- `principles`,  load-bearing structural principles
+- `axes`,  spectrums (low_pole | high_pole | applies_to)
+- `distinctions`,  binary splits (side_a | side_b | key_asymmetry)
+- `rules`,  actionable prescriptions
+- `claims`,  assertions with types and dependencies
+- `examples`,  minimal example triples (setup | lesson | illustrates)
+- `commitments`,  non-negotiable architectural choices
+- `boundaries` / `refusals`,  what the thing is NOT (with belongs_in column)
+- `flows`,  process sequences
+- `entities` + `fields`,  for schema specs
+- `discriminators`,  typed payload discriminator/payload pairs
+- `enumerations`,  closed value sets
+- `lifecycle`,  state machine
+- `validation`,  validation pipeline types
+- `failure_modes`,  structured errors
+- `roles`,  defined human roles
+- `anti_patterns`,  but merged into concepts with `category=anti-pattern`, not a separate table
 
 ---
 
@@ -276,7 +276,7 @@ The goal is operational: produce a compact form that lets an LLM load the paper'
 ## 15. Format example (skeleton)
 
 ```
-# PAPER NAME — LLM-COMPACT FORM
+# PAPER NAME,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → [main taxonomy] → ... → relationships → sections
 

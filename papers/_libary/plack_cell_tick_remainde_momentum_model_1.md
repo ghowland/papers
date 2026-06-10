@@ -17,7 +17,7 @@ The model is called **PCTRM**: Planck Cell-Tick Remainder Momentum.
 
 The model does not claim to be physics. It claims to be a **candidate substrate mechanism** consistent with observed physics that would produce the observed physics if true. The purpose of specifying it is to make it falsifiable, to identify computational tests, and to serve as a structural hypothesis that either survives empirical scrutiny or dies cleanly.
 
-The model is compatible with the RUM framework. It does not replace or extend RUM's current derivations. It proposes a physical substrate that would explain why RUM's vocabulary (modulus, remainder, soliton, channels) would be the right vocabulary for the physical substrate — because the substrate actually operates on those primitives.
+The model is compatible with the RUM framework. It does not replace or extend RUM's current derivations. It proposes a physical substrate that would explain why RUM's vocabulary (modulus, remainder, soliton, channels) would be the right vocabulary for the physical substrate,  because the substrate actually operates on those primitives.
 
 ---
 
@@ -31,7 +31,7 @@ The model is built on seven axioms. Each is stated as a structural commitment. T
 
 **Axiom 3: Direction-conditional adjacency.** Adjacency between cells is not fixed by a regular lattice. Each cell can be adjacent to another cell 1 Planck-distance away in any direction. Direction is a separate dynamical variable from position. A cell's neighbor along direction d is the cell 1 Planck-distance from it in direction d, whatever that direction happens to be.
 
-**Axiom 4: Discrete remainder budgeting.** Every soliton (particle, composite object, coherent pattern) has a remainder counter — an integer that tracks accumulated "budget" toward its next position update. Each tick, the soliton accumulates some amount of remainder based on its structural properties.
+**Axiom 4: Discrete remainder budgeting.** Every soliton (particle, composite object, coherent pattern) has a remainder counter,  an integer that tracks accumulated "budget" toward its next position update. Each tick, the soliton accumulates some amount of remainder based on its structural properties.
 
 **Axiom 5: Modulus cost.** Moving 1 Planck-cell costs 1 modulus worth of remainder. The modulus is a fixed integer (the same for all objects, representing the substrate's fundamental quantum of spatial advance). When remainder ≥ modulus, the soliton advances 1 cell in its current direction; remainder decrements by 1 modulus.
 
@@ -75,13 +75,13 @@ This gives momentum conservation at the macroscopic level as a consequence of re
 
 ### 3.3 What inertia is in PCTRM
 
-Inertia is the **coherence tax rate** — the fraction of the per-tick budget consumed by pattern maintenance against the ambient patterns. 
+Inertia is the **coherence tax rate**,  the fraction of the per-tick budget consumed by pattern maintenance against the ambient patterns. 
 
 A soliton with zero tax (massless particle like a photon) gets its full budget to translate. It moves 1 cell per tick, always. Speed c.
 
 A soliton with a specific tax rate (massive particle) gets only a fraction of its budget to translate. It moves less than 1 cell per tick on average, below speed c. The specific tax rate determines the specific mass.
 
-Inertia and mass are the same quantity in this model. PHYS-1's reframing "mass is inertia" is not just a philosophical observation — it's operationally "the tax rate is both what we measure as mass and what we experience as resistance to acceleration."
+Inertia and mass are the same quantity in this model. PHYS-1's reframing "mass is inertia" is not just a philosophical observation,  it's operationally "the tax rate is both what we measure as mass and what we experience as resistance to acceleration."
 
 ### 3.4 What force is in PCTRM
 
@@ -194,7 +194,7 @@ From the **inside** of any parent soliton, the child reads the parent's total in
 **PCTRM mechanism**:
 - The parent's interior pattern has a specific ground-state configuration for child solitons
 - Excited states are configurations with excess remainder relative to the ground state
-- The parent's channels apply **negative remainder** to the child — draining the excess through whatever channels exist
+- The parent's channels apply **negative remainder** to the child,  draining the excess through whatever channels exist
 - When accumulated drain reaches a threshold, a **discrete transition** occurs: the child emits a photon (if channel is EM) or releases thermal energy (if channel is thermal) and returns to ground state
 
 **Matches**: Spontaneous emission from atoms, thermal relaxation, objects returning to rest after being displaced.
@@ -472,7 +472,7 @@ If experiments rule out discrete substrate to accuracies where PCTRM requires it
 
 ## XI. RELATIONSHIP TO THE RUM FRAMEWORK
 
-PCTRM proposes that the RUM framework's vocabulary (modulus, remainder, soliton, channels, running reading, interface/implementation) corresponds to the actual substrate-level operations of physics. The RUM framework arose by **restricting language to what's operationally shared across hierarchy levels**. PCTRM claims this restriction is not just mathematically convenient — **it's physically real** because the substrate actually operates on these primitives.
+PCTRM proposes that the RUM framework's vocabulary (modulus, remainder, soliton, channels, running reading, interface/implementation) corresponds to the actual substrate-level operations of physics. The RUM framework arose by **restricting language to what's operationally shared across hierarchy levels**. PCTRM claims this restriction is not just mathematically convenient,  **it's physically real** because the substrate actually operates on these primitives.
 
 The test of this connection is whether PCTRM:
 1. Reproduces RUM's existing predictions (can PCTRM derive Ω_DM = π/12?)

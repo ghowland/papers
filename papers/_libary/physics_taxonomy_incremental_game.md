@@ -1,4 +1,4 @@
-# Project Notebook: Soliton Stack — The Incremental Universe Builder
+# Project Notebook: Soliton Stack,  The Incremental Universe Builder
 
 **Status:** Future project. Distribution layer for the Rational Universe Model. Steam game, possibly with mobile ports.
 
@@ -18,7 +18,7 @@ Every layer of the game maps to a layer of the RUM framework. Every unlock is a 
 
 ### Stage 1: Vacuum (The Opening)
 
-The screen is black. A single button says **"excite the field."** The player clicks. A pixel flickers — a Higgs excitation. It decays immediately. The player clicks again.
+The screen is black. A single button says **"excite the field."** The player clicks. A pixel flickers,  a Higgs excitation. It decays immediately. The player clicks again.
 
 Counter starts: **Excitations: 1, 2, 3...**
 
@@ -48,11 +48,11 @@ The clicker mechanics now require combinations:
 - **Spend 2 ups + 1 down → 1 proton**
 - **Spend 1 up + 2 downs → 1 neutron**
 
-The top quark is a trap. It's available to produce but **decays before confinement** — it never forms a hadron. The game shows "Flash!" and the top quark vanishes. Players learn viscerally why the top quark is different. The taxonomy's "Flash" label becomes intuitive.
+The top quark is a trap. It's available to produce but **decays before confinement**,  it never forms a hadron. The game shows "Flash!" and the top quark vanishes. Players learn viscerally why the top quark is different. The taxonomy's "Flash" label becomes intuitive.
 
 ### Stage 4: Atomic (Nuclear Fusion)
 
-Protons + neutrons form nuclei. The game introduces BBN as a mini-phase: in the opening seconds of Stage 4, you have a limited window to fuse hydrogen into deuterium, helium, and lithium. The amounts produced match real BBN ratios. The lithium problem shows up as expected — the game confirms your production matches "standard model prediction" but not "measurement," revealing the framework's honesty.
+Protons + neutrons form nuclei. The game introduces BBN as a mini-phase: in the opening seconds of Stage 4, you have a limited window to fuse hydrogen into deuterium, helium, and lithium. The amounts produced match real BBN ratios. The lithium problem shows up as expected,  the game confirms your production matches "standard model prediction" but not "measurement," revealing the framework's honesty.
 
 After BBN closes, atoms form. Electrons orbit nuclei. The periodic table starts populating. Hydrogen → Helium → Lithium → Carbon → Iron.
 
@@ -78,7 +78,7 @@ Galaxies spiral into existence. The player places galaxies on a cosmic canvas. E
 
 ### Stage 10: Cosmic (The Endgame)
 
-The universe fills. Dark matter appears as the (22/13)π reading against baryonic matter — the player sees the ratio emerge naturally from the integers they've been stacking all game. The cosmological constant appears as the outermost reading. The universe's flatness is a consequence of the player being inside it.
+The universe fills. Dark matter appears as the (22/13)π reading against baryonic matter,  the player sees the ratio emerge naturally from the integers they've been stacking all game. The cosmological constant appears as the outermost reading. The universe's flatness is a consequence of the player being inside it.
 
 The final screen shows the complete 17-level stack with everything the player has produced, labeled in the taxonomy. Achievement unlocked: **"You built the universe. Now you understand how."**
 
@@ -86,11 +86,11 @@ The final screen shows the complete 17-level stack with everything the player ha
 
 ## Learning Objectives Embedded in Play
 
-**Soliton hierarchy internalized through progression.** Every level is unlocked by accumulating the previous. The nesting isn't told to the player — they feel it because they can't skip levels. You can't build atoms without protons. You can't build galaxies without stars. The hierarchy is the game mechanic.
+**Soliton hierarchy internalized through progression.** Every level is unlocked by accumulating the previous. The nesting isn't told to the player,  they feel it because they can't skip levels. You can't build atoms without protons. You can't build galaxies without stars. The hierarchy is the game mechanic.
 
 **Taxonomy learned through naming.** Every unlock is labeled with its structural name. Players see "Field.Vortex.Negative.Permanent" over and over next to their electron counter. After 40 hours of gameplay, the taxonomy is memorized without effort.
 
-**Integer fractions made visceral.** Counters everywhere. Numbers that build by integer addition. Key ratios appear naturally — 2 ups + 1 down for a proton, 3:1 deuterium-to-helium ratio at BBN, (22/13)π for the dark matter ratio in the endgame. Players see that the universe is made of integers because they built it from integers.
+**Integer fractions made visceral.** Counters everywhere. Numbers that build by integer addition. Key ratios appear naturally,  2 ups + 1 down for a proton, 3:1 deuterium-to-helium ratio at BBN, (22/13)π for the dark matter ratio in the endgame. Players see that the universe is made of integers because they built it from integers.
 
 **Cross-domain connections revealed.** At Stage 10, the game surfaces the derivation chain: "Your DM ratio of 5.317 came from the 22 (2 generations × 11 gluon self-interaction) divided by 13 (weak force 19 minus Cabibbo Doublet 6), times π (toroidal galaxy). This ratio derives the BBN baryon-to-photon ratio you used in Stage 4." Players realize retroactively that what they were doing in early stages was determined by what they'd do in late stages. The unity is the revelation.
 
@@ -112,11 +112,11 @@ The final screen shows the complete 17-level stack with everything the player ha
 
 **Achievements** named for real physics milestones: "Schwinger 1948," "Cabibbo 1963," "Higgs discovered," etc. Achievement descriptions include the actual historical context.
 
-**Kill switches** are part of play. Some branches can be killed by player discovery (the sector splitting example). The game models "scientific publication" — when you kill a branch, it's logged and can be reviewed later.
+**Kill switches** are part of play. Some branches can be killed by player discovery (the sector splitting example). The game models "scientific publication",  when you kill a branch, it's logged and can be reviewed later.
 
 **Multiple endings** based on choices:
 - Build a universe with life (standard path)
-- Build a universe with no structure (cold death — ran out of inputs)
+- Build a universe with no structure (cold death,  ran out of inputs)
 - Build a universe that only contains dark matter (no baryons)
 - Build a universe that fails BBN (too many neutrons)
 
@@ -132,7 +132,7 @@ Each ending shows real cosmology. Player learns what could have gone wrong in re
 
 **Text style:** concise. Every description is one to three sentences. No lectures. The player learns by doing, not by reading. If they want deeper explanations, there's an optional "Professor Mode" tooltip that gives the full physics context for any element.
 
-**Pacing:** aggressive at start (quick dopamine hits in vacuum/field stages), slower and more strategic at later stages (molecular, cellular). End game is contemplative — the player has built a universe and can sit with it.
+**Pacing:** aggressive at start (quick dopamine hits in vacuum/field stages), slower and more strategic at later stages (molecular, cellular). End game is contemplative,  the player has built a universe and can sit with it.
 
 ---
 
@@ -142,11 +142,11 @@ Each ending shows real cosmology. Player learns what could have gone wrong in re
 
 **Teaches through repetition, not memorization.** Clicker games work because repetition with slow unlocks rewires pattern recognition. The taxonomy becomes instinctive after 20 hours of play. That's the same amount of time a physics undergrad spends on one week of a course, and the retention is probably better.
 
-**Steam store visibility.** A well-reviewed incremental game with a unique theme (physics taxonomy) can get front-page features. The Steam audience includes curious people, STEM students, and autodidacts — exactly the audience the framework needs.
+**Steam store visibility.** A well-reviewed incremental game with a unique theme (physics taxonomy) can get front-page features. The Steam audience includes curious people, STEM students, and autodidacts,  exactly the audience the framework needs.
 
 **Word of mouth in gaming communities.** Gaming subreddits, YouTube let's-plays, Twitch streams. Every stream is free advertising. "This clicker game is teaching me actual physics" is the kind of hook that spreads.
 
-**Credibility anchor.** The game has to be good as a game. If it's just a physics textbook with clicks, it fails. If it's a compelling incremental game that happens to teach real physics, it succeeds. The game's quality validates the framework's teachability — if the taxonomy is intuitive enough to drive a fun game, it's intuitive enough to replace the historical names in education.
+**Credibility anchor.** The game has to be good as a game. If it's just a physics textbook with clicks, it fails. If it's a compelling incremental game that happens to teach real physics, it succeeds. The game's quality validates the framework's teachability,  if the taxonomy is intuitive enough to drive a fun game, it's intuitive enough to replace the historical names in education.
 
 ---
 
@@ -154,7 +154,7 @@ Each ending shows real cosmology. Player learns what could have gone wrong in re
 
 **The game links to the book, the papers, and the YouTube series.** Players who get curious at any stage can follow links to the underlying material. The game is the funnel; the framework is the destination.
 
-**The game uses the actual pool values.** Numbers displayed in late stages are real RUM framework outputs. When the DM ratio pops up at Stage 10, it's 5.317 — the actual derivation. The player has been computing real physics the whole time.
+**The game uses the actual pool values.** Numbers displayed in late stages are real RUM framework outputs. When the DM ratio pops up at Stage 10, it's 5.317,  the actual derivation. The player has been computing real physics the whole time.
 
 **Player progress contributes data.** Anonymized aggregated data on player choices, stage times, and ending distributions can feed back into how the framework is taught. Stages where players get stuck reveal which parts of the taxonomy are counterintuitive. Iteration improves the pedagogy.
 
@@ -164,7 +164,7 @@ Each ending shows real cosmology. Player learns what could have gone wrong in re
 
 ## Development Considerations
 
-**Engine:** Godot, Unity, or HTML5 for web-first with Steam wrapper. The game doesn't need AAA graphics — it needs clean, polished, readable interface. Indie clicker scope.
+**Engine:** Godot, Unity, or HTML5 for web-first with Steam wrapper. The game doesn't need AAA graphics,  it needs clean, polished, readable interface. Indie clicker scope.
 
 **Team size:** Small. One designer-coder, one artist, one musician, one physics consultant (you). Four people can ship this in 12-18 months if scope is managed.
 

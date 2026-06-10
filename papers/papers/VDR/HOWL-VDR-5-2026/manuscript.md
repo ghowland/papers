@@ -19,7 +19,7 @@
 
 This paper specifies VDR-LLM-Prolog, a language model architecture where every value is an exact fraction, every derivation is recorded in a logic programming knowledge base, every constraint is a first-class queryable object, and every piece of knowledge is directly surfaceable to the user without passing through the language model's token generation. The specification integrates four prior results: VDR exact arithmetic (VDR-1 through VDR-3), the VDR machine learning stack (VDR-4), transcendental constant representation (MATH-3/MATH-4), and a custom Prolog-style knowledge engine designed for LLM provenance.
 
-The system has three layers. The arithmetic layer (VDR) ensures every number is an exact fraction with zero drift and zero silent truncation. The logic layer (Prolog) records how every value was derived, what it depends on, and what constraints it satisfies. The conversation layer manages scoped knowledge bases, working data sets, topic tracking, and constraint activation — giving the language model structured persistent memory that survives topic switches, supports inheritance and shadowing, and is directly queryable by the user.
+The system has three layers. The arithmetic layer (VDR) ensures every number is an exact fraction with zero drift and zero silent truncation. The logic layer (Prolog) records how every value was derived, what it depends on, and what constraints it satisfies. The conversation layer manages scoped knowledge bases, working data sets, topic tracking, and constraint activation,  giving the language model structured persistent memory that survives topic switches, supports inheritance and shadowing, and is directly queryable by the user.
 
 The central claim is that data provenance, constraint enforcement, and conversational state tracking are not features to be bolted onto a language model after the fact. They are architectural requirements that should be present from the foundation. This paper specifies what that foundation looks like.
 
@@ -29,7 +29,7 @@ The central claim is that data provenance, constraint enforcement, and conversat
 
 Modern language models have three structural deficiencies that no amount of scale, training data, or fine-tuning can fix.
 
-**Values without provenance.** When a language model produces a number — a probability, a calculation result, a cited statistic — there is no record of how that number was derived. The model cannot show its work because it has no work to show. The computation that produced the number is a sequence of matrix multiplications through opaque float tensors. The number might be correct. It might be hallucinated. There is no systematic way to tell.
+**Values without provenance.** When a language model produces a number,  a probability, a calculation result, a cited statistic,  there is no record of how that number was derived. The model cannot show its work because it has no work to show. The computation that produced the number is a sequence of matrix multiplications through opaque float tensors. The number might be correct. It might be hallucinated. There is no systematic way to tell.
 
 **Approximate arithmetic.** Every number inside a standard language model is a 16-bit or 32-bit float. Every operation silently truncates. After a few hundred operations, the accumulated rounding error is unmeasured and unmeasurable. Two runs of the same model on the same input can produce different outputs because float rounding is platform-dependent. The model's internal arithmetic is fundamentally unreliable, and the unreliability is invisible.
 
@@ -37,13 +37,13 @@ Modern language models have three structural deficiencies that no amount of scal
 
 These three deficiencies are independent. Each could be addressed separately. This paper addresses all three simultaneously because the solutions reinforce each other: exact arithmetic makes provenance meaningful (the recorded derivation chain is exact, not approximate), provenance makes constraint checking possible (you can verify that a value satisfies a constraint by tracing its derivation), and scoped knowledge bases make conversation tracking reliable (variables are stored in the right scope, not lost in a token stream).
 
-![Fig. 3: VDR-LLM-Prolog — Three layers, 705 tests, 27 modules, exact fractions throughout.](./figures/vdr5_03_identity_card.png)
+![Fig. 3: VDR-LLM-Prolog,  Three layers, 705 tests, 27 modules, exact fractions throughout.](./figures/vdr5_03_identity_card.png)
 
 ---
 
 ## 2. The Foundation: VDR Exact Arithmetic
 
-VDR is an exact arithmetic system where every value is a finite tree of integer triples [V, D, R] — value, denominator, remainder. The system was introduced in VDR-1 [@HOWL-VDR-1-2026] and tested across 23 mathematical domains in VDR-2 and VDR-3 with 507 tests and zero computation errors.
+VDR is an exact arithmetic system where every value is a finite tree of integer triples [V, D, R],  value, denominator, remainder. The system was introduced in VDR-1 [@HOWL-VDR-1-2026] and tested across 23 mathematical domains in VDR-2 and VDR-3 with 507 tests and zero computation errors.
 
 ### 2.1 What "Exact" Means
 
@@ -55,13 +55,13 @@ No floating-point system can do this. IEEE 754 double-precision floats accumulat
 
 ### 2.2 The Remainder Slot
 
-The third slot R — the remainder — is what makes VDR more than ordinary fraction arithmetic. When a value cannot be expressed cleanly in a given denominator frame, the remainder carries the exact leftover structure. The object [1, 3, [1, 2, 0]] means "one-third, with exact completion one-half." The remainder is not error. It is not rounding residue. It is exact structure that a scalar system would discard.
+The third slot R,  the remainder,  is what makes VDR more than ordinary fraction arithmetic. When a value cannot be expressed cleanly in a given denominator frame, the remainder carries the exact leftover structure. The object [1, 3, [1, 2, 0]] means "one-third, with exact completion one-half." The remainder is not error. It is not rounding residue. It is exact structure that a scalar system would discard.
 
-This is what enables exact discrete calculus: the discretization artifact at every step size is an exact, inspectable, algebraically manipulable object. The discrete derivative of x² at x=3 with step h=1/1000 is exactly 6001/1000 — not a float near 6, but the exact rational showing the discretization term as an algebraic fact.
+This is what enables exact discrete calculus: the discretization artifact at every step size is an exact, inspectable, algebraically manipulable object. The discrete derivative of x² at x=3 with step h=1/1000 is exactly 6001/1000,  not a float near 6, but the exact rational showing the discretization term as an algebraic fact.
 
 ### 2.3 Transcendental Reach
 
-VDR handles transcendental constants through two mechanisms. Functional remainders wrap convergent rational series — each depth produces an exact rational that approaches the transcendental to arbitrary precision. The Q335 basis from MATH-4 [@HOWL-MATH-4-2026] represents 22 fundamental constants (π, e, ln(2), √2, ζ(3), and 17 others) as single integers over the shared denominator 2^335, verified at 100 digits against mpmath. Adding π + e under Q335 is one integer addition. The rounding error is 10^66 times smaller than the Planck length.
+VDR handles transcendental constants through two mechanisms. Functional remainders wrap convergent rational series,  each depth produces an exact rational that approaches the transcendental to arbitrary precision. The Q335 basis from MATH-4 [@HOWL-MATH-4-2026] represents 22 fundamental constants (π, e, ln(2), √2, ζ(3), and 17 others) as single integers over the shared denominator 2^335, verified at 100 digits against mpmath. Adding π + e under Q335 is one integer addition. The rounding error is 10^66 times smaller than the Planck length.
 
 ### 2.4 What VDR Provides to This System
 
@@ -75,17 +75,17 @@ VDR-4 [@HOWL-VDR-4-2026] extended the arithmetic library into a complete machine
 
 ### 3.1 Exact Softmax
 
-The softmax function requires exponentials, which are transcendental. VDR computes exp as a truncated exact-fraction Taylor series: exp_N(x) = Σ x^k/k! for k=0..N. Every partial sum is an exact fraction. Softmax is then the ratio of exact exponentials over an exact sum. The probabilities sum to exactly 1 — not approximately, but as the fraction 1/1.
+The softmax function requires exponentials, which are transcendental. VDR computes exp as a truncated exact-fraction Taylor series: exp_N(x) = Σ x^k/k! for k=0..N. Every partial sum is an exact fraction. Softmax is then the ratio of exact exponentials over an exact sum. The probabilities sum to exactly 1,  not approximately, but as the fraction 1/1.
 
 For logits [1, 2, 3], the softmax outputs are 64826368/720042809, 176214841/720042809, and 479001600/720042809. Their sum is 720042809/720042809 = 1. A rational surrogate softmax using a square-shift kernel (no exponentials) is also available: for the same logits with shift c=4, outputs are 4/29, 9/29, 16/29. Sum is 29/29 = 1.
 
-![Fig. 6: Softmax Exact Bars — VDR fractions sum to exactly 1. Float64 fractions do not.](./figures/vdr5_06_softmax_exact_bars.png)
+![Fig. 6: Softmax Exact Bars,  VDR fractions sum to exactly 1. Float64 fractions do not.](./figures/vdr5_06_softmax_exact_bars.png)
 
 ### 3.2 Exact Autodiff
 
 Reverse-mode automatic differentiation over VDR computation graphs. Every gradient is an exact fraction. d(x²)/dx at x=3 is exactly 6, not 5.999999... The chain rule, product rule, and quotient rule all produce exact fractions. MSE loss gradients are exact. The autodiff layer supports general computation graphs, not just fixed formulas.
 
-![Fig. 2: Gradient Chain — Forward exact fractions and backward exact gradients flowing through a 2-layer network.](./figures/vdr5_02_gradient_chain.png)
+![Fig. 2: Gradient Chain,  Forward exact fractions and backward exact gradients flowing through a 2-layer network.](./figures/vdr5_02_gradient_chain.png)
 
 ### 3.3 Exact Transformer
 
@@ -93,7 +93,7 @@ A working tiny transformer language model: embedding lookup, self-attention with
 
 ### 3.4 What VDR-4 Provides to This System
 
-The complete forward and backward pass of a language model, with every value exact. This means provenance recording is meaningful — the recorded values are the actual values, not approximations of the actual values. It means constraint checking is exact — "attention weights sum to 1" is verified by exact fraction addition. And it means checkpoints are bit-identical across platforms — the same model produces the same outputs everywhere, because there is no platform-dependent float rounding.
+The complete forward and backward pass of a language model, with every value exact. This means provenance recording is meaningful,  the recorded values are the actual values, not approximations of the actual values. It means constraint checking is exact,  "attention weights sum to 1" is verified by exact fraction addition. And it means checkpoints are bit-identical across platforms,  the same model produces the same outputs everywhere, because there is no platform-dependent float rounding.
 
 ---
 
@@ -111,7 +111,7 @@ A Term is the fundamental data unit. Every fact, rule, and query is built from T
 
 **Q-basis types.** Single integers over a shared power-of-two denominator, for compact representation of transcendental constants and compressed model parameters.
 
-**Structural references.** Parameter paths ("layer.1.weight[0][0]"), layer references, token ids, token sequences — typed references into the model and data structures.
+**Structural references.** Parameter paths ("layer.1.weight[0][0]"), layer references, token ids, token sequences,  typed references into the model and data structures.
 
 **Provenance types.** Derivation records (operation + inputs + output), constraints (type + bound + scope + status), checkpoints (step number + parameter state), gradients, losses, and training step numbers.
 
@@ -147,7 +147,7 @@ depends_on(X, Y) :- derived_from(X, _, Sources), member(Y, Sources).
 depends_on(X, Y) :- derived_from(X, _, Sources), member(Z, Sources), depends_on(Z, Y).
 ```
 
-This says: X depends on Y if Y is a direct input to X, or if Y is an input to something that X depends on. This is transitive dependency — the system can trace any value back to its ultimate sources through any number of intermediate steps.
+This says: X depends on Y if Y is a direct input to X, or if Y is an input to something that X depends on. This is transitive dependency,  the system can trace any value back to its ultimate sources through any number of intermediate steps.
 
 ```
 weight_consistent(Param, Step) :-
@@ -175,11 +175,11 @@ When a query is evaluated, terms are unified by exact comparison. Two fraction t
 
 ### 5.1 The Scoping Principle
 
-Every piece of knowledge has a home — a specific KB in a specific place in the topic tree. When the system searches for a fact, it searches only the KBs in the current scope: the active topic's KB, its parent's KB, up to the root, plus the global KB. Out-of-scope KBs are not searched at all.
+Every piece of knowledge has a home,  a specific KB in a specific place in the topic tree. When the system searches for a fact, it searches only the KBs in the current scope: the active topic's KB, its parent's KB, up to the root, plus the global KB. Out-of-scope KBs are not searched at all.
 
 This is lexical scoping applied to knowledge. If you are discussing story B, the facts from story A are not in scope. Not deprioritized. Not ranked lower. Not searched. The system cannot confuse the two because it never sees both simultaneously.
 
-![Fig. 5: KB Tree Scoping — Active topic vdr_llm illuminates its ancestry path. Story KBs are invisible to queries.](./figures/vdr5_05_kb_tree_scoping.png)
+![Fig. 5: KB Tree Scoping,  Active topic vdr_llm illuminates its ancestry path. Story KBs are invisible to queries.](./figures/vdr5_05_kb_tree_scoping.png)
 
 ### 5.2 The KB Tree
 
@@ -229,7 +229,7 @@ Cross-scope queries are explicit and tagged. The results identify which KB each 
 
 ### 5.5 KB Activation
 
-When topics change, KBs activate and deactivate. Switching from story_a to story_b deactivates kb_story_a and its children, activates kb_story_b and its children. The parent chain up to global stays active. Deactivation does not delete anything — the facts remain, they are just out of scope. Switch back and they reappear instantly.
+When topics change, KBs activate and deactivate. Switching from story_a to story_b deactivates kb_story_a and its children, activates kb_story_b and its children. The parent chain up to global stays active. Deactivation does not delete anything,  the facts remain, they are just out of scope. Switch back and they reappear instantly.
 
 ---
 
@@ -251,7 +251,7 @@ This binding is stored in the correct scope, retrievable by exact lookup, overri
 
 Working data sets form a tree that mirrors the topic tree. Variable lookup walks from the current dataset up to the root, like lexical scoping in a programming language.
 
-If the project-level dataset says `language = python` and the linalg sub-dataset does not override it, then querying "language" from the linalg context returns "python" — inherited from the parent. If the linalg dataset sets `max_matrix_size = 50`, that value is local to linalg and does not appear in the parent scope.
+If the project-level dataset says `language = python` and the linalg sub-dataset does not override it, then querying "language" from the linalg context returns "python",  inherited from the parent. If the linalg dataset sets `max_matrix_size = 50`, that value is local to linalg and does not appear in the parent scope.
 
 ### 6.3 History
 
@@ -337,7 +337,7 @@ pending("vdr_llm", "implement_cross_entropy_loss").
 
 Topics follow a lifecycle: open → work → close, or open → interrupted → park → resume → work → close. The system tracks this explicitly with rules:
 
-A topic should close when it has no pending items and no open children. A topic should be parked when it has been open for many turns with no recent activity. Dangling topics — open but stale — can be identified by query.
+A topic should close when it has no pending items and no open children. A topic should be parked when it has been open for many turns with no recent activity. Dangling topics,  open but stale,  can be identified by query.
 
 ### 8.3 Wrap and Unwrap
 
@@ -369,10 +369,10 @@ KB [kb_characters_b]:
   bob_town: London
   bob_occupation: retired professor
   
-LLM: "Margaret is also in this story — want to see her details?"
+LLM: "Margaret is also in this story,  want to see her details?"
 ```
 
-The data block is a direct read from the KB. The LLM did not generate the number 59. The KB produced it. The data cannot be hallucinated because it is not generated — it is retrieved.
+The data block is a direct read from the KB. The LLM did not generate the number 59. The KB produced it. The data cannot be hallucinated because it is not generated,  it is retrieved.
 
 ### 9.3 Addressable References
 
@@ -402,11 +402,11 @@ The reference is a live link. If the value changes, the reference resolves to th
 
 ### 9.5 The Permission Model
 
-The owner of the system sees everything. End users see only what the permission rules allow. The LLM reasons over all KBs (it needs full access to produce correct outputs). The output filter determines what the user sees. For the owner, the filter is identity — everything is visible.
+The owner of the system sees everything. End users see only what the permission rules allow. The LLM reasons over all KBs (it needs full access to produce correct outputs). The output filter determines what the user sees. For the owner, the filter is identity,  everything is visible.
 
 ### 9.6 Self-Reference in Reasoning
 
-The LLM queries its own KBs during reasoning. It does not need to remember constraints from a system prompt — it queries them from the constraint KB. It does not need to guess whether code is Python 3.8 compatible — it checks the constraint condition against the actual code. The reasoning is grounded in structured facts, not in pattern-matched context tokens.
+The LLM queries its own KBs during reasoning. It does not need to remember constraints from a system prompt,  it queries them from the constraint KB. It does not need to guess whether code is Python 3.8 compatible,  it checks the constraint condition against the actual code. The reasoning is grounded in structured facts, not in pattern-matched context tokens.
 
 ---
 
@@ -420,7 +420,7 @@ The LLM queries its own KBs during reasoning. It does not need to remember const
 
 **Layer 3: Conversation (Scoped KBs + Working Data + Topics + Constraints).** Knowledge is scoped to topics. Variables persist in working data sets. Topics have lifecycle state. Constraints are activated and deactivated with scope changes. Provides the structured memory foundation.
 
-![Fig. 4: Architecture Stack — VDR arithmetic, Prolog logic, and conversation management with data flowing between layers.](./figures/vdr5_04_architecture_stack.png)
+![Fig. 4: Architecture Stack,  VDR arithmetic, Prolog logic, and conversation management with data flowing between layers.](./figures/vdr5_04_architecture_stack.png)
 
 ### 10.2 The Data Flow
 
@@ -453,7 +453,7 @@ Output to user
 
 Every arrow is an exact VDR operation. Every parenthetical is a Prolog fact assertion. Every constraint check is exact.
 
-![Fig. 1: Provenance Chain — Raw text through tokenization, attention, softmax to output, with exact fractions at every stage.](./figures/vdr5_01_provenance_chain.png)
+![Fig. 1: Provenance Chain,  Raw text through tokenization, attention, softmax to output, with exact fractions at every stage.](./figures/vdr5_01_provenance_chain.png)
 
 ### 10.3 The Training Flow
 
@@ -652,7 +652,7 @@ The Python-Prolog bridge passes exact rationals between VDR (Python) and the Pro
 
 ## 12. Memory Management
 
-![Fig. 8: Memory Tiers — Five levels from persistent (KB) to transient (pruned), with Prolog retention rules at each tier.](./figures/vdr5_08_memory_tiers.png)
+![Fig. 8: Memory Tiers,  Five levels from persistent (KB) to transient (pruned), with Prolog retention rules at each tier.](./figures/vdr5_08_memory_tiers.png)
 
 ### 12.1 Tiered Retention
 
@@ -702,7 +702,7 @@ Topics are tracked objects with lifecycle state. Working data persists in scoped
 
 ### 13.5 For Trust
 
-The user can verify any output by querying its provenance. The data surfaced from KBs is not generated by the LLM — it is retrieved from structured storage. The LLM provides framing. The KB provides truth. The two are clearly separated in the output.
+The user can verify any output by querying its provenance. The data surfaced from KBs is not generated by the LLM,  it is retrieved from structured storage. The LLM provides framing. The KB provides truth. The two are clearly separated in the output.
 
 ---
 
@@ -714,7 +714,7 @@ Exact fractions grow in denominator size through operations. A production-scale 
 
 ### 14.2 Speed
 
-Exact fraction arithmetic is slower than float arithmetic on hardware with native float units. The system trades speed for exactness, provenance, and trust. For applications where trust and auditability matter more than throughput — regulatory compliance, safety-critical systems, scientific computation — this trade-off is correct.
+Exact fraction arithmetic is slower than float arithmetic on hardware with native float units. The system trades speed for exactness, provenance, and trust. For applications where trust and auditability matter more than throughput,  regulatory compliance, safety-critical systems, scientific computation,  this trade-off is correct.
 
 ### 14.3 Standard Transformer Fidelity
 
@@ -770,7 +770,7 @@ End-to-end test: raw text input → tokenization → forward pass → provenance
 
 This paper specifies a language model architecture where knowledge has provenance, arithmetic has exactness, constraints have enforcement, and conversation has structure. The specification integrates four years of work: exact arithmetic that has passed 705 tests with zero computation errors, a machine learning stack that computes exact softmax and exact gradients, a transcendental basis that represents 22 constants as integers, and a logic engine that records derivation chains and verifies constraints.
 
-The result is not a faster language model. It is not a more capable language model. It is a more trustworthy language model — one where every value can be traced to its source, every constraint can be verified exactly, every piece of knowledge has a home and a scope, and the user can inspect any part of the system's state by querying the knowledge base directly.
+The result is not a faster language model. It is not a more capable language model. It is a more trustworthy language model,  one where every value can be traced to its source, every constraint can be verified exactly, every piece of knowledge has a home and a scope, and the user can inspect any part of the system's state by querying the knowledge base directly.
 
 The specification is complete. The arithmetic foundation exists and is tested. The ML stack exists and is tested. The logic engine is specified and ready for implementation. The five phases of the implementation roadmap are concrete engineering work packages with clear deliverables and testable outcomes.
 
@@ -788,7 +788,7 @@ The VDR-5 specification described constraints as a separate system that referenc
 
 ### A1.1 The Principle
 
-A knowledge base is a self-contained unit of knowledge. It has facts (what is true), rules (what follows from what), and constraints (what must hold). Separating constraints from their KB creates the same problem that separating documentation from code creates — they drift apart. The constraints for a model's attention weights should live in the same KB as the attention weight facts. The constraints for a user's spending limits should live in the same KB as the user's financial data.
+A knowledge base is a self-contained unit of knowledge. It has facts (what is true), rules (what follows from what), and constraints (what must hold). Separating constraints from their KB creates the same problem that separating documentation from code creates,  they drift apart. The constraints for a model's attention weights should live in the same KB as the attention weight facts. The constraints for a user's spending limits should live in the same KB as the user's financial data.
 
 ### A1.2 Revised KB Structure
 
@@ -842,13 +842,13 @@ Switching from the VDR project to story B deactivates the VDR project's constrai
 
 ### A1.5 Portable KBs
 
-Because a KB now contains its own constraints, it is fully self-describing. You can export a KB (facts + rules + constraints + working data) and import it into a different system. The receiving system does not need to know what constraints to apply — they travel with the data. A model checkpoint KB includes not just the parameter values but the invariants those parameters must satisfy. A dataset KB includes not just the data but the validation rules for that data.
+Because a KB now contains its own constraints, it is fully self-describing. You can export a KB (facts + rules + constraints + working data) and import it into a different system. The receiving system does not need to know what constraints to apply,  they travel with the data. A model checkpoint KB includes not just the parameter values but the invariants those parameters must satisfy. A dataset KB includes not just the data but the validation rules for that data.
 
 ---
 
 ## A2. User Accounts as Knowledge Bases
 
-![Fig. 7: Constraint Inheritance — Global through org, dept, team to user. 9 effective constraints from 5 hierarchy levels.](./figures/vdr5_07_constraint_inheritance.png)
+![Fig. 7: Constraint Inheritance,  Global through org, dept, team to user. 9 effective constraints from 5 hierarchy levels.](./figures/vdr5_07_constraint_inheritance.png)
 
 ### A2.1 The Insight
 
@@ -885,7 +885,7 @@ KB: user_alice
   children: [kb_alice_vdr_project, kb_alice_story_a, kb_alice_story_b]
 ```
 
-Everything about Alice — her identity, her permissions, her preferences, her constraints, her active work, her conversation history — is in her KB. The KB is the account.
+Everything about Alice,  her identity, her permissions, her preferences, her constraints, her active work, her conversation history,  is in her KB. The KB is the account.
 
 ### A2.3 Group Accounts as Parent KBs
 
@@ -1007,7 +1007,7 @@ Some constraints come from Alice herself (personal preferences). Some come from 
 % Source = admin, granted(2026-04-15)
 
 ?- users_with_constraint("no_production_access", Users).
-% Users = [bob_engineer, carol]  (not Alice — hers was overridden)
+% Users = [bob_engineer, carol]  (not Alice,  hers was overridden)
 
 ?- constraints_from_level(user_alice, "org_acme_corp", OrgConstraints).
 % OrgConstraints = [gdpr_compliance, data_retention]
@@ -1036,7 +1036,7 @@ Every constraint has provenance. "Why can't Carol access the database?" traces t
 
 ### A3.3 Portable Accounts
 
-A user account KB can be exported and imported. Alice changes companies. Her personal preference constraints (formatting, language, runtime limits) travel with her. Her company-specific constraints (GDPR compliance, code review) are stripped because they belonged to parent KBs she is no longer a child of. The KB tree handles this naturally — detaching from a parent KB removes the inherited constraints.
+A user account KB can be exported and imported. Alice changes companies. Her personal preference constraints (formatting, language, runtime limits) travel with her. Her company-specific constraints (GDPR compliance, code review) are stripped because they belonged to parent KBs she is no longer a child of. The KB tree handles this naturally,  detaching from a parent KB removes the inherited constraints.
 
 ### A3.4 Testable Constraint Configurations
 
@@ -1070,7 +1070,7 @@ The VDR-5 specification is amended as follows:
 
 **One new invariant:** A constraint in a child KB with the same name as a constraint in a parent KB overrides the parent constraint for that child and all its descendants. The override is logged with provenance.
 
-Everything else in VDR-5 remains unchanged. The scoping rules, the query engine, the surfacing modes, the topic management, the provenance tracking — all work exactly as specified, now with constraints embedded in the KBs they govern and accounts embedded in the KB tree they belong to.
+Everything else in VDR-5 remains unchanged. The scoping rules, the query engine, the surfacing modes, the topic management, the provenance tracking,  all work exactly as specified, now with constraints embedded in the KBs they govern and accounts embedded in the KB tree they belong to.
 
 ---
 
@@ -1086,7 +1086,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | VDR-2 | 15 domain gyms | 282 | 0 |
 | VDR-3 | 8 domain gyms, MATH integration | 157 | 0 |
 | VDR-4 | 24-module ML stack | 198 | 0 |
-| **VDR-5** | **Architecture specification** | — | — |
+| **VDR-5** | **Architecture specification** |,  |,  |
 | **Total** | | **705** | **0** |
 
 ---
@@ -1163,29 +1163,29 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | TermType | Category | Primary Storage | Secondary Storage | Example |
 |----------|----------|----------------|-------------------|---------|
-| atom | Core Prolog | Text name | — | atom("softmax"), atom("layer_2") |
-| variable | Core Prolog | Text name | — | variable("?X"), variable("?Weight") |
-| list | Core Prolog | []Term | — | list([atom("a"), number(3)]) |
+| atom | Core Prolog | Text name |,  | atom("softmax"), atom("layer_2") |
+| variable | Core Prolog | Text name |,  | variable("?X"), variable("?Weight") |
+| list | Core Prolog | []Term |,  | list([atom("a"), number(3)]) |
 | fraction | VDR Arithmetic | BigInt numerator | BigInt denominator | fraction(31, 140) |
-| fraction_vec | VDR Arithmetic | []Fraction | — | fraction_vec([1/2, 1/3, 1/7]) |
-| fraction_mat | VDR Arithmetic | [][]Fraction | — | fraction_mat([[1/2, 1/3],[1/7, 1/4]]) |
+| fraction_vec | VDR Arithmetic | []Fraction |,  | fraction_vec([1/2, 1/3, 1/7]) |
+| fraction_mat | VDR Arithmetic | [][]Fraction |,  | fraction_mat([[1/2, 1/3],[1/7, 1/4]]) |
 | qbasis | Q-Basis | BigInt numerator | i32 exponent k | qbasis(219886425873..., 335) |
 | qbasis_vec | Q-Basis | []BigInt | i32 exponent k | qbasis_vec([p1, p2, p3], 335) |
 | qbasis_mat | Q-Basis | [][]BigInt | i32 exponent k | qbasis_mat([[p1,p2],[p3,p4]], 335) |
-| parameter | Reference | Text path | — | parameter("layer.1.weight[0][0]") |
+| parameter | Reference | Text path |,  | parameter("layer.1.weight[0][0]") |
 | layer | Reference | Text name | i32 index | layer("attention", 2) |
 | token | Reference | i32 id | Text surface | token(42, "the") |
-| token_seq | Reference | []i32 | — | token_seq([42, 17, 93, 5]) |
+| token_seq | Reference | []i32 |,  | token_seq([42, 17, 93, 5]) |
 | derivation | Provenance | Text operation | []Term inputs | derivation("softmax", [score1, score2]) |
-| constraint | Provenance | Constraint struct | — | constraint("sum_to_one", axiom, active) |
-| checkpoint | Provenance | i32 step | — | checkpoint(100) |
+| constraint | Provenance | Constraint struct |,  | constraint("sum_to_one", axiom, active) |
+| checkpoint | Provenance | i32 step |,  | checkpoint(100) |
 | gradient | Provenance | Fraction value | Text param_path | gradient(-3/7, "layer.1.weight[0][0]") |
 | loss | Provenance | Fraction value | Text loss_type | loss(17/2, "mse") |
-| step | Provenance | i32 step_number | — | step(42) |
-| topic | Conversation | Topic struct | — | topic("vdr_llm", open) |
+| step | Provenance | i32 step_number |,  | step(42) |
+| topic | Conversation | Topic struct |,  | topic("vdr_llm", open) |
 | binding | Conversation | Text key + Term val | Text dataset | binding("bob_age", number(32)) |
-| scope | Conversation | Text name | — | scope("legal"), scope("project") |
-| constraint_set | Conversation | Text name + []Text | — | constraint_set("safety", [...]) |
+| scope | Conversation | Text name |,  | scope("legal"), scope("project") |
+| constraint_set | Conversation | Text name + []Text |,  | constraint_set("safety", [...]) |
 
 ### D.2 Unification Rules by Term Type
 
@@ -1402,7 +1402,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | parked | active | Topic resumed | Yes |
 | violated | active | Underlying issue fixed, reverify | Yes |
 | violated | suspended | User acknowledges and suspends | Yes |
-| any | any | — | All transitions logged with turn, source, reason |
+| any | any |,  | All transitions logged with turn, source, reason |
 
 ### G.3 Constraint Scope Hierarchy
 
@@ -1423,7 +1423,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Field | Type | Required | Default | Purpose |
 |-------|------|----------|---------|---------|
-| name | Text | Yes | — | Unique identifier |
+| name | Text | Yes |,  | Unique identifier |
 | facts | FactSet | Yes | empty | Stored facts |
 | rules | RuleSet | Yes | empty | Logical rules |
 | constraints | []Constraint | Yes | empty | Local constraints |
@@ -1471,8 +1471,8 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | 3 | Grandparent topic's KB | If not found at level 2 | Yes (cut) |
 | ... | Ancestors up to root | Walk up tree | Yes (cut) |
 | N | Global KB | Always searched last | Yes (cut) |
-| — | Secondary scope KBs | Only if explicitly activated | Yes (cut) |
-| — | Out-of-scope KBs | Only via query_in() or query_across() | N/A |
+|,  | Secondary scope KBs | Only if explicitly activated | Yes (cut) |
+|,  | Out-of-scope KBs | Only via query_in() or query_across() | N/A |
 
 ---
 
@@ -1515,7 +1515,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 | fraction_vec | Term.type == fraction_vec | fraction_vec([1/2, 1/3]) | list([1, 2]) |
 | fraction_mat | Term.type == fraction_mat | fraction_mat([[1/2]]) | fraction_vec([1/2]) |
 | token | Term.type == token | token(42, "the") | number(42) |
-| any | Always passes | — | — |
+| any | Always passes |,  |,  |
 
 ---
 
@@ -1534,14 +1534,14 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | From | To | Trigger | Precondition | Side Effects |
 |------|-----|---------|-------------|-------------|
-| — | open | User opens topic | — | Activate KB tree, load constraints, create working data |
+|,  | open | User opens topic |,  | Activate KB tree, load constraints, create working data |
 | open | closed | User closes or auto-close rule | No pending items, no open children | Deactivate KB tree, summarize, freeze working data |
-| open | parked | User parks or auto-park rule | — | Snapshot state, deactivate KB tree, preserve working data |
-| open | branched | User creates subtopic | — | Create child topic with own KB, parent stays open |
-| parked | open | User resumes | — | Restore state, activate KB tree, list pending |
-| closed | open | User reopens | — | Unfreeze working data, reactivate KB tree |
+| open | parked | User parks or auto-park rule |,  | Snapshot state, deactivate KB tree, preserve working data |
+| open | branched | User creates subtopic |,  | Create child topic with own KB, parent stays open |
+| parked | open | User resumes |,  | Restore state, activate KB tree, list pending |
+| closed | open | User reopens |,  | Unfreeze working data, reactivate KB tree |
 | branched | open | All children closed | No open children | Resume normal open state |
-| any | any | — | — | Transition logged with turn, source, reason |
+| any | any |,  |,  | Transition logged with turn, source, reason |
 
 ### J.3 Topic Triggered Actions
 
@@ -1621,7 +1621,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Level | Example KB | Constraints Defined Here | Inherited From Above | Total Effective |
 |-------|-----------|------------------------|---------------------|----------------|
-| Global | kb_global | exact_arithmetic, sum_to_one | — | 2 |
+| Global | kb_global | exact_arithmetic, sum_to_one |,  | 2 |
 | Organization | kb_acme_corp | gdpr_compliance, data_retention | 2 from global | 4 |
 | Department | kb_engineering | code_review, approved_languages | 4 from above | 6 |
 | Team | kb_backend | database_logged, go_allowed (override) | 6 from above | 7 (one override) |
@@ -1631,12 +1631,12 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Scenario | Parent Constraint | Child Override | Effective at Child | Logged As |
 |----------|------------------|---------------|-------------------|-----------|
-| No override | approved_languages([py,zig,rust]) | — | approved_languages([py,zig,rust]) | inherited |
+| No override | approved_languages([py,zig,rust]) |,  | approved_languages([py,zig,rust]) | inherited |
 | Expand | approved_languages([py,zig,rust]) | approved_languages([py,zig,rust,go]) | approved_languages([py,zig,rust,go]) | overridden(expand) |
 | Restrict | rate_limit(100/hr) | rate_limit(50/hr) | rate_limit(50/hr) | overridden(restrict) |
 | Suspend | code_review(active) | code_review(suspended) | code_review(suspended) | overridden(suspend) |
-| Cannot override | sum_to_one (axiom) | — | sum_to_one (axiom) | override_blocked |
-| Cannot override | gdpr_compliance (legal) | — | gdpr_compliance (legal) | override_blocked |
+| Cannot override | sum_to_one (axiom) |,  | sum_to_one (axiom) | override_blocked |
+| Cannot override | gdpr_compliance (legal) |,  | gdpr_compliance (legal) | override_blocked |
 
 ### L.4 Account Operations
 
@@ -1661,7 +1661,7 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Tier | Contents | Lifetime | Pruning Policy | Typical Size |
 |------|----------|----------|---------------|-------------|
-| 1: Persistent | Architecture, rules, axioms, accounts, org structure | Never pruned | — | Small (KB) |
+| 1: Persistent | Architecture, rules, axioms, accounts, org structure | Never pruned |,  | Small (KB) |
 | 2: Checkpoint | Parameter snapshots, model state at checkpoint steps | Until explicitly deleted | Keep every Nth step + anomaly steps | Medium (MB per checkpoint) |
 | 3: Step-transient | Gradients, updates, intermediate state for current step | Until step committed | Prune unless retain_step rule matches | Small per step (KB) |
 | 4: Batch-transient | Per-batch inference: embeddings, attention, logits, outputs | Until batch processed | Prune unless retain_batch rule matches | Medium per batch (KB-MB) |
@@ -1671,13 +1671,13 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Rule | Condition | Effect | Override |
 |------|-----------|--------|----------|
-| retain_step(S) | S mod checkpoint_interval == 0 | Keep full step state | — |
-| retain_step(S) | loss_anomaly_at(S) | Keep for diagnosis | — |
-| retain_step(S) | constraint_violated_at(_, S) | Keep violation context | — |
-| retain_step(S) | user_flagged(S) | User explicitly requested | — |
-| retain_batch(B) | contains_unknown_token(B) | Keep for analysis | — |
-| retain_batch(B) | output_anomaly(B) | Keep for diagnosis | — |
-| retain_batch(B) | user_flagged(B) | User explicitly requested | — |
+| retain_step(S) | S mod checkpoint_interval == 0 | Keep full step state |,  |
+| retain_step(S) | loss_anomaly_at(S) | Keep for diagnosis |,  |
+| retain_step(S) | constraint_violated_at(_, S) | Keep violation context |,  |
+| retain_step(S) | user_flagged(S) | User explicitly requested |,  |
+| retain_batch(B) | contains_unknown_token(B) | Keep for analysis |,  |
+| retain_batch(B) | output_anomaly(B) | Keep for diagnosis |,  |
+| retain_batch(B) | user_flagged(B) | User explicitly requested |,  |
 | prune_step(S) | not(retain_step(S)) | Free step-transient data | Cannot override |
 | prune_batch(B) | not(retain_batch(B)) | Free batch-transient data | Cannot override |
 
@@ -1685,14 +1685,14 @@ Everything else in VDR-5 remains unchanged. The scoping rules, the query engine,
 
 | Component | Per-Parameter | Per-Step | Per-Batch | Per-Checkpoint |
 |-----------|-------------|---------|----------|----------------|
-| Parameter value | ~20 bytes (fraction) | — | — | ~20 bytes |
-| Gradient | — | ~20 bytes | — | — |
-| Update record | — | ~50 bytes | — | — |
-| Attention weight (per position pair) | — | — | ~20 bytes | — |
-| Embedding (per token) | — | — | ~dim*20 bytes | — |
-| Logits (per position) | — | — | ~vocab*20 bytes | — |
-| Derivation fact | — | — | ~100 bytes | — |
-| Constraint check | — | ~50 bytes | ~50 bytes | — |
+| Parameter value | ~20 bytes (fraction) |,  |,  | ~20 bytes |
+| Gradient |,  | ~20 bytes |,  |,  |
+| Update record |,  | ~50 bytes |,  |,  |
+| Attention weight (per position pair) |,  |,  | ~20 bytes |,  |
+| Embedding (per token) |,  |,  | ~dim*20 bytes |,  |
+| Logits (per position) |,  |,  | ~vocab*20 bytes |,  |
+| Derivation fact |,  |,  | ~100 bytes |,  |
+| Constraint check |,  | ~50 bytes | ~50 bytes |,  |
 
 For a tiny model (6 parameter groups, 2-dim, 3 vocab): ~120 bytes per parameter per checkpoint, ~500 bytes per step, ~2KB per batch inference with full provenance.
 

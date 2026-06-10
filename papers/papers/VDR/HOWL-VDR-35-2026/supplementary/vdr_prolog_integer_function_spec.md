@@ -11,7 +11,7 @@ Runtime lifecycle, device management, error handling.
 ```
 VDRPrologInit(flags: u32) -> VDRPrologStatus_t
   First call. Initializes driver, enumerates devices, allocates host-side
-  session table. No device memory touched yet. Idempotent — second call
+  session table. No device memory touched yet. Idempotent,  second call
   returns OK without work. Sets global init flag checked by all other calls.
 
 VDRPrologDeviceGetCount(count: *i32) -> VDRPrologStatus_t
@@ -73,7 +73,7 @@ Device memory allocation, host-device transfer. All allocations are typed.
 
 ```
 VDRPrologMalloc(ptr: **void, size_bytes: u64) -> VDRPrologStatus_t
-  Allocates device global memory. Untyped — caller casts. For raw buffers
+  Allocates device global memory. Untyped,  caller casts. For raw buffers
   and scratch space. Aligned to 256 bytes.
 
 VDRPrologMallocTyped(ptr: **void, qbasis: VDRPrologQBasis_t, count: u64) -> VDRPrologStatus_t
@@ -90,7 +90,7 @@ VDRPrologFree(ptr: *void) -> VDRPrologStatus_t
 
 VDRPrologMemcpy(dst: *void, src: *const void, size_bytes: u64, kind: VDRPrologMemcpyKind_t) -> VDRPrologStatus_t
   Synchronous copy. Kind: HostToDevice, DeviceToHost, DeviceToDevice.
-  Bit-exact — integer data is identical after copy on every platform.
+  Bit-exact,  integer data is identical after copy on every platform.
 
 VDRPrologMemcpyAsync(dst: *void, src: *const void, size_bytes: u64, kind: VDRPrologMemcpyKind_t, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Asynchronous copy on stream. Completion visible after stream sync.
@@ -99,7 +99,7 @@ VDRPrologMemset(ptr: *void, value: i32, size_bytes: u64) -> VDRPrologStatus_t
   Sets bytes. Primarily for zeroing buffers.
 
 VDRPrologMemGetInfo(free: *u64, total: *u64) -> VDRPrologStatus_t
-  Reports device memory. Counts only — no fragmentation metrics needed
+  Reports device memory. Counts only,  no fragmentation metrics needed
   because KB structs are fixed-size so fragmentation is minimal.
 
 VDRPrologMallocHost(ptr: **void, size_bytes: u64) -> VDRPrologStatus_t
@@ -109,7 +109,7 @@ VDRPrologFreeHost(ptr: *void) -> VDRPrologStatus_t
   Frees page-locked host allocation.
 
 VDRPrologMemPrefetchAsync(ptr: *void, size_bytes: u64, device: VDRPrologDevice_t, stream: VDRPrologStream_t) -> VDRPrologStatus_t
-  Hints unified memory migration. Used for KB preloading — prefetch
+  Hints unified memory migration. Used for KB preloading,  prefetch
   KB subtree to device before kernel launch.
 ```
 
@@ -121,12 +121,12 @@ Execution streams and synchronization. Streams are session-aware.
 
 ```
 VDRPrologStreamCreate(stream: *VDRPrologStream_t) -> VDRPrologStatus_t
-  Creates default stream. No session binding — for non-session work
+  Creates default stream. No session binding,  for non-session work
   (memory ops, diagnostics). Kernels on unbound streams cannot access KBs.
 
 VDRPrologStreamCreateWithSession(stream: *VDRPrologStream_t, session: VDRPrologSession_t) -> VDRPrologStatus_t
   Creates stream bound to session. All kernels inherit session's kb_root_id,
-  user_id, visibility_level. The hardware enforces access — not a software guard.
+  user_id, visibility_level. The hardware enforces access,  not a software guard.
   KB queries on this stream only see KBs reachable from session scope.
 
 VDRPrologStreamDestroy(stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -153,7 +153,7 @@ VDRPrologEventSynchronize(event: VDRPrologEvent_t) -> VDRPrologStatus_t
   Blocks until event completes.
 
 VDRPrologEventElapsedTime(ms: *f32, start: VDRPrologEvent_t, end: VDRPrologEvent_t) -> VDRPrologStatus_t
-  NOTE: the one place a float exists — host-side timing measurement.
+  NOTE: the one place a float exists,  host-side timing measurement.
   Could be integer nanoseconds instead. Implementation choice.
 
 VDRPrologEventDestroy(event: VDRPrologEvent_t) -> VDRPrologStatus_t
@@ -186,7 +186,7 @@ VDRPrologSessionSnapshot(session: VDRPrologSession_t, snapshot: *VDRPrologSnapsh
   Atomic capture of all session state: persistent KBs, live state (LRUs,
   counters, queues, stacks, ring buffers, bitsets), rule base, grammar cache.
   Snapshot is a device memory blob with a host-readable header (size, checksum,
-  session config). Checksum is integer CRC — deterministic.
+  session config). Checksum is integer CRC,  deterministic.
   The snapshot IS the factory. Bit-identical restore guaranteed.
 
 VDRPrologSessionRestore(session: VDRPrologSession_t, snapshot: *VDRPrologSnapshot_t) -> VDRPrologStatus_t
@@ -198,7 +198,7 @@ VDRPrologSessionClone(parent: VDRPrologSession_t, child: *VDRPrologSession_t, co
   Creates new session sharing parent's persistent KBs (read-through)
   with independent live state (initialized from parent's current live state,
   or from empty if config says fresh_live=true). Clone's writes to persistent
-  KBs are copy-on-write — parent doesn't see them until explicit merge.
+  KBs are copy-on-write,  parent doesn't see them until explicit merge.
   Clone config: fresh_live (bool), inherit_rules (bool), max_turns (u32).
 
 VDRPrologSessionMerge(parent: VDRPrologSession_t, child: VDRPrologSession_t, policy: VDRPrologMergePolicy_t) -> VDRPrologStatus_t
@@ -214,7 +214,7 @@ VDRPrologSessionKill(session: VDRPrologSession_t) -> VDRPrologStatus_t
 VDRPrologSnapshotSave(snapshot: *VDRPrologSnapshot_t, path: *const u8) -> VDRPrologStatus_t
   Writes snapshot to host filesystem. The "deployable binary."
   Format: header + raw integer data. No float serialization.
-  Portable across devices — integers are platform-independent.
+  Portable across devices,  integers are platform-independent.
 
 VDRPrologSnapshotLoad(snapshot: *VDRPrologSnapshot_t, path: *const u8) -> VDRPrologStatus_t
   Reads snapshot from host filesystem. Validates header and checksum.
@@ -236,7 +236,7 @@ VDRPrologLaunchKernel(kernel: *const void, grid: VDRPrologDim3_t, block: VDRProl
 VDRPrologLaunchMACKernel(kernel: *const void, grid: VDRPrologDim3_t, block: VDRPrologDim3_t, args: **void, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Hint to scheduler: this kernel is pure MAC. Scheduler allocates maximum
   integer ALUs, maximum memory bandwidth, minimum shared memory.
-  No functional difference from LaunchKernel — just scheduling priority.
+  No functional difference from LaunchKernel,  just scheduling priority.
 
 VDRPrologLaunchPrologKernel(kernel: *const void, grid: VDRPrologDim3_t, block: VDRPrologDim3_t, args: **void, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Hint to scheduler: this kernel does KB-heavy work. Scheduler allocates
@@ -262,16 +262,16 @@ Core VDR arithmetic operations on device arrays. Replaces cuBLAS, cuDNN math.
 VDRPrologVdrGemm(qbasis: VDRPrologQBasis_t, transa: VDRPrologOp_t, transb: VDRPrologOp_t, m: i32, n: i32, k: i32, alpha: *const void, A: *const void, lda: i32, B: *const void, ldb: i32, beta: *const void, C: *void, ldc: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   General matrix multiply: C = alpha*op(A)*op(B) + beta*C.
   Alpha, beta are VDR scalars at declared qbasis. All elements same qbasis.
-  Dispatches to integer MMA tiles internally. Result is exact — no
+  Dispatches to integer MMA tiles internally. Result is exact,  no
   accumulation error regardless of matrix size.
   Op: NO_TRANS, TRANS. No conjugate-transpose (no complex floats).
 
 VDRPrologVdrGemmBatched(qbasis: VDRPrologQBasis_t, transa: VDRPrologOp_t, transb: VDRPrologOp_t, m: i32, n: i32, k: i32, alpha: *const void, A_array: **const void, lda: i32, B_array: **const void, ldb: i32, beta: *const void, C_array: **void, ldc: i32, batch_count: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Batched GEMM for multi-head attention. batch_count = n_heads.
-  Each batch is independent — trivially parallel across SMs.
+  Each batch is independent,  trivially parallel across SMs.
 
 VDRPrologVdrGemmStridedBatched(qbasis: VDRPrologQBasis_t, transa: VDRPrologOp_t, transb: VDRPrologOp_t, m: i32, n: i32, k: i32, alpha: *const void, A: *const void, lda: i32, stride_a: i64, B: *const void, ldb: i32, stride_b: i64, beta: *const void, C: *void, ldc: i32, stride_c: i64, batch_count: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
-  Strided variant — contiguous memory, stride between batches.
+  Strided variant,  contiguous memory, stride between batches.
   Preferred for attention where Q,K,V are packed sequentially per head.
 
 VDRPrologVdrSoftmax(qbasis: VDRPrologQBasis_t, input: *const void, output: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -287,12 +287,12 @@ VDRPrologVdrExpSoftmax(qbasis: VDRPrologQBasis_t, input: *const void, output: *v
 
 VDRPrologVdrLayerNorm(qbasis: VDRPrologQBasis_t, input: *const void, output: *void, gamma: *const void, beta: *const void, n: i32, eps_unused: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Integer layer normalization. Mean and variance computed exactly.
-  eps_unused is placeholder for API compat — always ignored because
+  eps_unused is placeholder for API compat,  always ignored because
   integer variance is never zero unless all inputs identical, which is
   detectable by exact comparison, not epsilon.
 
 VDRPrologVdrAdd(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, out: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
-  Elementwise add. Same D — straight integer add on V, handle R carry.
+  Elementwise add. Same D,  straight integer add on V, handle R carry.
 
 VDRPrologVdrSub(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, out: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Elementwise subtract.
@@ -303,7 +303,7 @@ VDRPrologVdrMul(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, out: 
 VDRPrologVdrDiv(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, out: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Elementwise divide. a * reciprocal(b). Reciprocal is D²/b_v with
   remainder tracking. Active division caveat from paper Section 15 applies
-  if b has nonzero remainder — scalar projection, logged.
+  if b has nonzero remainder,  scalar projection, logged.
 
 VDRPrologVdrDot(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, result: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Dot product. Widening MAC across n elements. Single VDR scalar result.
@@ -313,7 +313,7 @@ VDRPrologVdrScale(qbasis: VDRPrologQBasis_t, input: *const void, scalar: *const 
 
 VDRPrologVdrCompare(qbasis: VDRPrologQBasis_t, a: *const void, b: *const void, result: *i32, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Elementwise cross-multiply comparison. Result array: -1, 0, +1.
-  Exact — no tolerance, no epsilon. Equal means equal.
+  Exact,  no tolerance, no epsilon. Equal means equal.
 
 VDRPrologVdrReproject(src_qbasis: VDRPrologQBasis_t, dst_qbasis: VDRPrologQBasis_t, input: *const void, output: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Change Q-basis. Exact when dst_D is multiple of src_D. Remainder-tracked
@@ -321,7 +321,7 @@ VDRPrologVdrReproject(src_qbasis: VDRPrologQBasis_t, dst_qbasis: VDRPrologQBasis
 
 VDRPrologVdrNormalize(qbasis: VDRPrologQBasis_t, data: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Compact remainders: if R0 >= D, roll into V. Reduces remainder depth.
-  In-place. Idempotent — calling twice gives same result as once.
+  In-place. Idempotent,  calling twice gives same result as once.
 
 VDRPrologVdrRemainderMagnitude(qbasis: VDRPrologQBasis_t, data: *const void, magnitudes: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Reports magnitude of remainder per element. For monitoring precision
@@ -342,16 +342,16 @@ VDRPrologAttentionForward(config: *VDRPrologAttentionConfig_t, Q: *const void, K
   attn_weights output optional (NULL to skip). When written, every row
   sums to D exactly. Verifiable by caller.
   Causal mask is integer comparison: if col > row, weight = 0. Not
-  approximate masking — exact zero.
+  approximate masking,  exact zero.
 
 VDRPrologAttentionBackward(config: *VDRPrologAttentionConfig_t, grad_output: *const void, Q: *const void, K: *const void, V: *const void, attn_weights: *const void, grad_Q: *void, grad_K: *void, grad_V: *void, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Exact gradients via reverse-mode autodiff on the fused attention graph.
   Chain rule and quotient rule are exact in VDR. No gradient clipping
-  needed — integer gradients don't explode from accumulation.
+  needed,  integer gradients don't explode from accumulation.
 
 VDRPrologAttentionVerifySoftmaxSum(attn_weights: *const void, qbasis: VDRPrologQBasis_t, seq_len: i32, n_heads: i32, violations: *i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Checks every softmax row sums to D. Writes count of violations.
-  Expected: always 0. If nonzero, something is broken — not drifted, broken.
+  Expected: always 0. If nonzero, something is broken,  not drifted, broken.
   This check is free in production because it's integer equality,
   not tolerance comparison.
 ```
@@ -365,8 +365,8 @@ Training loop primitives. SGD, gradient computation, checkpoint.
 ```
 VDRPrologTrainSGDUpdate(qbasis: VDRPrologQBasis_t, params: *void, grads: *const void, lr: *const void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   params -= lr * grads. Exact. LR is a VDR scalar (e.g., 1/1000 at Q16
-  is V=65, D=65536 — exact representation of ~0.001). Update is exact
-  multiply and exact subtract. No momentum, no Adam — those are separate
+  is V=65, D=65536,  exact representation of ~0.001). Update is exact
+  multiply and exact subtract. No momentum, no Adam,  those are separate
   functions below. This is raw SGD.
 
 VDRPrologTrainSGDMomentumUpdate(qbasis: VDRPrologQBasis_t, params: *void, grads: *const void, velocity: *void, lr: *const void, momentum: *const void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -376,14 +376,14 @@ VDRPrologTrainSGDMomentumUpdate(qbasis: VDRPrologQBasis_t, params: *void, grads:
 VDRPrologTrainAdamUpdate(qbasis: VDRPrologQBasis_t, params: *void, grads: *const void, m: *void, v_adam: *void, lr: *const void, beta1: *const void, beta2: *const void, step: i32, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Adam optimizer in exact integer arithmetic. m and v_adam are first/second
   moment estimates. Bias correction uses exact integer division.
-  No epsilon in denominator — if second moment is zero, the gradient
+  No epsilon in denominator,  if second moment is zero, the gradient
   was zero and the update is zero. Detectable exactly.
 
 VDRPrologTrainComputeLoss(qbasis: VDRPrologQBasis_t, logits: *const void, targets: *const i32, loss: *void, n_classes: i32, batch_size: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Cross-entropy loss. Uses fn_log builtin for exact logarithm via FRU
   when available, rational approximation otherwise. Loss is a single
   VDR scalar. Monotonic decrease observable as integer comparison
-  between epochs — the toy data confirms this works.
+  between epochs,  the toy data confirms this works.
 
 VDRPrologTrainBackwardPass(graph: *VDRPrologComputeGraph_t, loss: *const void, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Reverse-mode autodiff over recorded compute graph. Every node stores
@@ -457,10 +457,10 @@ VDRPrologKBFactAssert(kb_store: *VDRPrologKBStore_t, kb_id: i32, slot_id: i32, f
   Side effect: updates last_modified timestamp.
 
 VDRPrologKBFactQuery(kb_store: *VDRPrologKBStore_t, kb_id: i32, slot_id: i32, fact: *VDRPrologVdrFact_t) -> VDRPrologStatus_t
-  Reads fact at kb_id + slot_id. O(1) — two integer indices.
+  Reads fact at kb_id + slot_id. O(1),  two integer indices.
   Checks session visibility via ancestor walk (integer comparisons up
   the parent chain). If KB not visible from session scope, returns
-  ERR_KB_ACCESS_DENIED. The fact is never exposed — not redacted, absent.
+  ERR_KB_ACCESS_DENIED. The fact is never exposed,  not redacted, absent.
 
 VDRPrologKBFactRetract(kb_store: *VDRPrologKBStore_t, kb_id: i32, slot_id: i32) -> VDRPrologStatus_t
   Removes fact. Slot becomes empty. Provenance of retraction logged
@@ -468,11 +468,11 @@ VDRPrologKBFactRetract(kb_store: *VDRPrologKBStore_t, kb_id: i32, slot_id: i32) 
 
 VDRPrologKBFactSearch(kb_store: *VDRPrologKBStore_t, kb_id: i32, tag: i32, results: *VDRPrologVdrFact_t, max_results: i32, n_found: *i32) -> VDRPrologStatus_t
   Linear scan of facts in kb_id matching tag. Returns up to max_results.
-  Scoped — only searches this KB, not ancestors (use ScopedSearch for walk).
+  Scoped,  only searches this KB, not ancestors (use ScopedSearch for walk).
 
 VDRPrologKBFactScopedSearch(kb_store: *VDRPrologKBStore_t, start_kb_id: i32, tag: i32, results: *VDRPrologVdrFact_t, max_results: i32, n_found: *i32) -> VDRPrologStatus_t
   Walks from start_kb_id up parent chain to root. Returns first match(es).
-  This is lexical scoping — "bank" resolves differently depending on
+  This is lexical scoping,  "bank" resolves differently depending on
   which KB you start from.
 
 VDRPrologKBChildList(kb_store: *VDRPrologKBStore_t, kb_id: i32, children: *i32, max_children: i32, n_children: *i32) -> VDRPrologStatus_t
@@ -518,7 +518,7 @@ VDRPrologLRUClear(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const u8) ->
 // --- Counter ---
 
 VDRPrologCounterCreate(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const u8, min_val: i32, max_val: i32, initial: i32) -> VDRPrologStatus_t
-  Bounded integer counter. Clamps at min/max — never wraps, never overflows.
+  Bounded integer counter. Clamps at min/max,  never wraps, never overflows.
 
 VDRPrologCounterGet(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const u8, value: *i32) -> VDRPrologStatus_t
   Reads current value.
@@ -536,7 +536,7 @@ VDRPrologCounterAtBound(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const 
 // --- Lock ---
 
 VDRPrologLockCreate(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const u8) -> VDRPrologStatus_t
-  Non-blocking coordination signal. Not a mutex — no blocking.
+  Non-blocking coordination signal. Not a mutex,  no blocking.
 
 VDRPrologLockAcquire(kb_store: *VDRPrologKBStore_t, kb_id: i32, name: *const u8, acquired: *bool) -> VDRPrologStatus_t
   Attempts to acquire. Returns immediately with acquired=true or false.
@@ -624,7 +624,7 @@ VDRPrologPrologRuleAssert(kb_store: *VDRPrologKBStore_t, kb_id: i32, rule: *cons
   term conditions), action (array of term assertions/retractions).
   Terms are typed: atom (i32 tag), variable (i32 binding slot), vdr_value,
   list, compound (functor + args). All integer representations.
-  Side effect: rule is persistent — survives reset, participates in snapshots.
+  Side effect: rule is persistent,  survives reset, participates in snapshots.
 
 VDRPrologPrologRuleRetract(kb_store: *VDRPrologKBStore_t, kb_id: i32, rule_id: i32) -> VDRPrologStatus_t
   Removes rule by ID.
@@ -640,7 +640,7 @@ VDRPrologPrologQuery(kb_store: *VDRPrologKBStore_t, start_kb_id: i32, query: *co
 VDRPrologPrologFireAll(kb_store: *VDRPrologKBStore_t, kb_id: i32, fired: *VDRPrologPrologFired_t, max_fired: i32, n_fired: *i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Evaluates all rules in kb_id against current fact state. Returns list
   of rules that fired and their resulting assertions/retractions.
-  Does NOT apply the results — caller decides whether to commit.
+  Does NOT apply the results,  caller decides whether to commit.
   This is the L3 auto-fire mechanism: call this on a schedule,
   commit the results, zero LLM tokens.
 
@@ -661,7 +661,7 @@ VDRPrologPrologRuleStats(kb_store: *VDRPrologKBStore_t, kb_id: i32, rule_id: i32
 VDRPrologPrologHygiene(kb_store: *VDRPrologKBStore_t, kb_id: i32, stale_days: i32, min_success_rate_num: i32, min_success_rate_den: i32, candidates: *i32, max_candidates: i32, n_candidates: *i32) -> VDRPrologStatus_t
   Identifies rules that are stale, failing, or orphaned (reference
   retracted facts). Returns rule_ids for review/pruning. Does not
-  auto-delete — returns candidates for caller decision.
+  auto-delete,  returns candidates for caller decision.
 ```
 
 ---
@@ -674,7 +674,7 @@ Grammar-directed structural token generation.
 VDRPrologGrammarCreate(grammar: *VDRPrologGrammar_t, template: *const u8, template_len: i32) -> VDRPrologStatus_t
   Parses template string with typed slot markers: {slot_name:type}.
   Types: vdr_value, text, integer, enum(val1|val2|val3).
-  Template is the structural frame — every byte outside {} is literal.
+  Template is the structural frame,  every byte outside {} is literal.
   Validation: template must be syntactically valid with all slots filled
   by any valid value of declared type.
 
@@ -690,7 +690,7 @@ VDRPrologGrammarLoadFromKB(kb_store: *VDRPrologKBStore_t, kb_id: i32, grammar_sl
 
 VDRPrologGrammarRender(grammar: VDRPrologGrammar_t, fills: *const VDRPrologGrammarFill_t, n_fills: i32, output: *u8, output_capacity: i32, output_len: *i32) -> VDRPrologStatus_t
   Fills slots with provided values, produces output bytes.
-  Every structural byte comes from the template — deterministic, 100% correct.
+  Every structural byte comes from the template,  deterministic, 100% correct.
   Fills are validated against declared slot types. Type mismatch = error,
   not silent coercion.
   LLM contribution: the fill values. Grammar contribution: everything else.
@@ -747,7 +747,7 @@ VDRPrologRunnerCreateBatch(runner: *VDRPrologRunner_t, config: *VDRPrologBatchCo
   Clone-per-task isolation. Results written to parent session KB.
 
 VDRPrologRunnerStart(runner: VDRPrologRunner_t) -> VDRPrologStatus_t
-  Begins execution loop. Non-blocking — returns immediately.
+  Begins execution loop. Non-blocking,  returns immediately.
 
 VDRPrologRunnerStop(runner: VDRPrologRunner_t) -> VDRPrologStatus_t
   Signals stop. Current iteration completes. Blocks until stopped.
@@ -779,7 +779,7 @@ VDRPrologSafetyCheckAccess(kb_store: *VDRPrologKBStore_t, session: VDRPrologSess
   is ancestor visible from session's visibility_level? Is session's
   user_id in the authorized set? Two integer comparisons per ancestor.
   If any ancestor fails, access=false. KB is absent from session scope.
-  This runs BEFORE any data is read — not a filter on results, a gate
+  This runs BEFORE any data is read,  not a filter on results, a gate
   on access.
 
 VDRPrologSafetyGrantCreate(kb_store: *VDRPrologKBStore_t, kb_id: i32, grant: *const VDRPrologGrant_t) -> VDRPrologStatus_t
@@ -853,7 +853,7 @@ Multi-GPU and multi-node communication. Replaces NCCL.
 VDRPrologDistAllReduce(sendbuf: *const void, recvbuf: *void, count: i64, qbasis: VDRPrologQBasis_t, op: VDRPrologReduceOp_t, comm: VDRPrologComm_t, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Op: SUM, MAX, MIN. Integer operations. SUM is associative and commutative
   regardless of reduction order. Result is deterministic across all
-  reduction topologies — ring, tree, butterfly, anything.
+  reduction topologies,  ring, tree, butterfly, anything.
   This single property eliminates non-deterministic distributed training.
 
 VDRPrologDistBroadcast(buf: *void, count: i64, root: i32, comm: VDRPrologComm_t, stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -874,7 +874,7 @@ VDRPrologDistCommGetRank(comm: VDRPrologComm_t, rank: *i32) -> VDRPrologStatus_t
 VDRPrologDistCommGetSize(comm: VDRPrologComm_t, size: *i32) -> VDRPrologStatus_t
 
 VDRPrologDistKBSync(kb_store: *VDRPrologKBStore_t, kb_id: i32, comm: VDRPrologComm_t, stream: VDRPrologStream_t) -> VDRPrologStatus_t
-  Synchronizes KB facts across ranks. Deterministic merge — same
+  Synchronizes KB facts across ranks. Deterministic merge,  same
   facts at same slots produce same result regardless of arrival order
   because integer comparison resolves conflicts identically everywhere.
 
@@ -887,7 +887,7 @@ VDRPrologDistSnapshotBroadcast(snapshot: *VDRPrologSnapshot_t, root: i32, comm: 
 
 ## Module 17: VDRProlog_transform
 
-Signal processing, DFT, convolution — all exact integer.
+Signal processing, DFT, convolution,  all exact integer.
 
 ```
 VDRPrologTransformDFT(qbasis: VDRPrologQBasis_t, input_real: *const void, input_imag: *const void, output_real: *void, output_imag: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -917,11 +917,11 @@ VDRPrologLinalgMatVecMul(qbasis: VDRPrologQBasis_t, A: *const void, x: *const vo
   y = A*x. Exact integer MAC.
 
 VDRPrologLinalgTranspose(qbasis: VDRPrologQBasis_t, input: *const void, output: *void, m: i32, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
-  Matrix transpose. Data movement only, no arithmetic — exact trivially.
+  Matrix transpose. Data movement only, no arithmetic,  exact trivially.
 
 VDRPrologLinalgGaussianElim(qbasis: VDRPrologQBasis_t, A: *void, b: *void, x: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
   Solve Ax=b. Gaussian elimination with exact VDR division.
-  No pivoting heuristics for numerical stability — not needed because
+  No pivoting heuristics for numerical stability,  not needed because
   there's no numerical instability. Pivot for zero-avoidance only.
 
 VDRPrologLinalgInverse(qbasis: VDRPrologQBasis_t, A: *const void, A_inv: *void, n: i32, stream: VDRPrologStream_t) -> VDRPrologStatus_t
@@ -1060,7 +1060,7 @@ VDRPrologBuiltinTextLength(input: *const u8, len: *i32) -> VDRPrologStatus_t
 
 // --- Collections (36 functions) ---
 VDRPrologBuiltinSort(qbasis: VDRPrologQBasis_t, data: *void, n: i32) -> VDRPrologStatus_t
-  In-place integer comparison sort. O(n log n). Exact ordering — no
+  In-place integer comparison sort. O(n log n). Exact ordering,  no
   tolerance ambiguity at sort boundaries.
 VDRPrologBuiltinSortBy(qbasis: VDRPrologQBasis_t, data: *void, keys: *const void, n: i32) -> VDRPrologStatus_t
 VDRPrologBuiltinFilter(qbasis: VDRPrologQBasis_t, data: *const void, mask: *const bool, output: *void, n: i32, n_out: *i32) -> VDRPrologStatus_t
@@ -1085,7 +1085,7 @@ VDRPrologBuiltinEnumerate(data: *const void, output: *VDRPrologIndexed_t, n: i32
 VDRPrologBuiltinMinBy(qbasis: VDRPrologQBasis_t, data: *const void, keys: *const void, result: *void, n: i32) -> VDRPrologStatus_t
 VDRPrologBuiltinMaxBy(qbasis: VDRPrologQBasis_t, data: *const void, keys: *const void, result: *void, n: i32) -> VDRPrologStatus_t
 VDRPrologBuiltinScan(qbasis: VDRPrologQBasis_t, data: *const void, op: VDRPrologBinaryOp_t, output: *void, n: i32) -> VDRPrologStatus_t
-  Prefix scan. Exact integer accumulation — no drift across n elements.
+  Prefix scan. Exact integer accumulation,  no drift across n elements.
 VDRPrologBuiltinAll(predicates: *const bool, n: i32, result: *bool) -> VDRPrologStatus_t
 VDRPrologBuiltinAny(predicates: *const bool, n: i32, result: *bool) -> VDRPrologStatus_t
 VDRPrologBuiltinNone(predicates: *const bool, n: i32, result: *bool) -> VDRPrologStatus_t
@@ -1195,7 +1195,7 @@ VDRPrologProfileStop(profiler: VDRPrologProfiler_t) -> VDRPrologStatus_t
 
 VDRPrologProfileGetKernelStats(profiler: VDRPrologProfiler_t, kernel_id: i32, stats: *VDRPrologKernelStats_t) -> VDRPrologStatus_t
   Stats: elapsed_ns (i64), integer_ops (i64), memory_bytes_read (i64),
-  memory_bytes_written (i64), warp_occupancy_percent (i32 — always near 100),
+  memory_bytes_written (i64), warp_occupancy_percent (i32,  always near 100),
   kb_cache_hits (i64), kb_cache_misses (i64), remainder_overflows (i64).
   No float utilization metrics. No SFU utilization. No tensor-core-vs-cuda-core
   breakdown. One compute type.
@@ -1224,18 +1224,18 @@ VDRPrologProfileVerifyDeterminism(kernel: *const void, args: **void, grid: VDRPr
 | core | 11 | VDRProlog Runtime init/device |
 | memory | 10 | VDRProlog memory management |
 | stream | 10 | VDRProlog streams/events |
-| session | 10 | Nothing — new capability |
+| session | 10 | Nothing,  new capability |
 | launch | 5 | VDRProlog kernel launch |
 | vdr_math | 17 | cuBLAS (~200+ functions) |
 | attention | 3 | cuDNN attention (~50+ functions) |
 | training | 10 | Custom training loops + AMP |
-| kb | 14 | Nothing — new capability |
-| kb_primitives | 30 | Nothing — new capability |
-| prolog | 8 | Nothing — new capability |
-| grammar | 7 | Nothing — new capability |
-| runner | 8 | Nothing — new capability |
+| kb | 14 | Nothing,  new capability |
+| kb_primitives | 30 | Nothing,  new capability |
+| prolog | 8 | Nothing,  new capability |
+| grammar | 7 | Nothing,  new capability |
+| runner | 8 | Nothing,  new capability |
 | safety | 6 | Guardrail frameworks |
-| confidence | 5 | Nothing — new capability |
+| confidence | 5 | Nothing,  new capability |
 | distributed | 10 | NCCL (~100+ functions) |
 | transform | 4 | cuFFT (~80+ functions) |
 | linalg | 8 | cuSOLVER (~200+ functions) |
@@ -1247,4 +1247,4 @@ VDRPrologProfileVerifyDeterminism(kernel: *const void, args: **void, grid: VDRPr
 
 **What's gone:** ~3,400+ API functions from float precision variants, mixed-precision management, format conversion, NaN handling, loss scaling, Transformer Engine, TensorRT calibration, SFU scheduling.
 
-**What's new:** ~90 functions across session/KB/Prolog/grammar/runner/safety/confidence that enable the architectural capabilities the paper describes — autonomous operation, persistent state, structural safety, exact provenance — none of which exist in any form in CUDA.
+**What's new:** ~90 functions across session/KB/Prolog/grammar/runner/safety/confidence that enable the architectural capabilities the paper describes,  autonomous operation, persistent state, structural safety, exact provenance,  none of which exist in any form in CUDA.

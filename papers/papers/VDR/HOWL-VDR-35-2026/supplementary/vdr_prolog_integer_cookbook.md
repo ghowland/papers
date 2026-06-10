@@ -8,7 +8,7 @@
 
 ---
 
-### 1.1 Model Initialization — Loading a Pretrained VDR Model
+### 1.1 Model Initialization,  Loading a Pretrained VDR Model
 
 The starting point for any LLM work. Weights arrive as integer checkpoints.
 
@@ -31,7 +31,7 @@ i64 n_params = 7_000_000_000;  // 7B model
 void* weights;
 VDRPrologMallocTyped(&weights, VDRProlog_Q16, n_params);
 
-// Load checkpoint — bit-identical to what was saved, always, on any device
+// Load checkpoint,  bit-identical to what was saved, always, on any device
 VDRPrologTrainCheckpointLoad(weights, NULL, VDRProlog_Q16, n_params,
     "/models/llama-vdr-7b-q16.ckpt", stream);
 
@@ -45,7 +45,7 @@ VDRPrologTrainCheckpointLoad(weights, NULL, VDRProlog_Q16, n_params,
 
 ---
 
-### 1.2 Single Forward Pass — Inference
+### 1.2 Single Forward Pass,  Inference
 
 The fundamental operation. Input tokens → output logits.
 
@@ -59,25 +59,25 @@ VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
     &one_q16, one_hot_input, seq_len,
     embedding_table, vocab_size,
     &zero_q16, embedded, seq_len, stream);
-// Or direct index gather — simpler for sparse one-hot:
+// Or direct index gather,  simpler for sparse one-hot:
 // for each token, copy row from embedding table. Pure memcpy.
 
 // For each transformer layer:
 for (i32 layer = 0; layer < n_layers; layer++) {
 
-    // Layer norm — exact mean and variance
+    // Layer norm,  exact mean and variance
     VDRPrologVdrLayerNorm(VDRProlog_Q16, hidden, normed,
         gamma[layer], beta[layer], d_model, 0, stream);
 
-    // QKV projection — single GEMM, split output
+    // QKV projection,  single GEMM, split output
     VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         seq_len, 3 * d_model, d_model,
         &one_q16, normed, seq_len,
         qkv_weights[layer], d_model,
         &zero_q16, qkv_out, seq_len, stream);
-    // Split qkv_out into Q, K, V by pointer arithmetic — no copy
+    // Split qkv_out into Q, K, V by pointer arithmetic,  no copy
 
-    // Attention — fused, exact
+    // Attention,  fused, exact
     VDRPrologAttentionConfig_t attn_cfg = {
         .qbasis = VDRProlog_Q16,
         .seq_len = seq_len,
@@ -98,7 +98,7 @@ for (i32 layer = 0; layer < n_layers; layer++) {
         out_proj_weights[layer], d_model,
         &zero_q16, projected, seq_len, stream);
 
-    // Residual add — exact
+    // Residual add,  exact
     VDRPrologVdrAdd(VDRProlog_Q16, hidden, projected, hidden, seq_len * d_model, stream);
 
     // MLP: norm → up-project → activation → down-project → residual
@@ -112,7 +112,7 @@ for (i32 layer = 0; layer < n_layers; layer++) {
         &zero_q16, mlp_hidden, seq_len, stream);
 
     // Activation: quadratic surrogate or exact GELU via FRU
-    // Quadratic: element-wise square, normalized — same pattern as softmax
+    // Quadratic: element-wise square, normalized,  same pattern as softmax
     // Or if FRU available:
     // VDRPrologFRUExp(VDRProlog_Q16, mlp_hidden, ...) for exact GELU
 
@@ -135,7 +135,7 @@ VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
     lm_head, d_model,
     &zero_q16, logits, seq_len, stream);
 
-// Softmax over vocabulary — exact
+// Softmax over vocabulary,  exact
 VDRPrologVdrSoftmax(VDRProlog_Q16, logits_last_pos, probs, vocab_size, stream);
 // probs sums to 65536. Pick the highest. That's your next token.
 ```
@@ -144,7 +144,7 @@ VDRPrologVdrSoftmax(VDRProlog_Q16, logits_last_pos, probs, vocab_size, stream);
 
 ---
 
-### 1.3 Training Loop — Pretraining from Scratch
+### 1.3 Training Loop,  Pretraining from Scratch
 
 ```
 // Create compute graph for backward pass
@@ -170,7 +170,7 @@ vdr_q16 beta2 = { .v = 64880, .r0 = 0 };  // ~0.99
 for (i32 epoch = 0; epoch < n_epochs; epoch++) {
     for (i32 batch = 0; batch < n_batches; batch++) {
 
-        // Load batch — integer token IDs, nothing to convert
+        // Load batch,  integer token IDs, nothing to convert
         load_batch(train_data, batch, input_ids, target_ids);
 
         // Forward pass with graph recording
@@ -178,27 +178,27 @@ for (i32 epoch = 0; epoch < n_epochs; epoch++) {
         // ... (same forward pass as 1.2, operations recorded in graph)
         VDRPrologTrainComputeGraphRecord(graph, false);
 
-        // Loss — exact cross-entropy
+        // Loss,  exact cross-entropy
         VDRPrologTrainComputeLoss(VDRProlog_Q16, logits, target_ids, &loss,
             vocab_size, batch_size, stream);
         // loss is a VDR scalar. Compare to previous batch by integer comparison.
         // Monotonic decrease is verifiable by < operator. Not by "is it within epsilon."
 
-        // Backward — exact gradients
+        // Backward,  exact gradients
         VDRPrologTrainBackwardPass(graph, &loss, stream);
         // Every gradient is exact. Chain rule on exact values = exact derivatives.
         // No gradient explosion from accumulated float error.
         // No gradient underflow from vanishing float precision.
         // No loss scaling needed. No gradient clipping needed.
 
-        // Update — exact Adam
+        // Update,  exact Adam
         VDRPrologTrainAdamUpdate(VDRProlog_Q16, weights, gradients, m_state, v_state,
             &lr, &beta1, &beta2, epoch * n_batches + batch, n_params, stream);
         // Parameters change by exactly lr * adjusted_gradient.
         // Not by approximately lr * approximately adjusted_gradient.
     }
 
-    // Checkpoint — bit-identical save
+    // Checkpoint,  bit-identical save
     VDRPrologTrainCheckpointSave(weights, optimizer_state, VDRProlog_Q16, n_params,
         checkpoint_path, stream);
     // Resume on a different machine: identical training trajectory.
@@ -229,7 +229,7 @@ VDRPrologSessionCreate(&session, &sess_cfg);
 VDRPrologStream_t gen_stream;
 VDRPrologStreamCreateWithSession(&gen_stream, session);
 
-// KV cache lives in a KB — addressed by layer_id + position
+// KV cache lives in a KB,  addressed by layer_id + position
 VDRPrologKBConfig_t kv_cfg = {
     .name = "kv_cache",
     .parent_id = model_kb_root,
@@ -264,7 +264,7 @@ for (i32 step = 0; step < max_gen_len; step++) {
             VDRPrologKBFactQuery(kb_store, kv_kb_id,
                 layer * max_seq_len * 2 + pos * 2 + 1, &cached_v[pos]);
         }
-        // Or batch-load the range — same O(1) per fact
+        // Or batch-load the range,  same O(1) per fact
 
         // Attention for this layer, this position
         VDRPrologAttentionConfig_t step_cfg = {
@@ -306,7 +306,7 @@ for (i32 step = 0; step < max_gen_len; step++) {
 VDRPrologComm_t comm;
 VDRPrologDistCommCreate(&comm, 8, rank);
 
-// Each rank loads the same checkpoint — bit-identical on all ranks
+// Each rank loads the same checkpoint,  bit-identical on all ranks
 VDRPrologTrainCheckpointLoad(weights, opt_state, VDRProlog_Q16, n_params, path, stream);
 // Verification: allreduce the checksum, confirm identical
 i32 local_checksum = compute_integer_checksum(weights, n_params);
@@ -326,10 +326,10 @@ for (i32 step = 0; step < total_steps; step++) {
         vocab_size, batch_size, stream);
     VDRPrologTrainBackwardPass(graph, &loss, stream);
 
-    // AllReduce gradients — THIS IS THE CRITICAL DIFFERENCE
+    // AllReduce gradients,  THIS IS THE CRITICAL DIFFERENCE
     VDRPrologDistAllReduce(gradients, gradients_reduced, n_params,
         VDRProlog_Q16, VDRProlog_SUM, comm, stream);
-    // Integer sum is associative. Ring reduce, tree reduce, butterfly reduce —
+    // Integer sum is associative. Ring reduce, tree reduce, butterfly reduce, 
     // ALL produce bit-identical results. ALWAYS.
     // Conventional float allreduce is non-deterministic because float addition
     // is non-associative. Different reduction orders → different sums.
@@ -355,7 +355,7 @@ for (i32 step = 0; step < total_steps; step++) {
 // Load base model (frozen)
 VDRPrologTrainCheckpointLoad(base_weights, NULL, VDRProlog_Q16, n_base_params, base_path, stream);
 
-// Allocate LoRA adapters — small exact integer matrices
+// Allocate LoRA adapters,  small exact integer matrices
 i32 lora_rank = 16;
 void *lora_A, *lora_B;  // per layer
 for (i32 layer = 0; layer < n_layers; layer++) {
@@ -400,7 +400,7 @@ for (i32 step = 0; step < finetune_steps; step++) {
     VDRPrologTrainAdamUpdate(VDRProlog_Q16, lora_params, lora_grads, ...);
 }
 
-// Save LoRA adapter — tiny checkpoint, bit-identical
+// Save LoRA adapter,  tiny checkpoint, bit-identical
 VDRPrologTrainCheckpointSave(lora_all, NULL, VDRProlog_Q16, total_lora_params,
     "lora-adapter-q16.ckpt", stream);
 
@@ -415,7 +415,7 @@ VDRPrologTrainCheckpointSave(lora_all, NULL, VDRProlog_Q16, total_lora_params,
 
 ---
 
-### 1.7 Serving — Continuous Batching with Sessions
+### 1.7 Serving,  Continuous Batching with Sessions
 
 ```
 // Model weights in global memory, shared across all sessions
@@ -441,7 +441,7 @@ void handle_request(i32 user_id, i32* prompt_tokens, i32 prompt_len) {
     // Safety: user_id determines KB visibility
     // This user can only see their own KBs and public KBs
     // Other users' sessions are structurally invisible
-    // Not filtered — absent from this session's scope
+    // Not filtered,  absent from this session's scope
 
     // Prefill: process all prompt tokens at once
     forward_pass_prefill(model_weights, prompt_tokens, prompt_len, session, stream);
@@ -478,10 +478,10 @@ VDRPrologSessionRestore(session, &snapshot);
 
 ---
 
-### 1.8 Evaluation and Benchmarking — Deterministic
+### 1.8 Evaluation and Benchmarking,  Deterministic
 
 ```
-// Run eval suite — SAME result every time
+// Run eval suite,  SAME result every time
 void run_eval(void* model_weights, eval_dataset_t* eval) {
     i32 total_correct = 0;
     i32 total = eval->n_examples;
@@ -507,7 +507,7 @@ void run_eval(void* model_weights, eval_dataset_t* eval) {
     }
 
     // Accuracy as exact fraction
-    // total_correct / total — exact. Not 0.847. It's 847/1000.
+    // total_correct / total,  exact. Not 0.847. It's 847/1000.
     // Run this eval on a different machine: 847/1000. Same examples, same model,
     // same result. Always.
     // Run it twice on the same machine: 847/1000. Both times.
@@ -524,7 +524,7 @@ void run_eval(void* model_weights, eval_dataset_t* eval) {
 
 ---
 
-### 1.9 The VDR-LLM-Prolog Session — Full System
+### 1.9 The VDR-LLM-Prolog Session,  Full System
 
 Everything above was raw VDRProlog for model computation. This workflow shows the full system from the paper: LLM + KB + Prolog + grammars + runners.
 
@@ -616,7 +616,7 @@ VDRPrologStatus_t triage_poll(VDRPrologSession_t session) {
             // Prometheus metric confidence 95/100, rule derivation 1/1,
             // combined: 95/100. Not "approximately 0.95."
 
-            // Render findings table via grammar — zero LLM tokens
+            // Render findings table via grammar,  zero LLM tokens
             VDRPrologGrammar_t grammar;
             VDRPrologGrammarLoadFromKB(kb_store, grammars_kb, 0, &grammar);
             VDRPrologGrammarFill_t fills[] = {
@@ -745,14 +745,14 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
         router_weights, d_model,
         &zero_q16, gate_logits, seq_len, stream);
 
-    // Softmax per token over experts — exact
+    // Softmax per token over experts,  exact
     for (i32 pos = 0; pos < seq_len; pos++) {
         VDRPrologVdrSoftmax(VDRProlog_Q16,
             gate_logits + pos * n_experts,
             gate_probs + pos * n_experts,
             n_experts, stream);
         // Each token's expert probabilities sum to 65536 exactly.
-        // Top-K selection by exact integer comparison — no ambiguity
+        // Top-K selection by exact integer comparison,  no ambiguity
         // at decision boundaries. If two experts are tied, they're
         // exactly tied. Not "within epsilon of tied."
     }
@@ -769,7 +769,7 @@ void moe_layer(void* router_weights, void** expert_weights, i32 n_experts,
         // Expert forward pass
         VDRPrologVdrGemm(VDRProlog_Q16, ...);  // expert MLP
 
-        // Weighted add to output — exact
+        // Weighted add to output,  exact
         VDRPrologVdrScale(VDRProlog_Q16, expert_out, &selected_weights[e],
             scaled, seq_len * d_model, stream);
         VDRPrologVdrAdd(VDRProlog_Q16, output, scaled, output,
@@ -802,7 +802,7 @@ void dpo_training_step(void* policy_weights, void* ref_weights,
     forward_pass(ref_weights, chosen_tokens, chosen_len, ref_chosen_logits, stream);
     forward_pass(ref_weights, rejected_tokens, rejected_len, ref_rejected_logits, stream);
 
-    // Compute log probability ratios — exact
+    // Compute log probability ratios,  exact
     // log_ratio_chosen = sum(log_policy_chosen - log_ref_chosen)
     // log_ratio_rejected = sum(log_policy_rejected - log_ref_rejected)
 
@@ -829,7 +829,7 @@ void dpo_training_step(void* policy_weights, void* ref_weights,
 }
 ```
 
-**What matters:** DPO/RLHF is extremely sensitive to the precision of log-probability differences. Small float errors in the policy vs reference log-prob ratio can flip the sign of the gradient — telling the model to move toward the rejected response instead of the chosen one. Exact arithmetic eliminates this failure mode entirely.
+**What matters:** DPO/RLHF is extremely sensitive to the precision of log-probability differences. Small float errors in the policy vs reference log-prob ratio can flip the sign of the gradient,  telling the model to move toward the rejected response instead of the chosen one. Exact arithmetic eliminates this failure mode entirely.
 
 ---
 
@@ -848,13 +848,13 @@ void merge_models(void* model_a, void* model_b, vdr_q16 weight_a,
 
     // That's it. The merged model is exactly the weighted average.
     // weight_a = 7/10, weight_b = 3/10:
-    // merged[i] = 7/10 * a[i] + 3/10 * b[i] — exact for every parameter.
+    // merged[i] = 7/10 * a[i] + 3/10 * b[i],  exact for every parameter.
     // No float accumulation error across 7 billion parameters.
     // The merge is reversible: given merged and model_a and the weights,
     // you can recover model_b exactly. Try that with float merges.
 }
 
-// SLERP merge (spherical interpolation) — also exact
+// SLERP merge (spherical interpolation),  also exact
 // The trig functions use FRU for exact evaluation.
 // Every interpolation step is exact.
 // The merged model lies exactly on the geodesic between the two source models.
@@ -902,7 +902,7 @@ void remainder_health_check(void* weights, i64 n_params, VDRPrologStream_t strea
 
 ---
 
-### 2.1 Forward Diffusion — Exact Noise Addition
+### 2.1 Forward Diffusion,  Exact Noise Addition
 
 ```
 // The forward process adds noise at exact scheduled levels.
@@ -918,7 +918,7 @@ void forward_diffusion(void* x_0, void* noise, void* x_t,
                         VDRPrologStream_t stream) {
 
     // x_t = sqrt(alpha_bar_t) * x_0 + sqrt(1 - alpha_bar_t) * noise
-    // sqrt via FRU — exact to declared depth
+    // sqrt via FRU,  exact to declared depth
 
     vdr_q16 one_minus_alpha = { .v = 65536 - alpha_bar_t.v, .r0 = 0 };
 
@@ -926,7 +926,7 @@ void forward_diffusion(void* x_0, void* noise, void* x_t,
     VDRPrologFRUSqrt(VDRProlog_Q16, &alpha_bar_t, sqrt_alpha, 6, stream);
     VDRPrologFRUSqrt(VDRProlog_Q16, &one_minus_alpha, sqrt_one_minus, 6, stream);
 
-    // Scale and add — exact
+    // Scale and add,  exact
     VDRPrologVdrScale(VDRProlog_Q16, x_0, sqrt_alpha, term1, n_pixels, stream);
     VDRPrologVdrScale(VDRProlog_Q16, noise, sqrt_one_minus, term2, n_pixels, stream);
     VDRPrologVdrAdd(VDRProlog_Q16, term1, term2, x_t, n_pixels, stream);
@@ -940,7 +940,7 @@ void forward_diffusion(void* x_0, void* noise, void* x_t,
 
 ---
 
-### 2.2 Reverse Diffusion — Zero-Drift Denoising
+### 2.2 Reverse Diffusion,  Zero-Drift Denoising
 
 ```
 void reverse_step(void* model_weights, void* x_t, void* x_t_minus_1,
@@ -952,7 +952,7 @@ void reverse_step(void* model_weights, void* x_t, void* x_t_minus_1,
     // U-Net is integer convolutions + attention + exact layer norm.
     // Same architecture as LLM attention but spatial instead of sequential.
 
-    // Compute mean of reverse distribution — exact
+    // Compute mean of reverse distribution,  exact
     // mu_t = (1/sqrt(alpha_t)) * (x_t - (1-alpha_t)/sqrt(1-alpha_bar_t) * predicted_noise)
 
     vdr_q16 one_minus_alpha_t, recip_sqrt_alpha;
@@ -993,7 +993,7 @@ void denoise(void* model_weights, void* x_T, void* x_0,
             n_pixels, session, stream);
         x_current = x_next;
     }
-    // x_current is x_0 — the denoised output.
+    // x_current is x_0,  the denoised output.
     // Every intermediate step used exact arithmetic.
     // No decoherence from cumulative float drift across 1000 steps.
     // The reverse process is a more faithful inverse of the forward process
@@ -1001,11 +1001,11 @@ void denoise(void* model_weights, void* x_T, void* x_0,
 }
 ```
 
-**The key insight from the paper (VDR-26):** Conventional diffusion has a decoherence problem — each denoising step operates on the degraded output of the previous step, and cumulative float drift means the reverse process doesn't exactly invert the forward. After 1000 steps of forward + 1000 steps of reverse, you don't get back to the original image. VDR gives exact roundtrip at sufficient remainder depth.
+**The key insight from the paper (VDR-26):** Conventional diffusion has a decoherence problem,  each denoising step operates on the degraded output of the previous step, and cumulative float drift means the reverse process doesn't exactly invert the forward. After 1000 steps of forward + 1000 steps of reverse, you don't get back to the original image. VDR gives exact roundtrip at sufficient remainder depth.
 
 ---
 
-### 2.3 Diffusion Training — Exact Loss Gradients
+### 2.3 Diffusion Training,  Exact Loss Gradients
 
 ```
 void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
@@ -1014,29 +1014,29 @@ void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
     // Sample random timestep
     i32 t = random_int(0, n_timesteps);
 
-    // Sample noise — integer noise from a discrete distribution
+    // Sample noise,  integer noise from a discrete distribution
     // mapped to VDR values
     void* noise;
     sample_integer_noise(noise, n_pixels);
 
-    // Forward diffuse to timestep t — exact
+    // Forward diffuse to timestep t,  exact
     forward_diffusion(x_0, noise, x_t, alpha_bars[t], n_pixels, stream);
 
     // Record compute graph
     VDRPrologTrainComputeGraphRecord(graph, true);
 
-    // Predict noise — U-Net forward
+    // Predict noise,  U-Net forward
     unet_forward(unet_weights, x_t, t, predicted_noise, session, stream);
 
     VDRPrologTrainComputeGraphRecord(graph, false);
 
-    // MSE loss between predicted and actual noise — exact
+    // MSE loss between predicted and actual noise,  exact
     VDRPrologVdrSub(VDRProlog_Q16, predicted_noise, noise, diff, n_pixels, stream);
     VDRPrologVdrMul(VDRProlog_Q16, diff, diff, squared, n_pixels, stream);  // element-wise square
     VDRPrologStatsMean(VDRProlog_Q16, squared, &mse_loss, n_pixels, stream);
     // mse_loss is an exact VDR fraction.
 
-    // Backward — exact gradients through the U-Net
+    // Backward,  exact gradients through the U-Net
     VDRPrologTrainBackwardPass(graph, &mse_loss, stream);
 
     // Update
@@ -1046,7 +1046,7 @@ void diffusion_training_step(void* unet_weights, void* x_0, i32 n_pixels,
 
 ---
 
-### 2.4 Classifier-Free Guidance — Exact Interpolation
+### 2.4 Classifier-Free Guidance,  Exact Interpolation
 
 ```
 void cfg_guided_denoise(void* model_weights, void* x_t, void* x_t_minus_1,
@@ -1076,7 +1076,7 @@ void cfg_guided_denoise(void* model_weights, void* x_t, void* x_t_minus_1,
 
 ---
 
-### 2.5 Latent Diffusion — VAE Encode/Decode
+### 2.5 Latent Diffusion,  VAE Encode/Decode
 
 ```
 // VAE encoder and decoder are convolutional networks in exact integer arithmetic
@@ -1085,14 +1085,14 @@ void vae_encode(void* encoder_weights, void* image, void* latent,
                  i32 height, i32 width, i32 channels, i32 latent_dim,
                  VDRPrologStream_t stream) {
 
-    // Convolution layers — exact integer MAC
+    // Convolution layers,  exact integer MAC
     for (i32 layer = 0; layer < n_encoder_layers; layer++) {
         VDRPrologTransformConv2D(VDRProlog_Q16,
             current_feature_map, conv_kernel[layer], next_feature_map,
             h, w, kernel_h, kernel_w, stream);
 
-        // Activation — exact via integer surrogate or FRU
-        // Batch norm — exact mean and variance
+        // Activation,  exact via integer surrogate or FRU
+        // Batch norm,  exact mean and variance
         VDRPrologVdrLayerNorm(VDRProlog_Q16, next_feature_map, normed,
             bn_gamma[layer], bn_beta[layer], feature_size, 0, stream);
     }
@@ -1106,7 +1106,7 @@ void vae_decode(void* decoder_weights, void* latent, void* reconstructed,
                  i32 latent_dim, i32 height, i32 width, i32 channels,
                  VDRPrologStream_t stream) {
 
-    // Transpose convolutions — exact integer MAC
+    // Transpose convolutions,  exact integer MAC
     // Mirror of encoder. Exact reconstruction at sufficient model capacity.
 }
 
@@ -1124,7 +1124,7 @@ void vae_decode(void* decoder_weights, void* latent, void* reconstructed,
 ### 2.6 Deterministic Diffusion Sampling (DDIM)
 
 ```
-// DDIM uses deterministic sampling — no random noise added at each step.
+// DDIM uses deterministic sampling,  no random noise added at each step.
 // In float, "deterministic" DDIM still produces slightly different results
 // on different hardware. In VDRProlog, truly deterministic.
 
@@ -1135,7 +1135,7 @@ void ddim_step(void* model_weights, void* x_t, void* x_t_minus_1,
     // Predict noise
     unet_forward(model_weights, x_t, t, predicted_noise, stream);
 
-    // Predict x_0 from x_t and predicted noise — exact
+    // Predict x_0 from x_t and predicted noise,  exact
     // x_0_pred = (x_t - sqrt(1-alpha_bar_t) * noise) / sqrt(alpha_bar_t)
     // ... (exact VDR operations as in reverse_step)
 
@@ -1160,7 +1160,7 @@ void ddim_step(void* model_weights, void* x_t, void* x_t_minus_1,
 
 ---
 
-### 3.1 Vision Transformer (ViT) — Image Classification
+### 3.1 Vision Transformer (ViT),  Image Classification
 
 ```
 // Patch embedding: split image into patches, linear project
@@ -1170,18 +1170,18 @@ void vit_forward(void* vit_weights, void* image_patches, void* class_logits,
                   i32 n_patches, i32 patch_dim, i32 n_classes,
                   VDRPrologStream_t stream) {
 
-    // Patch embedding — linear projection
+    // Patch embedding,  linear projection
     VDRPrologVdrGemm(VDRProlog_Q16, NO_TRANS, NO_TRANS,
         n_patches, d_model, patch_dim,
         &one_q16, image_patches, n_patches,
         patch_embed_weights, patch_dim,
         &zero_q16, embedded, n_patches, stream);
 
-    // Add positional embedding — exact
+    // Add positional embedding,  exact
     VDRPrologVdrAdd(VDRProlog_Q16, embedded, pos_embeddings, embedded,
         n_patches * d_model, stream);
 
-    // Transformer layers — identical to LLM
+    // Transformer layers,  identical to LLM
     for (i32 layer = 0; layer < n_layers; layer++) {
         // LayerNorm → Attention → Residual → LayerNorm → MLP → Residual
         // Same code as 1.2. Not "similar code." Same functions, same API.
@@ -1204,7 +1204,7 @@ void vit_forward(void* vit_weights, void* image_patches, void* class_logits,
 
 ---
 
-### 3.2 Reinforcement Learning — Exact Value Estimation
+### 3.2 Reinforcement Learning,  Exact Value Estimation
 
 ```
 // PPO with exact advantage estimation
@@ -1213,18 +1213,18 @@ void ppo_step(void* policy_weights, void* value_weights,
                void* states, void* actions, void* rewards,
                i32 n_steps, VDRPrologStream_t stream) {
 
-    // Value function — exact
+    // Value function,  exact
     void* values;
     VDRPrologMallocTyped(&values, VDRProlog_Q16, n_steps);
     for (i32 t = 0; t < n_steps; t++) {
         value_network_forward(value_weights, states + t * state_dim, &values[t], stream);
     }
 
-    // GAE (Generalized Advantage Estimation) — exact accumulation
+    // GAE (Generalized Advantage Estimation),  exact accumulation
     // advantages[t] = sum_{l=0}^{T-t} (gamma*lambda)^l * delta[t+l]
     // delta[t] = reward[t] + gamma * V[t+1] - V[t]
     // Each delta is exact. Gamma and lambda are exact VDR fractions.
-    // The sum accumulates exactly — no float drift over long episodes.
+    // The sum accumulates exactly,  no float drift over long episodes.
 
     void* advantages;
     VDRPrologMallocTyped(&advantages, VDRProlog_Q16, n_steps);
@@ -1245,7 +1245,7 @@ void ppo_step(void* policy_weights, void* value_weights,
         // In conventional RL, GAE over long episodes accumulates substantial error.
     }
 
-    // PPO clipped objective — exact ratio comparison
+    // PPO clipped objective,  exact ratio comparison
     // ratio = pi_new(a|s) / pi_old(a|s)
     // Both are exact softmax probabilities. Division is exact VDR.
     // Clip comparison: is ratio > 1+epsilon? Exact integer comparison.
@@ -1253,11 +1253,11 @@ void ppo_step(void* policy_weights, void* value_weights,
 }
 ```
 
-**Why this matters for RL:** Value estimation errors are the primary source of instability in policy gradient methods. Exact value computation means the advantage signal is clean. No noise from arithmetic — only noise from the environment, which is the signal you're trying to learn from.
+**Why this matters for RL:** Value estimation errors are the primary source of instability in policy gradient methods. Exact value computation means the advantage signal is clean. No noise from arithmetic,  only noise from the environment, which is the signal you're trying to learn from.
 
 ---
 
-### 3.3 Graph Neural Networks — Exact Message Passing
+### 3.3 Graph Neural Networks,  Exact Message Passing
 
 ```
 void gnn_message_pass(void* node_features, void* edge_index,
@@ -1275,16 +1275,16 @@ void gnn_message_pass(void* node_features, void* edge_index,
         vdr_q16 aggregated[MAX_FEATURE_DIM] = {0};
         for (i32 e = 0; e < node_degree[node]; e++) {
             i32 neighbor = neighbors[node][e];
-            // Scale neighbor features by edge weight — exact
+            // Scale neighbor features by edge weight,  exact
             VDRPrologVdrScale(VDRProlog_Q16,
                 node_features + neighbor * feature_dim,
                 &edge_weights[edge_id],
                 scaled_neighbor, feature_dim, stream);
-            // Accumulate — exact
+            // Accumulate,  exact
             VDRPrologVdrAdd(VDRProlog_Q16, aggregated, scaled_neighbor,
                 aggregated, feature_dim, stream);
         }
-        // Normalize by degree — exact division
+        // Normalize by degree,  exact division
         vdr_q16 degree_vdr = { .v = node_degree[node] * 65536, .r0 = 0 };
         VDRPrologVdrDiv(VDRProlog_Q16, aggregated, &degree_vdr,
             updated_features + node * feature_dim, feature_dim, stream);
@@ -1297,7 +1297,7 @@ void gnn_message_pass(void* node_features, void* edge_index,
 
 ---
 
-### 3.4 Time Series Forecasting — Exact Recurrence
+### 3.4 Time Series Forecasting,  Exact Recurrence
 
 ```
 void lstm_forward(void* weights, void* input_seq, void* output_seq,
@@ -1316,14 +1316,14 @@ void lstm_forward(void* weights, void* input_seq, void* output_seq,
         VDRPrologVdrGemm(VDRProlog_Q16, ..., input[t], W_i, ..., gate_i_pre, stream);
         // sigmoid via FRU or rational approximation
         VDRPrologFRUExp(VDRProlog_Q16, negated_gate_i_pre, exp_neg, 6, stream);
-        // sigmoid = 1 / (1 + exp(-x)) — exact
+        // sigmoid = 1 / (1 + exp(-x)),  exact
 
-        // Cell update: c = f*c + i*g — exact
+        // Cell update: c = f*c + i*g,  exact
         VDRPrologVdrMul(VDRProlog_Q16, f_gate, c, fc, hidden_dim, stream);
         VDRPrologVdrMul(VDRProlog_Q16, i_gate, g_gate, ig, hidden_dim, stream);
         VDRPrologVdrAdd(VDRProlog_Q16, fc, ig, c, hidden_dim, stream);
 
-        // Hidden: h = o * tanh(c) — exact
+        // Hidden: h = o * tanh(c),  exact
         // After 10,000 timesteps: zero accumulated drift in hidden state.
         // Conventional LSTMs: hidden state drifts from compounding float error,
         // contributing to the "forgetting" problem beyond what the architecture intends.
@@ -1333,7 +1333,7 @@ void lstm_forward(void* weights, void* input_seq, void* output_seq,
 
 ---
 
-### 3.5 Embedding Search — Exact Similarity
+### 3.5 Embedding Search,  Exact Similarity
 
 ```
 void exact_cosine_similarity(void* embeddings_a, void* embeddings_b,
@@ -1372,7 +1372,7 @@ void exact_cosine_similarity(void* embeddings_a, void* embeddings_b,
 
 ---
 
-### 3.6 Quantization-Aware Training — Unnecessary
+### 3.6 Quantization-Aware Training,  Unnecessary
 
 ```
 // This section is deliberately empty.
@@ -1400,7 +1400,7 @@ void exact_cosine_similarity(void* embeddings_a, void* embeddings_b,
 
 ---
 
-### 3.7 A/B Testing Models — Zero Noise Floor
+### 3.7 A/B Testing Models,  Zero Noise Floor
 
 ```
 void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
@@ -1416,8 +1416,8 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
         if (pred_b == eval->examples[i].target) correct_b++;
     }
 
-    // Accuracy A: correct_a / n_examples — exact fraction
-    // Accuracy B: correct_b / n_examples — exact fraction
+    // Accuracy A: correct_a / n_examples,  exact fraction
+    // Accuracy B: correct_b / n_examples,  exact fraction
     // Comparison: exact integer comparison
     i32 cmp;
     VDRPrologVdrCompare(VDRProlog_Q16, &accuracy_a, &accuracy_b, &cmp, 1, stream);
@@ -1426,7 +1426,7 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
     // Not "model A is better with p < 0.05 after accounting for evaluation noise."
     // The evaluation has zero arithmetic noise. The only variance is from
     // the test set itself. Statistical testing is still needed for generalization
-    // claims, but the evaluation numbers are exact — you're testing the model,
+    // claims, but the evaluation numbers are exact,  you're testing the model,
     // not the arithmetic.
 
     // Run this test 100 times: same numbers, 100 times.
@@ -1439,16 +1439,16 @@ void ab_test(void* model_a, void* model_b, eval_dataset_t* eval) {
 
 ---
 
-### 3.8 Distillation — Exact Teacher Signals
+### 3.8 Distillation,  Exact Teacher Signals
 
 ```
 void distillation_step(void* teacher_weights, void* student_weights,
                         i32* input_ids, i32 seq_len, vdr_q16 temperature,
                         vdr_q16 alpha, VDRPrologStream_t stream) {
 
-    // Teacher forward — exact soft targets
+    // Teacher forward,  exact soft targets
     forward_pass(teacher_weights, input_ids, seq_len, teacher_logits, stream);
-    // Divide logits by temperature — exact
+    // Divide logits by temperature,  exact
     VDRPrologVdrDiv(VDRProlog_Q16, teacher_logits, &temperature,
         teacher_scaled, seq_len * vocab_size, stream);
     VDRPrologVdrSoftmax(VDRProlog_Q16, teacher_scaled, teacher_soft_targets,
@@ -1466,7 +1466,7 @@ void distillation_step(void* teacher_weights, void* student_weights,
         student_scaled, seq_len * vocab_size, stream);
     VDRPrologVdrSoftmax(VDRProlog_Q16, student_scaled, student_probs, vocab_size, stream);
 
-    // KL divergence loss — exact
+    // KL divergence loss,  exact
     // KL(teacher || student) = sum(teacher * log(teacher/student))
     // All exact VDR operations. The distillation signal is clean.
 
@@ -1479,7 +1479,7 @@ void distillation_step(void* teacher_weights, void* student_weights,
 
 ---
 
-### 3.9 Federated Learning — Deterministic Aggregation
+### 3.9 Federated Learning,  Deterministic Aggregation
 
 ```
 // N clients train locally, send updates to server, server aggregates
@@ -1496,19 +1496,19 @@ void federated_client_train(void* local_weights, train_data_t* local_data,
         local_training_step(local_weights, local_data, stream);
     }
 
-    // Compute delta: local - global — exact
+    // Compute delta: local - global,  exact
     VDRPrologVdrSub(VDRProlog_Q16, local_weights, global_weights, weight_delta,
         n_params, stream);
 
     // Send weight_delta to server. Integers. Bit-identical transmission.
-    // No "close enough" — the server receives exactly what the client computed.
+    // No "close enough",  the server receives exactly what the client computed.
 }
 
 // Server side:
 void federated_aggregate(void** client_deltas, i32 n_clients,
                            void* global_weights, VDRPrologStream_t stream) {
 
-    // Average deltas — exact
+    // Average deltas,  exact
     void* sum_delta;
     VDRPrologMallocTyped(&sum_delta, VDRProlog_Q16, n_params);
     VDRPrologMemset(sum_delta, 0, n_params * 8);
@@ -1518,7 +1518,7 @@ void federated_aggregate(void** client_deltas, i32 n_clients,
             n_params, stream);
     }
 
-    // Divide by n_clients — exact
+    // Divide by n_clients,  exact
     vdr_q16 n_clients_vdr = { .v = n_clients * 65536, .r0 = 0 };
     VDRPrologVdrDiv(VDRProlog_Q16, sum_delta, &n_clients_vdr, avg_delta, n_params, stream);
 
@@ -1529,7 +1529,7 @@ void federated_aggregate(void** client_deltas, i32 n_clients,
     // - Same client updates in any order → same global model
     // - Verifiable: any observer can recompute the aggregation and get bit-identical result
     // - Auditable: the exact contribution of each client is traceable
-    // This is confidential computing on exact arithmetic — the compliance story writes itself.
+    // This is confidential computing on exact arithmetic,  the compliance story writes itself.
 }
 ```
 
@@ -1555,12 +1555,12 @@ void federated_aggregate(void** client_deltas, i32 n_clients,
 | CFG guidance | vdr_math | Interpolation imprecision |
 | Latent diffusion | transform, vdr_math | VAE roundtrip loss |
 | DDIM | vdr_math | "Deterministic" sampling that isn't |
-| ViT | vdr_math, attention | Same as LLM — shared architecture |
+| ViT | vdr_math, attention | Same as LLM,  shared architecture |
 | RL / PPO | vdr_math, functional_remainder | GAE accumulation drift |
 | GNN | vdr_math, builtins (graph) | Degree-dependent precision loss |
 | Time series | vdr_math, functional_remainder | Hidden state drift |
 | Embedding search | vdr_math, builtins (sort) | Unstable similarity rankings |
-| QAT | — | The entire subfield |
+| QAT |,  | The entire subfield |
 | A/B testing | vdr_math, profiling | Evaluation arithmetic noise |
 | Distillation | training, vdr_math | Dark knowledge truncation |
 | Federated learning | distributed, training, safety | Non-deterministic aggregation, audit gaps |

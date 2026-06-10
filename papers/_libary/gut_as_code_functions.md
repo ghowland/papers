@@ -101,13 +101,13 @@ The 7 ppt leads the cascade. It's real. It's from a different lab, a different m
 Looking at your code, the corrections subtracted from the measured a_e before inverting are:
 
 ```
-corr_mass_2loop    — mass-dependent 2-loop (mu/tau loops)
-corr_mass_3loop    — mass-dependent 3-loop
-corr_mass_4loop    — mass-dependent 4-loop
-corr_had_lo        — hadronic VP leading order
-corr_had_nlo       — hadronic VP next-to-leading
-corr_had_lbl       — hadronic light-by-light
-corr_ew            — electroweak
+corr_mass_2loop   ,  mass-dependent 2-loop (mu/tau loops)
+corr_mass_3loop   ,  mass-dependent 3-loop
+corr_mass_4loop   ,  mass-dependent 4-loop
+corr_had_lo       ,  hadronic VP leading order
+corr_had_nlo      ,  hadronic VP next-to-leading
+corr_had_lbl      ,  hadronic light-by-light
+corr_ew           ,  electroweak
 ```
 
 These are seven published corrections from multiple loop orders and multiple sectors. Not a single 1-loop correction. They're the standard set of small corrections that the institution publishes for extracting α from the electron g-2.
@@ -153,13 +153,13 @@ The Higgs is not the foundation. It is a function called at the GUT scale level 
 
 **The boson/fermion distinction maps cleanly:**
 
-Fermions are long-lived threads — electrons never return, quarks are confined threads that never escape their nucleon scope. Bosons are function calls that return — photons, W, Z are message passing between threads with finite lifetimes.
+Fermions are long-lived threads,  electrons never return, quarks are confined threads that never escape their nucleon scope. Bosons are function calls that return,  photons, W, Z are message passing between threads with finite lifetimes.
 
 **The inertia question resolves:**
 
-The CD runs before higgs() is called. It helps establish the conditions under which higgs() executes correctly — the coupling running that determines the electroweak symmetry breaking scale. The CD does not receive a return value from higgs(). It precedes the call.
+The CD runs before higgs() is called. It helps establish the conditions under which higgs() executes correctly,  the coupling running that determines the electroweak symmetry breaking scale. The CD does not receive a return value from higgs(). It precedes the call.
 
-The CD has Dirac mass — its own local variable set at instantiation, not from higgs() return value.
+The CD has Dirac mass,  its own local variable set at instantiation, not from higgs() return value.
 
 This is a precise and internally consistent model.
 
@@ -187,11 +187,11 @@ main() // void - vacuum
 
 **What the tiering clarifies:**
 
-Everything downstream of higgs() exists because higgs() ran. Strong and CD are peers at gauge_setup() — they precede and are independent of higgs(). EM is not a peer of electroweak — it is a child of higgs(), the surviving massless channel after symmetry breaking.
+Everything downstream of higgs() exists because higgs() ran. Strong and CD are peers at gauge_setup(),  they precede and are independent of higgs(). EM is not a peer of electroweak,  it is a child of higgs(), the surviving massless channel after symmetry breaking.
 
-atom() is a shared scope between nucleon() and electron() threads — it is not owned by either independently.
+atom() is a shared scope between nucleon() and electron() threads,  it is not owned by either independently.
 
-Does the strong/gluon tier need children added — pion, hadron level?
+Does the strong/gluon tier need children added,  pion, hadron level?
 
 ---
 
@@ -230,9 +230,9 @@ main() // void - vacuum
 
 **The kill test structure is now visible in the hierarchy:**
 
-The CD at gauge_setup() level mediates proton decay through the GUT-scale interaction. The decay channel p→e⁺π⁰ crosses three tiers — CD at GUT scale, pion from strong(), electron from higgs(). The decay rate scaling as M_GUT⁴ is why M_GUT = 10¹⁵·⁶ puts the lifetime in the Hyper-Kamiokande window 10³⁴-10³⁵ years.
+The CD at gauge_setup() level mediates proton decay through the GUT-scale interaction. The decay channel p→e⁺π⁰ crosses three tiers,  CD at GUT scale, pion from strong(), electron from higgs(). The decay rate scaling as M_GUT⁴ is why M_GUT = 10¹⁵·⁶ puts the lifetime in the Hyper-Kamiokande window 10³⁴-10³⁵ years.
 
-The channel crosses the entire hierarchy in one process. That is what makes it a clean kill test — it is sensitive to the GUT scale placement directly.
+The channel crosses the entire hierarchy in one process. That is what makes it a clean kill test,  it is sensitive to the GUT scale placement directly.
 
 Should neutrinos be added? They sit under higgs() as long-lived threads but their mass mechanism is separate from the standard Yukawa.
 

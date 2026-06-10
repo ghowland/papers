@@ -8,13 +8,13 @@ Engineers and researchers who have not read prior VDR papers. No assumed knowled
 
 ---
 
-### Section 1: The Problem — What Float Discards
+### Section 1: The Problem,  What Float Discards
 
 Open with the mechanical fact. Every floating-point multiply or add can round. One rounding is negligible. A chain of thousands or millions compounds. State the specific failure modes: drift in long diffusion chains, non-reproducibility across platforms, inability to test exact equality, NaN/Inf edge cases, epsilon parameter proliferation. No opinion, just the observable costs.
 
 Give the concrete numbers: 8.64M-step diffusion chain for 2-hour video at 24fps × 150 denoising steps. Float64 drift reaches ~1.9e-8 per element. This is measurable and manifests as color shift and temporal flicker.
 
-### Section 2: VDR — The Triple [V, D, R]
+### Section 2: VDR,  The Triple [V, D, R]
 
 Introduce VDR from scratch for the new reader. Every value is three integers: V (numerator), D (denominator), R (remainder). D is fixed. When a multiply would produce a result too large for the D frame, divmod splits it: quotient goes to V, remainder goes to R. Zero information discarded. This is grade-school division applied as an architectural principle.
 
@@ -22,9 +22,9 @@ Explain closed objects (R=0, plain rational) and active objects (R≠0, carrying
 
 ### Section 3: Q335 and Why We Don't Use It Here
 
-Explain that the Python reference implementation (vdr-math) uses D=2^335 as its default basis. This was chosen for physics and transcendental computation — 100-digit precision sufficient for QED corrections, zeta functions, elliptic integrals. Validated across 921 tests in 38 mathematical domains with zero VDR computation errors.
+Explain that the Python reference implementation (vdr-math) uses D=2^335 as its default basis. This was chosen for physics and transcendental computation,  100-digit precision sufficient for QED corrections, zeta functions, elliptic integrals. Validated across 921 tests in 38 mathematical domains with zero VDR computation errors.
 
-Then explain why Q335 is wrong for LLM and diffusion workloads. 335-bit integers don't fit in SIMD registers. They require multi-precision arithmetic libraries. They are hundreds of times slower than machine-word operations. The workloads don't need 100-digit precision — they need exact arithmetic at the precision level the model actually operates at.
+Then explain why Q335 is wrong for LLM and diffusion workloads. 335-bit integers don't fit in SIMD registers. They require multi-precision arithmetic libraries. They are hundreds of times slower than machine-word operations. The workloads don't need 100-digit precision,  they need exact arithmetic at the precision level the model actually operates at.
 
 VDR allows any basis. D is a choice, not a constant. The system's exactness property holds at any D. We retool D to match the hardware.
 
@@ -32,7 +32,7 @@ VDR allows any basis. D is a choice, not a constant. The system's exactness prop
 
 Walk through the basis selection rationale for LLM and diffusion.
 
-Weights: D=2^8 (INT8). Weights are frozen during inference. R=0 for stored weights — no remainder channel needed in memory. One byte per parameter. This matches existing INT8 tensor core hardware and halves memory footprint versus FP16.
+Weights: D=2^8 (INT8). Weights are frozen during inference. R=0 for stored weights,  no remainder channel needed in memory. One byte per parameter. This matches existing INT8 tensor core hardware and halves memory footprint versus FP16.
 
 Activations: D=2^16 (INT16). Activations are computed on-chip, not loaded from HBM. Two bytes for V, two bytes for R, four bytes total per activation. Same memory footprint as FP32 but carrying exact remainder. Fits 32 elements per AVX-512 register or 16-wide GPU SIMD.
 
@@ -44,9 +44,9 @@ Explain that D being a power of two means divmod is a bit shift and mask. No int
 
 Present the structs. Element types (Vdr8, Vdr16, Vdr64) with V and R fields, no D field because D is a module-level constant per domain. Container types (WeightMat, ActivationMat, GradMat) with flat arrays and no basis metadata. Layer types (LinearLayer, AttentionHead, TransformerBlock) composing containers. Diffusion types (DiffusionSchedule, DiffusionLatent, DiffusionTrajectory) with precomputed exact schedule values.
 
-Emphasize the deinterleaved memory layout: separate V and R arrays rather than interleaved v,r,v,r. This allows pure vertical SIMD — load 32 V values in one instruction, 32 R values in another, no shuffling.
+Emphasize the deinterleaved memory layout: separate V and R arrays rather than interleaved v,r,v,r. This allows pure vertical SIMD,  load 32 V values in one instruction, 32 R values in another, no shuffling.
 
-### Section 6: CPU SIMD Performance — AVX-512
+### Section 6: CPU SIMD Performance,  AVX-512
 
 Walk through each operation with cycle counts and element throughput.
 
@@ -62,13 +62,13 @@ Walk through each operation with cycle counts and element throughput.
 
 **Residual add.** Float: one add. VDR: V add + R add + carry propagation. Float 1.3-1.5× faster. Negligible contribution to total pipeline compute.
 
-### Section 7: GPU Performance — H100 Tensor Cores
+### Section 7: GPU Performance,  H100 Tensor Cores
 
 Present the H100 execution unit throughput table: FP16 tensor cores at 512 ops/SM/cycle, INT8 tensor cores at 1024 ops/SM/cycle, SFU at 32 ops/SM/cycle.
 
 **GEMM.** INT8 tensor cores deliver 2× FP16 throughput on the operation that dominates transformer compute. VDR maps directly onto existing INT8 tensor core instructions. Projected 1.6-1.8× effective speedup after accounting for kernel maturity.
 
-**Softmax on GPU.** Float softmax is SFU-bottlenecked — exp and division both require the SFU at 1/16 tensor core rate. VDR replaces both with shared memory table lookup and Barrett reduction at full integer throughput. 3-4× faster.
+**Softmax on GPU.** Float softmax is SFU-bottlenecked,  exp and division both require the SFU at 1/16 tensor core rate. VDR replaces both with shared memory table lookup and Barrett reduction at full integer throughput. 3-4× faster.
 
 **Activations and normalization on GPU.** Same SFU elimination pattern. GeLU, SiLU, rsqrt all become table lookups. 2-6× faster on these operations.
 
@@ -110,9 +110,9 @@ Residual addition is 0.7× float speed due to remainder carry propagation. This 
 
 Kernel maturity is the primary practical gap. cuBLAS and cuDNN represent decades of optimization. VDR kernels are new. The projected throughput numbers assume 85-90% hardware utilization versus ~95% for mature float kernels. As VDR kernels mature, the gap narrows.
 
-Table lookup for transcendentals requires shared memory or L1 residency. For Q16 inputs the table is 256KB — fits L2 comfortably but competes for shared memory with weight tiles. Kernel design must balance tile size against table residency.
+Table lookup for transcendentals requires shared memory or L1 residency. For Q16 inputs the table is 256KB,  fits L2 comfortably but competes for shared memory with weight tiles. Kernel design must balance tile size against table residency.
 
-Basis choice is a new engineering decision. Choosing D too small loses dynamic range. Choosing D too large wastes bits and potentially overflows accumulators. The choice must be validated per model architecture. This paper uses D=2^8 for weights, D=2^16 for activations, D=2^64 for gradients — these are empirically motivated starting points, not proven optimal.
+Basis choice is a new engineering decision. Choosing D too small loses dynamic range. Choosing D too large wastes bits and potentially overflows accumulators. The choice must be validated per model architecture. This paper uses D=2^8 for weights, D=2^16 for activations, D=2^64 for gradients,  these are empirically motivated starting points, not proven optimal.
 
 VDR remainder channels double the on-chip storage for activations compared to storing V alone. For activation-memory-bound workloads (very long sequences, limited GPU memory), this is a real cost.
 

@@ -66,7 +66,7 @@ Fact: constraint("30_sec_runtime", scope("operational"), active,
         source("user")).
 ```
 
-These are always on. The system checks them before generating output. "Will this code run on Python 3.8?" is not a style preference — it is a constraint that can be verified by inspecting the generated AST for forbidden constructs.
+These are always on. The system checks them before generating output. "Will this code run on Python 3.8?" is not a style preference,  it is a constraint that can be verified by inspecting the generated AST for forbidden constructs.
 
 #### 2. Axioms
 
@@ -94,7 +94,7 @@ Axioms cannot be suspended or parked. They can only be active or violated. A vio
 
 #### 3. Legal and Policy Constraints
 
-These come from external requirements — regulations, company policies, user preferences, safety rules.
+These come from external requirements,  regulations, company policies, user preferences, safety rules.
 
 ```
 Fact: constraint("no_medical_diagnosis", scope("legal"), active,
@@ -113,7 +113,7 @@ Fact: constraint("gdpr_no_pii_in_logs", scope("legal"), active,
         source("regulation")).
 ```
 
-Legal constraints can be activated or deactivated by context. A medical conversation might suspend "no_medical_diagnosis" and activate "medical_disclaimer_required" instead. The transitions are logged as facts in the knowledge base — so there is a record of which constraints were active when, and who changed them.
+Legal constraints can be activated or deactivated by context. A medical conversation might suspend "no_medical_diagnosis" and activate "medical_disclaimer_required" instead. The transitions are logged as facts in the knowledge base,  so there is a record of which constraints were active when, and who changed them.
 
 #### 4. Project Constraints
 
@@ -297,7 +297,7 @@ Rule: on_topic_resume(Topic) :-
 ```
 
 When the user says "let's go back to the gym testing," the system:
-1. Queries: `topic("vdr_gym_testing", parked, _, _)` — finds it parked
+1. Queries: `topic("vdr_gym_testing", parked, _, _)`,  finds it parked
 2. Fires: `on_topic_resume("vdr_gym_testing")`
 3. Restores the constraint set for that topic
 4. Lists pending items: "fix maxflow BFS, fix gym21 decay threshold"

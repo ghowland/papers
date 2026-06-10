@@ -56,8 +56,8 @@ This tells any future session exactly which library versions the script was writ
 When a library is added or upgraded, the pack version increments:
 
 ```
-HOWL-PLATFORM-v1  — Session 4 (April 3 2026), 7 libraries
-HOWL-PLATFORM-v2  — (future) adds new library or upgrades existing
+HOWL-PLATFORM-v1 ,  Session 4 (April 3 2026), 7 libraries
+HOWL-PLATFORM-v2 ,  (future) adds new library or upgrades existing
 ```
 
 Old pack versions are never deleted. A script declaring v1 runs against v1 libraries. A script declaring v2 runs against v2 libraries. The structural upgrade protocol (Section 6) ensures v1 scripts also run against v2 libraries.
@@ -92,7 +92,7 @@ Governed by api_diagram_rules.md v2.0. Import data_5_diagram_lib.py and the plat
 
 ### 4.1 Always in Chat
 
-All scripts are written IN CHAT. Never as file attachments. The human must be able to read, verify, and run the script themselves. This is the fundamental delivery rule — it applies to libraries, demos, experiments, and diagram scripts.
+All scripts are written IN CHAT. Never as file attachments. The human must be able to read, verify, and run the script themselves. This is the fundamental delivery rule,  it applies to libraries, demos, experiments, and diagram scripts.
 
 ### 4.2 Python 3.8 Compatible
 
@@ -345,7 +345,7 @@ Every script written against v1 continues to work because nothing was removed, r
 
 ### 7.1 Paper Pack
 
-Each paper has a `./code/` directory containing copies of the platform libraries it uses. This is the paper's pack — frozen at the version used when the paper was written.
+Each paper has a `./code/` directory containing copies of the platform libraries it uses. This is the paper's pack,  frozen at the version used when the paper was written.
 
 ```
 HOWL-PHYS-30/
@@ -401,13 +401,13 @@ For scripts testing a hypothesis (like phys24_hubble_lib.py):
 
 Null results are results. When a falsification test fails or a prediction misses:
 
-1. Keep the FAIL in the self-test — do not suppress it
+1. Keep the FAIL in the self-test,  do not suppress it
 2. Write a null report explaining what the FAIL means
 3. Add the null to the library's documentation
 4. Future sessions see the FAIL and understand its meaning
 
 ```python
-# The F1 strict FAIL is kept — it tells us SH0ES and H0LiCOW
+# The F1 strict FAIL is kept,  it tells us SH0ES and H0LiCOW
 # are in the same distance class, not strictly ordered.
 ```
 
@@ -417,7 +417,7 @@ When new data changes a result:
 
 1. Keep the old result with a version suffix
 2. Add the new result with the updated data
-3. Both are accessible — the old for reproducibility, the new for current work
+3. Both are accessible,  the old for reproducibility, the new for current work
 
 ```python
 alpha_s_prediction_v1 = mpf("0.11838")  # Session 4, two-loop full b_ij
@@ -538,7 +538,7 @@ Use mpmath via phys24_lib.py: `from mpmath import pi as mpi, log as mlog, sqrt a
 
 ```python
 x = float(some_fraction)  # NEVER in computation
-y = x * 2.5              # NEVER — loses precision
+y = x * 2.5              # NEVER,  loses precision
 
 # CORRECT
 x = f2m(some_fraction)    # Fraction → mpf at full precision
@@ -574,7 +574,7 @@ Use `show("label", value)` or `mp.nstr(value, N)` instead.
 
 ```python
 fig, ax = plt.subplots(...)           # NEVER in diagram scripts
-fig.patch.set_facecolor('#0a0a12')    # NEVER — use dark_fig()
+fig.patch.set_facecolor('#0a0a12')    # NEVER,  use dark_fig()
 ```
 
 Use `fig, ax = dark_fig("Title")` from data_5_diagram_lib.py.

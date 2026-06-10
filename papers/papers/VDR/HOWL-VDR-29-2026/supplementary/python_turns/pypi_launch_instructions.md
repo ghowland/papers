@@ -69,7 +69,7 @@ SOFTWARE.
 
 ## 2. Requirements Files
 
-### 2.1 `requirements.txt` (runtime — empty, no required deps)
+### 2.1 `requirements.txt` (runtime,  empty, no required deps)
 
 ```
 # vdr-math has no required dependencies.
@@ -109,7 +109,7 @@ Create a `scripts/` directory:
 mkdir -p scripts
 ```
 
-### 3.1 `scripts/test.sh` — Run tests
+### 3.1 `scripts/test.sh`,  Run tests
 
 ```bash
 #!/bin/bash
@@ -118,7 +118,7 @@ set -e
 python -m pytest tests/ -v "$@"
 ```
 
-### 3.2 `scripts/test-fast.sh` — Run core tests only
+### 3.2 `scripts/test-fast.sh`,  Run core tests only
 
 ```bash
 #!/bin/bash
@@ -127,7 +127,7 @@ set -e
 python -m pytest tests/ -v --ignore=tests/gym "$@"
 ```
 
-### 3.3 `scripts/test-gym.sh` — Run gym tests only
+### 3.3 `scripts/test-gym.sh`,  Run gym tests only
 
 ```bash
 #!/bin/bash
@@ -136,7 +136,7 @@ set -e
 python -m pytest tests/gym/ -v "$@"
 ```
 
-### 3.4 `scripts/test-cov.sh` — Coverage report
+### 3.4 `scripts/test-cov.sh`,  Coverage report
 
 ```bash
 #!/bin/bash
@@ -147,7 +147,7 @@ echo ""
 echo "HTML report: htmlcov/index.html"
 ```
 
-### 3.5 `scripts/build.sh` — Build package
+### 3.5 `scripts/build.sh`,  Build package
 
 ```bash
 #!/bin/bash
@@ -160,7 +160,7 @@ echo "Built:"
 ls -la dist/
 ```
 
-### 3.6 `scripts/publish-test.sh` — Upload to Test PyPI
+### 3.6 `scripts/publish-test.sh`,  Upload to Test PyPI
 
 ```bash
 #!/bin/bash
@@ -173,7 +173,7 @@ echo "Published to Test PyPI."
 echo "Install with: pip install --index-url https://test.pypi.org/simple/ vdr-math"
 ```
 
-### 3.7 `scripts/publish.sh` — Upload to real PyPI
+### 3.7 `scripts/publish.sh`,  Upload to real PyPI
 
 ```bash
 #!/bin/bash
@@ -191,7 +191,7 @@ echo "Published to PyPI."
 echo "Install with: pip install vdr-math"
 ```
 
-### 3.8 `scripts/lint.sh` — Lint and type check
+### 3.8 `scripts/lint.sh`,  Lint and type check
 
 ```bash
 #!/bin/bash
@@ -204,7 +204,7 @@ echo "=== Mypy ==="
 python -m mypy src/vdr/ --ignore-missing-imports
 ```
 
-### 3.9 `scripts/docs-build.sh` — Build documentation
+### 3.9 `scripts/docs-build.sh`,  Build documentation
 
 ```bash
 #!/bin/bash
@@ -215,7 +215,7 @@ echo ""
 echo "Docs built: site/index.html"
 ```
 
-### 3.10 `scripts/docs-serve.sh` — Serve docs locally
+### 3.10 `scripts/docs-serve.sh`,  Serve docs locally
 
 ```bash
 #!/bin/bash
@@ -224,7 +224,7 @@ set -e
 python -m mkdocs serve
 ```
 
-### 3.11 `scripts/clean.sh` — Clean build artifacts
+### 3.11 `scripts/clean.sh`,  Clean build artifacts
 
 ```bash
 #!/bin/bash
@@ -237,7 +237,7 @@ find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null
 echo "Cleaned."
 ```
 
-### 3.12 `scripts/install-dev.sh` — Set up dev environment
+### 3.12 `scripts/install-dev.sh`,  Set up dev environment
 
 ```bash
 #!/bin/bash
@@ -381,7 +381,7 @@ markdown_extensions:
 
 ```bash
 #!/bin/bash
-# scripts/docs-init.sh — Create docs directory structure
+# scripts/docs-init.sh,  Create docs directory structure
 set -e
 
 mkdir -p docs/api/core
@@ -401,7 +401,7 @@ touch docs/cookbook.md
 touch docs/migration.md
 touch docs/extension.md
 
-# Core API stubs — each file just has the mkdocstrings directive
+# Core API stubs,  each file just has the mkdocstrings directive
 for mod in core active fn linalg export basis; do
 cat > "docs/api/${mod}.md" << EOF
 # vdr.${mod}
@@ -723,7 +723,7 @@ git tag v0.2.0
 git push origin main --tags
 ```
 
-Create GitHub release from the tag — CI publishes automatically.
+Create GitHub release from the tag,  CI publishes automatically.
 
 ---
 

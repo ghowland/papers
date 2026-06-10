@@ -19,7 +19,7 @@
 
 VDR-1 introduced exact finite arithmetic in irreducible triple form. VDR-2 tested it across 15 mathematical domains. VDR-3 extended coverage to 23 domains and integrated the MATH-3/MATH-4 transcendental basis, establishing that VDR has no unique computational boundaries. This paper reports what happened when that arithmetic system was extended into a complete machine learning stack: 24 modules implementing exact-fraction softmax, reverse-mode autodiff, trainable neural network layers, optimizers, attention, a transformer architecture, token sampling, checkpointing, datasets, metrics, and a shared-denominator basis system. 181 tests pass across 7 test batches. A working tiny transformer language model runs forward passes, computes exact logits, produces exact attention weights that sum to exactly 1, and exposes every intermediate value as an inspectable exact fraction. No floating-point arithmetic is used at any point in any computation.
 
-The central finding is not that exact-fraction LLMs are practical at scale — they are not, yet. The central finding is that every component of a language model architecture can be expressed as exact rational arithmetic, that the approximation boundary can be placed exactly where the designer chooses rather than where hardware precision forces it, and that the resulting system produces outputs that are bit-for-bit reproducible, fully inspectable, and provably normalized. This changes the status of VDR from "an exact arithmetic library with ML potential" to "a system that has actually built and run an exact transformer."
+The central finding is not that exact-fraction LLMs are practical at scale,  they are not, yet. The central finding is that every component of a language model architecture can be expressed as exact rational arithmetic, that the approximation boundary can be placed exactly where the designer chooses rather than where hardware precision forces it, and that the resulting system produces outputs that are bit-for-bit reproducible, fully inspectable, and provably normalized. This changes the status of VDR from "an exact arithmetic library with ML potential" to "a system that has actually built and run an exact transformer."
 
 ---
 
@@ -96,7 +96,7 @@ VDR began as 5 modules (core, active multiplication, functional remainders, line
 | NN Batch 1 | Linear, ReLU, Sequential, optimizers | 25 | 23 | 2 |
 | **Total** | | **198** | **196** | **2** |
 
-The two failures in NN Batch 1 are test-expectation errors in the Sequential forward pass and the tiny MLP forward test — the manually computed expected values in the test did not account for the exact layer compositions. VDR computed the correct exact values in both cases. Zero VDR computation errors across all 198 tests.
+The two failures in NN Batch 1 are test-expectation errors in the Sequential forward pass and the tiny MLP forward test,  the manually computed expected values in the test did not account for the exact layer compositions. VDR computed the correct exact values in both cases. Zero VDR computation errors across all 198 tests.
 
 ---
 
@@ -114,11 +114,11 @@ Every term is an exact VDR fraction. The softmax of a logit vector z is then:
 
 s_i = exp_N(z_i - m) / Σ_j exp_N(z_j - m)
 
-where m = max(z) is the standard stabilization shift. Because the numerator and denominator are both exact fractions, the division produces an exact fraction. The probabilities sum to exactly 1 — not approximately, not within tolerance, but exactly.
+where m = max(z) is the standard stabilization shift. Because the numerator and denominator are both exact fractions, the division produces an exact fraction. The probabilities sum to exactly 1,  not approximately, not within tolerance, but exactly.
 
 ### 3.2 What the Tests Showed
 
-For logits [1, 2, 3], the softmax outputs are 64826368/720042809, 176214841/720042809, and 479001600/720042809. Their sum is exactly 1. For equal logits [5, 5, 5, 5], the output is exactly [1/4, 1/4, 1/4, 1/4] — no drift, no asymmetry. Stabilization invariance holds: softmax([1,2,3]) and softmax([11,12,13]) produce identical exact fractions.
+For logits [1, 2, 3], the softmax outputs are 64826368/720042809, 176214841/720042809, and 479001600/720042809. Their sum is exactly 1. For equal logits [5, 5, 5, 5], the output is exactly [1/4, 1/4, 1/4, 1/4],  no drift, no asymmetry. Stabilization invariance holds: softmax([1,2,3]) and softmax([11,12,13]) produce identical exact fractions.
 
 ### 3.3 The Rational Surrogate
 
@@ -126,7 +126,7 @@ A fully rational surrogate softmax using a square-shift kernel was also implemen
 
 ### 3.4 The Engineering Boundary
 
-A test with logits [0, 0, 10] revealed that truncated Taylor series at moderate depth can be poor on large negative shifted logits. This is not a VDR failure — it is an approximation-policy issue. The challenge in VDR softmax is not exact normalization (that works perfectly). The challenge is efficient exponential evaluation over a wide range. Range reduction and Padé approximants are the path forward.
+A test with logits [0, 0, 10] revealed that truncated Taylor series at moderate depth can be poor on large negative shifted logits. This is not a VDR failure,  it is an approximation-policy issue. The challenge in VDR softmax is not exact normalization (that works perfectly). The challenge is efficient exponential evaluation over a wide range. Range reduction and Padé approximants are the path forward.
 
 ---
 
@@ -140,7 +140,7 @@ A scalar computation graph with Node objects that track parents, operations, and
 
 ### 4.2 What the Tests Showed
 
-39 tests, all passing with exact equality — not approximate matching.
+39 tests, all passing with exact equality,  not approximate matching.
 
 d(x²)/dx at x=3 is exactly 6. d(x³)/dx at x=2 is exactly 12. The quotient rule for x/y at x=6, y=3 gives d/dx = 1/3 and d/dy = -2/3, both exact. ReLU derivatives are exactly 1 (active) and exactly 0 (inactive). MSE loss gradients for predictions [2, 5] against targets [1, 1] give grad_p1 = 1 and grad_p2 = 4, both exact. The chain rule for (x²+1)x at x=2 gives derivative exactly 13.
 
@@ -148,7 +148,7 @@ Every gradient is an exact VDR fraction. No numerical differentiation. No finite
 
 ### 4.3 What This Means
 
-VDR autodiff is not limit-based real analysis. It is exact computational differentiation over finite arithmetic graphs — which is exactly what autodiff in modern ML actually is. ML training does not require philosophical real-number completion. It requires computable differentiation rules. VDR now has them in exact fractional form.
+VDR autodiff is not limit-based real analysis. It is exact computational differentiation over finite arithmetic graphs,  which is exactly what autodiff in modern ML actually is. ML training does not require philosophical real-number completion. It requires computable differentiation rules. VDR now has them in exact fractional form.
 
 ---
 
@@ -238,7 +238,7 @@ Character-level vocabulary construction, token-to-id mapping, sliding window seq
 
 ### 8.5 Metrics
 
-Exact accuracy: correct predictions / total as an exact fraction. Argmax over exact logit vectors. Denominator complexity tracking: max denominator, sum of denominators, entry count — metrics specific to VDR that track the arithmetic cost of representations.
+Exact accuracy: correct predictions / total as an exact fraction. Argmax over exact logit vectors. Denominator complexity tracking: max denominator, sum of denominators, entry count,  metrics specific to VDR that track the arithmetic cost of representations.
 
 ### 8.6 Checkpoints
 
@@ -264,7 +264,7 @@ The model can be converted to a shared-denominator Q-basis representation. After
 
 ### 9.4 Training
 
-The trainer module runs exact training loops: forward pass, loss computation (MSE or classification loss), backward pass via autodiff, optimizer step (SGD or momentum), gradient zeroing. A single training step on a tiny dataset produces an exact loss value. An epoch of training produces a measurably lower average loss — the model is learning, and every step is exact.
+The trainer module runs exact training loops: forward pass, loss computation (MSE or classification loss), backward pass via autodiff, optimizer step (SGD or momentum), gradient zeroing. A single training step on a tiny dataset produces an exact loss value. An epoch of training produces a measurably lower average loss,  the model is learning, and every step is exact.
 
 The evaluate function runs the model on held-out data and returns exact per-sample predictions and average loss. Classification helpers compute exact next-token predictions via argmax over exact logit vectors.
 
@@ -288,7 +288,7 @@ The same model with the same parameters on the same input produces the same exac
 
 ### 10.4 Full Inspectability
 
-Every intermediate value in every computation is an exact fraction that can be printed, compared, stored, and verified. The attention weights for position 0 attending to position 1 are not "approximately 0.27" — they are exactly 16019531/59565131. The gradient of the loss with respect to the third weight in the first layer is not "about 0.45" — it is an exact fraction. This makes debugging, verification, and theoretical analysis qualitatively different from float-based systems.
+Every intermediate value in every computation is an exact fraction that can be printed, compared, stored, and verified. The attention weights for position 0 attending to position 1 are not "approximately 0.27",  they are exactly 16019531/59565131. The gradient of the loss with respect to the third weight in the first layer is not "about 0.45",  it is an exact fraction. This makes debugging, verification, and theoretical analysis qualitatively different from float-based systems.
 
 ---
 
@@ -300,17 +300,17 @@ The exact fractions grow in denominator size through operations. A single forwar
 
 ### 11.2 The Approximation Is Not Eliminated
 
-The truncated Taylor series for exp is an approximation — an exact rational that differs from the true transcendental by a known bounded amount. The truncation depth is chosen, not forced. But the approximation exists. VDR does not make exp rational. It makes the approximation explicit, controllable, and exact at every truncation depth.
+The truncated Taylor series for exp is an approximation,  an exact rational that differs from the true transcendental by a known bounded amount. The truncation depth is chosen, not forced. But the approximation exists. VDR does not make exp rational. It makes the approximation explicit, controllable, and exact at every truncation depth.
 
 ### 11.3 The Architecture May Need to Change
 
-The standard transformer was designed for float arithmetic. Some of its choices (GELU activation, layer normalization with sqrt, learned position embeddings with float initialization) are awkward in exact fractions. The rational surrogate softmax, ReLU activation, and Xavier-like rational initialization used here are adaptations. A VDR-native architecture — designed from the ground up for exact rational arithmetic — might look quite different from a standard transformer.
+The standard transformer was designed for float arithmetic. Some of its choices (GELU activation, layer normalization with sqrt, learned position embeddings with float initialization) are awkward in exact fractions. The rational surrogate softmax, ReLU activation, and Xavier-like rational initialization used here are adaptations. A VDR-native architecture,  designed from the ground up for exact rational arithmetic,  might look quite different from a standard transformer.
 
 ---
 
 ## 12. The Two Failures
 
-Both failures in NN Batch 1 are test-expectation errors. The Sequential forward test expected output 8 but got 10 — the test's manual computation did not correctly trace through the ReLU between layers. The tiny MLP forward test had a similar issue. In both cases, VDR computed the correct exact value; the test's expected value was wrong. This follows the pattern from VDR-2 and VDR-3: every failure across the entire project has been a test-design error, never a VDR computation error.
+Both failures in NN Batch 1 are test-expectation errors. The Sequential forward test expected output 8 but got 10,  the test's manual computation did not correctly trace through the ReLU between layers. The tiny MLP forward test had a similar issue. In both cases, VDR computed the correct exact value; the test's expected value was wrong. This follows the pattern from VDR-2 and VDR-3: every failure across the entire project has been a test-design error, never a VDR computation error.
 
 ---
 
@@ -380,7 +380,7 @@ No circular dependencies. The core `vdr.py` has zero internal dependencies. Ever
 
 ### 15.3 Scaling Path
 
-The shared-denominator Q-basis from MATH-4/`basis.py` is the likely scaling path. Instead of allowing denominators to grow without bound, project all parameters onto a 2^k grid at each training step (or every N steps). This introduces a controlled, bounded, explicit precision loss — analogous to quantization in float systems, but with exact rational arithmetic and exact error bounds instead of silent truncation.
+The shared-denominator Q-basis from MATH-4/`basis.py` is the likely scaling path. Instead of allowing denominators to grow without bound, project all parameters onto a 2^k grid at each training step (or every N steps). This introduces a controlled, bounded, explicit precision loss,  analogous to quantization in float systems, but with exact rational arithmetic and exact error bounds instead of silent truncation.
 
 ---
 

@@ -1,4 +1,4 @@
-# VDR-14 COMPLETE SYSTEM SPECIFICATION — LLM-COMPACT FORM
+# VDR-14 COMPLETE SYSTEM SPECIFICATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: problem → arithmetic → q335 → lm_pipeline → kb_struct → prolog → primitives → environments → sessions → inference → grammars → lifecycle → work_reduction → build_plan → validation → builtins → softmax → adaptations → confidence → normalization → constraints → side_effects → zig → relationships → section_index → decode_legend
 
@@ -10,7 +10,7 @@ DF3|Stateless conversation|no structured memory; facts exist only as tokens in f
 # arithmetic(id|aspect|detail)
 AR1|VDR triple|[V, D, R] where V=integer value, D=nonzero integer denominator, R=remainder; V and D always integers; all structural complexity in R
 AR2|Closed (R=0)|behaves as rational V/D; arithmetically complete under +−×÷
-AR3|Active (R≠0)|carries exact structure beyond denominator frame; remainder is NOT error — it is part of the value
+AR3|Active (R≠0)|carries exact structure beyond denominator frame; remainder is NOT error,  it is part of the value
 AR4|Remainder forms|atomic (single integer), composite (base + ordered list of child VDR triples), functional (callable producing VDR at specified depth); nesting only in R
 AR5|Denominator frame|fix D at chosen value (typically 2³³⁵); overflow from multiply goes to R via divmod; denominator never changes; growth goes to tree depth not denominator magnitude
 AR6|Addition|same frame: one integer addition of numerators

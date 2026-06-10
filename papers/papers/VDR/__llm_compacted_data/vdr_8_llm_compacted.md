@@ -1,4 +1,4 @@
-# COMPUTATIONAL STATE PRIMITIVES, UNIVERSAL DATA PATHING, AND SESSION MANAGEMENT — LLM-COMPACT FORM
+# COMPUTATIONAL STATE PRIMITIVES, UNIVERSAL DATA PATHING, AND SESSION MANAGEMENT,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → data primitives → dotted paths → command tokens → sessions → revised KB struct → relationships → sections
 
@@ -20,8 +20,8 @@ DP7|Bitset|Named fixed-size bit array; track completion of numbered items, featu
 
 # data_primitive_classification(id|aspect|detail)
 DC1|Classification|Data primitives are live state, not persistent knowledge
-DC2|Persistent|Facts, rules, constraints, connections — survives reset, not captured by snapshot (always present)
-DC3|Live|Data primitives, scratchpad, working data, active scope — cleared by reset, captured by snapshot
+DC2|Persistent|Facts, rules, constraints, connections,  survives reset, not captured by snapshot (always present)
+DC3|Live|Data primitives, scratchpad, working data, active scope,  cleared by reset, captured by snapshot
 DC4|Growth limits|Every primitive has declared maximum capacity at creation; no unbounded growth
 DC5|Mutation logging|All mutations logged as provenance facts: kb_path, primitive_type, name, operation, old_value, new_value, turn, source
 DC6|Inheritance|Data primitives inherit by name through KB tree like working data bindings; child values shadow parent values; lookup walks current KB to root, first match wins
@@ -133,7 +133,7 @@ CL3|Command tokens as reference assemblies reduce generative burden 2-4× vs sta
 CL4|Session snapshots are small (10KB-500KB) because they capture state not knowledge|efficiency
 CL5|Disposable clone pattern maintains system stability through controlled recycling|operational
 CL6|Work product persists in persistent KBs while drift dies with the clone|architectural
-CL7|Everything is a KB — sessions, snapshots, paths, mounts stored as KBs in the tree|consistency
+CL7|Everything is a KB,  sessions, snapshots, paths, mounts stored as KBs in the tree|consistency
 
 # relationships(from|rel|to)
 P1|follows_pattern_of|VDR-5 addendum (constraints-in-KB)

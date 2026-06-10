@@ -1,6 +1,6 @@
-# Working Document: Quark Koide Analysis — Amplitude, Phase, Confinement
+# Working Document: Quark Koide Analysis,  Amplitude, Phase, Confinement
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Complete state capture. Thorough investigation of whether Koide extends to quarks.
 
@@ -78,7 +78,7 @@ From PHYS-8: the Koide ratio = (1 + a²/2)/N depends only on a and N. The parame
 
 Leptons don't feel the strong force. Their pole masses are direct measurements of pattern inertia. The Koide formula works at 0.0009%.
 
-Quarks feel the strong force. Their masses are extracted through the confinement boundary. The MSbar mass at 2 GeV is a boundary-depth reading (PHYS-2) that includes confinement effects non-universally — light quarks are more affected than heavy quarks.
+Quarks feel the strong force. Their masses are extracted through the confinement boundary. The MSbar mass at 2 GeV is a boundary-depth reading (PHYS-2) that includes confinement effects non-universally,  light quarks are more affected than heavy quarks.
 
 Non-universal corrections DO change the Koide ratio (unlike universal scaling, which preserves it). Confinement is non-universal. Therefore confinement changes the quark Koide ratio away from 2/3.
 
@@ -120,7 +120,7 @@ Amplitude excess over Koide (a² − 2):
 2-of-3 scan (m_d, m_s scaled, m_b fixed):
   f=0.001: 0.989, f=0.1: 0.896, f=1: 0.731
   f=2: 0.661 (minimum), f=5: 0.563, f=100: 0.418
-  Minimum ~0.661 at f≈2 — never reaches 2/3
+  Minimum ~0.661 at f≈2,  never reaches 2/3
   Limiting ratio (f→∞) = 0.701 (2-mass d,s limit)
 ```
 
@@ -128,9 +128,9 @@ Amplitude excess over Koide (a² − 2):
 
 ## VII. SCRIPTS
 
-`quark_koide_test.py` — initial Koide test, amplitude extraction, uncertainty analysis
-`quark_koide_confinement.py` — confinement correction scan, scale invariance proof
-`quark_koide_fixed.py` — all four fixes from red team: phase independence, atan2 angles, pole masses, proper 2-of-3 scan
+`quark_koide_test.py`,  initial Koide test, amplitude extraction, uncertainty analysis
+`quark_koide_confinement.py`,  confinement correction scan, scale invariance proof
+`quark_koide_fixed.py`,  all four fixes from red team: phase independence, atan2 angles, pole masses, proper 2-of-3 scan
 
 All in /home/claude/. Not in outputs (notebook entries).
 
@@ -159,7 +159,7 @@ All in /home/claude/. Not in outputs (notebook entries).
 
 ---
 
-## ADDENDUM: M4 — Frustration Departure from 120° on z=3 Graphs
+## ADDENDUM: M4,  Frustration Departure from 120° on z=3 Graphs
 
 ### The Connection
 
@@ -173,19 +173,19 @@ The Koide parametrization places three masses on a circle at phases θ₀ + 2πi
 | Down quarks | 126.3° | +6.3° |
 | Up quarks | 124.3° | +4.3° |
 
-The θ₀ is not the spacing between masses — it's the orientation of the pattern on the circle. The spacing IS 120° by construction in the Koide parametrization. What varies is the amplitude a, not the spacing.
+The θ₀ is not the spacing between masses,  it's the orientation of the pattern on the circle. The spacing IS 120° by construction in the Koide parametrization. What varies is the amplitude a, not the spacing.
 
-However: if the equal-spacing assumption is RELAXED — if the three masses sit at θ₀, θ₀ + Δ₁, θ₀ + Δ₁ + Δ₂ with Δ₁ + Δ₂ + Δ₃ = 2π but Δ₁ ≠ Δ₂ ≠ Δ₃ — then the frustration departure from 120° becomes the physical content. The Koide ratio (1 + a²/2)/3 assumes equal spacing. Unequal spacing changes the ratio. The quark Koide failure (ratio ≠ 2/3) might be reinterpreted as a spacing failure rather than an amplitude failure.
+However: if the equal-spacing assumption is RELAXED,  if the three masses sit at θ₀, θ₀ + Δ₁, θ₀ + Δ₁ + Δ₂ with Δ₁ + Δ₂ + Δ₃ = 2π but Δ₁ ≠ Δ₂ ≠ Δ₃,  then the frustration departure from 120° becomes the physical content. The Koide ratio (1 + a²/2)/3 assumes equal spacing. Unequal spacing changes the ratio. The quark Koide failure (ratio ≠ 2/3) might be reinterpreted as a spacing failure rather than an amplitude failure.
 
 ### The Hypothesis
 
 If quark flavors within a charge sector are modes on a frustrated z = 3 graph, the ground state spacing is NOT 120° but a specific computable departure. This departure changes the Koide ratio from 2/3 to the measured values (0.731 for down, 0.849 for up). The leptons, which don't feel the strong force, sit on an unfrustrated graph where 120° IS the minimum, giving Koide = 2/3 exactly.
 
-The frustration source for quarks would be the color interaction — the z = 3 graph is the color SU(3) structure, and the triangular frustration is confinement viewed as a topological obstruction.
+The frustration source for quarks would be the color interaction,  the z = 3 graph is the color SU(3) structure, and the triangular frustration is confinement viewed as a topological obstruction.
 
 ### What Would Be Required
 
-1. Identify the specific graph: z = 3 on what manifold? The SU(3) weight diagram is a natural candidate — it's a triangular lattice with z = 3.
+1. Identify the specific graph: z = 3 on what manifold? The SU(3) weight diagram is a natural candidate,  it's a triangular lattice with z = 3.
 2. Define the coupling: Kuramoto-type phase coupling with what natural frequency distribution? The natural frequencies would map to quark masses.
 3. Compute the ground state: find the minimum-energy phase configuration for three modes on the frustrated graph. The departure angles are the output.
 4. Map to masses: the departure angles plus the Koide parametrization give mass ratios. Compare to measured.
@@ -196,7 +196,7 @@ Each step is a separate unsolved problem. The chain is: frustrated graph → dep
 
 The computation requires specifying the graph, which requires a physical argument for which graph nature uses. Without that, we're searching an infinite space of z = 3 graphs. The PHYS-1 vortex picture suggests the graph is related to the field's mode structure, but this hasn't been formalized.
 
-The M4 frustration result is the one item from CKS that connects to a live open question (the Koide equal-spacing derivation from PHYS-8) through established mathematics (Kuramoto on frustrated graphs). It doesn't provide an answer but it identifies a specific mathematical structure — frustrated z = 3 phase dynamics — that produces the right qualitative behavior (departure from equal spacing for strongly-interacting modes).
+The M4 frustration result is the one item from CKS that connects to a live open question (the Koide equal-spacing derivation from PHYS-8) through established mathematics (Kuramoto on frustrated graphs). It doesn't provide an answer but it identifies a specific mathematical structure,  frustrated z = 3 phase dynamics,  that produces the right qualitative behavior (departure from equal spacing for strongly-interacting modes).
 
 ### Tags
 

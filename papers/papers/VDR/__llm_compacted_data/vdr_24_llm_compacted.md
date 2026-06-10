@@ -1,4 +1,4 @@
-# VDR-24 LLM SOFTWARE — LLM-COMPACT FORM
+# VDR-24 LLM SOFTWARE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → execution_levels → dev_lifecycle → runner_types → data_primitives → topologies → security → economics → relationships → sections
 
@@ -16,12 +16,12 @@ CL1|Customer support chatbot: 4-8 hours development vs 4-8 weeks conventional|ob
 CL2|File processing pipeline: 8-16 hours development vs 8-16 weeks conventional|observation|P1
 CL3|SRE accumulation: investigation 1 = 329 tokens; investigation 100 = 55 tokens (83% reduction); 93% auto-triage|observation|P5
 CL4|Snapshot sizes typically 10-500 KB because snapshots capture state not knowledge|observation|P2
-CL5|Cross-customer data leakage structurally impossible — sibling clones cannot see each other's session KBs|derivation|P6
-CL6|Hallucinated facts structurally impossible for KB-sourced data — LLM phrases results from known integer addresses|derivation|P2
+CL5|Cross-customer data leakage structurally impossible,  sibling clones cannot see each other's session KBs|derivation|P6
+CL6|Hallucinated facts structurally impossible for KB-sourced data,  LLM phrases results from known integer addresses|derivation|P2
 CL7|Rule formalization: 25-40 tokens; replaces 150-300 tokens conventional reasoning per use; break-even on first use|observation|P3
 CL8|Every builtin (448 total) is a Prolog predicate callable from user-written rules|observation|P2
-CL9|Clone isolation guaranteed by scope walk algorithm — goes up to ancestors, down to children, never sideways|derivation|P6
-CL10|Stale knowledge detectable (LRU timestamps), retractable (clean removal), verifiable (provenance chain) — unlike weight-based systems|derivation|P5
+CL9|Clone isolation guaranteed by scope walk algorithm,  goes up to ancestors, down to children, never sideways|derivation|P6
+CL10|Stale knowledge detectable (LRU timestamps), retractable (clean removal), verifiable (provenance chain),  unlike weight-based systems|derivation|P5
 
 # concepts(id|name|definition|category)
 C1|LLM Software|Software developed by configuring LLM sessions with structured state, encoding logic as Prolog rules over exact arithmetic primitives, deploying as snapshots, improving by usage|category
@@ -32,7 +32,7 @@ C5|Development through conversation|User interacts with LLM session, loads data,
 C6|Three execution levels|L1: full LLM judgment (50-500 tokens); L2: LLM invokes stored Prolog (8 tokens); L3: pure Prolog batch (0 tokens); maturity = increasing L3 percentage|model
 C7|Rule accumulation|Each session deposits reusable Prolog rules at appropriate scope; future sessions cheaper; per-use cost approaches zero at organizational scope|mechanism
 C8|Negative accumulation / hygiene|Rules go stale; detected via LRU timestamps + fire/success counters; automated retraction when staleness, failure rate, or grant-orphan thresholds exceeded; clean removal via provenance|mechanism
-C9|KB as machine|KB has state (7 data primitives), logic (Prolog rules), data (provenanced facts), constraints (4 types), connections, visibility, grants — wiring machines together = application architecture|model
+C9|KB as machine|KB has state (7 data primitives), logic (Prolog rules), data (provenanced facts), constraints (4 types), connections, visibility, grants,  wiring machines together = application architecture|model
 C10|Clone destination governance|Where clone is placed determines lifecycle, visibility, governance; rules at appropriate scope enforce placement policies structurally|mechanism
 C11|Semantic tuple pipeline|LLM emits language-independent semantic tuple (~8 tokens) → Prolog matches sentence template → grammar fills structural tokens → complete prose; deterministic after LLM judgment|mechanism
 

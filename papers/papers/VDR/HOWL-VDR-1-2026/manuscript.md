@@ -15,7 +15,7 @@
 
 ## Abstract
 
-Floating-point and decimal arithmetic systems lose exact equality under repeated operations. This loss is structural — it comes from representing values as single scalars that discard intermediate structure at every step. This paper introduces VDR, an arithmetic system that represents every value as a finite tree of integer triples `[V, D, R]` where V is the value slot, D is the denominator frame, and R is the remainder — exact unresolved structure that scalar systems would discard. The remainder is not error. It is part of the value.
+Floating-point and decimal arithmetic systems lose exact equality under repeated operations. This loss is structural,  it comes from representing values as single scalars that discard intermediate structure at every step. This paper introduces VDR, an arithmetic system that represents every value as a finite tree of integer triples `[V, D, R]` where V is the value slot, D is the denominator frame, and R is the remainder,  exact unresolved structure that scalar systems would discard. The remainder is not error. It is part of the value.
 
 The system provides exact rational arithmetic with zero drift over arbitrary operation chains, exact matrix inversion of ill-conditioned matrices where floating-point fails, recursive construction of irrational values where every expansion step is itself exact, and discrete calculus operators where every derivative and integral is an exact rational at every step size. A working Python implementation accompanies this paper. Every claim is verified by executable tests. The code is the specification.
 
@@ -36,7 +36,7 @@ print(x - 1/7)    # 2.7755575615628914e-17
 
 The error is small but real. It is not a bug in the implementation. It is a structural property of the representation. Floating-point encodes values as finite binary fractions with bounded mantissa width. Every operation that produces a result outside that width truncates. The truncation is silent. It accumulates. After enough operations, the original value is unrecoverable.
 
-This is not a hypothetical concern. Numerical drift in long computation chains is a known source of failure in scientific computation, financial calculation, and geometric algorithms. The standard response is tolerance — accepting that exact equality is unavailable and replacing it with approximate comparison within epsilon bounds. This works in practice. But it means that the system has permanently lost the ability to know whether two values are the same.
+This is not a hypothetical concern. Numerical drift in long computation chains is a known source of failure in scientific computation, financial calculation, and geometric algorithms. The standard response is tolerance,  accepting that exact equality is unavailable and replacing it with approximate comparison within epsilon bounds. This works in practice. But it means that the system has permanently lost the ability to know whether two values are the same.
 
 VDR is a system that does not lose this ability.
 
@@ -70,7 +70,7 @@ This paper presents the system that makes this possible. It introduces the repre
 
 ---
 
-![Fig. 1: Scalar Drift — Float error accumulates over operations while VDR stays at exact zero.](./figures/vdr1_01_float_drift_vs_vdr.png)
+![Fig. 1: Scalar Drift,  Float error accumulates over operations while VDR stays at exact zero.](./figures/vdr1_01_float_drift_vs_vdr.png)
 
 ## 2. The Triple
 
@@ -97,17 +97,17 @@ In Python:
 ```python
 from vdr import VDR, Remainder
 
-a = VDR(1, 2)                    # [1, 2, 0] — one-half
-b = VDR(5)                       # [5, 1, 0] — the integer 5
-c = VDR(2, 5, 1)                 # [2, 5, 1] — active, carries remainder
-d = VDR(1, 3, Remainder(0, [VDR(1, 6)]))  # [1, 3, [1, 6, 0]] — nested child
+a = VDR(1, 2)                    # [1, 2, 0],  one-half
+b = VDR(5)                       # [5, 1, 0],  the integer 5
+c = VDR(2, 5, 1)                 # [2, 5, 1],  active, carries remainder
+d = VDR(1, 3, Remainder(0, [VDR(1, 6)]))  # [1, 3, [1, 6, 0]],  nested child
 ```
 
-The triple `[1, 2, 0]` has V = 1, D = 2, and R = 0. The remainder is zero, meaning the value is fully settled in the denominator-2 frame. The triple `[2, 5, 1]` has V = 2, D = 5, and R = 1. The remainder is nonzero — this object carries exact state beyond what the denominator-5 frame absorbed. The triple `[1, 3, [1, 6, 0]]` has V = 1, D = 3, and R = a child triple `[1, 6, 0]`. The remainder contains a nested VDR object carrying structure in its own denominator-6 frame.
+The triple `[1, 2, 0]` has V = 1, D = 2, and R = 0. The remainder is zero, meaning the value is fully settled in the denominator-2 frame. The triple `[2, 5, 1]` has V = 2, D = 5, and R = 1. The remainder is nonzero,  this object carries exact state beyond what the denominator-5 frame absorbed. The triple `[1, 3, [1, 6, 0]]` has V = 1, D = 3, and R = a child triple `[1, 6, 0]`. The remainder contains a nested VDR object carrying structure in its own denominator-6 frame.
 
 The remainder is not error. It is not rounding residue. It is not dispensable annotation. It is exact value-bearing structure that is part of the object. A nonzero remainder means the object carries unresolved exact state. This state is preserved through all operations. No valid operation may discard it.
 
-![Fig. 6: VDR Tree Structure — Closed object [1,2,0] vs active object [1,3,[1,6,0]] showing recursion through R only.](./figures/vdr1_06_tree_structure.png)
+![Fig. 6: VDR Tree Structure,  Closed object [1,2,0] vs active object [1,3,[1,6,0]] showing recursion through R only.](./figures/vdr1_06_tree_structure.png)
 
 ---
 
@@ -141,10 +141,10 @@ All results are subject to normalization (Section 5). Division by $[0, D, 0]$ is
 a = VDR(1, 2)
 b = VDR(1, 3)
 
-print(a + b)    # [5, 6, 0]     — 1/2 + 1/3 = 5/6
-print(a - b)    # [1, 6, 0]     — 1/2 - 1/3 = 1/6
-print(a * b)    # [1, 6, 0]     — 1/2 × 1/3 = 1/6
-print(a / b)    # [3, 2, 0]     — 1/2 ÷ 1/3 = 3/2
+print(a + b)    # [5, 6, 0]    ,  1/2 + 1/3 = 5/6
+print(a - b)    # [1, 6, 0]    ,  1/2 - 1/3 = 1/6
+print(a * b)    # [1, 6, 0]    ,  1/2 × 1/3 = 1/6
+print(a / b)    # [3, 2, 0]    ,  1/2 ÷ 1/3 = 3/2
 ```
 
 The closed subclass is arithmetically closed under all four operations (excluding division by zero). It satisfies commutativity, associativity, and distributivity under value equality. The additive identity is $[0, 1, 0]$. The multiplicative identity is $[1, 1, 0]$. The additive inverse of $[V, D, 0]$ is $[-V, D, 0]$.
@@ -159,12 +159,12 @@ x = VDR(3, 7)
 # add then subtract
 y = x + VDR(5, 13)
 z = y - VDR(5, 13)
-assert z == x    # True — exact recovery
+assert z == x    # True,  exact recovery
 
 # multiply then divide
 y = x * VDR(11, 3)
 z = y / VDR(11, 3)
-assert z == x    # True — exact recovery
+assert z == x    # True,  exact recovery
 ```
 
 This holds for any chain length. The 200-operation test in Section 1 is not a special case. It is the general behavior of the system.
@@ -189,20 +189,20 @@ For external comparison, the value can be projected through legacy conversion:
 
 $$\Pi([1, 3, [1, 2, 0]]) = \frac{1 + \Pi([1, 2, 0])}{3} = \frac{1 + 1/2}{3} = \frac{3/2}{3} = \frac{1}{2}$$
 
-The projection recovers the original value exactly. The remainder $[1, 2, 0]$ contributes within the parent's denominator frame — it is divided by 3, not added externally. This is **denominator-sensitive completion**: the remainder is interpreted in the context of the parent denominator.
+The projection recovers the original value exactly. The remainder $[1, 2, 0]$ contributes within the parent's denominator frame,  it is divided by 3, not added externally. This is **denominator-sensitive completion**: the remainder is interpreted in the context of the parent denominator.
 
 ```python
 x = VDR(1, 2)
 r = x.rebase(3)
 print(r)                  # [1, 3, [1, 2, 0]]
-print(r.to_fraction())    # 1/2 — exact projection
+print(r.to_fraction())    # 1/2,  exact projection
 ```
 
 An important semantic commitment follows from this design. The object $[2, 5, 1]$ is not the same as $[3, 5, 0]$, even though both project to $3/5$ under legacy conversion:
 
 ```python
-a = VDR(2, 5, 1)     # active — V=2, D=5, R=1
-b = VDR(3, 5)         # closed — V=3, D=5, R=0
+a = VDR(2, 5, 1)     # active,  V=2, D=5, R=1
+b = VDR(3, 5)         # closed,  V=3, D=5, R=0
 print(a == b)         # False
 ```
 
@@ -210,7 +210,7 @@ Both project to $3/5$. But they are different objects. The first carries remaind
 
 This is the key distinction between VDR and ordinary rational arithmetic. A rational number is a single scalar. A VDR object is a triple with exact structural state. Two objects that happen to project to the same scalar may still be distinct as native VDR objects because they carry different remainder structure.
 
-![Fig. 8: Active vs Closed — [2,5,1] and [3,5,0] project to the same scalar but are different VDR objects.](./figures/vdr1_08_active_vs_closed.png)
+![Fig. 8: Active vs Closed,  [2,5,1] and [3,5,0] project to the same scalar but are different VDR objects.](./figures/vdr1_08_active_vs_closed.png)
 
 ---
 
@@ -284,7 +284,7 @@ print(r.lift(3))        # 3
 
 child = VDR(1, 3)
 lifted = child._lift_vdr(2)
-print(lifted)           # [2, 3, 0] — V scaled, D preserved
+print(lifted)           # [2, 3, 0],  V scaled, D preserved
 ```
 
 ### 6.2 Rebase
@@ -313,12 +313,12 @@ Same-denominator rebase is identity. Rebase preserves value equality, not struct
 
 ```python
 x = VDR(1, 2)
-print(x.rebase(4))    # [2, 4, 0]        — closed rebase
-print(x.rebase(3))    # [1, 3, [1, 2, 0]] — active rebase
-print(x.rebase(3).to_fraction())  # 1/2  — value preserved
+print(x.rebase(4))    # [2, 4, 0]       ,  closed rebase
+print(x.rebase(3))    # [1, 3, [1, 2, 0]],  active rebase
+print(x.rebase(3).to_fraction())  # 1/2 ,  value preserved
 ```
 
-![Fig. 7: Rebase Construction — [1,2,0] rebased to denominator 3 produces [1,3,[1,2,0]] with exact projection check.](./figures/vdr1_07_rebase_completion.png)
+![Fig. 7: Rebase Construction,  [1,2,0] rebased to denominator 3 produces [1,3,[1,2,0]] with exact projection check.](./figures/vdr1_07_rebase_completion.png)
 
 ---
 
@@ -337,7 +337,7 @@ where $\oplus$ combines remainder structures: atomic bases are summed, child lis
 ```python
 p = VDR(2, 5, 1)
 q = VDR(3, 5, -1)
-print(p + q)       # [1, 1, 0] — remainders cancel, result closes
+print(p + q)       # [1, 1, 0],  remainders cancel, result closes
 ```
 
 ### 7.2 Different-Denominator Operations
@@ -372,7 +372,7 @@ assert (a * (b + c)).to_fraction() == (a * b + a * c).to_fraction()
 
 ### 7.4 Active Division
 
-Division by a closed object is multiplication by its reciprocal. Division by an active object projects the divisor to an exact rational, inverts it, and multiplies. The projected value is exact — no precision is lost. But the divisor's structural remainder information is not preserved in the result. This is a v1 compromise, documented honestly: division by active objects goes through the projection boundary.
+Division by a closed object is multiplication by its reciprocal. Division by an active object projects the divisor to an exact rational, inverts it, and multiplies. The projected value is exact,  no precision is lost. But the divisor's structural remainder information is not preserved in the result. This is a v1 compromise, documented honestly: division by active objects goes through the projection boundary.
 
 Division by any object projecting to zero raises an explicit error.
 
@@ -442,12 +442,12 @@ The 4×4 Hilbert matrix:
 
 $$H = \begin{pmatrix} 1 & 1/2 & 1/3 & 1/4 \\ 1/2 & 1/3 & 1/4 & 1/5 \\ 1/3 & 1/4 & 1/5 & 1/6 \\ 1/4 & 1/5 & 1/6 & 1/7 \end{pmatrix}$$
 
-Its determinant is $1/6048000$, an exact VDR rational. Its inverse is computed exactly. Every element of $H^{-1}$ is an exact integer — the inverse of the Hilbert matrix has integer entries, a known fact that VDR recovers automatically:
+Its determinant is $1/6048000$, an exact VDR rational. Its inverse is computed exactly. Every element of $H^{-1}$ is an exact integer,  the inverse of the Hilbert matrix has integer entries, a known fact that VDR recovers automatically:
 
 ```python
 Hi = H.inv()
 product = H * Hi
-assert product == Mat.identity(4)   # True — every element exactly correct
+assert product == Mat.identity(4)   # True,  every element exactly correct
 ```
 
 The product $H \times H^{-1}$ is exactly the identity matrix. Not approximately. Every diagonal element is exactly $[1, 1, 0]$. Every off-diagonal element is exactly $[0, 1, 0]$. No tolerance required.
@@ -456,7 +456,7 @@ The double inverse also recovers exactly:
 
 ```python
 Hi2 = Hi.inv()
-assert Hi2 == H   # True — inv(inv(H)) = H exactly
+assert Hi2 == H   # True,  inv(inv(H)) = H exactly
 ```
 
 And a long-chain stress test: multiply by an arbitrary invertible matrix $B$, then by $B^{-1}$, twenty times:
@@ -468,7 +468,7 @@ current = A
 for _ in range(20):
     current = current * B
     current = current * Bi
-assert current == A   # True — 40 matrix operations, zero drift
+assert current == A   # True,  40 matrix operations, zero drift
 ```
 
 Forty matrix operations. Zero drift. Exact recovery. No floating-point system can match this on the Hilbert matrix or on the long-chain stress test.
@@ -477,13 +477,13 @@ For comparison, the same 4×4 Hilbert matrix inverted in standard double-precisi
 
 ---
 
-![Fig. 3: Hilbert Matrix H×H⁻¹ Residual — Float error grows with matrix size. VDR is exactly zero for all sizes.](./figures/vdr1_03_hilbert_residual.png)
+![Fig. 3: Hilbert Matrix H×H⁻¹ Residual,  Float error grows with matrix size. VDR is exactly zero for all sizes.](./figures/vdr1_03_hilbert_residual.png)
 
 ## 9. Functions in the Remainder Slot
 
 The remainder slot can hold a third form beyond integers and child triples: a Python callable that takes an integer depth parameter and returns a VDR object. This is how VDR handles values that are not rational without introducing limits.
 
-![Fig. 2: Newton-Raphson for √2 — Correct digits double at each step. Every intermediate value is an exact rational.](./figures/vdr1_02_newton_sqrt2.png)
+![Fig. 2: Newton-Raphson for √2,  Correct digits double at each step. Every intermediate value is an exact rational.](./figures/vdr1_02_newton_sqrt2.png)
 
 ### 9.1 The Mechanism
 
@@ -493,7 +493,7 @@ A functional remainder is:
 - A name string for inspectability
 - Optional metadata
 
-The function is finite — it has finite source code. The VDR it produces at any depth is finite and exact. Each depth gives a complete exact answer, not an approximation of a limit. There is no convergence criterion. There is no epsilon test. There is a function, and there are exact outputs at each depth.
+The function is finite,  it has finite source code. The VDR it produces at any depth is finite and exact. Each depth gives a complete exact answer, not an approximation of a limit. There is no convergence criterion. There is no epsilon test. There is a function, and there are exact outputs at each depth.
 
 ```python
 from vdr import FnRemainder, resolve
@@ -506,7 +506,7 @@ A VDR object with a functional remainder cannot be projected to a scalar until t
 
 ```python
 resolved = resolve(obj, depth=3)   # expands fn(3), returns concrete VDR
-print(resolved.to_fraction())      # 4/5 — exact
+print(resolved.to_fraction())      # 4/5,  exact
 ```
 
 ### 9.2 Newton-Raphson for $\sqrt{2}$
@@ -559,17 +559,17 @@ pi4_fn = make_series_fn("leibniz_pi4", leibniz_term)
 pi4 = VDR(0, 1, pi4_fn)
 ```
 
-At 101 terms, the partial sum is an exact fraction with over 250 digits in numerator and denominator. Multiplied by 4, it approximates $\pi$ to about 2 decimal places — Leibniz converges slowly. But the point is not rapid convergence. The point is that every partial sum is a complete exact rational, not a truncated decimal. The 101-term sum is not "$3.15 \pm \epsilon$". It is a specific exact rational that can be compared, stored, and manipulated with zero loss.
+At 101 terms, the partial sum is an exact fraction with over 250 digits in numerator and denominator. Multiplied by 4, it approximates $\pi$ to about 2 decimal places,  Leibniz converges slowly. But the point is not rapid convergence. The point is that every partial sum is a complete exact rational, not a truncated decimal. The 101-term sum is not "$3.15 \pm \epsilon$". It is a specific exact rational that can be compared, stored, and manipulated with zero loss.
 
 The Basel series $\pi^2/6 = \sum 1/n^2$ provides another path. Again, every partial sum is exact. At 101 terms, the partial sum is an exact rational that approximates $\pi^2/6$ to about 2 digits.
 
-These are not the fastest series for computing $\pi$. Faster series exist and can be implemented as VDR functional remainders with the same properties — exact rationals at every step. The architecture supports any series whose terms are exact VDR rationals.
+These are not the fastest series for computing $\pi$. Faster series exist and can be implemented as VDR functional remainders with the same properties,  exact rationals at every step. The architecture supports any series whose terms are exact VDR rationals.
 
 ### 9.4 The Distinction: Recursion, Not Convergence
 
 Standard numerical computation treats series as convergent approximations. The value is defined as the limit, and partial sums are approximations of that limit. Convergence criteria determine when to stop.
 
-VDR does not use this framework. A functional remainder is a recursive specification. Each depth produces a complete exact value. There is no limit. There is no convergence criterion. There is no stopping rule. Depth 5 is an exact answer. Depth 50 is a different exact answer. Neither is more "correct" than the other — they are different exact objects.
+VDR does not use this framework. A functional remainder is a recursive specification. Each depth produces a complete exact value. There is no limit. There is no convergence criterion. There is no stopping rule. Depth 5 is an exact answer. Depth 50 is a different exact answer. Neither is more "correct" than the other,  they are different exact objects.
 
 The relationship to the target value (such as $\sqrt{2}$ or $\pi$) is that deeper depths produce rationals closer to it. But this is a property observed from outside VDR, not a mechanism inside VDR. Inside VDR, each depth is simply an exact VDR object produced by an exact computation.
 
@@ -579,7 +579,7 @@ The relationship to the target value (such as $\sqrt{2}$ or $\pi$) is that deepe
 
 VDR provides discrete derivative and integral operators. Every evaluation is exact VDR arithmetic. No limit process is used.
 
-![Fig. 4: Discrete Integral Convergence — Left Riemann O(1/n) vs trapezoidal O(1/n²). Every point is an exact rational.](./figures/vdr1_04_integral_convergence.png)
+![Fig. 4: Discrete Integral Convergence,  Left Riemann O(1/n) vs trapezoidal O(1/n²). Every point is an exact rational.](./figures/vdr1_04_integral_convergence.png)
 
 ### 10.1 Discrete Derivative
 
@@ -594,10 +594,10 @@ from vdr import discrete_derivative
 
 f = lambda x: x * x    # f(x) = x²
 df = discrete_derivative(f, VDR(1, 1000))
-print(df(VDR(3)))       # [6001, 1000, 0] — exactly 6001/1000
+print(df(VDR(3)))       # [6001, 1000, 0],  exactly 6001/1000
 ```
 
-The result is not a floating-point number near 6. It is the exact fraction $6001/1000$. The analytical derivative of $x^2$ at $x = 3$ is 6. The discrete derivative at step size $1/1000$ is $6 + 1/1000 = 6001/1000$. The difference from the analytical value is exactly $1/1000$ — not approximately, but exactly.
+The result is not a floating-point number near 6. It is the exact fraction $6001/1000$. The analytical derivative of $x^2$ at $x = 3$ is 6. The discrete derivative at step size $1/1000$ is $6 + 1/1000 = 6001/1000$. The difference from the analytical value is exactly $1/1000$,  not approximately, but exactly.
 
 Higher-order derivatives are obtained by repeated application:
 
@@ -649,7 +649,7 @@ A finite difference table for $f(x) = x^3$ evaluated at integer points:
 | 3 | 27 | 37 | | | |
 | 4 | 64 | | | | |
 
-The third differences are exactly 6. The fourth differences are exactly 0. This is the expected result for a cubic polynomial — the $n$th difference of a degree-$n$ polynomial is constant and equal to $n!$ times the leading coefficient.
+The third differences are exactly 6. The fourth differences are exactly 0. This is the expected result for a cubic polynomial,  the $n$th difference of a degree-$n$ polynomial is constant and equal to $n!$ times the leading coefficient.
 
 In floating-point arithmetic, higher-order finite differences accumulate rounding error rapidly. For high-degree polynomials evaluated at points with many significant digits, the noise floor eventually overwhelms the signal. In VDR, there is no noise floor. Every difference is exact. The fourth difference of a cubic is not "approximately zero within machine epsilon." It is zero.
 
@@ -661,17 +661,17 @@ d2 = [d1[i+1] - d1[i] for i in range(3)]
 d3 = [d2[i+1] - d2[i] for i in range(2)]
 d4 = [d3[i+1] - d3[i] for i in range(1)]
 
-assert all(v == VDR(6) for v in d3)   # True — exactly 6
-assert all(v == VDR(0) for v in d4)   # True — exactly 0
+assert all(v == VDR(6) for v in d3)   # True,  exactly 6
+assert all(v == VDR(0) for v in d4)   # True,  exactly 0
 ```
 
-![Fig. 5: Finite Difference Table — Third differences of x³ are exactly 6, fourth differences exactly 0. No float noise.](./figures/vdr1_05_finite_differences.png)
+![Fig. 5: Finite Difference Table,  Third differences of x³ are exactly 6, fourth differences exactly 0. No float noise.](./figures/vdr1_05_finite_differences.png)
 
 ### 10.4 Relationship to Standard Calculus
 
 VDR discrete calculus is not a numerical approximation of continuous calculus. It is a separate exact system. The discrete derivative $D_h f(x)$ is not "an approximation of $f'(x)$." It is the exact value of $(f(x+h) - f(x))/h$ for the specific step size $h$. As $h$ decreases (remaining a VDR rational), the discrete derivative approaches the analytical derivative. But VDR does not take the limit. Each $h$ gives a complete exact answer.
 
-This means VDR discrete calculus has different properties from continuous calculus. The discrete product rule is not the same as the continuous product rule. The discrete chain rule involves different correction terms. These differences are well-studied in the theory of finite differences and difference equations. VDR provides an exact computational substrate for this theory — exact where float-based finite differences are approximate.
+This means VDR discrete calculus has different properties from continuous calculus. The discrete product rule is not the same as the continuous product rule. The discrete chain rule involves different correction terms. These differences are well-studied in the theory of finite differences and difference equations. VDR provides an exact computational substrate for this theory,  exact where float-based finite differences are approximate.
 
 ---
 
@@ -683,9 +683,9 @@ VDR makes specific claims and it is important to state what is not claimed.
 
 **VDR does not do standard calculus.** Limits are excluded by design. The discrete derivative is not the same as the derivative. The discrete integral is not the same as the integral. They approach the analytical values as the step size decreases, but VDR does not take the limit. This is a different mathematical system with different properties.
 
-**Active division loses structural information.** When dividing by an active VDR object (one with nonzero remainder), the divisor is projected to an exact rational and then inverted. The projected value is exact — no precision is lost. But the divisor's remainder structure is not preserved in the result. This is a documented compromise.
+**Active division loses structural information.** When dividing by an active VDR object (one with nonzero remainder), the divisor is projected to an exact rational and then inverted. The projected value is exact,  no precision is lost. But the divisor's remainder structure is not preserved in the result. This is a documented compromise.
 
-**Cofactor expansion is slow.** Determinant computation uses cofactor expansion, which is $O(n!)$. This is correct but impractical for large matrices. Gaussian elimination would be more efficient. This is an engineering optimization, not a mathematical limitation — the exact values are the same regardless of the algorithm used to compute them.
+**Cofactor expansion is slow.** Determinant computation uses cofactor expansion, which is $O(n!)$. This is correct but impractical for large matrices. Gaussian elimination would be more efficient. This is an engineering optimization, not a mathematical limitation,  the exact values are the same regardless of the algorithm used to compute them.
 
 **Eigenvalue computation is not supported.** Eigenvalues are roots of the characteristic polynomial. For matrices of size 3 or larger, these roots are generally irrational. VDR has no native irrational type and no complex number type. Eigenvalue computation would require extending the system.
 
@@ -701,13 +701,13 @@ The system is implemented as a Python package with no required external dependen
 
 ```
 vdr/
-  __init__.py       — public API, auto-installs extensions
-  vdr.py            — core: VDR, Remainder, normalization, equality,
+  __init__.py      ,  public API, auto-installs extensions
+  vdr.py           ,  core: VDR, Remainder, normalization, equality,
                       closed arithmetic, rebase, lift, projection
-  active_mul.py     — active multiplication and division
-  fn.py             — functional remainders, resolve, discrete calculus
-  linalg.py         — Vec, Mat, parser, JSON serialization, LaTeX export
-  export.py         — lossy decimal/float export boundary
+  active_mul.py    ,  active multiplication and division
+  fn.py            ,  functional remainders, resolve, discrete calculus
+  linalg.py        ,  Vec, Mat, parser, JSON serialization, LaTeX export
+  export.py        ,  lossy decimal/float export boundary
 ```
 
 ### 12.2 Usage
@@ -768,7 +768,7 @@ All tests pass. The code is published alongside this paper.
 
 VDR operates in a space with several neighboring systems. None occupies the same position.
 
-**Exact rational arithmetic** (`fractions.Fraction`, GMP, FLINT). VDR's closed core is isomorphic to exact rational arithmetic. The contribution is the remainder slot — the ability to carry exact unresolved state that rational systems would either discard or not represent — and the functional extension that enables recursive construction of non-rational values.
+**Exact rational arithmetic** (`fractions.Fraction`, GMP, FLINT). VDR's closed core is isomorphic to exact rational arithmetic. The contribution is the remainder slot,  the ability to carry exact unresolved state that rational systems would either discard or not represent,  and the functional extension that enables recursive construction of non-rational values.
 
 **Computer algebra systems** (Mathematica, Sage, SymPy). These handle symbolic exact arithmetic through expression trees and rewrite rules. They are far more powerful for symbolic manipulation. VDR is different in purpose: it provides a fixed three-slot representation with exact structural identity, not a general symbolic rewriting engine. VDR objects have a fixed shape. CAS expressions do not.
 
@@ -776,9 +776,9 @@ VDR operates in a space with several neighboring systems. None occupies the same
 
 **Continued fractions.** Also exact rational representations with iterative refinement. But continued fractions are not tree-structured, do not carry a general remainder slot, and do not support functional extension. VDR's triple form with recursive remainder is a more general structure.
 
-**Posit and unum arithmetic.** These aim for better approximate arithmetic — more useful precision per bit than IEEE 754 floats. VDR aims for exact arithmetic, not better approximation. The goals are complementary, not competing.
+**Posit and unum arithmetic.** These aim for better approximate arithmetic,  more useful precision per bit than IEEE 754 floats. VDR aims for exact arithmetic, not better approximation. The goals are complementary, not competing.
 
-**Finite differences and discrete calculus.** The mathematical theory of finite differences is well-established. VDR does not contribute new mathematical results in this area. What it provides is an exact computational substrate — a system where the finite differences are exact rationals rather than floating-point approximations, eliminating the noise floor that limits practical use of high-order differences.
+**Finite differences and discrete calculus.** The mathematical theory of finite differences is well-established. VDR does not contribute new mathematical results in this area. What it provides is an exact computational substrate,  a system where the finite differences are exact rationals rather than floating-point approximations, eliminating the noise floor that limits practical use of high-order differences.
 
 ---
 
@@ -788,7 +788,7 @@ This paper has presented VDR, an exact finite arithmetic system where every valu
 
 **Zero drift.** Any chain of rational operations of any length recovers exact equality. Two hundred add/subtract operations return to the origin exactly. Forty matrix operations return to the original matrix exactly.
 
-**Exact matrix inversion.** The 4×4 Hilbert matrix — a standard benchmark that destroys floating-point precision — is inverted exactly. $H \times H^{-1}$ is the identity matrix with no residual error. $\mathrm{inv}(\mathrm{inv}(H)) = H$ exactly.
+**Exact matrix inversion.** The 4×4 Hilbert matrix,  a standard benchmark that destroys floating-point precision,  is inverted exactly. $H \times H^{-1}$ is the identity matrix with no residual error. $\mathrm{inv}(\mathrm{inv}(H)) = H$ exactly.
 
 **Recursive irrational construction.** Newton-Raphson for $\sqrt{2}$ produces an exact rational at every step with quadratic convergence. Depth 7 gives an exact fraction with over 150 digits whose square differs from 2 by $10^{-97}$. No floats are used in the computation.
 
@@ -1112,7 +1112,7 @@ Left Riemann error: $O(1/n)$. Trapezoidal error: $O(1/n^2)$. All values exact VD
 | $[0,5,0]$ | $[7,11,0]$ | $[0,35,0]$ | $[0,1,0]$ | $0 \div 7/11 = 0$ |
 | $[-3,4,0]$ | $[2,5,0]$ | $[-15,8,0]$ | $[-15,8,0]$ | $-3/4 \div 2/5 = -15/8$ |
 | $[5,6,0]$ | $[5,6,0]$ | $[30,30,0]$ | $[1,1,0]$ | $5/6 \div 5/6 = 1$ |
-| $[1,2,0]$ | $[0,3,0]$ | FAIL | — | Division by zero |
+| $[1,2,0]$ | $[0,3,0]$ | FAIL |,  | Division by zero |
 
 ---
 
@@ -1131,7 +1131,7 @@ Left Riemann error: $O(1/n)$. Trapezoidal error: $O(1/n^2)$. All values exact VD
 | $[2,3,0]$ | 9 | 6 | $[6,9,0]$ | $[2,3,0]$ | $2/3$ |
 | $[5,1,0]$ | 7 | 35 | $[35,7,0]$ | $[5,1,0]$ | $5$ |
 
-### G.2 Closed Rebase (Failed — Triggers Active)
+### G.2 Closed Rebase (Failed,  Triggers Active)
 
 | Source | Target D | VB/D | Reason |
 |--------|----------|------|--------|
@@ -1337,11 +1337,11 @@ Comparison example: $[3,4,[1,4,0]]$ with tuple $(1,8,2)$ is simpler than $[3,4,[
 | 2 | $17/12$ | 2 | 2 | $289/144$ | 2 | 1.41667 |
 | 3 | $577/408$ | 3 | 3 | $332929/166464$ | 5 | 1.41422 |
 | 4 | $665857/470832$ | 6 | 6 | $\sim 4.4 \times 10^{11}/\sim 2.2 \times 10^{11}$ | 11 | 1.41421356237 |
-| 5 | 12-digit / 12-digit | 12 | 12 | — | 23 | 1.41421356237310 |
-| 6 | 24-digit / 24-digit | 24 | 24 | — | 48 | 1.41421356237310 |
-| 7 | 49-digit / 49-digit | 49 | 49 | — | 97 | 1.41421356237310 |
+| 5 | 12-digit / 12-digit | 12 | 12 |,  | 23 | 1.41421356237310 |
+| 6 | 24-digit / 24-digit | 24 | 24 |,  | 48 | 1.41421356237310 |
+| 7 | 49-digit / 49-digit | 49 | 49 |,  | 97 | 1.41421356237310 |
 
-Correct digits of $\sqrt{2}$ approximately double at each step. Fraction size grows geometrically. Every fraction is exact — not a truncated decimal.
+Correct digits of $\sqrt{2}$ approximately double at each step. Fraction size grows geometrically. Every fraction is exact,  not a truncated decimal.
 
 ### L.2 $\sqrt{3}$: $x_{n+1} = (x_n + 3/x_n)/2$, $x_0 = 1$
 
@@ -1468,7 +1468,7 @@ $\Delta^4(x^4) = 24 = 4!$ exactly. $\Delta^5(x^4) = 0$ exactly.
 | 500 | large fraction | 3.1396 | | 2 |
 | 1000 | large fraction | 3.14059 | | 3 |
 
-Leibniz converges at $O(1/N)$. Every partial sum is a single exact VDR rational. The "large fraction" entries have numerators and denominators exceeding 100 digits — fully exact, not truncated.
+Leibniz converges at $O(1/N)$. Every partial sum is a single exact VDR rational. The "large fraction" entries have numerators and denominators exceeding 100 digits,  fully exact, not truncated.
 
 ### N.2 Basel Series for $\pi^2/6$: $\sum_{k=1}^{N} 1/k^2$
 

@@ -2,7 +2,7 @@
 
 ## CPU SIMD, Arena-Only, NUMA-Aligned
 
-### Version 0.2 — Laptop Target
+### Version 0.2,  Laptop Target
 
 ---
 
@@ -51,7 +51,7 @@ One process. N+1 arenas (1 global + N per-core). Pinned threads. Direct function
 
 ---
 
-## 3. ID System — Dual Addressing with Sign-Bit Partitioning
+## 3. ID System,  Dual Addressing with Sign-Bit Partitioning
 
 ### 3.1 ID Structure
 
@@ -98,9 +98,9 @@ fn generateEphemeralId(counter: *i64) vlp_id {
 }
 ```
 
-Ephemeral IDs never collide with global IDs. Session A's -5 and session B's -5 are in different session scopes — they never share an arena or namespace.
+Ephemeral IDs never collide with global IDs. Session A's -5 and session B's -5 are in different session scopes,  they never share an arena or namespace.
 
-### 3.4 Dual Addressing — Walk and Direct
+### 3.4 Dual Addressing,  Walk and Direct
 
 Every KB is addressable two ways:
 
@@ -128,7 +128,7 @@ session_root.notes = -4
 session_root.notes.hypothesis_1 = -5
 ```
 
-These IDs are local to the session. When the session dies, the ephemeral arena region is freed. No cleanup of individual entries needed — the arena bump pointer resets.
+These IDs are local to the session. When the session dies, the ephemeral arena region is freed. No cleanup of individual entries needed,  the arena bump pointer resets.
 
 The LLM can write ephemeral notes to itself:
 
@@ -136,7 +136,7 @@ The LLM can write ephemeral notes to itself:
 CMD_KB_ASSERT session_root.notes.hypothesis_1 fact(confidence_too_low, retry_with_source_b)
 ```
 
-This is a scratchpad the LLM controls. It persists across turns within a session but dies with the session. It's in the session's per-core arena, so access is local memory — no contention.
+This is a scratchpad the LLM controls. It persists across turns within a session but dies with the session. It's in the session's per-core arena, so access is local memory,  no contention.
 
 ### 3.6 Ephemeral-to-Global Promotion
 
@@ -147,7 +147,7 @@ When the LLM formalizes an ephemeral fact as a Prolog rule or asserts it to a gl
 CMD_KB_ASSERT root.science.physics.qed.alpha_strong fact(value, 11800)
 ```
 
-This writes to the global store with a new global UUID. The ephemeral version can be retracted or left to die with the session. Promotion is explicit — ephemeral data never leaks to global implicitly.
+This writes to the global store with a new global UUID. The ephemeral version can be retracted or left to die with the session. Promotion is explicit,  ephemeral data never leaks to global implicitly.
 
 ---
 
@@ -156,7 +156,7 @@ This writes to the global store with a new global UUID. The ephemeral version ca
 ### 4.1 VDR Value Types
 
 ```
-// Q16 — the primary operational type
+// Q16,  the primary operational type
 // 8 bytes. Two remainder slots. No wasted padding.
 struct vlp_q16 {
     v: i32,       // numerator (value / D)
@@ -168,7 +168,7 @@ struct vlp_q16 {
 // r1 carries precision below r0.
 // Two levels of remainder = you always know what was lost.
 
-// Q32 — intermediate precision
+// Q32,  intermediate precision
 struct vlp_q32 {
     v: i64,
     r0: i32,
@@ -176,7 +176,7 @@ struct vlp_q32 {
 };
 // D = 4294967296 (2^32). sizeof = 16 bytes.
 
-// Q335 — high precision / transcendentals
+// Q335,  high precision / transcendentals
 struct vlp_q335 {
     v: [6]i64,      // 384-bit value as 6 × 64-bit limbs
     r0: [6]i64,
@@ -438,7 +438,7 @@ const CONFIDENCE_TABLE = [11]vlp_q16{
 
 ---
 
-## 5. Memory Architecture — Arenas Only
+## 5. Memory Architecture,  Arenas Only
 
 ### 5.1 Arena Design
 
@@ -517,11 +517,11 @@ vlp_numa_init() -> vlp_status
        and read-only access to global arena for shared data.
 ```
 
-On a single-socket laptop (Dell Legion 5), all memory is on one NUMA node. The pinning and per-core arenas still help for cache locality — each core's working set stays in its L1/L2 cache without bouncing.
+On a single-socket laptop (Dell Legion 5), all memory is on one NUMA node. The pinning and per-core arenas still help for cache locality,  each core's working set stays in its L1/L2 cache without bouncing.
 
 ---
 
-## 6. Compute Model — CPU SIMD
+## 6. Compute Model,  CPU SIMD
 
 ### 6.1 SIMD Strategy
 
@@ -564,7 +564,7 @@ fn simd_dot_product(a: []const i32, b: []const i32, n: i32) i64 {
 }
 ```
 
-### 6.2 GEMM — The Bottleneck
+### 6.2 GEMM,  The Bottleneck
 
 Matrix multiply is the critical path. For a 1B model token:
 
@@ -598,7 +598,7 @@ vlp_gemm(A: []const i32, B: []const i32, C: []i32,
     // Final divTrunc by D to get Q16 result
 ```
 
-### 6.3 Softmax — Exact Unity
+### 6.3 Softmax,  Exact Unity
 
 Same algorithm as the proven toy model. No float.
 
@@ -665,7 +665,7 @@ Barrier: atomic decrement. Last thread to finish signals completion. No mutex, n
 
 ---
 
-## 7. Model Architecture — KB-Distributed Weights
+## 7. Model Architecture,  KB-Distributed Weights
 
 ### 7.1 Model as KB Tree
 
@@ -775,7 +775,7 @@ vlp_inference_cycle(session: vlp_session_handle, input: []const u8,
             break;
 
         else:
-            // Prose token — judgment and framing
+            // Prose token,  judgment and framing
             output.append(token);
 
         logits = vlp_forward_single(token, visible_layers, session.core_id);
@@ -795,9 +795,9 @@ vlp_inference_cycle(session: vlp_session_handle, input: []const u8,
 Identical to v0.1:
 
 ```
-L1 — Full LLM Judgment:     50-500 tokens. No stored rule covers it.
-L2 — LLM Invokes Rule:      ~8 command tokens + ~10 prose tokens. ~3% of L1 cost.
-L3 — Automatic Rule Firing:  0 LLM tokens. Pure Prolog. 93% of ops at maturity.
+L1,  Full LLM Judgment:     50-500 tokens. No stored rule covers it.
+L2,  LLM Invokes Rule:      ~8 command tokens + ~10 prose tokens. ~3% of L1 cost.
+L3,  Automatic Rule Firing:  0 LLM tokens. Pure Prolog. 93% of ops at maturity.
 ```
 
 ### 8.3 Ephemeral Scratchpad Usage
@@ -821,7 +821,7 @@ CMD_KB_ASSERT root.ops.incidents.inc_042 fact(source, session_root.notes.investi
 
 ---
 
-## 9. KB Store — Direct Memory Access
+## 9. KB Store,  Direct Memory Access
 
 ### 9.1 Operations
 
@@ -909,7 +909,7 @@ struct vlp_snapshot_header {
     session_id: vlp_id,      // i64
     user_id: vlp_id,         // i64
 
-    // Global region sizes (bytes) — only session's visible subset
+    // Global region sizes (bytes),  only session's visible subset
     kb_region_size: i64,
     fact_region_size: i64,
     rule_region_size: i64,
@@ -933,7 +933,7 @@ struct vlp_snapshot_header {
 };
 ```
 
-Snapshot captures both global (session's view) and ephemeral state. Restore is bit-identical. Ephemeral IDs are preserved — the session continues exactly where it left off.
+Snapshot captures both global (session's view) and ephemeral state. Restore is bit-identical. Ephemeral IDs are preserved,  the session continues exactly where it left off.
 
 ---
 
@@ -1034,7 +1034,7 @@ INVARIANT_12: Ephemeral data dies with its session.
     When a session is killed, its per-core arena region for ephemeral
     data is reset. No ephemeral fact survives session death.
     Ephemeral data referenced in global provenance becomes a dead link
-    (the reference persists but the data is gone — provenance records
+    (the reference persists but the data is gone,  provenance records
     that the derivation came from an ephemeral source).
 
 INVARIANT_13: Arena memory is never exhausted silently.
@@ -1053,30 +1053,30 @@ INVARIANT_14: SIMD GEMM produces identical results to scalar GEMM.
 ## 16. Implementation Files
 
 ```
-vlp_types.zig         — Q16 (v,r0,r1), vlp_id, Fact, KB, Term, Rule, Session, etc.
-vlp_shared.zig        — constants, D, exp table, field offsets, enums
-vlp_arena.zig         — fixed-size arena allocator, bump pointer, reset
-vlp_numa.zig          — core detection, thread pinning, arena-per-core
-vlp_thread_pool.zig   — pinned threads, GEMM work distribution, atomic barrier
-vlp_ops.zig           — SIMD: gemm, dot, softmax, rmsnorm, attention, silu
-vlp_model.zig         — KB-based model loading, layer dispatch, forward pass
-vlp_kb_store.zig      — KB CRUD, fact/rule/term stores, path index, COW, ephemeral resolution
-vlp_prolog.zig        — unification, query, rule firing, backtracking
-vlp_grammar.zig       — template compile, render, inherit
-vlp_session.zig       — session lifecycle, ephemeral tree, clone/merge/kill
-vlp_snapshot.zig      — save/restore, diff, merge, CRC32
-vlp_runner.zig        — poller, processor, internal, batch runners
-vlp_inference.zig     — full inference loop, L1/L2/L3, context assembly
-vlp_command.zig       — command parser, executor, KB/Prolog/grammar dispatch
-vlp_access.zig        — visibility check, ephemeral/global resolution
-vlp_grant.zig         — grant CRUD, check, cleanup
-vlp_audit.zig         — ring buffer, query, filter
-vlp_confidence.zig    — assign, combine, chain, propagate
-vlp_seed.zig          — seed layer init, model weight KB creation
-vlp_builtin.zig       — 448 builtins, IOSE validation, dispatch
-vlp_system.zig        — top-level init, wire everything, config
-vlp_test.zig          — determinism, roundtrip, isolation, SIMD correctness
-build.zig             — single native x86_64 target
+vlp_types.zig        ,  Q16 (v,r0,r1), vlp_id, Fact, KB, Term, Rule, Session, etc.
+vlp_shared.zig       ,  constants, D, exp table, field offsets, enums
+vlp_arena.zig        ,  fixed-size arena allocator, bump pointer, reset
+vlp_numa.zig         ,  core detection, thread pinning, arena-per-core
+vlp_thread_pool.zig  ,  pinned threads, GEMM work distribution, atomic barrier
+vlp_ops.zig          ,  SIMD: gemm, dot, softmax, rmsnorm, attention, silu
+vlp_model.zig        ,  KB-based model loading, layer dispatch, forward pass
+vlp_kb_store.zig     ,  KB CRUD, fact/rule/term stores, path index, COW, ephemeral resolution
+vlp_prolog.zig       ,  unification, query, rule firing, backtracking
+vlp_grammar.zig      ,  template compile, render, inherit
+vlp_session.zig      ,  session lifecycle, ephemeral tree, clone/merge/kill
+vlp_snapshot.zig     ,  save/restore, diff, merge, CRC32
+vlp_runner.zig       ,  poller, processor, internal, batch runners
+vlp_inference.zig    ,  full inference loop, L1/L2/L3, context assembly
+vlp_command.zig      ,  command parser, executor, KB/Prolog/grammar dispatch
+vlp_access.zig       ,  visibility check, ephemeral/global resolution
+vlp_grant.zig        ,  grant CRUD, check, cleanup
+vlp_audit.zig        ,  ring buffer, query, filter
+vlp_confidence.zig   ,  assign, combine, chain, propagate
+vlp_seed.zig         ,  seed layer init, model weight KB creation
+vlp_builtin.zig      ,  448 builtins, IOSE validation, dispatch
+vlp_system.zig       ,  top-level init, wire everything, config
+vlp_test.zig         ,  determinism, roundtrip, isolation, SIMD correctness
+build.zig            ,  single native x86_64 target
 
 23 files. ~18K lines estimated.
 ```

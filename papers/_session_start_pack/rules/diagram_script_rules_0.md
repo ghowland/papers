@@ -91,9 +91,9 @@ D4.3. If the same information is equally clear as a sentence or a table row, it 
 
 **Type 6: Comparison Bar Chart.** Quantitative bars against a physical criterion. Shows elimination, ranking, or relative magnitude. Each bar carries a number. Threshold lines show pass/fail criteria. The eye sees immediately which candidates survive. Examples: gap ratio comparison, mass splitting requirements, coupling predictions vs measured.
 
-**Type 7: Progression/Sequence Diagram.** Left-to-right showing sequential physical stages with data at each stage. Not a program flowchart — a physical sequence (light ray traversing boundaries, correction accumulating through stages, coupling evolving through thresholds). Each stage has computed values.
+**Type 7: Progression/Sequence Diagram.** Left-to-right showing sequential physical stages with data at each stage. Not a program flowchart,  a physical sequence (light ray traversing boundaries, correction accumulating through stages, coupling evolving through thresholds). Each stage has computed values.
 
-**Type 8: Identity Card.** ONE per paper maximum. A visual reference combining key data with a schematic of the main object. Contains quantum numbers, key Fractions, a geometric representation. Serves as a visual anchor for the paper. Not a box of text — includes actual geometry (representations, symmetry diagrams, particle content).
+**Type 8: Identity Card.** ONE per paper maximum. A visual reference combining key data with a schematic of the main object. Contains quantum numbers, key Fractions, a geometric representation. Serves as a visual anchor for the paper. Not a box of text,  includes actual geometry (representations, symmetry diagrams, particle content).
 
 ---
 
@@ -222,7 +222,7 @@ D12.1. Standard header:
 ```python
 #!/usr/bin/env python3
 """
-HOWL PHYS-NN Diagrams — {paper_title}
+HOWL PHYS-NN Diagrams,  {paper_title}
 {N} figures covering {brief description}.
 Output: PNG files to ../figures/
 """
@@ -317,10 +317,10 @@ D15.3. The placement table format:
 D15.4. Each markdown line includes the figure number and a short caption after the title, matching the paper's terminology:
 
 ```markdown
-![Fig. 3: The VL b_ij Heatmap — Nine Fractions from one representation.](./figures/phys28_03_bij_heatmap.png)
+![Fig. 3: The VL b_ij Heatmap,  Nine Fractions from one representation.](./figures/phys28_03_bij_heatmap.png)
 ```
 
-D15.5. The caption in the markdown must be self-contained — a reader seeing only the figure and caption understands what is shown without reading the surrounding text.
+D15.5. The caption in the markdown must be self-contained,  a reader seeing only the figure and caption understands what is shown without reading the surrounding text.
 
 D15.6. Figures are placed AFTER the first paragraph that references them in each section, not collected at the end.
 
@@ -358,7 +358,7 @@ D17.1.3. **Comparison diagrams earn their slot when the comparison is VISUAL, no
 
 D17.1.4. **Connection maps work when they carry FORMULAS AND NUMBERS, not just labels.** The integer map (PHYS-30 Fig 5) works because each box contains a specific Fraction (22/13, 15/4, etc.) and the arrows mean "this number flows into this computation." A connection map where the boxes say "Unification" → "Cosmology" with no numbers is a program flowchart in disguise.
 
-D17.1.5. **Cross-paper comparisons make strong diagrams when the comparison reveals a pattern.** The sin²θ_W two-paths diagram (PHYS-31 Fig 7) works because it shows the SAME number arising from two DIFFERENT mechanisms — one validated, one parked. The visual makes the distinction immediate.
+D17.1.5. **Cross-paper comparisons make strong diagrams when the comparison reveals a pattern.** The sin²θ_W two-paths diagram (PHYS-31 Fig 7) works because it shows the SAME number arising from two DIFFERENT mechanisms,  one validated, one parked. The visual makes the distinction immediate.
 
 D17.1.6. **When in doubt between two candidates of the same type, pick the one with more data on it.** A convergence chart with 4 data points and a measurement band and error bars is better than one with 2 data points and a line.
 
@@ -370,9 +370,9 @@ D17.2.1. **Never use `transform=ax.get_xaxis_transform()` with negative y-values
 
 D17.2.2. **When indexing in a loop over dictionary keys, use the loop index variable `i`, not the key value `s`.** A common bug: `for i, s in enumerate(scores): ... counts[s]` fails when `s` is a score value (3,4,5,6,7) but `counts` is a list indexed from 0. Use `counts[i]` not `counts[s]`.
 
-D17.2.3. **Side-by-side panels (`fig, (ax1, ax2) = plt.subplots(1, 2)`) need explicit `figsize` width control.** Use `figsize=(18, 9)` not `(18, 10)` for side-by-side — slightly shorter prevents the tight bounding box from growing vertically. Use `gridspec_kw={'wspace': 0.30}` minimum for breathing room between panels.
+D17.2.3. **Side-by-side panels (`fig, (ax1, ax2) = plt.subplots(1, 2)`) need explicit `figsize` width control.** Use `figsize=(18, 9)` not `(18, 10)` for side-by-side,  slightly shorter prevents the tight bounding box from growing vertically. Use `gridspec_kw={'wspace': 0.30}` minimum for breathing room between panels.
 
-D17.2.4. **Measurement bands work best as two nested `axhspan` or `axvspan` calls** — one for 1σ (alpha 0.12–0.15) and one for 3σ (alpha 0.05–0.08). Label them at the edge. The reader immediately sees which predictions fall inside which band.
+D17.2.4. **Measurement bands work best as two nested `axhspan` or `axvspan` calls**,  one for 1σ (alpha 0.12–0.15) and one for 3σ (alpha 0.05–0.08). Label them at the edge. The reader immediately sees which predictions fall inside which band.
 
 D17.2.5. **Log scales need labeled landmarks, not just tick numbers.** On an energy axis: mark M_Z, M_VL, M_GUT with vertical lines and text labels. On a magnitude axis: mark key thresholds. The landmarks turn a number line into a map.
 
@@ -380,7 +380,7 @@ D17.2.6. **Annotation arrows should point FROM the text TO the data point, not t
 
 D17.2.7. **For scatter plots on dark backgrounds, always use `edgecolors=WHITE` with `linewidth=1.5–2`.** Without the white edge, colored dots disappear against the dark panel. The white ring makes every point visible regardless of its fill color.
 
-D17.2.8. **Text boxes for key results use `bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD)`.** The facecolor matching the background makes the box appear as a floating label. The edgecolor draws attention. Never use a light facecolor on a dark background — it creates a glaring white rectangle.
+D17.2.8. **Text boxes for key results use `bbox=dict(boxstyle='round,pad=0.4', facecolor=BG, edgecolor=GOLD)`.** The facecolor matching the background makes the box appear as a floating label. The edgecolor draws attention. Never use a light facecolor on a dark background,  it creates a glaring white rectangle.
 
 D17.2.9. **Shaded regions (threshold bands, excluded zones, natural windows) should use alpha 0.03–0.08 for large regions and 0.10–0.15 for narrow bands.** Too dark obscures the data. Too light is invisible. Test: if you can still read curve labels through the shading, the alpha is right.
 

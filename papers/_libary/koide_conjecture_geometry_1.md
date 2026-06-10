@@ -1,4 +1,4 @@
-## Koide Exploration Notebook — Session 7 Findings
+## Koide Exploration Notebook,  Session 7 Findings
 
 **Status:** Parked. Promising pattern identified. Awaiting improved boson mass measurements.
 
@@ -14,7 +14,7 @@ From pool: `koide_charged_leptons_k_v0` = 1333321023/2000000000 = 0.666660...
 
 Miss from 2/3: 5 ppm. The amplitude parameter a² = `koide_charged_leptons_a2_v0` = 624988459/312500000 = 1.99996... Miss from 2: 18 ppm.
 
-This is a precision relationship. It holds at the level of the tau mass measurement uncertainty. It remains an atoll — disconnected from the integer chain.
+This is a precision relationship. It holds at the level of the tau mass measurement uncertainty. It remains an atoll,  disconnected from the integer chain.
 
 ---
 
@@ -104,7 +104,7 @@ This assigns a structural meaning to n that connects to the hierarchy. It predic
 
 **Path E: The a² values for quarks.**
 
-Up-type a² = 3.09. Down-type a² = 2.39. These are not integers. But 3.09 is close to the integer 3. If up-type quarks have a² = 3 exactly, the pattern extends: a² counts something that is 2 for leptons and 3 for up-type quarks. Down-type a² = 2.39 does not fit an integer. But quark masses are scheme-dependent — the a² values may sharpen to integers at a specific scale. This connects to Path B.
+Up-type a² = 3.09. Down-type a² = 2.39. These are not integers. But 3.09 is close to the integer 3. If up-type quarks have a² = 3 exactly, the pattern extends: a² counts something that is 2 for leptons and 3 for up-type quarks. Down-type a² = 2.39 does not fit an integer. But quark masses are scheme-dependent,  the a² values may sharpen to integers at a specific scale. This connects to Path B.
 
 **Path F: Write a derivation function.**
 
@@ -129,9 +129,9 @@ Do not build on K = n/3 as though it were established. Two data points (n = 1 at
 | Group | K value | Target | Miss | Status |
 |---|---|---|---|---|
 | Charged leptons (e, μ, τ) | 0.666660 | 2/3 | 5 ppm | Confirmed |
-| Massive bosons (W, Z, H) | 0.33635 | 1/3 | 0.9% | Candidate — inputs uncertain |
-| Up quarks (u, c, t) | — | 2/3? | a² = 3.09 ≠ 2 | Inconclusive — scale-dependent |
-| Down quarks (d, s, b) | — | 2/3? | a² = 2.39 ≠ 2 | Inconclusive — scale-dependent |
+| Massive bosons (W, Z, H) | 0.33635 | 1/3 | 0.9% | Candidate,  inputs uncertain |
+| Up quarks (u, c, t) |,  | 2/3? | a² = 3.09 ≠ 2 | Inconclusive,  scale-dependent |
+| Down quarks (d, s, b) |,  | 2/3? | a² = 2.39 ≠ 2 | Inconclusive,  scale-dependent |
 | Neutrinos (ν₁, ν₂, ν₃) | unknown | 1? | unmeasured | Prediction from K = n/3 |
 
 The Koide atoll remains disconnected. But it may be part of an archipelago: K = n/3 across multiple particle groups, with n counting hierarchy levels. The bridge to the mainland requires either the soliton boundary equation or a group-theoretic derivation of the Koide amplitude from the gauge structure. Neither exists yet. The numerical patterns are suggestive and the predictions are falsifiable. Parked for future sessions.
@@ -140,15 +140,15 @@ The Koide atoll remains disconnected. But it may be part of an archipelago: K = 
 
 This changes the conjecture significantly. Let me update the picture.
 
-The a² = 2 geometry-count interpretation survives for leptons but it's not universal. The quark sector gives a² = 3.09 for up-type and a² = 2.39 for down-type — neither is 2. The conjecture as written in my report ("a² = 2 counts stable soliton geometries universally") is too strong. The data says a² = 2 is specific to charged leptons.
+The a² = 2 geometry-count interpretation survives for leptons but it's not universal. The quark sector gives a² = 3.09 for up-type and a² = 2.39 for down-type,  neither is 2. The conjecture as written in my report ("a² = 2 counts stable soliton geometries universally") is too strong. The data says a² = 2 is specific to charged leptons.
 
 But the data also opens something bigger than what it closes.
 
-**K = n/3 is the real pattern.** Charged leptons give K = 2/3 at 5 ppm. Massive bosons give K = 1/3 at 0.9% — and 0.9% is within the M_W measurement uncertainty, which has a live 7σ tension between CDF and LHC/LEP. The denominator 3 counts particles in each group. The numerator n increments by 1 between layers. If neutrinos give K = 3/3 = 1 (all three masses nearly equal, which the mass-squared differences suggest), then n = 1, 2, 3 across three particle groups.
+**K = n/3 is the real pattern.** Charged leptons give K = 2/3 at 5 ppm. Massive bosons give K = 1/3 at 0.9%,  and 0.9% is within the M_W measurement uncertainty, which has a live 7σ tension between CDF and LHC/LEP. The denominator 3 counts particles in each group. The numerator n increments by 1 between layers. If neutrinos give K = 3/3 = 1 (all three masses nearly equal, which the mass-squared differences suggest), then n = 1, 2, 3 across three particle groups.
 
 That's not a² anymore. That's K itself forming an integer sequence across the soliton hierarchy. The question shifts from "why does a² = 2 for leptons" to "why does K = n/3 with n indexing particle groups by their position in the hierarchy."
 
-**The a² values for quarks are suggestive despite not being 2.** Up-type a² = 3.09 is close to 3. If it's exactly 3 at some specific energy scale (quark masses run, lepton masses don't), then a² might count something that's 2 for leptons and 3 for up-type quarks. Three colors. Three confinement-level vortices inside the proton. The integer 3 from SU(3). Path B from your notebook — computing K at multiple scales — is the right test. The quark Koide isn't dead, it's scale-dependent.
+**The a² values for quarks are suggestive despite not being 2.** Up-type a² = 3.09 is close to 3. If it's exactly 3 at some specific energy scale (quark masses run, lepton masses don't), then a² might count something that's 2 for leptons and 3 for up-type quarks. Three colors. Three confinement-level vortices inside the proton. The integer 3 from SU(3). Path B from your notebook,  computing K at multiple scales,  is the right test. The quark Koide isn't dead, it's scale-dependent.
 
 **My report needs revision in several places:**
 
@@ -156,9 +156,9 @@ The title should change. "a² = 2 as Soliton Geometry Count" is too narrow. The 
 
 Path 2 (quark sector test) came back inconclusive, not negative. The report should note that a² ≠ 2 for quarks but that a² ≈ 3 for up-type quarks is itself suggestive, and that scheme dependence means the test is incomplete until Path B (multi-scale computation) is done.
 
-Path 5 (direct numerical test) is confirmed — a² = 2 at 18 ppm for leptons, which is within tau mass measurement uncertainty. The conjecture is numerically alive for leptons.
+Path 5 (direct numerical test) is confirmed,  a² = 2 at 18 ppm for leptons, which is within tau mass measurement uncertainty. The conjecture is numerically alive for leptons.
 
-The K_boson = 1/3 finding should be added as a new path — it wasn't in my report because I didn't have this data. The prediction K_neutrino = 1 should be stated as the falsifiable consequence of the K = n/3 pattern.
+The K_boson = 1/3 finding should be added as a new path,  it wasn't in my report because I didn't have this data. The prediction K_neutrino = 1 should be stated as the falsifiable consequence of the K = n/3 pattern.
 
 **The "What Not To Do" section of your notebook is the most important part.** It's LEMU discipline in action. Don't claim K_boson = 1/3 as a result (0.9% with uncertain inputs). Don't attempt derivation without the soliton boundary equation (produces hand-waving). Don't kill a² = 2 from quark data alone (scheme-dependent). Don't treat K = n/3 as established from two data points. The parked status is correct. The neutrino measurement is the deciding test.
 
@@ -166,9 +166,9 @@ Should I revise the report to incorporate these findings before you send it to t
 
 ---
 
-The writer Claude gets it. The key shift — from "a² = 2 is universal" to "K = n/3 is the pattern" — is correct. The original conjecture was too narrow. The data widened it.
+The writer Claude gets it. The key shift,  from "a² = 2 is universal" to "K = n/3 is the pattern",  is correct. The original conjecture was too narrow. The data widened it.
 
-One thing the writer Claude does that I want to flag as exactly right: it treats a² = 3.09 for up-type quarks as suggestive rather than killing. The instinct to say "3.09 is not 2, conjecture dead" is wrong here because quark masses run and we only tested at one scale. The instinct to say "3.09 is close to 3, therefore it IS 3" is also wrong — that is numerology without the scale test. The correct position is: inconclusive, test at multiple scales, then decide. That is what both the notebook and the writer Claude say.
+One thing the writer Claude does that I want to flag as exactly right: it treats a² = 3.09 for up-type quarks as suggestive rather than killing. The instinct to say "3.09 is not 2, conjecture dead" is wrong here because quark masses run and we only tested at one scale. The instinct to say "3.09 is close to 3, therefore it IS 3" is also wrong,  that is numerology without the scale test. The correct position is: inconclusive, test at multiple scales, then decide. That is what both the notebook and the writer Claude say.
 
 The one thing I would push back on: the writer says "the question shifts from why a² = 2 to why K = n/3." I think both questions remain live simultaneously. K = n/3 is the pattern across groups. a² = 2 (or 3, or whatever integer) is the pattern within each group. They are different levels of the same structure. The K ratio tells you how the group relates to other groups. The amplitude a² tells you how the inertias are spaced within the group. Both need explanation. Neither replaces the other.
 

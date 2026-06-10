@@ -64,7 +64,7 @@
 
 - 19 counts specific contributions to the weak force, the 3 lepton generations: electron/muon/tau and their quark partners, plus the Higgs
 
-- 6 is the gauge groups SU(2) theory normalization, different than the first 6 we saw, It's not counting particles — it's a scaling factor baked into the group theory
+- 6 is the gauge groups SU(2) theory normalization, different than the first 6 we saw, It's not counting particles,  it's a scaling factor baked into the group theory
 
 - -7 is 11 from gluon self-interaction minus 4 from quark contributions, with the math yielding 7.  The sign convention is negative, so the 7 becomes -7.
 

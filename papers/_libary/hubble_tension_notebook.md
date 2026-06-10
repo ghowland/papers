@@ -1,4 +1,4 @@
-## Hubble Tension as Running Curve — Working Notebook
+## Hubble Tension as Running Curve,  Working Notebook
 
 **Status:** Active investigation, not parked
 **Origin:** Session 4 conversation, April 2 2026
@@ -26,7 +26,7 @@ The thesis connects existing series results that have not been assembled:
 | The transformation law is more fundamental than any single value | PHYS-2 | The H₀ running curve is the fundamental object, not 67.4 or 73.0 |
 | Reproducibility within one depth ≠ universality across depths | PHYS-3 | Local H₀ measurements cluster because they sample similar depths |
 | Per-transit correction must be ~0.9992 to ~0.99992 depending on N | PHYS-4 | Magnitude constraint on the per-transit rational |
-| VP running through discrete boundaries matches CODATA to 0.02 ppm | PHYS-5 | Computational template — exact rational running through discrete boundaries |
+| VP running through discrete boundaries matches CODATA to 0.02 ppm | PHYS-5 | Computational template,  exact rational running through discrete boundaries |
 | H₀ running would be Subgroup B (monotonic accumulation) | PHYS-11 | Classification predicts monotonic curve, not periodic |
 | Step size for α running is 1/(3π) = 1/(12R₂), an exact Fraction | PHYS-5/11 | H₀ step size may have analogous exact rational form involving R₂ |
 
@@ -59,7 +59,7 @@ The series identified the per-transit correction as a missing theoretical piece 
 The bottom-up approach requires:
 
 1. An estimate of effective N for each measurement method (from published large-scale structure catalogs)
-2. A functional form for H₀(N) — the simplest candidate is H₀(N) = H₀(0) · r^N where r is the per-transit rational correction factor
+2. A functional form for H₀(N),  the simplest candidate is H₀(N) = H₀(0) · r^N where r is the per-transit rational correction factor
 3. At least three (N, H₀) pairs to overdetermine the two-parameter fit (H₀(0) and r)
 
 If the fit produces r as a recognizable exact rational (with integer content traceable to R₂, β, or the VP integral constants), the curve is established. If r is irrational or does not relate to known series constants, the curve thesis is not supported.
@@ -75,7 +75,7 @@ The α running and the proposed H₀ running share structural features:
 | Variable | Probe energy | Effective distance / boundary count N |
 | Discrete boundaries | Flavor thresholds (quark masses) | Soliton boundaries (galaxy clusters, filaments, voids) |
 | Direction | α increases with energy (screening weakens) | H₀ decreases with N (cumulative correction reduces apparent value) |
-| Per-boundary correction | 1/(3π) = 1/(12R₂) per unit charge² | Unknown — to be extracted |
+| Per-boundary correction | 1/(3π) = 1/(12R₂) per unit charge² | Unknown,  to be extracted |
 | Subgroup (PHYS-11) | B (monotonic accumulation) | B (monotonic accumulation, predicted) |
 | Exact arithmetic | Fraction, verified to 0.02 ppm | Fraction, to be verified |
 | Known from counting | Beta slopes from particle species | Per-transit correction from boundary geometry (unknown) |
@@ -101,7 +101,7 @@ The pattern: 1 − r ≈ 0.080/N. The 0.080 ≈ ln(73.0/67.4) = ln(1.083) = 0.07
 
 If N is known (from structure catalogs), r is determined. If r is a recognizable fraction, the curve is established.
 
-Note the factor 0.080 ≈ 1/(12.5). Compare to the VP running step size 1/(3π) ≈ 1/9.42 ≈ 0.106. The H₀ per-transit correction is smaller than the VP step size by a factor of ~1.3. This may or may not be significant — the comparison requires N to be known.
+Note the factor 0.080 ≈ 1/(12.5). Compare to the VP running step size 1/(3π) ≈ 1/9.42 ≈ 0.106. The H₀ per-transit correction is smaller than the VP step size by a factor of ~1.3. This may or may not be significant,  the comparison requires N to be known.
 
 ---
 
@@ -109,7 +109,7 @@ Note the factor 0.080 ≈ 1/(12.5). Compare to the VP running step size 1/(3π) 
 
 **F1.** If intermediate H₀ measurements (TRGB, lensing, BAO) do not fall on a smooth monotonic curve when plotted against estimated N, the running curve thesis is not supported.
 
-**F2.** If the best-fit r is not a recognizable exact rational — if it has no integer structure traceable to R₂, β, or VP integral constants — the curve exists but has no connection to the series framework.
+**F2.** If the best-fit r is not a recognizable exact rational,  if it has no integer structure traceable to R₂, β, or VP integral constants,  the curve exists but has no connection to the series framework.
 
 **F3.** If the curve fit requires more than two parameters (H₀(0) and r), the simple exponential running model is insufficient. A more complex functional form may apply, or the thesis may be wrong.
 
@@ -131,7 +131,7 @@ Note the factor 0.080 ≈ 1/(12.5). Compare to the VP running step size 1/(3π) 
 
 ### 9. SERIES POSITION
 
-This thesis was not stated in any paper read so far (PHYS-1 through PHYS-5, PHYS-11, MATH-1 through MATH-6). The series has all the pieces but assembled them as "binary tension with boundary transit correlation" (PHYS-1) and "per-transit correction is the missing theoretical piece" (PHYS-4). The reframing — continuous running curve extractable empirically from intermediate measurements — is new in this session.
+This thesis was not stated in any paper read so far (PHYS-1 through PHYS-5, PHYS-11, MATH-1 through MATH-6). The series has all the pieces but assembled them as "binary tension with boundary transit correlation" (PHYS-1) and "per-transit correction is the missing theoretical piece" (PHYS-4). The reframing,  continuous running curve extractable empirically from intermediate measurements,  is new in this session.
 
 If the curve thesis holds, it would be the H₀ analog of PHYS-5's α running: a transformation law in exact rational arithmetic connecting readings at different boundary depths. The paper that develops this would connect PHYS-1 (boundary catalog), PHYS-2 (transformation law priority), PHYS-4 (per-transit constraint), PHYS-5 (computational template), and PHYS-11 (Subgroup B classification).
 

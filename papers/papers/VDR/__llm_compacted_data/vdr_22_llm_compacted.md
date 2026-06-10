@@ -1,4 +1,4 @@
-# VDR-22 DEDICATED SILICON — LLM-COMPACT FORM
+# VDR-22 DEDICATED SILICON,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → qiu_design → chip_arch → memory → perf → limitations → comparisons → scaling → relationships → sections
 
@@ -331,7 +331,7 @@ U|Full System Stack|iose_invariance
 # decode_legend
 format: pipe-delimited tables, ID-based cross-references
 target_platform: 4nm ASIC; 80 SMs × 64 QIUs = 5,120 QIUs; 2 GHz
-qiu: Q335 Integer Unit — 384-bit ALU with 1-2 cycle multiply, 0-cycle SHR335, remainder SRAM
+qiu: Q335 Integer Unit,  384-bit ALU with 1-2 cycle multiply, 0-cycle SHR335, remainder SRAM
 warp: 32 QIUs in lockstep; zero divergence on Q335 arithmetic
 sm: 64 QIUs (2 warps) + 256KB shared SRAM + local reduction + instruction cache
 chip: 80 SMs + 96MB L2 + 96GB HBM3 @ 4.9 TB/s + global 7-level reduction

@@ -1,6 +1,6 @@
 # Working Document: The Higgs Self-Coupling and Impedance Matching at the Condensation Boundary
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Complete state capture for future session pickup
 
@@ -30,11 +30,11 @@ The on-shell form uses only physical masses: **m_H² ≈ 8 · (m_Z² − m_W²)*
 
 ## II. WHAT WAS TESTED AND KILLED
 
-**λ = 1/8:** Dead. Tree-level m_H = v/2 = 123.1 GeV. One-loop top correction pushes m_H UPWARD to ~133 GeV — further from measured, not closer. The corrections go the wrong direction. 1/8 is not viable at any loop order.
+**λ = 1/8:** Dead. Tree-level m_H = v/2 = 123.1 GeV. One-loop top correction pushes m_H UPWARD to ~133 GeV,  further from measured, not closer. The corrections go the wrong direction. 1/8 is not viable at any loop order.
 
 **λ = g'² with one-loop corrections:** Inconclusive. Three approaches were tried:
 
-1. Direct self-energy: top loop adds 2230 GeV² to m_H², overshooting to 133 GeV (+6.4%). Too crude — missing gauge boson and Goldstone contributions that partially cancel.
+1. Direct self-energy: top loop adds 2230 GeV² to m_H², overshooting to 133 GeV (+6.4%). Too crude,  missing gauge boson and Goldstone contributions that partially cancel.
 2. RGE running from crossing to m_H: gives 121 GeV (−3.3%). The beta function runs lambda down too fast.
 3. Tree + all approximate one-loop: gives 134 GeV (+7.3%). Gauge contributions don't cancel enough.
 
@@ -46,7 +46,7 @@ The one-loop calculations are crude approximations that bracket the measured val
 
 ## III. THE CROSSING SCALE
 
-Running both λ and g'² from M_Z using one-loop beta functions, they cross at approximately 95.6 GeV — essentially at M_Z itself.
+Running both λ and g'² from M_Z using one-loop beta functions, they cross at approximately 95.6 GeV,  essentially at M_Z itself.
 
 - Below ~96 GeV: λ > g'²
 - Above ~96 GeV: λ < g'² and falling rapidly (top Yukawa drives λ negative at ~10⁵ GeV)
@@ -79,7 +79,7 @@ This is the key physical insight from the investigation. It connects to the seri
 
 ### 5.1 The Physical Picture
 
-In the PHYS-1 framework, the Higgs field is a standing wave — a vortex condensate. It has two relevant properties:
+In the PHYS-1 framework, the Higgs field is a standing wave,  a vortex condensate. It has two relevant properties:
 
 - **Self-coupling λ:** the stiffness of the standing wave against self-deformation. How hard it is to ripple the condensate.
 - **Gauge coupling g'²:** the coupling of the standing wave to the hypercharge background. How strongly the Higgs vortex interacts with the U(1)_Y field it exists in.
@@ -94,14 +94,14 @@ For a physical standing wave in a medium, stability occurs when internal restori
 - If external coupling > self-stiffness: the wave is over-coupled, dissolves into the medium
 - At the matching point: maximum stability, maximum coupling, minimum reflection
 
-This is impedance matching — the same principle that governs wave transmission at boundaries in every domain of physics.
+This is impedance matching,  the same principle that governs wave transmission at boundaries in every domain of physics.
 
 ### 5.3 Why g'² and Not g² or g_s²
 
 The Higgs doublet couples to all three gauge fields. But:
 
 - g_s² (strong): the Higgs is a color singlet, doesn't couple to SU(3). Not relevant.
-- g² (weak SU(2)): the condensate BREAKS SU(2). After condensation, g mixes with g' to form the photon and Z. The SU(2) coupling is modified by the condensation itself — it's not the pre-existing background.
+- g² (weak SU(2)): the condensate BREAKS SU(2). After condensation, g mixes with g' to form the photon and Z. The SU(2) coupling is modified by the condensation itself,  it's not the pre-existing background.
 - g'² (hypercharge U(1)_Y): unbroken by the condensate. The hypercharge field is the background that exists BEFORE and AFTER condensation. The condensate forms IN the hypercharge field.
 
 The impedance matching condition references the pre-breaking background. At the moment of condensation, the relevant external field is U(1)_Y with coupling g'. The condensate locks in when λ = g'².
@@ -110,15 +110,15 @@ The impedance matching condition references the pre-breaking background. At the 
 
 **MATH-1:** Q = F · β · d² · Z. Every cross-section equation has an impedance term Z. The impedance matching condition Z_internal = Z_external is when transmission is maximal. The Higgs condensation is the "transmission" of the Higgs field from the symmetric phase to the broken phase. Maximum transmission (stable condensation) at impedance matching.
 
-**PHYS-1:** Soliton boundaries are where internal coherence meets external field. The Higgs condensation boundary is exactly this — the transition between the symmetric vacuum (external) and the Higgs condensate (internal).
+**PHYS-1:** Soliton boundaries are where internal coherence meets external field. The Higgs condensation boundary is exactly this,  the transition between the symmetric vacuum (external) and the Higgs condensate (internal).
 
-**PHYS-2:** The transformation law (beta function) is more fundamental than the coupling value. λ = g'² is a relationship between couplings at a boundary — the condensation boundary. PHYS-2 says these relationships are the deeper objects.
+**PHYS-2:** The transformation law (beta function) is more fundamental than the coupling value. λ = g'² is a relationship between couplings at a boundary,  the condensation boundary. PHYS-2 says these relationships are the deeper objects.
 
 ---
 
 ## VI. WHAT IS NOT DONE
 
-1. **No rigorous derivation of the impedance matching condition.** The physical picture is clear but the mathematical derivation — showing that the soliton boundary framework produces λ = g'² as a condensation condition — has not been performed. This requires defining the impedance Z for the Higgs condensation boundary in the MATH-1 framework and showing Z_internal = Z_external gives λ = g'².
+1. **No rigorous derivation of the impedance matching condition.** The physical picture is clear but the mathematical derivation,  showing that the soliton boundary framework produces λ = g'² as a condensation condition,  has not been performed. This requires defining the impedance Z for the Higgs condensation boundary in the MATH-1 framework and showing Z_internal = Z_external gives λ = g'².
 
 2. **No proper one-loop pole mass calculation.** The crude one-loop estimates bracket the measured m_H but don't close precisely. A full on-shell computation of m_H from λ_tree = g'²_tree would determine whether the relation is exact at tree level with corrections accounting for the residual, or approximate at all levels.
 
@@ -136,7 +136,7 @@ The impedance matching condition references the pre-breaking background. At the 
 | 1/7 = 0.14286 | 10.7% off | Not viable |
 | 2/15 = 0.13333 | 3.3% off | No structural motivation |
 | 3/23 = 0.13043 | 1.1% off | Closest simple rational, no motivation |
-| g'² = 0.12780 | 1.0% off, corrections right direction | VIABLE — impedance matching |
+| g'² = 0.12780 | 1.0% off, corrections right direction | VIABLE,  impedance matching |
 
 ---
 
@@ -172,7 +172,7 @@ Gap: 0.62 GeV (0.50%)
 
 Full one-loop beta_lambda at M_Z = -4.177 (dominated by -6*y_t^4 term)
 beta for g'^2 at M_Z = +0.112 (from b_Y = 41/6)
-They run in opposite directions — lambda falls, g'^2 rises.
+They run in opposite directions,  lambda falls, g'^2 rises.
 
 sin2_tW needed for exact m_H^2 = 8*m_Z^2*sin2_tW: 0.23526
 ```
@@ -181,9 +181,9 @@ sin2_tW needed for exact m_H^2 = 8*m_Z^2*sin2_tW: 0.23526
 
 ## X. SCRIPTS PRODUCED
 
-**lambda_higgs.py** — Tests λ = 1/8. Result: DEAD. Corrections go wrong direction.
+**lambda_higgs.py**,  Tests λ = 1/8. Result: DEAD. Corrections go wrong direction.
 
-**lambda_gprime.py** — Tests λ = g'², runs both to high scales, finds crossing at 96 GeV. Result: VIABLE at 1.0%.
+**lambda_gprime.py**,  Tests λ = g'², runs both to high scales, finds crossing at 96 GeV. Result: VIABLE at 1.0%.
 
 Both in /home/claude/. The lambda_gprime.py has a unicode fix applied. Neither is in outputs (notebook entries, not deliverables).
 
@@ -206,5 +206,5 @@ Both in /home/claude/. The lambda_gprime.py has a unicode fix applied. Neither i
 **Status:** Notebook entry. Not in series. Not published.
 **Content:** λ ≈ g'² at 1.0%, m_H² ≈ 8·m_Z²·sin²θ_W at 0.86%, impedance matching interpretation, connection to PHYS-1/MATH-1/PHYS-2, path to future paper
 **Blocked by:** No rigorous derivation of impedance matching condition from soliton framework
-**Pickup instructions:** Load this document plus PHYS-1, MATH-1, PHYS-2, PHYS-5. The impedance matching argument in Section V is the path. The integer 8 is unexplained. The scheme dependence issue (Section IV) is real but not fatal — use MSbar consistently or derive the on-shell relation.
+**Pickup instructions:** Load this document plus PHYS-1, MATH-1, PHYS-2, PHYS-5. The impedance matching argument in Section V is the path. The integer 8 is unexplained. The scheme dependence issue (Section IV) is real but not fatal,  use MSbar consistently or derive the on-shell relation.
 

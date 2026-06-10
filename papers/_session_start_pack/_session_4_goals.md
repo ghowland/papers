@@ -30,7 +30,7 @@ The lane has five sequential stages. Each stage depends on the one before it. Do
 
 **Stage 1: sin²θ_W from 3/8 (UNBLOCKED, ~10 lines)**
 
-This is the first computation. At the GUT scale, SU(5) gives sin²θ_W = 3/8. Running down to M_Z with one-loop betas gives a prediction for sin²θ_W(M_Z). The key quantity is L_X = ln(M_GUT/M_Z)/(2π), determined by the Cabibbo Doublet modified betas. All inputs are in phys24_lib.py. The coefficient in the running formula should be derived from the betas, not assumed from the parked notebook — verify it.
+This is the first computation. At the GUT scale, SU(5) gives sin²θ_W = 3/8. Running down to M_Z with one-loop betas gives a prediction for sin²θ_W(M_Z). The key quantity is L_X = ln(M_GUT/M_Z)/(2π), determined by the Cabibbo Doublet modified betas. All inputs are in phys24_lib.py. The coefficient in the running formula should be derived from the betas, not assumed from the parked notebook,  verify it.
 
 Success: predicted sin²θ_W consistent with 0.23122 (DATA-4 B11).
 Failure: gross inconsistency (more than a few percent) kills the minimal SU(5)-type completion. The CD itself survives but the GUT completion changes.
@@ -40,7 +40,7 @@ Failure: gross inconsistency (more than a few percent) kills the minimal SU(5)-t
 Same framework as Stage 1. If the three couplings unify at M_GUT with CD betas, that unification condition plus two measured couplings (α⁻¹ and sin²θ_W) predicts the third (α_s). Compare against 0.1180 (DATA-4 B12).
 
 Success: predicted α_s within a few percent of measured.
-Failure: same consequence as Stage 1 — completion changes, CD survives.
+Failure: same consequence as Stage 1,  completion changes, CD survives.
 
 **Stage 3: VL two-loop b_ij and full two-loop unification**
 
@@ -53,7 +53,7 @@ Failure: Δ gets worse. If |Δ| > 2, the two-loop result is no longer within thr
 
 **Stage 4: GUT threshold corrections**
 
-The residual Δ after two loops is expected to be closed by GUT threshold corrections — mass splittings among the heavy GUT particles (colored Higgs triplet, X/Y bosons, etc.). This is a parametric computation: express Δ as a function of M_T/M_X splitting in minimal SU(5), then determine what splitting is needed to close the gap.
+The residual Δ after two loops is expected to be closed by GUT threshold corrections,  mass splittings among the heavy GUT particles (colored Higgs triplet, X/Y bosons, etc.). This is a parametric computation: express Δ as a function of M_T/M_X splitting in minimal SU(5), then determine what splitting is needed to close the gap.
 
 This is standard GUT phenomenology. The formulas exist in the literature. The computation is: look up the threshold correction formula, express it in Fraction arithmetic using phys24_lib constants, solve for the required splitting, and check whether it is physically reasonable (factor 2-5 between heavy particle masses is normal).
 
@@ -77,7 +77,7 @@ This is the second priority lane. It tests whether the Cabibbo Doublet is consis
 
 A vector-like quark doublet contributes to the Peskin-Takeuchi S and T parameters. The contribution depends on the mass splitting between the upper and lower components and on the mixing angles. Compute S and T as functions of M_VL and the mass splitting. Compare against the measured S-T ellipse.
 
-This requires electroweak loop integrals. The infrastructure from PHYS-12 (electroweak integer anatomy) provides the framework. The computation is standard — it appears in any BSM textbook.
+This requires electroweak loop integrals. The infrastructure from PHYS-12 (electroweak integer anatomy) provides the framework. The computation is standard,  it appears in any BSM textbook.
 
 Success: the CD contribution is inside the measured S-T ellipse for reasonable mass splittings.
 Failure: the CD is excluded by oblique corrections. This would be a serious blow.
@@ -102,11 +102,11 @@ Failure: constraints are mutually exclusive. This would weaken the anomaly conve
 
 This is a new exploratory direction discussed in Session 4 planning. It is lower priority than the Cabibbo Doublet lane and the electroweak precision lane.
 
-The idea: measured running curves (α_EM(q), α_s(q), running masses) are currently described by standard piecewise-logarithmic RG evolution with thresholds. The question is whether re-expressing this running in terms of discrete shell/boundary transitions reveals additional structure — stable integer shell indices, rational step patterns, or universal boundary laws that hold across sectors.
+The idea: measured running curves (α_EM(q), α_s(q), running masses) are currently described by standard piecewise-logarithmic RG evolution with thresholds. The question is whether re-expressing this running in terms of discrete shell/boundary transitions reveals additional structure,  stable integer shell indices, rational step patterns, or universal boundary laws that hold across sectors.
 
 This is NOT free-form curve fitting. It is NOT PSLQ pattern hunting. It is a structured test program with explicit kill switches.
 
-**Phase A: Define law families before fitting anything.** Five candidates: L0 (standard piecewise-log, the control), L1 (piecewise-log with integer shell labels), L2 (rational-step shell law), L3 (quadratic shell law), L4 (mixed log-shell law), L5 (null — no useful shell structure). All must be formally defined before any data is touched.
+**Phase A: Define law families before fitting anything.** Five candidates: L0 (standard piecewise-log, the control), L1 (piecewise-log with integer shell labels), L2 (rational-step shell law), L3 (quadratic shell law), L4 (mixed log-shell law), L5 (null,  no useful shell structure). All must be formally defined before any data is touched.
 
 **Phase B: Calibrate on α_EM first.** This is the best-understood running. Thresholds are known. The PHYS-5 and PHYS-9 infrastructure exists. If shell reinterpretation yields no stable nontrivial structure beyond standard thresholds, kill that law family for all later sectors. This is the most important kill switch in the program.
 
@@ -121,11 +121,11 @@ This is NOT free-form curve fitting. It is NOT PSLQ pattern hunting. It is a str
 These paths have been tested and killed. Do not spend time on them.
 
 - SM unification at one loop (gap ratio 218/115 ≠ 1.358, 40% miss)
-- C₃ route to Koide (tautology: 3 params, 3 data points, plus saddle point — PHYS-23)
-- Broad PSLQ pattern hunting (82/82 null across 3 categories — MATH-6)
-- Fermion-only gap ratio fix (generation democracy: fermion contribution exactly zero — PHYS-17)
+- C₃ route to Koide (tautology: 3 params, 3 data points, plus saddle point,  PHYS-23)
+- Broad PSLQ pattern hunting (82/82 null across 3 categories,  MATH-6)
+- Fermion-only gap ratio fix (generation democracy: fermion contribution exactly zero,  PHYS-17)
 - λ = 1/8 for Higgs self-coupling (corrections go wrong direction)
-- Koide phase adjustment for quarks (K depends on a only, not θ₀ — PHYS-8)
+- Koide phase adjustment for quarks (K depends on a only, not θ₀,  PHYS-8)
 - Scale choice fixing quark Koide (K is exactly scale-invariant)
 
 ---
@@ -135,7 +135,7 @@ These paths have been tested and killed. Do not spend time on them.
 - 4-loop A₄ wall (blocked by private Laporta master integral data)
 - CKM from mass ratios (blocked by quark mass precision floor ~10%)
 - Higgs λ = g'² impedance matching (blocked by no derivation from soliton framework)
-- Koide amplitude a² = 2 derivation (no viable attack path known — the deepest open problem)
+- Koide amplitude a² = 2 derivation (no viable attack path known,  the deepest open problem)
 - Cosmological boundary transit calculations (need a derived per-transit law first)
 - G altitude/latitude trend mining (underpowered with current data)
 
@@ -197,7 +197,7 @@ At the end of Session 4, the strongest possible outcome is:
 - sin²θ_W and α_s predicted from unification, consistent with measurement
 - Full two-loop + threshold unification with a specific M_VL in the 1.5-6 TeV window
 - S, T, Z-b-b, and CKM constraints simultaneously satisfied
-- A clean boundary-law calibration result on α_EM (positive or null — both are informative)
+- A clean boundary-law calibration result on α_EM (positive or null,  both are informative)
 - 3-5 new verified scripts extending the 62/62 foundation
 - One or two new PHYS papers (PHYS-25 on sin²θ_W/α_s predictions, PHYS-26 on full CD viability envelope)
 

@@ -1,4 +1,4 @@
-This is a significant insight. The compaction format from document 1 is already a grammar — pipe-delimited tables with ID-based cross-references, typed relationships, and a decode legend. It's a human-designed grammar that compresses papers by 75-93%. But it's informal — each compaction is hand-structured. If we formalize it as Prolog grammars on KBs, two things happen: the LLM can read compacted data back perfectly because the grammar tells it exactly how, and the LLM can compact arbitrary data into the same framework because the grammar rules define the transformation.
+This is a significant insight. The compaction format from document 1 is already a grammar,  pipe-delimited tables with ID-based cross-references, typed relationships, and a decode legend. It's a human-designed grammar that compresses papers by 75-93%. But it's informal,  each compaction is hand-structured. If we formalize it as Prolog grammars on KBs, two things happen: the LLM can read compacted data back perfectly because the grammar tells it exactly how, and the LLM can compact arbitrary data into the same framework because the grammar rules define the transformation.
 
 **What the compaction format actually is, structurally:**
 
@@ -48,7 +48,7 @@ section_index --> table_header("section_index", ["section", "title", "ids"]), se
 decode_legend --> [hash], [decode_legend], legend_entries.
 ```
 
-This grammar is the same across all compacted documents. What changes per document is the table set — which tables exist, what columns they have, what ID prefixes they use. That per-document variation is captured in the table declarations at the top of each compacted doc.
+This grammar is the same across all compacted documents. What changes per document is the table set,  which tables exist, what columns they have, what ID prefixes they use. That per-document variation is captured in the table declarations at the top of each compacted doc.
 
 **The dynamic data construct:**
 
@@ -82,7 +82,7 @@ class CompactDocument:
     read_order: List[str]  # table names in recommended read order
 ```
 
-This is the universal container. Any structured data — a paper, a codebase analysis, a project status, a dataset description, an API specification — can be compressed into this form. The compression comes from the same principles the compaction guide specifies: remove prose, keep structure, use IDs for cross-reference, declare notation in the legend.
+This is the universal container. Any structured data,  a paper, a codebase analysis, a project status, a dataset description, an API specification,  can be compressed into this form. The compression comes from the same principles the compaction guide specifies: remove prose, keep structure, use IDs for cross-reference, declare notation in the legend.
 
 **Putting the grammar on the KB:**
 
@@ -165,7 +165,7 @@ CMD: grammar_match(root.papers.vdr1, data: query_results)
 → output: "C1|VDR Triple|core|Ordered triple [V, D, R]..."
 ```
 
-The compacted form is both the storage format and the presentation format. The grammar is the bidirectional bridge — it can parse the compact form into KB facts, and it can render KB facts back into compact form.
+The compacted form is both the storage format and the presentation format. The grammar is the bidirectional bridge,  it can parse the compact form into KB facts, and it can render KB facts back into compact form.
 
 **Formalizing the compaction process itself as a grammar transformation:**
 
@@ -196,9 +196,9 @@ Rule: should_include_table(distinctions, Source) :-
     source_has(Source, binary_splits).
 ```
 
-The LLM reads a source document, classifies its character (Prolog fact matching), determines which tables to create (Prolog rule evaluation), fills the table schemas (grammar slot filling), extracts relationships (Prolog rule matching on dependency/enables/requires language), and produces a compacted document. The compaction process itself is orchestrated inference — the LLM provides the judgment calls (what's a concept vs an operation, what's a meaningful relationship), Prolog provides the structural decisions (which tables, which columns, what ID prefix scheme).
+The LLM reads a source document, classifies its character (Prolog fact matching), determines which tables to create (Prolog rule evaluation), fills the table schemas (grammar slot filling), extracts relationships (Prolog rule matching on dependency/enables/requires language), and produces a compacted document. The compaction process itself is orchestrated inference,  the LLM provides the judgment calls (what's a concept vs an operation, what's a meaningful relationship), Prolog provides the structural decisions (which tables, which columns, what ID prefix scheme).
 
-**Dynamic data constructs — compaction as a general-purpose data tool:**
+**Dynamic data constructs,  compaction as a general-purpose data tool:**
 
 The compaction format isn't just for papers. Any structured data the system encounters can be compacted:
 
@@ -212,7 +212,7 @@ Meeting notes → tables of decisions, action items, attendees, with relationshi
 
 Database schema → tables of entities, fields, constraints, with relationships showing foreign keys.
 
-Each of these has a characteristic table set (like the source character classification in the compaction guide), and Prolog rules determine which tables to use. The column schemas are pre-defined per table type. The LLM's job is to fill the rows with the right data — the structural decisions are made by rules.
+Each of these has a characteristic table set (like the source character classification in the compaction guide), and Prolog rules determine which tables to use. The column schemas are pre-defined per table type. The LLM's job is to fill the rows with the right data,  the structural decisions are made by rules.
 
 **The compaction grammar as part of the build stages:**
 
@@ -291,23 +291,23 @@ Could be further compressed to just the row data if the schema is inherited:
 C1|VDR Triple|core|Ordered triple [V, D, R]
 ```
 
-Because the grammar on the parent KB already declares that `concepts` has columns `[id, name, category, definition]`. The schema is structural, not content — it belongs on the grammar, not in the data.
+Because the grammar on the parent KB already declares that `concepts` has columns `[id, name, category, definition]`. The schema is structural, not content,  it belongs on the grammar, not in the data.
 
 **The LLM as compaction engine:**
 
 With all this infrastructure, the LLM's compaction workflow becomes:
 
-1. Read source material (LLM — pattern recognition on unstructured text)
-2. Classify source character (Prolog — match against known patterns)
-3. Select table schemas (Prolog — rules determine which tables apply)
-4. Extract named items into rows (LLM — judgment on what's a concept vs operation etc.)
-5. Extract relationships between items (LLM — judgment on dependency/enables/etc.)
-6. Validate against decode legend (constraint checker — all types valid)
-7. Compute section index (Prolog — map items to source sections)
-8. Store as KB with grammar (KB_ASSERT — tables become facts, grammar attached)
+1. Read source material (LLM,  pattern recognition on unstructured text)
+2. Classify source character (Prolog,  match against known patterns)
+3. Select table schemas (Prolog,  rules determine which tables apply)
+4. Extract named items into rows (LLM,  judgment on what's a concept vs operation etc.)
+5. Extract relationships between items (LLM,  judgment on dependency/enables/etc.)
+6. Validate against decode legend (constraint checker,  all types valid)
+7. Compute section index (Prolog,  map items to source sections)
+8. Store as KB with grammar (KB_ASSERT,  tables become facts, grammar attached)
 
-Steps 2, 3, 6, 7 are Prolog — no LLM computation needed. Steps 1, 4, 5 require LLM judgment — this is where the LLM genuinely contributes. Step 8 is KB operations. The compaction is an orchestrated inference with the source document as input and a compacted KB as output.
+Steps 2, 3, 6, 7 are Prolog,  no LLM computation needed. Steps 1, 4, 5 require LLM judgment,  this is where the LLM genuinely contributes. Step 8 is KB operations. The compaction is an orchestrated inference with the source document as input and a compacted KB as output.
 
-And the inverse — reading a compacted document — is entirely grammar-driven. The grammar parses the pipe-delimited format, the column names map values to fact arguments, the IDs resolve through the KB, and the relationships provide the connection graph. The LLM can query any part of any compacted document through standard KB operations without needing to re-read or re-interpret the compact notation.
+And the inverse,  reading a compacted document,  is entirely grammar-driven. The grammar parses the pipe-delimited format, the column names map values to fact arguments, the IDs resolve through the KB, and the relationships provide the connection graph. The LLM can query any part of any compacted document through standard KB operations without needing to re-read or re-interpret the compact notation.
 
-**This means the 8 compacted documents I already produced for you are prototypes of this system.** Each one is a manually-created instance of what the formalized grammar system would produce automatically. The table schemas, the ID conventions, the relationship types, the section indexes, the decode legends — all of these are patterns that the Prolog grammar system would generate from rules rather than from LLM judgment. The LLM's job reduces to the content decisions: what counts as a concept, what relationship exists between two items, what's the right one-line definition. The structure is rule-driven.
+**This means the 8 compacted documents I already produced for you are prototypes of this system.** Each one is a manually-created instance of what the formalized grammar system would produce automatically. The table schemas, the ID conventions, the relationship types, the section indexes, the decode legends,  all of these are patterns that the Prolog grammar system would generate from rules rather than from LLM judgment. The LLM's job reduces to the content decisions: what counts as a concept, what relationship exists between two items, what's the right one-line definition. The structure is rule-driven.

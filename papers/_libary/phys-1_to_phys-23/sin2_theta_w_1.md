@@ -83,9 +83,9 @@ RESULT 5: MSSM VERIFICATION
   Δ(1/α₃) = -0.6931
   Unification quality: 2.66% miss
 
-  GATE PASS — MSSM nearly unifies (known result)
+  GATE PASS,  MSSM nearly unifies (known result)
 
-RESULT 6: BSM PARTICLE CONTENT — GAP RATIO SCAN
+RESULT 6: BSM PARTICLE CONTENT,  GAP RATIO SCAN
 ------------------------------------------------------------------------
 
   Measured gap ratio: 1.358193
@@ -142,7 +142,7 @@ RESULT 7: THE FINDING
   The MSSM remains the best single framework (gap = 7/5 exactly,
   with threshold corrections closing the remaining 0.042 gap).
   But the VL quark doublet shows that unification does NOT require
-  the full SUSY spectrum — one new multiplet suffices at one loop.
+  the full SUSY spectrum,  one new multiplet suffices at one loop.
 
 RESULT 8: INTEGER ANATOMY
 ------------------------------------------------------------------------
@@ -224,4 +224,4 @@ GUT RUNNING NOTEBOOK COMPLETE
 
 Clean notebook. 9/9 checks pass. The results are correctly stated, the circularity is honestly documented, and the VL quark doublet finding is properly highlighted without overclaiming.
 
-One small note for the record: the measured gap ratio in the notebook is 1.358 but the plan document and my earlier assessment both quoted 1.395. These come from different sources — 1.358 is computed directly from the DATA-3 couplings in the script, 1.395 was from PHYS-5. The difference likely traces to whether the GUT normalization factor 5/3 is included in α₁ or not, or to which value of α_s was used. The 1.358 from the script is the one that's self-consistent with the DATA-3 entries and the enumeration, so it's the right number for this computation. But the PHYS-5 value should be reconciled in a future session — it might indicate a convention difference between papers.
+One small note for the record: the measured gap ratio in the notebook is 1.358 but the plan document and my earlier assessment both quoted 1.395. These come from different sources,  1.358 is computed directly from the DATA-3 couplings in the script, 1.395 was from PHYS-5. The difference likely traces to whether the GUT normalization factor 5/3 is included in α₁ or not, or to which value of α_s was used. The 1.358 from the script is the one that's self-consistent with the DATA-3 entries and the enumeration, so it's the right number for this computation. But the PHYS-5 value should be reconciled in a future session,  it might indicate a convention difference between papers.

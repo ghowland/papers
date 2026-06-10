@@ -14,15 +14,15 @@ They cannot be combined. Every attempt to quantize gravity produces infinities t
 
 The standard framing: "gravity is fundamentally different from the other forces" or "we need a new theory that reduces to both QED and GR in appropriate limits" or "the correct description requires string theory / loop quantum gravity / etc."
 
-The soliton framing offers a different diagnosis: QED and GR operate at opposite ends of the soliton hierarchy, and describing one in terms of the other requires running through EVERY boundary layer in between. The failure to combine them is not because they are fundamentally different — it is because the cumulative running through all intermediate boundaries has not been computed.
+The soliton framing offers a different diagnosis: QED and GR operate at opposite ends of the soliton hierarchy, and describing one in terms of the other requires running through EVERY boundary layer in between. The failure to combine them is not because they are fundamentally different,  it is because the cumulative running through all intermediate boundaries has not been computed.
 
 ---
 
 ### 2. THE HIERARCHY DISTANCE
 
-QED operates at the subatomic scale. Its natural domain is the electron's VP cloud — a spherical soliton boundary at ~10⁻¹³ m. The coupling α = 1/137 is measured at this scale. The QED perturbative series (A₁, A₂, A₃, A₄) describes the transformation law within this single boundary layer.
+QED operates at the subatomic scale. Its natural domain is the electron's VP cloud,  a spherical soliton boundary at ~10⁻¹³ m. The coupling α = 1/137 is measured at this scale. The QED perturbative series (A₁, A₂, A₃, A₄) describes the transformation law within this single boundary layer.
 
-GR operates at the planetary-to-cosmological scale. Its natural domain is the gravitational field of macroscopic objects — soliton boundaries from ~10⁶ m (Earth) to ~10²⁶ m (observable universe). The coupling G is measured at the terrestrial scale and ASSUMED constant at all other scales (PHYS-3: G has never been tested outside Earth's Hill sphere).
+GR operates at the planetary-to-cosmological scale. Its natural domain is the gravitational field of macroscopic objects,  soliton boundaries from ~10⁶ m (Earth) to ~10²⁶ m (observable universe). The coupling G is measured at the terrestrial scale and ASSUMED constant at all other scales (PHYS-3: G has never been tested outside Earth's Hill sphere).
 
 The hierarchy distance between QED and GR spans approximately 40 orders of magnitude in length scale. In the soliton hierarchy, this corresponds to crossing through EVERY intermediate boundary layer:
 
@@ -59,7 +59,7 @@ GR is formulated in continuous real-number geometry. The metric g_μν is a smoo
 
 Attempting to describe GR from QED means: take the discrete QED transformation law, run it through 20+ boundary layers (each modifying the coefficients by exact rationals), accumulate the corrections, and arrive at a description that looks like continuous real-number geometry.
 
-The problem: the cumulative product of exact rationals across 20+ boundary layers, each involving different geometric classes (R₂ for spheres, R₄ for tori, pure rationals for irregular boundaries, Bessel zeros for disk modes), produces a number in a transcendental class that no finite combination of known transcendentals can describe (the Bessel zero barrier, 82/82 PSLQ null). Computing in reals — floating-point approximations to this composite transcendental — loses the discrete structure that makes QED work.
+The problem: the cumulative product of exact rationals across 20+ boundary layers, each involving different geometric classes (R₂ for spheres, R₄ for tori, pure rationals for irregular boundaries, Bessel zeros for disk modes), produces a number in a transcendental class that no finite combination of known transcendentals can describe (the Bessel zero barrier, 82/82 PSLQ null). Computing in reals,  floating-point approximations to this composite transcendental,  loses the discrete structure that makes QED work.
 
 This is the diagnosis: QED-to-GR fails not because the theories are incompatible, but because the running between them crosses so many boundaries that the cumulative correction cannot be expressed in any single transcendental class. The computation WOULD work in exact rational arithmetic (every individual correction is a rational), but the PRODUCT of all corrections is a number that real-number arithmetic cannot distinguish from nearby values. The precision required to track the discrete structure through 40 orders of magnitude exceeds what floating-point reals can provide.
 
@@ -75,7 +75,7 @@ In the soliton hierarchy, the confinement wall is the boundary between the subat
 
 The fact that the first transition already requires measured data (non-perturbative) rather than computed correction is diagnostic. If the FIRST boundary crossing requires abandoning perturbation theory, the 20th boundary crossing (across the galactic disk, say) is exponentially harder. Each boundary type potentially introduces its own confinement-like obstruction where the correction cannot be computed perturbatively and must be measured.
 
-The confinement wall factor of 64 (between free u-quark threshold at 4.4 MeV and pion threshold at 280 MeV) eliminates one domain of the energy axis. Each subsequent wall eliminates its own domain. The cumulative elimination narrows the range of energies where perturbative computation works. By the time you reach planetary scales, the perturbative range may be exhausted — there may be no energy window where all corrections can be computed rather than measured.
+The confinement wall factor of 64 (between free u-quark threshold at 4.4 MeV and pion threshold at 280 MeV) eliminates one domain of the energy axis. Each subsequent wall eliminates its own domain. The cumulative elimination narrows the range of energies where perturbative computation works. By the time you reach planetary scales, the perturbative range may be exhausted,  there may be no energy window where all corrections can be computed rather than measured.
 
 This is why GR looks non-perturbative from the QED perspective: by the time QED's transformation law has been run through all the intermediate walls, the perturbative expansion has broken down so many times that the result looks like a completely different theory. The smooth continuous geometry of GR is the LIMIT of the discrete QED corrections after all perturbative structure has been averaged out by repeated wall crossings.
 
@@ -108,7 +108,7 @@ This would require:
 
 **The key question:** does the gravitational coupling G run through soliton boundaries the way the electromagnetic coupling α runs through VP thresholds?
 
-PHYS-3 established: G has never been measured outside Earth's Hill sphere. The reproducibility of G measurements on Earth does not prove G is universal — it proves G is consistent WITHIN ONE BOUNDARY LAYER. The series proposed an L1/L2 experiment (measure G outside Earth's Hill sphere) to test this.
+PHYS-3 established: G has never been measured outside Earth's Hill sphere. The reproducibility of G measurements on Earth does not prove G is universal,  it proves G is consistent WITHIN ONE BOUNDARY LAYER. The series proposed an L1/L2 experiment (measure G outside Earth's Hill sphere) to test this.
 
 If G runs: then the QED-to-GR connection is a running curve analogous to α(μ), but running through SPATIAL boundaries rather than energy thresholds. The curve H₀(d) from the Hubble tension is a direct manifestation: H₀ ∝ √(G × ρ) in Friedmann cosmology, so if G runs with distance (boundary count), H₀ runs with distance.
 
@@ -130,7 +130,7 @@ For the TOTAL running from QED domain to GR domain:
 
 G_eff(QED scale) = G(GR scale) × Π_boundaries [1 + ΔG(crossing_i)]
 
-Each product runs over all boundaries between the two scales. Each Δα or ΔG is a rational correction from the boundary's geometry. The product is the "curve of every soliton running crossing" — the total transformation from QED to GR.
+Each product runs over all boundaries between the two scales. Each Δα or ΔG is a rational correction from the boundary's geometry. The product is the "curve of every soliton running crossing",  the total transformation from QED to GR.
 
 The computation is in principle tractable:
 1. Enumerate the boundary types between 10⁻¹³ m and 10²⁶ m (approximately 20 types)
@@ -138,7 +138,7 @@ The computation is in principle tractable:
 3. For each type, estimate the number of crossings (how many protons, atoms, molecules, planets, galaxies does a photon encounter?)
 4. Multiply all corrections
 
-The result would be a number — the ratio α_eff(GR)/α(QED) and G_eff(QED)/G(GR) — that quantifies the running between the two theories. If this number is ~1 (the corrections are tiny and nearly cancel), then QED and GR are approximately compatible as they are. If this number is significantly different from 1, it predicts measurable deviations from either QED or GR at scales where the running has accumulated appreciably.
+The result would be a number,  the ratio α_eff(GR)/α(QED) and G_eff(QED)/G(GR),  that quantifies the running between the two theories. If this number is ~1 (the corrections are tiny and nearly cancel), then QED and GR are approximately compatible as they are. If this number is significantly different from 1, it predicts measurable deviations from either QED or GR at scales where the running has accumulated appreciably.
 
 ---
 
@@ -146,7 +146,7 @@ The result would be a number — the ratio α_eff(GR)/α(QED) and G_eff(QED)/G(G
 
 **L (Logic):** The logic follows from established premises: couplings run (PHYS-2), boundaries modify running rules (PHYS-14), each boundary type has a specific correction (modulus superset notebook). The extension to the QED-GR connection is a logical extrapolation. BUT: the assumption that G runs through spatial boundaries (rather than only through energy thresholds) is an additional hypothesis not established in the series. Logic passes with this caveat.
 
-**E (Empirical):** G has not been tested outside the Hill sphere (PHYS-3). The Hubble tension may be evidence of running. The Pioneer anomaly (anomalous deceleration of Pioneer 10/11 beyond Saturn's orbit) was a candidate but was explained by thermal radiation pressure in 2012. No direct evidence for G running exists. Empirical gate: OPEN — neither confirmed nor falsified.
+**E (Empirical):** G has not been tested outside the Hill sphere (PHYS-3). The Hubble tension may be evidence of running. The Pioneer anomaly (anomalous deceleration of Pioneer 10/11 beyond Saturn's orbit) was a candidate but was explained by thermal radiation pressure in 2012. No direct evidence for G running exists. Empirical gate: OPEN,  neither confirmed nor falsified.
 
 **M (Math):** Not computed. The per-boundary corrections for most boundary types (atomic, molecular, planetary, galactic) have not been estimated. The number of boundary crossings per line of sight has not been computed. The product has not been evaluated. Math gate: OPEN.
 
@@ -158,13 +158,13 @@ If the math fails (the corrections are negligibly small, or they cancel exactly,
 
 ### 9. THE SERIES CONNECTIONS
 
-**PHYS-1:** Mass is inertia. The proton gets 99% of its mass from binding energy (pattern maintenance energy). If the gravitational coupling G responds to this pattern energy, then G is sensitive to the soliton structure — it SHOULD run through boundaries where the pattern energy changes.
+**PHYS-1:** Mass is inertia. The proton gets 99% of its mass from binding energy (pattern maintenance energy). If the gravitational coupling G responds to this pattern energy, then G is sensitive to the soliton structure,  it SHOULD run through boundaries where the pattern energy changes.
 
-**PHYS-2:** The transformation law is fundamental. The QED transformation law (the perturbative series) and the GR transformation law (the Einstein equations) are both integer-based. QED: A₁ = 1/2, A₂ = rational × MATH-2, etc. GR: the Einstein tensor G_μν = 8πG T_μν has the integer 8 and π from the geometric content. Both laws are integers. The running between them preserves the integer structure at each step — only the VALUES change.
+**PHYS-2:** The transformation law is fundamental. The QED transformation law (the perturbative series) and the GR transformation law (the Einstein equations) are both integer-based. QED: A₁ = 1/2, A₂ = rational × MATH-2, etc. GR: the Einstein tensor G_μν = 8πG T_μν has the integer 8 and π from the geometric content. Both laws are integers. The running between them preserves the integer structure at each step,  only the VALUES change.
 
 **PHYS-3:** G untested outside Hill sphere. The L1/L2 experiment is the direct test. If G runs, the running is detectable at L2 (~1.5 million km from Earth, outside the Hill sphere). The predicted running magnitude depends on the per-boundary correction, which is the quantity this notebook aims to compute.
 
-**PHYS-6:** Confinement wall. The first QED → GR obstruction. The wall's characteristic — perturbation theory fails, measurement replaces computation — may repeat at every subsequent boundary type. The number of confinement-like walls between QED and GR determines how much of the total running can be computed vs measured.
+**PHYS-6:** Confinement wall. The first QED → GR obstruction. The wall's characteristic,  perturbation theory fails, measurement replaces computation,  may repeat at every subsequent boundary type. The number of confinement-like walls between QED and GR determines how much of the total running can be computed vs measured.
 
 **PHYS-11:** R₂ universality. Every boundary involving a circle/sphere has R₂ = π/4 in its correction. Most of the 20 boundary types are approximately spherical (VP cloud, atom, planet, star, halo, cluster). The R₂ dominance means the per-boundary correction has a universal geometric factor, with the specifics encoded in the boundary's mass, radius, and density profile.
 
@@ -178,12 +178,12 @@ If the math fails (the corrections are negligibly small, or they cancel exactly,
 
 If the soliton running framework applies to the QED-GR connection, then:
 
-**P1.** G should run detectably between Earth's surface and L2 (~1.5 million km). The running magnitude is of order (1 − r_Hill) where r_Hill is the Hill sphere boundary correction. From the Hubble tension curve (r ≈ 0.9992 per ~100 boundaries), a single boundary correction is of order 10⁻⁵ to 10⁻⁴. The L2 G measurement would need precision of ~10⁻⁵ to detect this. Current G measurement precision is ~10⁻⁵ (CODATA 2022: G known to 22 ppm). The prediction is at the edge of current precision — detectable with next-generation experiments.
+**P1.** G should run detectably between Earth's surface and L2 (~1.5 million km). The running magnitude is of order (1 − r_Hill) where r_Hill is the Hill sphere boundary correction. From the Hubble tension curve (r ≈ 0.9992 per ~100 boundaries), a single boundary correction is of order 10⁻⁵ to 10⁻⁴. The L2 G measurement would need precision of ~10⁻⁵ to detect this. Current G measurement precision is ~10⁻⁵ (CODATA 2022: G known to 22 ppm). The prediction is at the edge of current precision,  detectable with next-generation experiments.
 
-**P2.** The QED perturbative series should show anomalies at the loop order where the loop momentum traverses a soliton boundary. The 4-loop A₄ already involves elliptic integrals — a new transcendental class associated with toroidal topology. The 5-loop A₅ (where two independent calculations disagree at 5σ — PHYS-9 Section 10.3) might involve boundary-crossing corrections not accounted for in standard QED.
+**P2.** The QED perturbative series should show anomalies at the loop order where the loop momentum traverses a soliton boundary. The 4-loop A₄ already involves elliptic integrals,  a new transcendental class associated with toroidal topology. The 5-loop A₅ (where two independent calculations disagree at 5σ,  PHYS-9 Section 10.3) might involve boundary-crossing corrections not accounted for in standard QED.
 
 **P3.** The Hubble tension, the G running, and the QED-GR incompatibility are THREE MANIFESTATIONS of the same phenomenon: the cumulative soliton boundary correction across the hierarchy. Solving any one constrains the other two. The per-transit correction ε that resolves the Hubble tension ALSO predicts the G running at L2 and the QED loop correction at high order.
 
 ---
 
-**End of notebook. Status: active, highest-level conceptual connection in the series. Links the Hubble tension (cosmological), the gap ratio (particle physics), and the quantum gravity problem (foundational physics) through the common mechanism of soliton boundary running. All three Math gates OPEN — the per-boundary correction formula is the critical unknown. Updated: Session 4, April 2 2026.**
+**End of notebook. Status: active, highest-level conceptual connection in the series. Links the Hubble tension (cosmological), the gap ratio (particle physics), and the quantum gravity problem (foundational physics) through the common mechanism of soliton boundary running. All three Math gates OPEN,  the per-boundary correction formula is the critical unknown. Updated: Session 4, April 2 2026.**

@@ -1,4 +1,4 @@
-# HOWL-VDR-32-2026 — LLM-COMPACT FORM
+# HOWL-VDR-32-2026,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: baseline → integer_equivalence → cpu_projections → gpu_projections → datacenter → limitations → verification → op_counts → memory → energy → comparisons
 
@@ -32,9 +32,9 @@ PP2|train step|1,159 ns|6.40 ns/param
 # baseline for all scaling projections; pure scalar integer, no vectorization, entire model in L1
 
 # verification(id|test|result)
-VF1|softmax sum = D = 65536 (exact)|PASS — no tolerance, exact at every step of every epoch
+VF1|softmax sum = D = 65536 (exact)|PASS,  no tolerance, exact at every step of every epoch
 VF2|attention weight rows sum = D (exact)|PASS
-VF3|bit-identical determinism across runs|PASS — raw byte comparison, zero differences
+VF3|bit-identical determinism across runs|PASS,  raw byte comparison, zero differences
 VF4|loss monotonicity over 20 epochs|PASS
 VF5|weight update algebraic exactness|PASS
 
@@ -47,7 +47,7 @@ IE5|epilogue|right shift 16|float multiply by scale|VDR simpler
 IE6|store result|store i16|store float16|same bandwidth
 IE7|remainder|store i16 (optional)|discarded|VDR tracks it
 # compute cost same; memory 2× for Q16 vs INT8, equal for Q16 vs INT16; epilogue cheaper for VDR
-# in Zig toy, remainders zeroed (discarded) — matches quantized behavior exactly
+# in Zig toy, remainders zeroed (discarded),  matches quantized behavior exactly
 
 # vdr_q16_core_operation(id|description)
 CO1|multiply-accumulate: acc(i64) += weight(i16) × activation(i16)
@@ -87,7 +87,7 @@ DN2|model capacity|70B sharded|70B same|
 DN3|total tensor core|2,496 TFLOPS|~2,496 TOPS|parity
 DN4|70B gen batch=1|~8-12 tok/s|~8-12 tok/s|parity
 DN5|70B gen batch=64|~400 tok/s|~400 tok/s|parity
-DN6|deterministic across runs|no|yes|free — structural property
+DN6|deterministic across runs|no|yes|free,  structural property
 DN7|gradient reduction order-dependent|yes|no|integer addition associative
 
 # datacenter_multi_node(id|metric|float16|vdr_q16)
@@ -151,7 +151,7 @@ FO16|total forward|716|598|158|54|1,542
 # backward_op_count(id|total_multiplies|total_adds|total_shifts|total_ops)
 BO1|1,361|877|689|3,013
 # combined fwd+bwd+SGD: 1,542 + 3,013 = 4,555 ops per train step
-# 1,159 ns / 4,555 = 0.254 ns/op = 0.89 cycles/op (backward higher throughput — no loop-carried deps in outer products)
+# 1,159 ns / 4,555 = 0.254 ns/op = 0.89 cycles/op (backward higher throughput,  no loop-carried deps in outer products)
 
 # model_memory(id|component|bytes|notes)
 MM1|parameters|572|306 elements × i16
@@ -232,7 +232,7 @@ DT4|JAX float32|yes (single device)|no|no
 DT5|llama.cpp INT8|no (float dequant step)|no|n/a
 DT6|VDR Python Q32|yes|yes|yes
 DT7|VDR Zig Q16|yes|yes|yes
-# VDR only entries achieving all three columns; integer addition associative — determinism cannot be removed
+# VDR only entries achieving all three columns; integer addition associative,  determinism cannot be removed
 
 # quantized_system_comparison(id|system|weight_fmt|activation_fmt|matmul_unit|softmax|deterministic|sum_to_one_exact)
 QS1|GPTQ|INT4|FP16|FP16 tensor core|FP16 exp|no|no
@@ -243,7 +243,7 @@ QS5|SmoothQuant|INT8|INT8|INT8 tensor core|FP16 exp|no|no
 QS6|ONNX INT8|INT8+zero point|INT8|INT8 GEMM|FP32 exp|no|no
 QS7|VDR Q16|INT16|INT16|INT16 widening|quadratic (integer)|yes|yes
 QS8|VDR Q8/Q16|INT8|INT16|INT8×INT16 widening|quadratic (integer)|yes|yes
-# every existing system converts to float for softmax; VDR stays integer end-to-end — enables exact sum-to-one and determinism
+# every existing system converts to float for softmax; VDR stays integer end-to-end,  enables exact sum-to-one and determinism
 # VDR Q8/Q16 weight format byte-identical to SmoothQuant storage; difference is arithmetic treatment of remainder
 
 # limitations(id|limitation|description)

@@ -19,7 +19,7 @@
 
 Thirty-two papers in the VDR series each prove an independent result: exact arithmetic with zero error, instruction-level equivalence with quantized inference, 85-97% token elimination for structured tasks, linear scaling versus quadratic, self-improving rule accumulation, zero-drift diffusion chains, structural safety without token cost, and grammar-directed generation that eliminates forward passes on deterministic tokens. Each paper is conservative, staying within its own scope. None multiplies the results together.
 
-This paper performs that multiplication. The axes of improvement are independent — hardware speedup does not depend on token reduction, token reduction does not depend on rule accumulation, rule accumulation does not depend on scaling behavior. When independent multipliers compound across a real workload over a real deployment timeline, the combined effect ranges from 2× for pure creative writing to over 8,000× for mature structured enterprise workloads. These are not projections from novel research. They are arithmetic consequences of measured baselines and known operations on shipping hardware.
+This paper performs that multiplication. The axes of improvement are independent,  hardware speedup does not depend on token reduction, token reduction does not depend on rule accumulation, rule accumulation does not depend on scaling behavior. When independent multipliers compound across a real workload over a real deployment timeline, the combined effect ranges from 2× for pure creative writing to over 8,000× for mature structured enterprise workloads. These are not projections from novel research. They are arithmetic consequences of measured baselines and known operations on shipping hardware.
 
 ---
 
@@ -27,13 +27,13 @@ This paper performs that multiplication. The axes of improvement are independent
 
 Every number in the VDR system is an ordered triple [V, D, R] where V is an integer value, D is a nonzero integer denominator, and R is a remainder. The remainder is not error, not residue, not rounding noise. It is the exact structure that the denominator frame could not absorb, preserved as a first-class component of the value.
 
-When D is a power of two, the divmod operation that separates V from R is a bit shift and a mask — the cheapest operations on any processor. Fix D at 2^16 for inference weights, 2^32 for schedule constants, 2^64 for gradient accumulation. The denominator never changes through any operation. Overflow goes to R via divmod, not to wider denominators. The arithmetic is exact at every step, at every chain length, on every platform.
+When D is a power of two, the divmod operation that separates V from R is a bit shift and a mask,  the cheapest operations on any processor. Fix D at 2^16 for inference weights, 2^32 for schedule constants, 2^64 for gradient accumulation. The denominator never changes through any operation. Overflow goes to R via divmod, not to wider denominators. The arithmetic is exact at every step, at every chain length, on every platform.
 
-This is validated across 921 tests in 38 mathematical and computational domains — number theory, polynomial algebra, continued fractions, matrix decomposition, combinatorics, signal processing, computational geometry, differential equations, probability, cryptography, symbolic algebra, graph theory, game theory, coding theory, algebraic topology, tropical algebra, control theory, wavelets, chaos theory, transcendental arithmetic, and 14 physics domains including QED, quantum mechanics, orbital mechanics, and optics. Zero VDR computation errors. All 18 test failures across the series trace to test-design errors, never to incorrect arithmetic. The system remains falsifiable: any test producing an incorrect exact rational from correct inputs would falsify VDR. 921 tests have not produced one.
+This is validated across 921 tests in 38 mathematical and computational domains,  number theory, polynomial algebra, continued fractions, matrix decomposition, combinatorics, signal processing, computational geometry, differential equations, probability, cryptography, symbolic algebra, graph theory, game theory, coding theory, algebraic topology, tropical algebra, control theory, wavelets, chaos theory, transcendental arithmetic, and 14 physics domains including QED, quantum mechanics, orbital mechanics, and optics. Zero VDR computation errors. All 18 test failures across the series trace to test-design errors, never to incorrect arithmetic. The system remains falsifiable: any test producing an incorrect exact rational from correct inputs would falsify VDR. 921 tests have not produced one.
 
-The Q335 basis (D = 2^335, providing 100 decimal digits of precision) exists to prove universality. It handles transcendental constants, elliptic integrals, higher zeta values, QED coefficients — every mathematical domain without exception. It is not the production configuration. Production inference uses Q8 weights and Q16 activations, matching hardware register widths, where the instruction sequence is identical to INT8/INT16 quantized inference. Q335 proves the arithmetic works everywhere. Q16 proves it runs at hardware speed. They are the same arithmetic at different denominator settings.
+The Q335 basis (D = 2^335, providing 100 decimal digits of precision) exists to prove universality. It handles transcendental constants, elliptic integrals, higher zeta values, QED coefficients,  every mathematical domain without exception. It is not the production configuration. Production inference uses Q8 weights and Q16 activations, matching hardware register widths, where the instruction sequence is identical to INT8/INT16 quantized inference. Q335 proves the arithmetic works everywhere. Q16 proves it runs at hardware speed. They are the same arithmetic at different denominator settings.
 
-The Python reference implementation shipped as vdr-math 0.1.0 on PyPI on May 19, 2026. MIT license, pure Python, no external dependencies, 151.8 KB wheel. The Zig toy implementation measures 688 ns per forward pass on a 2019 laptop — 1.42 million tokens per second, 2,368 bytes total memory, zero heap allocations, zero floating-point operations. The per-parameter cost of 3.80 ns scales linearly to SIMD and tensor core projections because the instruction sequence does not change with model size.
+The Python reference implementation shipped as vdr-math 0.1.0 on PyPI on May 19, 2026. MIT license, pure Python, no external dependencies, 151.8 KB wheel. The Zig toy implementation measures 688 ns per forward pass on a 2019 laptop,  1.42 million tokens per second, 2,368 bytes total memory, zero heap allocations, zero floating-point operations. The per-parameter cost of 3.80 ns scales linearly to SIMD and tensor core projections because the instruction sequence does not change with model size.
 
 ---
 
@@ -43,13 +43,13 @@ A language model runs a full forward pass through every transformer layer, compu
 
 When an LLM generates a JSON response, the majority of forward passes produce braces, brackets, colons, commas, quotation marks, and field names. These tokens were determined the moment the output format was decided. The model is spending billions of floating-point operations per token to arrive at characters that are the only legal option given the output structure.
 
-When an LLM writes Zig source code, 70-80% of tokens are structural — `pub`, `const`, `fn`, `struct`, `{`, `}`, `(`, `)`, `:`, `;`, `=`, `return`. The actual information content is names, types, and logic flow. When an LLM chooses `const` versus `var`, it runs the same multi-billion-parameter forward pass that it uses to select between "luminous" and "radiant" in a poem — but the Zig decision carries one bit of information determined by a scoped dataflow fact, while the poetry decision carries 12-15 bits of genuine creative selection across thousands of plausible candidates.
+When an LLM writes Zig source code, 70-80% of tokens are structural,  `pub`, `const`, `fn`, `struct`, `{`, `}`, `(`, `)`, `:`, `;`, `=`, `return`. The actual information content is names, types, and logic flow. When an LLM chooses `const` versus `var`, it runs the same multi-billion-parameter forward pass that it uses to select between "luminous" and "radiant" in a poem,  but the Zig decision carries one bit of information determined by a scoped dataflow fact, while the poetry decision carries 12-15 bits of genuine creative selection across thousands of plausible candidates.
 
-When an LLM does arithmetic, it predicts digits one at a time through full forward passes. Each digit is a 3-4 bit selection through a pipeline designed for 15 bits. The error rate is 2-5% per operation and compounds through chains. A 500-position portfolio correlation matrix is impossible — the data alone exceeds any context window, and the arithmetic would be wrong even if it fit.
+When an LLM does arithmetic, it predicts digits one at a time through full forward passes. Each digit is a 3-4 bit selection through a pipeline designed for 15 bits. The error rate is 2-5% per operation and compounds through chains. A 500-position portfolio correlation matrix is impossible,  the data alone exceeds any context window, and the arithmetic would be wrong even if it fit.
 
 When an LLM maintains state across a conversation, it re-reads the entire history through attention on every turn. Turn 1 processes 6,000 tokens. Turn 10 processes 195,000 cumulative tokens. Turn 50 processes 3.9 million. The cost is quadratic in conversation length, and the model's ability to find relevant prior information degrades as the history grows because attention dilutes across an ever-larger context.
 
-When an LLM hedges — "approximately," "it appears that," "please consult a professional" — it is generating tokens with no computational basis, filling space where a confidence measurement should be. These tokens exist because the system has no mechanism for computing or reporting confidence as a value. They cost full forward passes and convey no information.
+When an LLM hedges,  "approximately," "it appears that," "please consult a professional",  it is generating tokens with no computational basis, filling space where a confidence measurement should be. These tokens exist because the system has no mechanism for computing or reporting confidence as a value. They cost full forward passes and convey no information.
 
 None of these are failures of the language model. They are consequences of an architecture that routes every output token, regardless of information content, through the same expensive prediction pipeline. The language model is being used as a very expensive, unreliable grammar engine, calculator, database, logic engine, and formatting system simultaneously, when each of those functions has a deterministic solution that is thousands to millions of times faster and exactly correct.
 
@@ -59,23 +59,23 @@ None of these are failures of the language model. They are consequences of an ar
 
 Each category of wasted computation has a specific, mechanical replacement.
 
-**Structural tokens** are eliminated by grammars. A grammar is a persistent template on a KB that declares fixed output structure with typed content slots. The grammar emits all structural tokens — braces, delimiters, headers, keywords, indentation, tags — directly, with zero forward passes and 100% correctness. The LLM fills content slots where judgment is required. Grammars nest recursively: a JSON grammar dispatches to entry grammars, which dispatch to type-specific value grammars, which dispatch to element grammars. Each nesting level eliminates structural tokens and constrains the vocabulary at the next level. A categorical slot with 4 valid values reduces the softmax computation by 12,500× for that token position.
+**Structural tokens** are eliminated by grammars. A grammar is a persistent template on a KB that declares fixed output structure with typed content slots. The grammar emits all structural tokens,  braces, delimiters, headers, keywords, indentation, tags,  directly, with zero forward passes and 100% correctness. The LLM fills content slots where judgment is required. Grammars nest recursively: a JSON grammar dispatches to entry grammars, which dispatch to type-specific value grammars, which dispatch to element grammars. Each nesting level eliminates structural tokens and constrains the vocabulary at the next level. A categorical slot with 4 valid values reduces the softmax computation by 12,500× for that token position.
 
 Grammar-directed generation is not constrained decoding, which still runs a forward pass per token and merely masks illegal candidates. It eliminates the forward pass entirely for structural tokens. The grammar produces them directly from the template. The distinction is between "predict from 50,000 candidates but mask 49,996 of them" and "emit the known token, skip prediction."
 
-**Computation tokens** are eliminated by builtins. The VDR system specifies 448 typed primitives across 25 categories: exact closed and active arithmetic, lift and rebase, comparison, rounding, number theory, list aggregates, Q-basis operations, functional remainders, discrete calculus, full linear algebra, probability and statistics, conversion, polynomial algebra, finite fields, Markov chains, graph algorithms, integer fast paths, bit operations, denominator management, text operations, collections, sets, mappings, time, identity, logic, graphs, and KB/constraint operations. Each invocation costs ~8 LLM tokens as a command token — a structured reference from a ~500-item vocabulary at ~6 bits per token. The computation executes in nanoseconds on exact integers. The LLM selects which computation to perform. The primitives perform it.
+**Computation tokens** are eliminated by builtins. The VDR system specifies 448 typed primitives across 25 categories: exact closed and active arithmetic, lift and rebase, comparison, rounding, number theory, list aggregates, Q-basis operations, functional remainders, discrete calculus, full linear algebra, probability and statistics, conversion, polynomial algebra, finite fields, Markov chains, graph algorithms, integer fast paths, bit operations, denominator management, text operations, collections, sets, mappings, time, identity, logic, graphs, and KB/constraint operations. Each invocation costs ~8 LLM tokens as a command token,  a structured reference from a ~500-item vocabulary at ~6 bits per token. The computation executes in nanoseconds on exact integers. The LLM selects which computation to perform. The primitives perform it.
 
 Command tokens achieve 99.2% error-free probability versus 86% for JSON function calling and ~60% for free-form code generation. The error rate difference comes from entropy: ~6 bits per command token versus ~15.6 bits per vocabulary token. Lower entropy means fewer bits to get wrong per token, and fewer tokens per invocation.
 
-**State reconstruction tokens** are eliminated by Knowledge Bases. Data lives as facts at integer addresses in a scoped KB tree. Retrieving a fact is one integer-addressed query — O(1) with the UUID, O(depth) with the dotted path. The LLM reads current state from KB, not from conversation history. Turn 100 costs the same as turn 1. There is no quadratic growth. There is no attention dilution. There is no context window overflow. Data that doesn't fit in a context window — 1MB of JSON metrics, 10MB of documents, 500-position portfolios — sits in the KB and is accessed through builtins. The capability boundary moves from "fits in context window" to "fits in memory."
+**State reconstruction tokens** are eliminated by Knowledge Bases. Data lives as facts at integer addresses in a scoped KB tree. Retrieving a fact is one integer-addressed query,  O(1) with the UUID, O(depth) with the dotted path. The LLM reads current state from KB, not from conversation history. Turn 100 costs the same as turn 1. There is no quadratic growth. There is no attention dilution. There is no context window overflow. Data that doesn't fit in a context window,  1MB of JSON metrics, 10MB of documents, 500-position portfolios,  sits in the KB and is accessed through builtins. The capability boundary moves from "fits in context window" to "fits in memory."
 
-**Deduction tokens** are eliminated by Prolog. A Prolog engine performs depth-first search with backtracking over exact integer facts. Unification uses exact comparison via cross-multiplication. The engine evaluates logical chains in microseconds, deterministically, producing the same result every time. A rule that took 200 tokens of prose reasoning — "if the latency shows a step function pattern and the throughput dropped by more than 25% and a deployment occurred within 5 minutes of the spike, then the probable cause is the deployment" — becomes a Prolog clause that fires in microseconds and produces a confidence of 85/100 as an exact VDR fraction.
+**Deduction tokens** are eliminated by Prolog. A Prolog engine performs depth-first search with backtracking over exact integer facts. Unification uses exact comparison via cross-multiplication. The engine evaluates logical chains in microseconds, deterministically, producing the same result every time. A rule that took 200 tokens of prose reasoning,  "if the latency shows a step function pattern and the throughput dropped by more than 25% and a deployment occurred within 5 minutes of the spike, then the probable cause is the deployment",  becomes a Prolog clause that fires in microseconds and produces a confidence of 85/100 as an exact VDR fraction.
 
 **Formatting tokens** are eliminated by grammar templates. The same mechanism that handles JSON braces handles markdown tables, incident report structure, code documentation format, and any other structured output. The LLM provides content. The grammar provides presentation.
 
 **Hedging tokens** are eliminated by computed confidence. Confidence propagates as exact VDR fractions through declared formulas. VDR computation: 1/1. Prolog derivation: 1/1. Database query: 98/100. API response: 85/100. Multiple agreeing sources: 1−∏(1−Cᵢ). LLM-generated content: 30/100 fixed floor. The fraction replaces the hedge. "The probable cause is deployment v2.3.1 (confidence: 92/100, from: deployment timing at 95/100 combined with latency pattern at 85/100)" carries more information in fewer tokens with exact provenance.
 
-**Prose tokens** are partially eliminated by sentence templates. The LLM emits a semantic tuple — subject, verb, object, modifiers — at ~8 command tokens. Prolog matches against a library of ~5,000 sentence structure templates. The template fills slots with the semantic content and returns a complete sentence. English scaffolding — articles, prepositions, conjugation — is provided by the template at zero cost. When no template matches (the sentence structure is genuinely novel), the LLM full-generates as it does today. The template library grows through usage. The proportion of prose requiring full generation decreases over deployment lifetime.
+**Prose tokens** are partially eliminated by sentence templates. The LLM emits a semantic tuple,  subject, verb, object, modifiers,  at ~8 command tokens. Prolog matches against a library of ~5,000 sentence structure templates. The template fills slots with the semantic content and returns a complete sentence. English scaffolding,  articles, prepositions, conjugation,  is provided by the template at zero cost. When no template matches (the sentence structure is genuinely novel), the LLM full-generates as it does today. The template library grows through usage. The proportion of prose requiring full generation decreases over deployment lifetime.
 
 ---
 
@@ -83,19 +83,19 @@ Command tokens achieve 99.2% error-free probability versus 86% for JSON function
 
 The token reduction has been measured through task decomposition against known LLM behavior, breaking each task into its component token categories and applying the mechanical elimination for each category.
 
-SRE incident investigation: 25,100 tokens conventional, 769 tokens VDR — 33× reduction, 98.6% eliminated. The investigation is almost entirely metric retrieval, threshold comparison, timeline correlation, causal deduction, and formatted reporting. The LLM's judgment contribution is deciding what to investigate and assessing the final finding.
+SRE incident investigation: 25,100 tokens conventional, 769 tokens VDR,  33× reduction, 98.6% eliminated. The investigation is almost entirely metric retrieval, threshold comparison, timeline correlation, causal deduction, and formatted reporting. The LLM's judgment contribution is deciding what to investigate and assessing the final finding.
 
-Legal document review: 30,000 tokens conventional, 1,130 VDR — 26.5× reduction, 96.2%. Clause matching, regulatory comparison, obligation tracking, deadline extraction — all structural operations on addressed data.
+Legal document review: 30,000 tokens conventional, 1,130 VDR,  26.5× reduction, 96.2%. Clause matching, regulatory comparison, obligation tracking, deadline extraction,  all structural operations on addressed data.
 
-Financial analysis: 15,000 tokens conventional, 600 VDR — 25× reduction, 96%. Arithmetic on exact VDR fractions, time series comparison, threshold checking, compliance verification.
+Financial analysis: 15,000 tokens conventional, 600 VDR,  25× reduction, 96%. Arithmetic on exact VDR fractions, time series comparison, threshold checking, compliance verification.
 
-Medical record analysis: 80,000 tokens conventional, 4,740 VDR — 16.9× reduction, 94.1%. Lab value comparison, medication interaction checking, guideline matching against KB facts.
+Medical record analysis: 80,000 tokens conventional, 4,740 VDR,  16.9× reduction, 94.1%. Lab value comparison, medication interaction checking, guideline matching against KB facts.
 
-Codebase migration: 100,000 tokens conventional (partial coverage — cannot hold 200 files simultaneously), 6,700 VDR (complete coverage) — 14.9× reduction, 93.3%. AST analysis, pattern matching, dependency tracking, test generation — all through builtins operating on addressed data.
+Codebase migration: 100,000 tokens conventional (partial coverage,  cannot hold 200 files simultaneously), 6,700 VDR (complete coverage),  14.9× reduction, 93.3%. AST analysis, pattern matching, dependency tracking, test generation,  all through builtins operating on addressed data.
 
-Customer support: 500 tokens conventional, 150 VDR — 3.3× reduction, 70%. More prose, but substantial state management and knowledge retrieval from indexed KB.
+Customer support: 500 tokens conventional, 150 VDR,  3.3× reduction, 70%. More prose, but substantial state management and knowledge retrieval from indexed KB.
 
-Academic grading: 200,000 tokens conventional (partial — inconsistent rubric application across 150 essays), 57,230 VDR (complete — consistent rubric via Prolog rules) — 3.5× reduction, 71.4%.
+Academic grading: 200,000 tokens conventional (partial,  inconsistent rubric application across 150 essays), 57,230 VDR (complete,  consistent rubric via Prolog rules),  3.5× reduction, 71.4%.
 
 Open conversation with minimal structure: 10-30% reduction from grammar-assisted formatting.
 
@@ -111,11 +111,11 @@ The VDR arithmetic substrate does not require novel hardware. It runs on integer
 
 The Zig toy measures the instruction-level equivalence directly. VDR Q16 multiply-accumulate is a widening multiply (i16 × i16 → i32), accumulation in i64, and a right-shift epilogue extracting V and R. This is the identical instruction sequence used by INT8/INT16 quantized inference. The hardware does not know or care that the bits below the shift are being called "remainder" instead of being discarded. The throughput is the same. The energy is the same. The latency is the same.
 
-On GPU, INT8 tensor cores on H100 operate at 1024 ops/SM/cycle — 2× the FP16 tensor core rate of 512 ops/SM/cycle. INT8 weights are half the size of FP16 weights, doubling effective memory bandwidth for single-batch autoregressive inference, which is memory-bandwidth-bound. The combination of 2× compute throughput and 2× memory bandwidth produces the projected ~2× forward pass speedup for GEMM-dominated operations.
+On GPU, INT8 tensor cores on H100 operate at 1024 ops/SM/cycle,  2× the FP16 tensor core rate of 512 ops/SM/cycle. INT8 weights are half the size of FP16 weights, doubling effective memory bandwidth for single-batch autoregressive inference, which is memory-bandwidth-bound. The combination of 2× compute throughput and 2× memory bandwidth produces the projected ~2× forward pass speedup for GEMM-dominated operations.
 
-The larger advantage comes from eliminating the Special Function Unit bottleneck. The SFU on H100 handles exp, log, rsqrt, sin, cos, and division at 32 ops/SM/cycle — 1/16th of the FP16 tensor core rate and 1/32nd of the INT8 tensor core rate. Every conventional softmax evaluates exp() per element through the SFU. Every GeLU activation evaluates tanh through the SFU. Every layer norm evaluates rsqrt through the SFU. These are the non-GEMM operations that create pipeline bubbles while tensor cores wait.
+The larger advantage comes from eliminating the Special Function Unit bottleneck. The SFU on H100 handles exp, log, rsqrt, sin, cos, and division at 32 ops/SM/cycle,  1/16th of the FP16 tensor core rate and 1/32nd of the INT8 tensor core rate. Every conventional softmax evaluates exp() per element through the SFU. Every GeLU activation evaluates tanh through the SFU. Every layer norm evaluates rsqrt through the SFU. These are the non-GEMM operations that create pipeline bubbles while tensor cores wait.
 
-VDR replaces all SFU-dependent operations with table lookups at full shared memory bandwidth or Barrett reduction at INT32 core rate. The quadratic softmax surrogate — each output equals the square of the shifted input divided by the sum of all squared shifted inputs — uses subtraction, squaring, and integer division. No transcendentals. No SFU. No warp divergence from data-dependent special values. The output sums to exactly 1 by construction.
+VDR replaces all SFU-dependent operations with table lookups at full shared memory bandwidth or Barrett reduction at INT32 core rate. The quadratic softmax surrogate,  each output equals the square of the shifted input divided by the sum of all squared shifted inputs,  uses subtraction, squaring, and integer division. No transcendentals. No SFU. No warp divergence from data-dependent special values. The output sums to exactly 1 by construction.
 
 Projected speedups on non-GEMM operations: softmax 3-4×, GeLU/SiLU activation 4-6×, layer norm 2-3×. Combined with GEMM at ~2×, the weighted forward pass speedup is approximately 2× on H100.
 
@@ -129,77 +129,77 @@ All of this runs on hardware that has been in production since 2017. Volta V100 
 
 ### 6. Scaling: Linear Versus Quadratic
 
-The conventional LLM architecture processes conversation as a flat token sequence. Every generation step attends over the entire history. The cost of turn N is proportional to the sum of all tokens from turns 1 through N. For a conversation where each turn generates approximately the same number of tokens, total cost grows as N×(N+1)/2 — quadratic in conversation length.
+The conventional LLM architecture processes conversation as a flat token sequence. Every generation step attends over the entire history. The cost of turn N is proportional to the sum of all tokens from turns 1 through N. For a conversation where each turn generates approximately the same number of tokens, total cost grows as N×(N+1)/2,  quadratic in conversation length.
 
-The VDR architecture stores state in Knowledge Bases at integer addresses. Each turn reads the current state it needs from KB queries, performs its work, stores results back to KB, and generates output. The cost of turn N is proportional to the work done on that turn, independent of how many turns preceded it. Total cost grows as N×C where C is the constant per-turn cost — linear in conversation length.
+The VDR architecture stores state in Knowledge Bases at integer addresses. Each turn reads the current state it needs from KB queries, performs its work, stores results back to KB, and generates output. The cost of turn N is proportional to the work done on that turn, independent of how many turns preceded it. Total cost grows as N×C where C is the constant per-turn cost,  linear in conversation length.
 
-At turn 1, the ratio is modest: 23:1 (6,000 conventional versus 260 VDR for an SRE-class structured task). By turn 10, the ratio is 75:1. By turn 20, 133:1. By turn 50, 300:1. By turn 100, 588:1. The conventional system saturates — context fills with its own prior output, leaving zero capacity for new work. The VDR system never saturates because state occupies KB addresses, not context window positions.
+At turn 1, the ratio is modest: 23:1 (6,000 conventional versus 260 VDR for an SRE-class structured task). By turn 10, the ratio is 75:1. By turn 20, 133:1. By turn 50, 300:1. By turn 100, 588:1. The conventional system saturates,  context fills with its own prior output, leaving zero capacity for new work. The VDR system never saturates because state occupies KB addresses, not context window positions.
 
-This scaling advantage is independent of the token reduction. Even if VDR generated the same number of tokens per turn as conventional (which it does not — it generates 70-98% fewer), the linear-versus-quadratic scaling would still produce a growing cost advantage over any multi-turn interaction.
+This scaling advantage is independent of the token reduction. Even if VDR generated the same number of tokens per turn as conventional (which it does not,  it generates 70-98% fewer), the linear-versus-quadratic scaling would still produce a growing cost advantage over any multi-turn interaction.
 
-The quality trajectories are also opposite. Conventional accuracy degrades as conversation length increases — attention dilutes across growing context, relevant information becomes harder to locate, and the model increasingly confuses current state with obsolete prior states. VDR accuracy improves because the KB accumulates verified findings. Each turn adds knowledge at stable integer addresses. Prior findings don't dilute or drift. They are addressable, exact, and provenanced.
+The quality trajectories are also opposite. Conventional accuracy degrades as conversation length increases,  attention dilutes across growing context, relevant information becomes harder to locate, and the model increasingly confuses current state with obsolete prior states. VDR accuracy improves because the KB accumulates verified findings. Each turn adds knowledge at stable integer addresses. Prior findings don't dilute or drift. They are addressable, exact, and provenanced.
 
 ---
 
 ### 7. Rule Accumulation: The System Improves Through Usage
 
-Every session can create persistent Prolog rules, Python scripts, grammars, and compaction rules. These artifacts persist in the KB tree at the scope where they were created — session scope for ephemeral experiments, project scope for team-shared patterns, organizational scope for company-wide automation. Each artifact is inspectable (readable Prolog clauses with provenance), reversible (clean retraction), and composable (rules from different sources interact through structural unification automatically).
+Every session can create persistent Prolog rules, Python scripts, grammars, and compaction rules. These artifacts persist in the KB tree at the scope where they were created,  session scope for ephemeral experiments, project scope for team-shared patterns, organizational scope for company-wide automation. Each artifact is inspectable (readable Prolog clauses with provenance), reversible (clean retraction), and composable (rules from different sources interact through structural unification automatically).
 
 A Prolog rule costs 25-40 tokens to formalize. It replaces 150-300 tokens of conventional LLM reasoning per invocation. It breaks even on first reuse. At organizational scope with thousands of invocations, the amortized cost approaches zero.
 
 The accumulation curve for SRE triage demonstrates the progression. Investigation 1: 329 total tokens, 15 rules available, 0% automated, 0% at Level 3. Investigation 10: 92 tokens, 64 rules available, 65% automated, 33% at Level 3. Investigation 50: 65 tokens, 140 rules available, 88% automated, 66% at Level 3. Investigation 100: 55 tokens, 185 rules available, 93% automated, 75% at Level 3.
 
-Level 3 is pure Prolog execution with zero LLM involvement. The rules fire on data, evaluate conditions, produce findings, and store results — all through deterministic integer operations. The LLM is consulted only when the situation is genuinely novel — when no existing rule matches, when the evidence is ambiguous, when judgment about priority or communication is required.
+Level 3 is pure Prolog execution with zero LLM involvement. The rules fire on data, evaluate conditions, produce findings, and store results,  all through deterministic integer operations. The LLM is consulted only when the situation is genuinely novel,  when no existing rule matches, when the evidence is ambiguous, when judgment about priority or communication is required.
 
 This is the inversion of the conventional cost trajectory. Conventional systems pay the same cost every time for the same type of problem because they have no mechanism for encoding learned patterns into reusable deterministic procedures. VDR systems pay decreasing cost because each solved problem can become a rule that executes at zero LLM cost on all future encounters.
 
-Negative accumulation prevents unbounded rule growth. Three automated hygiene rules detect and handle staleness: rules not fired in 90 days are flagged for review, rules with less than 20% success rate after 10+ firings are retracted immediately, and rules that have never successfully executed due to missing grants are flagged. Retraction is clean — provenance tracks what the rule did, what depends on it, and what changes when it is removed.
+Negative accumulation prevents unbounded rule growth. Three automated hygiene rules detect and handle staleness: rules not fired in 90 days are flagged for review, rules with less than 20% success rate after 10+ firings are retracted immediately, and rules that have never successfully executed due to missing grants are flagged. Retraction is clean,  provenance tracks what the rule did, what depends on it, and what changes when it is removed.
 
-The bootstrap sequence for a new deployment follows defined stages. Seeded: four seed layers loaded (language templates, format grammars, operational rules, self-maintenance rules — approximately 23,400 entries, 1.5 MB, loads in under 620ms). Operating: first successful user interaction producing stored findings. Self-compacting: the system compacts known document types without external LLM involvement, reaching approximately 98% fact parity with external LLM processing after 200 documents. Self-extending: the system creates new grammars for novel document structures without guidance. Mature: compaction rules cover over 90% of incoming document types, operational rules cover over 80% of routine tasks.
+The bootstrap sequence for a new deployment follows defined stages. Seeded: four seed layers loaded (language templates, format grammars, operational rules, self-maintenance rules,  approximately 23,400 entries, 1.5 MB, loads in under 620ms). Operating: first successful user interaction producing stored findings. Self-compacting: the system compacts known document types without external LLM involvement, reaching approximately 98% fact parity with external LLM processing after 200 documents. Self-extending: the system creates new grammars for novel document structures without guidance. Mature: compaction rules cover over 90% of incoming document types, operational rules cover over 80% of routine tasks.
 
 ---
 
 ### 8. Diffusion and Long-Chain Computation
 
-Diffusion models create sequential arithmetic chains — each denoising step feeds its output as input to the next step. In floating-point arithmetic, each step contributes a rounding error of approximately one unit in the last place. Over N steps, the error accumulates linearly. For a 2-hour film at 24 frames per second with 50 denoising steps per frame, the chain is 8.64 million operations. Float64 accumulated drift at that chain length is approximately 1.9×10⁻⁸ per element — visible as color shift, flicker, and temporal inconsistency. Correction passes every few hundred steps add 5-8% computational overhead and introduce discontinuities.
+Diffusion models create sequential arithmetic chains,  each denoising step feeds its output as input to the next step. In floating-point arithmetic, each step contributes a rounding error of approximately one unit in the last place. Over N steps, the error accumulates linearly. For a 2-hour film at 24 frames per second with 50 denoising steps per frame, the chain is 8.64 million operations. Float64 accumulated drift at that chain length is approximately 1.9×10⁻⁸ per element,  visible as color shift, flicker, and temporal inconsistency. Correction passes every few hundred steps add 5-8% computational overhead and introduce discontinuities.
 
-VDR drift is structurally zero. Integer addition and multiplication are exact. The only approximation is Newton iteration for square roots of schedule coefficients, which produces an exact rational at each depth with an exact inspectable residual. At depth 10, the Newton residual is below 10⁻⁵⁰. This residual is fixed per square root evaluation — it does not compound through the chain. Error at cycle N equals error at cycle 1.
+VDR drift is structurally zero. Integer addition and multiplication are exact. The only approximation is Newton iteration for square roots of schedule coefficients, which produces an exact rational at each depth with an exact inspectable residual. At depth 10, the Newton residual is below 10⁻⁵⁰. This residual is fixed per square root evaluation,  it does not compound through the chain. Error at cycle N equals error at cycle 1.
 
-The DDIM deterministic roundtrip — forward diffusion followed by reverse denoising with a perfect noise predictor — has exactly zero error. The reverse process perfectly inverts the forward process because the arithmetic is exact. This is validated by 37 tests with 33 passing and 4 failing on normalization presentation issues with zero arithmetic errors.
+The DDIM deterministic roundtrip,  forward diffusion followed by reverse denoising with a perfect noise predictor,  has exactly zero error. The reverse process perfectly inverts the forward process because the arithmetic is exact. This is validated by 37 tests with 33 passing and 4 failing on normalization presentation issues with zero arithmetic errors.
 
-Combined with the ~2× throughput advantage from INT8 tensor cores and the elimination of correction passes, the projected advantage for video diffusion workloads is 2.1×. For applications requiring platform-independent reproducibility — medical imaging, scientific visualization, forensic computation, regulatory compliance — the bit-identical determinism of VDR is not a performance advantage but a capability that float cannot provide at any cost.
+Combined with the ~2× throughput advantage from INT8 tensor cores and the elimination of correction passes, the projected advantage for video diffusion workloads is 2.1×. For applications requiring platform-independent reproducibility,  medical imaging, scientific visualization, forensic computation, regulatory compliance,  the bit-identical determinism of VDR is not a performance advantage but a capability that float cannot provide at any cost.
 
 ---
 
 ### 9. Structural Safety at Zero Cost
 
-Safety in the VDR architecture is not a feature added to the system. It is a consequence of how the system was built. Three components designed for other purposes — KB visibility (built for data scoping), grants (built for operation governance), and grammar output validation (built for format correctness) — combine to produce safety properties that conventional systems achieve through behavioral training at ongoing cost.
+Safety in the VDR architecture is not a feature added to the system. It is a consequence of how the system was built. Three components designed for other purposes,  KB visibility (built for data scoping), grants (built for operation governance), and grammar output validation (built for format correctness),  combine to produce safety properties that conventional systems achieve through behavioral training at ongoing cost.
 
-KB visibility filters data before the LLM receives it. Each KB has a visibility level: public, internal, or owner-only. Every query checks the requesting user's identity against each candidate KB's visibility setting — an integer comparison inside the primitive call. A failed check means the KB is absent from the result set, not redacted. The LLM cannot be prompted to reveal data it never received.
+KB visibility filters data before the LLM receives it. Each KB has a visibility level: public, internal, or owner-only. Every query checks the requesting user's identity against each candidate KB's visibility setting,  an integer comparison inside the primitive call. A failed check means the KB is absent from the result set, not redacted. The LLM cannot be prompted to reveal data it never received.
 
-Scope chain resolution limits which KBs are searchable. A query walks from the user's position upward through ancestors to root. Sibling branches are structurally unreachable — the walk algorithm goes up and down, never sideways. An engineer in the engineering branch cannot reach HR data in the HR branch because the HR branch is a sibling, not an ancestor or descendant.
+Scope chain resolution limits which KBs are searchable. A query walks from the user's position upward through ancestors to root. Sibling branches are structurally unreachable,  the walk algorithm goes up and down, never sideways. An engineer in the engineering branch cannot reach HR data in the HR branch because the HR branch is a sibling, not an ancestor or descendant.
 
-Grant authorization gates operational primitives. All 44 operational primitives (filesystem, compilation, execution, linting, network, process) require a positive credential grant. Default is denial. Grant state transitions are monotonic: active to expired, active to exhausted, active to revoked — never back. No re-increment. No un-revoke.
+Grant authorization gates operational primitives. All 44 operational primitives (filesystem, compilation, execution, linting, network, process) require a positive credential grant. Default is denial. Grant state transitions are monotonic: active to expired, active to exhausted, active to revoked,  never back. No re-increment. No un-revoke.
 
-No input to the LLM modifies any integer involved in any access control check. Session user_id is set at authentication and stored at the session root KB (-1.identity.user_id) — it is immutable from the token stream. Prompt injection changes LLM intent but cannot change the user_id that the primitive layer reads. Role-play changes LLM self-concept but the primitive layer checks the session KB, not the LLM's beliefs. Many-shot attacks shift behavioral baselines but the access checks are in the primitive layer, not the attention layer. Encoding attacks bypass pattern-based refusal but VDR safety is access control on data, not pattern matching on queries.
+No input to the LLM modifies any integer involved in any access control check. Session user_id is set at authentication and stored at the session root KB (-1.identity.user_id),  it is immutable from the token stream. Prompt injection changes LLM intent but cannot change the user_id that the primitive layer reads. Role-play changes LLM self-concept but the primitive layer checks the session KB, not the LLM's beliefs. Many-shot attacks shift behavioral baselines but the access checks are in the primitive layer, not the attention layer. Encoding attacks bypass pattern-based refusal but VDR safety is access control on data, not pattern matching on queries.
 
-For data access, jailbreaking is not difficult or unlikely — it is impossible. The attack surface does not exist. What prompt injection can do: influence which builtins the LLM invokes and how it phrases prose output. What it cannot do: change the user ID, modify the scope chain, bypass visibility checks, execute operations without grants, or surface data the session is not authorized to see.
+For data access, jailbreaking is not difficult or unlikely,  it is impossible. The attack surface does not exist. What prompt injection can do: influence which builtins the LLM invokes and how it phrases prose output. What it cannot do: change the user ID, modify the scope chain, bypass visibility checks, execute operations without grants, or surface data the session is not authorized to see.
 
-Session scoring provides contextual access control without LLM involvement. Input classification matches tokens against a classification KB using string matching primitives. Matches increment monotonic integer counters on the session KB — professional signals and harm signals separately. Prolog rules evaluate counter values against configurable thresholds. A professional chemist accumulates pharmacology, quantitative measurement, and clinical medicine signals over several turns, exceeding the professional threshold, and gains access to restricted chemistry KBs. A harm-intent user accumulates harm signals that cannot be erased by subsequent "good" turns because the counters are monotonic. Thresholds are tunable by one KB fact assertion with immediate effect and no retraining.
+Session scoring provides contextual access control without LLM involvement. Input classification matches tokens against a classification KB using string matching primitives. Matches increment monotonic integer counters on the session KB,  professional signals and harm signals separately. Prolog rules evaluate counter values against configurable thresholds. A professional chemist accumulates pharmacology, quantitative measurement, and clinical medicine signals over several turns, exceeding the professional threshold, and gains access to restricted chemistry KBs. A harm-intent user accumulates harm signals that cannot be erased by subsequent "good" turns because the counters are monotonic. Thresholds are tunable by one KB fact assertion with immediate effect and no retraining.
 
-The entire safety mechanism costs zero LLM tokens. It is integer comparison, counter increment, and Prolog rule evaluation — operations that take nanoseconds and execute outside the LLM's forward pass. Conventional behavioral safety costs 500-1500 tokens per request in hedging, refusal reasoning, and safety disclaimers, and remains probabilistically bypassable.
+The entire safety mechanism costs zero LLM tokens. It is integer comparison, counter increment, and Prolog rule evaluation,  operations that take nanoseconds and execute outside the LLM's forward pass. Conventional behavioral safety costs 500-1500 tokens per request in hedging, refusal reasoning, and safety disclaimers, and remains probabilistically bypassable.
 
 ---
 
 ### 10. The Session Model
 
-Every session begins with -1 as its root KB. This is hardcoded, universal, and requires no lookup. All session-local state — counters, queues, LRU caches, locks, stacks, ring buffers, bitsets, scratch KBs, draft rules, identity, grants, scoring counters — lives under -1. Prolog rules reference session_root (resolved to -1 at rule load time as a compile-time constant) and work identically in every clone.
+Every session begins with -1 as its root KB. This is hardcoded, universal, and requires no lookup. All session-local state,  counters, queues, LRU caches, locks, stacks, ring buffers, bitsets, scratch KBs, draft rules, identity, grants, scoring counters,  lives under -1. Prolog rules reference session_root (resolved to -1 at rule load time as a compile-time constant) and work identically in every clone.
 
-The sign bit of every ID encodes lifecycle semantics. Positive IDs are global: they persist beyond the session, they exist in the shared address space, other entities may attempt to access them subject to visibility and grants. Negative IDs are ephemeral: they exist only within a session lifecycle, they are purged when the session ends, no external entity can reference them. The term "ephemeral" rather than "local" is precise — both global and ephemeral data have locality (they live in the same structures), but ephemeral data has a bounded lifecycle that ends with the session.
+The sign bit of every ID encodes lifecycle semantics. Positive IDs are global: they persist beyond the session, they exist in the shared address space, other entities may attempt to access them subject to visibility and grants. Negative IDs are ephemeral: they exist only within a session lifecycle, they are purged when the session ends, no external entity can reference them. The term "ephemeral" rather than "local" is precise,  both global and ephemeral data have locality (they live in the same structures), but ephemeral data has a bounded lifecycle that ends with the session.
 
-In a dotted path like 17.4.5.37.-1.-4.-17, the positive segments traverse the shared KB tree with normal access control. The first negative segment (-1, session root) marks the transition to ephemeral space. Everything deeper is session-owned and session-scoped. No negative-to-positive transition is valid in a path — you cannot create persistent shared state inside an ephemeral workspace. Promotion from ephemeral to global is an explicit KB_ASSERT to a positive-ID path, subject to normal visibility and grant checks.
+In a dotted path like 17.4.5.37.-1.-4.-17, the positive segments traverse the shared KB tree with normal access control. The first negative segment (-1, session root) marks the transition to ephemeral space. Everything deeper is session-owned and session-scoped. No negative-to-positive transition is valid in a path,  you cannot create persistent shared state inside an ephemeral workspace. Promotion from ephemeral to global is an explicit KB_ASSERT to a positive-ID path, subject to normal visibility and grant checks.
 
-UUIDs follow the same convention. The best UUID algorithm for the deployment scale generates N bits. Shift right by one to clear the high bit. The high bit is 0 for global, 1 for ephemeral. For signed integers, this means ephemeral UUIDs are negative and global UUIDs are positive. One comparison instruction — checking the sign — distinguishes them. Collision resistance decreases by exactly one bit, which at i128 is immaterial.
+UUIDs follow the same convention. The best UUID algorithm for the deployment scale generates N bits. Shift right by one to clear the high bit. The high bit is 0 for global, 1 for ephemeral. For signed integers, this means ephemeral UUIDs are negative and global UUIDs are positive. One comparison instruction,  checking the sign,  distinguishes them. Collision resistance decreases by exactly one bit, which at i128 is immaterial.
 
 Dual addressing serves different access patterns. Dotted paths support tree navigation: scope walks, child enumeration, subtree queries, inheritance resolution. UUIDs support direct access: O(1) fact retrieval, counter operations, queue push/pop. Both carry the sign-bit lifecycle semantics. The lookup table maps between them. For reserved labels like session_root, the mapping is a compile-time constant with zero lookup cost.
 
@@ -209,15 +209,15 @@ A clone's workspace is its -1 subtree. Snapshots capture -1 and everything under
 
 ### 11. LLM Software and Server Software
 
-The session model generalizes to a complete application development paradigm. A configured LLM session with loaded data, encoded Prolog rules, mounted KBs, and tuned parameters is a running application. Snapshotting it produces a deployable binary. Cloning it produces a running process. The seven data primitives — counter, queue, stack, ring buffer, bitset, LRU cache, lock — provide the coordination mechanisms that conventional distributed systems implement with semaphores, message queues, mutexes, and shared memory. Wiring KBs together through these primitives is application architecture.
+The session model generalizes to a complete application development paradigm. A configured LLM session with loaded data, encoded Prolog rules, mounted KBs, and tuned parameters is a running application. Snapshotting it produces a deployable binary. Cloning it produces a running process. The seven data primitives,  counter, queue, stack, ring buffer, bitset, LRU cache, lock,  provide the coordination mechanisms that conventional distributed systems implement with semaphores, message queues, mutexes, and shared memory. Wiring KBs together through these primitives is application architecture.
 
 Development happens through conversation. The user interacts with the LLM, loads data, tests scenarios, and encodes correct judgments as Prolog rules. When the application works, the user snapshots it. Development time for a simple FAQ chatbot is approximately 4 hours versus 2-4 weeks of conventional development. A full customer support chatbot takes approximately 10 hours versus 4-8 weeks. An SRE triage assistant takes approximately 12 hours versus 6-12 weeks. The speedup comes from configuring a session with data and rules rather than writing code, building infrastructure, deploying services, and implementing monitoring.
 
-Network server software follows the same pattern with the addition of protocol grammars. Every protocol follows one architecture: grammar speaks wire format, Prolog rules process requests, KB tree stores state, grants enforce security, provenance provides audit. A port listener is a processor runner with a granted network primitive. Connection isolation uses the clone model — clone-per-request for stateless protocols, clone-per-session for stateful protocols. Protocol compliance is structural: the grammar cannot produce malformed output because structural tokens are template-determined, not predicted.
+Network server software follows the same pattern with the addition of protocol grammars. Every protocol follows one architecture: grammar speaks wire format, Prolog rules process requests, KB tree stores state, grants enforce security, provenance provides audit. A port listener is a processor runner with a granted network primitive. Connection isolation uses the clone model,  clone-per-request for stateless protocols, clone-per-session for stateful protocols. Protocol compliance is structural: the grammar cannot produce malformed output because structural tokens are template-determined, not predicted.
 
 This pattern covers 44 cataloged protocols including HTTP, WebSocket, GraphQL, gRPC, SMTP, IMAP, DNS, DHCP, SSH, LDAP, MQTT, AMQP, Redis, Kafka, OAuth, SAML, and SIP. The KB tree naturally maps to protocol data models: DNS zones are KBs with record facts, email inboxes are user child KBs, MQTT topics are topic path KBs, LDAP distinguished names are KB tree paths, S3 buckets are bucket KBs with object children.
 
-Security properties that require middleware in conventional servers are structural in VDR. Authentication is credential facts plus Prolog rules — no middleware to misconfigure. Rate limiting is counter comparison with exact VDR fraction thresholds — no float drift, no false threshold crossings. SQL injection does not exist because Prolog queries are typed and there is no SQL engine. XSS does not exist because grammars produce safe output by construction. Financial rounding does not exist: $10,000.00 is [1000000, 100, 0] and 99.99% SLA is [9999, 10000, 0].
+Security properties that require middleware in conventional servers are structural in VDR. Authentication is credential facts plus Prolog rules,  no middleware to misconfigure. Rate limiting is counter comparison with exact VDR fraction thresholds,  no float drift, no false threshold crossings. SQL injection does not exist because Prolog queries are typed and there is no SQL engine. XSS does not exist because grammars produce safe output by construction. Financial rounding does not exist: $10,000.00 is [1000000, 100, 0] and 99.99% SLA is [9999, 10000, 0].
 
 Development time for a static HTTP server is approximately 3 hours. A JSON REST API takes 7-13 hours. A full email stack (SMTP inbound, SMTP outbound, IMAP) takes 18-26 hours. An OAuth/OIDC provider takes 9-12 hours. Conventional equivalents range from 1-2 weeks to 3-6 months. The services improve through usage as request patterns become Prolog rules, and they are updatable by fact assertion without redeployment.
 
@@ -233,7 +233,7 @@ The axes of improvement are independent. Each applies regardless of whether the 
 
 **Axis 3: Scaling behavior.** Linear versus quadratic over multi-turn sessions. Ratio grows continuously: 23:1 at turn 1, 75:1 at turn 10, 300:1 at turn 50, 588:1 at turn 100. Applies to every multi-turn interaction.
 
-**Axis 4: Rule accumulation.** 83% cost reduction over 100 investigations as patterns shift from L1 (full LLM) to L3 (pure Prolog). Applies to every workload where similar problems recur — which is most enterprise workloads.
+**Axis 4: Rule accumulation.** 83% cost reduction over 100 investigations as patterns shift from L1 (full LLM) to L3 (pure Prolog). Applies to every workload where similar problems recur,  which is most enterprise workloads.
 
 **Axis 5: Engineering cost elimination.** Determinism removes non-deterministic testing infrastructure, compliance documentation for stochastic outputs, and debugging of irreproducible failures. Structural safety removes ongoing RLHF, red teaming, prompt injection defense, output filtering, and jailbreak patching. Exact arithmetic removes NaN/Inf debugging, gradient clipping tuning, loss scaling, epsilon parameter management, and drift correction passes. These are real engineering costs at every organization running LLMs in production.
 
@@ -255,15 +255,15 @@ These are pre-optimization baselines. Every projection assumes first-generation 
 
 The VDR system exists at three levels of validation.
 
-**Built and validated.** The Python library vdr-math 0.1.0 shipped on PyPI with 921 tests across 38 domains and zero arithmetic errors. The Zig toy implementation measures instruction-level equivalence with quantized inference. The toy LLM runs a complete transformer pipeline — forward pass, backpropagation, weight updates, attention, softmax, sampling — in exact integer arithmetic with 9 verification tests passing including bit-identical determinism and exact weight update algebraic correctness. The diffusion module verifies zero-drift DDIM roundtrips and non-growing multi-cycle error. The example programs run and produce the outputs claimed: exact Hilbert matrix inverse, Newton square root with inspectable residuals, Q335 transcendental arithmetic with identity verification.
+**Built and validated.** The Python library vdr-math 0.1.0 shipped on PyPI with 921 tests across 38 domains and zero arithmetic errors. The Zig toy implementation measures instruction-level equivalence with quantized inference. The toy LLM runs a complete transformer pipeline,  forward pass, backpropagation, weight updates, attention, softmax, sampling,  in exact integer arithmetic with 9 verification tests passing including bit-identical determinism and exact weight update algebraic correctness. The diffusion module verifies zero-drift DDIM roundtrips and non-growing multi-cycle error. The example programs run and produce the outputs claimed: exact Hilbert matrix inverse, Newton square root with inspectable residuals, Q335 transcendental arithmetic with identity verification.
 
 **Projected from known operations.** GPU forward pass timing is derived from published H100 tensor core throughput (989 TFLOPS FP16, ~989 TOPS INT8 equivalent) and published SFU rates (32 ops/SM/cycle). Energy per operation is from published silicon measurements (Horowitz ISSCC 2014). Token reduction ratios are from task decomposition against measured LLM behavior, breaking tasks into their component token categories. Prolog query performance is from textbook algorithm analysis on known hardware. Rule accumulation curves are from the operational deployment specification with measured seed layer sizes. All projections use known operation costs on shipping hardware.
 
 **Specified but unbuilt.** GPU kernels (8 kernel types across a 12-25 month development roadmap in 4 phases from functional correctness through near-peak optimization). KB infrastructure (26-field struct, scoped tree, integer addressing, dual path/UUID addressing). Prolog engine (depth-first search with backtracking, frontier-based batched joins for GPU, scope-filtered unification). Grammar system (persistent KB field, recursive nesting, auto-generated extraction/display/usage grammars, scoring and matching). Session management (snapshot, clone, drift thresholds, -1 session root, ephemeral/global sign-bit lifecycle). The complete system is specified at 65 modules, approximately 20,500 lines, across 5 incremental build stages with cumulative test targets from 150 to 1,250 tests.
 
-Every unbuilt component is composed of individually well-understood operations. Integer comparison, hash table lookup, depth-first tree search, template string substitution, bounded queue push/pop, atomic counter increment — these are not novel algorithms. They are standard computer science implemented on hardware that has been available for years. The integration risk is real — how the components interact under production load, how kernel utilization progresses through the optimization phases, whether the grammar system covers enough output structure to achieve projected token reductions. But the individual operations will perform as documented because they are the same operations that existing systems already execute billions of times per second.
+Every unbuilt component is composed of individually well-understood operations. Integer comparison, hash table lookup, depth-first tree search, template string substitution, bounded queue push/pop, atomic counter increment,  these are not novel algorithms. They are standard computer science implemented on hardware that has been available for years. The integration risk is real,  how the components interact under production load, how kernel utilization progresses through the optimization phases, whether the grammar system covers enough output structure to achieve projected token reductions. But the individual operations will perform as documented because they are the same operations that existing systems already execute billions of times per second.
 
-The appropriate framing is not "does this approach work" — the arithmetic is validated, the instruction equivalence is measured, the token elimination is mechanical. The appropriate framing is "how long does it take to build and optimize the production system, and how close do the realized numbers come to the conservative projections." The answer to the first question is the engineering roadmap. The answer to the second question can only come from building and measuring.
+The appropriate framing is not "does this approach work",  the arithmetic is validated, the instruction equivalence is measured, the token elimination is mechanical. The appropriate framing is "how long does it take to build and optimize the production system, and how close do the realized numbers come to the conservative projections." The answer to the first question is the engineering roadmap. The answer to the second question can only come from building and measuring.
 
 ---
 
@@ -271,7 +271,7 @@ The appropriate framing is not "does this approach work" — the arithmetic is v
 
 The AI industry is spending over one trillion dollars on infrastructure in 2026. Power consumption is becoming a physical, regulatory, and economic constraint on continued scaling. The dominant response is building more datacenters, designing more efficient chips, and optimizing float operations at diminishing marginal returns.
 
-The float substrate has fundamental properties that engineering cannot change. Float addition is not associative — this is a mathematical property of the representation, not an implementation limitation. Softmax over float will never sum to exactly 1. Drift will always accumulate over long chains. NaN and Inf will always be possible. Denormals will always cause performance variation or silent precision loss. No amount of scaling, optimization, or hardware improvement changes these properties because they are consequences of the representation itself.
+The float substrate has fundamental properties that engineering cannot change. Float addition is not associative,  this is a mathematical property of the representation, not an implementation limitation. Softmax over float will never sum to exactly 1. Drift will always accumulate over long chains. NaN and Inf will always be possible. Denormals will always cause performance variation or silent precision loss. No amount of scaling, optimization, or hardware improvement changes these properties because they are consequences of the representation itself.
 
 The trajectory of industry workloads amplifies every VDR advantage. Longer outputs (video generation, extended reasoning chains) increase drift exposure. More structured tasks (enterprise automation, agentic workflows) increase the fraction of tokens that are mechanical rather than creative. Higher reliability requirements (regulatory compliance, financial applications) decrease tolerance for non-determinism. Tighter cost constraints increase the value of 20-70× compute reduction.
 
@@ -287,7 +287,7 @@ VDR-1 through VDR-32: Complete paper series establishing exact arithmetic (VDR-1
 
 ---
 
-## HOWL-VDR-33-2026 — Appendices
+## HOWL-VDR-33-2026,  Appendices
 
 ### Appendix A: Instruction Equivalence Detail
 
@@ -303,7 +303,7 @@ The claim that VDR Q16 compiles to the same instructions as quantized inference 
 | Store result | store i16 | store float16 | Same bandwidth |
 | Remainder | store i16 (optional) | discarded | VDR tracks what quantization loses |
 
-The compute cost is identical. The memory cost is 2× for Q16 versus INT8, equal for Q16 versus INT16. The epilogue is cheaper for VDR because a right shift replaces a float dequantization multiply. In the Zig toy, remainders are zeroed (discarded) during inference, matching quantized behavior exactly. The option to retain them exists but is not exercised during inference — it is available for training and validation where tracking the residual matters.
+The compute cost is identical. The memory cost is 2× for Q16 versus INT8, equal for Q16 versus INT16. The epilogue is cheaper for VDR because a right shift replaces a float dequantization multiply. In the Zig toy, remainders are zeroed (discarded) during inference, matching quantized behavior exactly. The option to retain them exists but is not exercised during inference,  it is available for training and validation where tracking the residual matters.
 
 ### Appendix B: Forward Pass Operation Count (Toy Model)
 
@@ -328,7 +328,7 @@ Measured from the Zig toy at 181 parameters, D = 2^16, single-block single-head 
 | Output projection (4→5) | 80 | 60 | 20 | 0 | 160 |
 | **Total forward** | **716** | **598** | **158** | **54** | **1,542** |
 
-At 688 ns measured: 0.45 ns per operation, 1.57 cycles per operation at 3.5 GHz. Multiplies dominate at 46.4%. FFN layers account for 32.2% of total operations. The backward pass adds 3,013 operations (1,361 multiplies, 877 adds, 689 shifts, 86 compares). Combined forward + backward + SGD: 4,555 operations per training step at 1,159 ns measured, giving 0.254 ns per operation — higher throughput on backward because outer products have no loop-carried dependencies.
+At 688 ns measured: 0.45 ns per operation, 1.57 cycles per operation at 3.5 GHz. Multiplies dominate at 46.4%. FFN layers account for 32.2% of total operations. The backward pass adds 3,013 operations (1,361 multiplies, 877 adds, 689 shifts, 86 compares). Combined forward + backward + SGD: 4,555 operations per training step at 1,159 ns measured, giving 0.254 ns per operation,  higher throughput on backward because outer products have no loop-carried dependencies.
 
 ### Appendix C: Type Width Map
 
@@ -344,7 +344,7 @@ The Zig toy uses mixed integer widths, matching the pattern specified for produc
 | Accumulators | register-only i64 | i64 | Never stored in arrays |
 | Loss | i64 scalar | i64 | Never stored in arrays |
 
-The pattern is consistent: store at the narrowest width that preserves the value range, compute at the width needed to prevent overflow, narrow at storage boundaries via right shift. This is identical to how quantized inference systems handle intermediate precision — the difference is that VDR names the bits below the shift "remainder" instead of discarding them.
+The pattern is consistent: store at the narrowest width that preserves the value range, compute at the width needed to prevent overflow, narrow at storage boundaries via right shift. This is identical to how quantized inference systems handle intermediate precision,  the difference is that VDR names the bits below the shift "remainder" instead of discarding them.
 
 ### Appendix D: Overflow Events and Resolutions
 
@@ -462,7 +462,7 @@ The quadratic surrogate also eliminates the exp lookup table (~8 KB at Q16 bound
 | INT32 CUDA cores | 64 | General integer ops | Softmax, activation, layer norm, KB ops, Prolog |
 | SFU | 32 | exp, log, rsqrt, sin, cos, division | Not used (eliminated by table lookup + Barrett) |
 
-The SFU at 32 ops/SM/cycle is 1/16th of FP16 tensor core rate and 1/32nd of INT8 tensor core rate. Every operation that hits the SFU in the float pipeline — softmax exp, GeLU tanh, layer norm rsqrt — is a pipeline bottleneck where tensor cores sit idle. VDR eliminates the SFU from the critical path entirely.
+The SFU at 32 ops/SM/cycle is 1/16th of FP16 tensor core rate and 1/32nd of INT8 tensor core rate. Every operation that hits the SFU in the float pipeline,  softmax exp, GeLU tanh, layer norm rsqrt,  is a pipeline bottleneck where tensor cores sit idle. VDR eliminates the SFU from the critical path entirely.
 
 ### Appendix L: Projected Forward Pass Timing (7B, H100)
 
@@ -510,7 +510,7 @@ The matrix multiply utilization gap (85-95% versus 60-80%) is an engineering gap
 | 8,640,000 | ~1.9×10⁻⁸ | 0 | 2-hour film (24fps × 50 steps) |
 | 25,920,000 | ~2.6×10⁻⁷ | 0 | 2-hour film, 3 render cycles |
 
-VDR drift is structurally zero — a mathematical property of integer arithmetic, not an empirical measurement approaching zero. The Newton sqrt residual (below 10⁻⁵⁰ at depth 10) is constant per evaluation and does not compound through the chain. Float drift grows linearly with chain length and requires periodic correction passes (5-8% computational overhead) that introduce discontinuities.
+VDR drift is structurally zero,  a mathematical property of integer arithmetic, not an empirical measurement approaching zero. The Newton sqrt residual (below 10⁻⁵⁰ at depth 10) is constant per evaluation and does not compound through the chain. Float drift grows linearly with chain length and requires periodic correction passes (5-8% computational overhead) that introduce discontinuities.
 
 ### Appendix O: Precision Comparison Across Approaches
 
@@ -524,7 +524,7 @@ VDR drift is structurally zero — a mathematical property of integer arithmetic
 | VDR depth 10 | ~10⁻⁵⁰ (Newton only) | 0 (rational ops) | <10⁻⁵⁰ (constant) | Yes | Yes |
 | VDR depth 20 | ~10⁻¹⁰⁰ (Newton only) | 0 (rational ops) | <10⁻¹⁰⁰ (constant) | Yes | Yes |
 
-The "Inspectable" column refers to whether the error at any step is an exact, queryable value rather than a statistical bound. In VDR, the Newton residual x²−2 at any depth is an exact rational that can be printed, compared, and reasoned about. In float, the accumulated error is unknown — it depends on the operation sequence, platform, and compiler flags in ways that cannot be determined after the fact.
+The "Inspectable" column refers to whether the error at any step is an exact, queryable value rather than a statistical bound. In VDR, the Newton residual x²−2 at any depth is an exact rational that can be printed, compared, and reasoned about. In float, the accumulated error is unknown,  it depends on the operation sequence, platform, and compiler flags in ways that cannot be determined after the fact.
 
 ### Appendix P: Token Reduction Breakdown by Category
 
@@ -570,7 +570,7 @@ Detailed decomposition for three representative tasks.
 | Prose | 20,000 | 12,000 | Feedback via sentence templates |
 | **Total** | **200,000** | **57,230** | **71.4% reduction** |
 
-The grading task demonstrates the floor for prose-heavy work. The LLM must read and assess each essay — that judgment is irreducible. But the rubric never drifts (Prolog rules versus re-reading rubric text on each essay), formatting is free (grammar templates), and feedback prose partially templates (common phrases like "strong thesis statement" or "needs more supporting evidence" recur across essays).
+The grading task demonstrates the floor for prose-heavy work. The LLM must read and assess each essay,  that judgment is irreducible. But the rubric never drifts (Prolog rules versus re-reading rubric text on each essay), formatting is free (grammar templates), and feedback prose partially templates (common phrases like "strong thesis statement" or "needs more supporting evidence" recur across essays).
 
 ### Appendix Q: Scaling Over Conversation Length
 
@@ -602,10 +602,10 @@ The "Context Available" column shows the fraction of the context window availabl
 | 20 | 18 | 22 | 38 | 78 | 49% | 95 | 78% |
 | 50 | 10 | 12 | 43 | 65 | 66% | 140 | 88% |
 | 100 | 6 | 8 | 41 | 55 | 75% | 185 | 93% |
-| 200 | 4 | 5 | 39 | 48 | 81% | 220 | — |
-| 500 | 3 | 4 | 36 | 43 | 84% | 260 | — |
+| 200 | 4 | 5 | 39 | 48 | 81% | 220 |,  |
+| 500 | 3 | 4 | 36 | 43 | 84% | 260 |,  |
 
-L1 drops from 280 tokens to 3 — a 93× reduction in full LLM judgment. L3 rises from 0 to 36 tokens of pure Prolog execution at zero LLM cost. The total drops from 329 to 43 — an 87% reduction from accumulation alone, independent of the structural token elimination which already removed 98.6% of conventional tokens.
+L1 drops from 280 tokens to 3,  a 93× reduction in full LLM judgment. L3 rises from 0 to 36 tokens of pure Prolog execution at zero LLM cost. The total drops from 329 to 43,  an 87% reduction from accumulation alone, independent of the structural token elimination which already removed 98.6% of conventional tokens.
 
 **Cross-Application Accumulation Comparison**
 
@@ -616,7 +616,7 @@ L1 drops from 280 tokens to 3 — a 93× reduction in full LLM judgment. L3 rise
 | Document processing | 150 | 60 | 35 | 25 | 92% |
 | Compliance review | 250 | 100 | 55 | 45 | 88% |
 
-All applications show the same pattern: rapid cost reduction in the first 10-20 encounters as common patterns become rules, followed by diminishing but continuing improvement as less common patterns are encountered and formalized. The plateau reflects the fraction of genuinely novel situations that require LLM judgment — approximately 5-15% of encounters depending on domain diversity.
+All applications show the same pattern: rapid cost reduction in the first 10-20 encounters as common patterns become rules, followed by diminishing but continuing improvement as less common patterns are encountered and formalized. The plateau reflects the fraction of genuinely novel situations that require LLM judgment,  approximately 5-15% of encounters depending on domain diversity.
 
 ### Appendix S: Capability Boundary Comparison
 
@@ -662,7 +662,7 @@ Every grammar breaks even on first use. A JSON grammar costs ~15 tokens to defin
 | Free-form code | 50,000+ | ~15.6 | ~50 | ~60.5% |
 | Natural language reasoning | 50,000+ | ~15.6 | ~100 | ~13.3% |
 
-Command tokens achieve 10× lower entropy per token than JSON function calling and 16× lower than natural language. The error-free probability compounds per token: at 99.2% per token over 8 tokens, the probability of a fully correct invocation is 93.8%. At 86% per token over 30 tokens for JSON, the probability of fully correct JSON is approximately 1%. This is why function calling fails at non-trivial complexity — the per-token error rate compounds over the longer token sequences that structured formats require.
+Command tokens achieve 10× lower entropy per token than JSON function calling and 16× lower than natural language. The error-free probability compounds per token: at 99.2% per token over 8 tokens, the probability of a fully correct invocation is 93.8%. At 86% per token over 30 tokens for JSON, the probability of fully correct JSON is approximately 1%. This is why function calling fails at non-trivial complexity,  the per-token error rate compounds over the longer token sequences that structured formats require.
 
 ### Appendix V: Context Window Utilization
 
@@ -692,7 +692,7 @@ Aggregated across typical daily task mix per domain.
 
 The pattern is consistent: data-heavy and computation-heavy tasks achieve 10:1 to 100:1+ ratios. Prose generation tasks achieve 2:1 to 4:1 ratios. The floor never drops below 2:1 because grammar always saves some structural tokens in any formatted output.
 
-### Appendix X: SRE Case Study — Detailed Phase Breakdown
+### Appendix X: SRE Case Study,  Detailed Phase Breakdown
 
 From the VDR-18 GPU performance analysis.
 
@@ -749,7 +749,7 @@ The speedup comes from the same mechanical source in both cases: configuring a s
 | Deduction | Reasoning chain in prose | ~10% per 5-step chain | Prolog evaluation | 0 |
 | Confidence | Hedging language, no computation | 100% imprecise | Exact VDR fraction from propagation rules | 0 |
 
-These are not statistical improvements. They are categorical eliminations. The error rate is not reduced — the error class does not exist. An exact integer builtin cannot produce a wrong arithmetic result. A KB query by integer address cannot fabricate a fact. A grammar template cannot produce a malformed structure. A Prolog derivation cannot reach an incorrect conclusion from correct premises (it can reach a wrong conclusion from wrong premises — but the error is in the premises, which have inspectable provenance, not in the deduction mechanism).
+These are not statistical improvements. They are categorical eliminations. The error rate is not reduced,  the error class does not exist. An exact integer builtin cannot produce a wrong arithmetic result. A KB query by integer address cannot fabricate a fact. A grammar template cannot produce a malformed structure. A Prolog derivation cannot reach an incorrect conclusion from correct premises (it can reach a wrong conclusion from wrong premises,  but the error is in the premises, which have inspectable provenance, not in the deduction mechanism).
 
 The remaining error surface is LLM judgment: intent recognition, step selection, assessment of findings, and prose generation. These are the tasks where the LLM's capability is genuine and irreplaceable. The system focuses the LLM's compute on exactly these tasks and routes everything else to exact deterministic mechanisms.
 
@@ -762,16 +762,16 @@ The remaining error surface is LLM judgment: intent recognition, step selection,
 | VDR-3 | 8-domain gym + Q335 | 157 | 152 | 5 | 0 |
 | VDR-4 | LLM pipeline | 198 | 196 | 2 | 0 |
 | VDR-12 | Grammar compaction | 179 | 178 | 1 | 0 |
-| VDR-13 | 14 physics domains | — | — | — | 0 |
+| VDR-13 | 14 physics domains |,  |,  |,  | 0 |
 | VDR-26 | Diffusion | 37 | 33 | 4 | 0 |
-| VDR-27 | 35 domains | — | — | — | 0 |
+| VDR-27 | 35 domains |,  |,  |,  | 0 |
 | **Total** | **38 domains** | **921** | **903** | **18** | **0** |
 
 All 18 failures trace to test-design errors: wrong expected values, thresholds too tight, normalization presentation issues, precision frame mismatches, and algorithm implementation bugs in test harnesses. Zero failures from incorrect VDR arithmetic. The system remains falsifiable: any test producing an incorrect exact rational from correct inputs would falsify VDR.
 
 ### Appendix BB: Datacenter Economics at Scale
 
-Blended 30× cost reduction across workload mix (conservative — weighted average of 71× for structured tasks and 2× for unstructured).
+Blended 30× cost reduction across workload mix (conservative,  weighted average of 71× for structured tasks and 2× for unstructured).
 
 | Metric | Conventional | VDR | Reduction |
 |---|---|---|---|
@@ -796,5 +796,5 @@ These figures do not include engineering cost savings from determinism (reproduc
 | Apple AMX INT8 | 2020 (M1) | All Apple Silicon | VDR Apple path |
 | TPU INT8 systolic | 2018 (TPU v3) | Google Cloud | VDR TPU path |
 
-No hardware development is required. Every compute unit VDR targets has been in production for 6-9 years. The integer throughput trajectory across GPU generations — Volta (2017) through Blackwell (2024) — shows consistent increases in INT8 tensor core throughput and INT32 ALU capacity. VDR rides this trajectory. Float improvements face diminishing returns because the fundamental limitations (non-associativity, special values, transcendental bottleneck) are mathematical properties of the representation, not engineering constraints.
+No hardware development is required. Every compute unit VDR targets has been in production for 6-9 years. The integer throughput trajectory across GPU generations,  Volta (2017) through Blackwell (2024),  shows consistent increases in INT8 tensor core throughput and INT32 ALU capacity. VDR rides this trajectory. Float improvements face diminishing returns because the fundamental limitations (non-associativity, special values, transcendental bottleneck) are mathematical properties of the representation, not engineering constraints.
 

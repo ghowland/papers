@@ -2,7 +2,7 @@
 
 SRE engineer pastes into a chat window: "Service checkout-api is returning 503s at 15% rate, started 20 minutes ago, here are the last 200 lines of logs" followed by 200 lines of raw log text.
 
-The LLM reads the entire log through attention. 200 lines is maybe 8,000 tokens. The LLM generates a response: "Based on the logs, it appears that..." — another 500 tokens of hedged analysis. It identifies some patterns, misses others, gets a timestamp wrong because it's doing arithmetic through token prediction.
+The LLM reads the entire log through attention. 200 lines is maybe 8,000 tokens. The LLM generates a response: "Based on the logs, it appears that...",  another 500 tokens of hedged analysis. It identifies some patterns, misses others, gets a timestamp wrong because it's doing arithmetic through token prediction.
 
 The engineer says "check if the database is related." The LLM re-reads the original 8,000 tokens plus its 500-token response plus the new query. 8,600 tokens of attention compute to process a 10-word question. It generates speculation about database connectivity because it has no access to any actual database metrics.
 
@@ -24,11 +24,11 @@ This isn't a blank session. This is a running operational system that has been h
 
 **Four runner types are active:**
 
-A polling runner (C3) executes every 60 seconds. Fresh LLM every cycle — no attention degradation, ever. It checks the task queue at `root.ops.tasks`, reads counters at `root.ops.metrics.health`, scans directory watch lists at `/vdr/ingress/`. Each cycle costs 10-50 tokens. The poller doesn't analyze anything. It routes. A new file in ingress gets classified by accumulated compaction rules and routed to the correct KB branch. A counter exceeding threshold gets a task enqueued. The poller terminates after each cycle. Knowledge stays at integer addresses.
+A polling runner (C3) executes every 60 seconds. Fresh LLM every cycle,  no attention degradation, ever. It checks the task queue at `root.ops.tasks`, reads counters at `root.ops.metrics.health`, scans directory watch lists at `/vdr/ingress/`. Each cycle costs 10-50 tokens. The poller doesn't analyze anything. It routes. A new file in ingress gets classified by accumulated compaction rules and routed to the correct KB branch. A counter exceeding threshold gets a task enqueued. The poller terminates after each cycle. Knowledge stays at integer addresses.
 
-Three processor runners (C4) maintain persistent connections to data streams. One watches Prometheus metrics via credentialed API connection, compacting incoming metrics into `root.ops.metrics.prometheus`. One watches the deployment pipeline, compacting deploy events into `root.ops.deploys`. One watches the alerting system. Each processor has a respawn threshold — at 200 turns, it snapshots its connection state as KB facts, terminates, and a fresh clone reads the snapshot and re-establishes the connection. The data stream is continuous. The LLM processing it is always fresh. The metrics are exact VDR fractions at integer addresses.
+Three processor runners (C4) maintain persistent connections to data streams. One watches Prometheus metrics via credentialed API connection, compacting incoming metrics into `root.ops.metrics.prometheus`. One watches the deployment pipeline, compacting deploy events into `root.ops.deploys`. One watches the alerting system. Each processor has a respawn threshold,  at 200 turns, it snapshots its connection state as KB facts, terminates, and a fresh clone reads the snapshot and re-establishes the connection. The data stream is continuous. The LLM processing it is always fresh. The metrics are exact VDR fractions at integer addresses.
 
-An internal processing runner (C5) executes every 5 minutes. It evaluates KB state: runs consistency checks across the service topology KB, computes derived facts (rolling averages as exact fractions, trend directions as exact comparisons), identifies coverage gaps, updates coverage metrics. Read-broad, write-derived-only. No external access. It can't escalate its own grants. It produces facts like `trend(checkout_api, error_rate, increasing, 14/1000_to_23/1000, last_15_min)` — exact fractions, exact time windows, stored at integer addresses.
+An internal processing runner (C5) executes every 5 minutes. It evaluates KB state: runs consistency checks across the service topology KB, computes derived facts (rolling averages as exact fractions, trend directions as exact comparisons), identifies coverage gaps, updates coverage metrics. Read-broad, write-derived-only. No external access. It can't escalate its own grants. It produces facts like `trend(checkout_api, error_rate, increasing, 14/1000_to_23/1000, last_15_min)`,  exact fractions, exact time windows, stored at integer addresses.
 
 **The KB tree that already exists:**
 
@@ -62,17 +62,17 @@ root
     └── sre_engineer_1 (account KB with grants, preferences)
 ```
 
-This tree has been accumulating for months. The 150+ triage rules in `root.ops.rules.triage` were formalized during past investigations — each one cost 25-40 tokens to create, each one fires automatically at zero LLM cost on every subsequent matching pattern. The service topology facts were compacted from documentation and config files through the ingress pipeline. The Prometheus metrics are continuously updated by the processor runner. Everything is at integer addresses. Nothing is in any LLM's context window.
+This tree has been accumulating for months. The 150+ triage rules in `root.ops.rules.triage` were formalized during past investigations,  each one cost 25-40 tokens to create, each one fires automatically at zero LLM cost on every subsequent matching pattern. The service topology facts were compacted from documentation and config files through the ingress pipeline. The Prometheus metrics are continuously updated by the processor runner. Everything is at integer addresses. Nothing is in any LLM's context window.
 
 **What's already happened before the engineer opens a chat:**
 
-The Prometheus processor runner detected checkout-api 503 rate crossing 10% threshold 3 minutes ago. It asserted: `alert(checkout_api, error_rate_high, 152/1000, timestamp_1747612800)` — exact fraction, exact timestamp, integer address.
+The Prometheus processor runner detected checkout-api 503 rate crossing 10% threshold 3 minutes ago. It asserted: `alert(checkout_api, error_rate_high, 152/1000, timestamp_1747612800)`,  exact fraction, exact timestamp, integer address.
 
 The polling runner picked this up on its next 60-second cycle. It checked the task queue, found the alert, and evaluated it against triage rules. 47 of the 150 triage rules fired against this pattern. The rules classified it: severity = high (exact comparison: 152/1000 > 100/1000, the SLA threshold stored as exact fraction 1/10). The rules identified candidate causes from the correlation KB: recent deploys (query against `root.ops.deploys`), database health (query against `root.ops.metrics.health`), upstream dependency status. All of this happened through Prolog unification over exact facts. Zero LLM tokens.
 
 The poller enqueued an investigation task and pushed a notification to the review queue. The internal processor, on its next 5-minute cycle, created an inference notebook KB at `root.ops.incidents.inc_2026_0519_001` using the SRE template. It populated the notebook with: the alert fact, the triage results, the candidate causes, the relevant service topology (mounted read-only from `root.ops.services`), and the current metric window (mounted read-only from `root.ops.metrics`).
 
-93% of what a conventional LLM would spend its first 5-10 turns doing — reading logs, identifying the service, checking thresholds, listing possible causes, asking what was deployed recently — is already done. At zero LLM cost. Stored as exact facts at integer addresses.
+93% of what a conventional LLM would spend its first 5-10 turns doing,  reading logs, identifying the service, checking thresholds, listing possible causes, asking what was deployed recently,  is already done. At zero LLM cost. Stored as exact facts at integer addresses.
 
 ### The investigation: engineer opens interactive session
 
@@ -86,7 +86,7 @@ The LLM generates: "Checkout-api incident detected 3 minutes ago. Auto-triage co
 
 `DIRECT_OUTPUT kb://root.ops.incidents.inc_2026_0519_001.triage_summary`
 
-The rendering layer fetches the triage summary from the integer address, formats it through the SRE triage grammar (pipes, headers, status indicators — all structural tokens from the grammar, zero LLM generation), and injects it into the output stream. The LLM's prose wraps around it: "Three candidate causes ranked by rule confidence. Recent deploy of payment-service 14 minutes ago correlates with onset."
+The rendering layer fetches the triage summary from the integer address, formats it through the SRE triage grammar (pipes, headers, status indicators,  all structural tokens from the grammar, zero LLM generation), and injects it into the output stream. The LLM's prose wraps around it: "Three candidate causes ranked by rule confidence. Recent deploy of payment-service 14 minutes ago correlates with onset."
 
 Total LLM tokens: ~40 for judgment and prose. The triage table: ~0 LLM tokens (grammar + KB data). The engineer sees a complete incident summary with ranked causes, exact confidence fractions, and provenance for every claim.
 
@@ -103,7 +103,7 @@ KB_QUERY root.ops.metrics.prometheus filter(service=checkout_api, metric=error_r
 
 Two command tokens, ~16 LLM tokens total. The primitive executor resolves the paths to integer IDs, runs Prolog queries against the fact stores, returns results to the LLM's scratchpad (a ring buffer at `root.sessions.active.scratchpad`, VDR-8 DC7).
 
-The scratchpad now contains: deploy facts (version, timestamp, deployer, change description — all exact facts) and error rate time series (exact fractions at exact timestamps). The LLM examines the scratchpad and generates:
+The scratchpad now contains: deploy facts (version, timestamp, deployer, change description,  all exact facts) and error rate time series (exact fractions at exact timestamps). The LLM examines the scratchpad and generates:
 
 ```
 PURE_FN vdr_compare(deploy_timestamp, error_spike_onset)
@@ -133,14 +133,14 @@ The LLM emits:
 KB_QUERY root.ops.deploys.payment_service_v2_14_3 field(change_description)
 ```
 
-The deploy KB has the change description as a compacted fact — it was compacted from the deploy pipeline by the processor runner when the deploy happened. If the description references code changes, the LLM might need to look at the diff. It emits:
+The deploy KB has the change description as a compacted fact,  it was compacted from the deploy pipeline by the processor runner when the deploy happened. If the description references code changes, the LLM might need to look at the diff. It emits:
 
 ```
 OP_FN fs_read /vdr/deploys/payment_service/v2.14.3/diff.patch 
   grant=sre_engineer_1.filesystem_read
 ```
 
-The grant system checks: does `sre_engineer_1` have a filesystem_read grant covering `/vdr/deploys/`? Yes — it's in their account KB, issued by admin, currently valid, uses remaining > 0. The grant is decremented. The file is read. The content lands in the scratchpad, not the token stream.
+The grant system checks: does `sre_engineer_1` have a filesystem_read grant covering `/vdr/deploys/`? Yes,  it's in their account KB, issued by admin, currently valid, uses remaining > 0. The grant is decremented. The file is read. The content lands in the scratchpad, not the token stream.
 
 The diff is 2,000 lines. In conventional LLM: stuffed into context, 8,000 tokens, re-read on every subsequent turn. In VDR-LLM-Prolog: it's in the scratchpad ring buffer. The LLM needs to find the relevant changes. It emits:
 
@@ -182,7 +182,7 @@ Total turn 3: ~80 LLM tokens. A filesystem read (grant-gated, logged), three str
 
 **Turn 4:**
 
-Engineer: "Verify — show me checkout-api's dependency on payment-service and current connection metrics."
+Engineer: "Verify,  show me checkout-api's dependency on payment-service and current connection metrics."
 
 The LLM emits:
 
@@ -194,9 +194,9 @@ KB_QUERY root.ops.metrics.prometheus
   filter(service=payment_service, metric=connection_pool_exhaustion)
 ```
 
-Three queries, ~24 LLM tokens. The dependency graph is a fact in the service KB — it was compacted from service documentation months ago. The connection metrics are exact fractions continuously updated by the Prometheus processor runner.
+Three queries, ~24 LLM tokens. The dependency graph is a fact in the service KB,  it was compacted from service documentation months ago. The connection metrics are exact fractions continuously updated by the Prometheus processor runner.
 
-Results come back. The LLM sees: checkout-api depends on payment-service (fact, confidence 1/1 — it's a KB fact, not LLM-generated). Active connections: 20/20 (exact fraction — pool is fully saturated). Connection pool exhaustion events: 847 in last 20 minutes (exact integer counter).
+Results come back. The LLM sees: checkout-api depends on payment-service (fact, confidence 1/1,  it's a KB fact, not LLM-generated). Active connections: 20/20 (exact fraction,  pool is fully saturated). Connection pool exhaustion events: 847 in last 20 minutes (exact integer counter).
 
 The LLM doesn't need to hedge. It emits:
 
@@ -204,7 +204,7 @@ The LLM doesn't need to hedge. It emits:
 DIRECT_OUTPUT kb://root.ops.incidents.inc_2026_0519_001.findings
 ```
 
-The findings table — including the temporal correlation from turn 2 and the root cause candidate from turn 3 — is rendered through the SRE findings grammar. Every pipe, every header, every confidence fraction formatted by the grammar. The LLM wraps it: "Root cause confirmed. Payment-service v2.14.3 reduced connection pool from 50 to 20. Pool is 100% saturated (20/20). 847 exhaustion events in 20 minutes. Checkout-api's dependency on payment-service is a documented fact in the service topology."
+The findings table,  including the temporal correlation from turn 2 and the root cause candidate from turn 3,  is rendered through the SRE findings grammar. Every pipe, every header, every confidence fraction formatted by the grammar. The LLM wraps it: "Root cause confirmed. Payment-service v2.14.3 reduced connection pool from 50 to 20. Pool is 100% saturated (20/20). 847 exhaustion events in 20 minutes. Checkout-api's dependency on payment-service is a documented fact in the service topology."
 
 The engineer sees exact numbers, exact provenance, exact confidence. No "approximately" or "it appears." The JSON dependency data was dumped by the builtin, formatted by the grammar. It cannot be malformed.
 
@@ -214,7 +214,7 @@ Total turn 4: ~30 LLM tokens for queries and judgment. The verification data was
 
 Engineer: "Write a remediation script to increase the pool size and a monitoring script to verify recovery."
 
-The LLM exercises judgment — this is L1 work, genuine creative output. It writes a Python script:
+The LLM exercises judgment,  this is L1 work, genuine creative output. It writes a Python script:
 
 ```python
 # Remediation: update payment-service connection pool
@@ -251,7 +251,7 @@ OP_FN env_upload docker_sre_sandbox /scripts/monitor_recovery.py
   content=<script2> grant=sre_engineer_1.execute
 ```
 
-The scripts are uploaded to a Docker sandbox environment (EN2 — strong isolation). Not executed yet. The LLM informs the engineer: "Scripts uploaded to sandbox. Remediation script restores pool size to 50. Monitoring script polls error rate for 30 minutes. Execute?"
+The scripts are uploaded to a Docker sandbox environment (EN2,  strong isolation). Not executed yet. The LLM informs the engineer: "Scripts uploaded to sandbox. Remediation script restores pool size to 50. Monitoring script polls error rate for 30 minutes. Execute?"
 
 This is judgment: the LLM decided what scripts to write, what parameters to use, and presented them for human approval before execution. The scripts are stored in the KB with provenance:
 
@@ -263,7 +263,7 @@ KB_ASSERT root.ops.scripts
        created_at=turn_5)
 ```
 
-Total turn 5: ~120 LLM tokens — the most expensive turn because it's genuine creative work. Script writing is judgment. The upload and storage are command tokens.
+Total turn 5: ~120 LLM tokens,  the most expensive turn because it's genuine creative work. Script writing is judgment. The upload and storage are command tokens.
 
 **Turn 6:**
 
@@ -283,7 +283,7 @@ OP_FN env_exec docker_sre_sandbox /scripts/monitor_recovery.py
 
 The monitoring script runs asynchronously. The LLM doesn't wait. It tells the engineer: "Monitoring running in background. I'll notify you when recovery is confirmed or if it fails."
 
-Meanwhile, the Prometheus processor runner is independently updating metrics at `root.ops.metrics.prometheus`. The internal processor is independently computing derived trends. When the error rate drops, these systems will detect it through their normal operation — not because the investigation told them to, but because that's what they do every cycle.
+Meanwhile, the Prometheus processor runner is independently updating metrics at `root.ops.metrics.prometheus`. The internal processor is independently computing derived trends. When the error rate drops, these systems will detect it through their normal operation,  not because the investigation told them to, but because that's what they do every cycle.
 
 Total turn 6: ~20 LLM tokens.
 
@@ -295,7 +295,7 @@ The LLM checks notifications on the next turn:
 
 "Recovery confirmed. Error rate dropped below 1% at minute 8 post-remediation. Checkout-api error rate now 3/1000."
 
-3/1000 — exact fraction from the Prometheus processor. Not "approximately 0.3%." The comparison against the SLA threshold: 3/1000 < 1/10. Exact integer comparison. The SLA is met.
+3/1000,  exact fraction from the Prometheus processor. Not "approximately 0.3%." The comparison against the SLA threshold: 3/1000 < 1/10. Exact integer comparison. The SLA is met.
 
 The LLM closes the investigation:
 
@@ -345,7 +345,7 @@ Investigation 2 might be 3 turns and 50 tokens. The rule did the work.
 
 The session at turn 7 used the same amount of LLM attention as turn 1. The LLM's context window contained: the current turn's query, a handful of facts from the scratchpad, and the active scope chain. Not the accumulated history of 7 turns. Not the 2,000-line diff. Not the logs. Not the previous findings. Those are all at integer addresses in the KB, accessible in O(1), exact, and permanent.
 
-At turn 700, the same. At turn 7,000, the same. The bounded data primitives can't overflow — the LRU pushes old entries out, the queue has a fixed capacity, the counters clamp at bounds. The KB facts are integers at integer addresses — fact 47 at address 47 returns exactly what was asserted, whether it was asserted 1 turn ago or 10,000 turns ago. The Prolog rules don't degrade — they're exact pattern matches over exact facts. The grammars don't degrade — they're structural templates.
+At turn 700, the same. At turn 7,000, the same. The bounded data primitives can't overflow,  the LRU pushes old entries out, the queue has a fixed capacity, the counters clamp at bounds. The KB facts are integers at integer addresses,  fact 47 at address 47 returns exactly what was asserted, whether it was asserted 1 turn ago or 10,000 turns ago. The Prolog rules don't degrade,  they're exact pattern matches over exact facts. The grammars don't degrade,  they're structural templates.
 
 The clone drift thresholds (turns < 200, context < 90%, denominator < 2^48, error < 5%) are guardrails that never need to fire for the interactive session because the LLM's context never grows. They exist for the processor runners that maintain persistent connections and might accumulate working state over long periods. When a processor hits 200 turns, it snapshots, dies, and a fresh clone continues. The knowledge survives. The drift dies.
 
@@ -355,7 +355,7 @@ The JSON can never be malformed because the LLM never generates JSON. The gramma
 
 ## Non-Mature SRE: First Investigation on a Fresh System
 
-No accumulated rules. No processor runners watching streams. No months of compacted service topology. The system was deployed this week. The KB tree has the seed layers from VDR-19 (language templates, format grammars, operational rules, self-maintenance rules — ~23,400 entries, ~1.5MB, loaded in <620ms) and the OSO principles at `root.system.oso` (176 Prolog terms). Nothing else. This is day 3.
+No accumulated rules. No processor runners watching streams. No months of compacted service topology. The system was deployed this week. The KB tree has the seed layers from VDR-19 (language templates, format grammars, operational rules, self-maintenance rules,  ~23,400 entries, ~1.5MB, loaded in <620ms) and the OSO principles at `root.system.oso` (176 Prolog terms). Nothing else. This is day 3.
 
 The engineer has an account KB at `root.users.sre_eng_1` with grants issued by admin during setup: filesystem read/write on `/vdr/`, execute on docker sandbox, network fetch to internal APIs (Prometheus, deploy pipeline, config service). These are facts in the account KB with expiration, use limits, and provenance.
 
@@ -366,7 +366,7 @@ root
 ├── system
 │   └── oso (seed: 176 Prolog terms)
 ├── ops
-│   └── (empty — no services, no metrics, no rules, no incidents)
+│   └── (empty,  no services, no metrics, no rules, no incidents)
 └── users
     └── sre_eng_1 (grants, preferences)
 ```
@@ -395,7 +395,7 @@ KB_ASSERT root.ops.incidents.inc_001
   fact(opened_at, 1747612800)
 ```
 
-Six KB_ASSERT commands, ~48 LLM tokens. The system now has an incident KB with exact facts. The reported rate is 15/100 — the engineer said "about 15%" and the LLM formalized it as an exact fraction. The "about" is captured by the confidence: this is user-stated (70/100 per knowability spectrum), not measured.
+Six KB_ASSERT commands, ~48 LLM tokens. The system now has an incident KB with exact facts. The reported rate is 15/100,  the engineer said "about 15%" and the LLM formalized it as an exact fraction. The "about" is captured by the confidence: this is user-stated (70/100 per knowability spectrum), not measured.
 
 Now it needs real data:
 
@@ -406,7 +406,7 @@ OP_FN net_fetch https://prometheus.internal/api/v1/query
   store_result=root.ops.incidents.inc_001.prometheus_raw
 ```
 
-One operational primitive, ~12 LLM tokens. The grant system checks: does sre_eng_1 have a network grant covering `prometheus.internal`? Yes. Grant valid, not expired, uses remaining. Decremented. Logged. The fetch executes. The response — JSON with metric data — lands at the KB address `root.ops.incidents.inc_001.prometheus_raw`. Not in the context window. At an integer address.
+One operational primitive, ~12 LLM tokens. The grant system checks: does sre_eng_1 have a network grant covering `prometheus.internal`? Yes. Grant valid, not expired, uses remaining. Decremented. Logged. The fetch executes. The response,  JSON with metric data,  lands at the KB address `root.ops.incidents.inc_001.prometheus_raw`. Not in the context window. At an integer address.
 
 The LLM needs to parse the response:
 
@@ -460,7 +460,7 @@ KB_ASSERT root.ops.services.checkout_api
 
 Seven assertions, ~56 LLM tokens. This is more expensive than the mature system where this data already exists. That's the cost of day 3. But it only happens once. These facts are now permanent. Next investigation, the service topology is already there.
 
-The LLM also fetches dependency configs for payment-service and inventory-service while it's at it — two more net_fetch + parse_json pairs:
+The LLM also fetches dependency configs for payment-service and inventory-service while it's at it,  two more net_fetch + parse_json pairs:
 
 ```
 OP_FN net_fetch https://config.internal/api/services/payment-service
@@ -491,7 +491,7 @@ OP_FN net_fetch https://prometheus.internal/api/v1/query
   grant=sre_eng_1.network_fetch
 ```
 
-Three fetches, ~24 LLM tokens. The LLM didn't wait for the engineer to tell it to check dependencies. The OSO principle OP1 (control is foundation) and the seed layer operational rules (~80 primitive selection rules) include a pattern: when investigating a service error, check health of dependencies. This seed rule didn't fire automatically at L3 because the system doesn't have Prolog facts matching the rule's prerequisite pattern yet — it just built the service topology this turn. But the LLM knows the rule exists in the seed layer and follows it as guidance. This is L1: full judgment informed by seed rules.
+Three fetches, ~24 LLM tokens. The LLM didn't wait for the engineer to tell it to check dependencies. The OSO principle OP1 (control is foundation) and the seed layer operational rules (~80 primitive selection rules) include a pattern: when investigating a service error, check health of dependencies. This seed rule didn't fire automatically at L3 because the system doesn't have Prolog facts matching the rule's prerequisite pattern yet,  it just built the service topology this turn. But the LLM knows the rule exists in the seed layer and follows it as guidance. This is L1: full judgment informed by seed rules.
 
 Results come back. Payment-service: error rate 45/1000. Inventory-service: error rate 2/1000. Database: up.
 
@@ -505,9 +505,9 @@ KB_ASSERT root.ops.incidents.inc_001
   fact(correlation_candidate, payment_service, reason=elevated_errors, confidence=85/100)
 ```
 
-The confidence on the correlation candidate is 85/100: two Prometheus metrics (95/100 each) combined with temporal alignment (the LLM's assessment of correlation, which as LLM judgment gets 30/100) — but the propagation formula for multiple agreeing sources is 1-∏(1-Cᵢ). Two 95/100 sources agreeing: 1-(1-95/100)² = 1-1/400 = 399/400. The LLM's correlation judgment at 30/100 is a separate factor. Combined: the exact fraction is computed by the confidence propagation builtins, not generated as hedging language.
+The confidence on the correlation candidate is 85/100: two Prometheus metrics (95/100 each) combined with temporal alignment (the LLM's assessment of correlation, which as LLM judgment gets 30/100),  but the propagation formula for multiple agreeing sources is 1-∏(1-Cᵢ). Two 95/100 sources agreeing: 1-(1-95/100)² = 1-1/400 = 399/400. The LLM's correlation judgment at 30/100 is a separate factor. Combined: the exact fraction is computed by the confidence propagation builtins, not generated as hedging language.
 
-Total turn 2: ~140 LLM tokens. Expensive — this is day 3, the system is acquiring and organizing data for the first time. A mature system already has this. But every fact asserted here is permanent and exact.
+Total turn 2: ~140 LLM tokens. Expensive,  this is day 3, the system is acquiring and organizing data for the first time. A mature system already has this. But every fact asserted here is permanent and exact.
 
 **Turn 3:**
 
@@ -572,7 +572,7 @@ The LLM generates output for the engineer. It emits:
 DIRECT_OUTPUT kb://root.ops.incidents.inc_001.findings
 ```
 
-But wait — there's no findings grammar yet. This is day 3. The system's seed layer SL2 has a generic table grammar. The rendering layer falls back to the generic pipe-delimited format grammar. The output is still structurally valid — the grammar provides pipes and headers — but it's not the polished SRE-specific format the mature system would have.
+But wait,  there's no findings grammar yet. This is day 3. The system's seed layer SL2 has a generic table grammar. The rendering layer falls back to the generic pipe-delimited format grammar. The output is still structurally valid,  the grammar provides pipes and headers,  but it's not the polished SRE-specific format the mature system would have.
 
 The LLM notices this and creates one:
 
@@ -607,7 +607,7 @@ Two commands, ~16 LLM tokens. Result: pool utilization is 20/20. Fully saturated
 PURE_FN vdr_div(20, 20)
 ```
 
-Result: 1/1. Pool is at 100% capacity. That's not "approximately full" — it's exactly full. The integer comparison 20/20 = 1/1 is exact.
+Result: 1/1. Pool is at 100% capacity. That's not "approximately full",  it's exactly full. The integer comparison 20/20 = 1/1 is exact.
 
 ```
 KB_ASSERT root.ops.incidents.inc_001
@@ -636,7 +636,7 @@ Total turn 4: ~35 LLM tokens.
 
 Engineer: "Fix it. Bump the pool back to 50 and write me a monitoring check."
 
-The LLM writes scripts. This is L1 judgment — creative work:
+The LLM writes scripts. This is L1 judgment,  creative work:
 
 ```python
 # remediate_pool.py
@@ -697,7 +697,7 @@ KB_ASSERT root.ops.scripts
        author=sre_eng_1, investigation=inc_001)
 ```
 
-Total turn 5: ~150 LLM tokens. The most expensive turn — two scripts, one Prolog rule, KB assertions for all of them. But the rule and scripts are permanent. They're the system's first self-extension beyond the seed.
+Total turn 5: ~150 LLM tokens. The most expensive turn,  two scripts, one Prolog rule, KB assertions for all of them. But the rule and scripts are permanent. They're the system's first self-extension beyond the seed.
 
 **Turn 6:**
 
@@ -745,7 +745,7 @@ Total turn 7: ~35 LLM tokens.
 
 Seven turns. Total LLM tokens: 80 + 140 + 110 + 35 + 150 + 20 + 35 = **570 LLM tokens**.
 
-More expensive than the mature system's 347. That's correct — the non-mature system is acquiring data, building KB structure, creating its first rule and grammar. It's doing double duty: investigating AND building infrastructure for future investigations.
+More expensive than the mature system's 347. That's correct,  the non-mature system is acquiring data, building KB structure, creating its first rule and grammar. It's doing double duty: investigating AND building infrastructure for future investigations.
 
 But compare to conventional: 25,100 tokens for the same investigation, degrading quality, no persistent artifacts, no reusable rules, no exact computations, context window filling up, re-reading everything every turn.
 
@@ -765,7 +765,7 @@ But compare to conventional: 25,100 tokens for the same investigation, degrading
 
 The service topology is already there. The deploy registry structure exists. The findings grammar exists. The triage rule exists. If the next incident involves a pool size change, the rule fires immediately and the engineer's first turn gets "Auto-triage candidate: pool size reduction detected" even without processor runners.
 
-Investigation 2 costs maybe 350 tokens. Investigation 5 costs 200. The system is walking the accumulation curve from VDR-19. By investigation 20, if the engineer has also set up processor runners, the system approaches the mature state described earlier. Not because someone configured it — because it built itself through the process of doing useful work.
+Investigation 2 costs maybe 350 tokens. Investigation 5 costs 200. The system is walking the accumulation curve from VDR-19. By investigation 20, if the engineer has also set up processor runners, the system approaches the mature state described earlier. Not because someone configured it,  because it built itself through the process of doing useful work.
 
 The conventional LLM at investigation 20 still costs 25,100 tokens. Still re-reads everything. Still can't find the notes from investigation 1. Still hedges. Still gets arithmetic wrong sometimes. Still generates malformed JSON occasionally. Still can't tell you whether a number is exact or hallucinated.
 

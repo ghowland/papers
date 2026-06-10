@@ -7,7 +7,7 @@
 
 ### 1.1 The Fat Struct Principle
 
-A KB entry does not need every field populated. The KB is a fat struct — it has slots for everything any entry might need, and any given entry uses only the slots relevant to it. An atom fact about Bob's age uses the value slot and nothing else. A model weight uses the value slot, the gradient history slot, the initialization provenance slot, and the denominator complexity slot. A raw data point uses the value slot, the source slot, the timestamp slot, and the confidence slot.
+A KB entry does not need every field populated. The KB is a fat struct,  it has slots for everything any entry might need, and any given entry uses only the slots relevant to it. An atom fact about Bob's age uses the value slot and nothing else. A model weight uses the value slot, the gradient history slot, the initialization provenance slot, and the denominator complexity slot. A raw data point uses the value slot, the source slot, the timestamp slot, and the confidence slot.
 
 ```
 KBEntry = struct {
@@ -60,7 +60,7 @@ Most entries leave most fields null. A simple binding like `bob_age = 32` popula
 
 ### 1.2 Data Weights in KBs
 
-Every data point used for training has a weight — how much it contributes to the loss and gradient. In standard ML, these weights are floats buried in a DataLoader. In VDR-Prolog, they are exact fractions stored as KB facts alongside the data itself.
+Every data point used for training has a weight,  how much it contributes to the loss and gradient. In standard ML, these weights are floats buried in a DataLoader. In VDR-Prolog, they are exact fractions stored as KB facts alongside the data itself.
 
 ```
 Fact: training_data("sample_042", 
@@ -88,7 +88,7 @@ If you upweight one sample, the system can verify that the total still sums to 1
 
 ### 1.3 Provenance Weights
 
-Not all derivations are equally trustworthy. A value derived from exact VDR arithmetic has provenance weight 1 — the derivation is exact and verifiable. A value derived from a truncated Taylor series has provenance weight proportional to the precision — 100 digits means high confidence, 5 digits means low. A value imported from an external source has provenance weight based on the source's reliability.
+Not all derivations are equally trustworthy. A value derived from exact VDR arithmetic has provenance weight 1,  the derivation is exact and verifiable. A value derived from a truncated Taylor series has provenance weight proportional to the precision,  100 digits means high confidence, 5 digits means low. A value imported from an external source has provenance weight based on the source's reliability.
 
 ```
 Fact: provenance_weight(
@@ -126,7 +126,7 @@ Rule: effective_provenance_weight(Value, Weight) :-
     // The chain is as strong as its weakest link
 ```
 
-A value derived from one exact source and one user-stated source has provenance weight 1/2 — the minimum of the chain. The system knows which parts of its knowledge are exact and which are estimated.
+A value derived from one exact source and one user-stated source has provenance weight 1/2,  the minimum of the chain. The system knows which parts of its knowledge are exact and which are estimated.
 
 ---
 
@@ -182,7 +182,7 @@ ResourceLimits = struct {
 
 ### 2.2 Environment Types
 
-**Docker container.** The default. A fresh Ubuntu 24.04 or Alpine container with a declared set of packages. The LLM can install additional packages via the operational primitive system (with the appropriate grant). The container is ephemeral — it can be destroyed and recreated from the spec. All persistent state lives in the KB, not in the container.
+**Docker container.** The default. A fresh Ubuntu 24.04 or Alpine container with a declared set of packages. The LLM can install additional packages via the operational primitive system (with the appropriate grant). The container is ephemeral,  it can be destroyed and recreated from the spec. All persistent state lives in the KB, not in the container.
 
 ```
 Fact: env("env_vdr_test", 
@@ -194,7 +194,7 @@ Fact: env("env_vdr_test",
     grants(["alice_project_exec", "alice_project_fs"])).
 ```
 
-**VM.** For heavier workloads or when Docker is not available. Same interface — the system connects to it, runs commands, captures output.
+**VM.** For heavier workloads or when Docker is not available. Same interface,  the system connects to it, runs commands, captures output.
 
 **Local execution.** For trusted environments where sandboxing is unnecessary. The operational primitives run directly on the host system. Requires explicit local_execution grant with strong constraints.
 
@@ -230,7 +230,7 @@ EnvInterface = trait {
 };
 ```
 
-Whether the backend is Docker, a VM, SSH, or local — the LLM uses the same primitives. The environment selection is a configuration fact in the KB. Switching environments is changing which env KB is active.
+Whether the backend is Docker, a VM, SSH, or local,  the LLM uses the same primitives. The environment selection is a configuration fact in the KB. Switching environments is changing which env KB is active.
 
 ### 2.4 Environment as KB
 
@@ -575,7 +575,7 @@ System: switches task_048 to streaming mode
 [User types something]
 LLM responds to user
 [Chunk arrives] "Compiling module 10/12... 2 warnings"
-LLM: "The compilation is still running — 10 of 12 modules done, 
+LLM: "The compilation is still running,  10 of 12 modules done, 
       2 warnings so far. Shall I show the warnings?"
 ```
 

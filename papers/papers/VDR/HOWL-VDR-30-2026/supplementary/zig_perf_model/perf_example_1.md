@@ -2,13 +2,13 @@
 
 A cache line is 64 bytes. Let's pack it.
 
-**Float32 — 16 elements per cache line:**
+**Float32,  16 elements per cache line:**
 ```
 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 | f32 |
   4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B    4B
 ```
 
-**Vdr16 — 16 elements per cache line (same count):**
+**Vdr16,  16 elements per cache line (same count):**
 ```
 | v0 r0 | v1 r1 | v2 r2 | v3 r3 | v4 r4 | v5 r5 | v6 r6 | v7 r7 | v8 r8 | v9 r9 | v10 r10 | v11 r11 | v12 r12 | v13 r13 | v14 r14 | v15 r15 |
   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B   2B 2B    2B  2B     2B  2B     2B  2B     2B  2B     2B  2B     2B  2B
@@ -16,7 +16,7 @@ A cache line is 64 bytes. Let's pack it.
 
 Same element count. Same bandwidth. But now consider the SIMD register view.
 
-## Deinterleaved Layout — Separate V and R Lanes
+## Deinterleaved Layout,  Separate V and R Lanes
 
 Interleaved v,r,v,r forces shuffle operations to separate them for arithmetic. Better layout:
 
@@ -31,7 +31,7 @@ Now a 512-bit AVX-512 register loads 32 V values in one instruction. Another reg
 
 **VDR i16 on AVX-512:** 32 elements per register. That's 2× the lane count.
 
-## Matmul — One Cache Line at a Time
+## Matmul,  One Cache Line at a Time
 
 **Float32 AVX-512 path:**
 ```
@@ -47,7 +47,7 @@ vmovdqu16    zmm0, [weight_v_ptr]       // load 32 i16 weight V values
 vmovdqu16    zmm1, [activ_v_ptr]        // load 32 i16 activation V values
 vpmaddwd     zmm2, zmm0, zmm1          // 32 i16×i16 → 16 i32 with pairwise add
 // zmm2 now holds 16 i32 products
-// these are full products — no information lost yet
+// these are full products,  no information lost yet
 
 // divmod: D is power of two, so:
 vpsrad       zmm3, zmm2, BITS          // arithmetic right shift = quotient (V)
@@ -75,7 +75,7 @@ Roughly the same throughput. But VDR is exact.
 
 ## Now Widen to Activation Accumulation
 
-The matmul inner loop accumulates into i32. After the full dot product, the accumulator V and R lanes hold the exact result. No reduction error — integer add is exact, there is no rounding.
+The matmul inner loop accumulates into i32. After the full dot product, the accumulator V and R lanes hold the exact result. No reduction error,  integer add is exact, there is no rounding.
 
 Float32 accumulation over a 4096-element dot product (typical hidden dim):
 
@@ -96,7 +96,7 @@ if R overflows its lane, one more shift+mask propagates carry into V
 still zero error
 ```
 
-## Softmax — Where VDR Pulls Ahead
+## Softmax,  Where VDR Pulls Ahead
 
 **Float32 path (AVX-512):**
 ```
@@ -106,7 +106,7 @@ vreduceps    zmm1, zmm0, max            // or manual tree reduce
 
 // Step 2: subtract max and compute exp
 vsubps       zmm2, zmm0, zmm1
-// exp() — no native instruction. Options:
+// exp(),  no native instruction. Options:
 //   a) vex polynomial approximation: 6-8 instructions, ~4-5 ULP error
 //   b) table + interpolation: memory access + multiply
 //   c) call libm: branch out of SIMD entirely
@@ -124,13 +124,13 @@ vdivps       zmm4, zmm3, zmm_sum        // vdivps: 10-14 cycle latency
 // Step 1: table lookup for exp
 // inputs are i16, so 65536 possible values
 // precomputed table: exp_v[65536] and exp_r[65536]
-// table is 256KB each — fits L2 comfortably
+// table is 256KB each,  fits L2 comfortably
 
 vpgatherdd   zmm0, [exp_v_table + zmm_indices * 4]   // gather 16 exp V values
 vpgatherdd   zmm1, [exp_r_table + zmm_indices * 4]   // gather 16 exp R values
 
 // Step 2: sum V lane (horizontal reduce, same cost as float)
-// Step 3: normalize — integer divmod against sum
+// Step 3: normalize,  integer divmod against sum
 // if sum is power of two (often tunable): shift + mask
 // if not: one integer divide per output, or Barrett reduction
 
@@ -138,11 +138,11 @@ vpgatherdd   zmm1, [exp_r_table + zmm_indices * 4]   // gather 16 exp R values
 // precision: exact. sum = D. not approximately D. D.
 ```
 
-The gathers are expensive — maybe 10-15 cycles for 16 elements. But the float path spends 6-8 instructions on polynomial exp approximation and then 10-14 cycles on vdivps. They're comparable in cycle count.
+The gathers are expensive,  maybe 10-15 cycles for 16 elements. But the float path spends 6-8 instructions on polynomial exp approximation and then 10-14 cycles on vdivps. They're comparable in cycle count.
 
 But VDR produces exact results from the table. Float produces approximate results from the polynomial. Same cost, different correctness.
 
-## The Chain — Diffusion Steps at SIMD Width
+## The Chain,  Diffusion Steps at SIMD Width
 
 This is where the layout pays off most. A diffusion step across a latent vector:
 
@@ -150,20 +150,20 @@ This is where the layout pays off most. A diffusion step across a latent vector:
 x_t = sqrt_alpha_bar * x_{t-1} + sqrt_one_minus * eps
 ```
 
-**Float32 — 16 elements per cycle:**
+**Float32,  16 elements per cycle:**
 ```
 vmovaps      zmm0, [x_ptr]              // 16 latent values
-vmulps       zmm1, zmm0, zmm_sqrt_ab    // scale by sqrt(alpha_bar) — broadcast
+vmulps       zmm1, zmm0, zmm_sqrt_ab    // scale by sqrt(alpha_bar),  broadcast
 vmovaps      zmm2, [eps_ptr]            // 16 noise values
 vfmadd231ps  zmm1, zmm2, zmm_sqrt_om   // + sqrt(1-alpha_bar) * eps
 vmovaps      [x_ptr], zmm1             // store
 // 4 instructions, 16 elements
 // error per step per element: ~1 ULP
 // after 1000 steps: ~1000 ULP per element
-// after 1M steps: ~1M ULP per element — visible drift
+// after 1M steps: ~1M ULP per element,  visible drift
 ```
 
-**VDR i16 — 32 elements per cycle:**
+**VDR i16,  32 elements per cycle:**
 ```
 vmovdqu16    zmm0, [x_v_ptr]            // 32 latent V values
 vpmulld      zmm1, zmm0, zmm_sqrt_ab_v  // multiply by schedule constant
@@ -200,11 +200,11 @@ vmovdqu16    [x_r_ptr], zmm_out_r       // store R
 | Drift after 1M steps | ~1M ULP | 0 |
 | Memory bandwidth | 64B load + 64B store | 128B load + 128B store |
 
-VDR is about 30-40% fewer elements per cycle on the chain step. But it processes 2× elements per register load. Memory-bound workloads (which diffusion is — the latent tensors are large) care about bytes loaded, not instructions issued. VDR loads the same number of meaningful values per cache line.
+VDR is about 30-40% fewer elements per cycle on the chain step. But it processes 2× elements per register load. Memory-bound workloads (which diffusion is,  the latent tensors are large) care about bytes loaded, not instructions issued. VDR loads the same number of meaningful values per cache line.
 
 And the drift column is the whole story for long chains. Float needs periodic renormalization or error correction. VDR doesn't. Those correction passes cost cycles that VDR never spends.
 
-## Conditional Divergence — The GPU Angle
+## Conditional Divergence,  The GPU Angle
 
 Every VDR operation above is unconditional. There is no branch anywhere. No "if remainder overflows." No "if this value is denormal." No "if we need to renormalize."
 

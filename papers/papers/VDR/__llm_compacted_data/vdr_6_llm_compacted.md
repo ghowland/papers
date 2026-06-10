@@ -1,4 +1,4 @@
-# COMPUTATIONAL PRIMITIVES AND OPERATIONAL ENVIRONMENTS — LLM-COMPACT FORM
+# COMPUTATIONAL PRIMITIVES AND OPERATIONAL ENVIRONMENTS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → pure primitives → operational primitives → grants → command tokens → environments → async → versioning → download → relationships → sections
 
@@ -42,7 +42,7 @@ GR2|Verification rules|grant_valid (active + not expired + uses remaining) AND g
 GR3|Default denial|If no valid grant covers requested operation, operation rejected before execution; rejection logged with operation, location, timestamp, reason
 GR4|Grant hierarchy|Grants follow KB hierarchy; user inherits grants from group/department/organization same as constraints (VDR-5 Addendum A2)
 GR5|Grant lifecycle|new→active; active→expired (time), exhausted (uses=0), revoked (explicit); revocation is permanent; all transitions logged
-GR6|Grant classes|filesystem (read/write/delete), compile (syntax check/build), execute (run scripts — highest risk), lint (read-only analysis), network (HTTP/DNS), process (start/kill/monitor)
+GR6|Grant classes|filesystem (read/write/delete), compile (syntax check/build), execute (run scripts,  highest risk), lint (read-only analysis), network (HTTP/DNS), process (start/kill/monitor)
 
 # command_tokens(id|aspect|detail)
 CT1|Mechanism|LLM output stream contains text tokens (rendered as conversation) and command tokens (executed by primitive system); structured invocation with primitive name, args, env, grant, store_result, await flag
@@ -56,7 +56,7 @@ EN1|Types|Docker (strong isolation, default sandbox), VM (strongest isolation, u
 EN2|Unified interface|All 4 types implement same 10 operations: env_exec, env_upload, env_download, env_shell, env_file_read/write, env_list_dir, env_proc_start/poll/output
 EN3|Environment as KB|Each env has own KB tracking: type, image, status, installed packages, execution log (every command), uploaded files, active tasks
 EN4|Lifecycle|create (KB created) → start (container/VM launching) → running (startup script executed) → stop (graceful shutdown) → destroy (container removed, KB archived)
-EN5|Resource limits|max_cpu_seconds, max_memory_mb, max_disk_mb, max_network_bytes, max_processes — all configurable per environment
+EN5|Resource limits|max_cpu_seconds, max_memory_mb, max_disk_mb, max_network_bytes, max_processes,  all configurable per environment
 
 # async_tasks(id|aspect|detail)
 AT1|Task structure|id, operation, args, env, grant, status (pending/running/completed/failed/killed), timestamps, result, output_chunks, topic, notify_on_complete, acknowledged
@@ -74,7 +74,7 @@ VR3|Queryable|Which versions had all tests passing? Which artifacts have latest 
 DD1|Principle|If data exists at known address (KB fact, file, task output, checkpoint), user downloads directly without LLM regenerating as tokens; data served from source
 DD2|Address schemes|kb:// (facts), wd:// (working data), fs:// (env files), task:// (stdout/stderr/result), ckpt:// (checkpoints), ver:// (versions), diff:// (computed diffs), export:// (KB export), ctx:// (snapshots), log:// (execution logs)
 DD3|Authorization|KB resources governed by KB visibility; file resources require filesystem read grant; both KB access and appropriate grant needed for env files
-DD4|LLM-initiated|LLM can issue DIRECT_OUTPUT to serve KB data or ATTACHMENT to serve files; data block is retrieved not generated — cannot hallucinate
+DD4|LLM-initiated|LLM can issue DIRECT_OUTPUT to serve KB data or ATTACHMENT to serve files; data block is retrieved not generated,  cannot hallucinate
 
 # primitive_invariants(id|primitive|invariant|type)
 PI1|list_sort|output length = input length; output sorted; output is permutation of input|axiom
@@ -127,7 +127,7 @@ FC6|VERSION_CREATE content not retrievable by subsequent query|Versioning storag
 FC7|Docker operation affects host filesystem outside container mount|Isolation broken
 
 # claims(id|claim|type)
-CL1|LLM should not compute — primitives should|design_thesis
+CL1|LLM should not compute,  primitives should|design_thesis
 CL2|216 pure primitives are always available, always correct, always terminate|specification (revised to 211 after regex removal)
 CL3|44 operational primitives are always authorized, always logged, always auditable|specification
 CL4|Command tokens separate what LLM does well (language) from what primitives do well (computation)|structural

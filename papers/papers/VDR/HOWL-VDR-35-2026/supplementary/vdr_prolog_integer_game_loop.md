@@ -58,10 +58,10 @@ fn vlp_cycle(
     var context: vlp_context = undefined;
     vlp_context_build(session, input, kb_store, &context);
     // context contains:
-    //   .system_prompt    — from seed KB (~200 tokens, cached)
-    //   .scope_reference  — active KB path (~5 tokens)
-    //   .scratchpad       — results from auto-fired rules (~0-50 tokens)
-    //   .user_input       — current turn input tokens
+    //   .system_prompt   ,  from seed KB (~200 tokens, cached)
+    //   .scope_reference ,  active KB path (~5 tokens)
+    //   .scratchpad      ,  results from auto-fired rules (~0-50 tokens)
+    //   .user_input      ,  current turn input tokens
     // context does NOT contain prior turns, data, history, formatting.
     // Total size: bounded, typically 300-600 tokens regardless of turn number.
 
@@ -290,7 +290,7 @@ fn vlp_runner_thread_main(thread: *vlp_runner_thread) -> void {
 ```
 fn vlp_poller_main(runner: *vlp_runner) -> void {
     // The poller runs vlp_cycle on a timer with synthetic input.
-    // Input = "check conditions" — or more precisely, no user input at all.
+    // Input = "check conditions",  or more precisely, no user input at all.
     // The cycle's Phase 0 (pre-LLM rule evaluation) does all the work.
     // If rules handle everything, LLM never activates. Zero tokens.
 
@@ -300,7 +300,7 @@ fn vlp_poller_main(runner: *vlp_runner) -> void {
         vlp_timer_wait(timer);
 
         // Build synthetic input: "poll cycle N"
-        // This is minimal — just enough for the LLM to know it's a poll
+        // This is minimal,  just enough for the LLM to know it's a poll
         // if Phase 0 doesn't fully resolve.
         var input: vlp_input = undefined;
         vlp_input_synthetic_poll(&input, runner.iterations_completed);
@@ -402,7 +402,7 @@ fn vlp_processor_main(runner: *vlp_runner) -> void {
         runner.errors_consecutive = 0;
 
         // Compact incoming data to KB facts.
-        // This is the ingest path — most of it becomes rule-driven quickly.
+        // This is the ingest path,  most of it becomes rule-driven quickly.
         //
         // First: try rule-based compaction (L3).
         // Rules like "Prometheus metric with label service=X maps to
@@ -458,7 +458,7 @@ fn vlp_processor_main(runner: *vlp_runner) -> void {
 fn vlp_processor_recycle(runner: *vlp_runner, connection: *vlp_connection) -> void {
     // The recycle dance:
     // 1. Save connection state (socket descriptors, protocol state, buffers).
-    // 2. Snapshot session (KB facts, rules, live state — all exact integers).
+    // 2. Snapshot session (KB facts, rules, live state,  all exact integers).
     // 3. Kill session (drift dies).
     // 4. Clone from snapshot (fresh session, identical knowledge).
     // 5. Restore connection from saved state.
@@ -470,14 +470,14 @@ fn vlp_processor_recycle(runner: *vlp_runner, connection: *vlp_connection) -> vo
     var conn_state: vlp_connection_state = undefined;
     vlp_connection_save_state(connection, &conn_state);
 
-    // Snapshot the session — captures all accumulated knowledge
+    // Snapshot the session,  captures all accumulated knowledge
     var snapshot: vlp_snapshot_handle = undefined;
     vlp_session_snapshot(runner.session, &snapshot);
 
-    // Kill the old session — live state gone, attention cache gone, drift gone
+    // Kill the old session,  live state gone, attention cache gone, drift gone
     vlp_session_kill(runner.session);
 
-    // Create fresh session from snapshot — bit-identical knowledge, fresh LLM
+    // Create fresh session from snapshot,  bit-identical knowledge, fresh LLM
     var new_session: vlp_session_handle = undefined;
     vlp_session_create(&new_session, &runner.session_config);
     vlp_session_restore(new_session, snapshot);
@@ -609,7 +609,7 @@ fn vlp_batch_main(runner: *vlp_runner) -> void {
                 vlp_session_merge(runner.session, clone_handles[i].session,
                     VLP_MERGE_THEIRS); // child's results win
 
-                // Kill clone — drift dies, results preserved in parent
+                // Kill clone,  drift dies, results preserved in parent
                 vlp_session_kill(clone_handles[i].session);
 
                 // Compact the array
@@ -681,7 +681,7 @@ fn vlp_batch_task_execute(clone: *vlp_batch_clone) -> void {
     var stream: VDRPrologStream_t = undefined;
     VDRPrologStreamCreateWithSession(&stream, clone.session);
 
-    // Run the universal cycle — same code path as everything else
+    // Run the universal cycle,  same code path as everything else
     vlp_cycle(clone.session, &input, &output,
         clone.kb_store, clone.llm_engine, stream);
 
@@ -710,7 +710,7 @@ struct vlp_server {
     protocol_grammar_kb_id: i32,  // KB containing protocol grammar templates
     max_concurrent_connections: i32,
 
-    // Session template — the snapshot cloned for each connection
+    // Session template,  the snapshot cloned for each connection
     template_snapshot: vlp_snapshot_handle,
     template_session_config: vlp_session_config,
 
@@ -790,7 +790,7 @@ fn vlp_server_init(config: *vlp_server_config) -> *vlp_server {
         vlp_load_domain_kb(template_session, config.domain_kb_path);
         // Snapshot it
         vlp_session_snapshot(template_session, &server.template_snapshot);
-        // Kill the template session — the snapshot is the factory
+        // Kill the template session,  the snapshot is the factory
         vlp_session_kill(template_session);
     }
 
@@ -867,7 +867,7 @@ fn vlp_server_accept_loop(server: *vlp_server) -> void {
 }
 ```
 
-### 3.3 Connection Handler — Clone, Authenticate, Serve
+### 3.3 Connection Handler,  Clone, Authenticate, Serve
 
 ```
 fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connection) -> void {
@@ -957,7 +957,7 @@ fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connectio
 
     while (conn.state == .ACTIVE) {
 
-        // Check credential expiry — integer comparison
+        // Check credential expiry,  integer comparison
         var now = vlp_timestamp_now();
         if (now >= conn.credential.expires_at) {
             conn.credential.valid = false;
@@ -972,7 +972,7 @@ fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connectio
             server.protocol, conn.socket, &request, 30000); // 30s timeout
 
         if (read_status == VLP_TIMEOUT) {
-            // Idle timeout — check if keepalive or close
+            // Idle timeout,  check if keepalive or close
             if (server.protocol == .HTTP) {
                 conn.state = .DRAINING;
                 break;
@@ -986,7 +986,7 @@ fn vlp_server_handle_connection(server: *vlp_server, conn: *vlp_server_connectio
         }
 
         if (read_status != VLP_OK) {
-            // Protocol error — send error response and close
+            // Protocol error,  send error response and close
             vlp_protocol_send_error(server.protocol, conn.socket, read_status);
             conn.state = .DRAINING;
             break;
@@ -1073,8 +1073,8 @@ fn vlp_server_close_connection(server: *vlp_server, conn: *vlp_server_connection
 
     // Session cleanup
     if (conn.session.id >= 0) {
-        // Option A: stateless — kill session, discard everything
-        // Option B: persistent — snapshot session for future restoration
+        // Option A: stateless,  kill session, discard everything
+        // Option B: persistent,  snapshot session for future restoration
         if (server.config.persistent_sessions) {
             vlp_session_snapshot(conn.session, &snapshot);
             vlp_snapshot_save(&snapshot,
@@ -1102,7 +1102,7 @@ fn vlp_server_close_connection(server: *vlp_server, conn: *vlp_server_connection
 ```
 fn vlp_server_authenticate(server: *vlp_server, auth_data: *vlp_auth_data, credential: *vlp_server_credential) -> vlp_status {
 
-    // Hash the provided token/key — deterministic integer hash
+    // Hash the provided token/key,  deterministic integer hash
     var token_hash: i32 = vlp_hash_credential(auth_data.token, auth_data.token_len);
 
     // Look up in auth KB by hash
@@ -1213,7 +1213,7 @@ fn vlp_protocol_grammar_init(server: *vlp_server) -> vlp_status {
 
     if (server.protocol == .MQTT) {
         // MQTT packet grammars encode fixed header, variable header, payload structure.
-        // Binary protocol — grammar produces exact byte sequences.
+        // Binary protocol,  grammar produces exact byte sequences.
         vlp_grammar_create_and_store(server.kb_store,
             server.protocol_grammar_kb_id, GRAMMAR_SLOT_MQTT_CONNACK,
             // Binary template: connect ack flags + return code
@@ -1323,7 +1323,7 @@ fn vlp_protocol_from_output(
 ```
 struct vlp_credential_manager {
     // Credentials are exact integers with exact expiry timestamps.
-    // No "approximately expired" — expired or not, integer comparison.
+    // No "approximately expired",  expired or not, integer comparison.
 
     auth_kb_id: i32,
     active_credentials: vlp_bounded_queue(vlp_active_credential, 10000),
@@ -1405,7 +1405,7 @@ fn vlp_credential_cleanup_runner(manager: *vlp_credential_manager) -> void {
     var now = vlp_timestamp_now();
     var expired_count: i32 = 0;
 
-    // Scan the queue — bounded, so this is bounded work
+    // Scan the queue,  bounded, so this is bounded work
     var size = manager.active_credentials.size();
     for (0..size) |_| {
         var cred: vlp_active_credential = undefined;
@@ -1414,10 +1414,10 @@ fn vlp_credential_cleanup_runner(manager: *vlp_credential_manager) -> void {
         if (!popped) break;
 
         if (now < cred.expires_at) {
-            // Still valid — re-enqueue
+            // Still valid,  re-enqueue
             manager.active_credentials.push(&cred);
         } else {
-            // Expired — don't re-enqueue
+            // Expired,  don't re-enqueue
             expired_count += 1;
         }
     }
@@ -1643,7 +1643,7 @@ fn vlp_route_output(runner: *vlp_runner, output: *vlp_output_buffer) -> void {
         },
 
         .RUNNER_PROCESSOR => {
-            // Processor output is typically internal — compacted facts.
+            // Processor output is typically internal,  compacted facts.
             // If the processor's cycle produced prose output (unusual),
             // it goes to a log KB.
             if (output.len > 0) {
@@ -1653,7 +1653,7 @@ fn vlp_route_output(runner: *vlp_runner, output: *vlp_output_buffer) -> void {
         },
 
         .RUNNER_INTERNAL => {
-            // Internal runner output is derived facts — already in KB.
+            // Internal runner output is derived facts,  already in KB.
             // Prose output rare but goes to log.
             if (output.len > 0) {
                 vlp_kb_ring_write(runner.kb_store, runner.config.log_kb_id,
@@ -1695,7 +1695,7 @@ fn vlp_http_read_request(
     if (read_status != VLP_OK) return read_status;
 
     // Parse request line: METHOD SP PATH SP VERSION CRLF
-    // Compiled parser — not LLM. Character-by-character state machine.
+    // Compiled parser,  not LLM. Character-by-character state machine.
     var method_end = vlp_find_byte(&header_buf, ' ', header_len);
     if (method_end < 0) return VLP_ERR_PROTOCOL_MALFORMED;
 
@@ -1768,7 +1768,7 @@ fn vlp_websocket_handle(
 
     // WebSocket is a stateful, bidirectional connection.
     // Perfect for interactive sessions.
-    // The session persists across messages — KV-cache, KB state, rules.
+    // The session persists across messages,  KV-cache, KB state, rules.
 
     while (conn.state == .ACTIVE) {
 
@@ -1791,7 +1791,7 @@ fn vlp_websocket_handle(
 
         switch (frame.opcode) {
             .TEXT => {
-                // Text message — process through universal cycle
+                // Text message,  process through universal cycle
                 var input: vlp_input = undefined;
                 vlp_input_from_text(frame.payload, frame.payload_len, &input);
 
@@ -1810,7 +1810,7 @@ fn vlp_websocket_handle(
             },
 
             .BINARY => {
-                // Binary message — parse to KB directly via builtin
+                // Binary message,  parse to KB directly via builtin
                 var temp_kb: i32 = undefined;
                 vlp_kb_store_create_kb(server.kb_store, &temp_kb,
                     &vlp_kb_config{ .name = "ws_binary_temp",
@@ -1907,7 +1907,7 @@ fn vlp_rate_limit_check(
             user_id * 2 + 1, &window_fact);
     }
 
-    // Check limit — exact integer comparison
+    // Check limit,  exact integer comparison
     if (counter_value >= limiter.max_requests) {
         // Rate limited.
         var remaining_seconds = limiter.window_seconds - (now - counter_window_start);
@@ -1941,13 +1941,13 @@ fn vlp_server_health_check(server: *vlp_server) -> vlp_health_report {
 
     var report: vlp_health_report = undefined;
 
-    // Connection metrics — exact counts
+    // Connection metrics,  exact counts
     report.active_connections = server.n_active;
     report.total_accepted = server.total_connections_accepted;
     report.total_rejected = server.total_connections_rejected;
     report.total_requests = server.total_requests_served;
 
-    // Runner metrics — exact counts per runner
+    // Runner metrics,  exact counts per runner
     for (server.runners[0..server.n_runners]) |runner| {
         report.runners[report.n_runners] = vlp_runner_health{
             .id = runner.id,
@@ -1967,7 +1967,7 @@ fn vlp_server_health_check(server: *vlp_server) -> vlp_health_report {
     report.total_facts = server.kb_store.fact_count;
     report.total_rules = server.kb_store.rule_count;
 
-    // Level distribution — exact fractions
+    // Level distribution,  exact fractions
     var stats = vlp_level_stats_aggregate(server.session_manager);
     report.l1_percent_num = stats.l1_count;
     report.l1_percent_den = stats.l1_count + stats.l2_count + stats.l3_count;
@@ -1990,7 +1990,7 @@ fn vlp_server_health_check(server: *vlp_server) -> vlp_health_report {
 }
 
 fn vlp_server_metrics_endpoint(server: *vlp_server, response: *vlp_protocol_response) -> vlp_status {
-    // Render health report through grammar — zero LLM tokens.
+    // Render health report through grammar,  zero LLM tokens.
 
     var report = vlp_server_health_check(server);
 
@@ -2039,14 +2039,14 @@ fn vlp_server_reaper(server: *vlp_server) -> void {
     for (&server.connections) |*conn| {
         if (conn.state != .ACTIVE) continue;
 
-        // Check idle — integer comparison
+        // Check idle,  integer comparison
         var idle_seconds = now - conn.last_active;
         if (idle_seconds >= idle_threshold) {
             vlp_protocol_send_timeout(server.protocol, conn.socket);
             vlp_server_close_connection(server, conn, .IDLE_TIMEOUT);
         }
 
-        // Check credential expiry — integer comparison
+        // Check credential expiry,  integer comparison
         if (now >= conn.credential.expires_at) {
             vlp_protocol_send_credential_expired(server.protocol, conn.socket);
             vlp_server_close_connection(server, conn, .CREDENTIAL_EXPIRED);
@@ -2054,7 +2054,7 @@ fn vlp_server_reaper(server: *vlp_server) -> void {
 
         // Check turn budget
         if (conn.session.current_turn >= server.max_session_turns) {
-            // Don't close — recycle.
+            // Don't close,  recycle.
             // Snapshot, kill session, clone from template, restore accumulated facts.
             vlp_server_recycle_connection_session(server, conn);
         }

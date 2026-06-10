@@ -30,8 +30,8 @@ The fundamental value type. Two `i16` fields.
 
 ```
 VDR16 {
-    v: i16    // value slot — settled numerator in D=65536 frame
-    r: i16    // remainder slot — exact overflow from last operation
+    v: i16    // value slot,  settled numerator in D=65536 frame
+    r: i16    // remainder slot,  exact overflow from last operation
 }
 ```
 
@@ -83,7 +83,7 @@ basis_mul(a: i16, b: i16) -> VDR16
     return VDR16{ .v = v, .r = r }
 ```
 
-Three instructions: widening multiply, shift, mask. No branching. This is the entire basis-frame multiply — the operation that took 15 lines of Python with lazy imports and frame detection.
+Three instructions: widening multiply, shift, mask. No branching. This is the entire basis-frame multiply,  the operation that took 15 lines of Python with lazy imports and frame detection.
 
 ### 3.2 basis_mul_w8
 
@@ -109,7 +109,7 @@ basis_add(a: i16, b: i16) -> VDR16
     return VDR16{ .v = v, .r = r }
 ```
 
-Wait — addition in Q16 doesn't need divmod. Two values in the same frame: `a/D + b/D = (a+b)/D`. The sum stays in frame as long as it fits in `i16`. If it overflows, the carry is the issue. For the toy model with small values, overflow won't happen. But for correctness:
+Wait,  addition in Q16 doesn't need divmod. Two values in the same frame: `a/D + b/D = (a+b)/D`. The sum stays in frame as long as it fits in `i16`. If it overflows, the carry is the issue. For the toy model with small values, overflow won't happen. But for correctness:
 
 ```
 basis_add(a: i16, b: i16) -> VDR16
@@ -200,7 +200,7 @@ For i8 × i16 (weight × activation), max is `4 × 127 × 32767 ≈ 16.6 × 10^6
 
 ## 4. SIMD Vectorization
 
-At DIM=4, SIMD is overkill — scalar loops will autovectorize or just run fast. But the kernels should be written in a form that scales to DIM=128+.
+At DIM=4, SIMD is overkill,  scalar loops will autovectorize or just run fast. But the kernels should be written in a form that scales to DIM=128+.
 
 For the toy model, the SIMD path is optional. The scalar kernels above are sufficient. The Zig `@Vector` version for the dot product:
 
@@ -360,9 +360,9 @@ Scale=4 matches the Python toy. Values in [-4, 4] projected to Q16: `val * 16384
 
 Adjusted: scale=3, values in [-3, 3], projected as `val * 21845` (65536/3). Max is `3 * 21845 = 65535`, fits unsigned `u16` but not signed `i16` (max 32767). Use `val * 8192` (65536/8) with scale=4 instead: max `4 * 8192 = 32768`, just barely overflows. Use `val * 8191`: max `4 * 8191 = 32764`, fits.
 
-For i8 weights: values in [-4, 4], stored directly as `i8`. No projection needed — the i8 values are the numerators, with implicit D=128 or interpreted as Q8 fixed point. When multiplied by Q16 activations, the product is in Q24 effective, rebased to Q16 by shifting right 8.
+For i8 weights: values in [-4, 4], stored directly as `i8`. No projection needed,  the i8 values are the numerators, with implicit D=128 or interpreted as Q8 fixed point. When multiplied by Q16 activations, the product is in Q24 effective, rebased to Q16 by shifting right 8.
 
-Simplification for the toy: store weights as `i16` at Q16 like activations. Skip the i8 optimization. This avoids the mixed-precision rebase logic entirely. The toy model has 181 parameters — the memory difference between i8 and i16 storage is 181 bytes. Not worth the complexity.
+Simplification for the toy: store weights as `i16` at Q16 like activations. Skip the i8 optimization. This avoids the mixed-precision rebase logic entirely. The toy model has 181 parameters,  the memory difference between i8 and i16 storage is 181 bytes. Not worth the complexity.
 
 Revised model: all weights `i16` at Q16, all activations `i16` at Q16, all gradients `i32`, all accumulators `i64`.
 
@@ -706,7 +706,7 @@ one_hot(target_id: u8, out: *[VOCAB_SIZE]i16) -> void
     }
 ```
 
-Wait — `D = 65536` overflows `i16` (max 32767). The value "1.0" in Q16 signed is not representable as `i16`. This is a fundamental issue with signed Q16.
+Wait,  `D = 65536` overflows `i16` (max 32767). The value "1.0" in Q16 signed is not representable as `i16`. This is a fundamental issue with signed Q16.
 
 Options:
 
@@ -878,7 +878,7 @@ verify_softmax_sum(probs: [N]i16) -> bool
     return total == D
 ```
 
-This is exact — no tolerance. The last-element correction guarantees it.
+This is exact,  no tolerance. The last-element correction guarantees it.
 
 ### 12.2 Determinism
 
@@ -890,7 +890,7 @@ Save weight before step, compute step, verify `(w_old - w_new) == (lr * grad) >>
 
 ### 12.4 D Stability
 
-Not applicable in the same sense as Python — there is no D field to check. Every value is an `i16`, and the frame is implicit (always Q16). D stability is guaranteed by construction: the shift-and-mask epilogue always produces `i16` output. There is no path that can produce a different denominator.
+Not applicable in the same sense as Python,  there is no D field to check. Every value is an `i16`, and the frame is implicit (always Q16). D stability is guaranteed by construction: the shift-and-mask epilogue always produces `i16` output. There is no path that can produce a different denominator.
 
 ---
 

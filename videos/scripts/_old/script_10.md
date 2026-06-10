@@ -1,23 +1,23 @@
 
-# Video 10 Script: A New Naming System for Every Particle in the Universe — The Soliton Taxonomy
+# Video 10 Script: A New Naming System for Every Particle in the Universe,  The Soliton Taxonomy
 
 ## Delivery Notes
 
-This is the series finale. The energy shifts from technical demonstration to vision — you're proposing infrastructure for how physics should be organized. The emotional climax is the full stack reading: 17 levels from the Higgs to the universe, one naming convention, one person highlighted at level 11. The closing is the invitation that's been building since Video 1: the field is open, come see.
+This is the series finale. The energy shifts from technical demonstration to vision,  you're proposing infrastructure for how physics should be organized. The emotional climax is the full stack reading: 17 levels from the Higgs to the universe, one naming convention, one person highlighted at level 11. The closing is the invitation that's been building since Video 1: the field is open, come see.
 
 ---
 
-## SECTION 1: Opening — The Naming Problem (2 minutes)
+## SECTION 1: Opening,  The Naming Problem (2 minutes)
 
 *[In frame, talking to camera. No slides.]*
 
 ### TECHNICAL VERSION
 
-This is the final video in the series. Nine videos have established the computational framework — 53 derived values, 253 comparisons, integer fraction arithmetic, automated testing, documented kill switches. This video addresses what makes all of that usable at scale: a systematic naming convention for every particle, every structure, and every level of the soliton hierarchy.
+This is the final video in the series. Nine videos have established the computational framework,  53 derived values, 253 comparisons, integer fraction arithmetic, automated testing, documented kill switches. This video addresses what makes all of that usable at scale: a systematic naming convention for every particle, every structure, and every level of the soliton hierarchy.
 
-Physics has no taxonomy. Biology has Linnaean classification — Canis lupus tells you the family (Canidae) and the species (wolf) from the name alone. Chemistry has the periodic table — element 26 tells you 26 electrons, period 4, iron. Physics has Finnegans Wake ("quark"), personality labels ("charm," "strange"), surnames ("Higgs boson"), and historical accidents ("muon" — originally "mu meson," which was the wrong particle category).
+Physics has no taxonomy. Biology has Linnaean classification,  Canis lupus tells you the family (Canidae) and the species (wolf) from the name alone. Chemistry has the periodic table,  element 26 tells you 26 electrons, period 4, iron. Physics has Finnegans Wake ("quark"), personality labels ("charm," "strange"), surnames ("Higgs boson"), and historical accidents ("muon",  originally "mu meson," which was the wrong particle category).
 
-These names encode social history. They encode zero physics. A student encountering "W⁺ boson" learns two facts from the name: positive charge and boson category. The remaining physics — hierarchy level, function, lifetime, what's above and below — requires years of study to reconstruct from memory.
+These names encode social history. They encode zero physics. A student encountering "W⁺ boson" learns two facts from the name: positive charge and boson category. The remaining physics,  hierarchy level, function, lifetime, what's above and below,  requires years of study to reconstruct from memory.
 
 The soliton taxonomy addresses this by encoding the essential physics in the name itself.
 
@@ -27,7 +27,7 @@ This is the last video. And it's about the thing that makes everything else usab
 
 Physics has a naming problem.
 
-"Quark" comes from a James Joyce novel. "Muon" was originally "mu meson" — which turned out to be the wrong category entirely. "W boson" — W stands for "weak," which tells you one adjective. "Charm" and "strange" are personality labels from the 1970s. "Higgs boson" tells you that Peter Higgs worked on it.
+"Quark" comes from a James Joyce novel. "Muon" was originally "mu meson",  which turned out to be the wrong category entirely. "W boson",  W stands for "weak," which tells you one adjective. "Charm" and "strange" are personality labels from the 1970s. "Higgs boson" tells you that Peter Higgs worked on it.
 
 These names are part of history and they should be kept. Physicists will always say "electron" and "photon" and "proton." I'm not proposing we stop.
 
@@ -37,15 +37,15 @@ Compare to biology. "Canis lupus" tells you immediately: dog family, wolf specie
 
 ### MERGE NOTES
 
-You feel this naming problem personally — you encountered it as an outsider. The biology comparison (Canis lupus) is vivid and accessible. "The names encode social history, they encode zero physics" — that's your observation. Don't attack the historical names — say they should be kept. You're adding, not replacing.
+You feel this naming problem personally,  you encountered it as an outsider. The biology comparison (Canis lupus) is vivid and accessible. "The names encode social history, they encode zero physics",  that's your observation. Don't attack the historical names,  say they should be kept. You're adding, not replacing.
 
 ---
 
-## SECTION 2: The Taxonomy Structure — Four Dots (3 minutes)
+## SECTION 2: The Taxonomy Structure,  Four Dots (3 minutes)
 
-**SLIDE: talk10_03_four_dots.png** — Show during convention explanation
+**SLIDE: talk10_03_four_dots.png**,  Show during convention explanation
 
-**SLIDE: talk10_04_five_levels.png** — Show during level stack
+**SLIDE: talk10_04_five_levels.png**,  Show during level stack
 
 ### TECHNICAL VERSION
 
@@ -63,19 +63,19 @@ Stability (6 options): Permanent (τ > 10²⁸ yr), Bound-Stable (stable in cont
 
 Example: the electron is **Field.Vortex.Negative.Permanent**. From the name alone: it's a field-level pattern (not confined, not at a symmetry-breaking boundary), it's a self-sustaining circulation (a vortex), it carries negative charge, and it lasts forever. Four facts, four dots, zero prior knowledge required.
 
-The four columns are orthogonal — each constrains independently. The combinatorial structure is not ad hoc but reflects the physical independence of position, function, interaction, and persistence.
+The four columns are orthogonal,  each constrains independently. The combinatorial structure is not ad hoc but reflects the physical independence of position, function, interaction, and persistence.
 
 ### NON-TECHNICAL VERSION
 
 Every particle gets a four-part name. Four dots. Four pieces of information.
 
-**Level** — where it sits in the hierarchy. Five options: Vacuum (the bottom), Field (quantum fields), Confinement (inside protons), Electroweak (the symmetry-breaking boundary), Unification (where forces merge).
+**Level**,  where it sits in the hierarchy. Five options: Vacuum (the bottom), Field (quantum fields), Confinement (inside protons), Electroweak (the symmetry-breaking boundary), Unification (where forces merge).
 
-**Function** — what it does. Vortex means it circulates, it's a pattern that sustains itself. Messenger means it carries readings between boundaries. Scaffold means it provides the ground state.
+**Function**,  what it does. Vortex means it circulates, it's a pattern that sustains itself. Messenger means it carries readings between boundaries. Scaffold means it provides the ground state.
 
-**Charge** — how it interacts. Neutral, negative, positive, fractional, or color.
+**Charge**,  how it interacts. Neutral, negative, positive, fractional, or color.
 
-**Stability** — how long it lasts. Permanent means forever. Flash means less than 10 to the negative 20 seconds — a trillionth of a trillionth of a second. Confined means it can never leave its boundary.
+**Stability**,  how long it lasts. Permanent means forever. Flash means less than 10 to the negative 20 seconds,  a trillionth of a trillionth of a second. Confined means it can never leave its boundary.
 
 The electron: **Field.Vortex.Negative.Permanent**.
 
@@ -83,15 +83,15 @@ From the name alone, you know: it's at the field level. It's a circulation patte
 
 ### MERGE NOTES
 
-You designed this taxonomy. Walk through it as its architect. The four categories are intuitive and you can explain each with one sentence. The electron example is the cleanest — "four facts, four dots" is the tagline for the system.
+You designed this taxonomy. Walk through it as its architect. The four categories are intuitive and you can explain each with one sentence. The electron example is the cleanest,  "four facts, four dots" is the tagline for the system.
 
 ---
 
-## SECTION 3: Live Demonstration — Naming Particles (4 minutes)
+## SECTION 3: Live Demonstration,  Naming Particles (4 minutes)
 
-**SLIDE: talk10_05_six_particles_named.png** — Show during translation grid
+**SLIDE: talk10_05_six_particles_named.png**,  Show during translation grid
 
-**SLIDE: talk10_06_photon_vs_gluon.png** — Show during messenger comparison
+**SLIDE: talk10_06_photon_vs_gluon.png**,  Show during messenger comparison
 
 ### TECHNICAL VERSION
 
@@ -109,7 +109,7 @@ Six translations demonstrating the taxonomy's information density:
 
 6. **Electron** → Field.Vortex.Negative.Permanent. Field-level circulation pattern. Negative. Permanent.
 
-The photon-gluon comparison reveals the taxonomy's structural power: both are Messengers (same Function dot), but at different Levels (Field vs Confinement), with different Charges (Neutral vs Color), and different Stabilities (Permanent vs Confined). The shared Function dot reveals that they do the same job at different scales — a connection completely hidden by the historical names "photon" and "gluon."
+The photon-gluon comparison reveals the taxonomy's structural power: both are Messengers (same Function dot), but at different Levels (Field vs Confinement), with different Charges (Neutral vs Color), and different Stabilities (Permanent vs Confined). The shared Function dot reveals that they do the same job at different scales,  a connection completely hidden by the historical names "photon" and "gluon."
 
 ### NON-TECHNICAL VERSION
 
@@ -117,21 +117,21 @@ Let me name some particles and you'll see how much information the name carries.
 
 **The photon.** Field.Messenger.Neutral.Permanent.
 
-Field level — it lives in the quantum fields, not inside a proton. Messenger — it carries readings between boundaries. That's what light does — it carries electromagnetic information. Neutral — no charge. Permanent — lasts forever.
+Field level,  it lives in the quantum fields, not inside a proton. Messenger,  it carries readings between boundaries. That's what light does,  it carries electromagnetic information. Neutral,  no charge. Permanent,  lasts forever.
 
 **The gluon.** Confinement.Messenger.Color.Confined.
 
-Confinement level — it lives inside the proton. Messenger — same job as the photon, carries readings. Color — it carries color charge, which the photon doesn't. Confined — it can never leave the proton boundary.
+Confinement level,  it lives inside the proton. Messenger,  same job as the photon, carries readings. Color,  it carries color charge, which the photon doesn't. Confined,  it can never leave the proton boundary.
 
 Now look at those two side by side. Both are Messengers. Same function, same dot. But at different levels with different charges and different stability. The taxonomy reveals that the photon and the gluon do the same job at different scales. The historical names "photon" and "gluon" hide that connection completely. You'd never know from the names that they're structurally related.
 
 **The W plus boson.** Electroweak.Messenger.Positive.Flash.
 
-Same function again — Messenger. Third messenger, third level. But this one has positive charge and dies in a trillionth of a trillionth of a second. Flash.
+Same function again,  Messenger. Third messenger, third level. But this one has positive charge and dies in a trillionth of a trillionth of a second. Flash.
 
 **The Higgs.** Vacuum.Scaffold.Neutral.Flash.
 
-Deepest level. Scaffold — it provides the ground state, the nonzero vacuum. Neutral. The excitation — the particle detected at the LHC — is Flash. It dies instantly. But the field itself is permanent.
+Deepest level. Scaffold,  it provides the ground state, the nonzero vacuum. Neutral. The excitation,  the particle detected at the LHC,  is Flash. It dies instantly. But the field itself is permanent.
 
 **The proton.** Confinement.Composite-Donut.Positive.Permanent.
 
@@ -145,15 +145,15 @@ Six particles. Six taxonomy names. Every name carries four physics facts. The hi
 
 ### MERGE NOTES
 
-This is a performance section — you're translating particles live. The photon-gluon-W comparison is the strongest moment: three messengers at three different levels. "Same function, same dot" repeated three times builds the pattern. The audience should start predicting the pattern by the third example. Don't rush — let each name land, then explain what each dot tells you.
+This is a performance section,  you're translating particles live. The photon-gluon-W comparison is the strongest moment: three messengers at three different levels. "Same function, same dot" repeated three times builds the pattern. The audience should start predicting the pattern by the third example. Don't rush,  let each name land, then explain what each dot tells you.
 
 ---
 
-## SECTION 4: The Generation Problem — Mode Numbers (2 minutes)
+## SECTION 4: The Generation Problem,  Mode Numbers (2 minutes)
 
-**SLIDE: talk10_07_three_modes.png** — Show during mode comparison
+**SLIDE: talk10_07_three_modes.png**,  Show during mode comparison
 
-**SLIDE: talk10_08_top_quark_flash.png** — Show during top quark
+**SLIDE: talk10_08_top_quark_flash.png**,  Show during top quark
 
 ### TECHNICAL VERSION
 
@@ -163,9 +163,9 @@ The three charged leptons (e, μ, τ) are treated as three modes of a single vor
 - Mode-2: Field.Vortex.Negative.Unstable (muon, 105.7 MeV, τ = 2.2 μs)
 - Mode-3: Field.Vortex.Negative.Unstable (tau, 1776.9 MeV, τ = 290 fs)
 
-The shared prefix Field.Vortex.Negative is highlighted in the taxonomy — the three particles share level, function, and charge. They differ only in stability (Mode-1 is permanent, higher modes decay to Mode-1) and mass (which the taxonomy does not encode — mass is an input, not a derived property in the current framework).
+The shared prefix Field.Vortex.Negative is highlighted in the taxonomy,  the three particles share level, function, and charge. They differ only in stability (Mode-1 is permanent, higher modes decay to Mode-1) and mass (which the taxonomy does not encode,  mass is an input, not a derived property in the current framework).
 
-The quarks follow the same pattern. The exceptional case: the top quark (Mode-3 of the +2/3 charge sector) is Confinement.Vortex.Fraction-Positive.**Flash** — the only quark with Flash stability instead of Confined. It decays in 5 × 10⁻²⁵ s, faster than the confinement timescale (~10⁻²⁴ s). It is the only quark that never forms a hadron. In the historical naming, "top quark" signals nothing unusual. In the taxonomy, "Flash" surrounded by five "Confined" entries screams the physics.
+The quarks follow the same pattern. The exceptional case: the top quark (Mode-3 of the +2/3 charge sector) is Confinement.Vortex.Fraction-Positive.**Flash**,  the only quark with Flash stability instead of Confined. It decays in 5 × 10⁻²⁵ s, faster than the confinement timescale (~10⁻²⁴ s). It is the only quark that never forms a hadron. In the historical naming, "top quark" signals nothing unusual. In the taxonomy, "Flash" surrounded by five "Confined" entries screams the physics.
 
 ### NON-TECHNICAL VERSION
 
@@ -179,25 +179,25 @@ Tau: Field.Vortex.Negative.Unstable.Mode-3
 
 Look at the first three dots. Field.Vortex.Negative. Identical in all three. They're the same pattern at three energy levels. The taxonomy makes this obvious. The historical names hide it completely.
 
-Now the quarks. Same story. Up, charm, top — three modes of the same pattern. Down, strange, bottom — three modes of another.
+Now the quarks. Same story. Up, charm, top,  three modes of the same pattern. Down, strange, bottom,  three modes of another.
 
-But look at the top quark. Every other quark says "Confined" — trapped inside the proton boundary. The top quark says "Flash."
+But look at the top quark. Every other quark says "Confined",  trapped inside the proton boundary. The top quark says "Flash."
 
 Flash. It dies in 5 times 10 to the negative 25 seconds. Faster than the boundary can form around it. It's the only quark that never gets confined. It never forms a proton or a neutron. It flashes into existence and disappears.
 
 In historical naming: "top quark." Just another quark. Nothing signals its uniqueness.
 
-In the taxonomy: "Flash" surrounded by five "Confined." The name screams at you — this one is different.
+In the taxonomy: "Flash" surrounded by five "Confined." The name screams at you,  this one is different.
 
 ### MERGE NOTES
 
-"Flash surrounded by five Confined — the name screams at you" is a vivid line. The shared prefix (Field.Vortex.Negative) being identical in all three leptons is the structural point. You don't need to explain why higher modes decay — just say "higher modes are unstable, they decay to Mode-1."
+"Flash surrounded by five Confined,  the name screams at you" is a vivid line. The shared prefix (Field.Vortex.Negative) being identical in all three leptons is the structural point. You don't need to explain why higher modes decay,  just say "higher modes are unstable, they decay to Mode-1."
 
 ---
 
 ## SECTION 5: The Cabibbo Doublet in the Taxonomy (2 minutes)
 
-**SLIDE: talk10_09_cd_taxonomy.png** — Show during CD card
+**SLIDE: talk10_09_cd_taxonomy.png**,  Show during CD card
 
 ### TECHNICAL VERSION
 
@@ -205,11 +205,11 @@ The Cabibbo Doublet:
 - Upper component: Unification.Vortex.Fraction-Positive.Bound-Stable
 - Lower component: Unification.Vortex.Fraction-Negative.Bound-Stable
 
-The taxonomy names are nearly identical — differing only in Charge (Fraction-Positive vs Fraction-Negative). This near-identity encodes "doublet" structurally: two components of the same representation, same level, same function, same stability, opposite charge.
+The taxonomy names are nearly identical,  differing only in Charge (Fraction-Positive vs Fraction-Negative). This near-identity encodes "doublet" structurally: two components of the same representation, same level, same function, same stability, opposite charge.
 
 The historical name "Cabibbo Doublet" encodes: connection to Cabibbo's work (social history) and the representation structure (doublet). The taxonomy name encodes: hierarchy position (Unification), structural role (Vortex), charge content (±1/3, ±2/3), and persistence (Bound-Stable above detection threshold).
 
-Both names are useful. They carry different information. The historical name is for the history. The taxonomy name is for the hierarchy. They complement each other — latitude and longitude don't replace city names.
+Both names are useful. They carry different information. The historical name is for the history. The taxonomy name is for the hierarchy. They complement each other,  latitude and longitude don't replace city names.
 
 ### NON-TECHNICAL VERSION
 
@@ -218,7 +218,7 @@ The Cabibbo Doublet in the taxonomy.
 Upper component: Unification.Vortex.Fraction-Positive.Bound-Stable.
 Lower component: Unification.Vortex.Fraction-Negative.Bound-Stable.
 
-Look at the two names. They're almost identical. Same level, same function, same stability. Only the charge differs — positive versus negative. That near-identity IS the physics. That's what "doublet" means — two components that are the same except for charge.
+Look at the two names. They're almost identical. Same level, same function, same stability. Only the charge differs,  positive versus negative. That near-identity IS the physics. That's what "doublet" means,  two components that are the same except for charge.
 
 The historical name tells you: it connects to Cabibbo's work, and it's a doublet. The taxonomy name tells you: where it lives, what it does, what charge each component carries, and how long it lasts.
 
@@ -228,15 +228,15 @@ Latitude and longitude don't replace city names. They tell you where cities are.
 
 ### MERGE NOTES
 
-"Latitude and longitude don't replace city names" — use this analogy every time someone asks "are you replacing the old names?" The near-identical taxonomy names for the two CD components make "doublet" visual. Keep this section brief.
+"Latitude and longitude don't replace city names",  use this analogy every time someone asks "are you replacing the old names?" The near-identical taxonomy names for the two CD components make "doublet" visual. Keep this section brief.
 
 ---
 
-## SECTION 6: Above Atomic — The Taxonomy Extends (4 minutes)
+## SECTION 6: Above Atomic,  The Taxonomy Extends (4 minutes)
 
-**SLIDE: talk10_10_taxonomy_extends.png** — Show during scale extension
+**SLIDE: talk10_10_taxonomy_extends.png**,  Show during scale extension
 
-**SLIDE: talk10_11_dots_adapt.png** — Show during vocabulary adaptation
+**SLIDE: talk10_11_dots_adapt.png**,  Show during vocabulary adaptation
 
 ### TECHNICAL VERSION
 
@@ -257,13 +257,13 @@ Examples spanning 31 orders of magnitude:
 - Stellar.Sphere.Fusion.Stellar.S-G2V → The Sun. 10⁹ m.
 - Galactic.Toroid.Gravity.Cosmological.GX-SBbc → Milky Way. 10²¹ m.
 
-The continuity of the naming convention across 31 orders of magnitude is not imposed — it reflects the scale-independence of soliton boundary mathematics. The same structural principle (bounded region with inside/outside reading difference) applies at every level.
+The continuity of the naming convention across 31 orders of magnitude is not imposed,  it reflects the scale-independence of soliton boundary mathematics. The same structural principle (bounded region with inside/outside reading difference) applies at every level.
 
 ### NON-TECHNICAL VERSION
 
 The taxonomy doesn't stop at quarks and electrons. It extends to everything.
 
-The dots change meaning as you go up in scale because the right way to describe things changes with scale. "Charge" makes sense for particles. "Flow" makes sense for organs and planets — what kind of energy moves through the structure.
+The dots change meaning as you go up in scale because the right way to describe things changes with scale. "Charge" makes sense for particles. "Flow" makes sense for organs and planets,  what kind of energy moves through the structure.
 
 Let me show you.
 
@@ -271,31 +271,31 @@ Let me show you.
 
 **A neuron:** Cellular.Membrane.Signals.Permanent.D100. Cell level. Membrane boundary. Electrical signals. Mostly permanent. 100 micrometers.
 
-**The heart:** Organ.Chamber.Chemistry.Cycling.O-Pump. Organ level. Chambered structure. Metabolic chemistry. Self-repairing — it cycles. Pump function.
+**The heart:** Organ.Chamber.Chemistry.Cycling.O-Pump. Organ level. Chambered structure. Metabolic chemistry. Self-repairing,  it cycles. Pump function.
 
-**A human:** Organism.Bilateral.Metabolism.Cycling.L-80yr. Organism level. Bilateral symmetry. Metabolic. Replaces its own components — cycling. 80-year lifespan.
+**A human:** Organism.Bilateral.Metabolism.Cycling.L-80yr. Organism level. Bilateral symmetry. Metabolic. Replaces its own components,  cycling. 80-year lifespan.
 
-**The Sun:** Stellar.Sphere.Fusion.Stellar.S-G2V. Stellar level. Spherical. Nuclear fusion powered. Stellar lifespan. Spectral type G2V — a yellow dwarf.
+**The Sun:** Stellar.Sphere.Fusion.Stellar.S-G2V. Stellar level. Spherical. Nuclear fusion powered. Stellar lifespan. Spectral type G2V,  a yellow dwarf.
 
-**The Milky Way:** Galactic.Toroid.Gravity.Cosmological.GX-SBbc. Galactic level. Toroidal flow — remember from Video 9, galaxies are donuts. Gravity dominates. Cosmological persistence. Barred spiral type.
+**The Milky Way:** Galactic.Toroid.Gravity.Cosmological.GX-SBbc. Galactic level. Toroidal flow,  remember from Video 9, galaxies are donuts. Gravity dominates. Cosmological persistence. Barred spiral type.
 
 One naming convention. Every scale. Every structure. From water molecules to galaxies. The dots change, the format stays the same. 31 orders of magnitude.
 
 ### MERGE NOTES
 
-This is where the audience's eyes widen. You're naming hearts and galaxies with the same system that names electrons. Each example should get a beat — let the audience absorb each one. The fact that the format stays the same while the vocabulary adapts is the structural argument. "31 orders of magnitude, same format" is the punch line.
+This is where the audience's eyes widen. You're naming hearts and galaxies with the same system that names electrons. Each example should get a beat,  let the audience absorb each one. The fact that the format stays the same while the vocabulary adapts is the structural argument. "31 orders of magnitude, same format" is the punch line.
 
 ---
 
-## SECTION 7: The Full Stack — One Human, Top to Bottom (3 minutes)
+## SECTION 7: The Full Stack,  One Human, Top to Bottom (3 minutes)
 
-**SLIDE: talk10_12_seventeen_levels.png** — Show during the reading
+**SLIDE: talk10_12_seventeen_levels.png**,  Show during the reading
 
-**SLIDE: talk10_13_nesting_circles.png** — Show during nesting visualization
+**SLIDE: talk10_13_nesting_circles.png**,  Show during nesting visualization
 
 ### TECHNICAL VERSION
 
-The complete soliton hierarchy for a single human being, from the Higgs vacuum to the cosmic boundary — 17 levels, one naming convention:
+The complete soliton hierarchy for a single human being, from the Higgs vacuum to the cosmic boundary,  17 levels, one naming convention:
 
 17. Cosmic.Boundary.Expansion.Cosmological → Universe
 16. Galactic.Toroid.Gravity.Cosmological → Milky Way
@@ -363,19 +363,19 @@ Every level is a soliton boundary with its own reading. Every reading connected 
 
 ### MERGE NOTES
 
-This is the emotional climax of the ten-video series. Read it slowly. Let each level land. Pause at "Level 11. You." The audience should feel the scale — universe to Higgs, with themselves in the middle. Practice this reading until you can deliver it without rushing. The nesting is the thesis of the entire model made personal.
+This is the emotional climax of the ten-video series. Read it slowly. Let each level land. Pause at "Level 11. You." The audience should feel the scale,  universe to Higgs, with themselves in the middle. Practice this reading until you can deliver it without rushing. The nesting is the thesis of the entire model made personal.
 
 ---
 
-## SECTION 8: The Practical Purpose — Namespace for Experiments (3 minutes)
+## SECTION 8: The Practical Purpose,  Namespace for Experiments (3 minutes)
 
-**SLIDE: talk10_14_namespace_database.png** — Show during query examples
+**SLIDE: talk10_14_namespace_database.png**,  Show during query examples
 
-**SLIDE: talk10_15_no_collisions.png** — Show during disambiguation
+**SLIDE: talk10_15_no_collisions.png**,  Show during disambiguation
 
 ### TECHNICAL VERSION
 
-The taxonomy is not merely a naming exercise — it constitutes a database schema. Each dot is a filterable index:
+The taxonomy is not merely a naming exercise,  it constitutes a database schema. Each dot is a filterable index:
 
 - Level: restricts to a specific boundary in the hierarchy
 - Function/Structure: restricts to a specific structural role
@@ -387,7 +387,7 @@ Example queries:
 - SELECT * WHERE Function = 'Messenger' → photon, gluon, W±, Z (all force carriers across all levels)
 - SELECT * WHERE Stability = 'Flash' → W±, Z, Higgs, top quark (everything that dies instantly)
 - SELECT * WHERE Level = 'Confinement' AND Function = 'Messenger' → gluon (8 color states)
-- SELECT * WHERE Structure = 'Toroid' → proton, galaxy (toroidal flow at different scales — test whether the same shape follows the same physics)
+- SELECT * WHERE Structure = 'Toroid' → proton, galaxy (toroidal flow at different scales,  test whether the same shape follows the same physics)
 
 No name collisions: the Level prefix disambiguates. Confinement.Composite-Donut (proton) and Galactic.Toroid (Milky Way) share a structural similarity (toroidal flow) but live at different addresses. The prefix prevents collision while preserving the structural comparison.
 
@@ -397,13 +397,13 @@ This scales to 10⁸ experiments in a single database. Five filters reduce milli
 
 This isn't just a naming exercise. It's a database.
 
-Every dot is a filter. Give me all Messengers — that's every force carrier across every level. Photon, gluon, W, Z. One query.
+Every dot is a filter. Give me all Messengers,  that's every force carrier across every level. Photon, gluon, W, Z. One query.
 
-Give me everything with Flash stability — that's everything that dies in less than a trillionth of a trillionth of a second. W, Z, Higgs, top quark. One query.
+Give me everything with Flash stability,  that's everything that dies in less than a trillionth of a trillionth of a second. W, Z, Higgs, top quark. One query.
 
-Give me all Confinement Messengers — that's every gluon. Two filters.
+Give me all Confinement Messengers,  that's every gluon. Two filters.
 
-Give me everything with Toroid structure — that's protons and galaxies. Same shape at different scales. Is the same physics at work? One query lets you ask the question.
+Give me everything with Toroid structure,  that's protons and galaxies. Same shape at different scales. Is the same physics at work? One query lets you ask the question.
 
 And no collisions. A proton donut and a galaxy donut share the toroid shape, but the Level prefix keeps them at different addresses. Confinement.Composite-Donut is not the same record as Galactic.Toroid. They're structurally related but they can't be confused.
 
@@ -411,37 +411,37 @@ This scales. A hundred million experiments in a single database. Five filters an
 
 ### MERGE NOTES
 
-You built databases for a living. "The hierarchy is the index, the dotted notation is the query language" — that's a sentence only a database architect would write. The SQL-like queries are intuitive to any developer in the audience and demystifying to everyone else. The toroid query — "protons and galaxies, same shape at different scales" — is the most provocative example.
+You built databases for a living. "The hierarchy is the index, the dotted notation is the query language",  that's a sentence only a database architect would write. The SQL-like queries are intuitive to any developer in the audience and demystifying to everyone else. The toroid query,  "protons and galaxies, same shape at different scales",  is the most provocative example.
 
 ---
 
 ## SECTION 9: The Distributed Database and the Future (2 minutes)
 
-**SLIDE: talk10_16_fork_compute_merge.png** — Show during git analogy
+**SLIDE: talk10_16_fork_compute_merge.png**,  Show during git analogy
 
-**SLIDE: talk10_17_knowledge_map.png** — Show during color map
+**SLIDE: talk10_17_knowledge_map.png**,  Show during color map
 
 ### TECHNICAL VERSION
 
 The taxonomy enables a distributed physics database using the fork-compute-merge workflow:
 
 1. **Fork**: take a copy of the value pool. Your workspace.
-2. **Compute**: run derivations, produce new values, check against measurement. New values get unique addresses in the namespace — they can't collide with existing work at different levels.
-3. **Merge**: submit the contribution. The math gates the merge — does the new value match measurement? If yes, it enters the pool. If no, it stays in the contributor's fork with a documented status.
+2. **Compute**: run derivations, produce new values, check against measurement. New values get unique addresses in the namespace,  they can't collide with existing work at different levels.
+3. **Merge**: submit the contribution. The math gates the merge,  does the new value match measurement? If yes, it enters the pool. If no, it stays in the contributor's fork with a documented status.
 
 The knowledge map has three colors: green (exact_fraction, proven by group theory, never changes), red (approximate, measured, improves with better experiments), yellow (frontier, active programs, pending results). Every node that flips from red to green is permanent progress. The map grows in one direction.
 
-This infrastructure replaces the departmental structure of the academy with a namespace structure. No departments — just addresses. No hiring committees — just merge criteria. The math is the gatekeeper.
+This infrastructure replaces the departmental structure of the academy with a namespace structure. No departments,  just addresses. No hiring committees,  just merge criteria. The math is the gatekeeper.
 
 ### NON-TECHNICAL VERSION
 
 This naming system makes something else possible: a distributed physics database.
 
-Fork the database. Take a copy. Do your work. Run a derivation. Check a number. If it matches measurement, submit the merge. Your contribution has a unique address — it can't collide with anyone else's work because the Level prefix keeps everything separate.
+Fork the database. Take a copy. Do your work. Run a derivation. Check a number. If it matches measurement, submit the merge. Your contribution has a unique address,  it can't collide with anyone else's work because the Level prefix keeps everything separate.
 
 It's the same workflow that builds software. Branch, work, pull request, review, merge. The same workflow that built Linux, Wikipedia, every open source project in the world.
 
-The map has three colors. Green nodes are exact — proven by group theory, they never change. Red nodes are approximate — measured, they improve with better experiments. Yellow nodes are the frontier — active programs, pending results.
+The map has three colors. Green nodes are exact,  proven by group theory, they never change. Red nodes are approximate,  measured, they improve with better experiments. Yellow nodes are the frontier,  active programs, pending results.
 
 Every node that flips from red to green is permanent progress. The map grows in one direction.
 
@@ -449,15 +449,15 @@ No departments in a distributed database. Just namespaces. And the math is the g
 
 ### MERGE NOTES
 
-"Same workflow that built Linux" connects your audience to something they know. "No departments, just namespaces" is your vision for how physics should be organized. "The math is the gatekeeper" is the thesis — not peer review, not hiring committees, not institutional prestige. The math.
+"Same workflow that built Linux" connects your audience to something they know. "No departments, just namespaces" is your vision for how physics should be organized. "The math is the gatekeeper" is the thesis,  not peer review, not hiring committees, not institutional prestige. The math.
 
 ---
 
 ## SECTION 10: The Rectification of Names (2 minutes)
 
-**SLIDE: talk10_18_rectification_of_names.png** — Show during Confucian argument
+**SLIDE: talk10_18_rectification_of_names.png**,  Show during Confucian argument
 
-**SLIDE: talk10_19_coexistence.png** — Show during coexistence display
+**SLIDE: talk10_19_coexistence.png**,  Show during coexistence display
 
 ### TECHNICAL VERSION
 
@@ -467,7 +467,7 @@ Application to physics: calling four readings "four forces" produces four depart
 
 The Rectification: call things what they are. Name things for what they do. Encode the hierarchy in the name. The soliton taxonomy is this principle applied systematically to every particle and every structure in the physical hierarchy.
 
-The historical names coexist. "Electron" and "Field.Vortex.Negative.Permanent" are complementary descriptions — one carries history, one carries physics. Latitude and longitude don't replace city names. They tell you where cities are.
+The historical names coexist. "Electron" and "Field.Vortex.Negative.Permanent" are complementary descriptions,  one carries history, one carries physics. Latitude and longitude don't replace city names. They tell you where cities are.
 
 ### NON-TECHNICAL VERSION
 
@@ -485,13 +485,13 @@ Paris is a name. 48.86 degrees north, 2.35 degrees east is a position. The coord
 
 ### MERGE NOTES
 
-The Confucius reference is genuinely yours — you brought it to the framework. "If language doesn't match reality, affairs can't be carried on to success" — you can deliver that as someone who has experienced the consequences. The Paris analogy is perfect. "The coordinates don't replace the name."
+The Confucius reference is genuinely yours,  you brought it to the framework. "If language doesn't match reality, affairs can't be carried on to success",  you can deliver that as someone who has experienced the consequences. The Paris analogy is perfect. "The coordinates don't replace the name."
 
 ---
 
-## SECTION 11: Close — Series Finale (2 minutes)
+## SECTION 11: Close,  Series Finale (2 minutes)
 
-**SLIDE: talk10_20_complete_series.png** — Hold as closing frame
+**SLIDE: talk10_20_complete_series.png**,  Hold as closing frame
 
 *[In frame, talking to camera.]*
 
@@ -499,7 +499,7 @@ The Confucius reference is genuinely yours — you brought it to the framework. 
 
 Ten videos. Ten chapters. One model.
 
-53 derived values from 13 measured inputs across 9 physics domains. 253 automated comparisons — 252 PASS, 1 FAIL, both published. Integer fraction arithmetic preserving structure through every computation. Q335 for transcendental constants at 101-digit precision. Automated testing with binary PASS/FAIL. Kill switches on every active program. Documented dead ends for every killed program. Statistical blocking on uncertain claims. Transparent AI collaboration with honest attribution.
+53 derived values from 13 measured inputs across 9 physics domains. 253 automated comparisons,  252 PASS, 1 FAIL, both published. Integer fraction arithmetic preserving structure through every computation. Q335 for transcendental constants at 101-digit precision. Automated testing with binary PASS/FAIL. Kill switches on every active program. Documented dead ends for every killed program. Statistical blocking on uncertain claims. Transparent AI collaboration with honest attribution.
 
 Three nouns: inertia, vortex, soliton. Two verbs: reading, running reading. One taxonomy: Level.Function.Charge.Stability. One naming convention from the Higgs vacuum to the cosmic boundary.
 
@@ -511,13 +511,13 @@ This is the last video. Let me bring it all together.
 
 Ten videos. Ten chapters. One model.
 
-53 values predicted from 13 inputs. Nine areas of physics. 253 comparisons — 252 pass, 1 fails, both published. Fractions, not decimals. Automated testing. Kill switches on every claim. Dead ends documented. The headline result blocked by my own statistical test. Both names on the cover.
+53 values predicted from 13 inputs. Nine areas of physics. 253 comparisons,  252 pass, 1 fails, both published. Fractions, not decimals. Automated testing. Kill switches on every claim. Dead ends documented. The headline result blocked by my own statistical test. Both names on the cover.
 
 Three nouns: inertia, vortex, soliton. Two verbs: reading, running reading. One naming convention: Level dot Function dot Charge dot Stability. From the Higgs field to the edge of the universe.
 
 The book is on Amazon for three dollars. The code is on GitHub. The papers are on Zenodo.
 
-If you want to contribute: fork the database. Run a derivation. Check a number. If you find an error, it's a real error — publish it. If you find a new connection, submit it. The namespace has room.
+If you want to contribute: fork the database. Run a derivation. Check a number. If you find an error, it's a real error,  publish it. If you find a new connection, submit it. The namespace has room.
 
 The field is open. The sky is blue. And there's room for everyone.
 
@@ -527,7 +527,7 @@ Thank you for watching.
 
 ### MERGE NOTES
 
-End on "check the numbers" and "thank you for watching." No more hooks, no more teasers. This is the end of the series. The summary should be clean: three nouns, two verbs, one taxonomy. The invitation — "fork the database, run a derivation, check a number" — is the call to action. "There's room for everyone" is the thesis of the entire project: this isn't a closed system, it's an open one.
+End on "check the numbers" and "thank you for watching." No more hooks, no more teasers. This is the end of the series. The summary should be clean: three nouns, two verbs, one taxonomy. The invitation,  "fork the database, run a derivation, check a number",  is the call to action. "There's room for everyone" is the thesis of the entire project: this isn't a closed system, it's an open one.
 
 Let the last line land. Then stop.
 
@@ -535,11 +535,11 @@ Let the last line land. Then stop.
 
 ## TERMINAL DEMO NOTES
 
-Light on demos — this is mostly presentation and reading:
+Light on demos,  this is mostly presentation and reading:
 
 **Demo 1 (Section 8):** Search the pool by taxonomy-relevant terms. Show query results. 60 seconds.
 
-**Demo 2 (Section 9):** Show the knowledge map colors if available — green, red, yellow entries. 30 seconds.
+**Demo 2 (Section 9):** Show the knowledge map colors if available,  green, red, yellow entries. 30 seconds.
 
 Total demo time: ~90 seconds. The full stack reading replaces the terminal as the centerpiece.
 
@@ -551,7 +551,7 @@ Total demo time: ~90 seconds. The full stack reading replaces the terminal as th
 |---|---|---|---|
 | Opening | 2 min | Setting up | "Physics has personality labels and surnames" |
 | Four dots | 3 min | Teaching | "Four facts, four dots" |
-| Live naming | 4 min | Performance | "Same function, same dot — three messengers" |
+| Live naming | 4 min | Performance | "Same function, same dot,  three messengers" |
 | Generation/top quark | 2 min | Revealing | "Flash screams at you from the name" |
 | CD taxonomy | 2 min | Brief | "Latitude doesn't replace city names" |
 | Above atomic | 4 min | Expanding | "31 orders of magnitude, same format" |
@@ -580,7 +580,7 @@ Total: ~29 minutes.
 | 9 | talk10_09_cd_taxonomy.png | "near-identical names = doublet" |
 | 10 | talk10_10_taxonomy_extends.png | "atoms to galaxies" |
 | 11 | talk10_11_dots_adapt.png | "same principle, adapted vocabulary" |
-| 12 | talk10_12_seventeen_levels.png | "the full stack — hold for reading" |
+| 12 | talk10_12_seventeen_levels.png | "the full stack,  hold for reading" |
 | 13 | talk10_13_nesting_circles.png | "circles within circles" |
 | 14 | talk10_14_namespace_database.png | "the taxonomy is a database" |
 | 15 | talk10_15_no_collisions.png | "level prefix disambiguates" |
@@ -588,4 +588,4 @@ Total: ~29 minutes.
 | 17 | talk10_17_knowledge_map.png | "green, red, yellow" |
 | 18 | talk10_18_rectification_of_names.png | "if names are not correct..." |
 | 19 | talk10_19_coexistence.png | "both names coexist" |
-| 20 | talk10_20_complete_series.png | "series finale — hold" |
+| 20 | talk10_20_complete_series.png | "series finale,  hold" |

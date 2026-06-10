@@ -56,7 +56,7 @@ RESULT 3: INDEPENDENCE RECORD
   EXTENDED RECORD: 82/82 null
 
   Precision improvement: prior best was 30 digits (Feigenbaum).
-  This search operates at 100 digits — 70 orders of magnitude
+  This search operates at 100 digits,  70 orders of magnitude
   more discriminating power. The null is correspondingly stronger.
 
 RESULT 4: INTERPRETATION
@@ -98,7 +98,7 @@ RESULT 5: BESSEL ZEROS IN PHYSICS
 
   These constants enter engineering at 3-5 sig figs.
   Their independence from the transcendental basis means
-  they are irreducible — you cannot replace j₁₁ with a
+  they are irreducible,  you cannot replace j₁₁ with a
   formula involving π, e, or ζ values. Each Bessel zero
   is a genuinely new number that must be computed from
   the Bessel differential equation directly.
@@ -132,7 +132,7 @@ Clean result, exactly as expected. Every Bessel zero and derived quantity tested
 
 The independence record now stands at 82/82 null across two categories: 72 tests on measured physical constants (SM parameters, clock ratios, mass ratios, BCS gap, Feigenbaum) at 4-30 digit precision, plus 10 tests on analytical constants (Bessel zeros and derived quantities) at 100 digit precision. No constant in physics or analysis is a simple linear combination of the standard transcendental basis.
 
-The Bessel zeros are irreducible — j₁₁ cannot be replaced by a formula involving π, e, ζ values, or any other basis constant. Every diffraction pattern, waveguide cutoff, and drum mode requires computing j₁₁ fresh from the Bessel differential equation. This is a fact about mathematics, not about physics, but it's relevant to the HOWL program because it confirms that the transcendental basis is genuinely minimal — you can't collapse it by finding hidden identities.
+The Bessel zeros are irreducible,  j₁₁ cannot be replaced by a formula involving π, e, ζ values, or any other basis constant. Every diffraction pattern, waveguide cutoff, and drum mode requires computing j₁₁ fresh from the Bessel differential equation. This is a fact about mathematics, not about physics, but it's relevant to the HOWL program because it confirms that the transcendental basis is genuinely minimal,  you can't collapse it by finding hidden identities.
 
 ## Complete Session State
 
@@ -146,5 +146,5 @@ Five notebooks, all complete:
 | 4 | A₂ decomposition | COMPLETE 9/9 | 87% cancellation between geometry and arithmetic. |
 | 5 | Bessel PSLQ | COMPLETE 10/10 null | Independence record 82/82. |
 
-All computational paths from the priority list are exhausted. What remains is the DISC-9 capstone — the writing task that organizes everything into the boundary paper. That's the final path. Your call.
+All computational paths from the priority list are exhausted. What remains is the DISC-9 capstone,  the writing task that organizes everything into the boundary paper. That's the final path. Your call.
 

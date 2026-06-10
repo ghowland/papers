@@ -1,4 +1,4 @@
-Let me think about this systematically. We need to slice the pie on what the system needs to do — comprehensively, top-down, no gaps, no overlaps. Every builtin has an IOSE declaration. Every category covers its entire domain.
+Let me think about this systematically. We need to slice the pie on what the system needs to do,  comprehensively, top-down, no gaps, no overlaps. Every builtin has an IOSE declaration. Every category covers its entire domain.
 
 The whole pie is: everything the LLM needs to do that it cannot do reliably by token prediction. We subdivide that into categories, then subdivide each category into specific operations.
 
@@ -10,7 +10,7 @@ Let me enumerate the categories first, then we'll verify they cover the whole sp
 
 **The whole:** All operations the LLM might need, that must be exact.
 
-**First cut — by what kind of thing is being operated on:**
+**First cut,  by what kind of thing is being operated on:**
 
 1. Text (strings, characters)
 2. Collections (lists, ordered sequences)
@@ -25,28 +25,28 @@ Let me enumerate the categories first, then we'll verify they cover the whole sp
 11. Graphs (nodes, edges, paths)
 12. Logic and control flow
 13. Knowledge base operations
-14. Data primitives (runtime state — VDR-8)
-15. Path and mount operations (addressing — VDR-8)
-16. Session management (snapshots, clones — VDR-8)
-17. Filesystem (external — operational)
-18. Code compilation (external — operational)
-19. Script execution (external — operational)
-20. Linting and analysis (external — operational)
-21. Network (external — operational)
-22. Process management (external — operational)
+14. Data primitives (runtime state,  VDR-8)
+15. Path and mount operations (addressing,  VDR-8)
+16. Session management (snapshots, clones,  VDR-8)
+17. Filesystem (external,  operational)
+18. Code compilation (external,  operational)
+19. Script execution (external,  operational)
+20. Linting and analysis (external,  operational)
+21. Network (external,  operational)
+22. Process management (external,  operational)
 
 That's 16 pure categories and 6 operational categories. Let me verify completeness: is there anything the LLM needs to do exactly that doesn't fit in one of these?
 
-- Pattern matching / regex — removed in VDR-6 addendum, covered by string ops
-- Prolog itself — that's the engine, not a primitive category, the KB ops are the interface
-- External data integration — covered by network + conversion + KB ops
-- Inference orchestration — VDR-9 patterns, not primitives, uses existing categories
+- Pattern matching / regex,  removed in VDR-6 addendum, covered by string ops
+- Prolog itself,  that's the engine, not a primitive category, the KB ops are the interface
+- External data integration,  covered by network + conversion + KB ops
+- Inference orchestration,  VDR-9 patterns, not primitives, uses existing categories
 
 The pie is sliced. Now let me write the comprehensive Prolog specification.
 
 ```prolog
 % ================================================================
-% VDR-LLM-Prolog — Comprehensive Builtin Specification
+% VDR-LLM-Prolog,  Comprehensive Builtin Specification
 % The Complete Primitive Set, Sliced from the Whole
 %
 % Method: Comprehensive (OSO C17, C16)

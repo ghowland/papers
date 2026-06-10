@@ -2,7 +2,7 @@
 
 ## Status and Context
 
-The CKS-MATH-145/148 specifications describe an FPGA implementation for an earlier system called VFR (Value-Fragment-Remainder, using [V:i32, R:i8]) running Prolog verification and LLM inference on a Xilinx Zynq-7020. The CKS framework was invalidated — the math didn't compile, all papers in the series were falsified. However, the hardware architecture patterns are real engineering that was designed, resource-estimated, and timing-analyzed for a concrete FPGA target. The question is: what transfers to VDR-LLM-Prolog, what changes, and where does hardware acceleration actually help?
+The CKS-MATH-145/148 specifications describe an FPGA implementation for an earlier system called VFR (Value-Fragment-Remainder, using [V:i32, R:i8]) running Prolog verification and LLM inference on a Xilinx Zynq-7020. The CKS framework was invalidated,  the math didn't compile, all papers in the series were falsified. However, the hardware architecture patterns are real engineering that was designed, resource-estimated, and timing-analyzed for a concrete FPGA target. The question is: what transfers to VDR-LLM-Prolog, what changes, and where does hardware acceleration actually help?
 
 ---
 
@@ -10,26 +10,26 @@ The CKS-MATH-145/148 specifications describe an FPGA implementation for an earli
 
 ### 1.1 The Type Widened
 
-VFR used [V:i32, R:i8] — a 5-byte pair. The remainder was 8 bits, essentially a quantization residual. This was compact but limited: R could only hold a small correction factor, not arbitrary structure.
+VFR used [V:i32, R:i8],  a 5-byte pair. The remainder was 8 bits, essentially a quantization residual. This was compact but limited: R could only hold a small correction factor, not arbitrary structure.
 
-VDR uses [V:int, D:int, R:Any] where V and D are arbitrary-precision integers and R can be atomic (integer), composite (base + child VDR triples), or functional (callable). The remainder is not a byte — it's a recursive structure of unbounded depth carrying exact unresolved computation.
+VDR uses [V:int, D:int, R:Any] where V and D are arbitrary-precision integers and R can be atomic (integer), composite (base + child VDR triples), or functional (callable). The remainder is not a byte,  it's a recursive structure of unbounded depth carrying exact unresolved computation.
 
-**Hardware implication:** VFR's fixed 5-byte format mapped directly to registers and BRAM — 38 entities at depth 48 fit in 9KB per core. VDR's arbitrary-precision integers and recursive remainder do not fit in fixed-width registers. A hardware VDR core needs either:
+**Hardware implication:** VFR's fixed 5-byte format mapped directly to registers and BRAM,  38 entities at depth 48 fit in 9KB per core. VDR's arbitrary-precision integers and recursive remainder do not fit in fixed-width registers. A hardware VDR core needs either:
 
 - A fixed working precision (i128 for V and D covers 99% of cases per VDR-11 ZM2, with BigInt overflow to software) and a depth-limited remainder tree stored in BRAM
 - Or a hybrid where the ALU operates on fixed-width integers and remainder tree management is handled by a microcontroller or software layer
 
-The Q335 frame simplifies this significantly. When operating in Q335 mode, V is a ~102-digit integer (~340 bits), D is fixed at 2^335 (never stored, implicit), and R nests one level per multiply via divmod. If we fix the working width at 384 bits (covering Q335 numerators with margin), the core becomes fixed-width again — wider than VFR but structurally similar.
+The Q335 frame simplifies this significantly. When operating in Q335 mode, V is a ~102-digit integer (~340 bits), D is fixed at 2^335 (never stored, implicit), and R nests one level per multiply via divmod. If we fix the working width at 384 bits (covering Q335 numerators with margin), the core becomes fixed-width again,  wider than VFR but structurally similar.
 
 ### 1.2 The Denominator Is New
 
-VFR had no denominator — it was integer-plus-small-remainder. VDR has D as a first-class component. But in Q335 mode, D is constant (2^335) and division by D is a right-shift by 335 bits. This means:
+VFR had no denominator,  it was integer-plus-small-remainder. VDR has D as a first-class component. But in Q335 mode, D is constant (2^335) and division by D is a right-shift by 335 bits. This means:
 
 - Q335 addition: one 384-bit integer add
 - Q335 multiplication: one 384-bit multiply, one 384-bit divmod (which is a right-shift + mask for power-of-two D), remainder goes to R
 - Q335 division by integer k: one 384-bit divmod
 
-The divmod-by-power-of-two is free in hardware — it's bit extraction. The multiply is the expensive operation, requiring a wide multiplier. A 384×384 multiply produces a 768-bit result. The top 384 bits (after shift) become V, the bottom 335 bits become R. This is exactly the nesting mechanism from VDR-13.
+The divmod-by-power-of-two is free in hardware,  it's bit extraction. The multiply is the expensive operation, requiring a wide multiplier. A 384×384 multiply produces a 768-bit result. The top 384 bits (after shift) become V, the bottom 335 bits become R. This is exactly the nesting mechanism from VDR-13.
 
 ### 1.3 Prolog Terms Changed
 
@@ -37,7 +37,7 @@ VFR terms had types: atom, variable, number, list, vector2, rectangle, circle, e
 
 VDR-LLM-Prolog terms have types: atom, variable, vdr_fraction, integer, list, kb_ref, fact_ref, constraint_ref, connection_ref, path_ref. These are KB-structural types.
 
-**Hardware implication:** The term type enum changes but the unification mechanism is the same — compare type tags, then compare values based on type. VDR fraction unification requires cross-multiplication (a.V × b.D == b.V × a.D), which is two wide multiplies and a compare. This is more expensive than VFR's i32 comparison but still deterministic and parallelizable.
+**Hardware implication:** The term type enum changes but the unification mechanism is the same,  compare type tags, then compare values based on type. VDR fraction unification requires cross-multiplication (a.V × b.D == b.V × a.D), which is two wide multiplies and a compare. This is more expensive than VFR's i32 comparison but still deterministic and parallelizable.
 
 ---
 
@@ -50,8 +50,8 @@ VFR processed entities in batches: load entity data from DDR3 to core BRAM, proc
 VDR-LLM-Prolog has the same pattern for several operations:
 
 - **Fact queries across KBs:** load fact batches from DDR, match predicate IDs across cores in parallel, collect results
-- **Constraint checking:** load constraint set, evaluate each constraint against KB state — independent per constraint, parallelizable
-- **Softmax normalization:** compute exp (or surrogate) for each logit independently, then reduce — classic parallel map-reduce
+- **Constraint checking:** load constraint set, evaluate each constraint against KB state,  independent per constraint, parallelizable
+- **Softmax normalization:** compute exp (or surrogate) for each logit independently, then reduce,  classic parallel map-reduce
 - **Matrix operations:** row-parallel or tile-parallel matrix multiply for attention scores and feedforward layers
 
 The batch dispatcher architecture (DMA load → distribute to cores → process → DMA store) transfers directly. The entity becomes a KB node or a batch of facts. The processing becomes predicate matching, constraint evaluation, or arithmetic.
@@ -85,7 +85,7 @@ The critical new hardware: a 384×384 bit multiplier producing a 768-bit result.
 
 **Option A: DSP48 cascade.** The Zynq-7020 has 220 DSP48E1 slices, each capable of 25×18 multiply. A 384-bit multiply requires tiling: 384/25 ≈ 16 tiles wide, 384/18 ≈ 22 tiles tall, with partial product accumulation. This consumes significant DSP resources but produces a result in a fixed number of cycles (pipelined).
 
-**Option B: Iterative multiplier.** A 64-bit multiplier iterated 36 times (6×6 tiles of 64-bit products) with accumulation. Uses fewer DSPs but takes 36+ cycles per multiply. At 150MHz, that's 240ns per multiply — still fast enough for Q335 operations where multiplies are infrequent (one per divmod).
+**Option B: Iterative multiplier.** A 64-bit multiplier iterated 36 times (6×6 tiles of 64-bit products) with accumulation. Uses fewer DSPs but takes 36+ cycles per multiply. At 150MHz, that's 240ns per multiply,  still fast enough for Q335 operations where multiplies are infrequent (one per divmod).
 
 **Option C: Hybrid.** 128-bit multiplier (manageable in DSPs) iterated 9 times. Balances resource usage and latency. ~60ns per multiply at 150MHz.
 
@@ -106,11 +106,11 @@ VFR had no recursive remainder. VDR does. A hardware core processing Q335 arithm
 
 VFR's Prolog was simple: match predicate IDs (i16 comparison) and argument values (i32 comparison). VDR-LLM-Prolog unification requires:
 
-- Atom comparison: string equality → integer comparison if using string interning (VDR-11 ZP2 specifies StringPool with integer handles for Zig). With interning, atom unification is i32 comparison — same as VFR
-- Variable binding: same mechanism — bind on first match, check consistency on subsequent
+- Atom comparison: string equality → integer comparison if using string interning (VDR-11 ZP2 specifies StringPool with integer handles for Zig). With interning, atom unification is i32 comparison,  same as VFR
+- Variable binding: same mechanism,  bind on first match, check consistency on subsequent
 - VDR fraction comparison: cross-multiplication. Two 384-bit multiplies + one 384-bit compare. Expensive but deterministic
-- List unification: element-by-element recursive — handled by microcode loop, not single-cycle
-- KB reference comparison: i32 comparison — same as VFR entity comparison
+- List unification: element-by-element recursive,  handled by microcode loop, not single-cycle
+- KB reference comparison: i32 comparison,  same as VFR entity comparison
 
 **Design approach:** A dedicated unification coprocessor per core (or shared across 4-8 cores) with a small instruction sequencer for recursive list/composite unification. Simple cases (atom, integer, KB ref) are single-cycle. VDR fraction comparison takes the multiply latency (e.g., 9 cycles for Option C multiplier). List unification is iterative.
 
@@ -118,16 +118,16 @@ VFR's Prolog was simple: match predicate IDs (i16 comparison) and argument value
 
 VFR specified LLM inference as integer matrix multiply-accumulate on i32 weight batches. VDR-LLM-Prolog uses exact VDR fractions for weights, which changes the computation significantly:
 
-**The honest assessment:** Full exact VDR arithmetic for LLM inference on FPGA is impractical at useful model sizes. A 100M parameter model at 384 bits per parameter is ~4.8GB — exceeding DDR3 on the Zynq-7020. The 384-bit multiply for every MAC operation would make inference orders of magnitude slower than quantized integer inference.
+**The honest assessment:** Full exact VDR arithmetic for LLM inference on FPGA is impractical at useful model sizes. A 100M parameter model at 384 bits per parameter is ~4.8GB,  exceeding DDR3 on the Zynq-7020. The 384-bit multiply for every MAC operation would make inference orders of magnitude slower than quantized integer inference.
 
 **The practical approach:** Use the FPGA for acceleration of specific VDR operations, not for full LLM inference. The LLM runs on a host processor (CPU/GPU) in exact VDR arithmetic (Python prototype or Zig port). The FPGA accelerates:
 
-1. **Prolog evaluation** — batch fact matching, rule evaluation, constraint checking. This is the "verification" pass that VFR already implemented. Highly parallelizable across KB partitions
-2. **Softmax computation** — the surrogate softmax (SM2: quadratic kernel) is pure integer arithmetic: square, sum, divide. Perfect for parallel hardware
-3. **Q335 batch operations** — bulk addition of Q335 constants (used in QED coefficient computation, FFT twiddle generation). Each is one wide integer add — embarrassingly parallel
-4. **Matrix operations on small exact matrices** — exact determinant, inverse, solve for matrices up to ~50×50 (the Gaussian elimination from VDR-13 GS1-GS7). Each row operation is independent after pivot selection
-5. **Attention score computation** — the QKᵀ matrix multiply for exact attention. This is the most compute-intensive LLM operation and benefits most from parallelism
-6. **Denominator management** — batch budget checking and reprojection. Each parameter checked independently — embarrassingly parallel
+1. **Prolog evaluation**,  batch fact matching, rule evaluation, constraint checking. This is the "verification" pass that VFR already implemented. Highly parallelizable across KB partitions
+2. **Softmax computation**,  the surrogate softmax (SM2: quadratic kernel) is pure integer arithmetic: square, sum, divide. Perfect for parallel hardware
+3. **Q335 batch operations**,  bulk addition of Q335 constants (used in QED coefficient computation, FFT twiddle generation). Each is one wide integer add,  embarrassingly parallel
+4. **Matrix operations on small exact matrices**,  exact determinant, inverse, solve for matrices up to ~50×50 (the Gaussian elimination from VDR-13 GS1-GS7). Each row operation is independent after pivot selection
+5. **Attention score computation**,  the QKᵀ matrix multiply for exact attention. This is the most compute-intensive LLM operation and benefits most from parallelism
+6. **Denominator management**,  batch budget checking and reprojection. Each parameter checked independently,  embarrassingly parallel
 
 ---
 
@@ -226,13 +226,13 @@ VDR_CORE (one of N):
 
 The VFR batch dispatcher FSM transfers with modifications:
 
-- **S_IDLE:** Same — wait for go signal
-- **S_CALC_CHUNKS:** Changed — chunks are now KB partitions or parameter blocks, not entity ranges
-- **S_DMA_LOAD:** Changed — loads 384-bit values instead of 5-byte VFR pairs; burst width adapts
+- **S_IDLE:** Same,  wait for go signal
+- **S_CALC_CHUNKS:** Changed,  chunks are now KB partitions or parameter blocks, not entity ranges
+- **S_DMA_LOAD:** Changed,  loads 384-bit values instead of 5-byte VFR pairs; burst width adapts
 - **S_DMA_LOAD_WAIT:** Same pattern, wider data
-- **S_START_CORES:** Same — assert start for all cores with data
-- **S_WAIT_CORES:** Same — poll done bits
-- **S_DMA_STORE:** Changed — writes 384-bit results; for Prolog queries, writes matching fact indices
+- **S_START_CORES:** Same,  assert start for all cores with data
+- **S_WAIT_CORES:** Same,  poll done bits
+- **S_DMA_STORE:** Changed,  writes 384-bit results; for Prolog queries, writes matching fact indices
 - **S_DMA_STORE_WAIT:** Same
 - **S_NEXT_CHUNK:** Same
 - **S_DONE:** Same
@@ -280,7 +280,7 @@ Ordered by impact on VDR-LLM-Prolog system performance:
 
 ### Priority 3: Attention Score Computation (High Impact for Inference)
 
-**Why:** QKᵀ is the most compute-intensive operation in transformer inference. For exact VDR, each element is a dot product of exact fractions — multiple wide multiplies and adds.
+**Why:** QKᵀ is the most compute-intensive operation in transformer inference. For exact VDR, each element is a dot product of exact fractions,  multiple wide multiplies and adds.
 
 **How:** Row-parallel: each core computes one row of the attention matrix. Within each row, iterative dot product using WMUL and WADD.
 
@@ -292,7 +292,7 @@ Ordered by impact on VDR-LLM-Prolog system performance:
 
 **Why:** At every normalization point (softmax output, weight update), constraints must be checked. With 15+ constraints per lifecycle phase, this adds latency to every step.
 
-**How:** Each core evaluates one constraint against the current state. Constraints are Prolog conditions — the unification unit handles evaluation.
+**How:** Each core evaluates one constraint against the current state. Constraints are Prolog conditions,  the unification unit handles evaluation.
 
 **Speedup:** Number of constraints × evaluation time → single evaluation time (all parallel).
 
@@ -306,7 +306,7 @@ Ordered by impact on VDR-LLM-Prolog system performance:
 
 ### Priority 6: Grammar-Directed Parsing (Lower Impact, High Value)
 
-**Why:** Parsing compacted input through grammar rules is pattern matching on typed fields — similar to Prolog fact matching.
+**Why:** Parsing compacted input through grammar rules is pattern matching on typed fields,  similar to Prolog fact matching.
 
 **How:** Grammar rules loaded to shared BRAM. Input stream distributed to cores. Each core matches rules against input segments.
 
@@ -396,7 +396,7 @@ Deep-copying live state across KBs is memory management. Arena allocators in Zig
 
 Build the minimum useful accelerator: parallel fact matching.
 
-- Port VFR core to VDR-width (384-bit ALU) — reuse pipeline structure
+- Port VFR core to VDR-width (384-bit ALU),  reuse pipeline structure
 - Implement BMATCH instruction for predicate ID matching
 - Implement batch dispatcher for fact partitions
 - Test with VDR-11 Stage 1 KB (5 KBs, 50 facts) → Stage 2 (15 KBs, 200 facts)
@@ -466,10 +466,10 @@ Full integration with VDR-LLM-Prolog Zig host.
 
 ## 11. What This Enables
 
-A VDR-LLM-Prolog system with FPGA acceleration doesn't change the architecture — it accelerates the data-plane operations while the control plane stays in software.
+A VDR-LLM-Prolog system with FPGA acceleration doesn't change the architecture,  it accelerates the data-plane operations while the control plane stays in software.
 
 The host Zig system runs the orchestrated inference loop, manages KBs, handles sessions, parses commands, and runs the LLM. When it needs to query facts, update parameters, compute attention scores, or check constraints, it dispatches to the FPGA, which returns exact results in parallel.
 
 The invariants are preserved: every operation is exact integer arithmetic, every result has provenance, every constraint is checked, and no floats appear anywhere. The FPGA just does the integer arithmetic faster by doing more of it simultaneously.
 
-The system specification (VDR-1 through VDR-14) doesn't change. The implementation blueprint (VDR-11) doesn't change. The IOSE declarations don't change. The builtins don't change. A subset of builtins get a hardware-accelerated implementation path that produces identical results to the software path — verifiable by running both and comparing, which is how FPGA designs are validated anyway.
+The system specification (VDR-1 through VDR-14) doesn't change. The implementation blueprint (VDR-11) doesn't change. The IOSE declarations don't change. The builtins don't change. A subset of builtins get a hardware-accelerated implementation path that produces identical results to the software path,  verifiable by running both and comparing, which is how FPGA designs are validated anyway.

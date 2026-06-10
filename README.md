@@ -117,7 +117,7 @@
 
 ---
 
-## Discrete Calculus Integer and Exact Rational Arithmetic: VDR — Value, Denominator, Remainder
+## Discrete Calculus Integer and Exact Rational Arithmetic: VDR,  Value, Denominator, Remainder
 *Finite Exact Computation in Irreducible Triple Form.*
 
 **VDR Project Page**: **[VDR Project Page](papers/papers/VDR/)** - Start Here: After the directory is a full overview of the project.
@@ -211,22 +211,22 @@
 | **[HOWL-PHYS-17-2026](papers/papers/PHYS/HOWL-PHYS-17-2026/manuscript.md)** | **The Generation Democracy and the Boson Problem** | The integer 11 sets the gap ratio. Fermions cancel. The failure is in the bosons. |
 | **[HOWL-PHYS-18-2026](papers/papers/PHYS/HOWL-PHYS-18-2026/manuscript.md)** | **The Y = 1/6 Asymmetry** | Why the Cabibbo Doublet Fixes the Gap Ratio.  Small hypercharge, large correction. |
 | **[HOWL-PHYS-19-2026](papers/papers/PHYS/HOWL-PHYS-19-2026/manuscript.md)** | **Independent Anomaly Evidence for the Cabibbo Doublet** | Three experiments, two roads, one particle. The data was already there. The connection was not. |
-| **[HOWL-PHYS-20-2026](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **The Proton Decay Test — Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5** | M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. |
-| **[HOWL-PHYS-21-2026](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary — From Observed Structure to Unobserved Particles** | The integers tell you WHAT. The universe tells you HOW MUCH. |
-| **[HOWL-PHYS-22-2026](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **The A₂ Geometric Cancellation — Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient** | Three pieces, 87% cancellation, the smallness is an accident. |
-| **[HOWL-PHYS-23-2026](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **The Koide C₃ Closure — Tautology, Saddle Point, and the Real Problem** | The spacing is automatic. The potential is a saddle. The amplitude is the question.  |
+| **[HOWL-PHYS-20-2026](papers/papers/PHYS/HOWL-PHYS-20-2026/manuscript.md)** | **The Proton Decay Test,  Hyper-Kamiokande and the Cabibbo Doublet at M_GUT = 10^15.5** | M_GUT = 10^15.5 → τ ~ 10^34-35 yr → Hyper-Kamiokande 2027-2037. |
+| **[HOWL-PHYS-21-2026](papers/papers/PHYS/HOWL-PHYS-21-2026/manuscript.md)** | **The Level 1 / Level 2 Boundary,  From Observed Structure to Unobserved Particles** | The integers tell you WHAT. The universe tells you HOW MUCH. |
+| **[HOWL-PHYS-22-2026](papers/papers/PHYS/HOWL-PHYS-22-2026/manuscript.md)** | **The A₂ Geometric Cancellation,  Rational, Number-Theoretic, and Geometric Anatomy of the QED Two-Loop Coefficient** | Three pieces, 87% cancellation, the smallness is an accident. |
+| **[HOWL-PHYS-23-2026](papers/papers/PHYS/HOWL-PHYS-23-2026/manuscript.md)** | **The Koide C₃ Closure,  Tautology, Saddle Point, and the Real Problem** | The spacing is automatic. The potential is a saddle. The amplitude is the question.  |
 | **[HOWL-PHYS-24-2026](papers/papers/PHYS/HOWL-PHYS-24-2026/manuscript.md)** | **The Session 3 Operational Lexicon** | You are here. The ground is set until falsified.  |
-| **[HOWL-PHYS-25-2026](papers/papers/PHYS/HOWL-PHYS-25-2026/manuscript.md)** | **The Session 4 Operational Map — From Gauge Integers to Cosmological Predictions** | The beta coefficients run further than expected. Here is where they go.  |
+| **[HOWL-PHYS-25-2026](papers/papers/PHYS/HOWL-PHYS-25-2026/manuscript.md)** | **The Session 4 Operational Map,  From Gauge Integers to Cosmological Predictions** | The beta coefficients run further than expected. Here is where they go.  |
 | **[HOWL-PHYS-26-2026](papers/papers/PHYS/HOWL-PHYS-26-2026/manuscript.md)** | **The Integer Traceability Chain** | From SU(5) embedding to cosmological predictions in seven exact links.  |
-| **[HOWL-PHYS-27-2026](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8 — The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
-| **[HOWL-PHYS-28-2026](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **The VL Two-Loop Beta Matrix — Fermion Corrections to Gauge Coupling Unification** | One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.  |
-| **[HOWL-PHYS-29-2026](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **GUT Threshold Corrections — The Minimal SU(5) Limit** | The threshold coefficients are too small. Minimal SU(5) is disfavored.  |
-| **[HOWL-PHYS-30-2026](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **α_s from Unification — The Strong Coupling as a Derived Quantity** | Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.  |
-| **[HOWL-PHYS-31-2026](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **Statistical Control — The Beta Integers and Combinatorial Coincidence** | p = 0.81. Random integers do equally well. Track B is parked.  |
-| **[HOWL-PHYS-32-2026](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **The A₃ Decomposition — Tracing the Integer 20 in the SU(3) Beta** | Four pieces, one sum. −33 + 12 + 0 + 1 = −20. Every piece exact.  |
-| **[HOWL-PHYS-33-2026](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **The Koide Amplitude — m_tau from Two Masses and One Condition** | IF a² = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.  |
-| **[HOWL-PHYS-34-2026](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **The sin²θ_W Two-Loop Test — 3/13 Is Not the Limit** | Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin²θ_W = 0.23133, miss 0.048%.  |
-| **[HOWL-PHYS-35-2026](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **The No-Threshold Puzzle — More CD Running Means Better Predictions** | No-threshold beats hard threshold by 12×. Soft threshold is worse. The CD contribution is needed at all scales.  |
+| **[HOWL-PHYS-27-2026](papers/papers/PHYS/HOWL-PHYS-27-2026/manuscript.md)** | **sin²θ_W from 3/8,  The Weak Mixing Angle as a Running Prediction** | Two inputs, one prediction. The correction is 15/104.  |
+| **[HOWL-PHYS-28-2026](papers/papers/PHYS/HOWL-PHYS-28-2026/manuscript.md)** | **The VL Two-Loop Beta Matrix,  Fermion Corrections to Gauge Coupling Unification** | One Dirac fermion adds nine exact Fractions. Delta improves by 4.6%.  |
+| **[HOWL-PHYS-29-2026](papers/papers/PHYS/HOWL-PHYS-29-2026/manuscript.md)** | **GUT Threshold Corrections,  The Minimal SU(5) Limit** | The threshold coefficients are too small. Minimal SU(5) is disfavored.  |
+| **[HOWL-PHYS-30-2026](papers/papers/PHYS/HOWL-PHYS-30-2026/manuscript.md)** | **α_s from Unification,  The Strong Coupling as a Derived Quantity** | Two inputs, one prediction. 0.1184 vs 0.1180. Miss: 0.33%.  |
+| **[HOWL-PHYS-31-2026](papers/papers/PHYS/HOWL-PHYS-31-2026/manuscript.md)** | **Statistical Control,  The Beta Integers and Combinatorial Coincidence** | p = 0.81. Random integers do equally well. Track B is parked.  |
+| **[HOWL-PHYS-32-2026](papers/papers/PHYS/HOWL-PHYS-32-2026/manuscript.md)** | **The A₃ Decomposition,  Tracing the Integer 20 in the SU(3) Beta** | Four pieces, one sum. −33 + 12 + 0 + 1 = −20. Every piece exact.  |
+| **[HOWL-PHYS-33-2026](papers/papers/PHYS/HOWL-PHYS-33-2026/manuscript.md)** | **The Koide Amplitude,  m_tau from Two Masses and One Condition** | IF a² = 2, THEN m_tau = 1776.97 MeV. Measured: 1776.86 MeV. Miss: 0.006%.  |
+| **[HOWL-PHYS-34-2026](papers/papers/PHYS/HOWL-PHYS-34-2026/manuscript.md)** | **The sin²θ_W Two-Loop Test,  3/13 Is Not the Limit** | Two-loop overshoots 3/13. The perturbative series targets the measured value, not the integer ratio. sin²θ_W = 0.23133, miss 0.048%.  |
+| **[HOWL-PHYS-35-2026](papers/papers/PHYS/HOWL-PHYS-35-2026/manuscript.md)** | **The No-Threshold Puzzle,  More CD Running Means Better Predictions** | No-threshold beats hard threshold by 12×. Soft threshold is worse. The CD contribution is needed at all scales.  |
 | **[HOWL-PHYS-36-2026](papers/papers/PHYS/HOWL-PHYS-36-2026/manuscript.md)** | **The QED Integer Chain at 5-Loop** | Four CODATA Values from One Measurement. |
 | **[HOWL-PHYS-37-2026](papers/papers/PHYS/HOWL-PHYS-37-2026/manuscript.md)** | **From Gauge Integers to Primordial Deuterium** | Seventeen Derived Values Across Five Physics Domains. |
 | **[HOWL-PHYS-38-2026](papers/papers/PHYS/HOWL-PHYS-38-2026/manuscript.md)** | **Precision Frontier** | 38 Derived Values from Sub-ppb QED to the Lithium Problem. |

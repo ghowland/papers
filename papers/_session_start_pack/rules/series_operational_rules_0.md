@@ -11,7 +11,7 @@
 | R1 | Transformation laws are integers | Beta function coefficients, quantum numbers, Casimirs, Dynkin indices | Bijection: every integer in a HOWL computation maps 1:1 to a gauge group structure constant | Every paper |
 | R2 | Values run | Running couplings α_i(μ), running masses m(μ) | Isomorphic: the "run" is the RG flow between fixed points | Every paper |
 | R3 | Mass is inertia | Rest mass = resistance to acceleration (Newton), invariant mass = energy in rest frame (Einstein) | Tautology: mass IS inertia, not "related to" inertia. m appears in F = ma and E = mc². Same quantity. | Every paper involving mass thresholds |
-| R4 | Field is standing pattern is vortex | Quantum field = standing wave solution of field equation = vortex (series term) | Tautology: three descriptions of the same energy configuration. "Vortex" selected for explanatory and visual power — the energy circulates, resists disruption, and has quantized structure. | Every paper involving particles |
+| R4 | Field is standing pattern is vortex | Quantum field = standing wave solution of field equation = vortex (series term) | Tautology: three descriptions of the same energy configuration. "Vortex" selected for explanatory and visual power,  the energy circulates, resists disruption, and has quantized structure. | Every paper involving particles |
 | R5 | Soliton boundary: integer rules on each side, values run between boundaries | Mass thresholds in RG running; phase boundaries in condensed matter; domain walls in field theory | Isomorphic: crossing a soliton boundary changes the integer transformation law. Inside a domain, the coupling runs according to the current law. At the boundary, the law changes by exact rationals (Δb₁, Δb₂, Δb₃). | Every paper involving running or thresholds |
 | R6 | Level 1: determined by framework (integers, geometry) | Gauge group structure, representation theory, topological invariants | Bijection: every Level 1 quantity maps to a mathematical theorem about the gauge group or spacetime geometry | Every paper |
 | R7 | Level 2: supplied by the universe (measured values) | Coupling constants, masses, mixing angles, CP phases | Bijection: every Level 2 quantity maps to an experimental measurement in DATA-3 | Every paper |
@@ -29,9 +29,9 @@
 | Standing wave | The spatial pattern, nodes and antinodes | Eigenfunction of the Hamiltonian | Hydrogen atom orbitals |
 | Vortex (HOWL term) | The circulation of energy, resistance to disruption, quantized structure | Topologically stable field configuration | The electron as a stable vortex in the Dirac field |
 
-These are three names for one thing. The electron is simultaneously a quantum field excitation, a standing wave pattern in the Dirac equation, and a vortex of energy that resists acceleration (inertia) and cannot be split (quantized). The series uses "vortex" because it best communicates to humans that the particle is an active, circulating energy pattern — not a static point or an abstract mathematical object.
+These are three names for one thing. The electron is simultaneously a quantum field excitation, a standing wave pattern in the Dirac equation, and a vortex of energy that resists acceleration (inertia) and cannot be split (quantized). The series uses "vortex" because it best communicates to humans that the particle is an active, circulating energy pattern,  not a static point or an abstract mathematical object.
 
-The connection to inertia: the vortex resists acceleration because redistributing a circulating energy pattern requires work. More energy in the vortex = more resistance = more mass. This is why mass IS inertia — the vortex description makes the identity obvious.
+The connection to inertia: the vortex resists acceleration because redistributing a circulating energy pattern requires work. More energy in the vortex = more resistance = more mass. This is why mass IS inertia,  the vortex description makes the identity obvious.
 
 ---
 
@@ -47,7 +47,7 @@ The connection to inertia: the vortex resists acceleration because redistributin
 | Frozen vortex (below threshold) | Particle too heavy to excite | Decoupled heavy particle | Particle with mass > current energy scale contributes nothing |
 | Active vortex (above threshold) | Particle participates in screening/antiscreening | Light particle in the vacuum polarization | Particle with mass < current energy scale modifies the running |
 
-The entire SM energy landscape from m_e to M_GUT is a sequence of domains (with integer rules) separated by boundaries (where the rules change by exact rationals). One domain — the confinement wall (~0.3-2 GeV) — has no perturbative rules. This is where α_s → O(1) and the perturbative soliton picture breaks down.
+The entire SM energy landscape from m_e to M_GUT is a sequence of domains (with integer rules) separated by boundaries (where the rules change by exact rationals). One domain,  the confinement wall (~0.3-2 GeV),  has no perturbative rules. This is where α_s → O(1) and the perturbative soliton picture breaks down.
 
 ---
 

@@ -1,4 +1,4 @@
-# VDR NOTEBOOK: Q335 REMAINDER NESTING + FUNCTIONAL COMPOSITIONS — LLM-COMPACT FORM
+# VDR NOTEBOOK: Q335 REMAINDER NESTING + FUNCTIONAL COMPOSITIONS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → q335_multiplication → q335_division → denom_growth → complex → fft → slerp → modular → gym_entries → builtins → dependencies → relationships → section_index → decode_legend
 
@@ -141,7 +141,7 @@ BD9|B38(transfer_fn)|B33(horner), B23(complex_inv)
 BD10|B19(compose)|B40(resolve_to_depth)
 BD11|B20(freeze)|B40(resolve_to_depth)
 BD12|B32(detect_period)|B31(iterate)
-# Leaf builtins (no dependencies): B01-B05, B09, B28 — depend only on VDR core arithmetic
+# Leaf builtins (no dependencies): B01-B05, B09, B28,  depend only on VDR core arithmetic
 
 # relationships(from|rel|to)
 P1|enables|QM1,QD1,DG2

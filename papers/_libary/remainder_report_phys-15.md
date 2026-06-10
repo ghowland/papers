@@ -1,4 +1,4 @@
-## Remainder Framework Status Report — Post PHYS-15
+## Remainder Framework Status Report,  Post PHYS-15
 
 **Timestamp:** Session 4, April 2 2026, after reading PHYS-1 through PHYS-15
 **Purpose:** Stage the remainder tracking across all papers so far. Track where connections appeared, where they were missed, and where they may appear next.
@@ -31,17 +31,17 @@ Three subgroups, proved irreducible. R₂ universal across all nine. Two indepen
 | PHYS-2 | Transformation law is fundamental: the running is the remainder accumulating | Implicit | Not tracked |
 | PHYS-3 | G untested outside Hill sphere: different boundary → different remainder | Implicit | Not tracked |
 | PHYS-4 | Boundary test program: calibration-first = measure the remainder first | Structural parallel | Not tracked |
-| PHYS-5 | VP running: the accumulated Δα between thresholds IS the Subgroup B remainder | **Explicit** — this is Domain 2 | Tracked from PHYS-10 onward |
-| PHYS-6 | Confinement wall: the zone where the remainder cannot be computed perturbatively | Explicit — the blank domain | Tracked from PHYS-10 |
-| PHYS-7 | θ_QCD = 0: remainder = 0 from energy minimization on 8R₂-periodic domain | **Explicit** — Domain 1, the first derived remainder | Tracked from PHYS-10 |
-| PHYS-8 | Koide 2/3: the constant as (1+a²/2)/N, the RATIO is a remainder-like decomposition | Implicit — the 2/3 is the Cauchy-Schwarz midpoint, a "remainder" at midpoint of allowed range | Not explicitly tracked |
-| PHYS-9 | α from a_e: Newton residual < 10⁻⁴⁶ is Type A remainder (convergence). VP thresholds are Type B (physical). | **Explicit** — both types identified | Tracked in PHYS-10 |
+| PHYS-5 | VP running: the accumulated Δα between thresholds IS the Subgroup B remainder | **Explicit**,  this is Domain 2 | Tracked from PHYS-10 onward |
+| PHYS-6 | Confinement wall: the zone where the remainder cannot be computed perturbatively | Explicit,  the blank domain | Tracked from PHYS-10 |
+| PHYS-7 | θ_QCD = 0: remainder = 0 from energy minimization on 8R₂-periodic domain | **Explicit**,  Domain 1, the first derived remainder | Tracked from PHYS-10 |
+| PHYS-8 | Koide 2/3: the constant as (1+a²/2)/N, the RATIO is a remainder-like decomposition | Implicit,  the 2/3 is the Cauchy-Schwarz midpoint, a "remainder" at midpoint of allowed range | Not explicitly tracked |
+| PHYS-9 | α from a_e: Newton residual < 10⁻⁴⁶ is Type A remainder (convergence). VP thresholds are Type B (physical). | **Explicit**,  both types identified | Tracked in PHYS-10 |
 | PHYS-10 | **The remainder framework paper.** Five formal domains + one analog. Q335 exact arithmetic. PSLQ null (57/57). | **Core paper** | Fully tracked |
 | PHYS-11 | **Nine domains, three subgroups, R₂ universal.** Ground state principle. Irreducibility theorem. | **Core paper** | Fully tracked |
-| PHYS-12 | sin²θ_W extraction: the shift between MS-bar and effective is a remainder (difference between two readings of same parameter at different depths) | Implicit — noted in my report but not in the paper | Noted, not developed |
-| PHYS-13 | Gap ratio: the mismatch 218/115 vs 1.358 is a "remainder" of the unification test | **New application** — gap ratio as remainder of slope-ratio comparison | Noted in my report |
+| PHYS-12 | sin²θ_W extraction: the shift between MS-bar and effective is a remainder (difference between two readings of same parameter at different depths) | Implicit,  noted in my report but not in the paper | Noted, not developed |
+| PHYS-13 | Gap ratio: the mismatch 218/115 vs 1.358 is a "remainder" of the unification test | **New application**,  gap ratio as remainder of slope-ratio comparison | Noted in my report |
 | PHYS-14 | Fermion cancellation: generations contribute zero to the gap ratio remainder. Only gauge + Higgs contribute. | Structural insight about what ENTERS the remainder | Noted |
-| PHYS-15 | Elimination cascade: the distance from measured gap ratio IS the remainder, and it selects the particle content | **Remainder as selection criterion** — the physical observable (distance) selects the BSM physics | Noted in my report |
+| PHYS-15 | Elimination cascade: the distance from measured gap ratio IS the remainder, and it selects the particle content | **Remainder as selection criterion**,  the physical observable (distance) selects the BSM physics | Noted in my report |
 
 ---
 
@@ -53,13 +53,13 @@ These are connections I noticed but did not develop. They should be checked in f
 
 **3b. The gap ratio as a Subgroup B remainder.** The gap ratio tests whether two Subgroup B running processes (α₁−α₂ closing, α₂−α₃ closing) reach zero at the same scale. The mismatch Δ(1/α₃) at M_GUT = −6.58 (SM) or −0.7 (VL doublet) IS the remainder of the unification test. The integer part is "how many times do the coupling differences cross zero" (answer: once each, at different scales). The remainder is how far apart those crossing scales are. Exact unification has remainder = 0. The VL doublet reduces the remainder from −6.58 to −0.7, analogous to reducing the Maslov correction from 1 (hard wall) to 1/2 (soft turning point).
 
-**3c. The sin²θ_W linear formula as a remainder.** sin²θ_W(M_Z) = 3/8 − (109/72) × L_X / α_EM⁻¹. The 3/8 is the "integer" (GUT value). The running correction −(109/72) × L_X / α_EM⁻¹ is the "remainder" (how far sin²θ_W has run from its GUT value). The modulus would be related to 109 (the same integer in the gap ratio). The remainder is determined by the crossing scale L_X, which depends on the particle content — exactly as the Domain 2 (VP running) remainder depends on which fermions are active.
+**3c. The sin²θ_W linear formula as a remainder.** sin²θ_W(M_Z) = 3/8 − (109/72) × L_X / α_EM⁻¹. The 3/8 is the "integer" (GUT value). The running correction −(109/72) × L_X / α_EM⁻¹ is the "remainder" (how far sin²θ_W has run from its GUT value). The modulus would be related to 109 (the same integer in the gap ratio). The remainder is determined by the crossing scale L_X, which depends on the particle content,  exactly as the Domain 2 (VP running) remainder depends on which fermions are active.
 
 **3d. The A₂ cancellation as a remainder.** The geometric piece R₄ × (8/3 − 16ln2) = −2.598 nearly cancels the positive pieces +2.270. The net A₂ = −0.328 is the "remainder" after cancellation. In the two-level structure: Level 1 (geometric, R₄) provides the dominant term. Level 2 (rational + number-theoretic) provides the canceling term. The remainder (net A₂) is the physical observable. This is the SAME two-level structure as the nine formal domains: geometric level sets the scale, domain-specific level provides the remainder.
 
 **3e. The per-transit H₀ correction as a remainder.** Each soliton boundary crossing contributes a correction factor r. The "modulus" is 1 (no correction). The "remainder" is 1 − r (the deviation from no correction). For a line of sight crossing N boundaries: the cumulative remainder is 1 − r^N ≈ N(1−r) for small corrections. This is Subgroup B structure: monotonic accumulation of the remainder through discrete boundaries.
 
-**3f. Nebulae as systems with undefined integer part.** From the operational rule: nebulae are low-coherence, non-self-sustaining structures. A self-sustaining soliton has topological protection — its integer part (quantum numbers, winding numbers) cannot change without a discrete transition. A nebula, being externally maintained, may lack this protection. Its "integer" part could change continuously as external conditions change. This would place nebulae OUTSIDE the formal nine-domain framework and into a category where the remainder structure is approximate. The Chern-Simons domain (Subgroup C, modulus 1, pure rational corrections) might be the nearest formal analog for nebular corrections — irregular boundaries producing rational corrections without R₂ content.
+**3f. Nebulae as systems with undefined integer part.** From the operational rule: nebulae are low-coherence, non-self-sustaining structures. A self-sustaining soliton has topological protection,  its integer part (quantum numbers, winding numbers) cannot change without a discrete transition. A nebula, being externally maintained, may lack this protection. Its "integer" part could change continuously as external conditions change. This would place nebulae OUTSIDE the formal nine-domain framework and into a category where the remainder structure is approximate. The Chern-Simons domain (Subgroup C, modulus 1, pure rational corrections) might be the nearest formal analog for nebular corrections,  irregular boundaries producing rational corrections without R₂ content.
 
 ---
 
@@ -72,7 +72,7 @@ These are connections I noticed but did not develop. They should be checked in f
 | MATH-3 | Same | Same |
 | MATH-4 | Same | Same |
 | MATH-5 | R₂ defined, R₄ defined, uniqueness proved | R₄ = π²/32 |
-| MATH-6 | Bessel zeros independent of Q335 (82/82 null) | — |
+| MATH-6 | Bessel zeros independent of Q335 (82/82 null) |,  |
 | PHYS-1 | Not explicit | Not explicit |
 | PHYS-2 | Not explicit | Not explicit |
 | PHYS-3 | Not explicit | Not explicit |
@@ -100,7 +100,7 @@ These are connections I noticed but did not develop. They should be checked in f
 | PHYS-10 (SM parameters, full pool) | 17 | 17 null | 51/51 |
 | PHYS-10 (residual PSLQ on α⁻¹ − 114ζ(3)) | 6 | 6 null | 57/57 |
 | MATH-6 / bessel_zero_pslq_0 (Bessel zeros vs full basis) | 10 | 10 null | 67/67 |
-| DISC-6-8 (prior to PHYS-10, reported in PHYS-11) | 72 | 72 null | — |
+| DISC-6-8 (prior to PHYS-10, reported in PHYS-11) | 72 | 72 null |,  |
 | **Combined (PHYS-10 + Bessel)** | **67** | **67 null** | **67/67** |
 | **Combined with DISC series** | **82+** | **82+ null** | **82/82** |
 
@@ -114,10 +114,10 @@ Interpretation: no measured SM dimensionless constant or Bessel zero is a ration
 |---|---|
 | PHYS-16 | The Cabibbo Doublet: does its mass or coupling have remainder structure? |
 | PHYS-17 | Generation democracy: the 4/3 = 4/3 = 4/3 is itself a remainder = 0 (no asymmetry). Does PHYS-17 explain WHY the democracy holds? |
-| PHYS-18 | Unknown — watch for any quotient-remainder decomposition |
-| PHYS-19 | Unknown — same |
-| PHYS-20 | Unknown — same |
-| PHYS-21-23 | Unknown — same |
+| PHYS-18 | Unknown,  watch for any quotient-remainder decomposition |
+| PHYS-19 | Unknown,  same |
+| PHYS-20 | Unknown,  same |
+| PHYS-21-23 | Unknown,  same |
 | PHYS-24 | The manuscript: should contain the complete picture including any new remainder connections |
 | PHYS-25 | The normalization paper: the convention discrepancy resolution may involve a remainder (the factor-of-2 between real and complex scalar conventions IS a quotient-remainder decomposition: VL contribution = 2 × complex scalar + 0 remainder) |
 

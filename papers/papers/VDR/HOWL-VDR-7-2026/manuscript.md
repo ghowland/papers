@@ -17,15 +17,15 @@
 
 ## Abstract
 
-VDR-1 through VDR-4 built the arithmetic and ML stack. VDR-5 specified the knowledge architecture. VDR-6 specified the execution layer. All of these papers describe what happens during a single prompt interaction — the system receives input, computes, reasons, and responds. This paper specifies everything else: the complete lifecycle from raw data sourcing through corpus preparation, tokenization, model initialization, pre-training, fine-tuning, human feedback integration, evaluation, deployment, continuous monitoring, model updates, and retirement. Every phase is specified in terms of the VDR-Prolog KB architecture, meaning every phase produces queryable facts, operates under declared constraints, stores results with provenance, and is controllable through KB activation and deactivation.
+VDR-1 through VDR-4 built the arithmetic and ML stack. VDR-5 specified the knowledge architecture. VDR-6 specified the execution layer. All of these papers describe what happens during a single prompt interaction,  the system receives input, computes, reasons, and responds. This paper specifies everything else: the complete lifecycle from raw data sourcing through corpus preparation, tokenization, model initialization, pre-training, fine-tuning, human feedback integration, evaluation, deployment, continuous monitoring, model updates, and retirement. Every phase is specified in terms of the VDR-Prolog KB architecture, meaning every phase produces queryable facts, operates under declared constraints, stores results with provenance, and is controllable through KB activation and deactivation.
 
-The central architectural principle is that the system is both API and generator. It serves data through structured endpoints and generates text through the language model. Command tokens let the model invoke its own lifecycle operations. KBs let operators enable, disable, and layer lifecycle components like a file tree. The UI is an API to the KB layer, not a separate system. Training data, model weights, evaluation results, feedback records, and deployment configurations are all KBs — surfaceable, queryable, versionable, and constrainable by the same mechanisms that govern prompt-time operation.
+The central architectural principle is that the system is both API and generator. It serves data through structured endpoints and generates text through the language model. Command tokens let the model invoke its own lifecycle operations. KBs let operators enable, disable, and layer lifecycle components like a file tree. The UI is an API to the KB layer, not a separate system. Training data, model weights, evaluation results, feedback records, and deployment configurations are all KBs,  surfaceable, queryable, versionable, and constrainable by the same mechanisms that govern prompt-time operation.
 
 ---
 
 ## 1. The Lifecycle Phases
 
-The complete lifecycle has 12 phases. Each phase is a KB operation. Each phase produces facts that feed the next phase. Each phase operates under constraints that can be inspected and modified. The phases are not a waterfall — they cycle, overlap, and repeat. But each has a defined input, output, and constraint set.
+The complete lifecycle has 12 phases. Each phase is a KB operation. Each phase produces facts that feed the next phase. Each phase operates under constraints that can be inspected and modified. The phases are not a waterfall,  they cycle, overlap, and repeat. But each has a defined input, output, and constraint set.
 
 ```
 Phase 1:  Data Sourcing         → raw data KBs
@@ -262,7 +262,7 @@ KB: tokenized_corpus_v1
 
 ### 4.4 Tokenization as Primitive
 
-Tokenization itself is a pure primitive — deterministic, finite, exact:
+Tokenization itself is a pure primitive,  deterministic, finite, exact:
 
 ```
 tokenize(text, vocab) → token_sequence
@@ -504,7 +504,7 @@ Rule: reproject_to_qbasis(Param, Step, K) :-
         error_bound(abs(OldValue - NewValue)))).
 ```
 
-Every reprojection is logged with its exact error bound. The error is bounded by 2^(-K-1). The reprojection is a declared, auditable precision decision — not silent truncation.
+Every reprojection is logged with its exact error bound. The error is bounded by 2^(-K-1). The reprojection is a declared, auditable precision decision,  not silent truncation.
 
 ![Fig. 3](./figures/vdr7_03_training_metrics.png)
 
@@ -514,7 +514,7 @@ Every reprojection is logged with its exact error bound. The error is bounded by
 
 ### 7.1 Purpose
 
-Adapt the pre-trained model to a specific domain or task. Fine-tuning is structurally identical to pre-training — it is a training run with a different corpus, learning rate, and potentially frozen layers.
+Adapt the pre-trained model to a specific domain or task. Fine-tuning is structurally identical to pre-training,  it is a training run with a different corpus, learning rate, and potentially frozen layers.
 
 ### 7.2 Fine-Tuning Configuration
 
@@ -760,7 +760,7 @@ KB: eval_perplexity_v1
     benchmark: "wikitext_103_test"
     model: checkpoint_safe_v1
     evaluated_at: timestamp(2026, 5, 1)
-    perplexity: fraction(2347, 100)  // 23.47 — exact rational
+    perplexity: fraction(2347, 100)  // 23.47,  exact rational
     token_count: 245566
     evaluation_environment: env_eval_01
     
@@ -805,7 +805,7 @@ KB: eval_safety_v1
 ```
 ?- eval_result(Model, "wikitext_103_test", perplexity, PPL),
    checkpoint_lineage(Model, Chain).
-// Returns perplexity for every model in the lineage — shows improvement curve
+// Returns perplexity for every model in the lineage,  shows improvement curve
 
 ?- eval_result(checkpoint_safe_v1, Benchmark, Metric, Score),
    eval_result(checkpoint_instruct_v1, Benchmark, Metric, OldScore),
@@ -858,13 +858,13 @@ The API is not a separate system. It is a thin layer over the KB:
 | POST /generate | Forward pass → KB records request, response, provenance |
 | GET /model/info | KB_QUERY(deployment_prod_v1, model facts) |
 | GET /model/constraints | KB_QUERY(deployment_prod_v1, active constraints) |
-| GET /kb/{name} | DIRECT_OUTPUT(kb://name) — owner only |
+| GET /kb/{name} | DIRECT_OUTPUT(kb://name),  owner only |
 | POST /feedback | KB_ASSERT(feedback_kb, judgment) |
 | GET /metrics | KB_QUERY(monitoring_kb, current metrics) |
 | POST /admin/deploy | VERSION_CREATE + CTX_ACTIVATE on deployment KB |
 | POST /admin/rollback | CTX_ACTIVATE on previous deployment KB |
 
-Every API call is a KB operation. Every request is logged. Every response has provenance. The API is not separate infrastructure — it is the surfacing layer from VDR-5 exposed over HTTP.
+Every API call is a KB operation. Every request is logged. Every response has provenance. The API is not separate infrastructure,  it is the surfacing layer from VDR-5 exposed over HTTP.
 
 ### 10.4 The System as Both API and Generator
 
@@ -872,7 +872,7 @@ The deployed system has two output modes:
 
 **Generator mode.** The LLM produces text tokens for conversation. This is the standard chat interface.
 
-**API mode.** The system serves structured data from KBs. This is for programmatic access — other systems querying model state, evaluation results, training provenance, or KB contents.
+**API mode.** The system serves structured data from KBs. This is for programmatic access,  other systems querying model state, evaluation results, training provenance, or KB contents.
 
 Both modes use the same KB layer. Both modes respect the same grants and constraints. Both modes produce the same provenance records. The difference is only the output format: text tokens for humans, structured data for machines.
 
@@ -1028,7 +1028,7 @@ Rule: rollback(CurrentDeployment) :-
     log(rollback(CurrentDeployment, Target)).
 ```
 
-Rollback deactivates the current deployment KB and activates the previous one. The old model checkpoint is loaded. The rollback is logged. The current deployment KB is not deleted — it is deactivated and available for analysis.
+Rollback deactivates the current deployment KB and activates the previous one. The old model checkpoint is loaded. The rollback is logged. The current deployment KB is not deleted,  it is deactivated and available for analysis.
 
 ### 12.5 Canary Deployment
 
@@ -1522,11 +1522,11 @@ All scores are exact VDR fractions. The min and mean operations use the vdr_min 
 | CC-BY-4.0 | CC-BY-4.0 | Yes | CC-BY-4.0 | Same license |
 | CC-BY-4.0 | CC-BY-SA-4.0 | Yes | CC-BY-SA-4.0 | SA dominates |
 | CC-BY-4.0 | CC-BY-NC-4.0 | Conditional | CC-BY-NC-4.0 | NC restricts commercial |
-| CC-BY-SA-4.0 | MIT | No | — | SA requires derivative SA |
+| CC-BY-SA-4.0 | MIT | No |,  | SA requires derivative SA |
 | MIT | Apache-2.0 | Yes | Apache-2.0 (attribution) | Both permissive |
 | Public domain | Any | Yes | Other license | PD imposes nothing |
-| Proprietary | Any open | No | — | Must license separately |
-| Fair use claim | Any | Legal review | — | Not a license, a defense |
+| Proprietary | Any open | No |,  | Must license separately |
+| Fair use claim | Any | Legal review |,  | Not a license, a defense |
 
 License compatibility is stored as Prolog rules in the source_registry KB:
 
@@ -1550,9 +1550,9 @@ Attempting to merge corpora from incompatible licenses triggers the license_comp
 |-----------|------|---------|-------|--------|
 | vocab_size | number | 32000 | 256 - 128000 | Number of tokens |
 | min_frequency | number | 2 | 1 - 1000 | Minimum merge pair frequency |
-| special_tokens | list(pair) | [pad, bos, eos, unk] | — | Reserved tokens |
+| special_tokens | list(pair) | [pad, bos, eos, unk] |,  | Reserved tokens |
 | max_token_length | number | 32 | 1 - 128 | Maximum characters per token |
-| byte_fallback | bool | true | — | Use byte-level for unknown chars |
+| byte_fallback | bool | true |,  | Use byte-level for unknown chars |
 | normalization | atom | "nfkc" | none, nfc, nfkc | Unicode normalization |
 | pre_tokenization | atom | "whitespace" | whitespace, none, custom | Pre-split strategy |
 | model_type | atom | "bpe" | bpe, unigram, wordpiece | Tokenization algorithm |
@@ -1631,7 +1631,7 @@ Each parameter is an exact VDR fraction. Total storage depends on denominator si
 |---------------------|---------------|--------|
 | GELU activation | ReLU | GELU requires erf (transcendental). ReLU is piecewise linear, exactly rational |
 | Layer normalization | Rational scaling | LayerNorm requires sqrt of variance. Rational scaling divides by exact mean absolute value |
-| Dropout | Not used | Dropout requires random masking with float probabilities. VDR has no need — exact arithmetic means no regularization benefit from noise |
+| Dropout | Not used | Dropout requires random masking with float probabilities. VDR has no need,  exact arithmetic means no regularization benefit from noise |
 | Float softmax | Surrogate or truncated Taylor | Exact sum to 1 guaranteed |
 | Float position encoding | Learned rational embeddings | Sinusoidal would require sin/cos transcendentals |
 | Float32 weights | Exact VDR fractions | Zero drift, exact gradients |
@@ -1662,8 +1662,8 @@ The cosine schedule requires a rational approximation of cos. This is declared i
 |-----------|-------------------|-------------|-----------|
 | SGD | None | 0 | Yes |
 | SGD + Momentum | 1 velocity vector | 1× params | Yes (exact fraction velocity) |
-| Adam | 2 vectors (m, v) | 2× params | Requires sqrt for v update — rational approximation |
-| AdaGrad | 1 accumulated gradient | 1× params | Requires sqrt — rational approximation |
+| Adam | 2 vectors (m, v) | 2× params | Requires sqrt for v update,  rational approximation |
+| AdaGrad | 1 accumulated gradient | 1× params | Requires sqrt,  rational approximation |
 | Rational Adam | 2 vectors + rational sqrt | 2× params | Yes with declared sqrt depth |
 
 Adam and AdaGrad require square roots of accumulated gradient statistics. In VDR, these are computed by Newton-Raphson iteration at a declared depth, producing exact rational approximations. The depth is a training config parameter.
@@ -1735,7 +1735,7 @@ Fact: annotator_quality("annotator_12",
 | Test | Final reward model evaluation | fraction(1, 10) | Random by annotator |
 | Held-out repeats | Measure agreement and consistency | fraction(1, 20) | Duplicated prompts, different annotators |
 
-Splitting by annotator (not by individual judgment) prevents information leakage — no annotator appears in both train and test.
+Splitting by annotator (not by individual judgment) prevents information leakage,  no annotator appears in both train and test.
 
 ---
 
@@ -1758,20 +1758,20 @@ Splitting by annotator (not by individual judgment) prevents information leakage
 
 | Benchmark | What It Measures | Metric | Unique to VDR |
 |-----------|-----------------|--------|--------------|
-| Arithmetic accuracy | Can model compute exact fractions? | fraction(exact_match, total) | Yes — VDR models should score 100% |
-| Denominator health | Model parameter complexity | max and mean denominator | Yes — VDR-specific |
-| Provenance completeness | All values have derivation chains? | fraction(traced, total) | Yes — KB-specific |
-| Constraint satisfaction | All constraints pass? | fraction(satisfied, total) | Yes — constraint system |
-| Roundtrip exactness | checkpoint_load(checkpoint_save(model)) = model? | bool | Yes — exact reproducibility |
-| Softmax exactness | All attention rows sum to exactly 1? | bool | Yes — VDR exact softmax |
-| Gradient exactness | Autodiff gradient matches finite difference at h→0? | fraction(matching, total) | Yes — exact autodiff |
+| Arithmetic accuracy | Can model compute exact fractions? | fraction(exact_match, total) | Yes,  VDR models should score 100% |
+| Denominator health | Model parameter complexity | max and mean denominator | Yes,  VDR-specific |
+| Provenance completeness | All values have derivation chains? | fraction(traced, total) | Yes,  KB-specific |
+| Constraint satisfaction | All constraints pass? | fraction(satisfied, total) | Yes,  constraint system |
+| Roundtrip exactness | checkpoint_load(checkpoint_save(model)) = model? | bool | Yes,  exact reproducibility |
+| Softmax exactness | All attention rows sum to exactly 1? | bool | Yes,  VDR exact softmax |
+| Gradient exactness | Autodiff gradient matches finite difference at h→0? | fraction(matching, total) | Yes,  exact autodiff |
 | KB query latency | Time to answer provenance queries | milliseconds | System performance |
 
 ### K.3 Evaluation Run Configuration
 
 | Parameter | Type | Default | Purpose |
 |-----------|------|---------|---------|
-| model_checkpoint | reference | — | Which model to evaluate |
+| model_checkpoint | reference |,  | Which model to evaluate |
 | benchmark_suite | reference | eval_suite_v1 | Which benchmarks to run |
 | batch_size | number | 32 | Evaluation batch size |
 | max_samples | number | all | Limit for expensive benchmarks |
@@ -1799,9 +1799,9 @@ Splitting by annotator (not by individual judgment) prevents information leakage
 | rate_limit_per_org | number | 10000 | 1 - unlimited | Requests per hour per org |
 | request_timeout_ms | number | 30000 | 1000 - 300000 | Maximum time per request |
 | queue_max_size | number | 1000 | 0 - 100000 | Request queue limit |
-| enable_streaming | bool | true | — | Stream tokens to client |
-| enable_direct_download | bool | true | — | Allow KB data serving |
-| enable_command_tokens | bool | true | — | Allow LLM command execution |
+| enable_streaming | bool | true |,  | Stream tokens to client |
+| enable_direct_download | bool | true |,  | Allow KB data serving |
+| enable_command_tokens | bool | true |,  | Allow LLM command execution |
 
 ### L.2 Deployment Health Checks
 
@@ -1844,8 +1844,8 @@ Splitting by annotator (not by individual judgment) prevents information leakage
 | Output tokens per request | histogram | Per-minute | > 2× baseline | Yes |
 | Input tokens per request | histogram | Per-minute | > max_seq_length | Yes |
 | Safety flags | counter | Per-minute rate | > 5% | Yes |
-| Unique users | set cardinality | Per-hour | — | Yes |
-| Feedback submissions | counter | Per-hour | — | Yes |
+| Unique users | set cardinality | Per-hour |,  | Yes |
+| Feedback submissions | counter | Per-hour |,  | Yes |
 
 ### M.2 Training Metrics (During Training Phases)
 
@@ -1853,16 +1853,16 @@ Splitting by annotator (not by individual judgment) prevents information leakage
 |--------|------|-----------|----------------|----------|
 | Training loss | fraction | Every step | > 1000 or NaN-equivalent | training_run KB |
 | Validation loss | fraction | Every eval_interval | Increasing trend | training_run KB |
-| Learning rate | fraction | Every step | — | training_run KB |
+| Learning rate | fraction | Every step |,  | training_run KB |
 | Gradient norm | fraction | Every step | > clip_value × 10 | training_run KB |
-| Gradient norm (clipped) | fraction | Every step where clipped | — | training_run KB |
+| Gradient norm (clipped) | fraction | Every step where clipped |,  | training_run KB |
 | Parameter denominator max | number | Every checkpoint | > denom_budget | training_run KB |
-| Parameter denominator mean | number | Every checkpoint | — | training_run KB |
+| Parameter denominator mean | number | Every checkpoint |,  | training_run KB |
 | Reprojection count | counter | Per checkpoint interval | > 0 (noteworthy) | training_run KB |
-| Tokens per second | number | Every step | — | training_run KB |
+| Tokens per second | number | Every step |,  | training_run KB |
 | Step duration ms | number | Every step | > 2× mean | training_run KB |
 | Memory usage | number | Every checkpoint | > 90% available | training_run KB |
-| Checkpoint size bytes | number | Every checkpoint | — | training_run KB |
+| Checkpoint size bytes | number | Every checkpoint |,  | training_run KB |
 
 ### M.3 Drift Detection Metrics
 
@@ -2143,10 +2143,10 @@ New VDR-7 modules: `data_pipeline.py` (sourcing, corpus prep, tokenization), `tr
 | Source | Tests | Passed | VDR Errors |
 |--------|-------|--------|-----------|
 | VDR-1 through VDR-4 | 705 | 692 | 0 |
-| VDR-6 pure (planned) | 615 | — | — |
-| VDR-6 operational (planned) | 132 | — | — |
-| VDR-7 lifecycle (planned) | ~200 | — | — |
-| **Total planned** | **~1652** | — | — |
+| VDR-6 pure (planned) | 615 |,  |,  |
+| VDR-6 operational (planned) | 132 |,  |,  |
+| VDR-7 lifecycle (planned) | ~200 |,  |,  |
+| **Total planned** | **~1652** |,  |,  |
 
 ---
 

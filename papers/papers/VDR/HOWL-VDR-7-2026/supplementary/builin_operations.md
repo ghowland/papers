@@ -5,11 +5,11 @@
 
 ## 1. The Distinction: Pure vs Operational
 
-The previous report defined pure primitives — functions that always produce the same output from the same input, have no side effects, and terminate in bounded time. String reversal, list sorting, exact arithmetic. These are the safe core.
+The previous report defined pure primitives,  functions that always produce the same output from the same input, have no side effects, and terminate in bounded time. String reversal, list sorting, exact arithmetic. These are the safe core.
 
-Operational primitives are different. They interact with the outside world. They read and write files. They compile code. They execute scripts. They download content. They create directories. They take time. They can fail for reasons unrelated to their inputs — disk full, network down, permission denied, process killed.
+Operational primitives are different. They interact with the outside world. They read and write files. They compile code. They execute scripts. They download content. They create directories. They take time. They can fail for reasons unrelated to their inputs,  disk full, network down, permission denied, process killed.
 
-These operations are essential for a working system. An LLM that can reason about code but cannot compile it, can discuss files but cannot read them, can plan a project but cannot create directories — that LLM is a consultant, not an engineer. It gives advice. It does not do work.
+These operations are essential for a working system. An LLM that can reason about code but cannot compile it, can discuss files but cannot read them, can plan a project but cannot create directories,  that LLM is a consultant, not an engineer. It gives advice. It does not do work.
 
 But operational primitives are dangerous in a way pure primitives are not. A pure function that reverses a string cannot delete your files. An operational primitive that executes a script can do anything the script does. The constraint system must handle this difference explicitly.
 
@@ -372,7 +372,7 @@ LLM reasoning:
   
 LLM output:
   "Here's the VDR core source:"
-  [Attachment: fs:///home/alice/vdr/vdr.py — direct, not generated]
+  [Attachment: fs:///home/alice/vdr/vdr.py,  direct, not generated]
 ```
 
 The attachment is the actual file, not the LLM's token-by-token reproduction of the file. The file is exact. The LLM's reproduction would be approximate (token limits, potential errors, no guarantee of completeness).
@@ -390,7 +390,7 @@ LLM:
 
 Output:
   "Sorted all 500 entries by age."
-  [Attachment: kb://sorted_result_001 — 500 entries, direct download]
+  [Attachment: kb://sorted_result_001,  500 entries, direct download]
   "The youngest is Alice (17) and the oldest is Harold (94)."
 ```
 
@@ -406,21 +406,21 @@ Grants follow the KB hierarchy:
 
 ```
 kb_global
-  grant: "system_read" — read any file in system dirs (no write, no execute)
+  grant: "system_read",  read any file in system dirs (no write, no execute)
   
 kb_org_acme
-  grant: "org_network" — network access to approved domains
+  grant: "org_network",  network access to approved domains
   
 kb_dept_engineering
-  grant: "eng_compile" — compile in project directories
-  grant: "eng_execute" — execute tests in project directories
+  grant: "eng_compile",  compile in project directories
+  grant: "eng_execute",  execute tests in project directories
   
 kb_team_backend
-  grant: "backend_db_read" — read from staging database
+  grant: "backend_db_read",  read from staging database
   
 kb_user_alice
-  grant: "alice_project_fs" — full filesystem in /home/alice/projects/
-  grant: "alice_deploy" — deploy to staging (time-limited, requires 2FA)
+  grant: "alice_project_fs",  full filesystem in /home/alice/projects/
+  grant: "alice_deploy",  deploy to staging (time-limited, requires 2FA)
 ```
 
 Alice inherits all ancestor grants. She can read system files (from global), access approved network domains (from org), compile and execute tests (from engineering), read the staging database (from backend), and has full filesystem access in her project directory (personal). She can also deploy to staging, but only with a time-limited 2FA-verified grant.
@@ -466,7 +466,7 @@ Rule: grant_constraints_satisfied(Grant, Op) :-
     forall(member(C, Constraints), constraint_satisfied_for(C, Op)).
 ```
 
-Every operational primitive goes through this verification chain before execution. The verification is a Prolog query — it uses the same logic engine, the same KB structure, the same constraint system. The security model is not a separate system bolted on. It is facts and rules in the knowledge base.
+Every operational primitive goes through this verification chain before execution. The verification is a Prolog query,  it uses the same logic engine, the same KB structure, the same constraint system. The security model is not a separate system bolted on. It is facts and rules in the knowledge base.
 
 ---
 
@@ -534,7 +534,7 @@ The audit trail is queryable:
 
 ## 9. Integration With the VDR-Prolog System
 
-The primitives — both pure and operational — are the hands of the VDR-LLM-Prolog system. The LLM is the brain (intent recognition, planning, explanation). The Prolog KB is the memory (facts, rules, constraints, provenance). The primitives are the hands (computation, file operations, compilation, execution).
+The primitives,  both pure and operational,  are the hands of the VDR-LLM-Prolog system. The LLM is the brain (intent recognition, planning, explanation). The Prolog KB is the memory (facts, rules, constraints, provenance). The primitives are the hands (computation, file operations, compilation, execution).
 
 The flow for a complex task:
 
@@ -577,8 +577,8 @@ Every step is logged. Every grant is verified. Every result is in the KB. The LL
 
 ## 10. What This Means
 
-The LLM no longer needs to pretend to be a computer. It has one. The pure primitives give it exact computation for anything that has a known algorithm. The operational primitives give it the ability to interact with the real world — files, compilers, networks, processes. The credential system constrains what it can touch. The async system prevents it from blocking. The KB records everything for audit and provenance.
+The LLM no longer needs to pretend to be a computer. It has one. The pure primitives give it exact computation for anything that has a known algorithm. The operational primitives give it the ability to interact with the real world,  files, compilers, networks, processes. The credential system constrains what it can touch. The async system prevents it from blocking. The KB records everything for audit and provenance.
 
-The LLM's unique contribution becomes what it was always meant to be: understanding intent, making plans, explaining results, and connecting pieces together in ways that rigid programs cannot. Everything else — sorting, compiling, file management, arithmetic, formatting — is delegated to primitives that do it correctly every time.
+The LLM's unique contribution becomes what it was always meant to be: understanding intent, making plans, explaining results, and connecting pieces together in ways that rigid programs cannot. Everything else,  sorting, compiling, file management, arithmetic, formatting,  is delegated to primitives that do it correctly every time.
 
 This is not tool use. This is tool integration. The tools are inside the system, governed by the same constraint logic, recorded in the same knowledge base, and subject to the same provenance tracking as everything else. When the LLM says "I compiled your code," you can query the KB for the exact compilation command, the exact exit code, the exact stderr output, the exact timestamp, and the exact grant that authorized it. No trust required. Full verifiability.

@@ -19,9 +19,9 @@
 
 VDR-5 specified the knowledge architecture for an exact-arithmetic language model: scoped knowledge bases, constraints, provenance, and first-class data surfacing. VDR-6 specified the execution layer: 255 computational primitives, command tokens, operational environments, and credential gating. VDR-7 specified the complete lifecycle: training, feedback, evaluation, deployment, monitoring, and retirement as KB operations. All three papers describe systems that store knowledge and execute operations. None of them address the LLM's own runtime working memory, the addressing system that connects the growing KB tree, or the ability to capture and restore the live state of a session.
 
-This paper specifies three tightly integrated capabilities. Runtime data primitives — LRU caches, counters, locks, queues, stacks, ring buffers, and bitsets — give the LLM bounded, named, scoped working memory inside the KB struct, accessible through command tokens. Universal dotted-path addressing with integer ID acceleration gives every KB, every data primitive, and every fact a structured namespace with O(1) runtime access. Session snapshots, cloning, and disposable operational clones give the system the ability to capture complete live state atomically, fork sessions for experimentation, and maintain stability through controlled recycling of drift-prone clones.
+This paper specifies three tightly integrated capabilities. Runtime data primitives,  LRU caches, counters, locks, queues, stacks, ring buffers, and bitsets,  give the LLM bounded, named, scoped working memory inside the KB struct, accessible through command tokens. Universal dotted-path addressing with integer ID acceleration gives every KB, every data primitive, and every fact a structured namespace with O(1) runtime access. Session snapshots, cloning, and disposable operational clones give the system the ability to capture complete live state atomically, fork sessions for experimentation, and maintain stability through controlled recycling of drift-prone clones.
 
-The paper also specifies how command tokens use dotted-path references to minimize the LLM's generative burden — command construction becomes reference selection from a known vocabulary, not freeform text generation.
+The paper also specifies how command tokens use dotted-path references to minimize the LLM's generative burden,  command construction becomes reference selection from a known vocabulary, not freeform text generation.
 
 The three capabilities depend on each other. Data primitives create state worth snapshotting. Dotted paths give snapshots efficient references to that state. Session management provides the lifecycle for data primitives that would otherwise accumulate drift indefinitely. Together they complete the runtime layer that sits between the knowledge architecture (VDR-5) and the execution layer (VDR-6).
 
@@ -31,13 +31,13 @@ The three capabilities depend on each other. Data primitives create state worth 
 
 For readers entering the series at this paper, the VDR-LLM-Prolog system is a language model architecture with three foundational properties.
 
-**Exact arithmetic.** Every number in the system is an exact fraction — an integer numerator over an integer denominator. There are no floating-point numbers. There is no rounding. Adding 1/7 and 1/13 produces exactly 20/91, not a float near 0.2198. This was established in VDR-1 through VDR-4 [@HOWL-VDR-1-2026 through @HOWL-VDR-4-2026] and verified by 705 tests across 23 mathematical domains with zero computation errors. The machine learning stack — softmax, autodiff, transformer forward and backward passes — operates entirely in exact fractions.
+**Exact arithmetic.** Every number in the system is an exact fraction,  an integer numerator over an integer denominator. There are no floating-point numbers. There is no rounding. Adding 1/7 and 1/13 produces exactly 20/91, not a float near 0.2198. This was established in VDR-1 through VDR-4 [@HOWL-VDR-1-2026 through @HOWL-VDR-4-2026] and verified by 705 tests across 23 mathematical domains with zero computation errors. The machine learning stack,  softmax, autodiff, transformer forward and backward passes,  operates entirely in exact fractions.
 
-**Knowledge bases as universal containers.** Everything in the system is stored in Knowledge Bases (KBs). A KB is a structured collection of facts (what is true), rules (what follows from what), and constraints (what must hold). KBs organize in a tree where child KBs inherit from parents. The active topic determines which KBs are in scope — switching topics activates relevant KBs and deactivates others without deleting anything. User accounts are KBs. The organizational hierarchy is a KB tree. Constraints live inside the KBs they govern. This was specified in VDR-5 [@HOWL-VDR-5-2026].
+**Knowledge bases as universal containers.** Everything in the system is stored in Knowledge Bases (KBs). A KB is a structured collection of facts (what is true), rules (what follows from what), and constraints (what must hold). KBs organize in a tree where child KBs inherit from parents. The active topic determines which KBs are in scope,  switching topics activates relevant KBs and deactivates others without deleting anything. User accounts are KBs. The organizational hierarchy is a KB tree. Constraints live inside the KBs they govern. This was specified in VDR-5 [@HOWL-VDR-5-2026].
 
 **Primitives and command tokens.** The LLM does not compute by token prediction. It invokes deterministic primitives through structured command tokens in its output stream. 211 pure primitives (sorting, arithmetic, string operations, linear algebra, graph algorithms) provide guaranteed-correct computation. 44 operational primitives (file I/O, compilation, script execution, networking) interact with sandboxed environments under positive credential grants. This was specified in VDR-6 [@HOWL-VDR-6-2026].
 
-**Lifecycle as KB operations.** The complete model lifecycle — data sourcing, corpus preparation, tokenization, training, fine-tuning, human feedback, evaluation, deployment, monitoring, updates, retirement — is specified as KB operations. Every phase produces queryable KBs. The entire lineage from raw data to retired model is one tree. This was specified in VDR-7 [@HOWL-VDR-7-2026].
+**Lifecycle as KB operations.** The complete model lifecycle,  data sourcing, corpus preparation, tokenization, training, fine-tuning, human feedback, evaluation, deployment, monitoring, updates, retirement,  is specified as KB operations. Every phase produces queryable KBs. The entire lineage from raw data to retired model is one tree. This was specified in VDR-7 [@HOWL-VDR-7-2026].
 
 VDR-8 addresses what is missing from this stack: the LLM's own runtime working memory, the addressing system that navigates the KB tree at scale, and the ability to manage session-level state.
 
@@ -47,19 +47,19 @@ VDR-8 addresses what is missing from this stack: the LLM's own runtime working m
 
 ### 2.1 No Structured Working Memory
 
-The LLM currently has two places for working state. The scratchpad is a per-turn computation space — it holds intermediate results during a single response and is pruned afterward. Working data sets are scoped key-value bindings on topic KBs — they hold named values persistently.
+The LLM currently has two places for working state. The scratchpad is a per-turn computation space,  it holds intermediate results during a single response and is pruned afterward. Working data sets are scoped key-value bindings on topic KBs,  they hold named values persistently.
 
 Neither provides the lightweight operational state that programs routinely use. There is no bounded cache of recent items. There is no counter that tracks how many times something has happened. There is no flag that indicates an operation is in progress. There is no ordered queue of pending work. There is no undo stack. Without these, the LLM must scan conversation history or re-query KB facts to reconstruct state that a simple data structure would maintain naturally.
 
-The scratchpad is also a single undifferentiated space. The LLM cannot maintain separate channels for separate concerns — recent errors in one cache, recent user questions in another, recent test results in a third. Everything goes into one buffer.
+The scratchpad is also a single undifferentiated space. The LLM cannot maintain separate channels for separate concerns,  recent errors in one cache, recent user questions in another, recent test results in a third. Everything goes into one buffer.
 
 ### 2.2 No Structured Addressing
 
-KBs identify themselves by name strings. As the KB tree grows — VDR-7 specifies approximately 60 KB types across 12 lifecycle phases — navigation by flat names becomes unwieldy. The name `source_wikipedia_2026_03` carries no structural information about where the KB sits in the tree, what its parent is, or how to reach it from elsewhere. Cross-branch references require knowing the exact flat name of a distant KB. There is no hierarchical namespace, no relative addressing, and no fast access path for runtime operations that traverse the tree frequently.
+KBs identify themselves by name strings. As the KB tree grows,  VDR-7 specifies approximately 60 KB types across 12 lifecycle phases,  navigation by flat names becomes unwieldy. The name `source_wikipedia_2026_03` carries no structural information about where the KB sits in the tree, what its parent is, or how to reach it from elsewhere. Cross-branch references require knowing the exact flat name of a distant KB. There is no hierarchical namespace, no relative addressing, and no fast access path for runtime operations that traverse the tree frequently.
 
 ### 2.3 No Session State Management
 
-The system accumulates live state across a session — scratchpad contents, active scope configuration, working data bindings. This state is valuable but fragile. There is no way to capture it atomically, restore it exactly, or fork it into parallel experiments. If a session drifts into a degraded state — accumulated context pollution, stale working memory, compounding edge cases — the only option is to start over and lose all accumulated context.
+The system accumulates live state across a session,  scratchpad contents, active scope configuration, working data bindings. This state is valuable but fragile. There is no way to capture it atomically, restore it exactly, or fork it into parallel experiments. If a session drifts into a degraded state,  accumulated context pollution, stale working memory, compounding edge cases,  the only option is to start over and lose all accumulated context.
 
 ### 2.4 These Problems Interact
 
@@ -71,13 +71,13 @@ The absence of data primitives means there is nothing worth snapshotting beyond 
 
 ### 3.1 The Principle
 
-Standard computer science data structures — LRU caches, counters, locks, queues, stacks, ring buffers, bitsets — become fields on the KB struct, accessible through command tokens, scoped and inherited through the KB tree like facts, rules, and constraints.
+Standard computer science data structures,  LRU caches, counters, locks, queues, stacks, ring buffers, bitsets,  become fields on the KB struct, accessible through command tokens, scoped and inherited through the KB tree like facts, rules, and constraints.
 
 These are not a separate system. They follow the same architectural principle established in the VDR-5 addendum, where constraints moved from a separate registry into the KBs they govern. Data primitives belong to the KB they serve.
 
 ### 3.2 LRU Caches
 
-A named, bounded, least-recently-used cache. The LLM creates a channel for a specific concern — recent errors, recent user questions, recent test results — with a declared capacity. When the cache is full, the oldest entry is evicted automatically. Multiple named channels keep separate concerns in separate caches.
+A named, bounded, least-recently-used cache. The LLM creates a channel for a specific concern,  recent errors, recent user questions, recent test results,  with a declared capacity. When the cache is full, the oldest entry is evicted automatically. Multiple named channels keep separate concerns in separate caches.
 
 ```
 LRU = struct {
@@ -137,7 +137,7 @@ Counters clamp at their bounds. Incrementing past max_value stays at max_value. 
 
 ### 3.4 Locks
 
-Named non-blocking flags. Acquire sets a flag. Check reads it. Release clears it. Nothing blocks — the LLM's turn-based execution model cannot support blocking operations. Locks are coordination signals: the LLM checks a lock before starting an operation that should not run concurrently, or reacts when it observes a lock has been released.
+Named non-blocking flags. Acquire sets a flag. Check reads it. Release clears it. Nothing blocks,  the LLM's turn-based execution model cannot support blocking operations. Locks are coordination signals: the LLM checks a lock before starting an operation that should not run concurrently, or reacts when it observes a lock has been released.
 
 ```
 LockState = struct {
@@ -268,7 +268,7 @@ Operations:
 
 ### 3.9 Growth Limits and Lifecycle Classification
 
-Every data primitive has a declared maximum capacity at creation. LRU capacity, queue max size, stack max depth, ring buffer size, bitset width — all bounded. No unbounded growth. The limits are small by design. Tracking 50 recent items per named channel is more than sufficient for most purposes while remaining cheap to maintain and fast to snapshot.
+Every data primitive has a declared maximum capacity at creation. LRU capacity, queue max size, stack max depth, ring buffer size, bitset width,  all bounded. No unbounded growth. The limits are small by design. Tracking 50 recent items per named channel is more than sufficient for most purposes while remaining cheap to maintain and fast to snapshot.
 
 Data primitives are classified as **live state**, not persistent knowledge.
 
@@ -277,7 +277,7 @@ Data primitives are classified as **live state**, not persistent knowledge.
 | Persistent | Facts, rules, constraints, connections | Yes | No (always present) | KB facts, Prolog rules |
 | Live | Data primitives, scratchpad, working data, active scope | No | Yes | Counters, queues, LRUs |
 
-A session reset clears all live state to defaults — zero counters, empty queues, released locks, empty caches — while persistent knowledge remains untouched. A session snapshot captures all live state for later restoration. This distinction is central to the session management system in Section 5.
+A session reset clears all live state to defaults,  zero counters, empty queues, released locks, empty caches,  while persistent knowledge remains untouched. A session snapshot captures all live state for later restoration. This distinction is central to the session management system in Section 5.
 
 ### 3.10 Mutation Logging
 
@@ -303,7 +303,7 @@ The owner can query the mutation history of any data primitive through the surfa
 
 ### 4.1 The Principle
 
-Every KB has a dotted path that encodes its position in the tree. The path is the human-readable address. An integer ID provides O(1) runtime access. Both representations coexist — the LLM and users work with paths, the runtime works with integers.
+Every KB has a dotted path that encodes its position in the tree. The path is the human-readable address. An integer ID provides O(1) runtime access. Both representations coexist,  the LLM and users work with paths, the runtime works with integers.
 
 ### 4.2 Path Structure
 
@@ -327,7 +327,7 @@ root.sessions
 root.sessions.stable_operator_v1
 ```
 
-Parent-child relationships are encoded in the path. `root.programming.zig` is a child of `root.programming` by construction. No separate parent field is needed to determine ancestry — the path contains it.
+Parent-child relationships are encoded in the path. `root.programming.zig` is a child of `root.programming` by construction. No separate parent field is needed to determine ancestry,  the path contains it.
 
 ### 4.3 Path Rules
 
@@ -351,7 +351,7 @@ PathRegistry = struct {
 };
 ```
 
-When a KB is created, it is assigned the next available integer ID. The mapping is permanent for the lifetime of the system — a path always resolves to the same integer ID. If a KB is deleted, its ID is retired, not reused.
+When a KB is created, it is assigned the next available integer ID. The mapping is permanent for the lifetime of the system,  a path always resolves to the same integer ID. If a KB is deleted, its ID is retired, not reused.
 
 ```
 "root"                              → 0
@@ -384,7 +384,7 @@ Connections reference integer targets:
 connection(target_id: 5, relationship: "references", ...)
 ```
 
-Data primitive access resolves to two integers — KB ID and slot ID:
+Data primitive access resolves to two integers,  KB ID and slot ID:
 
 ```
 // counter_get("root.project.vdr.training.run_01.retry_count")
@@ -415,7 +415,7 @@ When a data primitive is created, it receives a slot ID within its KB:
 "pending_fixes" → slot 3
 ```
 
-Full access: `counters[kb_9][slot_0]` — two integer lookups.
+Full access: `counters[kb_9][slot_0]`,  two integer lookups.
 
 ### 4.7 Command Token Path Resolution
 
@@ -497,7 +497,7 @@ KB: root.project.vdr.corpus_v1
                relationship: "tokenized_into", direction: outbound)
 ```
 
-The VDR-6 graph primitives operate directly on the collected connections across KBs, using integer IDs as node identifiers. Topology queries — reachability, shortest path, connected components — are standard graph operations on the connection graph.
+The VDR-6 graph primitives operate directly on the collected connections across KBs, using integer IDs as node identifiers. Topology queries,  reachability, shortest path, connected components,  are standard graph operations on the connection graph.
 
 ---
 
@@ -505,11 +505,11 @@ The VDR-6 graph primitives operate directly on the collected connections across 
 
 ### 5.1 The Problem With Generated Commands
 
-In current LLM function-calling systems, the model generates structured JSON or similar syntax by token prediction. Each character of the function name, each argument key, each argument value is a predicted token. A complex function call might require generating 50-100 tokens of structured syntax. Every token is a prediction that can go wrong — misspelled function names, wrong argument types, malformed structure, hallucinated parameters.
+In current LLM function-calling systems, the model generates structured JSON or similar syntax by token prediction. Each character of the function name, each argument key, each argument value is a predicted token. A complex function call might require generating 50-100 tokens of structured syntax. Every token is a prediction that can go wrong,  misspelled function names, wrong argument types, malformed structure, hallucinated parameters.
 
 ### 5.2 Reference Selection, Not Text Generation
 
-In VDR-LLM-Prolog, command token construction is fundamentally different. The 255 primitives from VDR-6, plus the data primitive operations from this paper, are facts in the root KB — always in scope, always accessible. The LLM does not generate a function name character by character. It selects a reference from a known, finite vocabulary.
+In VDR-LLM-Prolog, command token construction is fundamentally different. The 255 primitives from VDR-6, plus the data primitive operations from this paper, are facts in the root KB,  always in scope, always accessible. The LLM does not generate a function name character by character. It selects a reference from a known, finite vocabulary.
 
 The command token the LLM emits is compact:
 
@@ -519,15 +519,15 @@ CMD: counter_inc(root.project.vdr.training.run_01.retry_count)
 
 This is three references:
 
-1. **Primitive reference:** `counter_inc` — a known name from the root KB primitive registry.
-2. **KB path reference:** `root.project.vdr.training.run_01` — a dotted path in the KB tree.
-3. **Slot reference:** `retry_count` — a named data primitive within that KB.
+1. **Primitive reference:** `counter_inc`,  a known name from the root KB primitive registry.
+2. **KB path reference:** `root.project.vdr.training.run_01`,  a dotted path in the KB tree.
+3. **Slot reference:** `retry_count`,  a named data primitive within that KB.
 
 None of these are generated text in the creative sense. The primitive name is a fixed vocabulary item. The KB path is a structural address the LLM has seen in scope queries. The slot name is a label the LLM itself created (or queried from the KB). The LLM's task is selection and assembly of known references, not generation of novel syntax.
 
 ### 5.3 Why This Is More Reliable
 
-Token prediction reliability depends on how constrained the output space is. Generating a novel English sentence is a high-entropy task — many tokens are plausible at each position. Selecting from 300 known primitive names and pointing at known KB paths is a low-entropy task — the correct output is heavily determined by the intent and the available references.
+Token prediction reliability depends on how constrained the output space is. Generating a novel English sentence is a high-entropy task,  many tokens are plausible at each position. Selecting from 300 known primitive names and pointing at known KB paths is a low-entropy task,  the correct output is heavily determined by the intent and the available references.
 
 The root KB always contains:
 
@@ -542,11 +542,11 @@ KB: root.primitives
     // All 300 primitives with signatures
 ```
 
-Because these are exact KB facts — stored as exact integer-weighted entries, not fuzzy patterns in continuous weight space — the LLM's access to the primitive vocabulary is precise. The root KB is always in scope. Its contents do not degrade through attention layers or context window pressure.
+Because these are exact KB facts,  stored as exact integer-weighted entries, not fuzzy patterns in continuous weight space,  the LLM's access to the primitive vocabulary is precise. The root KB is always in scope. Its contents do not degrade through attention layers or context window pressure.
 
 ### 5.4 Arguments Are Addresses, Not Values
 
-For operations on data that already exists in the KB, the command token does not pass the data by value through the token stream. It passes a reference — a dotted path to where the data lives.
+For operations on data that already exists in the KB, the command token does not pass the data by value through the token stream. It passes a reference,  a dotted path to where the data lives.
 
 ```
 // NOT this (value in token stream):
@@ -558,7 +558,7 @@ CMD: list_sort(root.project.vdr.gyms.unsorted_results, ascending)
 
 The data stays in the KB. The command token says where to find it. The primitive reads directly from the KB using integer ID access. The LLM never needs to serialize a 50-element list into its output stream just to sort it.
 
-For small literal arguments — a capacity of 20, a counter delta of 1, a lock name — the value is inline in the token. The rule is: if the value is a short literal, inline it. If the value is stored data, reference it by path.
+For small literal arguments,  a capacity of 20, a counter delta of 1, a lock name,  the value is inline in the token. The rule is: if the value is a short literal, inline it. If the value is stored data, reference it by path.
 
 ### 5.5 Command Token Structure Revised
 
@@ -603,7 +603,7 @@ CMD: STORE_RESULT(task_049, root.project.vdr.gyms.gym_25_result)
 TEXT: "Tests running. Task: task_049."
 ```
 
-Every CMD line is a fixed primitive name plus dotted-path references. The LLM selected `counter_inc` from the primitive vocabulary. It pointed at `root.project.vdr.gyms.gym_count` — a path it knows because it's in scope. The entire command token is three references assembled together. The generative burden is minimal.
+Every CMD line is a fixed primitive name plus dotted-path references. The LLM selected `counter_inc` from the primitive vocabulary. It pointed at `root.project.vdr.gyms.gym_count`,  a path it knows because it's in scope. The entire command token is three references assembled together. The generative burden is minimal.
 
 ---
 
@@ -611,7 +611,7 @@ Every CMD line is a fixed primitive name plus dotted-path references. The LLM se
 
 ### 6.1 The Principle
 
-The complete live state of a session — active scope, scratchpad, all data primitives across all active KBs — is capturable as one atomic snapshot and restorable exactly. Sessions can be forked into independent clones. Clones can be recycled when drift is detected.
+The complete live state of a session,  active scope, scratchpad, all data primitives across all active KBs,  is capturable as one atomic snapshot and restorable exactly. Sessions can be forked into independent clones. Clones can be recycled when drift is detected.
 
 ### 6.2 Session Snapshot Structure
 
@@ -668,11 +668,11 @@ KBLiveState = struct {
 
 ### 6.4 Snapshot Captures Live State Only
 
-The snapshot captures data primitives, scratchpad, working data, and scope configuration. It does not capture persistent KB facts, rules, constraints, or connections — those are always present in the KB tree and do not need to be duplicated.
+The snapshot captures data primitives, scratchpad, working data, and scope configuration. It does not capture persistent KB facts, rules, constraints, or connections,  those are always present in the KB tree and do not need to be duplicated.
 
-This means a snapshot is small. It contains counter values, queue contents, LRU entries, lock states, bitset bits, ring buffer contents, working data bindings, and scope pointers. It does not contain the knowledge — only the working memory.
+This means a snapshot is small. It contains counter values, queue contents, LRU entries, lock states, bitset bits, ring buffer contents, working data bindings, and scope pointers. It does not contain the knowledge,  only the working memory.
 
-Restoring a snapshot puts the live state back exactly: every counter at its captured value, every queue in its captured order, every lock in its captured state, every LRU with its captured entries. The persistent KBs underneath may have changed since the snapshot was taken — facts may have been added or retracted by other sessions or system operations. The snapshot restores the working memory, not the knowledge.
+Restoring a snapshot puts the live state back exactly: every counter at its captured value, every queue in its captured order, every lock in its captured state, every LRU with its captured entries. The persistent KBs underneath may have changed since the snapshot was taken,  facts may have been added or retracted by other sessions or system operations. The snapshot restores the working memory, not the knowledge.
 
 ### 6.5 Session Reset
 
@@ -748,7 +748,7 @@ constraint("error_rate_drift", operational, active,
     on_violation("kill_and_reclone"))
 ```
 
-When any drift constraint fires, the clone's live state is destroyed and a fresh clone launches from the same snapshot. The snapshot never degrades — it is frozen state. The clones are disposable workers. The snapshot is the factory.
+When any drift constraint fires, the clone's live state is destroyed and a fresh clone launches from the same snapshot. The snapshot never degrades,  it is frozen state. The clones are disposable workers. The snapshot is the factory.
 
 ### 6.9 Clone Work Preservation
 
@@ -760,7 +760,7 @@ This means a clone can:
 3. Assert the results into a persistent KB
 4. Be killed
 
-The next clone sees the committed results because they are in the shared persistent layer. The killed clone loses only its counters, queues, caches, and other ephemeral state — the state that was going to drift anyway.
+The next clone sees the committed results because they are in the shared persistent layer. The killed clone loses only its counters, queues, caches, and other ephemeral state,  the state that was going to drift anyway.
 
 ### 6.10 Stable Operator Versioning
 
@@ -1134,7 +1134,7 @@ CMD: bitset_set(root.project.vdr.gyms.completed, 25)
 // Check progress:
 CMD: bitset_count(root.project.vdr.gyms.completed) → 23
 CMD: bitset_to_list(root.project.vdr.gyms.completed) → [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,25]
-// Missing: 4, 23 — those gyms still need work
+// Missing: 4, 23,  those gyms still need work
 
 TEXT: "23 of 25 gyms complete. Gyms 4 and 23 still pending."
 ```
@@ -1145,7 +1145,7 @@ TEXT: "23 of 25 gyms complete. Gyms 4 and 23 still pending."
 
 **F1.** If any data primitive produces a different result from the same sequence of operations, the determinism guarantee is violated. This is testable by replaying operation sequences and comparing state.
 
-**F2.** If a session restore produces a state that differs from the captured snapshot in any live state field — any counter value, any queue order, any LRU entry, any lock state — the snapshot mechanism is lossy. Testable by snapshot, modify, restore, compare.
+**F2.** If a session restore produces a state that differs from the captured snapshot in any live state field,  any counter value, any queue order, any LRU entry, any lock state,  the snapshot mechanism is lossy. Testable by snapshot, modify, restore, compare.
 
 **F3.** If a session clone's persistent KB assertions are not visible to other sessions sharing those KBs, the persistence boundary is wrong. Testable by asserting a fact in clone A and querying it in clone B.
 
@@ -1195,13 +1195,13 @@ Phases 1-3 (path registry and ID systems) can begin immediately with the existin
 
 VDR-5 gave the system structured knowledge. VDR-6 gave it computational tools and execution environments. VDR-7 gave it a complete lifecycle. VDR-8 gives it runtime working memory, a universal addressing system, and session-level state management.
 
-The data primitives — LRU caches, counters, locks, queues, stacks, ring buffers, bitsets — are fields on the KB struct, not a separate system. They scope with the KB. They inherit through the tree. They respect constraints. They log mutations. They are bounded by design. They are the LLM's working memory, giving it the same operational state tracking tools that any program would have, adapted to the turn-based execution model where nothing can block.
+The data primitives,  LRU caches, counters, locks, queues, stacks, ring buffers, bitsets,  are fields on the KB struct, not a separate system. They scope with the KB. They inherit through the tree. They respect constraints. They log mutations. They are bounded by design. They are the LLM's working memory, giving it the same operational state tracking tools that any program would have, adapted to the turn-based execution model where nothing can block.
 
 The dotted-path addressing system gives every KB, every data primitive, and every fact a structured name in a hierarchical namespace. Integer ID acceleration provides O(1) runtime access. The LLM emits readable paths in command tokens. The executor resolves them to integers once. Everything downstream is fast integer array access.
 
-Command tokens are reference selection, not text generation. The LLM picks a primitive name from a known vocabulary in the root KB and points at data by dotted path. Arguments are addresses, not values. The generative burden is minimal — selecting from a fixed set and assembling known references — which is exactly what language models are reliable at.
+Command tokens are reference selection, not text generation. The LLM picks a primitive name from a known vocabulary in the root KB and points at data by dotted path. Arguments are addresses, not values. The generative burden is minimal,  selecting from a fixed set and assembling known references,  which is exactly what language models are reliable at.
 
-Session snapshots capture the complete live state atomically. Session clones fork independent working copies. Disposable operational clones maintain system stability through controlled recycling — build to a verified state, snapshot it, run workers off it, kill them before they drift, launch fresh ones from the same frozen baseline. The work persists in persistent KBs. The drift dies with the clone.
+Session snapshots capture the complete live state atomically. Session clones fork independent working copies. Disposable operational clones maintain system stability through controlled recycling,  build to a verified state, snapshot it, run workers off it, kill them before they drift, launch fresh ones from the same frozen baseline. The work persists in persistent KBs. The drift dies with the clone.
 
 333 primitives across 20 categories. Dotted-path namespace with integer acceleration. Bounded data primitives in the KB struct. Session snapshots, clones, and disposable workers. Command tokens as compact reference assemblies. Everything in the KB. Everything queryable. Everything constrained. Everything addressable.
 
@@ -1304,7 +1304,7 @@ digit    := [0-9]
 | No leading digits | Segments start with alpha | root.vdr_1 | root.1_vdr |
 | Max depth | Segment count ≤ 16 | root.a.b.c.d | (17 levels) |
 | Max segment length | Each segment ≤ 64 chars | root.my_project | (65-char segment) |
-| Unique | No duplicate paths in registry | — | Two KBs with same path |
+| Unique | No duplicate paths in registry |,  | Two KBs with same path |
 
 ### B.3 Path Operations Reference
 
@@ -1401,19 +1401,19 @@ No session operation modifies persistent KBs. Session operations affect only the
 
 | Data Type | Shared Between Clones | Isolated Per Clone |
 |-----------|----------------------|-------------------|
-| KB facts | Yes (persistent, shared) | — |
-| KB rules | Yes (persistent, shared) | — |
-| KB constraints | Yes (persistent, shared) | — |
-| KB connections | Yes (persistent, shared) | — |
-| Counters | — | Yes (independent copies) |
-| Locks | — | Yes (independent copies) |
-| LRU caches | — | Yes (independent copies) |
-| Queues | — | Yes (independent copies) |
-| Stacks | — | Yes (independent copies) |
-| Ring buffers | — | Yes (independent copies) |
-| Bitsets | — | Yes (independent copies) |
-| Working data | — | Yes (independent copies) |
-| Scratchpad | — | Yes (independent copies) |
+| KB facts | Yes (persistent, shared) |,  |
+| KB rules | Yes (persistent, shared) |,  |
+| KB constraints | Yes (persistent, shared) |,  |
+| KB connections | Yes (persistent, shared) |,  |
+| Counters |,  | Yes (independent copies) |
+| Locks |,  | Yes (independent copies) |
+| LRU caches |,  | Yes (independent copies) |
+| Queues |,  | Yes (independent copies) |
+| Stacks |,  | Yes (independent copies) |
+| Ring buffers |,  | Yes (independent copies) |
+| Bitsets |,  | Yes (independent copies) |
+| Working data |,  | Yes (independent copies) |
+| Scratchpad |,  | Yes (independent copies) |
 
 ### D.4 Disposable Clone Lifecycle
 
@@ -1426,7 +1426,7 @@ No session operation modifies persistent KBs. Session operations affect only the
 | 4b | Drift detected | Constraint violated | Proceed to step 5 |
 | 5 | session_kill(name) | Constraint violation handler | Live state destroyed |
 | 6 | session_clone(source, new_name) | Automated reclone | Fresh clone from same snapshot |
-| 7 | Return to step 2 | — | Cycle continues |
+| 7 | Return to step 2 |,  | Cycle continues |
 
 ---
 
@@ -1545,14 +1545,14 @@ New VDR-8 modules: `data_primitives.py` (LRU, counter, lock, queue, stack, ring 
 
 | Source | Existing Tests | Planned Tests | Total |
 |--------|---------------|---------------|-------|
-| VDR-1 through VDR-4 | 705 | — | 705 |
-| VDR-6 pure primitives | — | 615 | 615 |
-| VDR-6 operational | — | 132 | 132 |
-| VDR-7 lifecycle | — | 200 | 200 |
-| VDR-8 data primitives (53 × 3) | — | 159 | 159 |
-| VDR-8 path operations (17 × 3) | — | 51 | 51 |
-| VDR-8 session operations (8 × 3) | — | 24 | 24 |
-| VDR-8 integration | — | 40 | 40 |
+| VDR-1 through VDR-4 | 705 |,  | 705 |
+| VDR-6 pure primitives |,  | 615 | 615 |
+| VDR-6 operational |,  | 132 | 132 |
+| VDR-7 lifecycle |,  | 200 | 200 |
+| VDR-8 data primitives (53 × 3) |,  | 159 | 159 |
+| VDR-8 path operations (17 × 3) |,  | 51 | 51 |
+| VDR-8 session operations (8 × 3) |,  | 24 | 24 |
+| VDR-8 integration |,  | 40 | 40 |
 | **Total** | **705** | **1221** | **1926** |
 
 ---
@@ -1607,12 +1607,12 @@ New VDR-8 modules: `data_primitives.py` (LRU, counter, lock, queue, stack, ring 
 
 | Scenario | Parent KB Has | Child KB Has | Query From Child Returns | Rationale |
 |----------|-------------|-------------|-------------------------|-----------|
-| No shadow | counter("errors", 5) | — | 5 | Inherited from parent |
+| No shadow | counter("errors", 5) |,  | 5 | Inherited from parent |
 | Child shadows | counter("errors", 5) | counter("errors", 0) | 0 | Child overrides parent |
 | Different names | counter("global_errors", 5) | counter("local_errors", 2) | Both visible by name | No conflict, both accessible |
-| Parent locked | lock("training", held) | — | held | Lock state inherited |
+| Parent locked | lock("training", held) |,  | held | Lock state inherited |
 | Child overrides lock | lock("training", held) | lock("training", free) | free | Child's local state wins |
-| Parent LRU | lru("cache", [...]) | — | Parent's entries | Read-through to parent |
+| Parent LRU | lru("cache", [...]) |,  | Parent's entries | Read-through to parent |
 | Child LRU shadows | lru("cache", [...parent...]) | lru("cache", [...child...]) | Child's entries | Child cache is independent |
 
 Inheritance rule: data primitives inherit by name through the KB tree, same as working data bindings (VDR-5 Section 6.2). Child values shadow parent values. Lookup walks from current KB to root. First match wins.
@@ -1630,7 +1630,7 @@ Inheritance rule: data primitives inherit by name through the KB tree, same as w
 | Never reused | Deleted KB's ID is retired permanently | Prevents stale references |
 | Stable across sessions | Same path always maps to same ID within a system instance | Snapshot consistency |
 | Gapless at startup | Initial batch assignment is contiguous | Array-friendly |
-| Gaps after deletion | Retired IDs create gaps in the ID space | Acceptable — array is sparse |
+| Gaps after deletion | Retired IDs create gaps in the ID space | Acceptable,  array is sparse |
 | Registry is persistent | path_to_id mapping survives restart | Required for F5 falsification |
 | Max ID | 2^31 - 1 (max i32) | Sufficient for any practical tree |
 
@@ -1701,7 +1701,7 @@ While all stored paths are absolute (starting from root), the command token pars
 | 3 | Relative path | If starts with "." or "..", resolve against active scope |
 | 4 | Bare name | If no dots or prefixes, search active KB's children first, then scope chain | 
 
-Relative paths are resolved to absolute paths before integer ID lookup. The resolved absolute path is what gets cached and logged. Relative paths never appear in KB facts, connections, or snapshots — they are a command token convenience only.
+Relative paths are resolved to absolute paths before integer ID lookup. The resolved absolute path is what gets cached and logged. Relative paths never appear in KB facts, connections, or snapshots,  they are a command token convenience only.
 
 ### I.3 Path Wildcards for Bulk Operations
 
@@ -1864,7 +1864,7 @@ All operations are bounded by the number of active KBs and their data primitive 
 
 | Severity | Condition | Action | Automatic? |
 |----------|-----------|--------|-----------|
-| Nominal | All indicators healthy | Continue | — |
+| Nominal | All indicators healthy | Continue |,  |
 | Watch | Any indicator at warning | Log, increase monitoring frequency | Yes |
 | Warn | Multiple indicators at warning | Alert operator, prepare for reclone | Yes (alert), No (action) |
 | Reclone | Any indicator at kill threshold | Kill clone, launch fresh from snapshot | Yes |
@@ -2022,7 +2022,7 @@ ScratchpadEntry = struct {
 | Captured by | session_snapshot | session_snapshot | session_snapshot |
 | Purpose | Computation trace | Application-specific rolling data | Application-specific cached data |
 
-The scratchpad is not special — it is a ring buffer that happens to be auto-created on session start and auto-written by the command executor. The LLM can create additional ring buffers for its own purposes.
+The scratchpad is not special,  it is a ring buffer that happens to be auto-created on session start and auto-written by the command executor. The LLM can create additional ring buffers for its own purposes.
 
 ---
 
@@ -2030,7 +2030,7 @@ The scratchpad is not special — it is a ring buffer that happens to be auto-cr
 
 ### Q.1 Working Data as Live State
 
-VDR-5 introduced working data sets as scoped key-value bindings on topic KBs. VDR-8 classifies working data as live state — captured by session snapshots, cleared by session reset (optionally), and isolated per clone.
+VDR-5 introduced working data sets as scoped key-value bindings on topic KBs. VDR-8 classifies working data as live state,  captured by session snapshots, cleared by session reset (optionally), and isolated per clone.
 
 This reclassification clarifies an ambiguity in VDR-5: are working data bindings persistent or ephemeral? The answer: they are live state by default. If a working data binding should survive session reset, it should be promoted to a KB fact through KB_ASSERT.
 
@@ -2053,13 +2053,13 @@ The mode is configurable per session. The default (clear_all) provides the clean
 | Queue contents (remaining) | KB_ASSERT per item + clear | KB facts | Remaining work items should survive reset |
 | LRU contents | KB_ASSERT per entry + clear | KB facts | Cached items are worth persisting |
 | Bitset completion state | KB_ASSERT(kb, completion_fact) | KB fact | Progress record is a result |
-| Lock state | Not typically promoted | — | Locks are inherently transient |
+| Lock state | Not typically promoted |,  | Locks are inherently transient |
 
 The clone workflow relies on this pattern: the clone works using live state, promotes results to persistent KBs via KB_ASSERT, and the live state is discarded on kill. The persistent assertions survive.
 
 ---
 
-## Appendix R: Scope Resolution with Mounts — Full Algorithm
+## Appendix R: Scope Resolution with Mounts,  Full Algorithm
 
 ### R.1 Scope Resolution Steps
 

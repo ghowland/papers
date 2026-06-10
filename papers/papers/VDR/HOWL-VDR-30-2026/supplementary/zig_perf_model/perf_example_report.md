@@ -5,13 +5,13 @@
 
 ## Executive Summary
 
-This report compares projected performance of VDR fixed-basis integer arithmetic against optimized floating-point implementations across three execution contexts: CPU SIMD (Zig/AVX-512), GPU tensor cores (H100), and full production pipeline (inference and diffusion generation). VDR delivers exact results — zero accumulated error, zero drift, zero epsilon testing — at every step. The question is what that costs or gains in raw throughput.
+This report compares projected performance of VDR fixed-basis integer arithmetic against optimized floating-point implementations across three execution contexts: CPU SIMD (Zig/AVX-512), GPU tensor cores (H100), and full production pipeline (inference and diffusion generation). VDR delivers exact results,  zero accumulated error, zero drift, zero epsilon testing,  at every step. The question is what that costs or gains in raw throughput.
 
 The finding is that VDR is not uniformly faster or slower. It is faster on memory-bound workloads, faster on transcendental-heavy operations, slower on pure compute-bound FMA chains, and structurally immune to costs that float pays invisibly (correction passes, warp divergence recovery, denormal handling). At full pipeline level for inference and diffusion, VDR projects to 1.5-2× throughput improvement on current hardware, using integer execution units and tensor cores that already exist.
 
 ---
 
-## Part 1: CPU SIMD — Zig on AVX-512
+## Part 1: CPU SIMD,  Zig on AVX-512
 
 ### 1.1 Matmul Inner Loop
 
@@ -28,7 +28,7 @@ The dominant cost in any ML workload. One dot product between a weight vector an
 | Elements per instruction | ~5.3 | ~5.3 |
 | Precision loss per op | ~0.5 ULP | zero |
 
-**Assessment: parity.** VDR processes 2× elements per register load at 2× instruction count. Net throughput per cycle is equivalent. VDR wins on memory-bound workloads because 32 i16 values occupy the same 64-byte cache line as 16 f32 values — same bandwidth, double the elements.
+**Assessment: parity.** VDR processes 2× elements per register load at 2× instruction count. Net throughput per cycle is equivalent. VDR wins on memory-bound workloads because 32 i16 values occupy the same 64-byte cache line as 16 f32 values,  same bandwidth, double the elements.
 
 ### 1.2 Softmax
 
@@ -56,13 +56,13 @@ The dominant cost in any ML workload. One dot product between a weight vector an
 | Instructions per element | 10-20 | 1 load |
 | Accuracy | polynomial approximation | exact |
 
-**Assessment: VDR 5-10× faster.** Activation functions effectively become free in VDR — one memory access replaces a polynomial chain.
+**Assessment: VDR 5-10× faster.** Activation functions effectively become free in VDR,  one memory access replaces a polynomial chain.
 
 ### 1.4 Layer Normalization
 
 **Float32 path:** Compute mean (reduce + divide), compute variance (reduce + divide), compute reciprocal sqrt (expensive, either Newton or hardware rsqrt with limited precision), scale and shift. Two reductions, two divisions, one rsqrt. The rsqrt is the bottleneck.
 
-**VDR i16 path:** Compute mean via integer sum and shift (if hidden dim is power of two, which is standard — 4096, 2048, etc.). Variance via integer sum of squared differences and shift. Reciprocal sqrt via precomputed table (bounded input range) or one-step integer Newton. Scale and shift via integer multiply and add.
+**VDR i16 path:** Compute mean via integer sum and shift (if hidden dim is power of two, which is standard,  4096, 2048, etc.). Variance via integer sum of squared differences and shift. Reciprocal sqrt via precomputed table (bounded input range) or one-step integer Newton. Scale and shift via integer multiply and add.
 
 | Metric | Float32 | VDR i16 |
 |---|---|---|
@@ -117,7 +117,7 @@ The dominant cost in any ML workload. One dot product between a weight vector an
 
 ---
 
-## Part 2: GPU — H100 Tensor Cores
+## Part 2: GPU,  H100 Tensor Cores
 
 ### 2.1 Hardware Execution Units
 
@@ -137,7 +137,7 @@ INT8 tensor cores deliver 2× the throughput of FP16 tensor cores. SFU delivers 
 
 **FP16 path:** 16×16×16 matrix multiply-accumulate into FP32. 512 FMAs per SM per cycle. Well-optimized by cuBLAS, near-peak utilization in practice.
 
-**VDR INT8 path:** 16×16×32 matrix multiply-accumulate into INT32. 1024 integer multiply-adds per SM per cycle. The INT32 accumulator is the pre-divmod product. Post-accumulation epilogue applies shift and mask to split into V and R — two instructions per output element, amortized across the tile.
+**VDR INT8 path:** 16×16×32 matrix multiply-accumulate into INT32. 1024 integer multiply-adds per SM per cycle. The INT32 accumulator is the pre-divmod product. Post-accumulation epilogue applies shift and mask to split into V and R,  two instructions per output element, amortized across the tile.
 
 | Metric | FP16 Tensor Core | VDR INT8 Tensor Core |
 |---|---|---|
@@ -151,7 +151,7 @@ INT8 tensor cores deliver 2× the throughput of FP16 tensor cores. SFU delivers 
 
 ### 2.3 Softmax on GPU
 
-**FP16 path:** Three phases — max reduce (warp shuffles), exp via SFU or polynomial (SFU throughput: 32 ops/SM/cycle, which is 1/4 FP32 core rate and 1/16 tensor core rate), sum reduce, divide via SFU. The two SFU-dependent phases (exp and divide) dominate. Effective throughput is SFU-limited.
+**FP16 path:** Three phases,  max reduce (warp shuffles), exp via SFU or polynomial (SFU throughput: 32 ops/SM/cycle, which is 1/4 FP32 core rate and 1/16 tensor core rate), sum reduce, divide via SFU. The two SFU-dependent phases (exp and divide) dominate. Effective throughput is SFU-limited.
 
 **VDR INT8 path:** Max reduce (warp shuffles, integer, same cost). Exp via table lookup in shared memory. Table for the relevant logit range fits in 4-8KB of shared memory. One shared memory load per element at full throughput. Sum reduce (integer, same cost). Normalize via Barrett reduction: 4 integer ops at full INT32 rate.
 
@@ -186,7 +186,7 @@ INT8 tensor cores deliver 2× the throughput of FP16 tensor cores. SFU delivers 
 
 **VDR INT8 path:** No denormals (integers have no subnormal representation). No NaN (no invalid bit pattern for integers). No infinity (bounded integer range, no overflow with correct bit width sizing). Every thread in every warp executes identical instructions on every cycle. Occupancy is perfect. No pipeline stalls from exception handling. No FTZ tradeoff because there is nothing to flush.
 
-**Assessment: VDR has zero divergence by construction.** This is not a probabilistic claim — integer arithmetic on fixed-width values has no special cases. The performance benefit is difficult to quantify because divergence events in float are data-dependent, but the engineering benefit is significant: no edge-case testing, no FTZ mode configuration, no NaN-propagation debugging.
+**Assessment: VDR has zero divergence by construction.** This is not a probabilistic claim,  integer arithmetic on fixed-width values has no special cases. The performance benefit is difficult to quantify because divergence events in float are data-dependent, but the engineering benefit is significant: no edge-case testing, no FTZ mode configuration, no NaN-propagation debugging.
 
 ### 2.7 Memory Bandwidth Utilization
 
@@ -194,7 +194,7 @@ H100 HBM bandwidth: 3.35 TB/s.
 
 **FP16 weights:** 2 bytes per parameter. 3.35 TB/s ÷ 2 = 1.675 trillion parameters per second loadable from HBM.
 
-**VDR INT8 weights:** 1 byte per parameter (V only — R is zero for frozen weights, not stored). 3.35 TB/s ÷ 1 = 3.35 trillion parameters per second loadable. Activations carry both V and R at i16 = 4 bytes, but activations are generated on-chip in shared memory and registers, not loaded from HBM for inference.
+**VDR INT8 weights:** 1 byte per parameter (V only,  R is zero for frozen weights, not stored). 3.35 TB/s ÷ 1 = 3.35 trillion parameters per second loadable. Activations carry both V and R at i16 = 4 bytes, but activations are generated on-chip in shared memory and registers, not loaded from HBM for inference.
 
 | Metric | FP16 | VDR INT8 |
 |---|---|---|
@@ -213,7 +213,7 @@ H100 HBM bandwidth: 3.35 TB/s.
 
 **Assessment: VDR has 2× shared memory headroom.** Enables better latency hiding and table co-residency.
 
-### 2.9 GPU Summary — Per-Component
+### 2.9 GPU Summary,  Per-Component
 
 | Operation | FP16 time (7B, seq=2048) | VDR INT8 time | VDR speedup |
 |---|---|---|---|
@@ -233,9 +233,9 @@ H100 HBM bandwidth: 3.35 TB/s.
 
 ---
 
-## Part 3: Full Pipeline — Production Workloads
+## Part 3: Full Pipeline,  Production Workloads
 
-### 3.1 LLM Inference — Single Batch
+### 3.1 LLM Inference,  Single Batch
 
 The memory-bound regime. Loading weights dominates. One token at a time during autoregressive generation.
 
@@ -251,7 +251,7 @@ The memory-bound regime. Loading weights dominates. One token at a time during a
 
 **Assessment: VDR ~1.85× throughput for single-batch inference.** Dominated by the 2× memory bandwidth advantage from half-size weights.
 
-### 3.2 LLM Inference — Batched (Batch = 8)
+### 3.2 LLM Inference,  Batched (Batch = 8)
 
 Compute starts mattering more. Weights are loaded once, applied to 8 sequences.
 
@@ -264,7 +264,7 @@ Compute starts mattering more. Weights are loaded once, applied to 8 sequences.
 
 **Assessment: VDR ~1.8× throughput.** The 2× tensor core advantage sustains as compute contribution grows with batch size.
 
-### 3.3 LLM Inference — Full Bore (Batch = 64+)
+### 3.3 LLM Inference,  Full Bore (Batch = 64+)
 
 Fully compute-bound. Weight loading is fully amortized. Tensor cores are the bottleneck.
 
@@ -278,7 +278,7 @@ Fully compute-bound. Weight loading is fully amortized. Tensor cores are the bot
 
 **Assessment: VDR ~1.8× throughput at full bore.** The 2× raw hardware advantage is partially offset by less mature kernel optimization. As kernels mature, this should approach 1.9×.
 
-### 3.4 Diffusion Inference — Single Image
+### 3.4 Diffusion Inference,  Single Image
 
 Standard 50-step DDIM. Latent space 64×64×4 channels. UNet or DiT backbone.
 
@@ -292,7 +292,7 @@ Standard 50-step DDIM. Latent space 64×64×4 channels. UNet or DiT backbone.
 
 **Assessment: VDR ~2× faster.** For single-image generation the chain is short enough that float drift doesn't require correction, so VDR's advantage is purely throughput.
 
-### 3.5 Diffusion — Long-Form Video (2 Hours at 24fps)
+### 3.5 Diffusion,  Long-Form Video (2 Hours at 24fps)
 
 172,800 frames × 150 diffusion steps per frame = 25,920,000 chained denoising steps. This is the workload where drift matters.
 
@@ -305,12 +305,12 @@ Standard 50-step DDIM. Latent space 64×64×4 channels. UNet or DiT backbone.
 | Correction passes needed | every ~1000 steps: ~25,920 passes | zero |
 | Correction overhead | ~5-8% additional compute | zero |
 | Adjusted compute time | ~113-117 hours | ~54 hours |
-| Visual artifact risk from drift | nonzero — color shift, temporal flicker | zero |
+| Visual artifact risk from drift | nonzero,  color shift, temporal flicker | zero |
 | Deterministic reproduction | no (platform-dependent rounding) | yes (bit-identical anywhere) |
 
-**Assessment: VDR ~2.1× faster with exact results.** The throughput advantage compounds with elimination of correction passes. The qualitative advantage — zero visual artifacts from arithmetic drift, bit-identical reproduction across platforms — is potentially more valuable than the throughput improvement for production video generation.
+**Assessment: VDR ~2.1× faster with exact results.** The throughput advantage compounds with elimination of correction passes. The qualitative advantage,  zero visual artifacts from arithmetic drift, bit-identical reproduction across platforms,  is potentially more valuable than the throughput improvement for production video generation.
 
-### 3.6 Training — Forward + Backward
+### 3.6 Training,  Forward + Backward
 
 Training is compute-bound and requires gradients. VDR carries gradients at i64 (64-bit accumulation). The backward pass doubles the GEMM count.
 
@@ -351,7 +351,7 @@ VDR cost: zero. Integer arithmetic is associative and commutative. Results are b
 
 ### 4.4 Epsilon Parameter Tuning
 
-Float implementations require epsilon values for numerical stability: layer norm epsilon, Adam optimizer epsilon, softmax temperature scaling. These are hyperparameters that should not exist — they are artifacts of float imprecision. Each one is a potential source of training instability if set wrong.
+Float implementations require epsilon values for numerical stability: layer norm epsilon, Adam optimizer epsilon, softmax temperature scaling. These are hyperparameters that should not exist,  they are artifacts of float imprecision. Each one is a potential source of training instability if set wrong.
 
 VDR cost: zero. No epsilon needed because division by small values doesn't produce catastrophic cancellation and zero testing is exact.
 
@@ -369,7 +369,7 @@ VDR cost: zero. No epsilon needed because division by small values doesn't produ
 | GeLU/SiLU | SFU 32 ops/SM | table lookup full rate | 4-6× faster | SFU |
 | Layer norm rsqrt | SFU 32 ops/SM | table/Newton full rate | 2-3× faster | SFU |
 | Layer norm div | float divide | bit shift | 3-4× faster | float division |
-| Residual add | one float add | V add + R add + carry | 0.7× (slower) | none — float wins here |
+| Residual add | one float add | V add + R add + carry | 0.7× (slower) | none,  float wins here |
 | Embedding lookup | 2B per entry | 1B per entry | 2× bandwidth | memory |
 | Diffusion chain step | 2 fmul + 1 fadd | 2 imul + 2 shift + 2 mask + 2 iadd | 0.7× raw, parity net | correction passes |
 
@@ -405,7 +405,7 @@ VDR cost: zero. No epsilon needed because division by small values doesn't produ
 
 VDR fixed-basis integer arithmetic on existing hardware projects to 1.5-2× throughput improvement across inference and diffusion workloads, with exact results at every step. The advantage comes from three sources: INT8 tensor cores deliver 2× FP16 throughput, half-size weights double effective memory bandwidth, and table lookups for transcendentals eliminate the SFU bottleneck that constrains every float pipeline.
 
-The single operation where float is faster — residual addition — contributes negligibly to total pipeline compute. Every other operation is either at parity or faster under VDR, with the largest gains on SFU-dependent operations (softmax, activations, normalization) where VDR is 3-6× faster.
+The single operation where float is faster,  residual addition,  contributes negligibly to total pipeline compute. Every other operation is either at parity or faster under VDR, with the largest gains on SFU-dependent operations (softmax, activations, normalization) where VDR is 3-6× faster.
 
 For long-chain workloads like video generation, VDR's advantage compounds: zero drift means zero correction passes, zero visual artifacts from accumulated error, and bit-identical reproduction across platforms and runs. The total advantage for a 2-hour video generation workload is approximately 2.1× throughput with qualitatively better output.
 

@@ -1,4 +1,4 @@
-# GPU TECH SPEC FOR VDR-LLM-PROLOG — LLM-COMPACT FORM
+# GPU TECH SPEC FOR VDR-LLM-PROLOG,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → architecture → execution_classes → numeric_model → q335_gpu → vdr_node → arithmetic_kernels → ml_path → kb_storage → scope → prolog_execution → primitives → live_state → sessions → provenance → confidence → grammar_decode → orchestration → fn_remainder → memory → indexing → operational_boundary → error_handling → determinism → performance → phases → relationships → section_index → decode_legend
 

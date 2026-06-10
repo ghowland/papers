@@ -22,7 +22,7 @@ for _ in range(100):
     x += 1/13
 for _ in range(100):
     x -= 1/13
-print(x == 1/7)            # False — 2.78e-16 error
+print(x == 1/7)            # False,  2.78e-16 error
 ```
 
 ### The VDR Equivalent
@@ -30,7 +30,7 @@ print(x == 1/7)            # False — 2.78e-16 error
 ```python
 from vdr import VDR
 
-x = VDR(1, 3)              # exact 1/3 — three integers, zero truncation
+x = VDR(1, 3)              # exact 1/3,  three integers, zero truncation
 y = VDR(1, 7)              # exact 1/7
 z = x + y                  # exact 10/21
 
@@ -40,7 +40,7 @@ for _ in range(100):
     x = x + VDR(1, 13)
 for _ in range(100):
     x = x - VDR(1, 13)
-assert x == VDR(1, 7)      # True — exactly zero error
+assert x == VDR(1, 7)      # True,  exactly zero error
 ```
 
 ### Migration Pattern
@@ -116,7 +116,7 @@ print("Exact residual:", residual.to_fraction())
 
 1. **Denominator explosion.** Fraction lets D grow without bound. After 1000 multiplications, denominators can have thousands of digits. VDR with a fixed frame keeps D stable via divmod.
 
-2. **No remainder slot.** When you need structure beyond a single rational — nested values, functional remainders for sqrt/trig/exp — Fraction has no mechanism. VDR's R slot handles this natively.
+2. **No remainder slot.** When you need structure beyond a single rational,  nested values, functional remainders for sqrt/trig/exp,  Fraction has no mechanism. VDR's R slot handles this natively.
 
 3. **No framework.** Fraction gives you arithmetic. VDR gives you arithmetic plus linear algebra, discrete calculus, 38 math domains, and a complete ML/physics/signal processing stack.
 
@@ -133,7 +133,7 @@ z = x + y               # Fraction(13, 21)
 from vdr import VDR
 x = VDR(1, 3)
 y = VDR(2, 7)
-z = x + y               # VDR(13, 21) — same value
+z = x + y               # VDR(13, 21),  same value
 
 # Converting between them
 from fractions import Fraction
@@ -170,7 +170,7 @@ print("Overflow captured in R, zero loss")
 
 ### Why Migrate
 
-mpmath provides arbitrary-precision decimal arithmetic. It's excellent for what it does, but it still truncates — at 50 digits, or 1000 digits, it's still truncation. Each operation discards information.
+mpmath provides arbitrary-precision decimal arithmetic. It's excellent for what it does, but it still truncates,  at 50 digits, or 1000 digits, it's still truncation. Each operation discards information.
 
 VDR is categorically different. `[1, 3, 0]` is exact. No digits to configure. No truncation at any precision.
 
@@ -189,7 +189,7 @@ print(z)   # 0.47619... (50 digits, then truncated)
 from vdr import VDR
 x = VDR(1, 3)
 y = VDR(1, 7)
-z = x + y   # [10, 21, 0] — exact
+z = x + y   # [10, 21, 0],  exact
 
 # For decimal output at the end:
 from vdr.export import to_decimal
@@ -393,7 +393,7 @@ The module contains functions and constants. Tests call the functions and assert
 
 ```python
 """
-vdr.math.my_domain — Exact my-domain computations.
+vdr.math.my_domain,  Exact my-domain computations.
 
     from vdr.math.my_domain import my_function, MY_CONSTANT
 
@@ -473,7 +473,7 @@ def my_matrix_check(A):
 
 ## Step 4: Handle Irrational-Like Quantities
 
-When your domain needs sqrt, trig, exp, log — use the transcendental module.
+When your domain needs sqrt, trig, exp, log,  use the transcendental module.
 
 ```python
 from vdr.math.transcendental import sqrt_newton, sin_series, cos_series, exp_series
@@ -518,7 +518,7 @@ GOLDEN_RATIO_FN = make_newton_fn(
 Tests go in `tests/gym/test_gym_XX.py`. They call library functions and assert exact results.
 
 ```python
-"""Gym XX — My Domain. N/N tests."""
+"""Gym XX,  My Domain. N/N tests."""
 
 import pytest
 from vdr import VDR
@@ -621,7 +621,7 @@ Add your module to the appropriate `__init__.py`:
 #     my_domain
 ```
 
-No import is needed in `__init__.py` — users import directly:
+No import is needed in `__init__.py`,  users import directly:
 
 ```python
 from vdr.math.my_domain import my_function
@@ -637,7 +637,7 @@ Here's a full domain module from scratch.
 
 ```python
 """
-vdr.math.bezier — Exact rational Bezier curve computation.
+vdr.math.bezier,  Exact rational Bezier curve computation.
 
     from vdr.math.bezier import bezier_point, bezier_derivative, de_casteljau
 
@@ -705,7 +705,7 @@ def bezier_point(control_points, t):
 
 def de_casteljau(control_points, t):
     """
-    De Casteljau algorithm — numerically stable Bezier evaluation.
+    De Casteljau algorithm,  numerically stable Bezier evaluation.
 
     Recursive linear interpolation. Each step is one VDR multiply and add.
     Exact at every level.
@@ -812,7 +812,7 @@ def bezier_length_squared_segments(control_points, n_segments):
 ### Tests: `tests/gym/test_gym_bezier.py`
 
 ```python
-"""Gym — Rational Bezier curves."""
+"""Gym,  Rational Bezier curves."""
 
 import pytest
 from vdr import VDR
@@ -898,7 +898,7 @@ class TestSplit:
 
 5. **Every function documents I/O/E** (Input, Output, Errors) and shows an example in the docstring.
 
-6. **Every function returns VDR** (or Vec, Mat, bool, int — never float).
+6. **Every function returns VDR** (or Vec, Mat, bool, int,  never float).
 
 7. **Use `==` for verification**, not tolerance.
 

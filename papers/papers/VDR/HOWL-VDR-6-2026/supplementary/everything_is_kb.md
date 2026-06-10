@@ -9,7 +9,7 @@ The insight that completes the architecture is that there is no special category
 
 There is one data structure. It holds facts, rules, constraints, and working data. It has a parent, children, and a name. It can be activated, deactivated, snapshotted, tagged, grouped, queried, surfaced, and composed with other KBs.
 
-Every operation in the system — from exact arithmetic to conversation tracking to file management to prompt assembly — operates on KBs. The system does not have conversations and also knowledge bases. The conversations are knowledge bases. The system does not have projects and also knowledge bases. The projects are knowledge bases. The system does not have tags and also knowledge bases. The tags are knowledge bases that reference other KBs.
+Every operation in the system,  from exact arithmetic to conversation tracking to file management to prompt assembly,  operates on KBs. The system does not have conversations and also knowledge bases. The conversations are knowledge bases. The system does not have projects and also knowledge bases. The projects are knowledge bases. The system does not have tags and also knowledge bases. The tags are knowledge bases that reference other KBs.
 
 ---
 
@@ -36,7 +36,7 @@ The conversation KB has:
 - Working data: values established during the conversation
 - Children: sub-conversations, branches, sidebar discussions
 
-The response content itself can be a reference to another KB rather than inline text. Long responses, code outputs, data tables — these are stored in their own KBs and referenced by address. The conversation KB stays lightweight. The content KBs hold the bulk.
+The response content itself can be a reference to another KB rather than inline text. Long responses, code outputs, data tables,  these are stored in their own KBs and referenced by address. The conversation KB stays lightweight. The content KBs hold the bulk.
 
 ### 2.1 Conversation Selection
 
@@ -108,10 +108,10 @@ The project KB contains everything about the project: its configuration, its con
 User: "/projects"
 
 System surfaces:
-  [active] project_vdr — 24 modules, 705 tests, 6 conversations
-  [active] project_story_b — 3 characters, 1 chapter, 2 conversations  
-  [parked] project_taxes_2025 — filed, archived
-  [parked] project_garden — 12 plants tracked, last active March
+  [active] project_vdr,  24 modules, 705 tests, 6 conversations
+  [active] project_story_b,  3 characters, 1 chapter, 2 conversations  
+  [parked] project_taxes_2025,  filed, archived
+  [parked] project_garden,  12 plants tracked, last active March
 
 User clicks: project_vdr
   → activates kb_project_vdr and all children
@@ -174,9 +174,9 @@ User: "/show tag:exact_arithmetic"
 
 System surfaces:
   tag: exact_arithmetic
-    project_vdr — 24 modules, 705 tests
-    project_math_series — MATH-3, MATH-4, Q335 basis
-    note_fraction_arithmetic — reference notes on exact rationals
+    project_vdr,  24 modules, 705 tests
+    project_math_series,  MATH-3, MATH-4, Q335 basis
+    note_fraction_arithmetic,  reference notes on exact rationals
 
 User: "/group tag:exact_arithmetic tag:python as tag:exact_python"
 
@@ -224,7 +224,7 @@ KB: view_denominator_growth
         Denom > 2^32.
 ```
 
-Views are surfaceable like any KB. "/show view:all_pending" runs the query and displays the results. The view does not cache — it recomputes from current state every time. But it can be snapshotted ("snapshot view:all_pending as pending_may16") to freeze the results at a point in time, creating a new KB with the computed facts.
+Views are surfaceable like any KB. "/show view:all_pending" runs the query and displays the results. The view does not cache,  it recomputes from current state every time. But it can be snapshotted ("snapshot view:all_pending as pending_may16") to freeze the results at a point in time, creating a new KB with the computed facts.
 
 ---
 
@@ -443,7 +443,7 @@ Tags:
 Views:
   all_pending (7 items currently)
   stale_topics (2 items currently)
-  constraint_violations (0 — all clear)
+  constraint_violations (0,  all clear)
 
 Recent conversations:
   conv_vdr_may16 (today, 50 turns, active)
@@ -518,11 +518,11 @@ Because everything is a KB, you can query across everything:
 
 ?- kb_exists(KB), kb_last_modified(KB, Date), 
    Date < date(2026, 4, 1).
-% KBs not modified since April — candidates for archiving
+% KBs not modified since April,  candidates for archiving
 
 ?- tag_contains(Tag, project_vdr), 
    tag_contains(Tag, project_math_series).
-% Tags that contain both VDR and math series — shared categories
+% Tags that contain both VDR and math series,  shared categories
 
 ?- conversation(C), turn_count(C, N), N > 40,
    contains_binding(C, Key, _), 
@@ -532,11 +532,11 @@ Because everything is a KB, you can query across everything:
 
 ?- kb_exists(KB), kb_constraint_count(KB, 0), 
    kb_type(KB, project).
-% Projects with no constraints — governance gap
+% Projects with no constraints,  governance gap
 
 ?- reminder(R, _, _, _, _, acknowledged(false), _),
    reminder_age(R, Age), Age > 10.
-% Unacknowledged reminders older than 10 turns — user attention needed
+% Unacknowledged reminders older than 10 turns,  user attention needed
 ```
 
 This is system introspection. The system can reason about its own structure. "Am I organized well?" is a query. "What have I forgotten?" is a query. "What is growing without bounds?" is a query. "Which KBs are redundant?" is a query.

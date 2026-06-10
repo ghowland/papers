@@ -1,7 +1,7 @@
 ```zig
 // ============================================================
-// VDRProlog — Complete Function Signature Reference
-// Zig 0.14 — Every module, every public function
+// VDRProlog,  Complete Function Signature Reference
+// Zig 0.14,  Every module, every public function
 // ============================================================
 
 // ============================================================

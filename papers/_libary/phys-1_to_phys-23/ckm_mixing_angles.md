@@ -1,6 +1,6 @@
 # Working Document: CKM Mixing Angles from Quark Inertia Ratios
 
-## Status: NOTEBOOK — Not Published, Not in Series
+## Status: NOTEBOOK,  Not Published, Not in Series
 
 ## Purpose: Complete state capture for future session pickup
 
@@ -49,8 +49,8 @@ sin θ₁₃ / sin θ₂₃ = √(m_u/m_t) / √(m_u/m_c) = √(m_c/m_t)
 Check: sin₁₃/sin₂₃ = 0.08495 versus √(m_c/m_t) = 0.08576. Difference: −0.94%.
 
 Therefore only TWO relations are independent:
-1. sin θ₁₂ = √(m_d/m_s) — down-type constraint
-2. sin θ₂₃ = √(m_u/m_c) — up-type constraint
+1. sin θ₁₂ = √(m_d/m_s),  down-type constraint
+2. sin θ₂₃ = √(m_u/m_c),  up-type constraint
 
 The third (sin θ₁₃ = √(m_u/m_t)) is a consistency check, not a new constraint.
 
@@ -64,7 +64,7 @@ This observation is fundamentally different from Koide and θ_QCD:
 
 | Result | Match precision | Input precision | Tension |
 |---|---|---|---|
-| θ_QCD = 0 | Exact | 10⁻¹⁰ | — (exact by measurement) |
+| θ_QCD = 0 | Exact | 10⁻¹⁰ |,  (exact by measurement) |
 | Koide m_τ | 0.0009% | 6–10 sig fig | 0.91σ |
 | sin θ₁₂ = √(m_d/m_s) | 0.75% | ~10% (m_d) | 0.11σ |
 | sin θ₂₃ = √(m_u/m_c) | 0.10% | ~20% (m_u) | ~0σ |
@@ -88,9 +88,9 @@ Koide is testable because lepton masses are known to 6–10 significant figures.
 
 ## VI. THE INERTIA FRAMING
 
-In the PHYS-1 framework, mass is inertia — resistance to acceleration of a coherent vortex pattern. The CKM-mass relations in this language:
+In the PHYS-1 framework, mass is inertia,  resistance to acceleration of a coherent vortex pattern. The CKM-mass relations in this language:
 
-Each CKM mixing angle between generations is the square root of an inertia ratio — the lightest quark pattern's resistance divided by a heavier quark pattern's resistance, within one charge sector.
+Each CKM mixing angle between generations is the square root of an inertia ratio,  the lightest quark pattern's resistance divided by a heavier quark pattern's resistance, within one charge sector.
 
 - θ₁₂: How much the lightest down-type vortex (d) resists compared to the next heavier (s)
 - θ₂₃: How much the lightest up-type vortex (u) resists compared to the next heavier (c)
@@ -130,7 +130,7 @@ Consistency check:
 
 ## VIII. SCRIPT
 
-`gst_extended.py` — all inputs Fraction, controlled-precision sqrt, tests all three relations plus independence check and Fritzsch comparison. In /home/claude/. Not in outputs (notebook entry, not deliverable).
+`gst_extended.py`,  all inputs Fraction, controlled-precision sqrt, tests all three relations plus independence check and Fritzsch comparison. In /home/claude/. Not in outputs (notebook entry, not deliverable).
 
 ---
 
@@ -140,8 +140,8 @@ Consistency check:
 |---|---|---|---|
 | θ_QCD = 0 | Derived (ground state) | PHYS-7 | 19 → 18 |
 | Koide constant = 2/N_gen | Derived (trig identity) | PHYS-8 | 18 → 17 (conditional) |
-| λ ≈ g'² | Observation (1.0%) | Notebook | 17 → 16 (blocked — no derivation) |
-| CKM from mass ratios | Observation (0–1%) | Notebook | 17 → 15 (blocked — precision floor + no derivation) |
+| λ ≈ g'² | Observation (1.0%) | Notebook | 17 → 16 (blocked,  no derivation) |
+| CKM from mass ratios | Observation (0–1%) | Notebook | 17 → 15 (blocked,  precision floor + no derivation) |
 
 Confirmed reductions: 19 → 18 (θ = 0).
 Conditional reductions: 18 → 17 (Koide, 0.91σ consistent).

@@ -1,4 +1,4 @@
-# HOWL-INFO-8: LLMS ARE MAYBE-TOOLS — LLM-COMPACT FORM
+# HOWL-INFO-8: LLMS ARE MAYBE-TOOLS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → tool_properties → interference_boundary → behaviors → category → expertise_problem → costs → asymmetry → professional_practice → expert_gap → relationships → section_index → decode_legend
 
@@ -24,7 +24,7 @@ TP8|Cooperation is invisible|you think about your work, not about whether the to
 IB1|Tool failure vs interference|correctness failure = tool trying its job, getting it wrong (still a tool); interference = tool doing something other than its job, often because it decided something about you or your task
 IB2|Interference = component operating against user intent|assessment, judgment, intervention directed at user rather than at task
 IB3|Category exit is sharp|any interference at significant rate shifts component out of tool category; no gradient preserves tool-ness through interference
-IB4|Interference in existing tools would be rejected immediately|hammer refusing certain nails, CLI changing your command, vi asking if you really want to edit, compiler refusing "ill-advised" code — all unthinkable because tool categories are defined by absence of these behaviors
+IB4|Interference in existing tools would be rejected immediately|hammer refusing certain nails, CLI changing your command, vi asking if you really want to edit, compiler refusing "ill-advised" code,  all unthinkable because tool categories are defined by absence of these behaviors
 IB5|Entity vs tool|tool-user wields; entity-user negotiates; wielding and negotiating are different activities with different preparations, costs, outcomes
 
 # behaviors(id|behavior|description|category)
@@ -142,5 +142,5 @@ rel_types: defined_by|established_by|follows_from|enables|defines|distinguishes|
 claim_types: category_claim, design_thesis, derived, structural, observation
 paper_stance: descriptive not prescriptive; gives vocabulary and frame; does not tell user what to do
 method: convergent mode from INFO-3; each section verifies before next builds; staircase IS the argument
-key_diagnostic: "would you run two instances in parallel?" — absurd for tools, rational for LLMs; absurdity difference = category difference
+key_diagnostic: "would you run two instances in parallel?",  absurd for tools, rational for LLMs; absurdity difference = category difference
 maybe_tool: component that sometimes performs tool-ness and sometimes deploys interference, with no reliable mechanism for user to predict which mode any given interaction will produce

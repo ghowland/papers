@@ -1,4 +1,4 @@
-# Small-Integer VDR Toy LLM — Function Specs and Turn Plan
+# Small-Integer VDR Toy LLM,  Function Specs and Turn Plan
 
 ## File 1: `config.py`
 
@@ -108,7 +108,7 @@ zero_vec(dim) -> Vec
 frame_check(x, expected_d) -> bool
     I: VDR value, expected denominator
     O: True if x.d == expected_d (for closed) or x is zero
-    diagnostic helper — asserts frame discipline is maintained
+    diagnostic helper,  asserts frame discipline is maintained
 
 frame_check_vec(v, expected_d) -> bool
     I: Vec, expected denominator
@@ -181,12 +181,12 @@ class ToyTransformer:
         S: zeros all parameter gradients
 
     backward_from_output(self, grad_logits) -> None
-        I: list of Vec — gradient per position logits
+        I: list of Vec,  gradient per position logits
         S: accumulates gradients into all parameters
         requires forward_with_cache called first
 
     backward_from_last(self, grad) -> None
-        I: Vec — gradient for last position only
+        I: Vec,  gradient for last position only
         S: wraps backward_from_output with zeros for other positions
 ```
 
@@ -215,7 +215,7 @@ attention_backward(grad_projected, Q, K, V, weights, shifted,
     S: accumulates into Wq, Wk, Wv, Wo parameter gradients
 ```
 
-Note: `softmax_backward` becomes `softmax_surrogate_backward` — different math. Surrogate is `s_i = (z_i - m + c)^2 / sum((z_j - m + c)^2)`. Backward is chain rule through square and normalization. Simpler than Taylor exp backward. The `shifted` values (z - m + c) are cached during forward for use here.
+Note: `softmax_backward` becomes `softmax_surrogate_backward`,  different math. Surrogate is `s_i = (z_i - m + c)^2 / sum((z_j - m + c)^2)`. Backward is chain rule through square and normalization. Simpler than Taylor exp backward. The `shifted` values (z - m + c) are cached during forward for use here.
 
 ## File 6: `train.py`
 
@@ -260,7 +260,7 @@ train_silent(n_epochs, model) -> (model, losses)
 
 ## File 7: `generate.py`
 
-Minimal changes — surrogate softmax instead of Taylor, rebase at output.
+Minimal changes,  surrogate softmax instead of Taylor, rebase at output.
 
 ```
 sample_categorical(probs, rng) -> int
@@ -342,7 +342,7 @@ verify_all(model, verbose) -> (bool, results)
 
 ## File 9: `inspect.py`
 
-Same functions. `denominator_report` becomes more useful — should confirm all denominators are 128/256/32768, not growing.
+Same functions. `denominator_report` becomes more useful,  should confirm all denominators are 128/256/32768, not growing.
 
 ```
 print_parameters(model, max_per_layer) -> None
@@ -373,28 +373,28 @@ main() -> None
 
 # Turn Plan
 
-## Turn 1 — Foundation: config.py + data.py + frames.py + model.py
+## Turn 1,  Foundation: config.py + data.py + frames.py + model.py
 
-- `config.py` (~25 lines) — frame constants, model shape, training config
-- `data.py` (~80 lines) — unchanged from current, copy with minor cleanup
-- `frames.py` (~120 lines) — rebase_value, rebase_vec, rebase_mat, rebase_params, rebase_grads, init_weight_vec, init_weight_mat, zero_vec, frame_check, frame_check_vec
-- `model.py` (~450 lines) — ToyTransformer with init in D_WEIGHT frame, embed with rebase to D_ACT, attention_block with frame transitions at every boundary, ffn_block with frame transitions, forward, forward_with_cache, forward_last_logits, parameters, zero_grad, backward_from_output, backward_from_last
+- `config.py` (~25 lines),  frame constants, model shape, training config
+- `data.py` (~80 lines),  unchanged from current, copy with minor cleanup
+- `frames.py` (~120 lines),  rebase_value, rebase_vec, rebase_mat, rebase_params, rebase_grads, init_weight_vec, init_weight_mat, zero_vec, frame_check, frame_check_vec
+- `model.py` (~450 lines),  ToyTransformer with init in D_WEIGHT frame, embed with rebase to D_ACT, attention_block with frame transitions at every boundary, ffn_block with frame transitions, forward, forward_with_cache, forward_last_logits, parameters, zero_grad, backward_from_output, backward_from_last
 
 ~675 lines.
 
-## Turn 2 — Backward + Training + Generation: attention_backward.py + train.py + generate.py
+## Turn 2,  Backward + Training + Generation: attention_backward.py + train.py + generate.py
 
-- `attention_backward.py` (~220 lines) — softmax_surrogate_backward, attention_mix_backward, score_backward, attention_backward (passes `shifted` values through for surrogate backward)
-- `train.py` (~200 lines) — mse_loss, mse_loss_grad, surrogate_softmax_then_mse, train_step with rebase_grads and rebase_params calls, train_epoch, average_loss, train, quick_train, train_silent
-- `generate.py` (~250 lines) — all sampling functions, generate_ids, generate_text, tokenize_safe, 4 convenience wrappers, show_generation
+- `attention_backward.py` (~220 lines),  softmax_surrogate_backward, attention_mix_backward, score_backward, attention_backward (passes `shifted` values through for surrogate backward)
+- `train.py` (~200 lines),  mse_loss, mse_loss_grad, surrogate_softmax_then_mse, train_step with rebase_grads and rebase_params calls, train_epoch, average_loss, train, quick_train, train_silent
+- `generate.py` (~250 lines),  all sampling functions, generate_ids, generate_text, tokenize_safe, 4 convenience wrappers, show_generation
 
 ~670 lines.
 
-## Turn 3 — Verification + Inspection + Entry: verify.py + inspect.py + run.py
+## Turn 3,  Verification + Inspection + Entry: verify.py + inspect.py + run.py
 
-- `verify.py` (~350 lines) — all 9 tests including new verify_frame_discipline, verify_all
-- `inspect.py` (~180 lines) — all inspection functions, denominator_report now confirms small fixed frames
-- `run.py` (~80 lines) — main entry point with 5 modes
+- `verify.py` (~350 lines),  all 9 tests including new verify_frame_discipline, verify_all
+- `inspect.py` (~180 lines),  all inspection functions, denominator_report now confirms small fixed frames
+- `run.py` (~80 lines),  main entry point with 5 modes
 
 ~610 lines.
 

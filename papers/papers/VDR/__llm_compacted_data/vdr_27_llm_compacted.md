@@ -1,4 +1,4 @@
-# VDR-27 BEYOND LANGUAGE MODELS — LLM-COMPACT FORM
+# VDR-27 BEYOND LANGUAGE MODELS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → domains → chain_analysis → float_failures → conservation → prior_validation → relationships → sections
 

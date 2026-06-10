@@ -1,4 +1,4 @@
-# VDR ARITHMETIC: VALUE, DECIMAL, REMAINDER — LLM-COMPACT FORM
+# VDR ARITHMETIC: VALUE, DECIMAL, REMAINDER,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → concepts → operations → extensions → boundaries → relationships → sections
 
@@ -12,7 +12,7 @@ P6|Two equality relations|Structural equality (slot-by-slot) and normalized valu
 P7|The code is the specification|Every claim verified by executable tests; implementation is normative
 
 # concepts(id|name|category|definition)
-C1|VDR Triple|core|Ordered triple [V, D, R] — V: integer numerator, D: nonzero integer denominator frame, R: remainder
+C1|VDR Triple|core|Ordered triple [V, D, R],  V: integer numerator, D: nonzero integer denominator frame, R: remainder
 C2|Value Slot (V)|slot|Arbitrary-precision integer; settled numerator component in the current denominator frame
 C3|Denominator Slot (D)|slot|Nonzero arbitrary-precision integer; defines the frame in which V and R are interpreted
 C4|Remainder Slot (R)|slot|Exact unresolved structure; atomic integer, composite (integer base + finite ordered list of child VDRs), or functional
@@ -24,7 +24,7 @@ C9|Functional Remainder|remainder-form|Python callable f(depth:int)→VDR with n
 C10|Structural Equality (≡s)|equality|Slot-by-slot recursive match of all V, D, R values
 C11|Normalized Value Equality (≡n)|equality|Structural equality after normalization; used by Python == operator
 C12|Scalar Projection (Π)|operation|Recursive evaluation: Π([V,D,R]) = (V + Π(R))/D for comparison with legacy systems
-C13|Denominator-Sensitive Completion|semantics|Remainder is interpreted within parent's denominator frame — divided by D, not added externally
+C13|Denominator-Sensitive Completion|semantics|Remainder is interpreted within parent's denominator frame,  divided by D, not added externally
 C14|Normalization|procedure|Deterministic canonical form: sign convention → GCD reduction → child normalization → canonical ordering → same-D merge → closed-form preference; idempotent
 C15|Lift|operation|Remainder transport operator; rescales R when parent denominator frame changes by factor k
 C16|Rebase|operation|Changes top-level denominator while preserving exact value; closed rebase (integer result) or active rebase (mismatch witness)
@@ -49,7 +49,7 @@ CA4|Division (V₂≠0)|[V₁D₂, D₁V₂, 0]|—
 # Additive inverse of [V,D,0] is [-V,D,0]
 
 # active_arithmetic(id|operation|mechanism)
-AA1|Same-D addition|[V₁+V₂, D, R₁⊕R₂] — bases summed, child lists concatenated, then normalized
+AA1|Same-D addition|[V₁+V₂, D, R₁⊕R₂],  bases summed, child lists concatenated, then normalized
 AA2|Different-D addition|Cross-scale to D₁·D₂ frame; lift(R₁,D₂) + lift(R₂,D₁)
 AA3|Active multiplication|Frame D₁·D₂, closed numerator V₁·V₂; remainder captures three cross-terms: V₁·R₂, V₂·R₁, R₁·R₂ (projected)
 AA4|Active division (by closed)|Multiply by reciprocal [D₂,V₂,0]
@@ -59,7 +59,7 @@ AA6|Negation|-[V,D,R] = [-V, D, -R]; remainder negation negates base and all chi
 # lift_rules(id|input_form|formula)
 L1|Atomic remainder r|lift(r, k) = kr
 L2|Composite remainder|lift(r + X₁+…+Xₙ, k) = kr + lift(X₁,k) + … + lift(Xₙ,k)
-L3|Child VDR triple|lift([V,D,R], k) = [kV, D, lift(R,k)] — D preserved, V and R scaled
+L3|Child VDR triple|lift([V,D,R], k) = [kV, D, lift(R,k)],  D preserved, V and R scaled
 # Properties: identity at k=1, negation at k=-1, multiplicative composition, distributes over remainder addition, preserves zero
 
 # rebase_rules(id|type|condition|construction)
@@ -125,11 +125,11 @@ A21|Domain-specific interpretations may map VDR to physical semantics if foundat
 
 # implementation(id|aspect|detail)
 IM1|Language|Python 3.8+, no required external dependencies beyond stdlib
-IM2|Core module|vdr.py — VDR, Remainder, normalization, equality, closed arithmetic, rebase, lift, projection
-IM3|Active mul module|active_mul.py — active multiplication and division
-IM4|Functional module|fn.py — FnRemainder, resolve, discrete calculus
-IM5|LinAlg module|linalg.py — Vec, Mat, parser, JSON serialization, LaTeX export
-IM6|Export module|export.py — lossy decimal/float export boundary
+IM2|Core module|vdr.py,  VDR, Remainder, normalization, equality, closed arithmetic, rebase, lift, projection
+IM3|Active mul module|active_mul.py,  active multiplication and division
+IM4|Functional module|fn.py,  FnRemainder, resolve, discrete calculus
+IM5|LinAlg module|linalg.py,  Vec, Mat, parser, JSON serialization, LaTeX export
+IM6|Export module|export.py,  lossy decimal/float export boundary
 IM7|Optional dep|mpmath for arbitrary-precision decimal export; without it, manual long division from exact Fraction
 IM8|Operators|+ - * / == != < <= > >= -x abs(x) float(x) hash(x)
 IM9|Hash|Computed from normalized form; VDR works as dict keys and set members
@@ -151,7 +151,7 @@ CL5|Closed subclass arithmetically closed under four operations|structural|CA1,C
 CL6|Normalization is deterministic, finite, idempotent|structural|C14
 CL7|Lift composes multiplicatively: lift(lift(R,a),b) = lift(R,ab)|structural|C15
 CL8|Rebase preserves value equality, not structural equality|structural|C16
-CL9|Active division is v1 compromise — divisor remainder structure lost|limitation|AA5,B3
+CL9|Active division is v1 compromise,  divisor remainder structure lost|limitation|AA5,B3
 CL10|VDR does not replace real numbers or continuous calculus|boundary|B2,B6
 
 # benchmark_data(id|test|parameter|result)

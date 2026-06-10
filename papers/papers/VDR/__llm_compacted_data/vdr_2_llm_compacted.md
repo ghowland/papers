@@ -1,4 +1,4 @@
-# VDR GYM: EXACT ARITHMETIC ACROSS FIFTEEN DOMAINS — LLM-COMPACT FORM
+# VDR GYM: EXACT ARITHMETIC ACROSS FIFTEEN DOMAINS,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → domains → exercises → failures → boundaries → findings → relationships → sections
 
@@ -53,7 +53,7 @@ F6|03|√10 convergent error|<0.01|>0.01|Same as F2|Same fix
 F7|15|Tent map period on 1/7|period 6|period 3|Wrong expected period; tent map ≠ multiplication by 2 mod 1|Change expected to 3
 
 # chaos_boundary(id|aspect|detail)
-CH1|Core finding|Exact representation of chaotic orbits has exponential cost — mathematical fact, not VDR defect
+CH1|Core finding|Exact representation of chaotic orbits has exponential cost,  mathematical fact, not VDR defect
 CH2|Mechanism|Logistic map r=4: denominator digits ≈ 2^n after n steps; each multiplication O(n²) in digit count
 CH3|Growth rate|Step 10: ~258 digits; step 15: ~8000; step 20: ~260000; step 30: ~260000000
 CH4|Lyapunov connection|Lyapunov exponent ln(2) means significant digits needed grows linearly → representation grows exponentially
@@ -62,8 +62,8 @@ CH6|Periodic orbits are free|Tent map on 1/7: denominator stays at 7 forever; Ar
 CH7|Practical scope|VDR suitable for: short-time exact chaos (10-15 steps), non-chaotic iteration of any length, exact period detection, exact sensitivity analysis for bounded steps
 
 # maximum_advantage_domains(id|domain|why)
-MA1|Number theory|GCD, Farey, CF, Stern-Brocot, Egyptian fractions, totient — all exact integer/rational; float approximation would corrupt combinatorial structure
-MA2|Combinatorics|Binomial, Stirling, Bell, Bernoulli, derangements — exact integers/rationals; B(12)=-691/2730 is a specific fact, float approximation useless
+MA1|Number theory|GCD, Farey, CF, Stern-Brocot, Egyptian fractions, totient,  all exact integer/rational; float approximation would corrupt combinatorial structure
+MA2|Combinatorics|Binomial, Stirling, Bell, Bernoulli, derangements,  exact integers/rationals; B(12)=-691/2730 is a specific fact, float approximation useless
 MA3|Probability|Exact Bayes, exact PMF summing to exactly 1, exact Markov steady states; tiny float discrepancies propagate through conditionals
 MA4|Cryptography|RSA, CRT, modular inverse, discrete log require exact modular integer arithmetic; float categorically unable
 MA5|Computational geometry|Exact point-in-triangle, circumcenter, line intersection; eliminates robustness failures from "almost on edge" float comparisons

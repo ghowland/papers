@@ -1,14 +1,14 @@
-# VDR-15 PROMPT OPTIMIZATION — LLM-COMPACT FORM
+# VDR-15 PROMPT OPTIMIZATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → token_categories → pipeline → token_accounting → crossover → scaling → capability_boundary → use_cases → accuracy → attention_reduction → grammar_economics → clone_economics → workday_economics → relationships → section_index → decode_legend
 
 # principles(id|principle|detail)
-P1|80-95% of conventional LM tokens are infrastructure|parsing, state reconstruction, arithmetic, deduction, formatting, hedging — all infrastructure served by primitives/KB/Prolog/grammar at zero LM tokens
+P1|80-95% of conventional LM tokens are infrastructure|parsing, state reconstruction, arithmetic, deduction, formatting, hedging,  all infrastructure served by primitives/KB/Prolog/grammar at zero LM tokens
 P2|LM generates only judgment + prose tokens|judgment: intent recognition, step selection, formalization; prose: natural language for human consumption; command tokens: ~8 LM tokens per primitive invocation
 P3|Per-op Q335 cost is structurally irrelevant|Q335 would need to be ~10,000× slower than float per op to break even on single turn; margin grows with conversation length (conventional quadratic, VDR linear)
 P4|Conventional cost scales quadratically with conversation length|each turn re-reads all prior history through attention; VDR cost flat per turn (state in KB at integer addresses)
-P5|Data volume capability boundary|conventional LM limited to context window; VDR processes arbitrary data volume through primitives (1MB JSON, 10MB documents, 500 positions, 2000 articles) — data never enters token stream
-P6|Every token not generated cannot be wrong|structural elimination of error classes: arithmetic, state, formatting, retrieval, deduction, confidence — not statistical improvement but category elimination
+P5|Data volume capability boundary|conventional LM limited to context window; VDR processes arbitrary data volume through primitives (1MB JSON, 10MB documents, 500 positions, 2000 articles),  data never enters token stream
+P6|Every token not generated cannot be wrong|structural elimination of error classes: arithmetic, state, formatting, retrieval, deduction, confidence,  not statistical improvement but category elimination
 
 # token_categories(id|category|description|conventional_pct|vdr_cost)
 TC1|Context re-reading|attention processes all prior turns on every generation step|dominant computational cost|0 (state in KB)
@@ -16,7 +16,7 @@ TC2|State reconstruction|"as we discussed earlier..." recapping prior findings|~
 TC3|Computation|digit-by-digit arithmetic, sorting, filtering via token prediction|~20%|0 (exact primitives)
 TC4|Deduction|causal chains written as reasoning prose|~15%|0 (Prolog evaluation)
 TC5|Formatting|table pipes, JSON braces, markdown headers, code indentation|~20%|0 (grammar templates)
-TC6|Hedging|"approximately," "it appears that" — no computational basis|~10%|0 (exact confidence fractions)
+TC6|Hedging|"approximately," "it appears that",  no computational basis|~10%|0 (exact confidence fractions)
 TC7|Judgment|intent recognition, step selection, formalization, assessment|~10%|LM tokens (irreducible)
 TC8|Prose|natural language framing, explanations, conclusions|~10%|LM tokens (irreducible)
 TC9|Command tokens|structured primitive invocations (~8 LM tokens each)|0% conventional|5-50 calls per prompt = 40-400 tokens
@@ -92,7 +92,7 @@ EE3|Formatting|structural token prediction|~3-10% per response|grammar templates
 EE4|Retrieval|attention over training data|~5% fabrication risk|KB query by integer address|0
 EE5|Deduction|reasoning chain prose|~10% per 5-step chain|Prolog evaluation (structural unification)|0
 EE6|Confidence|hedging language (no computational basis)|100% imprecise|exact VDR fraction from propagation rules|0 (exact fraction)
-# Remaining error surface: LM judgment only (intent recognition, step selection, prose) — LM's strongest tasks.
+# Remaining error surface: LM judgment only (intent recognition, step selection, prose),  LM's strongest tasks.
 
 # cumulative_error(id|case|operations|conventional_error_prob|vdr_error_prob)
 CE1|SRE (35 ops)|20 comparisons + 5 aggregations + 10 retrievals|~73%|0% (all primitive)
@@ -165,7 +165,7 @@ CU2|5|18,000|10%|1,000|45%|4.5×
 CU3|10|33,000|4.5%|1,200|40%|8.9×
 CU4|20|63,000|2.4%|1,500|33%|13.8×
 CU5|50|153,000|saturated (0%)|1,500|33%|∞
-# Conventional saturates — context fills with own prior output. VDR never saturates.
+# Conventional saturates,  context fills with own prior output. VDR never saturates.
 
 # primitive_cost_tiers(id|tier|int_ops|examples|pct_of_448)
 PT1|Trivial (1-3)|1-3|counter inc, lock check, bitset test, dict_get|~28%

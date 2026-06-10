@@ -23,7 +23,7 @@
 | Baryon number | 1/3 |
 | Lepton number | 0 |
 | Anomaly status | Anomaly-free by construction (vector-like) |
-| SM analogue | Left-handed quark doublet (u_L, d_L) — same quantum numbers |
+| SM analogue | Left-handed quark doublet (u_L, d_L),  same quantum numbers |
 
 ---
 
@@ -62,7 +62,7 @@ Modified betas: b₁ + 1/15 = 25/6, b₂ + 1 = −13/6, b₃ + 1/3 = −20/3
 
 Gap ratio: (25/6 + 13/6)/(−13/6 + 20/3) = (38/6)/(27/6) = (19/3)/(9/2) = 38/27 = 1.40741
 
-The Δb₂/Δb₁ ratio of 15 is the highest of any candidate — the most asymmetric beta contribution. This is because hypercharge Y = 1/6 is the smallest nonzero hypercharge for a color triplet weak doublet. Small Y means small Δb₁ (since Δb₁ ∝ Y²) with large Δb₂ (from the weak doublet). The asymmetry is what the gap ratio needs.
+The Δb₂/Δb₁ ratio of 15 is the highest of any candidate,  the most asymmetric beta contribution. This is because hypercharge Y = 1/6 is the smallest nonzero hypercharge for a color triplet weak doublet. Small Y means small Δb₁ (since Δb₁ ∝ Y²) with large Δb₂ (from the weak doublet). The asymmetry is what the gap ratio needs.
 
 ### 2.5 Verification
 
@@ -131,7 +131,7 @@ Belfatto & Trifinopoulos (Phys. Rev. D 108, 035022, 2023, arXiv:2302.14097) demo
 | First identified | This work (2026) | Belfatto, Berezhiani (2019/2020) |
 | Test experiments | Hyper-Kamiokande (proton decay) | LHC (direct), Belle II (CKM precision) |
 
-The two paths are completely independent. Neither group knew about the other's method. The convergence on the same representation from two different directions — top-down (gauge unification integers) and bottom-up (precision anomaly fitting) — is the strongest evidence for the Cabibbo Doublet.
+The two paths are completely independent. Neither group knew about the other's method. The convergence on the same representation from two different directions,  top-down (gauge unification integers) and bottom-up (precision anomaly fitting),  is the strongest evidence for the Cabibbo Doublet.
 
 ---
 
@@ -211,9 +211,9 @@ The two paths are completely independent. Neither group knew about the other's m
 | Entries 33-37 (quark masses) | 5 quarks (+ t at entry 28) | +2 new mass entries (VL_U, VL_D) |
 | Entries 38-40 (CKM angles) | 3 angles, 1 phase | +3 angles, +2 phases |
 | Entry 62 (α_s) | 0.1180 | Unchanged (measured) |
-| New entry: M_VL | — | 1.5–6 TeV (when measured) |
-| New entry: mixing angles | — | 3 new angles (when measured) |
-| New entry: CP phases | — | 2 new phases (when measured) |
+| New entry: M_VL |,  | 1.5–6 TeV (when measured) |
+| New entry: mixing angles |,  | 3 new angles (when measured) |
+| New entry: CP phases |,  | 2 new phases (when measured) |
 | Parameter count | 17 (after θ_QCD, Koide conditional) | 17 + 6 = 23 (more parameters, fewer anomalies) |
 
 ### 5.3 The Level 1 / Level 2 Assignment
@@ -228,7 +228,7 @@ The two paths are completely independent. Neither group knew about the other's m
 | CP phases | **Level 2** | Measured from CP violation data |
 | Existence | **Level 2** | Conditional on unification being a feature of nature |
 
-The quantum numbers are Level 1 — determined by the framework. The mass and mixing parameters are Level 2 — supplied by the universe. The Cabibbo Doublet extends the Level 1 / Level 2 boundary: the integers tell us WHAT exists, the universe tells us its specific values.
+The quantum numbers are Level 1,  determined by the framework. The mass and mixing parameters are Level 2,  supplied by the universe. The Cabibbo Doublet extends the Level 1 / Level 2 boundary: the integers tell us WHAT exists, the universe tells us its specific values.
 
 ---
 
@@ -261,8 +261,8 @@ The quantum numbers are Level 1 — determined by the framework. The mass and mi
 | arXiv:2407.00122 | Kitahara | Int. J. Mod. Phys. A 39 | 2024 | Current status: VL quark is "prime candidate" |
 | arXiv:2311.00021 | Cirigliano et al. | JHEP 03, 033 | 2024 | Global SMEFT analysis, ~3σ tension confirmed |
 | arXiv:2103.13409 | Branco et al. | JHEP 07, 099 | 2021 | VL up quark alternative, M ≤ 7 TeV |
-| HOWL-PHYS-13 | This series | — | 2026 | Gap ratio framework, BSM enumeration |
-| HOWL-PHYS-15 | This series | — | 2026 | Integer-forced identification of Cabibbo Doublet |
+| HOWL-PHYS-13 | This series |,  | 2026 | Gap ratio framework, BSM enumeration |
+| HOWL-PHYS-15 | This series |,  | 2026 | Integer-forced identification of Cabibbo Doublet |
 
 ---
 

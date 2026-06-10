@@ -1,17 +1,17 @@
-# ORCHESTRATED INFERENCE — LLM-COMPACT FORM
+# ORCHESTRATED INFERENCE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → loop → notebooks → modes → external data → provenance → boundary → relationships → sections
 
 # principles(id|principle|rationale)
 P1|LLM orchestrates, tools compute and deduce|LLM selects and sequences exact tools; neither can conduct multi-step investigation alone; composition covers what each lacks
 P2|Orchestrated Inference is a reasoning exoskeleton|External structure compensating for LLM computational unreliability while leveraging its pattern recognition and intent mapping
-P3|LLM does not reason — it orchestrates a reasoning process|Token prediction produces orchestration decisions; deterministic tools produce computation and deduction; KB records everything
+P3|LLM does not reason,  it orchestrates a reasoning process|Token prediction produces orchestration decisions; deterministic tools produce computation and deduction; KB records everything
 P4|Conclusions are traceable not guaranteed|Deductive conclusions from correct premises are guaranteed by Prolog; premises might be wrong; evidence might be incomplete; provenance chain makes failures detectable, not preventable
 P5|No new primitives, struct fields, or modules|VDR-9 specifies patterns of use over existing VDR-5 through VDR-8 capabilities, not new capabilities
 
 # orchestrated_loop(id|phase|description|who_acts)
 OL1|Assess|Read current state (KB, data primitives, pending goals); determine what step is needed next (more evidence? formalize? query? backtrack? conclude?)|LLM (pattern matching over structured state)
-OL2|Formalize|Translate needed step into executable form: Prolog rules, Python script, primitive chain, operational command|LLM (creative act — small targeted program for one step)
+OL2|Formalize|Translate needed step into executable form: Prolog rules, Python script, primitive chain, operational command|LLM (creative act,  small targeted program for one step)
 OL3|Execute|Run the formalized step: Prolog evaluates, Python runs in sandbox, primitive computes, API returns data|Tools (deterministic or logged/grant-gated)
 OL4|Store|Result goes into KB location (working data, LRU, Prolog fact, counter, ring buffer) with provenance|System (addressable by dotted path, available for subsequent steps)
 OL5|Assess again|Loop returns to assessment with new state including result just stored|LLM
@@ -103,10 +103,10 @@ CP10|LLM assessment step|30/100 (fixed floor)|LLM judgment is unreliable
 CP11|Multi-mode chain|min across mode transitions|Each mode junction is potential weakness
 
 # confidence_thresholds(id|range|label|action)
-CT1|95/100 — 1/1|High|Act on conclusion directly
-CT2|80/100 — 94/100|Moderate|Act with monitoring, note uncertainty
-CT3|60/100 — 79/100|Low|Gather more evidence before acting
-CT4|40/100 — 59/100|Speculative|Present as hypothesis, not conclusion
+CT1|95/100,  1/1|High|Act on conclusion directly
+CT2|80/100,  94/100|Moderate|Act with monitoring, note uncertainty
+CT3|60/100,  79/100|Low|Gather more evidence before acting
+CT4|40/100,  59/100|Speculative|Present as hypothesis, not conclusion
 CT5|<40/100|Unreliable|Do not present as conclusion, flag for investigation
 
 # llm_contributions(id|task|description)
@@ -125,10 +125,10 @@ LD5|Fetch external data|Operational primitives with grants
 LD6|Hold complete investigation state|KB at dotted paths; stack, LRU, counters, bitsets
 
 # contradiction_detection(id|type|detection_method|resolution)
-CD1|Direct factual|Two facts assert different values for same predicate+args in same scope|Compare provenance — trust more reliable source
+CD1|Direct factual|Two facts assert different values for same predicate+args in same scope|Compare provenance,  trust more reliable source
 CD2|Logical|Prolog derives both P and not(P)|Inspect rule set for over-broad rules
 CD3|Statistical|Two sources give significantly different values for same metric|Investigate measurement methodology difference
-CD4|Temporal|Fact true at T1 but false at T2|Not contradiction — state change; record transition
+CD4|Temporal|Fact true at T1 but false at T2|Not contradiction,  state change; record transition
 CD5|Cross-notebook|Two notebooks reach opposite conclusions from overlapping evidence|Compare evidence sets and reasoning chains
 
 # challenge_mechanism(id|aspect|detail)
@@ -154,13 +154,13 @@ FC6|Budget exceeded without constraint trigger|Loop exceeds declared budget coun
 FC7|Undetectable cross-notebook contradiction|Two notebooks produce contradictory conclusions from same evidence, not detectable by querying both
 
 # claims(id|claim|type)
-CL1|LLM does not reason — it orchestrates tools that compute and deduce|core_thesis
+CL1|LLM does not reason,  it orchestrates tools that compute and deduce|core_thesis
 CL2|Composition of LLM orchestration + exact tools produces structured inferences neither could produce alone|structural
 CL3|Every conclusion carries complete queryable derivation chain with exact confidence scores|provenance
 CL4|Confidence is exact VDR fraction computed from declared propagation rules, not vague label|exactness
 CL5|Four inference modes compose naturally because they all operate on same KB with same tools|composability
 CL6|Failure modes are detectable through provenance chain, not preventable by architecture|honesty
-CL7|No new primitives, struct fields, or modules — patterns of use over existing capabilities|architectural_discipline
+CL7|No new primitives, struct fields, or modules,  patterns of use over existing capabilities|architectural_discipline
 
 # relationships(from|rel|to)
 OL1-OL5|form|orchestrated inference loop

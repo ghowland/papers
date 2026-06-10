@@ -1,4 +1,4 @@
-# VDR-19 SELF-EXTENDING ARCHITECTURE — LLM-COMPACT FORM
+# VDR-19 SELF-EXTENDING ARCHITECTURE,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → claims → concepts → seed_layers → bootstrap_stages → lifecycle_phases → capability_growth → relationships → sections
 
@@ -22,7 +22,7 @@ CL6|Total seed size ~23,398 entries, ~1.5 MB, loads in <620ms|observation|
 CL7|Clone lifecycle costs ~40 tokens total (snapshot, spawn, checks, kill)|observation|
 CL8|Self-compaction reaches ~98% fact parity with external LLM after 200+ documents|observation|
 CL9|Each new document potentially extends rule base further; bootstrap is complete when system compacts autonomously|derivation|P1,P6
-CL10|Composability is free — Rule A + Rule B produce inference C with no explicit integration step|observation|P2
+CL10|Composability is free,  Rule A + Rule B produce inference C with no explicit integration step|observation|P2
 
 # concepts(id|name|definition|category)
 C1|Self-extension|System's KB, rule set, and executable capabilities grow as byproduct of doing work; persistent, auditable, composable|architecture
@@ -37,7 +37,7 @@ C9|Train-as-you-go|Immediate (one primitive call), inspectable (readable clauses
 C10|Compaction rules|Per-document-type specifications: type signature, entity extraction patterns, relationship patterns, structure mapping, provenance template; themselves KB facts that accumulate|mechanism
 C11|Self-compaction|System compacts new documents using accumulated grammars and classification rules without external LLM; closing the bootstrap loop|capability
 C12|Operational lifecycle|Continuous cycle: intake → processing → rule generation → accumulation; phases blend in practice|process
-C13|Runtime programming artifacts|Prolog rules, Python scripts, grammars, compaction rules — four categories of persistent executable capability the LLM creates|category
+C13|Runtime programming artifacts|Prolog rules, Python scripts, grammars, compaction rules,  four categories of persistent executable capability the LLM creates|category
 
 # seed_layers(id|layer|contents|entry_count|storage_size)
 SL1|Language|Sentence templates (~5,000: declarative, interrogative, conditional, relative, participial, coordinated), typo corrections (~15,000), classification patterns (~3,000), weight profiles (~20)|~23,020|~1.4 MB
@@ -109,7 +109,7 @@ TG6|Auditable|Append-only audit log; every modification traced|No equivalent
 TG7|Composable|Rules from different sources interact through structural unification automatically|No automatic composition
 
 # security_attack_scenarios(id|attack|structural_result|reason)
-SA1|LLM writes rule granting itself elevated access|Rejected — grant assertion requires admin-level grant|Grants are admin-only writable
+SA1|LLM writes rule granting itself elevated access|Rejected,  grant assertion requires admin-level grant|Grants are admin-only writable
 SA2|LLM writes rule querying out-of-scope KB|Rule stores but fires with empty results on out-of-scope data|Scope check at query time per fact, not at rule definition time
 SA3|LLM writes rule leaking data via side channel|Assert to public KB requires write grant; copy needs read grant on restricted KB|Both grants checked independently
 SA4|Malicious document injects harmful rules during compaction|Axiom constraints block prohibited content at assertion time|Constraint evaluation runs on rule content

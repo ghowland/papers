@@ -1,4 +1,4 @@
-# MATH-3 TRANSCENDENTAL HIERARCHY — LLM-COMPACT FORM
+# MATH-3 TRANSCENDENTAL HIERARCHY,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → basis_constants → elliptic → acceleration → hierarchy → pslq → extended_basis → falsification → limitations → relationships → section_index → decode_legend
 
@@ -36,8 +36,8 @@ EI3|K(1/2)|π/2 · ₂F₁(1/2,1/2;1;1/4)|k²=1/4|~300|fastest convergence; no s
 EI4|E(1/√2)|π/2 · ₂F₁(-1/2,1/2;1;1/2)|k²=1/2|~150|
 EI5|E(√3/2)|π/2 · ₂F₁(-1/2,1/2;1;3/4)|k²=3/4|~60|
 EI6|E(1/2)|π/2 · ₂F₁(-1/2,1/2;1;1/4)|k²=1/4|~300|
-# K(k) = (π/2) · Σ_{n=0}^N [C(2n,n)]² k^{2n} / 4^n — all rational coefficients
-# Recurrence: t_{n+1}/t_n = [(2n+1)/(2n+2)]² × k² — avoids factorial computation
+# K(k) = (π/2) · Σ_{n=0}^N [C(2n,n)]² k^{2n} / 4^n,  all rational coefficients
+# Recurrence: t_{n+1}/t_n = [(2n+1)/(2n+2)]² × k²,  avoids factorial computation
 # Truncation error: < (π/2) × t_{N+1} / (1 − k²)
 # AGM alternative: quadratic convergence but requires √ at each step (nested series in Fraction); hypergeometric preferred for integer pairs
 

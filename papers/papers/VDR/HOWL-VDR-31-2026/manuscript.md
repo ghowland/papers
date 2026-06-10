@@ -17,7 +17,7 @@
 
 ## Abstract
 
-We present a complete transformer language model — embedding, self-attention, feed-forward network, backpropagation, weight updates, and text generation — running entirely in exact rational arithmetic with no floating-point operations. The model uses the vdr-math Python library, which represents every value as an ordered triple [V, D, R] (Value, Denominator, Remainder) with a fixed denominator D = 2^32. We describe the denominator growth problem that arises when standard rational arithmetic operators are applied in a fixed-frame system, the operator-level solution we implemented to prevent it, and the quadratic softmax surrogate that eliminates transcendental functions from the forward pass. The resulting toy model — 181 parameters, vocabulary of 5, trained for 20 epochs on a 6-word corpus — passes 9 verification tests including bit-identical determinism across runs and exact sum-to-one softmax outputs. All denominators remain at 2^32 through every operation chain. The work demonstrates that a fixed-denominator rational arithmetic system can support a complete LLM training and inference pipeline, and identifies the engineering steps required to scale beyond toy dimensions.
+We present a complete transformer language model,  embedding, self-attention, feed-forward network, backpropagation, weight updates, and text generation,  running entirely in exact rational arithmetic with no floating-point operations. The model uses the vdr-math Python library, which represents every value as an ordered triple [V, D, R] (Value, Denominator, Remainder) with a fixed denominator D = 2^32. We describe the denominator growth problem that arises when standard rational arithmetic operators are applied in a fixed-frame system, the operator-level solution we implemented to prevent it, and the quadratic softmax surrogate that eliminates transcendental functions from the forward pass. The resulting toy model,  181 parameters, vocabulary of 5, trained for 20 epochs on a 6-word corpus,  passes 9 verification tests including bit-identical determinism across runs and exact sum-to-one softmax outputs. All denominators remain at 2^32 through every operation chain. The work demonstrates that a fixed-denominator rational arithmetic system can support a complete LLM training and inference pipeline, and identifies the engineering steps required to scale beyond toy dimensions.
 
 ---
 
@@ -25,15 +25,15 @@ We present a complete transformer language model — embedding, self-attention, 
 
 Floating-point arithmetic is the universal substrate of modern machine learning. Every weight, activation, gradient, and probability in a neural network is a 16-bit, 32-bit, or 64-bit IEEE 754 float. This representation is fast and hardware-supported, but it introduces three structural problems.
 
-First, every operation rounds. The mantissa is finite, the rounding is invisible, and the error compounds across operation chains. A single forward pass through a 96-layer transformer involves millions of multiply-accumulate operations, each contributing a rounding error on the order of 10^-7 (float32) or 10^-16 (float64). These errors accumulate and can become indistinguishable from the signal in long chains — diffusion model frame generation, Kalman filter cycles, or financial risk calculations.
+First, every operation rounds. The mantissa is finite, the rounding is invisible, and the error compounds across operation chains. A single forward pass through a 96-layer transformer involves millions of multiply-accumulate operations, each contributing a rounding error on the order of 10^-7 (float32) or 10^-16 (float64). These errors accumulate and can become indistinguishable from the signal in long chains,  diffusion model frame generation, Kalman filter cycles, or financial risk calculations.
 
-Second, floating-point addition is not associative. The expression (a + b) + c does not in general produce the same bit pattern as a + (b + c). This means that distributed training across multiple GPUs — where gradient reductions may occur in different orders depending on thread scheduling — produces nondeterministic results. Two training runs from the same seed on the same hardware can diverge after a few hundred steps.
+Second, floating-point addition is not associative. The expression (a + b) + c does not in general produce the same bit pattern as a + (b + c). This means that distributed training across multiple GPUs,  where gradient reductions may occur in different orders depending on thread scheduling,  produces nondeterministic results. Two training runs from the same seed on the same hardware can diverge after a few hundred steps.
 
 Third, the rounding is silent. No operation reports how much information was discarded. There is no error budget, no accumulated-loss counter, no way to distinguish a numerically stable computation from an unstable one without external analysis.
 
 This paper describes a proof-of-concept system that eliminates all three problems for a toy transformer language model. Every value in the system is an exact rational number represented as a VDR triple with a fixed denominator of 2^32. No floating-point operation occurs anywhere in the pipeline. The computation is deterministic, associative, and carries exact error information in the remainder slot.
 
-The contribution is not a practical replacement for floating-point neural networks. The contribution is a concrete demonstration that exact rational arithmetic can support every operation in an LLM pipeline — and an identification of the specific engineering problems that must be solved to make it work.
+The contribution is not a practical replacement for floating-point neural networks. The contribution is a concrete demonstration that exact rational arithmetic can support every operation in an LLM pipeline,  and an identification of the specific engineering problems that must be solved to make it work.
 
 ---
 
@@ -51,7 +51,7 @@ A triple [V, D, 0] with R = 0 is called *closed* and represents the rational num
 
 For example, [3, 7, 0] represents 3/7 exactly. [1, 3, 1] represents (1 + 1)/3 = 2/3, where the remainder slot carries the 1 that was not absorbed into V.
 
-The remainder slot is recursive: R can contain an integer base plus a finite list of child VDR triples, each with their own denominator. This forms a finite tree. The tree is always finite — no limits, no approximation, no infinite structures.
+The remainder slot is recursive: R can contain an integer base plus a finite list of child VDR triples, each with their own denominator. This forms a finite tree. The tree is always finite,  no limits, no approximation, no infinite structures.
 
 ### 2.2 The Fixed-Frame Rule
 
@@ -63,17 +63,17 @@ Consider multiplying two values on a D = 2^32 frame:
 A = [p1, 2^32, 0]
 B = [p2, 2^32, 0]
 
-Naive: [p1 * p2, 2^64, 0]  — D doubled. Never do this.
+Naive: [p1 * p2, 2^64, 0] ,  D doubled. Never do this.
 
 VDR:   Q, S = divmod(p1 * p2, 2^32)
        Result: [Q, 2^32, [S, 2^32, 0]]
 ```
 
-D stays at 2^32. Q absorbed what fit. S (the remainder) caught what did not. The operation is exact — no information was lost. The divmod is a bit shift on powers of two, which is a single machine instruction.
+D stays at 2^32. Q absorbed what fit. S (the remainder) caught what did not. The operation is exact,  no information was lost. The divmod is a bit shift on powers of two, which is a single machine instruction.
 
 ### 2.3 The Precision Floor
 
-At D = 2^32, the smallest representable nonzero value is 1/2^32 ≈ 2.33 × 10^-10. This is the precision floor — the grid spacing of the representation. Every value on the grid is a multiple of this quantity.
+At D = 2^32, the smallest representable nonzero value is 1/2^32 ≈ 2.33 × 10^-10. This is the precision floor,  the grid spacing of the representation. Every value on the grid is a multiple of this quantity.
 
 When a value is projected onto the grid (for example, 1/3 projected onto D = 2^32), the projection rounds to the nearest grid point. The rounding error is at most half the grid spacing: ≈ 1.16 × 10^-10.
 
@@ -87,9 +87,9 @@ The precision floor is configurable. At D = 2^64, it drops to ≈ 5.42 × 10^-20
 
 ### 3.1 How D Explodes
 
-Standard rational arithmetic causes denominators to grow. Adding 1/3 and 1/7 produces 10/21 — the denominator went from max(3, 7) = 7 to 21. Multiplying 1/3 by 1/7 produces 1/21. Every cross-denominator operation multiplies the denominators.
+Standard rational arithmetic causes denominators to grow. Adding 1/3 and 1/7 produces 10/21,  the denominator went from max(3, 7) = 7 to 21. Multiplying 1/3 by 1/7 produces 1/21. Every cross-denominator operation multiplies the denominators.
 
-In a fixed-frame system where all values start at D = 2^32, this growth is catastrophic. After 10 multiplications, D reaches 2^320 — a 97-digit number. The computation has left the fixed frame entirely and is operating in arbitrary-precision territory, which is exactly what the fixed-frame design was meant to avoid.
+In a fixed-frame system where all values start at D = 2^32, this growth is catastrophic. After 10 multiplications, D reaches 2^320,  a 97-digit number. The computation has left the fixed frame entirely and is operating in arbitrary-precision territory, which is exactly what the fixed-frame design was meant to avoid.
 
 ### 3.2 Where Growth Occurs in an LLM
 
@@ -101,7 +101,7 @@ We identified six sources of denominator growth in the VDR ML pipeline:
 
 3. **Mixed-frame operands.** Hyperparameters like learning rate (VDR(1, 100), D = 100) and constants like VDR(2) (D = 1) mixed with basis-frame values, triggering cross-multiplication.
 
-4. **Softmax Taylor series.** The standard softmax implementation used exp(x) via Taylor series, which divides by VDR(k) (D = 1) at each iteration — 16 mixed-frame divisions per element.
+4. **Softmax Taylor series.** The standard softmax implementation used exp(x) via Taylor series, which divides by VDR(k) (D = 1) at each iteration,  16 mixed-frame divisions per element.
 
 5. **Loss function constants.** Gradient scaling factors like VDR(2, n) had small denominators that mixed with basis-frame gradients.
 
@@ -113,17 +113,17 @@ We modified the VDR core arithmetic to detect and preserve the basis frame autom
 
 **Component 1: Both-in-basis detection.** A function `_both_in_basis(a, b)` checks whether both operands share the same D and that D equals the current default basis denominator. When this check passes, the operator uses `divmod` to keep D fixed instead of cross-multiplying.
 
-**Component 2: One-in-basis detection.** A function `_one_in_basis(a, b)` checks whether exactly one operand is in the basis frame. When this fires, the non-basis operand is projected onto the basis grid before the operation proceeds. This handles all mixed-frame cases — hyperparameters, constants, initial zeros — without requiring the caller to manually project values.
+**Component 2: One-in-basis detection.** A function `_one_in_basis(a, b)` checks whether exactly one operand is in the basis frame. When this fires, the non-basis operand is projected onto the basis grid before the operation proceeds. This handles all mixed-frame cases,  hyperparameters, constants, initial zeros,  without requiring the caller to manually project values.
 
 **Component 3: Active operator integration.** The active multiplication and division module was modified to check for basis-frame operands before falling through to the general active arithmetic path. Active (R ≠ 0) basis-frame values are flattened to closed form via projection before the basis-frame operation proceeds.
 
-These three checks are inserted at the entry point of every arithmetic operator. They are transparent to the caller — the same code that would have caused D growth now stays in frame automatically. No manual rebase calls are needed anywhere in the model code.
+These three checks are inserted at the entry point of every arithmetic operator. They are transparent to the caller,  the same code that would have caused D growth now stays in frame automatically. No manual rebase calls are needed anywhere in the model code.
 
 ### 3.4 Verification of Stability
 
 We verified the fix with a test that chains 10 multiplications, 10 divisions, 10 additions, and 10 subtractions at D = 2^32, checking that D remains exactly 4,294,967,296 after every operation. We also verified that mixing basis-frame values with non-basis values (e.g., VDR(1, 3) with D = 3) correctly rebases the non-basis operand. All 54 checks passed.
 
-We then verified stability through the full ML pipeline — forward pass, backward pass, optimizer step, attention, softmax — confirming that all 181 parameters, all intermediate activations, and all logits maintain D = 2^32 throughout.
+We then verified stability through the full ML pipeline,  forward pass, backward pass, optimizer step, attention, softmax,  confirming that all 181 parameters, all intermediate activations, and all logits maintain D = 2^32 throughout.
 
 ---
 
@@ -136,7 +136,7 @@ The model is a single-block, single-head causal transformer:
 ```
 Token embedding (5 × 4) + Positional embedding (4 × 4)
     ↓
-Self-attention (Wq, Wk, Wv, Wo — each 4 × 4)
+Self-attention (Wq, Wk, Wv, Wo,  each 4 × 4)
     ↓ + residual connection
 Feed-forward network (Linear 4→8, ReLU, Linear 8→4)
     ↓ + residual connection
@@ -159,7 +159,7 @@ This ensures bit-identical initialization across platforms and runs.
 
 ### 4.3 Quadratic Softmax Surrogate
 
-Standard softmax computes p_i = exp(x_i) / Σ exp(x_j). The exponential function is transcendental — it cannot be represented as a finite rational expression. In VDR, it must be approximated via Taylor series, introducing series truncation as a source of controlled error.
+Standard softmax computes p_i = exp(x_i) / Σ exp(x_j). The exponential function is transcendental,  it cannot be represented as a finite rational expression. In VDR, it must be approximated via Taylor series, introducing series truncation as a source of controlled error.
 
 We replace softmax entirely with a quadratic surrogate:
 
@@ -167,7 +167,7 @@ We replace softmax entirely with a quadratic surrogate:
 p_i = (x_i - shift)^2 / Σ_j (x_j - shift)^2
 ```
 
-where `shift` is the minimum logit. This function involves only subtraction, squaring, summation, and division — all exact rational operations in VDR. No transcendental functions appear anywhere in the forward pass.
+where `shift` is the minimum logit. This function involves only subtraction, squaring, summation, and division,  all exact rational operations in VDR. No transcendental functions appear anywhere in the forward pass.
 
 The shift parameter serves the same role as max-subtraction in standard softmax: it centers the values to avoid unnecessarily large intermediate results, keeping V slots small in the fixed frame.
 
@@ -177,7 +177,7 @@ To guarantee that probabilities sum to exactly 1, we compute the first N-1 proba
 
 - **Loss function:** Mean squared error between softmax output and one-hot target, computed with constants projected to basis frame.
 - **Optimizer:** Stochastic gradient descent with learning rate 1/128, projected to basis frame at construction.
-- **Corpus:** "the cat sat on the mat" — tokenized to [0, 1, 2, 3, 0, 4], producing 2 training windows of length 4.
+- **Corpus:** "the cat sat on the mat",  tokenized to [0, 1, 2, 3, 0, 4], producing 2 training windows of length 4.
 - **Epochs:** 20.
 - **Backward pass:** Manual backpropagation through output projection, FFN (with ReLU derivative), residual connections, attention block (with surrogate softmax backward), and projection matrices. All gradients exact.
 
@@ -189,7 +189,7 @@ The backward pass through the quadratic surrogate is simpler than through expone
 ∂L/∂s_i = (2 * s_i / Σ s^2) * (∂L/∂p_i - Σ_j ∂L/∂p_j * p_j)
 ```
 
-This involves only the cached shifted values, the cached probabilities, and the incoming gradient — all exact rational operations. No derivative of exp is needed.
+This involves only the cached shifted values, the cached probabilities, and the incoming gradient,  all exact rational operations. No derivative of exp is needed.
 
 ### 4.6 Text Generation
 
@@ -200,7 +200,7 @@ Four decoding strategies are implemented:
 - **Top-k:** Keep k highest probabilities, renormalize exactly, then categorical sample.
 - **Nucleus (top-p):** Keep smallest set exceeding threshold, renormalize exactly, then categorical sample.
 
-All sampling decisions are exact rational comparisons. There are no float threshold ambiguities — the CDF has no gaps or overlaps because the probabilities sum to exactly 1.
+All sampling decisions are exact rational comparisons. There are no float threshold ambiguities,  the CDF has no gaps or overlaps because the probabilities sum to exactly 1.
 
 ---
 
@@ -218,7 +218,7 @@ The model trains successfully with monotonically decreasing loss:
 | 15 | 0.234526 | yes |
 | 20 | 0.225423 | yes |
 
-The softmax sum check passes at every epoch within a tolerance of 10^-9. The worst observed residual across all epochs was 9.07 × 10^-13 at epoch 12 — a single instance where division remainder accumulation in the surrogate produced a sum that differed from 1 by less than one part in 10^12.
+The softmax sum check passes at every epoch within a tolerance of 10^-9. The worst observed residual across all epochs was 9.07 × 10^-13 at epoch 12,  a single instance where division remainder accumulation in the surrogate produced a sum that differed from 1 by less than one part in 10^12.
 
 ### 5.2 Attention Pattern
 
@@ -260,7 +260,7 @@ Nine tests, all passing:
 | loss_monotonicity | Loss at epoch 20 < loss at epoch 1 | PASS |
 | gradient_correctness | Analytical gradient matches finite difference (diff < 0.1) | PASS |
 
-The deterministic and roundtrip tests are the strongest results. They demonstrate that the computation produces identical bit patterns across runs — a property that is structurally impossible with floating-point arithmetic due to non-associative addition.
+The deterministic and roundtrip tests are the strongest results. They demonstrate that the computation produces identical bit patterns across runs,  a property that is structurally impossible with floating-point arithmetic due to non-associative addition.
 
 ### 5.5 Denominator Report
 
@@ -278,7 +278,7 @@ No denominator growth was observed at any point during training, generation, or 
 
 This toy model demonstrates five things:
 
-1. **Every operation in an LLM pipeline can be expressed in fixed-denominator rational arithmetic.** Forward pass, backpropagation, attention, softmax, sampling, weight updates — all work without floating-point.
+1. **Every operation in an LLM pipeline can be expressed in fixed-denominator rational arithmetic.** Forward pass, backpropagation, attention, softmax, sampling, weight updates,  all work without floating-point.
 
 2. **The denominator growth problem is solvable at the operator level.** By making the core arithmetic operators basis-aware, frame stability becomes automatic. Model code does not need to manage frames explicitly.
 
@@ -294,7 +294,7 @@ This model is a proof of concept with deliberate limitations:
 
 - **Scale.** 181 parameters and 5 tokens. Production LLMs have billions of parameters and vocabularies of 50,000+. The computational cost of VDR arithmetic is ~50-200× float per operation in Python, making direct scaling impractical without compiled implementations.
 - **Convergence quality.** The quadratic surrogate produces different optimization landscapes than exponential softmax. The model converges, but we have not compared convergence rates or final loss quality against a float baseline at the same scale.
-- **Layer normalization.** The model omits layer norm, which requires reciprocal square root — an irrational operation that must be approximated via Newton iteration in VDR. Adding it is engineering work, not a mathematical obstacle.
+- **Layer normalization.** The model omits layer norm, which requires reciprocal square root,  an irrational operation that must be approximated via Newton iteration in VDR. Adding it is engineering work, not a mathematical obstacle.
 - **Multi-head attention.** The model uses a single head. Multi-head attention involves splitting and concatenating vectors, which are structurally trivial in VDR, but the increased number of operations would test D stability more thoroughly.
 - **Hardware acceleration.** All arithmetic runs in Python on arbitrary-precision integers. A production implementation would require compiled kernels operating on fixed-width integers matching the D frame (32-bit or 64-bit values for D = 2^32 or 2^64).
 
@@ -309,7 +309,7 @@ The choice of D directly controls both precision and performance:
 | 2^64 | ~19.3 | 128-bit | SIMD, GPU registers |
 | 2^128 | ~38.5 | 256-bit | SIMD with widening |
 
-At D = 2^32, the product of two V slots is a 64-bit integer. The `divmod` by 2^32 is a 32-bit right shift — one instruction. This makes D = 2^32 naturally aligned with 32-bit and 64-bit hardware.
+At D = 2^32, the product of two V slots is a 64-bit integer. The `divmod` by 2^32 is a 32-bit right shift,  one instruction. This makes D = 2^32 naturally aligned with 32-bit and 64-bit hardware.
 
 At D = 2^64, the product is a 128-bit integer and the `divmod` is a 64-bit shift. Modern SIMD instruction sets (AVX-512, NEON) support 128-bit integer operations, making this feasible in compiled code.
 
@@ -317,7 +317,7 @@ At D = 2^64, the product is a 128-bit integer and the `divmod` is a 64-bit shift
 
 Current quantized inference methods (INT8, INT4, GPTQ, AWQ) share a structural similarity with VDR: they represent values as integers with a scaling factor. The key difference is error tracking.
 
-Quantized inference discards the quantization error. When a float32 weight is quantized to INT8, the rounding error is lost — there is no record of what was discarded, and no mechanism to recover it.
+Quantized inference discards the quantization error. When a float32 weight is quantized to INT8, the rounding error is lost,  there is no record of what was discarded, and no mechanism to recover it.
 
 VDR's remainder slot catches the exact overflow from every operation. The remainder could, in principle, be monitored (to detect precision degradation), accumulated (to periodically correct the main value), or carried through the computation (at the cost of tree depth growth). This toy model flattens remainders at every operation (which is what `_basis_mul` does via `to_qbasis`), discarding them like quantization does. But the infrastructure for exact carry exists in the library and could be used selectively in precision-critical paths.
 
@@ -327,7 +327,7 @@ VDR's remainder slot catches the exact overflow from every operation. The remain
 
 ### 7.1 Compiled Arithmetic Kernels
 
-The immediate bottleneck is Python's overhead on integer arithmetic. A C or Rust implementation of basis-frame multiply and divide — operating on fixed-width 32-bit or 64-bit V slots with bit-shift divmod — would bring per-operation cost close to integer quantized inference. The VDR library's basis-aware logic is simple enough to compile: check if D matches, multiply V slots, shift right, store quotient and remainder.
+The immediate bottleneck is Python's overhead on integer arithmetic. A C or Rust implementation of basis-frame multiply and divide,  operating on fixed-width 32-bit or 64-bit V slots with bit-shift divmod,  would bring per-operation cost close to integer quantized inference. The VDR library's basis-aware logic is simple enough to compile: check if D matches, multiply V slots, shift right, store quotient and remainder.
 
 ### 7.2 GPU Implementation
 
@@ -343,13 +343,13 @@ The current implementation flattens all remainders at every operation. An altern
 
 ### 7.5 Mixed-Precision Frames
 
-Different parts of the model could use different D values — D = 2^16 for weight storage (matching INT16 quantization), D = 2^32 for accumulation, D = 2^64 for gradient statistics. The basis-aware operators already handle rebasing between frames. The engineering task is determining the optimal frame assignment per layer boundary.
+Different parts of the model could use different D values,  D = 2^16 for weight storage (matching INT16 quantization), D = 2^32 for accumulation, D = 2^64 for gradient statistics. The basis-aware operators already handle rebasing between frames. The engineering task is determining the optimal frame assignment per layer boundary.
 
 ---
 
 ## 8. Conclusion
 
-We built a toy transformer language model that trains and generates text using exact rational arithmetic with a fixed denominator of 2^32. The model demonstrates that every operation in an LLM pipeline — embedding lookup, matrix multiplication, attention score computation, softmax probability normalization, backpropagation, and stochastic gradient descent — can be performed without floating-point arithmetic while maintaining denominator stability.
+We built a toy transformer language model that trains and generates text using exact rational arithmetic with a fixed denominator of 2^32. The model demonstrates that every operation in an LLM pipeline,  embedding lookup, matrix multiplication, attention score computation, softmax probability normalization, backpropagation, and stochastic gradient descent,  can be performed without floating-point arithmetic while maintaining denominator stability.
 
 The key engineering contributions are basis-aware arithmetic operators that automatically prevent denominator growth, and a quadratic softmax surrogate that eliminates transcendental functions from the pipeline. The key empirical result is that 181 parameters trained for 20 epochs maintain D = 2^32 throughout, with bit-identical determinism across runs and softmax outputs summing to 1 within 10^-12.
 
@@ -392,7 +392,7 @@ All code is Python 3.8+ with no external dependencies. The library is MIT licens
 
 **loss_monotonicity.** Trains for 10 epochs and checks that the final epoch loss is strictly less than the first epoch loss.
 
-**gradient_correctness.** Computes the analytical gradient of the loss with respect to one weight element, then computes the numerical gradient via finite difference with step size 1/10000 in basis frame. Checks that the difference is less than 0.1. The finite-difference gradient is a discrete derivative, not a limit, so exact agreement is not expected — the test verifies directional consistency.
+**gradient_correctness.** Computes the analytical gradient of the loss with respect to one weight element, then computes the numerical gradient via finite difference with step size 1/10000 in basis frame. Checks that the difference is less than 0.1. The finite-difference gradient is a discrete derivative, not a limit, so exact agreement is not expected,  the test verifies directional consistency.
 
 ---
 
@@ -404,8 +404,8 @@ The following table documents every arithmetic path in the VDR core and active m
 |---|---|---|---|---|
 | `__add__` | core.py | Integer add, same D | Rebase non-basis, integer add | Cross-multiply D1×D2 |
 | `__sub__` | core.py | Integer subtract, same D | Rebase non-basis, integer subtract | Cross-multiply D1×D2 |
-| `__mul__` | core.py | `_basis_mul` (divmod) | — | Cross-multiply D1×D2 |
-| `__truediv__` | core.py | `_basis_div` (divmod) | — | Reciprocal multiply |
+| `__mul__` | core.py | `_basis_mul` (divmod) |,  | Cross-multiply D1×D2 |
+| `__truediv__` | core.py | `_basis_div` (divmod) |,  | Reciprocal multiply |
 | `active_mul` | active.py | Flatten active, `_basis_mul` | Rebase non-basis, `_basis_mul` | Cross-multiply with remainder tree |
 | `active_div` | active.py | Flatten active, `_basis_div` | Rebase non-basis, `_basis_div` | Project divisor to Fraction, reciprocal multiply |
 | `_active_add` | core.py | Integer add (same-D path) | Rebase non-basis, integer add | Cross-multiply D1×D2, lift remainders |
@@ -432,7 +432,7 @@ Before the basis-aware fix, chaining 10 multiplications at D = 2^32 produced the
 | 9 | 321 | 2.1 × 10^96 |
 | 10 | 353 | 9.2 × 10^105 |
 
-Each multiplication doubled the bit length of D. After 10 steps, D exceeded 10^105 — a number with more digits than the number of atoms in the observable universe. At this scale, every arithmetic operation requires arbitrary-precision integer multiplication on 300+ bit numbers, eliminating any performance advantage of the fixed-frame design.
+Each multiplication doubled the bit length of D. After 10 steps, D exceeded 10^105,  a number with more digits than the number of atoms in the observable universe. At this scale, every arithmetic operation requires arbitrary-precision integer multiplication on 300+ bit numbers, eliminating any performance advantage of the fixed-frame design.
 
 Division produced a different growth pattern. Because VDR division inverts the divisor (swapping V and D), the resulting denominator depends on the V slot of the divisor, which changes unpredictably:
 
@@ -447,7 +447,7 @@ Division produced a different growth pattern. Because VDR division inverts the d
 
 The growth is slower than multiplication (roughly 8-9 digits per step instead of 10) but still exponential.
 
-Addition between same-D operands never caused growth — the same-D fast path was always present. Addition between different-D operands (e.g., basis value + VDR(1, 3)) produced D = D1 × D2, which is a one-time 3× growth, not exponential — but it moved the result off the power-of-two grid permanently.
+Addition between same-D operands never caused growth,  the same-D fast path was always present. Addition between different-D operands (e.g., basis value + VDR(1, 3)) produced D = D1 × D2, which is a one-time 3× growth, not exponential,  but it moved the result off the power-of-two grid permanently.
 
 After the basis-aware fix, all operations maintain D = 4,294,967,296 exactly. The growth table for 10 chained multiplications under the fix:
 
@@ -464,7 +464,7 @@ The following table catalogs every location in the ML modules where a non-basis 
 | Module | Function | Original constant | Original D | Context | Fix |
 |---|---|---|---|---|---|
 | softmax.py | `_exp` | `VDR(k)` for k=1..16 | 1 | Taylor term division | Precomputed `1/k` table in basis via `to_qbasis` |
-| softmax.py | `softmax_surrogate_square` | (no shift parameter) | — | Raw logit squaring | Added shift parameter, default to min logit |
+| softmax.py | `softmax_surrogate_square` | (no shift parameter) |,  | Raw logit squaring | Added shift parameter, default to min logit |
 | attention.py | `apply_boolean_mask` | `VDR(-1000)` | 1 | Mask fill value | Project fill to basis once via `_basis_fill_value` |
 | losses.py | `mse` | `VDR(n)` divisor | n | Loss normalization | Precomputed `VDR(1, n)` in basis via `_basis_const` |
 | losses.py | `mse_grad` | `VDR(2, n)` | n | Gradient scaling | Precomputed in basis via `_basis_const` |
@@ -494,8 +494,8 @@ Total: 23 mixed-frame sources identified and fixed across 8 modules.
 
 | Bits | D | Decimal digits | Floor (per op) | After 10^3 ops | After 10^6 ops | After 10^9 ops | Hardware alignment |
 |---|---|---|---|---|---|---|---|
-| 8 | 256 | 2.4 | 3.9 × 10^-3 | 3.9 | — | — | Byte |
-| 16 | 65,536 | 4.8 | 1.5 × 10^-5 | 1.5 × 10^-2 | 15.3 | — | INT16 |
+| 8 | 256 | 2.4 | 3.9 × 10^-3 | 3.9 |,  |,  | Byte |
+| 16 | 65,536 | 4.8 | 1.5 × 10^-5 | 1.5 × 10^-2 | 15.3 |,  | INT16 |
 | 32 | 4.3 × 10^9 | 9.6 | 2.3 × 10^-10 | 2.3 × 10^-7 | 2.3 × 10^-4 | 0.23 | INT32 |
 | 64 | 1.8 × 10^19 | 19.3 | 5.4 × 10^-20 | 5.4 × 10^-17 | 5.4 × 10^-14 | 5.4 × 10^-11 | INT64, SIMD |
 | 128 | 3.4 × 10^38 | 38.5 | 2.9 × 10^-39 | 2.9 × 10^-36 | 2.9 × 10^-33 | 2.9 × 10^-30 | AVX-512 |
@@ -608,7 +608,7 @@ Over 20 epochs with 2 training windows each: 20 × 2 × 2,800 ≈ 112,000 total 
 | Mixed-frame constants | 16 `VDR(k)` divisions per element | 1 shift subtraction |
 | Suitability for VDR | Functional but expensive | Natural fit |
 
-The quadratic surrogate is not an approximation of exponential softmax. It is a different normalization function that happens to satisfy the same structural requirements: non-negative outputs, sum to 1, differentiable. The optimization landscape is different — the quadratic surrogate produces broader probability distributions and does not suffer from gradient saturation at extreme logit values. Whether this is advantageous depends on the task and scale.
+The quadratic surrogate is not an approximation of exponential softmax. It is a different normalization function that happens to satisfy the same structural requirements: non-negative outputs, sum to 1, differentiable. The optimization landscape is different,  the quadratic surrogate produces broader probability distributions and does not suffer from gradient saturation at extreme logit values. Whether this is advantageous depends on the task and scale.
 
 ---
 

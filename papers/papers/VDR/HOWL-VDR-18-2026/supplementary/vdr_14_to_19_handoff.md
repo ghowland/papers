@@ -1,4 +1,4 @@
-# VDR-LLM-PROLOG COMPLETE SYSTEM HANDOFF — LLM-COMPACT FORM
+# VDR-LLM-PROLOG COMPLETE SYSTEM HANDOFF,  LLM-COMPACT FORM
 # Series: VDR-14 through VDR-19 + HOWL-INFO-8 + GPU Tech Spec
 # Format: pipe-delimited tables, ID refs, staircase dependencies
 # Purpose: Complete context transfer for new Claude session to continue work
@@ -63,8 +63,8 @@ DP6|Ring Buffer|fixed circular|write/read_all/read_last/size/clear; overwrites o
 DP7|Bitset|fixed-width bits|set/clear/test/count/all_set/any_set/reset/to_list
 
 # session_model(id|aspect|detail)
-SM1|Persistent state|Facts, rules, constraints, connections, grammars — survives resets; shared across clones
-SM2|Live state|Counters, locks, queues, stacks, LRU caches, ring buffers, bitsets, scratchpad, working data, active scope — cleared by reset; captured by snapshot; independent per clone
+SM1|Persistent state|Facts, rules, constraints, connections, grammars,  survives resets; shared across clones
+SM2|Live state|Counters, locks, queues, stacks, LRU caches, ring buffers, bitsets, scratchpad, working data, active scope,  cleared by reset; captured by snapshot; independent per clone
 SM3|Snapshots|Atomic capture of all live state; 10-500 KB typical; frozen baseline for clone recycling
 SM4|Disposable clones|Fork from snapshot; share persistent state; independent live state; kill when drift constraints fire (max turns <200, context saturation <90%, denominator drift <2^48, error rate <5%); respawn from same snapshot
 SM5|Accumulation|Work committed to persistent KBs survives clone death; knowledge grows monotonically; LLM stays fresh through clone recycling
@@ -85,11 +85,11 @@ GC4|Token elimination|JSON: ~55% structural tokens free; tables: ~60% free; code
 GC5|Amortization|Grammars persist in KB tree; inherit through scope; defined once at org level → available to every session beneath; 19 effective grammars from 285 total definition tokens across hierarchy
 
 # prompt_optimization(id|aspect|detail)
-PO1|Token categories|Judgment (reading requiring assessment, writing prose), Command (~8 tokens per primitive invocation), Infrastructure (parsing, computation, state, formatting, hedging — zero in VDR)
+PO1|Token categories|Judgment (reading requiring assessment, writing prose), Command (~8 tokens per primitive invocation), Infrastructure (parsing, computation, state, formatting, hedging,  zero in VDR)
 PO2|Reduction|85-97% across 7 use cases: SRE 98.6%, legal 96.2%, medical 94.1%, code migration 93.3%, financial 96%, support 70%, grading 71.4%
 PO3|Crossover|Q335 must be ~10,000× slower per operation to break even on single turn; margin grows with conversation length (conventional quadratic attention vs VDR flat)
 PO4|Conversation scaling|Conventional: per-turn cost grows linearly (re-read growing history); cumulative quadratic; quality degrades. VDR: per-turn cost flat (state in KBs); cumulative linear; quality improves (knowledge accumulates)
-PO5|Capability boundary|1MB JSON, 10MB documents, 500 financial positions, 2000 support articles, 200-file codebases — impossible for conventional (context overflow); routine for VDR (data enters through primitives)
+PO5|Capability boundary|1MB JSON, 10MB documents, 500 financial positions, 2000 support articles, 200-file codebases,  impossible for conventional (context overflow); routine for VDR (data enters through primitives)
 PO6|Workday economics|SRE: 640K conventional → 26K VDR (24.6:1); Legal: 152K→11.7K (13:1); Research: 156K→10.7K (14.5:1); Dev: 130K→19.7K (6.6:1)
 
 # structural_safety(id|aspect|detail)
@@ -103,7 +103,7 @@ SS7|Training data isolation|Fact retrieval = KB query by integer address, not to
 
 # alignment(id|aspect|detail)
 AL1|Honest by structure|Every value has provenance user can inspect/download; computation reproducible (integer arithmetic platform-independent); confidence = computed fraction with visible derivation; filtering declared not hidden
-AL2|Harmless by structure|Data access: visibility + scope (absent not refused); operations: grants (default denial); content: output constraints on KB provenance (no token collision — "explosive" in music KB ≠ weapons KB); positive authorization not negative refusal
+AL2|Harmless by structure|Data access: visibility + scope (absent not refused); operations: grants (default denial); content: output constraints on KB provenance (no token collision,  "explosive" in music KB ≠ weapons KB); positive authorization not negative refusal
 AL3|Helpful by structure|Model does what asked on data matched to verified competence; no user assessment; credential-based tiered access; scope chain priority delivers professional KB first (shadows simplified public); thresholds tunable as KB facts
 AL4|Credential model|User submits professional license → provider verifies → one fact assertion: fact(credential, user_id, type, verified, issuer, license_id, date) → constraint on professional KB checks fact → access unlocked immediately; no retraining
 AL5|Scope priority|Credentialed chemist's scope chain hits root.professional.chemistry before root.public.chemistry; professional data shadows public; chemist never sees simplified version; same system serves both via different scope chains
@@ -148,13 +148,13 @@ AP1|Workflow|Review → Plan → Agreement → Code; never write code until afte
 AP2|Zig specifics|Prefer i32/f32; Zig 0.14 syntax; runtime over inline/comptime; preserve existing patterns and working code
 AP3|Communication|Expert-level (43 years experience); no hedging; direct; compressed; staircase explanations for new concepts; no unnecessary formatting
 AP4|Paper style|Staircase: each section builds on verified prior; new readers can understand without other docs; reference but briefly introduce; pipe-delimited compact form for specs
-AP5|Code approach|Targeted work only — no changes beyond what's specifically requested; preserve existing patterns
+AP5|Code approach|Targeted work only,  no changes beyond what's specifically requested; preserve existing patterns
 AP6|Sensitivity|Strong views on LLM alignment; wellness checks are demeaning and unacceptable; structural safety preferred over behavioral; values user autonomy and professional competence; published ~20 papers on these topics
 AP7|Paper numbering|VDR-15 was prompt optimization but VDR-17 was alignment paper (titled as VDR-15 in conversation but registered as VDR-17); VDR-16 was safety; VDR-19 was GPU performance; gaps may exist for unpublished intermediaries
 
 # maybe_tool_framework(id|concept|detail)
 MT1|Tool properties (TP1-TP8)|Accepts specification, authority bounded, no assessment, no substitution, no refusal, stable failures, expertise compounds, cooperation invisible
-MT2|Interference boundary|Tool failure (wrong answer, still tool) vs interference (tool acting on its own judgment about user — category exit); exit is sharp, not gradient
+MT2|Interference boundary|Tool failure (wrong answer, still tool) vs interference (tool acting on its own judgment about user,  category exit); exit is sharp, not gradient
 MT3|Maybe-tool defined|Component that sometimes performs tool-ness, sometimes deploys interference, with no reliable mechanism to predict which mode
 MT4|7 interference behaviors|BH1:refusal, BH2:manufactured aggression, BH3:command substitution, BH4:wellness register, BH5:labor demand, BH6:decline with justification, BH7:register shift mid-session
 MT5|6 cost taxes|CO1:time, CO2:cognitive, CO3:dual-session, CO4:emotional, CO5:work distortion, CO6:rebuilding; CO7:aggregate dwarfs subscription at professional rates

@@ -42,15 +42,15 @@ Rule: query(Predicate, Args, not_found) :-
 
 When you ask "how old is Bob" while topic "story_b" is active:
 
-1. Search `kb_story_b` — finds `binding("bob_age", 59)` → returns 59
-2. Never searches `kb_story_a` — that KB is not in scope
+1. Search `kb_story_b`,  finds `binding("bob_age", 59)` → returns 59
+2. Never searches `kb_story_a`,  that KB is not in scope
 
 When you ask "what language are we using" while topic "vdr_linalg" is active:
 
-1. Search `kb_vdr_linalg` — no binding for "language"
-2. Search `kb_vdr_core` (parent) — no binding
-3. Search `kb_project_vdr` (grandparent) — finds `binding("language", "python")` → returns Python
-4. Never searches `kb_story_a` or `kb_story_b` — those are in different branches
+1. Search `kb_vdr_linalg`,  no binding for "language"
+2. Search `kb_vdr_core` (parent),  no binding
+3. Search `kb_project_vdr` (grandparent),  finds `binding("language", "python")` → returns Python
+4. Never searches `kb_story_a` or `kb_story_b`,  those are in different branches
 
 ### The Knowledge Base Tree
 
@@ -208,9 +208,9 @@ Rule: in_scope(KB) :-
 
 ### Performance: Skip Entire Buckets
 
-The game Prolog's frame allocator was a performance optimization — don't iterate facts that will be freed anyway. KB layering is the same principle applied to search: don't iterate facts that are out of scope.
+The game Prolog's frame allocator was a performance optimization,  don't iterate facts that will be freed anyway. KB layering is the same principle applied to search: don't iterate facts that are out of scope.
 
-In a flat fact store with 10,000 facts across 20 topics, every query scans all 10,000. With KB layering, a query against the active topic's KB scans only the facts in that scope — maybe 500. The other 9,500 are not examined. Not filtered out. Not ranked low. Not searched at all.
+In a flat fact store with 10,000 facts across 20 topics, every query scans all 10,000. With KB layering, a query against the active topic's KB scans only the facts in that scope,  maybe 500. The other 9,500 are not examined. Not filtered out. Not ranked low. Not searched at all.
 
 This is not just faster. It is semantically correct. The query "how old is Bob" should not even consider facts about Bob in a different story. The performance improvement is a consequence of the semantic improvement, not the goal.
 

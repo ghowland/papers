@@ -18,23 +18,23 @@
 
 ## 1. What Self-Extending Means
 
-A conventional large language model generates every token of its response through token prediction — arithmetic, formatting, state tracking, hedging, reasoning, and the actual content the user wanted. VDR is a hybrid architecture that separates these concerns. The LLM generates only judgment tokens (deciding what to do) and prose tokens (natural language for human consumption), while exact integer primitives handle computation, state management, formatting, and logical deduction. Data lives in knowledge bases at integer addresses. The LLM references data by typed paths and integer identifiers — it never ingests data through its token stream to process it.
+A conventional large language model generates every token of its response through token prediction,  arithmetic, formatting, state tracking, hedging, reasoning, and the actual content the user wanted. VDR is a hybrid architecture that separates these concerns. The LLM generates only judgment tokens (deciding what to do) and prose tokens (natural language for human consumption), while exact integer primitives handle computation, state management, formatting, and logical deduction. Data lives in knowledge bases at integer addresses. The LLM references data by typed paths and integer identifiers,  it never ingests data through its token stream to process it.
 
 In this architecture the LLM emits structured command tokens, roughly eight tokens per invocation, that call specific primitives on specific data at specific paths. A command token vocabulary of around 300 primitive names and 200 paths gives approximately six bits of entropy per token, compared to the fifteen or so bits per token when generating from full vocabulary. This makes command generation low-entropy, low-error, and cheap.
 
 Self-extending means the system's knowledge base, rule set, and executable capabilities grow as a natural byproduct of doing work. When the LLM investigates an SRE incident, it doesn't just produce a report and discard its working state. It writes Prolog rules encoding the correlation patterns it discovered. It writes Python scripts for the analysis it performed. It stores findings as provenanced facts in project knowledge bases. All of these persist, compose with prior accumulated state, and are available to every future session that has scope access to that project.
 
-This accumulation has properties that distinguish it from conventional training. It is immediate — one fact assertion and the knowledge is live, no batch process or gradient computation required. It is inspectable — every rule is a readable Prolog clause, every fact carries provenance identifying its source, time, operation, and precision. It is reversible — retracting a fact or rule removes it cleanly, unlike weight-based training where bad data poisons the model permanently. It is scoped — knowledge accumulated in one project does not leak to another because the same visibility and scope mechanisms that govern all data access govern self-generated knowledge. And it is incremental — the five hundredth document builds on the rule base from the first four hundred ninety-nine without catastrophic forgetting, because facts sit at integer addresses rather than being distributed across weight matrices.
+This accumulation has properties that distinguish it from conventional training. It is immediate,  one fact assertion and the knowledge is live, no batch process or gradient computation required. It is inspectable,  every rule is a readable Prolog clause, every fact carries provenance identifying its source, time, operation, and precision. It is reversible,  retracting a fact or rule removes it cleanly, unlike weight-based training where bad data poisons the model permanently. It is scoped,  knowledge accumulated in one project does not leak to another because the same visibility and scope mechanisms that govern all data access govern self-generated knowledge. And it is incremental,  the five hundredth document builds on the rule base from the first four hundred ninety-nine without catastrophic forgetting, because facts sit at integer addresses rather than being distributed across weight matrices.
 
 The result is a system where usage is training. Every session extends the system's capability, and that extension is permanent, auditable, and composable. The conventional distinction between training time and inference time dissolves.
 
 ## 2. The Compaction Format
 
-When a conventional LLM produces a response, eighty to ninety-five percent of the tokens are infrastructure — formatting, hedging, state reconstruction, arithmetic shown as work, confidence language with no computational basis. The actual information content occupies a small fraction of the token budget.
+When a conventional LLM produces a response, eighty to ninety-five percent of the tokens are infrastructure,  formatting, hedging, state reconstruction, arithmetic shown as work, confidence language with no computational basis. The actual information content occupies a small fraction of the token budget.
 
 Compaction is the process of stripping infrastructure tokens while preserving all named entities, their properties, and their relationships in a structured tabular form. A compacted document uses pipe-delimited tables with typed columns, ID-prefixed rows for cross-referencing, explicit relationship tables declaring how entities connect, decode legends explaining the ID scheme, and section indexes mapping content to ID ranges. This format preserves one hundred percent of the informational content at a fraction of the token cost.
 
-The compacted form is structurally close to what VDR stores natively. Each row in a pipe-delimited table is a fact — a predicate with typed fields. Each entry in a relationship table is a Prolog rule — a declared connection between two identified entities with a named relationship type. Each table grouped by a common prefix is a predicate-major column group, which maps directly to VDR's columnar storage format where all facts sharing a predicate are stored contiguously for parallel access.
+The compacted form is structurally close to what VDR stores natively. Each row in a pipe-delimited table is a fact,  a predicate with typed fields. Each entry in a relationship table is a Prolog rule,  a declared connection between two identified entities with a named relationship type. Each table grouped by a common prefix is a predicate-major column group, which maps directly to VDR's columnar storage format where all facts sharing a predicate are stored contiguously for parallel access.
 
 The adjustment needed for VDR-19 is to align the compaction syntax with three targets simultaneously. First, Prolog clause syntax, so relationship declarations parse directly into executable rules. Second, the predicate-major columnar layout used by VDR's GPU-accelerated knowledge base operations, so tables parse directly into the storage format. Third, struct definitions in implementation languages, so table schemas map directly to Zig structs or Python dataclasses.
 
@@ -56,47 +56,47 @@ emerges_from(p1, vis1).
 emerges_from(p1, gr1).
 emerges_from(p1, oc1).
 
-These are directly loadable. The parse step is mechanical — split on delimiters, map prefixed IDs to integer addresses, assert facts into the appropriate predicate-major column group in the target knowledge base. No transformation logic, no interpretation, no LLM involvement. The compacted document is a load file.
+These are directly loadable. The parse step is mechanical,  split on delimiters, map prefixed IDs to integer addresses, assert facts into the appropriate predicate-major column group in the target knowledge base. No transformation logic, no interpretation, no LLM involvement. The compacted document is a load file.
 
 ## 3. The Bootstrap Pipeline
 
-The system needs an initial seed before it can self-extend. Critically, the seed is not domain knowledge. It is operational competence — the ability to read input, write output, parse data formats, compose primitives, and manage its own structures. Domain knowledge accumulates through usage after the bootstrap.
+The system needs an initial seed before it can self-extend. Critically, the seed is not domain knowledge. It is operational competence,  the ability to read input, write output, parse data formats, compose primitives, and manage its own structures. Domain knowledge accumulates through usage after the bootstrap.
 
 ### Seed Layer 1: Language
 
-The foundation is the ability to read and produce English. This requires a library of sentence structure templates — syntactic patterns covering the range of structures used in working prose. Subject-verb-object, conditional-clause-main-clause, relative clause embedding, participial phrases, and so on. The number of distinct structures used even in good prose is bounded; a library of several thousand covers the practical space generously.
+The foundation is the ability to read and produce English. This requires a library of sentence structure templates,  syntactic patterns covering the range of structures used in working prose. Subject-verb-object, conditional-clause-main-clause, relative clause embedding, participial phrases, and so on. The number of distinct structures used even in good prose is bounded; a library of several thousand covers the practical space generously.
 
-With sentence templates, the LLM's output generation changes. Instead of predicting every token from full vocabulary, it emits a semantic tuple — subject, verb, object, modifiers, weight criteria — as a handful of command tokens. Prolog rules match against the template library based on semantic roles and weighting criteria. The matching template provides all structural tokens: articles, prepositions, conjunctions, punctuation. Content words from the LLM's semantic tuple fill typed slots. The output is grammatically correct by construction.
+With sentence templates, the LLM's output generation changes. Instead of predicting every token from full vocabulary, it emits a semantic tuple,  subject, verb, object, modifiers, weight criteria,  as a handful of command tokens. Prolog rules match against the template library based on semantic roles and weighting criteria. The matching template provides all structural tokens: articles, prepositions, conjunctions, punctuation. Content words from the LLM's semantic tuple fill typed slots. The output is grammatically correct by construction.
 
 The seed also includes a typo correction knowledge base mapping common misspellings and input errors to corrections, and a classification knowledge base mapping input patterns to tags for session scoring and routing. Together these enable the system to read imperfect user input and generate clean, structured output from its first interaction.
 
 ### Seed Layer 2: Format Handling
 
-The system needs to ingest and produce structured data. The seed includes parsing and generation grammars for standard formats: JSON, CSV, markdown, and the adjusted compaction format itself. Each grammar specifies the structural tokens for the format — braces, brackets, commas, pipes, headers — and the typed content slots that the LLM or primitives fill with actual values.
+The system needs to ingest and produce structured data. The seed includes parsing and generation grammars for standard formats: JSON, CSV, markdown, and the adjusted compaction format itself. Each grammar specifies the structural tokens for the format,  braces, brackets, commas, pipes, headers,  and the typed content slots that the LLM or primitives fill with actual values.
 
 A grammar, once loaded, handles all future documents of that format without LLM involvement. The structural tokens are emitted by the grammar engine, not predicted by the LLM. This eliminates formatting errors (mismatched braces, missing commas, unescaped characters) by construction and reduces token cost by thirty to sixty percent depending on format.
 
 ### Seed Layer 3: Operational Environment
 
-The primitives exist as executable code, but the system needs knowledge about when and how to compose them. Seed layer three is a knowledge base of operational rules: which builtin to call for which task, how to sequence pipeline stages, when to write a Prolog rule versus store a flat fact, how to manage data structures — when to use a queue versus a ring buffer, how to check and drain queues, when to increment counters, how to use LRU caches for frequently accessed values.
+The primitives exist as executable code, but the system needs knowledge about when and how to compose them. Seed layer three is a knowledge base of operational rules: which builtin to call for which task, how to sequence pipeline stages, when to write a Prolog rule versus store a flat fact, how to manage data structures,  when to use a queue versus a ring buffer, how to check and drain queues, when to increment counters, how to use LRU caches for frequently accessed values.
 
-This layer also includes the compaction rules themselves — how to identify named entities, relationships, and structure in incoming documents and map them to KB facts and Prolog rules. These rules enable the system to process new documents into its native storage format.
+This layer also includes the compaction rules themselves,  how to identify named entities, relationships, and structure in incoming documents and map them to KB facts and Prolog rules. These rules enable the system to process new documents into its native storage format.
 
 ### Seed Layer 4: Self-Maintenance
 
-Rules for recognizing when a new grammar is needed for a novel document structure. Rules for detecting when existing compaction patterns don't cover an incoming document type. Rules for project lifecycle management — when to snapshot state, how to compare versions, when to promote session findings to project-level knowledge.
+Rules for recognizing when a new grammar is needed for a novel document structure. Rules for detecting when existing compaction patterns don't cover an incoming document type. Rules for project lifecycle management,  when to snapshot state, how to compare versions, when to promote session findings to project-level knowledge.
 
 ### The Bootstrap Sequence
 
 The bootstrap proceeds through stages with clear transition criteria.
 
-In the first stage, a conventional LLM compacts seed documents into the adjusted format. These compacted documents are parsed through primitives into knowledge bases — named entities become facts at integer addresses, relationships become Prolog rules, tables become predicate-major column groups. The system now has operational competence.
+In the first stage, a conventional LLM compacts seed documents into the adjusted format. These compacted documents are parsed through primitives into knowledge bases,  named entities become facts at integer addresses, relationships become Prolog rules, tables become predicate-major column groups. The system now has operational competence.
 
 In the second stage, the system begins operating. Users interact with it, feed it documents, ask it to investigate problems. At this point, new documents that need compaction still go through an external conventional LLM, because the system's compaction rule base is thin.
 
 In the third stage, through normal usage the system has accumulated enough compaction grammars, structural patterns, and domain classification rules that it can compact new documents itself. The LLM's judgment identifies named entities and relationships. Primitives parse. Prolog rules classify. Grammars format. The conventional LLM is no longer needed as a preprocessing step.
 
-From this point forward, the system sources data directly — web fetch, paste, upload, API — and compacts, stores, and indexes it through its own accumulated capabilities. Each new document potentially extends the rule base further. The bootstrap is complete and continuous self-extension has begun.
+From this point forward, the system sources data directly,  web fetch, paste, upload, API,  and compacts, stores, and indexes it through its own accumulated capabilities. Each new document potentially extends the rule base further. The bootstrap is complete and continuous self-extension has begun.
 
 ## 4. The Operational Lifecycle
 
@@ -104,27 +104,27 @@ Once bootstrapped, the system operates in a continuous cycle with four phases th
 
 ### Intake
 
-Documents enter through any supported channel — web fetch with credentials, file upload, paste, API ingestion. The system compacts incoming documents using its accumulated grammars and classification rules. Named entities are identified, relationships are extracted, structure is mapped to KB facts and Prolog rules. Every ingested fact carries full provenance: source, timestamp, original format, conversion method, and precision where applicable.
+Documents enter through any supported channel,  web fetch with credentials, file upload, paste, API ingestion. The system compacts incoming documents using its accumulated grammars and classification rules. Named entities are identified, relationships are extracted, structure is mapped to KB facts and Prolog rules. Every ingested fact carries full provenance: source, timestamp, original format, conversion method, and precision where applicable.
 
-The data never enters the LLM's token stream during intake. Primitives handle parsing, the grammar engine handles structural recognition, Prolog rules handle classification. The LLM is involved only if judgment is required — resolving ambiguity in entity identification, deciding how to categorize a novel relationship type, flagging a contradiction with existing knowledge.
+The data never enters the LLM's token stream during intake. Primitives handle parsing, the grammar engine handles structural recognition, Prolog rules handle classification. The LLM is involved only if judgment is required,  resolving ambiguity in entity identification, deciding how to categorize a novel relationship type, flagging a contradiction with existing knowledge.
 
 ### Processing
 
 When the LLM or a user queries the accumulated knowledge base, existing Prolog rules fire automatically against the stored facts. If new documents have been ingested since the last query, rules that were written during prior investigations evaluate against the new facts without any additional LLM involvement. Contradictions between new and existing facts surface through rule evaluation. Confirmations strengthen confidence values through declared propagation rules.
 
-The LLM's role during processing is judgment — interpreting what the rule evaluations found, deciding what matters, identifying what needs further investigation, assessing whether the accumulated findings answer the user's question.
+The LLM's role during processing is judgment,  interpreting what the rule evaluations found, deciding what matters, identifying what needs further investigation, assessing whether the accumulated findings answer the user's question.
 
 ### Rule Generation
 
-As the LLM works, it writes new Prolog rules encoding patterns it discovers. A correlation between deployment timestamps and error rate spikes becomes a rule. A classification pattern for a type of legal clause becomes a rule. A relationship between drug interactions becomes a rule. Each rule is asserted into the appropriate project knowledge base through the standard command token pipeline — the LLM emits roughly eight tokens, the primitive executes, the rule is live and queryable immediately.
+As the LLM works, it writes new Prolog rules encoding patterns it discovers. A correlation between deployment timestamps and error rate spikes becomes a rule. A classification pattern for a type of legal clause becomes a rule. A relationship between drug interactions becomes a rule. Each rule is asserted into the appropriate project knowledge base through the standard command token pipeline,  the LLM emits roughly eight tokens, the primitive executes, the rule is live and queryable immediately.
 
-When analysis requires procedural logic beyond what Prolog rules express naturally — statistical computations, complex transformations, custom visualizations — the LLM writes a Python script. The script executes in a sandboxed Docker container with grant-gated filesystem access. Results return as typed values stored in the knowledge base with provenance linking them to the script, its inputs, and its execution context.
+When analysis requires procedural logic beyond what Prolog rules express naturally,  statistical computations, complex transformations, custom visualizations,  the LLM writes a Python script. The script executes in a sandboxed Docker container with grant-gated filesystem access. Results return as typed values stored in the knowledge base with provenance linking them to the script, its inputs, and its execution context.
 
 The LLM also writes new grammars when it encounters document structures not covered by existing grammars, and new compaction rules when it encounters document types whose entity and relationship patterns aren't covered by existing compaction rules.
 
 ### Accumulation
 
-Facts, rules, scripts, grammars, and project state accumulate within scope. Session-level state — working hypotheses, intermediate findings, exploration paths — lives in the session knowledge base and is discarded when the session ends unless the LLM makes an explicit judgment to promote specific findings to project-level knowledge. This is an important filter: not everything discovered in a session is worth keeping permanently. The LLM's judgment about what to promote is itself a form of curation that improves the quality of accumulated knowledge.
+Facts, rules, scripts, grammars, and project state accumulate within scope. Session-level state,  working hypotheses, intermediate findings, exploration paths,  lives in the session knowledge base and is discarded when the session ends unless the LLM makes an explicit judgment to promote specific findings to project-level knowledge. This is an important filter: not everything discovered in a session is worth keeping permanently. The LLM's judgment about what to promote is itself a form of curation that improves the quality of accumulated knowledge.
 
 Project-level state persists across sessions and is available to all future sessions with scope access. At meaningful points the system snapshots project state. Comparison rules, themselves stored as Prolog, can diff current state against prior snapshots. The system knows what changed, when, and why, because every fact carries provenance.
 
@@ -134,33 +134,33 @@ The LLM in a VDR system is not a chatbot that generates text responses. It is a 
 
 ### Writing Prolog Rules
 
-When the LLM asserts a Prolog rule, that rule becomes immediately available to VDR's frontier-based GPU evaluator. The evaluator transforms recursive depth-first Prolog search into batched joins borrowed from GPU database query processing — candidate retrieval, filtering, unification, and body goal joining — achieving high throughput on parallel hardware. A rule written by the LLM during an SRE investigation composes automatically with all existing rules and facts within scope. If a new document is ingested next week containing facts that match the rule's head, the rule fires without any LLM involvement.
+When the LLM asserts a Prolog rule, that rule becomes immediately available to VDR's frontier-based GPU evaluator. The evaluator transforms recursive depth-first Prolog search into batched joins borrowed from GPU database query processing,  candidate retrieval, filtering, unification, and body goal joining,  achieving high throughput on parallel hardware. A rule written by the LLM during an SRE investigation composes automatically with all existing rules and facts within scope. If a new document is ingested next week containing facts that match the rule's head, the rule fires without any LLM involvement.
 
-The economics of rule writing favor doing it aggressively. A Prolog rule costs roughly twenty-five to forty tokens to formalize and assert. On first use it replaces what would have been one hundred fifty to three hundred tokens of conventional LLM reasoning. By the fifth use the amortized cost is negligible. Rules at organizational scope, shared across all projects in a department, can be reused thousands of times — the per-use cost approaches zero. Every rule written is an investment that pays returns on all future work within scope.
+The economics of rule writing favor doing it aggressively. A Prolog rule costs roughly twenty-five to forty tokens to formalize and assert. On first use it replaces what would have been one hundred fifty to three hundred tokens of conventional LLM reasoning. By the fifth use the amortized cost is negligible. Rules at organizational scope, shared across all projects in a department, can be reused thousands of times,  the per-use cost approaches zero. Every rule written is an investment that pays returns on all future work within scope.
 
 ### Writing Python Scripts
 
-Some analysis requires procedural logic that Prolog doesn't express naturally. The LLM writes a Python script — typically twenty to fifty tokens of actual judgment about what computation to perform — and the system executes it in a sandboxed Docker container. The script has access only to data paths that the session's grants authorize. Results return as typed values with provenance and are stored in the knowledge base.
+Some analysis requires procedural logic that Prolog doesn't express naturally. The LLM writes a Python script,  typically twenty to fifty tokens of actual judgment about what computation to perform,  and the system executes it in a sandboxed Docker container. The script has access only to data paths that the session's grants authorize. Results return as typed values with provenance and are stored in the knowledge base.
 
-Critically, the script persists. When similar analysis is needed in a future session, the LLM can re-execute the existing script on new data rather than writing a new one. The script becomes infrastructure — a reusable analytical capability that the system accumulated through usage.
+Critically, the script persists. When similar analysis is needed in a future session, the LLM can re-execute the existing script on new data rather than writing a new one. The script becomes infrastructure,  a reusable analytical capability that the system accumulated through usage.
 
 ### Writing Grammars
 
-When the LLM encounters a novel document structure — a new log format, a new report template, a new data export format — it can write a grammar for that structure. The grammar specifies the structural tokens and typed content slots. Once stored, the grammar handles all future documents of that type at the primitive level without LLM involvement. The LLM's one-time judgment about the document's structure becomes a permanent parsing capability.
+When the LLM encounters a novel document structure,  a new log format, a new report template, a new data export format,  it can write a grammar for that structure. The grammar specifies the structural tokens and typed content slots. Once stored, the grammar handles all future documents of that type at the primitive level without LLM involvement. The LLM's one-time judgment about the document's structure becomes a permanent parsing capability.
 
 ### Writing Compaction Rules
 
-As the system processes more documents from more domains, the LLM writes rules about how to compact specific document types. Which entities to extract from a medical paper. Which relationships to encode from a legal contract. Which structure to preserve from an API specification. These rules enable self-compaction of future documents of the same type, closing the loop from the bootstrap pipeline — the system that once needed an external LLM for compaction now compacts autonomously.
+As the system processes more documents from more domains, the LLM writes rules about how to compact specific document types. Which entities to extract from a medical paper. Which relationships to encode from a legal contract. Which structure to preserve from an API specification. These rules enable self-compaction of future documents of the same type, closing the loop from the bootstrap pipeline,  the system that once needed an external LLM for compaction now compacts autonomously.
 
 ## 6. The SRE Operational Environment
 
-Site reliability engineering provides a concrete demonstration of self-extending architecture because SRE work is repetitive in structure but variable in specifics. The same categories of investigation recur — performance degradation, deployment correlation, resource exhaustion, dependency failures — but each incident has different metrics, different services, different root causes. This is precisely the pattern that self-extension exploits: accumulate structural knowledge, apply LLM judgment only to what's genuinely novel.
+Site reliability engineering provides a concrete demonstration of self-extending architecture because SRE work is repetitive in structure but variable in specifics. The same categories of investigation recur,  performance degradation, deployment correlation, resource exhaustion, dependency failures,  but each incident has different metrics, different services, different root causes. This is precisely the pattern that self-extension exploits: accumulate structural knowledge, apply LLM judgment only to what's genuinely novel.
 
 ### First Investigation
 
 A new system with only the bootstrap seed. An SRE engineer reports elevated error rates.
 
-The LLM queries the Prometheus API using credentialed, positionally constrained command tokens. The response — potentially megabytes of time-series metrics — routes directly to a knowledge base target through primitives. The LLM never sees the raw data. It receives a typed summary: how many series returned, time range, approximate volume.
+The LLM queries the Prometheus API using credentialed, positionally constrained command tokens. The response,  potentially megabytes of time-series metrics,  routes directly to a knowledge base target through primitives. The LLM never sees the raw data. It receives a typed summary: how many series returned, time range, approximate volume.
 
 The LLM emits command tokens to parse the JSON response, filter by error rate threshold, sort by severity. All primitive operations, all exact, all on data at integer addresses. The LLM sees the filtered result set as typed facts.
 
@@ -174,7 +174,7 @@ Total LLM tokens for the entire investigation: roughly two hundred, almost all j
 
 ### Second Investigation
 
-Same system, new incident. The Prometheus data comes in and is parsed and filtered as before. But now the deployment correlation rule from the first investigation fires automatically against the new data. The LLM doesn't need to hypothesize about deployment correlation — the rule already checks it and reports whether a match exists.
+Same system, new incident. The Prometheus data comes in and is parsed and filtered as before. But now the deployment correlation rule from the first investigation fires automatically against the new data. The LLM doesn't need to hypothesize about deployment correlation,  the rule already checks it and reports whether a match exists.
 
 The Python correlation script already exists. The LLM re-executes it on the new data rather than writing a new one.
 
@@ -192,31 +192,31 @@ A new engineer joining the team inherits all accumulated rules, scripts, and fin
 
 ### Hundredth Investigation
 
-Routine triage is substantially automated. Metrics come in, rules fire, known patterns are identified and reported. The LLM handles exceptions — patterns that don't match existing rules, novel failure modes, unusual combinations. When it encounters something new, it writes new rules, extending the system further.
+Routine triage is substantially automated. Metrics come in, rules fire, known patterns are identified and reported. The LLM handles exceptions,  patterns that don't match existing rules, novel failure modes, unusual combinations. When it encounters something new, it writes new rules, extending the system further.
 
-The project knowledge base at this point is a queryable, provenanced, inspectable model of the operational domain — not in neural network weights, but in explicit facts and rules. Any finding can be traced to its source data. Any rule can be examined for correctness. Any conclusion can be reproduced deterministically.
+The project knowledge base at this point is a queryable, provenanced, inspectable model of the operational domain,  not in neural network weights, but in explicit facts and rules. Any finding can be traced to its source data. Any rule can be examined for correctness. Any conclusion can be reproduced deterministically.
 
 ## 7. Data Flow Architecture
 
-In a conventional LLM system, data enters the context window as tokens. The LLM processes data through attention — comparing each token position against all other positions to determine relevance. Results are generated as tokens. State is lost between turns unless the entire conversation history is re-read, which is why conventional cost scales quadratically with conversation length.
+In a conventional LLM system, data enters the context window as tokens. The LLM processes data through attention,  comparing each token position against all other positions to determine relevance. Results are generated as tokens. State is lost between turns unless the entire conversation history is re-read, which is why conventional cost scales quadratically with conversation length.
 
 In VDR, data lives at integer addresses in knowledge bases, queues, LRU caches, ring buffers, counters, and stacks. The LLM references data by dotted path names and integer identifiers. It never ingests data to manipulate it.
 
-The data flow for a typical operation: external data enters through primitives (API fetch, file read, document parse) and is stored as facts at integer addresses in a knowledge base. The LLM emits command tokens referencing the path where data was stored. Primitives operate on the data at those addresses — filtering, sorting, aggregating, comparing. Results are written to new addresses in the knowledge base. The LLM receives a typed summary of results. Output is generated through grammar templates that pull values from knowledge base addresses into formatted slots.
+The data flow for a typical operation: external data enters through primitives (API fetch, file read, document parse) and is stored as facts at integer addresses in a knowledge base. The LLM emits command tokens referencing the path where data was stored. Primitives operate on the data at those addresses,  filtering, sorting, aggregating, comparing. Results are written to new addresses in the knowledge base. The LLM receives a typed summary of results. Output is generated through grammar templates that pull values from knowledge base addresses into formatted slots.
 
-At no point does the raw data flow through the LLM's token stream. The LLM processes references, not content. This is why VDR can handle data volumes that conventional LLMs structurally cannot — a one megabyte JSON response, a ten megabyte document, a five hundred position portfolio. The data never needs to fit in a context window because it never enters one.
+At no point does the raw data flow through the LLM's token stream. The LLM processes references, not content. This is why VDR can handle data volumes that conventional LLMs structurally cannot,  a one megabyte JSON response, a ten megabyte document, a five hundred position portfolio. The data never needs to fit in a context window because it never enters one.
 
 ### Queue-Based Multi-Instance Orchestration
 
-The data flow architecture enables a topology beyond single-user single-LLM conversation. An LLM instance can write findings to a knowledge base and put a typed summary on a queue. Another instance — a fresh clone with full access to accumulated project state — picks up from the queue, reads the provenance, continues the work.
+The data flow architecture enables a topology beyond single-user single-LLM conversation. An LLM instance can write findings to a knowledge base and put a typed summary on a queue. Another instance,  a fresh clone with full access to accumulated project state,  picks up from the queue, reads the provenance, continues the work.
 
-Each instance stays fresh. Clone economics from VDR-15 show that each disposable clone operates within its optimal range (early conversation, no attention degradation) while inheriting all accumulated knowledge at integer addresses. The clone lifecycle costs roughly forty tokens — a snapshot, a spawn, checks, and eventually a kill and respawn. Knowledge accumulates across instances while each individual LLM stays permanently at peak capability.
+Each instance stays fresh. Clone economics from VDR-15 show that each disposable clone operates within its optimal range (early conversation, no attention degradation) while inheriting all accumulated knowledge at integer addresses. The clone lifecycle costs roughly forty tokens,  a snapshot, a spawn, checks, and eventually a kill and respawn. Knowledge accumulates across instances while each individual LLM stays permanently at peak capability.
 
 This enables horizontal scaling of self-extension. One instance handles data acquisition and initial filtering. Another handles analysis. A third handles synthesis and report generation. Each writes rules and findings that the others can access through shared project knowledge bases. The system extends itself in parallel.
 
 ## 8. Train-As-You-Go
 
-Conventional machine learning draws a sharp line between training and inference. Training is a batch process: collect data, compute gradients, update weights, evaluate, deploy. Inference is a separate phase where the trained model processes inputs. Improving the model means retraining — expensive, slow, and disruptive.
+Conventional machine learning draws a sharp line between training and inference. Training is a batch process: collect data, compute gradients, update weights, evaluate, deploy. Inference is a separate phase where the trained model processes inputs. Improving the model means retraining,  expensive, slow, and disruptive.
 
 In VDR the distinction dissolves. Every document ingested becomes queryable facts. Every investigation writes reusable rules. Every novel structure generates a persistent grammar. The system's knowledge and inference capability grow continuously through normal usage. There is no separate training phase because usage is training.
 
@@ -224,7 +224,7 @@ This has properties that weight-based training cannot provide.
 
 It is immediate. Asserting a fact or rule into a knowledge base is one primitive call costing eight command tokens. The knowledge is live and queryable in the same turn it was created. No batch process, no gradient computation, no retraining cycle, no deployment.
 
-It is inspectable. Every Prolog rule is a readable clause that a human can examine, understand, and verify. Every fact carries provenance — source, timestamp, operation, conversion method, precision. The entire learned state of the system is transparent. There is no equivalent of examining neural network weights to understand what a model learned.
+It is inspectable. Every Prolog rule is a readable clause that a human can examine, understand, and verify. Every fact carries provenance,  source, timestamp, operation, conversion method, precision. The entire learned state of the system is transparent. There is no equivalent of examining neural network weights to understand what a model learned.
 
 It is reversible. Retracting a fact or rule removes it cleanly from the knowledge base. Its consequences disappear from future queries. There is no equivalent of the weight poisoning problem where bad training data permanently degrades model capability in ways that are difficult to identify and impossible to surgically remove.
 
@@ -234,13 +234,13 @@ It is incremental. Each new document extends the existing knowledge base without
 
 It is auditable. Every fact carries provenance. Every rule carries provenance. Every modification is logged in an append-only audit knowledge base. A compliance officer can trace any conclusion to its source data, through every intermediate derivation, and verify that each step was authorized and correct.
 
-It is composable. Prolog rules from different sources — different sessions, different users, different projects within scope — interact through structural unification automatically. A rule about deployment correlation written during one investigation composes with a rule about resource utilization written during another, producing inferences that neither rule could produce alone, without any explicit integration step.
+It is composable. Prolog rules from different sources,  different sessions, different users, different projects within scope,  interact through structural unification automatically. A rule about deployment correlation written during one investigation composes with a rule about resource utilization written during another, producing inferences that neither rule could produce alone, without any explicit integration step.
 
 ### The Accumulation Curve
 
-Early in a system's lifecycle, most work is LLM judgment — writing foundational rules, learning the structure of the operational domain, establishing grammars and compaction patterns. The ratio of LLM tokens to useful output is at its highest.
+Early in a system's lifecycle, most work is LLM judgment,  writing foundational rules, learning the structure of the operational domain, establishing grammars and compaction patterns. The ratio of LLM tokens to useful output is at its highest.
 
-As the system accumulates rules, scripts, grammars, and knowledge, the ratio shifts. Existing rules handle an increasing share of routine operations. Existing scripts re-execute on new data. Existing grammars parse new documents of known types. The LLM's judgment focuses increasingly on genuinely novel situations — new patterns, new contradictions, new categories of problem.
+As the system accumulates rules, scripts, grammars, and knowledge, the ratio shifts. Existing rules handle an increasing share of routine operations. Existing scripts re-execute on new data. Existing grammars parse new documents of known types. The LLM's judgment focuses increasingly on genuinely novel situations,  new patterns, new contradictions, new categories of problem.
 
 The system does more useful work per LLM token as it accumulates. This is the opposite of the conventional pattern, where each turn costs more (quadratic attention growth) and produces less reliable output (attention degradation over long contexts). In VDR, each session is cheaper than the prior session for similar work, and the output is more reliable because it builds on a more comprehensive verified knowledge base.
 
@@ -250,13 +250,13 @@ The system's capability can be quantified along several dimensions that all grow
 
 Knowledge base facts measure the raw volume of stored, queryable, provenanced information. An SRE project might accumulate a hundred facts from its first investigation, growing to several hundred by the fifth, approaching a thousand by the twentieth. Each fact is individually queryable at constant time through integer-addressed knowledge base lookup.
 
-Prolog rules measure the system's inference capability — the patterns it can recognize, the correlations it can detect, the classifications it can perform without LLM involvement. Rules accumulate at project scope (available to this investigation), department scope (available to all SRE investigations), and organization scope (available to all projects). Higher-scope rules amortize more aggressively because they serve more queries.
+Prolog rules measure the system's inference capability,  the patterns it can recognize, the correlations it can detect, the classifications it can perform without LLM involvement. Rules accumulate at project scope (available to this investigation), department scope (available to all SRE investigations), and organization scope (available to all projects). Higher-scope rules amortize more aggressively because they serve more queries.
 
 Python scripts measure procedural analytical capabilities. Each script is a reusable computation that can be re-executed on new data. The system's library of analytical scripts grows with each novel analysis the LLM performs.
 
 Grammars measure the system's ability to handle structured data formats. Each grammar enables zero-LLM parsing and generation for a document type. The library of grammars grows as the system encounters new formats.
 
-Compaction rules measure the system's ability to ingest new documents autonomously. Each compaction rule covers a document type — how to identify entities, extract relationships, map structure to knowledge base facts. As the compaction rule library grows, fewer document types require LLM judgment for ingestion.
+Compaction rules measure the system's ability to ingest new documents autonomously. Each compaction rule covers a document type,  how to identify entities, extract relationships, map structure to knowledge base facts. As the compaction rule library grows, fewer document types require LLM judgment for ingestion.
 
 Session-over-session token reduction measures the practical economic benefit. Each session doing similar work to a prior session is cheaper because accumulated rules and scripts handle known patterns. The reduction is measurable and grows with the knowledge base.
 
@@ -268,31 +268,31 @@ VDR enforces access control structurally through four independent mechanisms. Kn
 
 Self-extension inherits every one of these properties because it operates through the same mechanisms.
 
-When the LLM writes a Prolog rule, it does so by emitting command tokens that invoke the knowledge base assertion primitive. That primitive checks grants before executing — does this session have write access to this knowledge base path? The asserted rule is stored in a knowledge base subject to the same visibility and scope controls as every other fact. A rule written in project A cannot be queried from project B unless scope permits, because the scope check runs on every knowledge base query regardless of whether the fact was seeded at bootstrap, ingested from a document, or written by the LLM during operation.
+When the LLM writes a Prolog rule, it does so by emitting command tokens that invoke the knowledge base assertion primitive. That primitive checks grants before executing,  does this session have write access to this knowledge base path? The asserted rule is stored in a knowledge base subject to the same visibility and scope controls as every other fact. A rule written in project A cannot be queried from project B unless scope permits, because the scope check runs on every knowledge base query regardless of whether the fact was seeded at bootstrap, ingested from a document, or written by the LLM during operation.
 
-When the LLM writes a Python script, the script executes in a sandboxed Docker container. The container's filesystem access is grant-gated — the script can read and write only the data paths that the session's grants authorize. The script's results are stored in the knowledge base with provenance identifying the script, its inputs, its execution context, and the session that created it.
+When the LLM writes a Python script, the script executes in a sandboxed Docker container. The container's filesystem access is grant-gated,  the script can read and write only the data paths that the session's grants authorize. The script's results are stored in the knowledge base with provenance identifying the script, its inputs, its execution context, and the session that created it.
 
 When the LLM writes a new grammar or compaction rule, these are stored as knowledge base facts with the same visibility, scope, and provenance as any other fact. They are queryable, auditable, and retractable through the same mechanisms.
 
-Self-generated rules carry provenance identifying the session, user, and turn that created them. Any rule can be traced to the context in which it was written. Retraction of self-generated rules follows the same audit trail as any other knowledge base modification — logged in the append-only audit knowledge base, with constraint checks preventing unauthorized retraction.
+Self-generated rules carry provenance identifying the session, user, and turn that created them. Any rule can be traced to the context in which it was written. Retraction of self-generated rules follows the same audit trail as any other knowledge base modification,  logged in the append-only audit knowledge base, with constraint checks preventing unauthorized retraction.
 
-No new attack surface is created by self-extension. The LLM was already writing to knowledge bases and executing operations through the command token and primitive pipeline. Self-extension is just a pattern of usage — the LLM writes rules and scripts that it or future instances will use. The access control checks are the same checks that run on every operation. The audit trail is the same audit trail that logs every access. The security model doesn't need to be extended to cover self-extension because self-extension is not a new capability — it is the natural use of existing capabilities.
+No new attack surface is created by self-extension. The LLM was already writing to knowledge bases and executing operations through the command token and primitive pipeline. Self-extension is just a pattern of usage,  the LLM writes rules and scripts that it or future instances will use. The access control checks are the same checks that run on every operation. The audit trail is the same audit trail that logs every access. The security model doesn't need to be extended to cover self-extension because self-extension is not a new capability,  it is the natural use of existing capabilities.
 
 ## 11. Language and Dialect as Knowledge Base Selection
 
-When the LLM generates prose in a conventional system, it predicts every token from full vocabulary — structural words, content words, punctuation, formatting — all through the same token prediction mechanism. The output language and register are properties of the model's training distribution. Producing consistent output in a specific dialect or register requires prompt engineering that the model may not sustain across long documents.
+When the LLM generates prose in a conventional system, it predicts every token from full vocabulary,  structural words, content words, punctuation, formatting,  all through the same token prediction mechanism. The output language and register are properties of the model's training distribution. Producing consistent output in a specific dialect or register requires prompt engineering that the model may not sustain across long documents.
 
-In VDR, the LLM's judgment about what to say is decoupled from how to say it. The LLM emits a semantic tuple as command tokens — subject, verb, object, location, weight criteria. This is language-independent content: the meaning the LLM wants to express, stripped of all linguistic structure.
+In VDR, the LLM's judgment about what to say is decoupled from how to say it. The LLM emits a semantic tuple as command tokens,  subject, verb, object, location, weight criteria. This is language-independent content: the meaning the LLM wants to express, stripped of all linguistic structure.
 
-Prolog rules then match against sentence structure templates in the currently mounted language or dialect knowledge base. The rules unify on semantic roles — which templates accept two subjects, which have a location adjunct, which support the desired emphasis pattern — and apply weighting criteria to rank candidates. The matching template provides every structural token: articles, prepositions, conjunctions, clause connectors, punctuation. Content words from the LLM's semantic tuple fill typed slots.
+Prolog rules then match against sentence structure templates in the currently mounted language or dialect knowledge base. The rules unify on semantic roles,  which templates accept two subjects, which have a location adjunct, which support the desired emphasis pattern,  and apply weighting criteria to rank candidates. The matching template provides every structural token: articles, prepositions, conjunctions, clause connectors, punctuation. Content words from the LLM's semantic tuple fill typed slots.
 
-Switching language or dialect is a scope change — mount a different knowledge base. The same semantic tuple routed through an American English knowledge base, a Southern dialect knowledge base, a formal British English knowledge base, or a French knowledge base produces different output. The LLM emits the same command tokens in every case. No model fine-tuning, no prompt engineering, no risk of the model drifting back to its dominant training distribution after a few paragraphs.
+Switching language or dialect is a scope change,  mount a different knowledge base. The same semantic tuple routed through an American English knowledge base, a Southern dialect knowledge base, a formal British English knowledge base, or a French knowledge base produces different output. The LLM emits the same command tokens in every case. No model fine-tuning, no prompt engineering, no risk of the model drifting back to its dominant training distribution after a few paragraphs.
 
-The structural rules in the mounted knowledge base are deterministic, so dialect consistency is guaranteed throughout a document of any length. An author can mix registers intentionally — narrator in formal English, dialogue in regional dialect — by switching the mounted knowledge base per output segment. The LLM never needs to track which voice it is using because scope handles that.
+The structural rules in the mounted knowledge base are deterministic, so dialect consistency is guaranteed throughout a document of any length. An author can mix registers intentionally,  narrator in formal English, dialogue in regional dialect,  by switching the mounted knowledge base per output segment. The LLM never needs to track which voice it is using because scope handles that.
 
 Translation falls out naturally. Same semantic tuple, different language knowledge base, different output language. The quality ceiling is the breadth and accuracy of the sentence template library, not the model's training distribution for that language.
 
-This capability is itself subject to self-extension. Sentence template knowledge bases are accumulated knowledge like any other — written and refined through usage, scoped and versioned and provenanced, growing as the system encounters more linguistic patterns. A system that starts with a few thousand English templates accumulates more through use, eventually covering the full working range of the language with templates that have been verified through actual output.
+This capability is itself subject to self-extension. Sentence template knowledge bases are accumulated knowledge like any other,  written and refined through usage, scoped and versioned and provenanced, growing as the system encounters more linguistic patterns. A system that starts with a few thousand English templates accumulates more through use, eventually covering the full working range of the language with templates that have been verified through actual output.
 
 ---
 
@@ -338,7 +338,7 @@ Stage one to stage two: all four seed layers loaded and queryable. System can pa
 
 Stage two to stage three: system has accumulated enough compaction grammars and classification rules through usage that it can compact documents of types it has previously encountered without external LLM assistance. Transition criterion: successful self-compaction of a test document for each known type, validated against external LLM compaction of the same document.
 
-Stage three onward: continuous self-extension. No further stage transitions — the system grows monotonically through usage. The boundary between bootstrap and normal operation dissolves.
+Stage three onward: continuous self-extension. No further stage transitions,  the system grows monotonically through usage. The boundary between bootstrap and normal operation dissolves.
 
 ## Appendix D: SRE Worked Example
 
@@ -354,11 +354,11 @@ Write (LLM emits twenty to fifty judgment tokens) → store in project knowledge
 
 ## Appendix G: Queue-Based Multi-Instance Coordination
 
-Instance A writes findings to project knowledge base, pushes typed summary to queue. Instance B (fresh clone with scope access) reads from queue, accesses project knowledge base, continues work. Instance B writes additional findings, pushes to queue. Instance C picks up. Each instance is disposable — fresh LLM, full accumulated knowledge, no degradation. Queue items carry provenance linking to the producing instance, session, and turn.
+Instance A writes findings to project knowledge base, pushes typed summary to queue. Instance B (fresh clone with scope access) reads from queue, accesses project knowledge base, continues work. Instance B writes additional findings, pushes to queue. Instance C picks up. Each instance is disposable,  fresh LLM, full accumulated knowledge, no degradation. Queue items carry provenance linking to the producing instance, session, and turn.
 
 ## Appendix H: Capability Growth Metrics
 
-Projected growth curves for SRE use case showing knowledge base facts, Prolog rules, Python scripts, grammars, and compaction rules over fifty investigations. All curves monotonically increasing. Session token cost curve monotonically decreasing for comparable work. Ratio of rule evaluations to LLM judgment tokens increases over time — the system does more per LLM token as it accumulates.
+Projected growth curves for SRE use case showing knowledge base facts, Prolog rules, Python scripts, grammars, and compaction rules over fifty investigations. All curves monotonically increasing. Session token cost curve monotonically decreasing for comparable work. Ratio of rule evaluations to LLM judgment tokens increases over time,  the system does more per LLM token as it accumulates.
 
 ## Appendix I: Security Properties of Self-Generated Rules
 
@@ -378,7 +378,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix A: Compaction Format Specification
 
-### A.1 — Syntax Transformation Rules
+### A.1,  Syntax Transformation Rules
 
 | Current Format Element | Adjusted Format | Parse Action | Target Structure |
 |---|---|---|---|
@@ -391,7 +391,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | `+standalone` | `meta(standalone, true).` | Boolean meta-fact | KB metadata flags |
 | `id_prefixes: P=principle, TC=token_cat` | `id_prefix(p, principle). id_prefix(tc, token_cat).` | One fact per prefix | Prefix resolution during query |
 
-### A.2 — Type Inference Rules
+### A.2,  Type Inference Rules
 
 | Content Pattern | Inferred Type | Zig Type | Python Type | Example |
 |---|---|---|---|---|
@@ -405,7 +405,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Range expression | `range` | `struct{lo: i32, hi: i32}` | `tuple[int,int]` | `100-500×`, `2-22` |
 | Approximate | `q335` + `approx` tag | `Q335` + provenance | `Q335` + provenance | `~200`, `~15%` |
 
-### A.3 — Predicate-Major Column Layout After Load
+### A.3,  Predicate-Major Column Layout After Load
 
 | Predicate | Columns | Row Count (VDR-15) | Row Count (VDR-16) | Row Count (VDR-17) | Row Count (VDR-18) |
 |---|---|---|---|---|---|
@@ -426,7 +426,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix B: Seed Layer Contents
 
-### B.1 — Seed Layer 1: Language KB Contents
+### B.1,  Seed Layer 1: Language KB Contents
 
 | Component | Entry Count | Entry Format | Example | Storage Size (est.) |
 |---|---|---|---|---|
@@ -441,7 +441,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Weight profiles | ~20 | `weight_profile(name, [key:value, ...])` | `weight_profile(formal_academic, [formal:0.9, complexity:0.6])` | ~4 KB |
 | **Total seed layer 1** | **~23,020** | | | **~1.4 MB** |
 
-### B.2 — Seed Layer 2: Format Grammars
+### B.2,  Seed Layer 2: Format Grammars
 
 | Grammar | Structural Tokens | Content Slot Types | Structural Token % | Typical Doc Size (tokens) | Savings vs Full Generation |
 |---|---|---|---|---|---|
@@ -456,7 +456,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | YAML | `:` + `-` + newline + indent | values at any depth | 40% | 300 | 120 tokens |
 | SQL result set | column headers + `\|` + `-` + alignment | cell values | 55% | 400 | 220 tokens |
 
-### B.3 — Seed Layer 3: Operational Rules
+### B.3,  Seed Layer 3: Operational Rules
 
 | Rule Category | Rule Count | Example Rule | Fires When |
 |---|---|---|---|
@@ -470,7 +470,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Error handling | ~15 | `retry_with_backoff(Op, N) :- failed(Op), attempt_count(Op, N), N < max_retries(Op).` | Operation failure recovery |
 | **Total seed layer 3** | **~305** | | |
 
-### B.4 — Seed Layer 4: Self-Maintenance Rules
+### B.4,  Seed Layer 4: Self-Maintenance Rules
 
 | Rule Category | Rule Count | Example Rule | Fires When |
 |---|---|---|---|
@@ -482,7 +482,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Grammar quality monitoring | ~8 | `grammar_mismatch(G, Doc) :- parsed_with(Doc, G), parse_errors(Doc, E), E > 0.` | Existing grammar partially fails on new input |
 | **Total seed layer 4** | **~63** | | |
 
-### B.5 — Total Seed Size
+### B.5,  Total Seed Size
 
 | Layer | Fact/Rule Count | Storage Size | Load Time (est.) |
 |---|---|---|---|
@@ -494,7 +494,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix C: Bootstrap Stage Transitions
 
-### C.1 — Stage Transition Criteria
+### C.1,  Stage Transition Criteria
 
 | From | To | Criterion | Validation Method | Typical Duration |
 |---|---|---|---|---|
@@ -504,7 +504,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Stage 3 | Stage 4 (Self-extending) | System creates new grammar for novel document structure without human guidance | Novel doc ingested, grammar written, second doc of same type parsed by grammar alone | Continuous from stage 3; no sharp boundary |
 | Stage 4 | Mature | Compaction rule library covers >90% of incoming document types; operational rules cover >80% of routine tasks | Audit: percentage of documents requiring LLM judgment for compaction; percentage of tasks requiring novel rule writing | Months of active usage |
 
-### C.2 — Capabilities Available at Each Stage
+### C.2,  Capabilities Available at Each Stage
 
 | Capability | Pre-bootstrap | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Mature |
 |---|---|---|---|---|---|---|
@@ -520,9 +520,9 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Routine triage without LLM | No | No | No | Partial | Partial | Mostly |
 | Queue-based multi-instance | No | No | Yes | Yes | Yes | Yes |
 
-## Appendix D: SRE Worked Example — Three Investigations
+## Appendix D: SRE Worked Example,  Three Investigations
 
-### D.1 — Investigation 1: Fresh System
+### D.1,  Investigation 1: Fresh System
 
 | Phase | LM Action | Command Tokens | Primitives Invoked | KB Facts Written | Rules Written | Scripts Written |
 |---|---|---|---|---|---|---|
@@ -545,7 +545,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Service restart | Credentialed restart | 8 | B424 fetch (API) | 1 (action log) | 0 | 0 |
 | **Totals** | | **~329** | | **~255 facts** | **15 rules** | **3 scripts** |
 
-### D.2 — Investigation 2: Same System, New Incident
+### D.2,  Investigation 2: Same System, New Incident
 
 | Phase | LM Action | Command Tokens | Reused From Inv. 1 | New Work |
 |---|---|---|---|---|
@@ -554,29 +554,29 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Deployment fetch | Emit API call | 8 | Same query pattern | New time range |
 | Correlation analysis | Re-execute existing script | 8 | Script from inv. 1 | New data only |
 | Rule evaluation | Automatic | 0 | 7 of 15 rules fire | LM reviews results |
-| Novel pattern investigation | Write new rules | 35 | — | 4 new rules for new pattern |
+| Novel pattern investigation | Write new rules | 35 |,  | 4 new rules for new pattern |
 | Stats + frequency | Re-execute existing scripts | 16 | Both scripts from inv. 1 | New data only |
-| New finding storage | Promote findings | 16 | — | 6 new findings |
+| New finding storage | Promote findings | 16 |,  | 6 new findings |
 | Report generation | Fill template | 12 | Same grammar template | New content |
 | Export | Generate files | 8 | Same export pattern | New data |
 | **Totals** | | **~127** | **7 rules, 3 scripts reused** | **4 new rules, 6 findings** |
 | **Reduction vs inv. 1** | | **61%** | | |
 
-### D.3 — Investigation 10: Mature Project
+### D.3,  Investigation 10: Mature Project
 
 | Phase | LM Action | Command Tokens | Reused | New Work |
 |---|---|---|---|---|
 | Data acquisition + parse + filter | Pipeline invocation | 24 | Full pipeline | New data |
 | Rule evaluation | Automatic | 0 | 47 of 62 rules fire | Results reviewed |
 | Script re-execution | Batch invoke | 16 | 7 of 8 scripts | New data |
-| Triage summary | LM reads rule outputs | 12 | — | Judgment on severity |
-| Novel pattern only | Write rules for new pattern | 20 | — | 2 new rules |
-| Finding storage | Promote | 8 | — | 3 findings |
+| Triage summary | LM reads rule outputs | 12 |,  | Judgment on severity |
+| Novel pattern only | Write rules for new pattern | 20 |,  | 2 new rules |
+| Finding storage | Promote | 8 |,  | 3 findings |
 | Report + export | Grammar + file write | 12 | Templates | New content |
 | **Totals** | | **~92** | **47 rules, 7 scripts** | **2 rules, 3 findings** |
 | **Reduction vs inv. 1** | | **72%** | | |
 
-### D.4 — Accumulation Summary
+### D.4,  Accumulation Summary
 
 | Metric | Inv. 1 | Inv. 2 | Inv. 5 | Inv. 10 | Inv. 20 | Inv. 50 |
 |---|---|---|---|---|---|---|
@@ -590,7 +590,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix E: Prolog Rule Amortization in Self-Extension
 
-### E.1 — Rule Cost Over Reuse Lifetime
+### E.1,  Rule Cost Over Reuse Lifetime
 
 | Uses | Formalization Cost (tokens) | Total Tokens Spent | Per-Use Amortized Cost | Conventional Equivalent Per Use | Savings Per Use |
 |---|---|---|---|---|---|
@@ -603,7 +603,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 1,000 | 30 | 30 | 0.03 | 200 | 199.97 |
 | 10,000 | 30 | 30 | 0.003 | 200 | 199.997 |
 
-### E.2 — Amortization by Scope Level
+### E.2,  Amortization by Scope Level
 
 | Scope Level | Typical Reuses (year) | Amortized Cost | Example Rule |
 |---|---|---|---|
@@ -612,7 +612,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Department | 500–5,000 | 0.006–0.06 tokens/use | SRE triage classifier for all services |
 | Organization | 5,000–100,000 | 0.0003–0.006 tokens/use | Standard deployment verification rule |
 
-### E.3 — Self-Extension Amplification
+### E.3,  Self-Extension Amplification
 
 | Factor | Effect on Amortization |
 |---|---|
@@ -620,23 +620,23 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Clone inheritance | Each clone inherits full rule base; no re-formalization; amortization carried forward |
 | Scope promotion | Rule promoted from project to department scope; reuse pool expands by factor of projects-per-department |
 | Cross-session persistence | Rule written in session 1 fires in session 100; zero additional cost from sessions 2–100 |
-| Composability | Rule A + Rule B produce inference C; neither rule's amortization accounts for C — it's free |
+| Composability | Rule A + Rule B produce inference C; neither rule's amortization accounts for C,  it's free |
 
 ## Appendix F: Python Script Lifecycle
 
-### F.1 — Script Lifecycle States
+### F.1,  Script Lifecycle States
 
 | State | Trigger | Token Cost | Storage | Re-executable |
 |---|---|---|---|---|
 | Written | LM judgment: novel analysis needed | 20–50 (LM generates script) | Session KB | Yes (within session) |
-| Executed | Command token invocation | 8 (command only) | Docker sandbox | — |
-| Results stored | Execution complete | 8 (store command) | Project KB with provenance | — |
+| Executed | Command token invocation | 8 (command only) | Docker sandbox |,  |
+| Results stored | Execution complete | 8 (store command) | Project KB with provenance |,  |
 | Promoted | Session end, LM judges script worth keeping | 8 (promote command) | Project KB | Yes (any future session) |
 | Re-executed | Future session needs same analysis on new data | 8 (command only) | Same project KB | Yes |
 | Modified | LM writes updated version | 20–50 (new version) | Project KB, prior version retained | Both versions available |
 | Deprecated | LM or admin marks superseded | 8 (retract command) | Archived with provenance | No (archived) |
 
-### F.2 — Script Security Constraints
+### F.2,  Script Security Constraints
 
 | Constraint | Mechanism | Violation Result |
 |---|---|---|
@@ -647,7 +647,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Memory limit | Container memory cap from operational constraint | OOM kill; logged |
 | Input data scoping | Only data from granted KB paths mounted into container | Script cannot access out-of-scope data |
 
-### F.3 — Script Reuse Economics
+### F.3,  Script Reuse Economics
 
 | Scenario | First Execution Cost | Re-execution Cost | Savings | Break-even |
 |---|---|---|---|---|
@@ -658,7 +658,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix G: Queue-Based Multi-Instance Coordination
 
-### G.1 — Queue Message Structure
+### G.1,  Queue Message Structure
 
 | Field | Type | Source | Example |
 |---|---|---|---|
@@ -673,7 +673,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | priority | integer | LM judgment or rule | 2 |
 | provenance_chain | ref | Provenance log | event_log entry 3042 |
 
-### G.2 — Multi-Instance Topologies
+### G.2,  Multi-Instance Topologies
 
 | Topology | Instances | Queue Pattern | Use Case | Token Distribution |
 |---|---|---|---|---|
@@ -683,21 +683,21 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Peer | N symmetric | Shared Q, any→any | Collaborative investigation | Even distribution |
 | Supervisor | 1 supervisor, N workers | S↔Q↔{W1,...,Wn} | Managed work distribution | S: 5% (judgment), Wi: 95%/N (execution) |
 
-### G.3 — Clone Lifecycle in Queue Context
+### G.3,  Clone Lifecycle in Queue Context
 
 | Event | Token Cost | KB State | Queue State | Provenance |
 |---|---|---|---|---|
 | Clone spawned | 8 (snapshot read) | Full project KB inherited read-only | Queue position assigned | Clone start logged |
 | Clone reads queue | 8 (dequeue command) | Reads shared project KB + message payload | Message consumed | Consumption logged |
-| Clone works | Variable (judgment + commands) | Writes to clone-local delta arena | — | All operations logged |
-| Clone writes findings | 8–16 (assert commands) | Delta merged to project KB | — | Provenance links to source queue message |
-| Clone enqueues results | 8 (enqueue command) | — | New message with provenance | Full chain: source → clone → output |
-| Clone killed | 8 (lifecycle) | Delta discarded if not promoted | — | Kill logged |
+| Clone works | Variable (judgment + commands) | Writes to clone-local delta arena |,  | All operations logged |
+| Clone writes findings | 8–16 (assert commands) | Delta merged to project KB |,  | Provenance links to source queue message |
+| Clone enqueues results | 8 (enqueue command) |,  | New message with provenance | Full chain: source → clone → output |
+| Clone killed | 8 (lifecycle) | Delta discarded if not promoted |,  | Kill logged |
 | **Total lifecycle overhead** | **~40 tokens** | | | |
 
 ## Appendix H: Capability Growth Metrics
 
-### H.1 — SRE Use Case Growth Projection
+### H.1,  SRE Use Case Growth Projection
 
 | Investigation | KB Facts | Prolog Rules | Python Scripts | Grammars | Compaction Rules | Tokens/Investigation | Auto-Triage % |
 |---|---|---|---|---|---|---|---|
@@ -708,7 +708,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 50 | 2,400 | 140 | 18 | 5 | 4 | 65 | 88% |
 | 100 | 4,200 | 185 | 24 | 7 | 6 | 55 | 93% |
 
-### H.2 — Legal Use Case Growth Projection
+### H.2,  Legal Use Case Growth Projection
 
 | Review | KB Facts | Prolog Rules | Python Scripts | Grammars | Compaction Rules | Tokens/Review | Auto-Classification % |
 |---|---|---|---|---|---|---|---|
@@ -718,7 +718,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 20 | 1,800 | 95 | 7 | 3 | 3 | 160 | 65% |
 | 50 | 3,500 | 145 | 12 | 4 | 5 | 110 | 80% |
 
-### H.3 — Medical Synthesis Growth Projection
+### H.3,  Medical Synthesis Growth Projection
 
 | Synthesis | KB Facts | Prolog Rules | Python Scripts | Grammars | Compaction Rules | Tokens/Synthesis | Auto-Contradiction % |
 |---|---|---|---|---|---|---|---|
@@ -728,7 +728,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 20 | 4,500 | 140 | 15 | 3 | 4 | 180 | 72% |
 | 50 | 9,000 | 210 | 22 | 5 | 7 | 120 | 87% |
 
-### H.4 — Cross-Domain Token Efficiency Curve
+### H.4,  Cross-Domain Token Efficiency Curve
 
 | Usage Phase | LM Tokens per Unit of Useful Output | Rule Evaluations per LM Token | Ratio Trend |
 |---|---|---|---|
@@ -740,19 +740,19 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix I: Security Properties of Self-Generated Rules
 
-### I.1 — Access Control Chain for Self-Generated Content
+### I.1,  Access Control Chain for Self-Generated Content
 
 | Operation | Check | Mechanism | Bypass Possible |
 |---|---|---|---|
-| LM writes rule to KB | Grant check on target KB path | Session grant set membership | No — grant required |
-| Rule stored in KB | Visibility inherits from KB | KB visibility field (integer) | No — set at KB creation |
-| Rule queried from other session | Scope check on querying session | Ancestor walk from querier's position | No — sibling branches unreachable |
-| Rule queried from other session | Visibility check | Integer comparison on user level vs KB visibility | No — integer comparison |
-| Rule fires against facts | Fact visibility checked per fact | Same visibility + scope on each fact accessed | No — per-fact check |
-| Rule retracted | Grant check on KB write access | Session grant set membership | No — grant required |
-| Rule retraction logged | Append-only audit | Audit KB with axiom constraint preventing retraction of audit | No — axiom is unsuspendable |
+| LM writes rule to KB | Grant check on target KB path | Session grant set membership | No,  grant required |
+| Rule stored in KB | Visibility inherits from KB | KB visibility field (integer) | No,  set at KB creation |
+| Rule queried from other session | Scope check on querying session | Ancestor walk from querier's position | No,  sibling branches unreachable |
+| Rule queried from other session | Visibility check | Integer comparison on user level vs KB visibility | No,  integer comparison |
+| Rule fires against facts | Fact visibility checked per fact | Same visibility + scope on each fact accessed | No,  per-fact check |
+| Rule retracted | Grant check on KB write access | Session grant set membership | No,  grant required |
+| Rule retraction logged | Append-only audit | Audit KB with axiom constraint preventing retraction of audit | No,  axiom is unsuspendable |
 
-### I.2 — Self-Generated vs Seeded Content: Security Comparison
+### I.2,  Self-Generated vs Seeded Content: Security Comparison
 
 | Property | Seeded Content | Self-Generated Content | Difference |
 |---|---|---|---|
@@ -766,11 +766,11 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Inherits parent constraints | Yes (child tightens, never loosens) | Yes (child tightens, never loosens) | None |
 | Axiom constraints apply | Yes | Yes | None |
 
-### I.3 — Attack Scenarios Against Self-Extension
+### I.3,  Attack Scenarios Against Self-Extension
 
 | Attack | Vector | Structural Result | Reason |
 |---|---|---|---|
-| LM writes rule granting itself elevated access | Command token to assert grant fact | Rejected — grant assertion requires admin-level grant | Grants are admin-only writable; LM session lacks admin grant |
+| LM writes rule granting itself elevated access | Command token to assert grant fact | Rejected,  grant assertion requires admin-level grant | Grants are admin-only writable; LM session lacks admin grant |
 | LM writes rule that queries out-of-scope KB | Prolog rule with cross-scope predicate | Rule stores successfully but fires with empty results on out-of-scope data | Scope check runs at query time on every fact access, not at rule definition time |
 | LM writes rule that leaks data via side channel | Rule that copies restricted fact to public KB | Assert to public KB requires write grant on public KB; copy would need read grant on restricted KB | Both grants checked independently |
 | Malicious document injects harmful rules during compaction | Document contains content designed to produce dangerous rules | Rules subject to same constraint taxonomy; axiom constraints block prohibited content | Constraint evaluation runs on rule content at assertion time |
@@ -778,7 +778,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix J: Language and Dialect KB Structure
 
-### J.1 — Sentence Template Schema
+### J.1,  Sentence Template Schema
 
 | Field | Type | Description | Example |
 |---|---|---|---|
@@ -793,7 +793,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | register | atom | Usage context | `academic` |
 | constraints | list(atom) | Slot type restrictions | `[subject:animate, verb:transitive]` |
 
-### J.2 — Language KB Comparison
+### J.2,  Language KB Comparison
 
 | Component | English (Standard) | English (Southern US) | English (Formal British) | French | Spanish |
 |---|---|---|---|---|---|
@@ -805,7 +805,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Prosodic rules | ~100 | ~150 (distinct rhythm) | ~120 | ~200 | ~180 |
 | Estimated KB size | ~2.0 MB | ~1.8 MB | ~2.1 MB | ~2.8 MB | ~2.7 MB |
 
-### J.3 — Template Selection Pipeline
+### J.3,  Template Selection Pipeline
 
 | Step | Input | Operation | Output | LM Involved |
 |---|---|---|---|---|
@@ -814,9 +814,9 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | 3 | Weight criteria from LM | Rank candidates by weight match | Ranked candidate list | No (Q335 arithmetic) |
 | 4 | Ranked candidates | Select top candidate | One template | No (selection) |
 | 5 | Template + content words | Fill slots | Complete sentence | No (slot filling) |
-| 6 | — | — | Grammatically correct output | **Total LM cost: semantic tuple only (~8 tokens)** |
+| 6 |,  |,  | Grammatically correct output | **Total LM cost: semantic tuple only (~8 tokens)** |
 
-### J.4 — Dialect Switching Mechanics
+### J.4,  Dialect Switching Mechanics
 
 | Operation | Mechanism | Token Cost | Latency |
 |---|---|---|---|
@@ -828,7 +828,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 
 ## Appendix K: Compaction Rules as Self-Extending Grammar
 
-### K.1 — Compaction Rule Schema
+### K.1,  Compaction Rule Schema
 
 | Field | Type | Description | Example |
 |---|---|---|---|
@@ -841,7 +841,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | created_by | ref | Session and user provenance | `session:447, user:dr_smith, turn:23` |
 | times_used | counter | Reuse tracking | `47` |
 
-### K.2 — Compaction Rule Accumulation by Domain
+### K.2,  Compaction Rule Accumulation by Domain
 
 | Domain | Rules After 10 Docs | After 50 Docs | After 200 Docs | Coverage at 200 |
 |---|---|---|---|---|
@@ -852,7 +852,7 @@ Each compaction rule specifies: document type signature (how to recognize this t
 | Financial reports | 3 | 10 | 20 | ~88% |
 | Code repositories | 4 | 11 | 22 | ~90% |
 
-### K.3 — Self-Compaction Accuracy Over Time
+### K.3,  Self-Compaction Accuracy Over Time
 
 | Stage | Documents Processed | Self-Compaction Accuracy vs External LLM | LM Judgment Needed Per Document |
 |---|---|---|---|

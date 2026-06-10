@@ -1,4 +1,4 @@
-# VDR FPGA ACCELERATION — LLM-COMPACT FORM
+# VDR FPGA ACCELERATION,  LLM-COMPACT FORM
 # Format: pipe-delimited tables, ID refs.
 # Read order: principles → concepts → core_design → isa → microprograms → system_arch → register_map → relationships → sections
 

@@ -7,11 +7,11 @@
 ## STAGE OVERVIEW
 
 ```
-Stage 1: Toy Full Lifecycle    — KB + VDR + Prolog core + minimal inference loop
-Stage 2: Almost Practical      — data primitives + dotted paths + command tokens + constraints
-Stage 3: Loosely Integrated    — session management + notebooks + external data + confidence
-Stage 4: Full Encapsulated     — lifecycle KBs + surfacing + accounts + complete inference
-Stage 5: Operational Complete  — environments + grants + async + versioning + deployment
+Stage 1: Toy Full Lifecycle   ,  KB + VDR + Prolog core + minimal inference loop
+Stage 2: Almost Practical     ,  data primitives + dotted paths + command tokens + constraints
+Stage 3: Loosely Integrated   ,  session management + notebooks + external data + confidence
+Stage 4: Full Encapsulated    ,  lifecycle KBs + surfacing + accounts + complete inference
+Stage 5: Operational Complete ,  environments + grants + async + versioning + deployment
 ```
 
 Each stage produces a testable, runnable system. Each stage's output is the input to the next.
@@ -32,7 +32,7 @@ Each stage produces a testable, runnable system. Each stage's output is the inpu
 
 ## STAGE 1: TOY FULL LIFECYCLE
 
-**Goal:** KB tree with facts/rules/constraints, VDR exact arithmetic plugged in, minimal Prolog unification and query, one forward pass of a tiny transformer, and one training step — all connected through KBs. The thinnest possible vertical slice through the entire stack.
+**Goal:** KB tree with facts/rules/constraints, VDR exact arithmetic plugged in, minimal Prolog unification and query, one forward pass of a tiny transformer, and one training step,  all connected through KBs. The thinnest possible vertical slice through the entire stack.
 
 ### Stage 1 File Tree
 
@@ -80,7 +80,7 @@ vdr_system/
 
 ```python
 """Shared enums, small structs, type aliases.
-No IOSE node — this is the type vocabulary, not a component."""
+No IOSE node,  this is the type vocabulary, not a component."""
 
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any, Tuple, Union, Callable
@@ -175,7 +175,7 @@ class IOSEDeclaration:
 #### core/kb.py
 
 ```python
-"""KnowledgeBase — the universal container.
+"""KnowledgeBase,  the universal container.
 
 IOSE (composite):
   Inputs:  operation (str), args (varies)
@@ -367,7 +367,7 @@ class KnowledgeBase:
 #### core/path_registry.py
 
 ```python
-"""Path Registry — dotted path ↔ integer ID mapping.
+"""Path Registry,  dotted path ↔ integer ID mapping.
 
 IOSE:
   Inputs:  dotted_path (str)
@@ -437,13 +437,13 @@ class PathRegistry:
 #### core/prolog.py
 
 ```python
-"""Minimal Prolog — unification, fact query, rule evaluation.
+"""Minimal Prolog,  unification, fact query, rule evaluation.
 
 IOSE (pure):
   Inputs:  query_predicate (str), query_args (dict), scope (list of KB)
   Outputs: list of binding dicts (matches), or empty list
   Side Effects: none
-  Properties: pure, deterministic, bounded (no infinite loops — no recursion in Stage 1)
+  Properties: pure, deterministic, bounded (no infinite loops,  no recursion in Stage 1)
   Logic Type: operational_logic
 
 Stage 1 scope: flat fact matching with variable binding. No rule chaining yet.
@@ -461,7 +461,7 @@ def unify_value(pattern: Any, value: Any, bindings: Dict[str, Any]) -> Optional[
     if isinstance(pattern, str) and pattern.startswith("?"):
         var_name = pattern
         if var_name in bindings:
-            # Already bound — must match
+            # Already bound,  must match
             return bindings if bindings[var_name] == value else None
         new_bindings = dict(bindings)
         new_bindings[var_name] = value
@@ -503,7 +503,7 @@ def query(predicate: str, query_args: Dict[str, Any],
 
 def query_first(predicate: str, query_args: Dict[str, Any],
                 scope: List[KnowledgeBase]) -> Optional[Dict[str, Any]]:
-    """Query with cut — return first match only (scoped search order)."""
+    """Query with cut,  return first match only (scoped search order)."""
     for kb in scope:
         for fact in kb.facts:
             if fact.predicate != predicate:
@@ -551,7 +551,7 @@ def check_constraint(constraint: Constraint, kb: KnowledgeBase,
         return True, "not active"
     evaluator = _evaluators.get(constraint.condition)
     if evaluator is None:
-        # Unknown condition — treat as satisfied with warning
+        # Unknown condition,  treat as satisfied with warning
         return True, f"no evaluator for '{constraint.condition}'"
     try:
         result = evaluator(kb, scope or [kb])
@@ -575,7 +575,7 @@ def check_all(kb: KnowledgeBase,
 #### core/vdr.py
 
 ```python
-"""VDR bridge — re-export existing VDR arithmetic.
+"""VDR bridge,  re-export existing VDR arithmetic.
 
 IOSE (pure):
   This module re-exports. Each VDR operation is its own IOSE node.
@@ -640,7 +640,7 @@ def from_fraction(f) -> VDR:
 #### ml/bridge.py
 
 ```python
-"""ML Bridge — connect existing VDR-4 transformer to KB system.
+"""ML Bridge,  connect existing VDR-4 transformer to KB system.
 
 IOSE (composite):
   Inputs:  model_config (dict from KB), input_tokens (list of int)
@@ -742,7 +742,7 @@ class ModelBridge:
 #### lifecycle/toy_lifecycle.py
 
 ```python
-"""Toy Lifecycle — minimal full lifecycle in one script.
+"""Toy Lifecycle,  minimal full lifecycle in one script.
 
 IOSE (composite):
   Inputs:  training_text (str), config (dict)
@@ -1144,10 +1144,10 @@ class Bitset:
         return [i for i, b in enumerate(self._bits) if b]
 ```
 
-### Stage 2 — core/scope.py
+### Stage 2,  core/scope.py
 
 ```python
-"""Scope resolution — walk parent chain for scoped queries.
+"""Scope resolution,  walk parent chain for scoped queries.
 
 IOSE (pure):
   Inputs:  active_kb_id (int), all_kbs (dict of id→KB)
@@ -1176,7 +1176,7 @@ def resolve_scope(active_kb_id: int,
     return chain
 ```
 
-### Stage 2 — core/command.py
+### Stage 2,  core/command.py
 
 ```python
 """Command token parser and executor.
@@ -1433,10 +1433,10 @@ vdr_system/
 
 ```python
 """
-builtins/numeric/ — 173 numeric builtins organized by operand type.
+builtins/numeric/,  173 numeric builtins organized by operand type.
 
 All numeric builtins wrap existing VDR-1 through VDR-4 code.
-They do not reimplement arithmetic — they expose it as IOSE-declared builtins.
+They do not reimplement arithmetic,  they expose it as IOSE-declared builtins.
 
 PATTERN: closed_binary(a: VDR_closed, b: VDR_closed) → VDR_closed
   Properties: pure, deterministic, bounded, commutative (add/mul), associative (add/mul)
@@ -1593,10 +1593,10 @@ vdr_system/
 │   └── test_full_lifecycle.py  # End-to-end: data → train → eval → deploy → monitor → retire
 ```
 
-### Stage 5 — system.py (Top-Level Composition)
+### Stage 5,  system.py (Top-Level Composition)
 
 ```python
-"""The VDR-LLM-Prolog System — top-level IOSE composite.
+"""The VDR-LLM-Prolog System,  top-level IOSE composite.
 
 IOSE:
   Inputs:  command_tokens (list), user_text (str), session_id (str)

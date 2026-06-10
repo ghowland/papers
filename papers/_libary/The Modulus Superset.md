@@ -1,4 +1,4 @@
-## The Modulus Superset — Soliton Boundaries as Geometric Stages in the Running
+## The Modulus Superset,  Soliton Boundaries as Geometric Stages in the Running
 
 **Status:** Active conceptual notebook. Highest-level framing of the Hubble tension within the remainder framework.
 **Origin:** Session 4, April 2 2026, post PHYS-15
@@ -8,13 +8,13 @@
 
 ### 1. THE CONCEPT
 
-The VP running provides the cleanest example. Between m_e and M_Z, the electromagnetic coupling α runs through a sequence of domains. At each domain boundary (mass threshold), the running rule changes — a new fermion activates and the beta coefficient updates. Between boundaries, the running accumulates logarithmically according to the current rule.
+The VP running provides the cleanest example. Between m_e and M_Z, the electromagnetic coupling α runs through a sequence of domains. At each domain boundary (mass threshold), the running rule changes,  a new fermion activates and the beta coefficient updates. Between boundaries, the running accumulates logarithmically according to the current rule.
 
 The key structural insight: the running between two thresholds is not just "the coupling changed by some amount." The running WITHIN a domain has internal structure. The VP function R_f(q², m_f²) has a specific shape: it starts at 0 at the threshold, rises logarithmically, and has a specific functional form involving arctanh and the boundary constant 1/3. The shape is determined by the geometry of the VP cloud (spherical, with R₂ content through the 1/(3π) = 1/(12R₂) step size).
 
-Now extend this to the cosmological case. Between two soliton boundaries along a line of sight, light propagates through a domain with specific geometric properties (the interior of a soliton — a galaxy, a cluster, a void, etc.). The correction to H₀ accumulated within that domain has a specific functional form determined by the domain's geometry. The total H₀ correction is the product of all domain contributions — one per domain crossed.
+Now extend this to the cosmological case. Between two soliton boundaries along a line of sight, light propagates through a domain with specific geometric properties (the interior of a soliton,  a galaxy, a cluster, a void, etc.). The correction to H₀ accumulated within that domain has a specific functional form determined by the domain's geometry. The total H₀ correction is the product of all domain contributions,  one per domain crossed.
 
-The "modulus superset" concept: each soliton boundary is not just a point where the correction rule changes. It defines a GEOMETRIC STAGE — a domain with internal structure. The boundary's geometry (sphere, torus, irregular) determines what PATTERN the accumulation follows within that domain. The full running from here to the CMB is a sequence of geometric stages, each with its own accumulation pattern, stitched together at the boundaries.
+The "modulus superset" concept: each soliton boundary is not just a point where the correction rule changes. It defines a GEOMETRIC STAGE,  a domain with internal structure. The boundary's geometry (sphere, torus, irregular) determines what PATTERN the accumulation follows within that domain. The full running from here to the CMB is a sequence of geometric stages, each with its own accumulation pattern, stitched together at the boundaries.
 
 ---
 
@@ -27,9 +27,9 @@ The VP function within a single domain (say, between m_e and m_μ) is not featur
 - At q² ≫ m_e², R_f approaches its asymptotic logarithmic form (the electron is ultrarelativistic)
 - The transition between these regimes happens at q² ~ (few × m_e)², a specific energy scale
 
-This internal structure is the "shells" — specific scales within a domain where the accumulation pattern changes character. The shells are not random. They are determined by the geometry of the fermion's VP cloud and the energy variable.
+This internal structure is the "shells",  specific scales within a domain where the accumulation pattern changes character. The shells are not random. They are determined by the geometry of the fermion's VP cloud and the energy variable.
 
-For soliton boundaries: a galaxy (one domain in the cosmological line of sight) has internal structure. The galaxy's VP-analog would be the redshift accumulation pattern as light traverses from the galaxy's outer boundary through its interior to its inner boundary (or opposite side). The accumulation is not uniform — it has "shells":
+For soliton boundaries: a galaxy (one domain in the cosmological line of sight) has internal structure. The galaxy's VP-analog would be the redshift accumulation pattern as light traverses from the galaxy's outer boundary through its interior to its inner boundary (or opposite side). The accumulation is not uniform,  it has "shells":
 
 - The galaxy's halo (low density, small correction per distance)
 - The disk edge (transition to higher density, correction changes character)
@@ -39,7 +39,7 @@ For soliton boundaries: a galaxy (one domain in the cosmological line of sight) 
 
 Each shell contributes its own rational correction factor determined by its geometry. The total galaxy-crossing correction is the product of all shell corrections. For a spherical galaxy: the shells are concentric spheres, each with R₂-based corrections. For a disk galaxy: the shells are nested tori and planes, with R₄ entering through the disk geometry.
 
-The pattern of shells within a soliton is not random — it is determined by the soliton's mode structure (Chapter 6 of the super notebook). The mode structure produces specific density profiles, which produce specific correction patterns, which produce specific shell sequences. The "non-randomness" is the mode structure manifesting as ordered shells within each geometric stage.
+The pattern of shells within a soliton is not random,  it is determined by the soliton's mode structure (Chapter 6 of the super notebook). The mode structure produces specific density profiles, which produce specific correction patterns, which produce specific shell sequences. The "non-randomness" is the mode structure manifesting as ordered shells within each geometric stage.
 
 ---
 
@@ -51,17 +51,17 @@ This is the compound difficulty: even if each individual correction is a simple 
 
 1. The individual corrections are from DIFFERENT geometric classes (sphere → R₂, torus → R₄, irregular → pure rational?)
 2. The corrections MULTIPLY rather than add (the product of R₂-based and R₄-based corrections is neither R₂ nor R₄ alone)
-3. The number of boundaries, their types, and their internal shell structures are SPECIFIC to a given line of sight — different directions see different sequences
+3. The number of boundaries, their types, and their internal shell structures are SPECIFIC to a given line of sight,  different directions see different sequences
 
 This is exactly the composite soliton hierarchy problem from the Bessel zero notebook. The individual levels have fractions. The composite does not. Not because the fractions are wrong, but because the COMPOSITION (multiplication across thousands of rational corrections from different geometric classes) produces a transcendental.
 
-But — and this is the crucial point — the RUNNING LAW at each stage is still rational. The per-stage correction is determined by the stage's geometry through exact rational formulas (R₂ for spheres, R₄ for tori, the Dynkin-index-like counting for the correction magnitude). The RULES are rational. The OUTCOME (the product) is transcendental. This is the PHYS-2 thesis: the transformation laws are integers, the values are not.
+But,  and this is the crucial point,  the RUNNING LAW at each stage is still rational. The per-stage correction is determined by the stage's geometry through exact rational formulas (R₂ for spheres, R₄ for tori, the Dynkin-index-like counting for the correction magnitude). The RULES are rational. The OUTCOME (the product) is transcendental. This is the PHYS-2 thesis: the transformation laws are integers, the values are not.
 
 ---
 
 ### 4. THE CURVE
 
-The running of H₀ with distance is not a single function — it is a PIECEWISE function, changing character at each boundary. But if the boundaries are dense enough (many solitons along a line of sight), the piecewise function approximates a smooth curve. The VP running provides the template: between m_e and M_Z, the piecewise logarithmic function with threshold jumps approximates a smooth running α⁻¹(μ) curve.
+The running of H₀ with distance is not a single function,  it is a PIECEWISE function, changing character at each boundary. But if the boundaries are dense enough (many solitons along a line of sight), the piecewise function approximates a smooth curve. The VP running provides the template: between m_e and M_Z, the piecewise logarithmic function with threshold jumps approximates a smooth running α⁻¹(μ) curve.
 
 The H₀ curve shape is determined by the DISTRIBUTION of soliton types along the line of sight. If the distribution is:
 
@@ -89,7 +89,7 @@ What measurements constrain the H₀ running curve? Collecting from known cosmol
 | DES + BAO | ~1000-3000 Mpc | 67.4 | ±1.2 | ~500-2000 |
 | Planck CMB | ~14000 Mpc (last scattering) | 67.4 | ±0.5 | ~5000-50000 |
 
-The trend: H₀ decreases monotonically with effective distance (boundary count). This is the Subgroup B signature — monotonic accumulation through discrete boundaries.
+The trend: H₀ decreases monotonically with effective distance (boundary count). This is the Subgroup B signature,  monotonic accumulation through discrete boundaries.
 
 **CMB anomalies (directional dependence data):**
 
@@ -127,9 +127,9 @@ If the soliton framework is correct, the H₀ running curve is computable:
 
 **Step 4:** Compare the predicted H₀(d) curve to the measured data points from different distance indicators.
 
-The critical unknown: the per-transit correction formula r(geometry, mass, angle). This is the "A₁ of the H₀ transformation law" from the PHYS-9 report — the fundamental quantity that the entire framework needs. If the correction is R₂-based for spherical boundaries: r = 1 − ε × R₂ × (M/M_ref) for some small ε and reference mass M_ref. If R₄-based for toroidal: r = 1 − ε × R₄ × (M/M_ref) × f(angle). The functional form is constrained by the geometry but the magnitude ε is unknown.
+The critical unknown: the per-transit correction formula r(geometry, mass, angle). This is the "A₁ of the H₀ transformation law" from the PHYS-9 report,  the fundamental quantity that the entire framework needs. If the correction is R₂-based for spherical boundaries: r = 1 − ε × R₂ × (M/M_ref) for some small ε and reference mass M_ref. If R₄-based for toroidal: r = 1 − ε × R₄ × (M/M_ref) × f(angle). The functional form is constrained by the geometry but the magnitude ε is unknown.
 
-**The calibration:** Use the SH0ES local measurement (H₀ ≈ 73, through ~10-50 boundaries) and the Planck CMB measurement (H₀ ≈ 67.4, through ~thousands of boundaries) as the two endpoints. Fit ε from the ratio: (73/67.4)^(1/N_effective) = r_average. For N_effective ~ 100: r ≈ 0.9992. For N_effective ~ 1000: r ≈ 0.99992. The per-transit correction is tiny — sub-part-per-thousand — which is why the effect only appears cumulatively over cosmological distances.
+**The calibration:** Use the SH0ES local measurement (H₀ ≈ 73, through ~10-50 boundaries) and the Planck CMB measurement (H₀ ≈ 67.4, through ~thousands of boundaries) as the two endpoints. Fit ε from the ratio: (73/67.4)^(1/N_effective) = r_average. For N_effective ~ 100: r ≈ 0.9992. For N_effective ~ 1000: r ≈ 0.99992. The per-transit correction is tiny,  sub-part-per-thousand,  which is why the effect only appears cumulatively over cosmological distances.
 
 ---
 
@@ -139,13 +139,13 @@ If the algorithm works, it makes several testable predictions:
 
 **P1.** H₀ measured through known voids should be HIGHER than H₀ measured through known filaments at the same distance. Voids have fewer boundaries (fewer corrections). Filaments have more boundaries (more corrections). The difference should be quantitative: ΔH₀/H₀ ≈ (N_filament − N_void) × (1 − r).
 
-**P2.** H₀ measured along the galactic plane should differ from H₀ measured toward the galactic poles. The galactic disk adds a toroidal correction (R₄-based) to all lines of sight through the plane, absent for pole lines of sight. The magnitude is one boundary's correction (the Milky Way itself), so the effect is of order (1 − r) ~ 10⁻⁴ — possibly detectable with next-generation measurements.
+**P2.** H₀ measured along the galactic plane should differ from H₀ measured toward the galactic poles. The galactic disk adds a toroidal correction (R₄-based) to all lines of sight through the plane, absent for pole lines of sight. The magnitude is one boundary's correction (the Milky Way itself), so the effect is of order (1 − r) ~ 10⁻⁴,  possibly detectable with next-generation measurements.
 
 **P3.** The H₀ running curve should flatten at large distances (high N), because the per-transit correction is multiplicative and the product converges. At N → ∞, H₀(∞) = H₀(local) × r^∞ → 0 (if r < 1) or H₀(local) × finite limit (if r approaches 1 for distant, evolved solitons). The CMB value 67.4 may already be near the asymptote.
 
 **P4.** Gravitational wave standard sirens (from LIGO/Virgo/KAGRA) provide H₀ measurements independent of the electromagnetic distance ladder. If the soliton correction affects electromagnetic propagation but not gravitational wave propagation (because gravitational waves couple to geometry, not to the soliton boundary's electromagnetic structure), gravitational wave H₀ should match the LOCAL electromagnetic H₀ regardless of distance. This would be a kill test: if GW H₀ also shows the running curve, the correction affects spacetime itself (not just EM propagation).
 
-**P5.** The "shells" within a single galaxy crossing should produce frequency-dependent corrections if the correction has a spectral component (wavelength-dependent interaction with the soliton boundary). This would manifest as a distance-dependent spectral distortion — different from standard dust reddening in its functional form (the soliton correction would be geometric, the dust correction is exponential in column density). Current spectral data from SNe Ia might already constrain this.
+**P5.** The "shells" within a single galaxy crossing should produce frequency-dependent corrections if the correction has a spectral component (wavelength-dependent interaction with the soliton boundary). This would manifest as a distance-dependent spectral distortion,  different from standard dust reddening in its functional form (the soliton correction would be geometric, the dust correction is exponential in column density). Current spectral data from SNe Ia might already constrain this.
 
 ---
 
@@ -155,7 +155,7 @@ If the algorithm works, it makes several testable predictions:
 
 **E (Empirical):** The H₀ tension is observed. The monotonic trend with distance is observed (approximately). The CMB anomalies are observed. Galaxy survey data exists. But: no computation of the per-direction boundary count has been done. No fit of the per-transit correction has been attempted. The curve has not been compared to data. Empirical status: consistent with observations but not yet tested.
 
-**M (Math):** Not computed. The per-transit correction formula r(geometry, mass, angle) is unknown. The boundary census N(θ, φ, d) has not been extracted from galaxy surveys. The curve fit has not been performed. Math gate: OPEN. This is the critical barrier. Everything else is framework — the math is where the framework becomes a testable prediction.
+**M (Math):** Not computed. The per-transit correction formula r(geometry, mass, angle) is unknown. The boundary census N(θ, φ, d) has not been extracted from galaxy surveys. The curve fit has not been performed. Math gate: OPEN. This is the critical barrier. Everything else is framework,  the math is where the framework becomes a testable prediction.
 
 **U (Utility):** Extremely high IF the math passes. It would: unify the Hubble tension with the remainder framework, connect cosmological observations to particle physics infrastructure (same R₂/R₄ framework), explain the CMB anomalies as directional boundary effects, predict H₀ for any line of sight from galaxy survey data, and provide a testable alternative to dark energy modifications. If the math fails (the curve doesn't fit, the per-transit correction is unphysical, the directional predictions are wrong): the framework is falsified for cosmological applications while remaining valid for its particle physics domains.
 
@@ -175,4 +175,4 @@ The lesson from the VL convention resolution: the convention comment was wrong, 
 
 ---
 
-**End of notebook. Status: active conceptual framework. Math gate OPEN — the per-transit correction formula is the critical unknown. Data exists but has not been processed in this framework. Predictions P1-P5 are testable with current or near-future data. Updated: Session 4, April 2 2026.**
+**End of notebook. Status: active conceptual framework. Math gate OPEN,  the per-transit correction formula is the critical unknown. Data exists but has not been processed in this framework. Predictions P1-P5 are testable with current or near-future data. Updated: Session 4, April 2 2026.**

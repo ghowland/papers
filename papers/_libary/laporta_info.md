@@ -1,8 +1,8 @@
 ## 1. Summary
 
-The HOWL framework (papers PHYS-1 through PHYS-40) has built a Fraction-arithmetic pipeline that extracts the fine structure constant α from the measured electron anomalous magnetic moment a_e, applies seven published non-QED corrections, and propagates the result across eight physics domains to produce 53 derived values — six of which are at sub-ppb precision.
+The HOWL framework (papers PHYS-1 through PHYS-40) has built a Fraction-arithmetic pipeline that extracts the fine structure constant α from the measured electron anomalous magnetic moment a_e, applies seven published non-QED corrections, and propagates the result across eight physics domains to produce 53 derived values,  six of which are at sub-ppb precision.
 
-Your four-loop coefficient A₄ = −1.912245764926... sits at the center of this chain. Every derived value downstream — α⁻¹, R∞, a₀, μ₀, f(1S-2S), and through the gauge coupling chain, sin²θ_W and the primordial deuterium abundance — depends on A₄.
+Your four-loop coefficient A₄ = −1.912245764926... sits at the center of this chain. Every derived value downstream,  α⁻¹, R∞, a₀, μ₀, f(1S-2S), and through the gauge coupling chain, sin²θ_W and the primordial deuterium abundance,  depends on A₄.
 
 This report describes what we have built, what we have found, and what may be useful to your work.
 
@@ -117,7 +117,7 @@ Residual: a_e(measured) − a_e(forward) = 4.619 × 10⁻¹²
 
 Relative residual: 3.983 × 10⁻⁹
 
-This residual is consistent with the non-QED corrections (total 4.872 × 10⁻¹²). The forward check confirms that A₁ through A₅, combined at 100-digit precision, produce a self-consistent a_e to the level set by the hadronic uncertainties. If your A₄ were wrong at the 30th digit, this forward check would detect it (though it doesn't currently have sensitivity at that level — it's limited by A₅ uncertainty).
+This residual is consistent with the non-QED corrections (total 4.872 × 10⁻¹²). The forward check confirms that A₁ through A₅, combined at 100-digit precision, produce a self-consistent a_e to the level set by the hadronic uncertainties. If your A₄ were wrong at the 30th digit, this forward check would detect it (though it doesn't currently have sensitivity at that level,  it's limited by A₅ uncertainty).
 
 ### 5.2 Sensitivity analysis: how A₄ precision propagates
 
@@ -167,7 +167,7 @@ We store each piece separately in the pool:
 
 Each rational coefficient is stored as an exact Fraction. Each transcendental is stored at Q335 precision. The product is evaluated at 335-digit precision with zero rounding in the rational part.
 
-**If you ever complete the analytical reduction of A₄** — expressing it as a sum of rational coefficients times known transcendentals — our infrastructure can immediately evaluate it at Q335 precision and incorporate it into the α extraction. The 4,900-digit numerical value would then serve as a cross-check against the analytical form.
+**If you ever complete the analytical reduction of A₄**,  expressing it as a sum of rational coefficients times known transcendentals,  our infrastructure can immediately evaluate it at Q335 precision and incorporate it into the α extraction. The 4,900-digit numerical value would then serve as a cross-check against the analytical form.
 
 ### 5.4 The α-power scaling law
 
@@ -189,7 +189,7 @@ The scaling is exact to the precision we can measure. No exceptions.
 
 Your A₄ feeds into α. α feeds into sin²θ_W at 12 ppm (via gauge coupling unification) and into D/H at 0.12σ (via the cosmological chain through BBN nucleosynthesis).
 
-This means your Feynman diagram calculation is being tested — indirectly but concretely — against:
+This means your Feynman diagram calculation is being tested,  indirectly but concretely,  against:
 
 - The rubidium recoil measurement of α (Morel et al., Paris): 0.007 ppb agreement
 - The hydrogen 1S-2S transition frequency (Parthey et al., Garching): 0.44 ppb agreement
@@ -211,21 +211,21 @@ The experiment cycle takes minutes. The pool preserves every run permanently. Th
 
 ---
 
-## 6. The Uncertainty Budget — Where Your Coefficient Sits
+## 6. The Uncertainty Budget,  Where Your Coefficient Sits
 
 | Source | Contribution to α uncertainty (ppb) | Status |
 |---|---|---|
-| a_e measurement (Fan 2023) | 0.11 | Experimental — awaits next trap measurement |
+| a_e measurement (Fan 2023) | 0.11 | Experimental,  awaits next trap measurement |
 | Hadronic LbL (±0.020 × 10⁻¹²) | 0.14 | Lattice QCD improving |
 | Hadronic VP LO (±0.010 × 10⁻¹²) | 0.07 | Better e⁺e⁻ data needed |
-| Mass-dep 4-loop (±0.010 × 10⁻¹²) | 0.07 | Estimated — full computation needed |
+| Mass-dep 4-loop (±0.010 × 10⁻¹²) | 0.07 | Estimated,  full computation needed |
 | Hadronic VP NLO (±0.010 × 10⁻¹²) | 0.07 | Better data needed |
 | A₅ coefficient (3 digits) | ~0.04 | Volkov computation |
-| A₄ coefficient (4,900 digits) | negligible | **Your contribution — resolved** |
+| A₄ coefficient (4,900 digits) | negligible | **Your contribution,  resolved** |
 | Electroweak (±0.001 × 10⁻¹²) | 0.007 | Negligible |
 | **Quadrature total** | **~0.22** | |
 
-Your A₄ is the one component of this budget that is completely resolved. The 4,900-digit precision places it 4,870 digits beyond the current extraction requirement. It would remain sufficient even if all other sources of uncertainty were reduced to zero — the finite speed of light and the Heisenberg uncertainty principle would impose measurement limits long before 4,900 digits became relevant.
+Your A₄ is the one component of this budget that is completely resolved. The 4,900-digit precision places it 4,870 digits beyond the current extraction requirement. It would remain sufficient even if all other sources of uncertainty were reduced to zero,  the finite speed of light and the Heisenberg uncertainty principle would impose measurement limits long before 4,900 digits became relevant.
 
 ---
 

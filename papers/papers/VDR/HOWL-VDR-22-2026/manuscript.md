@@ -17,7 +17,7 @@
 
 ## Abstract
 
-The VDR-LLM-Prolog FPGA implementation [@HOWL-VDR-21-2026] validates an architectural principle: Q335 exact integer arithmetic — where every value is a 384-bit numerator over an implicit fixed denominator of 2^335, and division by that denominator is bit extraction requiring zero logic — maps naturally to parallel hardware. The FPGA achieves this at 150 MHz on 10 custom cores in a $200 system-on-chip. This paper asks what happens when that architecture moves to dedicated silicon designed for it. Modern GPU fabrication at 4-5nm provides transistor budgets exceeding 80 billion, clock speeds of 2-2.5 GHz, and memory bandwidths of 3-5 TB/s via HBM3. Current GPUs dedicate substantial die area to floating-point units, tensor cores with float accumulation, and special function units for transcendentals (sin, cos, exp, rsqrt) — none of which VDR-LLM-Prolog uses. This paper specifies an integer-native processor that reclaims that area for wide integer arithmetic: 384-bit ALUs with 1-2 cycle multiply (versus 9 cycles on FPGA), SHR335 as a routing decision (zero gates, zero power, zero latency beyond wire delay — the same property that makes it zero logic on FPGA, now at thousands of units), and a reduction network that produces exact results at every level. The design targets 5,120 Q335 cores organized into 80 streaming multiprocessors, projecting approximately 5 trillion Q335 multiplications per second — sufficient that the arithmetic is memory-bandwidth-bound, not compute-bound, on workloads where VDR-18 showed total multiply counts of thousands to millions per prompt. The paper specifies the core microarchitecture, the memory hierarchy, the programming model, the die area estimates, and the performance projections, treating the FPGA's validated ISA principles as the architectural contract and modern GPU fabrication as the implementation technology.
+The VDR-LLM-Prolog FPGA implementation [@HOWL-VDR-21-2026] validates an architectural principle: Q335 exact integer arithmetic,  where every value is a 384-bit numerator over an implicit fixed denominator of 2^335, and division by that denominator is bit extraction requiring zero logic,  maps naturally to parallel hardware. The FPGA achieves this at 150 MHz on 10 custom cores in a $200 system-on-chip. This paper asks what happens when that architecture moves to dedicated silicon designed for it. Modern GPU fabrication at 4-5nm provides transistor budgets exceeding 80 billion, clock speeds of 2-2.5 GHz, and memory bandwidths of 3-5 TB/s via HBM3. Current GPUs dedicate substantial die area to floating-point units, tensor cores with float accumulation, and special function units for transcendentals (sin, cos, exp, rsqrt),  none of which VDR-LLM-Prolog uses. This paper specifies an integer-native processor that reclaims that area for wide integer arithmetic: 384-bit ALUs with 1-2 cycle multiply (versus 9 cycles on FPGA), SHR335 as a routing decision (zero gates, zero power, zero latency beyond wire delay,  the same property that makes it zero logic on FPGA, now at thousands of units), and a reduction network that produces exact results at every level. The design targets 5,120 Q335 cores organized into 80 streaming multiprocessors, projecting approximately 5 trillion Q335 multiplications per second,  sufficient that the arithmetic is memory-bandwidth-bound, not compute-bound, on workloads where VDR-18 showed total multiply counts of thousands to millions per prompt. The paper specifies the core microarchitecture, the memory hierarchy, the programming model, the die area estimates, and the performance projections, treating the FPGA's validated ISA principles as the architectural contract and modern GPU fabrication as the implementation technology.
 
 ---
 
@@ -25,7 +25,7 @@ The VDR-LLM-Prolog FPGA implementation [@HOWL-VDR-21-2026] validates an architec
 
 The FPGA implementation on Zynq-7020 [@HOWL-VDR-21-2026] validated five architectural principles that are independent of fabrication technology.
 
-First, Q335 divmod is free in hardware at any clock speed. The SHR335 instruction extracts bits [767:335] as the quotient and bits [334:0] as the remainder. On the FPGA this is fixed wiring — zero lookup tables, zero flip-flops, zero switching power. On dedicated silicon it is the same: bit positions are named differently on the output bus. This is not an optimization. It is a consequence of the mathematical decision to fix the denominator at a power of two. The decision was made for arithmetic reasons (controlled denominator growth). It produces a hardware benefit (free division) as a structural consequence. This benefit scales linearly with core count: 10 cores get 10 free divmods per multiply cycle; 5,120 cores get 5,120.
+First, Q335 divmod is free in hardware at any clock speed. The SHR335 instruction extracts bits [767:335] as the quotient and bits [334:0] as the remainder. On the FPGA this is fixed wiring,  zero lookup tables, zero flip-flops, zero switching power. On dedicated silicon it is the same: bit positions are named differently on the output bus. This is not an optimization. It is a consequence of the mathematical decision to fix the denominator at a power of two. The decision was made for arithmetic reasons (controlled denominator growth). It produces a hardware benefit (free division) as a structural consequence. This benefit scales linearly with core count: 10 cores get 10 free divmods per multiply cycle; 5,120 cores get 5,120.
 
 Second, Q335 arithmetic is perfectly uniform. Every value is the same width (384 bits). Every addition is the same operation (1 cycle). Every multiplication is the same operation (9 cycles on FPGA, fewer with dedicated logic). There are no special cases, no data-dependent branches, no variable-width operands. This is the workload profile that massively parallel hardware achieves peak utilization on. VDR-18 demonstrated this empirically: surrogate softmax achieved 80-95% GPU utilization versus 40-60% for conventional softmax, specifically because the integer path has no transcendental divergence causing warp divergence.
 
@@ -45,7 +45,7 @@ A modern GPU at the performance tier of NVIDIA H100 dedicates significant die ar
 
 ### 2.1 Floating-Point Units
 
-Each streaming multiprocessor contains FP32 units (typically 64-128 per SM), FP64 units (typically 32 per SM on compute-oriented SKUs), and FP16/BF16 units (often shared with or double-pumped from FP32 paths). These implement IEEE 754 arithmetic with rounding modes, denormalized number handling, NaN propagation, and sign-magnitude representation. VDR-LLM-Prolog performs zero floating-point operations. Every value is an integer. Every computation is integer addition, multiplication, comparison, or bit manipulation. The entire floating-point datapath — mantissa alignment, exponent comparison, rounding logic, special-value handling — is unused silicon.
+Each streaming multiprocessor contains FP32 units (typically 64-128 per SM), FP64 units (typically 32 per SM on compute-oriented SKUs), and FP16/BF16 units (often shared with or double-pumped from FP32 paths). These implement IEEE 754 arithmetic with rounding modes, denormalized number handling, NaN propagation, and sign-magnitude representation. VDR-LLM-Prolog performs zero floating-point operations. Every value is an integer. Every computation is integer addition, multiplication, comparison, or bit manipulation. The entire floating-point datapath,  mantissa alignment, exponent comparison, rounding logic, special-value handling,  is unused silicon.
 
 ### 2.2 Tensor Cores
 
@@ -53,7 +53,7 @@ Fourth-generation tensor cores perform matrix multiply-accumulate on tiles of FP
 
 ### 2.3 Special Function Units
 
-Each SM contains special function units (SFUs) that compute transcendental functions: sine, cosine, exponential, reciprocal square root, logarithm. These are hardware function approximators — typically using polynomial approximation or lookup-table-interpolation methods — that produce results accurate to float precision. VDR-LLM-Prolog computes transcendentals through functional remainders: Newton iteration, Taylor series, and Borwein acceleration evaluated as exact rational arithmetic. The system never invokes a hardware transcendental approximation. SFUs are unused silicon.
+Each SM contains special function units (SFUs) that compute transcendental functions: sine, cosine, exponential, reciprocal square root, logarithm. These are hardware function approximators,  typically using polynomial approximation or lookup-table-interpolation methods,  that produce results accurate to float precision. VDR-LLM-Prolog computes transcendentals through functional remainders: Newton iteration, Taylor series, and Borwein acceleration evaluated as exact rational arithmetic. The system never invokes a hardware transcendental approximation. SFUs are unused silicon.
 
 ### 2.4 The Opportunity
 
@@ -69,7 +69,7 @@ The fundamental compute element is a Q335 integer unit (QIU): a 384-bit ALU with
 
 The QIU contains a 384-bit carry-select adder (1 cycle, same structure as the FPGA design), a dedicated 384×384-bit multiplier producing a 768-bit result in 1-2 cycles (full parallel multiplier array, not time-multiplexed as on FPGA), a 384-bit barrel shifter with SHR335 as a zero-gate routing path, a 384-bit comparator with early termination, and a cross-multiply unit for VDR fraction unification (2-3 cycles with the faster multiplier, versus 19 on FPGA).
 
-The critical difference from the FPGA implementation: the multiplier. The FPGA uses 5 DSP48E1 slices time-multiplexed across 9 cycles because DSP slices are a scarce resource on the Zynq-7020 (220 total, 50 used). Dedicated silicon has no such constraint. A full 384×384 parallel multiplier array — implemented as a tree of 64-bit multipliers with carry-save accumulation — produces the 768-bit result in 1-2 pipeline stages. At 2 GHz, each Q335 multiply takes 0.5-1.0 nanoseconds. The SHR335 extraction of quotient and remainder adds zero additional latency: it is a routing decision in the physical layout, the same as on FPGA but at 13× the clock frequency.
+The critical difference from the FPGA implementation: the multiplier. The FPGA uses 5 DSP48E1 slices time-multiplexed across 9 cycles because DSP slices are a scarce resource on the Zynq-7020 (220 total, 50 used). Dedicated silicon has no such constraint. A full 384×384 parallel multiplier array,  implemented as a tree of 64-bit multipliers with carry-save accumulation,  produces the 768-bit result in 1-2 pipeline stages. At 2 GHz, each Q335 multiply takes 0.5-1.0 nanoseconds. The SHR335 extraction of quotient and remainder adds zero additional latency: it is a routing decision in the physical layout, the same as on FPGA but at 13× the clock frequency.
 
 ### 3.2 Warp Organization
 
@@ -79,7 +79,7 @@ Warp-level uniformity is guaranteed by the nature of Q335 arithmetic. Every QIU 
 
 ### 3.3 Streaming Multiprocessor
 
-Each SM contains 64 QIUs organized as 2 warps. The SM also contains a local reduction unit (binary tree of 384-bit adders for intra-SM reduction), a shared BRAM region for Q335 constants, predicate lookup tables, and per-SM configuration, a register file providing 16 × 384-bit registers per QIU (versus 8 on FPGA — the larger count reduces register pressure in complex microprograms), a remainder tree BRAM of 4KB per QIU (32 nodes versus 16 on FPGA), an instruction cache (replacing the FPGA's per-core instruction BRAM), and a warp scheduler managing instruction issue.
+Each SM contains 64 QIUs organized as 2 warps. The SM also contains a local reduction unit (binary tree of 384-bit adders for intra-SM reduction), a shared BRAM region for Q335 constants, predicate lookup tables, and per-SM configuration, a register file providing 16 × 384-bit registers per QIU (versus 8 on FPGA,  the larger count reduces register pressure in complex microprograms), a remainder tree BRAM of 4KB per QIU (32 nodes versus 16 on FPGA), an instruction cache (replacing the FPGA's per-core instruction BRAM), and a warp scheduler managing instruction issue.
 
 The SM operates at 2 GHz. Each warp of 32 QIUs issues one instruction per cycle. With 2 warps per SM, the SM can issue 2 instructions per cycle (one per warp), sustaining 64 QIU operations per cycle when both warps have independent work.
 
@@ -87,7 +87,7 @@ The SM operates at 2 GHz. Each warp of 32 QIUs issues one instruction per cycle.
 
 The full chip contains 80 SMs with 64 QIUs each, totaling 5,120 QIUs. This is comparable to the integer ALU count of current high-end GPUs (H100 has 16,896 FP32 cores across 132 SMs) but each QIU is wider (384-bit versus 32-bit) and specialized for exact arithmetic.
 
-A global reduction network connects all 80 SMs. The network is a 7-level tree of 384-bit adders (log₂(80) ≈ 7, rounded up with fan-in considerations). Each level takes 1 cycle. A global REDUCE operation completes in 7 cycles — delivering an exact 384-bit sum across all 5,120 QIUs in 3.5 nanoseconds at 2 GHz. This supports softmax surrogate denominators, global norms, and aggregation operations that span the entire chip.
+A global reduction network connects all 80 SMs. The network is a 7-level tree of 384-bit adders (log₂(80) ≈ 7, rounded up with fan-in considerations). Each level takes 1 cycle. A global REDUCE operation completes in 7 cycles,  delivering an exact 384-bit sum across all 5,120 QIUs in 3.5 nanoseconds at 2 GHz. This supports softmax surrogate denominators, global norms, and aggregation operations that span the entire chip.
 
 ---
 
@@ -95,11 +95,11 @@ A global reduction network connects all 80 SMs. The network is a 7-level tree of
 
 The FPGA paper established that SHR335 is zero logic: fixed wiring extracting bit positions from a register. On dedicated silicon this property is worth examining at scale because it compounds.
 
-Each QIU performs Q335 multiplication followed by SHR335 extraction. The multiply produces a 768-bit result. SHR335 routes bits [767:335] to the quotient output and bits [334:0] to the remainder output. In the physical layout this means 768 wires from the multiplier output are split into two groups by their position — no gates, no transistors, no switching energy, no propagation delay beyond wire routing. The quotient and remainder are available at the multiplier output simultaneously with the product itself.
+Each QIU performs Q335 multiplication followed by SHR335 extraction. The multiply produces a 768-bit result. SHR335 routes bits [767:335] to the quotient output and bits [334:0] to the remainder output. In the physical layout this means 768 wires from the multiplier output are split into two groups by their position,  no gates, no transistors, no switching energy, no propagation delay beyond wire routing. The quotient and remainder are available at the multiplier output simultaneously with the product itself.
 
-With 5,120 QIUs, each potentially executing a Q335 multiply every 1-2 cycles at 2 GHz, the chip performs 2.5-5.0 trillion multiplications per second. Each multiplication includes a free divmod. That is 2.5-5.0 trillion exact integer divisions per second at zero computational cost, zero power consumption (beyond the wires), and zero additional latency. The division that is the computational heart of VDR arithmetic — the operation that makes the fixed-frame scheme work — is performed 5 trillion times per second by the physical layout of metal interconnect.
+With 5,120 QIUs, each potentially executing a Q335 multiply every 1-2 cycles at 2 GHz, the chip performs 2.5-5.0 trillion multiplications per second. Each multiplication includes a free divmod. That is 2.5-5.0 trillion exact integer divisions per second at zero computational cost, zero power consumption (beyond the wires), and zero additional latency. The division that is the computational heart of VDR arithmetic,  the operation that makes the fixed-frame scheme work,  is performed 5 trillion times per second by the physical layout of metal interconnect.
 
-No other arithmetic system has this property. Floating-point division is a multi-cycle operation requiring iterative convergence or lookup-table interpolation. Arbitrary-precision rational division requires multi-word quotient computation. Even integer division by non-power-of-two denominators requires dedicated divider circuits. The Q335 design decision to fix the denominator at 2^335 — a mathematical choice — yields a hardware property — free division — that scales without limit.
+No other arithmetic system has this property. Floating-point division is a multi-cycle operation requiring iterative convergence or lookup-table interpolation. Arbitrary-precision rational division requires multi-word quotient computation. Even integer division by non-power-of-two denominators requires dedicated divider circuits. The Q335 design decision to fix the denominator at 2^335,  a mathematical choice,  yields a hardware property,  free division,  that scales without limit.
 
 ---
 
@@ -107,7 +107,7 @@ No other arithmetic system has this property. Floating-point division is a multi
 
 ### 5.1 Register File
 
-Each QIU has 16 × 384-bit value registers and 16 × 384-bit remainder registers — 12,288 bits per QIU, approximately 1.5 KB. Across 5,120 QIUs: 7.68 MB of register file. This is comparable to the total register file size of current high-end GPUs (H100 has approximately 20 MB of register file across all SMs) despite the wider per-register width, because VDR requires fewer registers per thread — the working set of a Q335 operation is 2-3 source values and 1-2 destination values.
+Each QIU has 16 × 384-bit value registers and 16 × 384-bit remainder registers,  12,288 bits per QIU, approximately 1.5 KB. Across 5,120 QIUs: 7.68 MB of register file. This is comparable to the total register file size of current high-end GPUs (H100 has approximately 20 MB of register file across all SMs) despite the wider per-register width, because VDR requires fewer registers per thread,  the working set of a Q335 operation is 2-3 source values and 1-2 destination values.
 
 ### 5.2 Remainder BRAM
 
@@ -127,9 +127,9 @@ A global L2 cache of 96 MB serves as the intermediary between SMs and HBM. This 
 
 Six HBM3 stacks provide 96 GB of capacity at 4.9 TB/s aggregate bandwidth. The memory is organized into 6 independently addressable partitions, enabling:
 
-The KB fact store occupies partitions sized to the deployment — from megabytes for small knowledge bases to tens of gigabytes for enterprise deployments with millions of facts.
+The KB fact store occupies partitions sized to the deployment,  from megabytes for small knowledge bases to tens of gigabytes for enterprise deployments with millions of facts.
 
-Model parameters for exact VDR training occupy 384 bits per parameter. A 1-billion parameter model requires 48 GB — fitting within the 96 GB capacity but not leaving much room. This confirms VDR-4's honest assessment that exact-fraction training is not practical at production scale on any single device. The target model size for exact training is tens of millions of parameters — fully within the HBM capacity with room for gradients, attention matrices, and KB storage.
+Model parameters for exact VDR training occupy 384 bits per parameter. A 1-billion parameter model requires 48 GB,  fitting within the 96 GB capacity but not leaving much room. This confirms VDR-4's honest assessment that exact-fraction training is not practical at production scale on any single device. The target model size for exact training is tens of millions of parameters,  fully within the HBM capacity with room for gradients, attention matrices, and KB storage.
 
 For inference (forward pass only, no gradient storage), larger models are feasible. A 7-billion parameter model at 384 bits per parameter requires 336 GB, exceeding single-device HBM capacity but achievable with model parallelism across 4 devices.
 
@@ -141,23 +141,23 @@ For inference (forward pass only, no gradient storage), larger models are feasib
 
 The programming model directly implements the five-stream GPU architecture specified in VDR-18. The streams map to the integer-native hardware as follows.
 
-Stream 0 (LLM forward/decode) uses QIU warps for exact matrix multiplications in attention and feedforward layers. Each SM computes rows of the attention matrix or tiles of the feedforward computation. The tensor-core-equivalent operation is 384-bit integer matrix multiply-accumulate with exact accumulation — no rounding at any stage.
+Stream 0 (LLM forward/decode) uses QIU warps for exact matrix multiplications in attention and feedforward layers. Each SM computes rows of the attention matrix or tiles of the feedforward computation. The tensor-core-equivalent operation is 384-bit integer matrix multiply-accumulate with exact accumulation,  no rounding at any stage.
 
-Stream 1 (KB query/scan) uses QIU warps for parallel Prolog fact matching. The predicate-major columnar storage from VDR-18 maps directly: all facts sharing a predicate are stored contiguously in HBM, loaded in coalesced bursts to shared memory, and scanned by warps executing the BMATCH instruction equivalent. Scope filtering uses the same bitset mechanism — each QIU checks a candidate fact's KB ID with one bit-test against the user's visible-KB bitset.
+Stream 1 (KB query/scan) uses QIU warps for parallel Prolog fact matching. The predicate-major columnar storage from VDR-18 maps directly: all facts sharing a predicate are stored contiguously in HBM, loaded in coalesced bursts to shared memory, and scanned by warps executing the BMATCH instruction equivalent. Scope filtering uses the same bitset mechanism,  each QIU checks a candidate fact's KB ID with one bit-test against the user's visible-KB bitset.
 
-Stream 2 (VDR primitives) uses QIU warps for batch arithmetic — parameter updates, aggregations, denominator budget checks. These are the embarrassingly parallel operations that fill warps perfectly.
+Stream 2 (VDR primitives) uses QIU warps for batch arithmetic,  parameter updates, aggregations, denominator budget checks. These are the embarrassingly parallel operations that fill warps perfectly.
 
-Stream 3 (grammar mask/prep) uses QIU integer comparison for grammar-constrained vocabulary filtering. When a grammar slot accepts one of 4 categorical values, the mask operation zeros all but 4 entries in the logit vector — a parallel integer comparison across the vocabulary.
+Stream 3 (grammar mask/prep) uses QIU integer comparison for grammar-constrained vocabulary filtering. When a grammar slot accepts one of 4 categorical values, the mask operation zeros all but 4 entries in the logit vector,  a parallel integer comparison across the vocabulary.
 
 Stream 4 (provenance compaction) uses DMA engines (unchanged from conventional GPU architecture) for append-only event logging.
 
-The five streams overlap because they access different memory regions and different functional units, exactly as specified in VDR-18. The integer-native hardware eliminates the resource conflict that would occur if streams 0 and 1 competed for the same float units — there are no float units. All streams use integer units, but they access different memory partitions and operate on different data.
+The five streams overlap because they access different memory regions and different functional units, exactly as specified in VDR-18. The integer-native hardware eliminates the resource conflict that would occur if streams 0 and 1 competed for the same float units,  there are no float units. All streams use integer units, but they access different memory partitions and operate on different data.
 
 ### 6.2 Kernel Launch Model
 
 The host CPU launches kernels on the integer-native GPU using the same grid/block/thread abstraction as conventional CUDA. A Q335 addition kernel launches with block size 64 (matching QIUs per SM) and grid size equal to the number of elements divided by 64. Each thread computes one 384-bit addition. The kernel code uses Q335-specific intrinsics:
 
-The intrinsic q335_add(a, b) maps to the WADD instruction equivalent. The intrinsic q335_mul(a, b) maps to WMUL followed by SHR335 (the SHR335 is implicit — the hardware always produces quotient and remainder). The intrinsic q335_reduce_add(value) maps to the hierarchical reduction network. The intrinsic prolog_match(predicate_id, args) maps to the BMATCH sequence.
+The intrinsic q335_add(a, b) maps to the WADD instruction equivalent. The intrinsic q335_mul(a, b) maps to WMUL followed by SHR335 (the SHR335 is implicit,  the hardware always produces quotient and remainder). The intrinsic q335_reduce_add(value) maps to the hierarchical reduction network. The intrinsic prolog_match(predicate_id, args) maps to the BMATCH sequence.
 
 These intrinsics are the software interface to the hardware operations validated on the FPGA. The calling convention, argument types, and return types are identical. The performance characteristics differ (1-2 cycle multiply versus 9, for example) but the functional semantics are identical, ensuring bit-identical results across FPGA and ASIC implementations.
 
@@ -211,7 +211,7 @@ The selection is transparent to the caller. A kb_query builtin (B378) produces t
 | PCIe gen5 + NVLink | 1 | 1.5 | 12 |
 | Host interface + scheduling | 1 | 1.0 | 8 |
 | Power management | 1 | 0.5 | 4 |
-| I/O ring and ESD | 1 | — | 30 |
+| I/O ring and ESD | 1 |,  | 30 |
 | **Total** | | **~68B** | **~581** |
 
 ### 7.4 Comparison with Current GPUs
@@ -232,7 +232,7 @@ The selection is transparent to the caller. A kb_query builtin (B378) produces t
 | Tensor cores | Yes (FP16/BF16/FP8/INT8) | None (replaced by QIU multiply) |
 | Q335 multiply throughput | ~85M/s (integer ALU, from VDR-18 GA3) | ~5.1T/s (QIU, projected) |
 
-The VDR-Q335 chip is smaller than H100 (581 mm² versus 814 mm²) because it contains no floating-point hardware, no tensor cores, no SFUs, and fewer SMs. It is simpler because every compute unit performs the same fixed-width integer operations — no mode switching between FP16/FP32/FP64/INT8, no special-case handling for denormals/NaN/infinity, no rounding mode configuration. The Q335 multiply throughput is approximately 60× higher than H100's integer ALU performance for Q335 workloads because the QIUs are purpose-built for 384-bit arithmetic rather than repurposing 32-bit integer units.
+The VDR-Q335 chip is smaller than H100 (581 mm² versus 814 mm²) because it contains no floating-point hardware, no tensor cores, no SFUs, and fewer SMs. It is simpler because every compute unit performs the same fixed-width integer operations,  no mode switching between FP16/FP32/FP64/INT8, no special-case handling for denormals/NaN/infinity, no rounding mode configuration. The Q335 multiply throughput is approximately 60× higher than H100's integer ALU performance for Q335 workloads because the QIUs are purpose-built for 384-bit arithmetic rather than repurposing 32-bit integer units.
 
 ---
 
@@ -266,7 +266,7 @@ The SRE investigation from VDR-18 (1 MB Prometheus JSON, 200 endpoints, 18,000 m
 | Formatted output | 232 | 86K (grammar + format) | ~0.008 μs |
 | **Total primitives** | **769** | **~1.5M** | **~0.2 μs** |
 
-The primitive computation completes in approximately 200 nanoseconds. The bottleneck is entirely the LLM forward pass generating the 769 tokens, not the primitive operations. The primitives are not merely computationally invisible as VDR-18 stated for GPU — they are approximately 50,000× faster than generating a single LLM token.
+The primitive computation completes in approximately 200 nanoseconds. The bottleneck is entirely the LLM forward pass generating the 769 tokens, not the primitive operations. The primitives are not merely computationally invisible as VDR-18 stated for GPU,  they are approximately 50,000× faster than generating a single LLM token.
 
 ### 8.3 Training Step Projection
 
@@ -295,9 +295,9 @@ The performance ceiling for large workloads is memory bandwidth, not compute.
 | 1M fact scan | 1M × 48 B | Match indices | 48 MB | 0.010 ms |
 | Attention QKᵀ (S=1024, H=64) | 2M × 48 B | 1M × 48 B | 144 MB | 0.029 ms |
 
-The SGD update is approximately balanced between compute (0.2 ms for multiplications) and memory (0.29 ms for operand transfer). The fact scan is heavily memory-bound — the per-fact match operation takes 1 cycle but loading the fact takes multiple cycles of memory latency. The attention computation is moderately memory-bound.
+The SGD update is approximately balanced between compute (0.2 ms for multiplications) and memory (0.29 ms for operand transfer). The fact scan is heavily memory-bound,  the per-fact match operation takes 1 cycle but loading the fact takes multiple cycles of memory latency. The attention computation is moderately memory-bound.
 
-This is the expected profile. Modern GPU workloads are overwhelmingly memory-bandwidth-bound for regular parallel operations. The VDR-Q335 chip follows the same pattern — the compute is fast enough that the memory system is the bottleneck. The response is the same as for conventional GPUs: maximize memory bandwidth (HBM3 at 4.9 TB/s), minimize data movement (keep operands in L2 and shared memory), and overlap computation with memory access (dual warp issuing to hide latency).
+This is the expected profile. Modern GPU workloads are overwhelmingly memory-bandwidth-bound for regular parallel operations. The VDR-Q335 chip follows the same pattern,  the compute is fast enough that the memory system is the bottleneck. The response is the same as for conventional GPUs: maximize memory bandwidth (HBM3 at 4.9 TB/s), minimize data movement (keep operands in L2 and shared memory), and overlap computation with memory access (dual warp issuing to hide latency).
 
 ---
 
@@ -305,11 +305,11 @@ This is the expected profile. Modern GPU workloads are overwhelmingly memory-ban
 
 This section lists capabilities the chip does not provide, consistent with the project's practice of stating limitations explicitly.
 
-The chip cannot run conventional neural network inference. There are no floating-point units. A model trained in float16, bfloat16, or float32 cannot execute on this hardware. The chip runs only VDR-LLM-Prolog workloads with exact integer arithmetic. This is by design — the entire die area optimization depends on eliminating float hardware.
+The chip cannot run conventional neural network inference. There are no floating-point units. A model trained in float16, bfloat16, or float32 cannot execute on this hardware. The chip runs only VDR-LLM-Prolog workloads with exact integer arithmetic. This is by design,  the entire die area optimization depends on eliminating float hardware.
 
-The chip cannot train production-scale language models. A 1-billion parameter model at 384 bits per parameter requires 48 GB for parameters alone, plus comparable storage for gradients and optimizer state. A 96 GB HBM capacity can accommodate this with tight memory management, but larger models require multi-device parallelism. The target scale for exact training is millions to tens of millions of parameters — sufficient for research into training dynamics and exact reproducibility, not for training GPT-class models.
+The chip cannot train production-scale language models. A 1-billion parameter model at 384 bits per parameter requires 48 GB for parameters alone, plus comparable storage for gradients and optimizer state. A 96 GB HBM capacity can accommodate this with tight memory management, but larger models require multi-device parallelism. The target scale for exact training is millions to tens of millions of parameters,  sufficient for research into training dynamics and exact reproducibility, not for training GPT-class models.
 
-The chip cannot accelerate functional remainder resolution. Newton iteration, Taylor series, and other convergent computations are inherently sequential — each step depends on the previous. The chip can accelerate the per-step arithmetic (each Newton step's multiply is fast) but cannot parallelize the iteration itself. Functional remainder resolution is a host CPU responsibility that benefits from the chip only through faster individual arithmetic operations.
+The chip cannot accelerate functional remainder resolution. Newton iteration, Taylor series, and other convergent computations are inherently sequential,  each step depends on the previous. The chip can accelerate the per-step arithmetic (each Newton step's multiply is fast) but cannot parallelize the iteration itself. Functional remainder resolution is a host CPU responsibility that benefits from the chip only through faster individual arithmetic operations.
 
 The chip cannot perform variable-precision arithmetic natively. The QIU is fixed at 384 bits. Values requiring wider precision (rare in practice but possible during deep remainder nesting) must be handled by multi-word arithmetic in software, using the QIU as a 384-bit building block. The Q335 frame provides 290 orders of magnitude of headroom over typical training denominators, so this limitation rarely manifests.
 
@@ -325,9 +325,9 @@ The technical answer is clear from the architecture. The chip is smaller than cu
 
 The market answer depends on adoption. The VDR-LLM-Prolog system offers properties no float-based system can match: exact reproducibility, structural security with provably impossible data-access jailbreaking, complete provenance chains, flat per-turn cost scaling, and knowledge accumulation that makes every session cheaper than the last. Each property addresses a real market need: regulated industries need reproducibility, enterprises need security guarantees, compliance teams need audit trails, and cost-sensitive deployments need predictable economics.
 
-The transition path does not require this chip as a first step. VDR-18 specified the GPU mapping using existing integer ALUs on conventional GPUs. The H100's integer ALUs achieve approximately 85 million Q335 multiplications per second — sufficient for the system's needs given 85-97% token reduction. A GPU manufacturer could support VDR workloads on existing hardware by exposing wider integer intrinsics, adding SHR335-equivalent instructions to the ISA, and optimizing the integer ALU pipeline for 384-bit operations. The dedicated chip represents the endpoint: what happens when the hardware is designed for the workload rather than the workload adapted to the hardware.
+The transition path does not require this chip as a first step. VDR-18 specified the GPU mapping using existing integer ALUs on conventional GPUs. The H100's integer ALUs achieve approximately 85 million Q335 multiplications per second,  sufficient for the system's needs given 85-97% token reduction. A GPU manufacturer could support VDR workloads on existing hardware by exposing wider integer intrinsics, adding SHR335-equivalent instructions to the ISA, and optimizing the integer ALU pipeline for 384-bit operations. The dedicated chip represents the endpoint: what happens when the hardware is designed for the workload rather than the workload adapted to the hardware.
 
-The FPGA at $200 proves the architecture. Conventional GPUs with integer ALU optimization prove the scale. The dedicated chip proves the ceiling — and that ceiling is 60× higher throughput at lower cost and lower power than repurposing float-era hardware for integer-era computation.
+The FPGA at $200 proves the architecture. Conventional GPUs with integer ALU optimization prove the scale. The dedicated chip proves the ceiling,  and that ceiling is 60× higher throughput at lower cost and lower power than repurposing float-era hardware for integer-era computation.
 
 ---
 
@@ -335,7 +335,7 @@ The FPGA at $200 proves the architecture. Conventional GPUs with integer ALU opt
 
 ### 11.1 Process Node
 
-The design targets TSMC N4P (4nm-class) or equivalent. The transistor budget of approximately 68 billion and die area of approximately 581 mm² are well within the manufacturing capabilities demonstrated by current GPU products at this node. The design is simpler than current GPUs — no mixed-precision datapaths, no special function units, no complex rounding logic — which should yield higher transistor density in the compute units and better timing closure.
+The design targets TSMC N4P (4nm-class) or equivalent. The transistor budget of approximately 68 billion and die area of approximately 581 mm² are well within the manufacturing capabilities demonstrated by current GPU products at this node. The design is simpler than current GPUs,  no mixed-precision datapaths, no special function units, no complex rounding logic,  which should yield higher transistor density in the compute units and better timing closure.
 
 ### 11.2 Packaging
 
@@ -353,11 +353,11 @@ The chip uses a 2.5D CoWoS-S (Chip-on-Wafer-on-Substrate) package with 6 HBM3 st
 | Miscellaneous (clocking, power management) | 30 |
 | **Total TDP** | **~400 W** |
 
-The 400W TDP is significantly below current high-end GPU TDPs (H100 at 700W, B200 at 1000W). The savings come from three sources: no floating-point units (float datapaths are power-hungry due to mantissa alignment and normalization logic), no SFUs (transcendental approximation circuits consume significant dynamic power), and no tensor cores (the largest single power consumer in current GPU SMs). Integer arithmetic at 384 bits consumes more power per operation than 32-bit integer arithmetic but less than float arithmetic at any precision because the datapath is simpler — carry propagation and integer multiplication are electrically simpler than floating-point addition (which requires exponent comparison, mantissa shift, and post-normalization).
+The 400W TDP is significantly below current high-end GPU TDPs (H100 at 700W, B200 at 1000W). The savings come from three sources: no floating-point units (float datapaths are power-hungry due to mantissa alignment and normalization logic), no SFUs (transcendental approximation circuits consume significant dynamic power), and no tensor cores (the largest single power consumer in current GPU SMs). Integer arithmetic at 384 bits consumes more power per operation than 32-bit integer arithmetic but less than float arithmetic at any precision because the datapath is simpler,  carry propagation and integer multiplication are electrically simpler than floating-point addition (which requires exponent comparison, mantissa shift, and post-normalization).
 
 ### 11.4 Integer Arithmetic Power Advantage
 
-The power savings from integer-versus-float deserves quantification. A 32-bit floating-point addition requires approximately 5 picojoules per operation on a 4nm process, accounting for exponent comparison (5 bits), mantissa alignment (up to 23-bit shift), mantissa addition (24 bits), normalization (leading-zero detection and shift), and rounding. A 384-bit integer addition requires approximately 3 picojoules per operation — less than a single float32 addition despite being 12× wider, because the operation is a single carry-chain propagation with no alignment, no normalization, and no rounding.
+The power savings from integer-versus-float deserves quantification. A 32-bit floating-point addition requires approximately 5 picojoules per operation on a 4nm process, accounting for exponent comparison (5 bits), mantissa alignment (up to 23-bit shift), mantissa addition (24 bits), normalization (leading-zero detection and shift), and rounding. A 384-bit integer addition requires approximately 3 picojoules per operation,  less than a single float32 addition despite being 12× wider, because the operation is a single carry-chain propagation with no alignment, no normalization, and no rounding.
 
 For multiplication: a float32 multiply requires approximately 15 picojoules (24-bit mantissa multiply plus exponent add plus normalization). A 384-bit integer multiply requires approximately 200 picojoules (full parallel multiplier tree). The integer multiply is more expensive per operation, but VDR performs 85-97% fewer operations per prompt. At 90% token reduction, the energy per prompt for multiplication is: 200 pJ × 0.1 = 20 pJ effective, versus 15 pJ × 1.0 = 15 pJ for float. Nearly equivalent per prompt, with the VDR version producing exact results.
 
@@ -395,11 +395,11 @@ The Zig host interface is validated on FPGA. The runtime's ability to dispatch o
 
 ### 13.1 Conventional GPU with Software Q335
 
-Running VDR-LLM-Prolog on existing GPU hardware using 32-bit integer ALUs for Q335 arithmetic. This is the VDR-18 approach. It works — 85M Q335 muls/sec on H100 is sufficient for the workloads. But it repurposes hardware designed for float: the float units are idle, the tensor cores are idle, the SFUs are idle. The customer pays for silicon they don't use. The integer-native chip eliminates this waste — every transistor contributes to the workload.
+Running VDR-LLM-Prolog on existing GPU hardware using 32-bit integer ALUs for Q335 arithmetic. This is the VDR-18 approach. It works,  85M Q335 muls/sec on H100 is sufficient for the workloads. But it repurposes hardware designed for float: the float units are idle, the tensor cores are idle, the SFUs are idle. The customer pays for silicon they don't use. The integer-native chip eliminates this waste,  every transistor contributes to the workload.
 
 ### 13.2 Conventional GPU with Integer Tensor Core Adaptation
 
-A conventional GPU vendor adds support for 384-bit integer operands in the tensor core datapath. This is a smaller change than a full integer-native chip — it modifies the tensor core but retains float units and SFUs for conventional workloads. The chip remains a general-purpose GPU that also accelerates VDR. The tradeoff: VDR performance is better than software Q335 on integer ALUs but worse than a dedicated integer-native chip, and the chip remains expensive because it contains float hardware. This is the likely transition step if VDR adoption grows but doesn't justify a dedicated product.
+A conventional GPU vendor adds support for 384-bit integer operands in the tensor core datapath. This is a smaller change than a full integer-native chip,  it modifies the tensor core but retains float units and SFUs for conventional workloads. The chip remains a general-purpose GPU that also accelerates VDR. The tradeoff: VDR performance is better than software Q335 on integer ALUs but worse than a dedicated integer-native chip, and the chip remains expensive because it contains float hardware. This is the likely transition step if VDR adoption grows but doesn't justify a dedicated product.
 
 ### 13.3 Custom ASIC with Mixed Workload Support
 
@@ -430,7 +430,7 @@ Deploying VDR-LLM-Prolog on large FPGAs (UltraScale+ at 200+ cores) without ever
 | Final carry-propagate adder (768-bit) | Carry-select, 12×64-bit blocks | 150K |
 | Pipeline registers (2 stages) | 768-bit × 2 | 92K |
 | Control logic | Sequencing, stall, output routing | 40K |
-| SHR335 routing | Zero transistors — physical wire routing | 0 |
+| SHR335 routing | Zero transistors,  physical wire routing | 0 |
 | **Total multiplier** | | **~2,202K** |
 
 The 384×384 multiplier dominates the QIU transistor budget at approximately 2.2M transistors, consistent with the general rule that multiplier area scales as O(n²) with operand width. The Booth encoding reduces the number of partial products by approximately half compared to a naive array multiplier. The Wallace tree reduction converts the partial product matrix to two rows (carry and sum) in O(log n) levels of carry-save adders, which are then combined by a final carry-propagate adder.
@@ -477,8 +477,8 @@ The SHR335 routing is explicitly listed at zero transistors to emphasize the har
 |-----------|-------------|-------------------------|-----------|---------------------|
 | Q335 add (bulk, no reuse) | 0.5 ns / 10.2T/s | 29 ps / 33.5T/s | Compute | 10.2T/s |
 | Q335 mul (bulk, no reuse) | 1.0 ns / 5.1T/s | 39 ps / 25.0T/s | Compute | 5.1T/s |
-| Fact match (1M facts, cold) | — | 9.8 μs for 48 MB | Memory | ~102K queries/s |
-| Fact match (1M facts, L2 cached) | — | ~1 μs | Compute | ~1M queries/s |
+| Fact match (1M facts, cold) |,  | 9.8 μs for 48 MB | Memory | ~102K queries/s |
+| Fact match (1M facts, L2 cached) |,  | ~1 μs | Compute | ~1M queries/s |
 | SGD update (10M params, streaming) | 2 μs | 294 μs | Memory | 34K steps/s |
 | Matrix multiply (1K×1K) | 0.5 ms | 0.2 ms | Compute | 2K matmuls/s |
 
@@ -507,7 +507,7 @@ Bulk arithmetic on data already in registers or shared memory is compute-bound. 
 | VDR on FPGA | 769 | ~2.5 mJ | ~1.9 J | ~12 s | ~$0.00000005 |
 | VDR on ASIC (this paper) | 769 | ~520 μJ | ~0.4 J | ~0.5 s | ~$0.00000001 |
 
-The ASIC completes the SRE investigation in approximately 0.5 seconds using 0.4 joules of energy. The conventional LLM approach uses 7,000 joules — 17,500× more energy for the same investigation, with 25% data coverage versus 100% and arithmetic errors versus exact results.
+The ASIC completes the SRE investigation in approximately 0.5 seconds using 0.4 joules of energy. The conventional LLM approach uses 7,000 joules,  17,500× more energy for the same investigation, with 25% data coverage versus 100% and arithmetic errors versus exact results.
 
 ### C.3 Operations per Watt
 
@@ -519,7 +519,7 @@ The ASIC completes the SRE investigation in approximately 0.5 seconds using 0.4 
 | GPU H100 (700W) | 122M | 12M | 7M |
 | VDR-Q335 ASIC (400W) | 25.5B | 12.8B | 6.4B |
 
-The ASIC achieves approximately 200× better operations-per-watt than the FPGA for multiplications, and approximately 1,000× better than GPU H100. The combination of higher clock speed (13×), more cores (512×), and lower total power (0.57×) produces the multiplicative improvement. For deployments where energy cost or thermal budget is a constraint — datacenter at scale, edge devices, mobile — the efficiency advantage is decisive.
+The ASIC achieves approximately 200× better operations-per-watt than the FPGA for multiplications, and approximately 1,000× better than GPU H100. The combination of higher clock speed (13×), more cores (512×), and lower total power (0.57×) produces the multiplicative improvement. For deployments where energy cost or thermal budget is a constraint,  datacenter at scale, edge devices, mobile,  the efficiency advantage is decisive.
 
 ---
 
@@ -535,7 +535,7 @@ The ASIC achieves approximately 200× better operations-per-watt than the FPGA f
 | Softmax 100 logits | 2,500,000 ns | 25,000 ns | 3,300 ns | 10 ns | 250,000× |
 | Dot product H=64 | 3,200,000 ns | 13,000 ns | 5,970 ns | 32 ns | 100,000× |
 
-The Python column represents the reference implementation that validated the VDR arithmetic across 884 tests. The ASIC column represents the projected performance of the dedicated silicon. The ratio between them — 10,000× to 250,000× — reflects the transition from interpreted arbitrary-precision arithmetic on a general-purpose CPU to fixed-width integer arithmetic on purpose-built silicon. The Zig column represents the intermediate implementation that the host CPU runs for control-plane operations and software fallback.
+The Python column represents the reference implementation that validated the VDR arithmetic across 884 tests. The ASIC column represents the projected performance of the dedicated silicon. The ratio between them,  10,000× to 250,000×,  reflects the transition from interpreted arbitrary-precision arithmetic on a general-purpose CPU to fixed-width integer arithmetic on purpose-built silicon. The Zig column represents the intermediate implementation that the host CPU runs for control-plane operations and software fallback.
 
 ---
 
@@ -545,25 +545,25 @@ The Python column represents the reference implementation that validated the VDR
 
 | Accelerator | Integer Width | Purpose | Q335 Applicability |
 |-------------|-------------|---------|-------------------|
-| Google TPU v4 INT8 | 8-bit | Quantized inference | None — too narrow by 48× |
-| NVIDIA INT8 tensor core | 8-bit | Quantized inference | None — too narrow, float accumulation |
-| NVIDIA INT4 tensor core | 4-bit | Ultra-quantized inference | None — too narrow by 96× |
-| Cerebras CS-2 INT16 | 16-bit | Sparse linear algebra | None — too narrow by 24× |
-| Graphcore MK2 INT32 | 32-bit | Mixed precision | Partial — could do multi-word Q335, very slow |
-| Intel AMX INT8 | 8-bit | x86 matrix extension | None — too narrow, CPU-bound |
-| Apple Neural Engine INT8 | 8-bit | Mobile inference | None — too narrow |
+| Google TPU v4 INT8 | 8-bit | Quantized inference | None,  too narrow by 48× |
+| NVIDIA INT8 tensor core | 8-bit | Quantized inference | None,  too narrow, float accumulation |
+| NVIDIA INT4 tensor core | 4-bit | Ultra-quantized inference | None,  too narrow by 96× |
+| Cerebras CS-2 INT16 | 16-bit | Sparse linear algebra | None,  too narrow by 24× |
+| Graphcore MK2 INT32 | 32-bit | Mixed precision | Partial,  could do multi-word Q335, very slow |
+| Intel AMX INT8 | 8-bit | x86 matrix extension | None,  too narrow, CPU-bound |
+| Apple Neural Engine INT8 | 8-bit | Mobile inference | None,  too narrow |
 
-No existing accelerator provides native support for 384-bit integer arithmetic. All existing integer hardware targets low-precision quantized inference (4-8 bit) — the opposite end of the precision spectrum from VDR's 384-bit exact arithmetic. The VDR-Q335 ASIC would be the first accelerator designed for exact wide-integer arithmetic in an AI context.
+No existing accelerator provides native support for 384-bit integer arithmetic. All existing integer hardware targets low-precision quantized inference (4-8 bit),  the opposite end of the precision spectrum from VDR's 384-bit exact arithmetic. The VDR-Q335 ASIC would be the first accelerator designed for exact wide-integer arithmetic in an AI context.
 
 ### E.2 Existing Wide-Integer Hardware Outside AI
 
 | System | Integer Width | Purpose | Q335 Applicability |
 |--------|-------------|---------|-------------------|
-| Cryptographic accelerators (RSA, ECC) | 256-4096 bit | Modular exponentiation | Partial — similar width, different operation mix (modular reduction vs Q335 divmod) |
-| FPGA-based BigInteger | Variable | Arbitrary precision | Partial — general but not optimized for fixed-frame Q335 |
-| ZKP accelerators (Ingonyama, Cysic) | 256-384 bit | Zero-knowledge proof field arithmetic | Closest match — similar width, similar multiply-heavy workload, but modular reduction not power-of-two shift |
+| Cryptographic accelerators (RSA, ECC) | 256-4096 bit | Modular exponentiation | Partial,  similar width, different operation mix (modular reduction vs Q335 divmod) |
+| FPGA-based BigInteger | Variable | Arbitrary precision | Partial,  general but not optimized for fixed-frame Q335 |
+| ZKP accelerators (Ingonyama, Cysic) | 256-384 bit | Zero-knowledge proof field arithmetic | Closest match,  similar width, similar multiply-heavy workload, but modular reduction not power-of-two shift |
 
-Zero-knowledge proof accelerators are the closest existing precedent. They perform 256-384 bit integer multiplication with modular reduction over a prime field. VDR-Q335 performs 384-bit integer multiplication with power-of-two reduction (bit extraction). The QIU design could potentially support ZKP workloads by adding a modular reduction instruction alongside SHR335, making the chip applicable to both exact AI arithmetic and zero-knowledge cryptography — two distinct markets that share a hardware substrate.
+Zero-knowledge proof accelerators are the closest existing precedent. They perform 256-384 bit integer multiplication with modular reduction over a prime field. VDR-Q335 performs 384-bit integer multiplication with power-of-two reduction (bit extraction). The QIU design could potentially support ZKP workloads by adding a modular reduction instruction alongside SHR335, making the chip applicable to both exact AI arithmetic and zero-knowledge cryptography,  two distinct markets that share a hardware substrate.
 
 ---
 
@@ -617,7 +617,7 @@ Model size limits account for parameter storage, gradient storage, optimizer sta
 | KB fact partition distribution | Partition size | At initialization | NVLink or PCIe |
 | Attention KV cache sharing | Per-layer KV vectors | Per token | NVLink |
 
-The inter-chip communication patterns mirror conventional model-parallel GPU training. The global reduction across chips extends the on-chip reduction network — the on-chip tree produces per-chip sums in 7 cycles, the inter-chip ring reduce produces the global sum in O(chips) steps. For 8 chips, the full reduction completes in approximately 3.5 ns (on-chip) + 100 ns (inter-chip NVLink) = ~104 ns. This is fast enough that global operations (softmax denominator, gradient norm) do not bottleneck the system.
+The inter-chip communication patterns mirror conventional model-parallel GPU training. The global reduction across chips extends the on-chip reduction network,  the on-chip tree produces per-chip sums in 7 cycles, the inter-chip ring reduce produces the global sum in O(chips) steps. For 8 chips, the full reduction completes in approximately 3.5 ns (on-chip) + 100 ns (inter-chip NVLink) = ~104 ns. This is fast enough that global operations (softmax denominator, gradient norm) do not bottleneck the system.
 
 ---
 
@@ -694,7 +694,7 @@ The inter-chip communication patterns mirror conventional model-parallel GPU tra
 | Hyperscale | 100,000 | 91 MW | 1,667 | 867 kW | 90 MW |
 | Mega datacenter (600-acre class) | 1,000,000 | 910 MW | 16,667 | 8.7 MW | 901 MW |
 
-Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Section 7.4. Actual equivalence depends on workload mix — VDR wins more on multi-turn structured workloads (the 588:1 ratio at turn 100) and less on single-turn free-text generation (where conventional wins per-token).
+Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Section 7.4. Actual equivalence depends on workload mix,  VDR wins more on multi-turn structured workloads (the 588:1 ratio at turn 100) and less on single-turn free-text generation (where conventional wins per-token).
 
 ### I.2 Power Source Requirements
 
@@ -750,11 +750,11 @@ Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Se
 
 | Metric | Conventional | VDR ASIC | Break-Even Point |
 |--------|-------------|----------|-----------------|
-| Hardware cost | $30,000 (H100) | $15,000 (Q335 ASIC) | Immediate — ASIC cheaper |
-| Cost per prompt (day 1) | $0.18 | $0.000048 | Immediate — 3,750× cheaper |
-| Cost per prompt (month 6) | $0.18 | $0.000010 | Widening — 18,000× cheaper |
+| Hardware cost | $30,000 (H100) | $15,000 (Q335 ASIC) | Immediate,  ASIC cheaper |
+| Cost per prompt (day 1) | $0.18 | $0.000048 | Immediate,  3,750× cheaper |
+| Cost per prompt (month 6) | $0.18 | $0.000010 | Widening,  18,000× cheaper |
 | Human time per investigation | ~40 min | ~0 (sub-second) | Immediate |
-| Time to ROI on chip (vs H100 doing same work) | — | ~1 day at moderate load | — |
+| Time to ROI on chip (vs H100 doing same work) |,  | ~1 day at moderate load |,  |
 
 ---
 
@@ -765,33 +765,33 @@ Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Se
 | Asset | Economic Lifetime | Repurposable for VDR? | Stranding Risk |
 |-------|-------------------|----------------------|---------------|
 | Land and building | 30-50 years | Yes (same building) | None |
-| Power distribution (transformers, busbar) | 25-30 years | Yes (lower load) | Low — oversized but functional |
-| Cooling plant (chillers, towers) | 20-25 years | Yes (lower load) | Low — oversized but functional |
+| Power distribution (transformers, busbar) | 25-30 years | Yes (lower load) | Low,  oversized but functional |
+| Cooling plant (chillers, towers) | 20-25 years | Yes (lower load) | Low,  oversized but functional |
 | Fiber/networking | 15-20 years | Yes (same protocols) | None |
-| GPU servers (H100-class) | 3-5 years | No (float-optimized) | High — no VDR acceleration path |
-| GPU chips specifically | 3-5 years | Partial (integer ALUs exist, 85M Q335/s) | Medium — functional but 60× suboptimal |
-| Power purchase agreements | 10-20 years | Partially — paying for unused capacity | Medium-High |
-| Dedicated power generation | 20-30 years | Heavily oversized | High — 10× overcapacity |
+| GPU servers (H100-class) | 3-5 years | No (float-optimized) | High,  no VDR acceleration path |
+| GPU chips specifically | 3-5 years | Partial (integer ALUs exist, 85M Q335/s) | Medium,  functional but 60× suboptimal |
+| Power purchase agreements | 10-20 years | Partially,  paying for unused capacity | Medium-High |
+| Dedicated power generation | 20-30 years | Heavily oversized | High,  10× overcapacity |
 
 ### K.2 Historical Technology Transition Precedents
 
 | Transition | Duration | Stranding Effect | Parallel to VDR |
 |-----------|----------|-----------------|----------------|
-| x87 → SSE (1999) | ~5 years | Low (same chips, ISA extension) | Unlike — VDR is not an ISA extension |
-| SSE → AVX (2011) | ~4 years | Low (same chips, wider) | Unlike — VDR changes the computation type |
-| CPU → GPU for ML (2012-2016) | ~4 years | Medium (CPU servers still useful for other work) | Partially — GPU still useful for conventional LLMs |
-| FP32 → FP16/BF16 mixed precision (2017-2020) | ~3 years | Low (same chips, mode change) | Unlike — VDR eliminates float entirely |
-| Float → VDR integer (projected) | 5-10 years? | High for dedicated float AI infrastructure | Direct — replacement paradigm |
+| x87 → SSE (1999) | ~5 years | Low (same chips, ISA extension) | Unlike,  VDR is not an ISA extension |
+| SSE → AVX (2011) | ~4 years | Low (same chips, wider) | Unlike,  VDR changes the computation type |
+| CPU → GPU for ML (2012-2016) | ~4 years | Medium (CPU servers still useful for other work) | Partially,  GPU still useful for conventional LLMs |
+| FP32 → FP16/BF16 mixed precision (2017-2020) | ~3 years | Low (same chips, mode change) | Unlike,  VDR eliminates float entirely |
+| Float → VDR integer (projected) | 5-10 years? | High for dedicated float AI infrastructure | Direct,  replacement paradigm |
 
 ### K.3 Transition Scenarios
 
 | Scenario | Probability | Timeline | Float Datacenter Impact |
 |----------|-----------|----------|----------------------|
-| VDR remains academic/niche | Moderate | Indefinite | None — float infrastructure retains value |
-| VDR adopted for regulated industries only | Moderate | 3-5 years | Limited — regulated workloads move, others stay |
-| VDR becomes primary for structured workloads | Low-Moderate | 5-8 years | Significant — 40-60% of enterprise AI workloads affected |
-| VDR replaces float for most AI workloads | Low | 8-15 years | Severe — majority of float infrastructure stranded |
-| Hybrid: float for training, VDR for deployment | Moderate | 5-10 years | Moderate — training infra retains value, inference shifts |
+| VDR remains academic/niche | Moderate | Indefinite | None,  float infrastructure retains value |
+| VDR adopted for regulated industries only | Moderate | 3-5 years | Limited,  regulated workloads move, others stay |
+| VDR becomes primary for structured workloads | Low-Moderate | 5-8 years | Significant,  40-60% of enterprise AI workloads affected |
+| VDR replaces float for most AI workloads | Low | 8-15 years | Severe,  majority of float infrastructure stranded |
+| Hybrid: float for training, VDR for deployment | Moderate | 5-10 years | Moderate,  training infra retains value, inference shifts |
 
 ---
 
@@ -820,7 +820,7 @@ Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Se
 | Power per query | ~0.5 mJ (chip) + network | ~0.05-0.5 mJ (chip) |
 | Audit trail | In cloud KB | On-device KB |
 | Security model | Structural (same) | Structural (same) + air-gapped |
-| Regulatory compliance | Depends on data residency | Complete — data never exits jurisdiction |
+| Regulatory compliance | Depends on data residency | Complete,  data never exits jurisdiction |
 | Update path | KB fact assertion (8 tokens) | KB fact assertion (8 tokens) |
 | Cost model | Per-query (decreasing) | Per-device (amortized) |
 
@@ -828,11 +828,11 @@ Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Se
 
 | Requirement | Conventional LLM Approach | VDR on FPGA/ASIC |
 |------------|--------------------------|-------------------|
-| FDA 21 CFR Part 11 (electronic records) | Partial — no guaranteed audit trail | Complete — append-only audit KB, every access logged |
-| IEC 62304 (medical software lifecycle) | Difficult — nondeterministic outputs | Exact — bit-identical results, deterministic |
-| HIPAA (data protection) | Cloud risk — data leaves device | On-device — data never leaves |
+| FDA 21 CFR Part 11 (electronic records) | Partial,  no guaranteed audit trail | Complete,  append-only audit KB, every access logged |
+| IEC 62304 (medical software lifecycle) | Difficult,  nondeterministic outputs | Exact,  bit-identical results, deterministic |
+| HIPAA (data protection) | Cloud risk,  data leaves device | On-device,  data never leaves |
 | Clinical decision support accuracy | Float arithmetic with silent error | Exact VDR arithmetic, zero computation errors |
-| Reproducibility of diagnostic | Not guaranteed (platform-dependent float) | Guaranteed — same inputs produce bit-identical outputs |
+| Reproducibility of diagnostic | Not guaranteed (platform-dependent float) | Guaranteed,  same inputs produce bit-identical outputs |
 | Audit for regulatory review | Conversation logs (incomplete) | Complete provenance chain per value |
 | Power budget for portable device | Cloud: N/A (needs connectivity); On-device: infeasible | On-device: 5-10W FPGA or ASIC |
 
@@ -947,7 +947,7 @@ Note: "equivalent throughput" computed at the 60× Q335 throughput ratio from Se
 | Design complexity | Very high | Moderate |
 | VDR viability | Optimal performance | Viable for many deployments |
 
-The Q335 architecture is viable at mature process nodes because integer arithmetic scales differently than float. A 384-bit integer multiply at 28nm in 1.42 mm² running at 1 GHz delivers 700M muls/sec per QIU — comparable to a high-end CPU's integer throughput. At $10 per chip in volume, this enables deployment scenarios (IoT, sensors, personal devices) that the 4nm datacenter chip cannot economically address. The same ISA, the same microprograms, the same Zig runtime, the same IOSE contracts — different silicon, different market.
+The Q335 architecture is viable at mature process nodes because integer arithmetic scales differently than float. A 384-bit integer multiply at 28nm in 1.42 mm² running at 1 GHz delivers 700M muls/sec per QIU,  comparable to a high-end CPU's integer throughput. At $10 per chip in volume, this enables deployment scenarios (IoT, sensors, personal devices) that the 4nm datacenter chip cannot economically address. The same ISA, the same microprograms, the same Zig runtime, the same IOSE contracts,  different silicon, different market.
 
 ---
 
@@ -990,7 +990,7 @@ The Q335 architecture is viable at mature process nodes because integer arithmet
 |----------|----------|----------------------|---------|
 | Primary operand width | 384 bits | 256-384 bits | High |
 | Core operation | Integer multiply | Integer multiply | Exact match |
-| Reduction operation | Power-of-two shift (SHR335) | Modular reduction (mod p) | Different — but similar cost |
+| Reduction operation | Power-of-two shift (SHR335) | Modular reduction (mod p) | Different,  but similar cost |
 | Secondary operation | Cross-multiply comparison | Point addition on elliptic curve | Different |
 | Parallelism model | Data-parallel SIMD | Data-parallel SIMD | Exact match |
 | Memory access pattern | Coalesced, regular | Coalesced, regular | Exact match |
@@ -1000,27 +1000,27 @@ The Q335 architecture is viable at mature process nodes because integer arithmet
 
 | Instruction | VDR Use | ZKP Use | Additional Hardware |
 |-------------|---------|---------|-------------------|
-| WMUL (384×384) | Q335 multiply | Field multiply (pre-reduction) | None — same instruction |
-| SHR335 | Q335 divmod | Not used (wrong reduction) | None — already present |
+| WMUL (384×384) | Q335 multiply | Field multiply (pre-reduction) | None,  same instruction |
+| SHR335 | Q335 divmod | Not used (wrong reduction) | None,  already present |
 | MODRED | Not used | Modular reduction by prime p | ~300 LUTs per QIU for Barrett reduction |
-| WADD | Q335 add | Field add (pre-reduction) | None — same instruction |
-| WCMP | Value comparison | Comparison for conditional | None — same instruction |
+| WADD | Q335 add | Field add (pre-reduction) | None,  same instruction |
+| WCMP | Value comparison | Comparison for conditional | None,  same instruction |
 | POINTADD | Not used | Elliptic curve point addition | ~800 LUTs per QIU for projective coordinates |
-| REDUCE_ADD | Global sum (softmax denom) | Merkle root aggregation | None — same reduction network |
+| REDUCE_ADD | Global sum (softmax denom) | Merkle root aggregation | None,  same reduction network |
 
 ### Q.3 Combined Market Size
 
 | Market | 2026 Estimated Size | VDR-Only Addressable | ZKP-Only Addressable | Combined with Dual-Purpose Chip |
 |--------|-------------------|---------------------|---------------------|-------------------------------|
-| Enterprise AI (structured) | $50B | $35B | — | $35B |
-| Healthcare AI | $15B | $13.5B | — | $13.5B |
-| Financial AI | $20B | $18B | — | $18B |
-| Blockchain/DeFi ZKP | $5B | — | $4B | $4B |
-| Privacy-preserving compute | $3B | — | $2.5B | $2.5B |
-| Identity/credentials | $2B | — | $1.5B | $1.5B |
+| Enterprise AI (structured) | $50B | $35B |,  | $35B |
+| Healthcare AI | $15B | $13.5B |,  | $13.5B |
+| Financial AI | $20B | $18B |,  | $18B |
+| Blockchain/DeFi ZKP | $5B |,  | $4B | $4B |
+| Privacy-preserving compute | $3B |,  | $2.5B | $2.5B |
+| Identity/credentials | $2B |,  | $1.5B | $1.5B |
 | **Total** | | **$66.5B** | **$8B** | **$74.5B** |
 
-Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point addition makes the Q335 ASIC a dual-purpose chip serving both the VDR exact-arithmetic AI market and the zero-knowledge proof market. The shared hardware substrate — wide integer multiply, data-parallel execution, regular memory access — means the marginal cost of supporting ZKP is negligible while the addressable market increases by approximately $8B.
+Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point addition makes the Q335 ASIC a dual-purpose chip serving both the VDR exact-arithmetic AI market and the zero-knowledge proof market. The shared hardware substrate,  wide integer multiply, data-parallel execution, regular memory access,  means the marginal cost of supporting ZKP is negligible while the addressable market increases by approximately $8B.
 
 ---
 
@@ -1040,7 +1040,7 @@ Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point 
 
 | Stream Pair | Resource Conflict on GPU | Resource Conflict on ASIC | Notes |
 |------------|------------------------|--------------------------|-------|
-| S0 + S1 | Both want integer ALUs (scarce) | Both want QIUs (abundant, 5,120) | Conflict eliminated — enough QIUs for both |
+| S0 + S1 | Both want integer ALUs (scarce) | Both want QIUs (abundant, 5,120) | Conflict eliminated,  enough QIUs for both |
 | S0 + S2 | Both want integer ALUs | Same as above | Conflict eliminated |
 | S0 + S3 | Shared memory contention | Separate shared SRAM banks per SM | Reduced contention |
 | S1 + S2 | Global memory bandwidth | Separate HBM partitions | Conflict reduced |
@@ -1067,7 +1067,7 @@ Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point 
 
 | Milestone | Prerequisites | Estimated Date | Validates |
 |-----------|-------------|---------------|-----------|
-| Python prototype complete | — | Done (2026) | Architecture, arithmetic, 884 tests |
+| Python prototype complete |,  | Done (2026) | Architecture, arithmetic, 884 tests |
 | Zig port complete | IOSE declarations | 2026 Q3 | Performance at native speed |
 | FPGA 10-core validated | VDR-21 Phase 1-5 | 2027 Q1 | Hardware architecture, bit-identical |
 | FPGA 60-core scaled | UltraScale+ board | 2027 Q2 | Scaling behavior |
@@ -1095,12 +1095,12 @@ Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point 
 
 | Phase | Investment | Returns | Risk |
 |-------|-----------|---------|------|
-| Software deployment (Zig) | ~$2M (engineering) | Revenue from regulated industries | Low — software only |
-| FPGA validation | ~$500K (hardware + engineering) | Hardware validation, early customers | Low — $200 boards |
-| ASIC design | ~$30M (design + masks + validation) | Volume production, datacenter market | Medium — silicon risk |
-| ASIC production | ~$100M (wafer procurement, packaging) | Cost leadership in target segments | Medium — market adoption risk |
-| Ecosystem build | ~$50M (tools, libraries, training) | Platform lock-in, developer adoption | Medium-High — ecosystem risk |
-| Datacenter deployment | ~$500M+ (infrastructure) | Operating margin advantage | High — scale commitment |
+| Software deployment (Zig) | ~$2M (engineering) | Revenue from regulated industries | Low,  software only |
+| FPGA validation | ~$500K (hardware + engineering) | Hardware validation, early customers | Low,  $200 boards |
+| ASIC design | ~$30M (design + masks + validation) | Volume production, datacenter market | Medium,  silicon risk |
+| ASIC production | ~$100M (wafer procurement, packaging) | Cost leadership in target segments | Medium,  market adoption risk |
+| Ecosystem build | ~$50M (tools, libraries, training) | Platform lock-in, developer adoption | Medium-High,  ecosystem risk |
+| Datacenter deployment | ~$500M+ (infrastructure) | Operating margin advantage | High,  scale commitment |
 
 ---
 
@@ -1125,7 +1125,7 @@ Adding ~1,100 LUTs per QIU (2.1% area increase) for Barrett reduction and point 
 | Large deployment (10M prompts/day) | ~500B | 50 MJ → 0 J | 18.25 GJ | ~$253 |
 | Hyperscale (1B prompts/day) | ~50T | 5 GJ → 0 J | 1.825 TJ | ~$25,300 |
 
-The energy savings column shows the elimination of divmod computation energy specifically. At hyperscale, the zero-energy divmod saves approximately 1.825 terajoules per year — the energy output of roughly 50 homes. This is a direct consequence of the mathematical decision to fix the denominator at a power of two, producing a hardware benefit that scales without limit.
+The energy savings column shows the elimination of divmod computation energy specifically. At hyperscale, the zero-energy divmod saves approximately 1.825 terajoules per year,  the energy output of roughly 50 homes. This is a direct consequence of the mathematical decision to fix the denominator at a power of two, producing a hardware benefit that scales without limit.
 
 ---
 
