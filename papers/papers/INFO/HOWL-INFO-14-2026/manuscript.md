@@ -59,6 +59,8 @@ Average op duration is how long each op takes for this processor in this context
 
 The only lever is reducing the total number of ops. This single fact drives everything that follows in this paper. Every mechanism, every concept, every strategy described from this point forward is, in one way or another, a way to keep the left side of this inequality below the right. Reduce the ops. The budget is the wall.
 
+![Fig. 5: Budget Consumption — novice hits the wall while expert has free capacity; cascade event shows temporary spike toward budget ceiling.](./figures/info14_05_budget_consumption.png)
+
 ---
 
 ### 5. Three Cardinalities
@@ -105,6 +107,8 @@ A CPU cache is dissolution. A memory access that once cost two hundred cycles (f
 
 Dissolution transforms the fundamental inequality. Elements that have dissolved cost zero ops. They don't count against the time budget. The more elements dissolved, the more budget is available for novel challenges. This is what expertise is — not knowing more facts but having dissolved more processing chains into structure, freeing the pipeline for the genuinely new. The expert surgeon's hands are not faster than the novice's. The expert performs fewer operations because most of the processing that the novice must do consciously has dissolved into structure.
 
+![Fig. 1: Dissolution Curves Across Domains — all curves converge toward zero despite different starting points and rates, showing dissolution is universal.](./figures/info14_01_dissolution_curves.png)
+
 ---
 
 ### 8. Four States
@@ -121,9 +125,13 @@ Combining cardinality and dissolution produces four states that every element oc
 
 State is a property of the relationship among element, processor, goal, and context — not a property of the element alone. The same chest X-ray is at Zero-absent for the experienced radiologist (dissolved, instant diagnosis), at One for the radiology resident (under active interpretation), at Infinity for the emergency physician who has twenty films to review (population awaiting reduction), and at Zero-external for the hospital's billing system (cannot process medical images at all). Same element. Four different states. Four different processors.
 
+![Fig. 2: The Four States — Infinity, One, Zero-absent, Zero-external with allowed transitions and cascade regression path.](./figures/info14_02_four_states.png)
+
 ---
 
 ### 9. Dissolution Has Conditions
+
+![Fig. 4: Validity Envelopes in 2D Context Space — overlapping envelopes with cliff zone where boundaries align, causing simultaneous cascade.](./figures/info14_04_validity_envelopes.png)
 
 Every dissolved element dissolved under specific conditions. The pilot's altitude maintenance dissolved under visual flight in calm air in a familiar aircraft. The surgeon's knot-tying dissolved under normal tissue tension with standard suture material. The CPU's cache entry dissolved under a specific memory access pattern with a specific working set size. These conditions define a region — the **validity envelope** — within which the dissolution holds.
 
@@ -136,6 +144,8 @@ When a context change pushes operating conditions outside the validity envelope 
 A bee enters the cockpit. A tiny event. The pilot swats at it, loses visual reference for two seconds. Three dissolved tasks promote simultaneously: altitude maintenance, heading maintenance, attitude awareness. Each now requires conscious processing. The pipeline handles one at a time. Three compete. Performance degrades catastrophically — not because the pilot forgot anything, but because the context crossed three validity envelopes at once, and the pipeline that was comfortably handling one conscious task now has four.
 
 Cascade severity is the count of simultaneous promotions. It is completely independent of the trigger's magnitude. The bee is tiny. The cascade is large. A thunderclap — a much larger event — that only invalidates one dissolution is much less severe than the bee. Severity is a property of the fragility topology, not the triggering event. This is why small disruptions sometimes cause catastrophic failures while large ones are absorbed: the small disruption happened to cross a cluster of validity envelope boundaries that the large one didn't.
+
+![Fig. 3: Cascade Severity vs Trigger Magnitude — no correlation; severity depends on envelope geometry, not event size.](./figures/info14_03_cascade_independence.png)
 
 ---
 
@@ -185,6 +195,8 @@ The concurrency tax is not random. It is derivable from the **contention graph**
 
 Expertise reduces the tax. Experts have dissolved the interleave decisions (structural response to interruptions rather than deliberative evaluation), widened validity envelopes (reduced cascade exposure — the expert's dissolved processing survives interruptions that break the novice's), and dissolved coordination protocols (a glance replacing a sentence, a gesture replacing an instruction). The expert's concurrency tax on the same contention graph is measurably lower.
 
+![Fig. 8: Five Contention Graph Motifs — star, chain, complete, partitioned, hierarchical with characteristic scaling laws.](./figures/info14_08_contention_motifs.png)
+
 ---
 
 ### 13. Compression and Language
@@ -219,6 +231,8 @@ The **dissolution differential** — the gap between sender and receiver process
 
 When one message serves many receivers with different dissolution states, no single encoding optimizes for all. The expert wants compressed shorthand. The novice needs expanded explanation. The optimal strategy is layered encoding — compressed base content with expandable dissolution infrastructure. Documentation, teaching, API design, and user interface design are all instances of this optimization: minimizing total cost across a heterogeneous audience by providing the right amount of dissolution infrastructure at each layer.
 
+![Fig. 6: Three-Term Cost Scenarios — sender ops, channel bits, and receiver ops across six scenarios showing which term dominates.](./figures/info14_06_three_term_cost.png)
+
 ---
 
 ### 15. Bits and Ops
@@ -234,6 +248,8 @@ The two halves compose. Total cost of any information activity: ops to encode, b
 Processing is bounded by one inequality: total ops times op duration cannot exceed the time budget. Three cardinalities are intrinsic: Zero is the boundary, One is where work happens, Infinity is the population awaiting reduction. Four states emerge: Infinity pending, One active, Zero-absent dissolved, Zero-external permanent boundary. Reduction is the four-stage pipeline from Infinity to One. Dissolution is the mechanism that moves elements from One to Zero-absent, converting active processing to structural processing that is free. Cascades are what happens when dissolution breaks. Processing entropy measures the cost. Optimal reduction defines the floor. The concurrency tax explains why things cost more in practice. Compression tokens give language its bandwidth. The three-term equation unifies transmission and processing into one cost.
 
 Bits for what moves. Ops for what happens. Together, the complete theory of information.
+
+![Fig. 7: Shannon's Scope vs Complete Framework — Shannon formalized the middle third; this framework covers the endpoints he excluded.](./figures/info14_07_shannon_scope.png)
 
 ---
 
