@@ -1,4 +1,5 @@
 # Derivability Classes of Optimal Reduction
+
 ## The Derivability Spectrum from Proof to Measurement
 
 **Registry:** [@HOWL-MATH-20-2026]
@@ -79,7 +80,7 @@ When all four properties hold simultaneously, R* is provable. The proof typicall
 
 Between provability and pure empiricism lies a substantial territory where structural arguments constrain R* without determining it exactly.
 
-**NP-hard optimization.** The traveling salesman problem on N cities has no known polynomial-time exact solution. But bounds exist in both directions. The lower bound: the optimal tour length can be computed (by exponential-time exact algorithms), so R* for "find the optimal tour" is exactly known in principle — the difficulty is computational cost, not derivability. For "find a good tour in polynomial time," Christofides' algorithm guarantees a tour within 1.5× optimal on metric instances. The R* for the approximate version is bounded: at least the cost of reading the input (Ω(N²) for distance matrix), at most the cost of Christofides' algorithm (O(N³)). The gap between bounds is the gap between what must be done (read the input) and what the best known method does.
+**NP-hard optimization.** The traveling salesman problem on N cities has no known polynomial-time exact solution. But bounds exist in both directions. The lower bound: the optimal tour length can be computed (by exponential-time exact algorithms), so R* for "find the optimal tour" is exactly known in principle — the difficulty is computational cost, not derivability. For "find a good tour in polynomial time," Christofides' algorithm guarantees a tour within 1.5 $\times$  optimal on metric instances. The R* for the approximate version is bounded: at least the cost of reading the input (Ω(N²) for distance matrix), at most the cost of Christofides' algorithm (O(N³)). The gap between bounds is the gap between what must be done (read the input) and what the best known method does.
 
 **Numerical integration.** Computing a definite integral to accuracy ε requires some minimum number of function evaluations. For functions with k continuous derivatives, the optimal convergence rate is O(ε^(−1/k)) evaluations — proven by information-based complexity theory. The lower bound is structural: functions with limited smoothness require a minimum number of samples to constrain the integral within ε. The upper bound is achieved by optimal quadrature rules. The bounds are tight for specific smoothness classes but the smoothness of a given function may itself be unknown, introducing a gap between the structural bound and the achievable bound for a specific instance.
 
@@ -162,7 +163,9 @@ The three classes form a hierarchy with a definite containment structure and a s
 The hierarchy has a directional property: tasks can move toward P (gaining structural analysis) but should not move away from it (a proven bound doesn't become unproven). The movement is:
 
 E → B: discovery of a structural bound that didn't previously exist.
+
 B → P: closing the gap between known bounds.
+
 B → P via separate convergence: improving the lower bound, improving the upper bound, or both, until they meet.
 
 The parallel to computational complexity classes is structural:
@@ -289,7 +292,7 @@ The following remain open.
 
 **Dissolution curve dependence on class.** The prediction that Class P tasks dissolve faster than Class E tasks (because the known floor enables targeted training) is testable but untested. Measuring dissolution curves for tasks of known class, controlling for task difficulty and processor characteristics, would determine whether derivability class has a measurable effect on the speed and shape of dissolution.
 
-**Meta-derivability.** The R* of the process of determining R* — how many operations does it take to classify a task? The classification procedure in Section 11 involves answering structural questions about the task, each of which has its own processing cost. For some tasks, the meta-question (what class is this task's R*?) may itself be undecidable — there may be no finite procedure that determines whether a formal input characterization exists. This connects to Gödel's incompleteness results and the halting problem: some structural questions about a task's properties may be unanswerable within any fixed formal system.
+**Meta-derivability.** The R* of the process of determining R* — how many operations does it take to classify a task? The classification procedure in Section 11 involves answering structural questions about the task, each of which has its own processing cost. For some tasks, the meta-question (what class is this task's R*?) may itself be undecidable — there may be no finite procedure that determines whether a formal input characterization exists. This connects to G\text{ö}del's incompleteness results and the halting problem: some structural questions about a task's properties may be unanswerable within any fixed formal system.
 
 **Subclasses within E.** Not all Class E tasks are equally opaque. Some have weak structural arguments that constrain R* without providing numerical bounds (a diagnosis involving five organ systems must include at least one finding per system — a structural constraint, but not a numerical bound on total operations because the per-system finding cost varies). Whether the interior of Class E has a useful substructure — degrees of empirical-ness — is an open taxonomic question.
 
@@ -308,18 +311,17 @@ The following remain open.
 | Symbol | Name | Definition | Unit | Scope |
 |--------|------|-----------|------|-------|
 | R* | Optimal reduction | Minimum number of correct ops any competent processor requires for reliable execution of a given task | ops | Task-specific (Class P: exact; Class B: bounded; Class E: estimated) |
-| R_lower | Proven lower bound | Minimum ops established by structural argument; no correct execution uses fewer | ops | Class B and P only |
-| R_upper | Proven upper bound | Op count achieved by best known correct method | ops | Class B and P only |
-| R_empirical | Empirical floor estimate | Lowest op count observed from any processor with correct results | ops | All classes; only estimate available for Class E |
-| gap(task) | Bound gap | R_upper − R_lower; structural uncertainty in R* | ops | Class B only; zero for Class P; undefined for Class E |
+| R lower | Proven lower bound | Minimum ops established by structural argument; no correct execution uses fewer | ops | Class B and P only |
+| R upper | Proven upper bound | Op count achieved by best known correct method | ops | Class B and P only |
+| R empirical | Empirical floor estimate | Lowest op count observed from any processor with correct results | ops | All classes; only estimate available for Class E |
+| gap(task) | Bound gap | R upper − R lower; structural uncertainty in R* | ops | Class B only; zero for Class P; undefined for Class E |
 | Class P | Provable | R* derivable from task structure by logical argument; exact value known with certainty | — | Tasks with P1 ∧ P2 ∧ P3 ∧ P4 |
-| Class B | Boundable | R* constrained by provable bounds; exact value undetermined; R_lower ≤ R* ≤ R_upper | — | Tasks with some but not all of P1–P4 |
+| Class B | Boundable | R* constrained by provable bounds; exact value undetermined; R lower ≤ R* ≤ R upper | — | Tasks with some but not all of P1–P4 |
 | Class E | Empirical | R* known only from observation; no structural bound available; subject to revision | — | Tasks lacking P1–P4 |
 | P1 | Enumerable input space | Set of possible inputs is formally characterizable; count or information content computable | — | Structural property enabling lower bound proofs |
 | P2 | Decidable correctness | Whether output is correct given input is determinable by finite procedure | — | Structural property enabling adversary arguments |
 | P3 | Bounded information per op | Each operation extracts or transforms a quantifiable, bounded amount of information | — | Structural property enabling information-theoretic floor |
 | P4 | Constructible adversary | Worst case constructible that forces any correct processor to use ≥ R* ops | — | Structural property enabling tight lower bounds |
-
 ---
 
 ### Table B: Class Comparison
@@ -336,10 +338,9 @@ The following remain open.
 | Information per op | Bounded and quantifiable | Partially characterizable | Unbounded or processor-dependent |
 | Adversary constructibility | Yes | Partial (for lower bound) | No |
 | Structural properties required | P1 ∧ P2 ∧ P3 ∧ P4 | Some subset of P1–P4 | None of P1–P4 |
-| Training target | Exact: train to R* | Range: train to R_upper, aspire to R_lower | Relative: train to best observed |
-| Assessment standard | Absolute: distance from proven R* | Bounded: position within [R_lower, R_upper] | Relative: percentile in population |
-| Infrastructure optimality | Provably optimal (encodes exactly R* operations) | Best-effort (encodes R_upper; may include unnecessary ops) | Empirically calibrated (encodes best practice; revision-prone) |
-
+| Training target | Exact: train to R* | Range: train to R upper, aspire to R lower | Relative: train to best observed |
+| Assessment standard | Absolute: distance from proven R* | Bounded: position within [R lower, R upper] | Relative: percentile in population |
+| Infrastructure optimality | Provably optimal (encodes exactly R* operations) | Best-effort (encodes R upper; may include unnecessary ops) | Empirically calibrated (encodes best practice; revision-prone) |
 ---
 
 ### Table C: Class P Examples
@@ -350,18 +351,17 @@ The following remain open.
 | Search in sorted array | Computation | ⌈log₂ N⌉ | Information-theoretic: N positions, 1 bit/comparison | N possible positions | Is target at position? Decidable in O(1) | 1 bit per comparison | Adversary maintains maximum remaining positions |
 | Parity of N bits | Computation | N | Adversary: any unread bit could flip answer | 2^N bit strings | Is parity correct? Decidable in O(1) | 1 bit per read | Adversary flips unread bit |
 | Graph connectivity | Computation | Ω(E) edge checks | Adversary: unexamined edge could disconnect | All graphs on V vertices and E edges | Is graph connected? Decidable by BFS | 1 edge per examination | Adversary removes unexamined edge |
-| Matrix-vector multiply | Computation | 2N²−N | Counting: must touch each matrix entry at least once | N×N matrices × N-vectors | Is result correct? Decidable in O(N²) | Bounded by arithmetic precision | Direct counting argument |
+| Matrix-vector multiply | Computation | 2N²−N | Counting: must touch each matrix entry at least once | N $\times$ N matrices  $\times$  N-vectors | Is result correct? Decidable in O(N²) | Bounded by arithmetic precision | Direct counting argument |
 | Polynomial evaluation | Computation | N multiplications + N additions (Horner's) | Proven optimal for general polynomial degree N | Polynomial coefficients + point | Is evaluation correct? Decidable | Fixed per arithmetic op | Algebraic lower bound |
 | N-digit addition | Mathematics | N to 2N operations (additions + carries) | Structural: must process each digit; carry propagation bounded | N-digit number pairs | Is sum correct? Decidable in O(N) | 1 digit per operation | Each digit can carry |
 | Checklist protocol (medical) | Medicine | Number of checklist items | Structural: each item is an independent necessary check | Defined item set | All items checked? Decidable | 1 item per check | Any skipped item could be the failure |
-
 ---
 
 ### Table D: Class B Examples
 
-| Task | Domain | R_lower (proven) | R_upper (best known) | Gap | Gap Source | Path to Closing |
+| Task | Domain | R lower (proven) | R upper (best known) | Gap | Gap Source | Path to Closing |
 |------|--------|-----------------|---------------------|-----|-----------|----------------|
-| Metric TSP (approximate) | Computation | Ω(N²) (read distance matrix) | O(N³) (Christofides 1.5× optimal) | O(N³) − O(N²) | Unknown whether sub-cubic 1.5× approximation exists | Better approximation algorithms or tighter lower bounds |
+| Metric TSP (approximate) | Computation | Ω(N²) (read distance matrix) | O(N³) (Christofides 1.5 $\times$  optimal) | O(N³) − O(N²) | Unknown whether sub-cubic 1.5 $\times$  approximation exists | Better approximation algorithms or tighter lower bounds |
 | Matrix multiplication | Computation | Ω(N²) (must read inputs) | O(N^2.371) (current best) | N^2.371 − N² | Algebraic complexity theory; open whether ω = 2 achievable | New algebraic techniques |
 | Numerical integration (smooth functions, accuracy ε) | Mathematics | Ω(ε^(−1/k)) for k-smooth functions | O(ε^(−1/k)) for optimal quadrature on known smoothness | Small for known smoothness; large for unknown smoothness | Function smoothness may be unknown | Adaptive methods; smoothness estimation |
 | Compressed sensing recovery | Signal processing | Ω(k) measurements (sparsity lower bound) | O(k log(N/k)) measurements (RIP-based) | log(N/k) factor | Measurement matrix design; signal structure | Better measurement matrices; structure-exploiting algorithms |
@@ -371,24 +371,22 @@ The following remain open.
 | Channel coding at capacity | Information theory | N (must process all bits) | O(N log N) (polar codes) | O(N log N) − O(N) | Encoding/decoding complexity of capacity-achieving codes | Better code constructions |
 | SAT (general) | Computation | Ω(N) (must read formula) | O(2^N) (exhaustive search); better for structured instances | Exponential | P vs NP | Resolve P vs NP; or prove stronger lower bounds |
 | Minimum spanning tree | Computation | Ω(E) (must examine edges) | O(E α(V)) (inverse Ackermann; nearly linear) | Small (α(V) grows incredibly slowly) | Whether Ω(E) is tight | Nearly closed; α(V) factor may or may not be eliminable |
-
 ---
 
 ### Table E: Class E Examples
 
-| Task | Domain | R_empirical (best observed) | Why Not Boundable | Property Missing | Variance Across Processors |
+| Task | Domain | R empirical (best observed) | Why Not Boundable | Property Missing | Variance Across Processors |
 |------|--------|---------------------------|-------------------|-----------------|---------------------------|
-| Undifferentiated chest pain diagnosis | Medicine | 5–8 ops (expert) | Symptom space not formally enumerable; correctness graded (working diagnosis, not binary); per-op information yield varies by physician experience | P1, P2, P3, P4 all absent | 5–60 ops (expert to novice); 10× range |
-| Threat classification (combat) | Aviation | 3–4 conscious ops (top pilot) | Tactical situation space unbounded; correctness context-dependent; information per sensor check varies by pilot's dissolved pattern library | P1, P2, P3 absent | 3–15 ops; 5× range |
-| Novel theorem proof | Mathematics | Varies per theorem; shortest known proof is R_empirical | Proof space is infinite; minimum proof length undecidable in general; no adversary constructible against unknown search space | P1 partially present; P4 absent; meta-level undecidability | Unbounded; proofs range from trivial to fields-medal-worthy |
-| Novel bug in unfamiliar codebase | Software | 5 ops (expert on familiar patterns) | Codebase state space not formally bounded; bug type unknown until found; diagnostic information per op varies by developer's dissolved patterns | P1, P3 absent | 5–40 ops; 8× range |
-| Recipe optimization (target quality) | Cooking | 7 ops per dish (expert chef) | Quality is graded not binary; ingredient interaction space not formally characterizable; physical constraints give only weak lower bounds | P1, P2 absent | 7–30 ops; 4× range |
+| Undifferentiated chest pain diagnosis | Medicine | 5–8 ops (expert) | Symptom space not formally enumerable; correctness graded (working diagnosis, not binary); per-op information yield varies by physician experience | P1, P2, P3, P4 all absent | 5–60 ops (expert to novice); 10 $\times$  range |
+| Threat classification (combat) | Aviation | 3–4 conscious ops (top pilot) | Tactical situation space unbounded; correctness context-dependent; information per sensor check varies by pilot's dissolved pattern library | P1, P2, P3 absent | 3–15 ops; 5 $\times$  range |
+| Novel theorem proof | Mathematics | Varies per theorem; shortest known proof is R empirical | Proof space is infinite; minimum proof length undecidable in general; no adversary constructible against unknown search space | P1 partially present; P4 absent; meta-level undecidability | Unbounded; proofs range from trivial to fields-medal-worthy |
+| Novel bug in unfamiliar codebase | Software | 5 ops (expert on familiar patterns) | Codebase state space not formally bounded; bug type unknown until found; diagnostic information per op varies by developer's dissolved patterns | P1, P3 absent | 5–40 ops; 8 $\times$  range |
+| Recipe optimization (target quality) | Cooking | 7 ops per dish (expert chef) | Quality is graded not binary; ingredient interaction space not formally characterizable; physical constraints give only weak lower bounds | P1, P2 absent | 7–30 ops; 4 $\times$  range |
 | Negotiation strategy | Business | Unknown (no measurement standard) | Outcome space unbounded; success is multidimensional and graded; strategy-to-outcome mapping is learned and adversarial | All absent | Highly variable; no standard measurement |
 | Musical interpretation | Music | Unknown (no operation counting standard for expression) | Correctness is aesthetic and culturally graded; input (score) is formally specified but output (performance) is not binary-evaluable | P2 absent (graded correctness) | Enormous; from mechanical to transcendent |
-| Emergency triage | Medicine | 3–5 ops (experienced triage nurse) | Patient presentation space unbounded; severity is continuous not categorical; per-assessment information varies by presentation | P1, P2, P3 absent | 3–15 ops; 5× range |
+| Emergency triage | Medicine | 3–5 ops (experienced triage nurse) | Patient presentation space unbounded; severity is continuous not categorical; per-assessment information varies by presentation | P1, P2, P3 absent | 3–15 ops; 5 $\times$  range |
 | Startup strategy selection | Business | Unknown | Market dynamics not formally characterizable; success is graded and delayed; information per action is highly uncertain | All absent | Unmeasurable by current methods |
 | Foreign language conversation | Communication | Variable by complexity | Comprehension is graded; context is unbounded; per-word information varies by speaker's compression ratio for receiver's vocabulary | P1, P2, P3 absent | Varies by proficiency level and language pair |
-
 ---
 
 ### Table F: Structural Property Analysis
@@ -399,7 +397,6 @@ The following remain open.
 | P2: Decidable correctness | Adversary arguments; verification-based lower bounds; crisp R* definition | Given input and output, can a finite procedure determine if the output is correct? | R* definition is imprecise (minimum for "approximately correct" vs "exactly correct"); adversary cannot distinguish correct from incorrect | Computation (verifiable outputs); mathematics (verifiable proofs); manufacturing (measurable specifications) | Medicine (graded diagnoses); arts (aesthetic quality); business (multidimensional success) |
 | P3: Bounded information per op | Division argument (total information / per-op bound = minimum ops) | Is there a maximum amount of information any single operation can extract, regardless of who performs it? | Experts may extract more per op than novices; floor depends on processor capability, not just task structure | Computation (bit per comparison); formal protocols (one check per item) | Medicine (expert glance vs novice examination); aviation (experienced scan vs novice fixation) |
 | P4: Constructible adversary | Tight lower bounds; worst-case analysis; proof that floor applies to all strategies | Can you construct an input that forces any correct processor to use at least R* ops? | Lower bound may hold on average but not worst case, or vice versa; cannot rule out clever strategies that circumvent the apparent lower bound | Computation (well-defined adversary games); mathematics (constructive counterexamples) | Medicine (no adversarial patient); social domains (no constructible worst case) |
-
 ---
 
 ### Table G: Class Transitions — Historical
@@ -420,7 +417,6 @@ The following remain open.
 | Image classification | Computation | E | B | Information-theoretic limits on accuracy vs sample complexity | 2010s | PAC learning bounds established structural floor; deep learning established ceiling |
 | Factoring large integers | Computation | B (wide gap) | B (narrowing) | Number field sieve; quantum algorithms (theoretical) | 1990s–present | Better algorithms; Shor's algorithm gives polynomial upper bound if quantum computer available |
 | Weather prediction | Atmospheric science | E | B | Computational fluid dynamics established resolution-accuracy relationships | 1960s–present | Physics gives theoretical limits; computational models give achievable accuracy |
-
 ---
 
 ### Table H: Domain Classification Summary
@@ -439,7 +435,6 @@ The following remain open.
 | Customer support | E-heavy | Scripted protocols for known issues | Diagnostic trees for known issue categories | Novel issue diagnosis, customer de-escalation, cross-product troubleshooting | 10:25:65 |
 | Education | E-heavy | Test scoring (count correct answers) | Curriculum sequencing (prerequisite structure gives bounds) | Pedagogical strategy, student engagement, assessment design | 5:15:80 |
 | Law | E-heavy | Procedural filing requirements (count mandated documents) | Evidence evaluation (rules of evidence constrain process) | Case strategy, argument construction, jury persuasion | 5:20:75 |
-
 ---
 
 ### Table I: Classification Procedure
@@ -451,15 +446,14 @@ The following remain open.
 | 3 | Can you compute minimum information extraction from input to correct output? | Lower bound established; proceed to Step 4 | Class B if any structural bound exists; else E | Information-theoretic analysis; counting arguments; adversary construction |
 | 4 | Does a known method achieve the lower bound from Step 3? | **Class P** (R* = lower bound = upper bound) | Proceed to Step 5 | Algorithmic analysis; compare best known method's cost to lower bound |
 | 5 | Does a known method have a quantifiable cost above the lower bound? | **Class B** (gap = upper − lower; computable) | **Class B** with open upper bound (lower bound exists; no tight upper bound) | Upper bound from best known algorithm or procedure |
-
 **Confidence annotations:**
+
 | Classification | Confidence Level | Revision Conditions |
 |---------------|-----------------|-------------------|
 | Class P (Step 4 = yes) | Certain | Only if proof contains error (should not happen) |
 | Class B (Step 5 = yes) | High | Gap may narrow; classification stable |
 | Class B, open upper (Step 5 = no) | Moderate | Better method may close gap toward P; worse: problem may be deeper E |
 | Class E (Step 1 or 2 = no) | Provisional | New structural insight may enable formalization → reclassify to B or P |
-
 ---
 
 ### Table J: Implications Matrix
@@ -467,9 +461,8 @@ The following remain open.
 | Derivability Class | Training Target | Assessment Standard | Certification Basis | Infrastructure Optimality | Revision Frequency | Expert-Infrastructure Gap |
 |-------------------|----------------|--------------------|--------------------|--------------------------|-------------------|--------------------------|
 | P (Provable) | Exact: R* (known value) | Absolute: distance from R* in ops | Rigorous: demonstrate R* or better | Provably optimal: encodes exactly R* operations | Never (unless task changes) | Zero (infrastructure matches proven optimum) |
-| B (Boundable) | Range: R_upper (achievable) toward R_lower (theoretical) | Bounded: position within [R_lower, R_upper] | Bounded: demonstrate R_upper or better | Best-effort: encodes R_upper; may include unnecessary ops | When better algorithms or proofs narrow gap | Small to moderate (expert may find shortcuts within gap) |
+| B (Boundable) | Range: R upper (achievable) toward R lower (theoretical) | Bounded: position within [R lower, R upper] | Bounded: demonstrate R upper or better | Best-effort: encodes R upper; may include unnecessary ops | When better algorithms or proofs narrow gap | Small to moderate (expert may find shortcuts within gap) |
 | E (Empirical) | Relative: best observed performance | Relative: percentile in population distribution | Normative: demonstrate top-N% performance | Empirically calibrated: encodes current best practice | When better performer observed or practice analyzed | Moderate to large (expert has dissolved optimizations infrastructure hasn't captured) |
-
 ---
 
 ### Table K: Meta-Derivability
@@ -477,10 +470,9 @@ The following remain open.
 | Question | Class P Answer | Class B Answer | Class E Answer | Open Problem? |
 |----------|---------------|---------------|---------------|---------------|
 | How many ops to determine R*? | Proof complexity of the lower bound theorem; finite and computable in principle | Sum of proof complexity (lower bound) + algorithmic analysis (upper bound); finite but potentially very large | Undefined or infinite; may require exhaustive observation of all possible processors | Yes: when is meta-R* finite vs infinite? |
-| Is the class determination itself decidable? | Yes (verify the proof) | Partially (verify the bounds; gap computability may be undecidable) | Unknown (no finite procedure to prove that no structural bound exists) | Yes: connects to halting problem and Gödel's incompleteness |
+| Is the class determination itself decidable? | Yes (verify the proof) | Partially (verify the bounds; gap computability may be undecidable) | Unknown (no finite procedure to prove that no structural bound exists) | Yes: connects to halting problem and G\text{ö}del's incompleteness |
 | Can a task's class be determined automatically? | Yes for some (automated theorem proving can verify known proof structures) | Partially (automated analysis for known bound techniques) | No in general (would require proving a negative — that no structure exists) | Yes: automated classification is itself a Class B or E problem |
 | What is the R* of determining R*? | Meta-R* exists and is finite (proportional to proof complexity) | Meta-R* bounded (between cost of finding both bounds) | Meta-R* may be unbounded or undefined | Yes: self-referential; connects to foundations of mathematics |
-
 ---
 
 ### Table L: Complexity Class Parallel
@@ -490,10 +482,9 @@ The following remain open.
 | Answer efficiently computable from structure | P (Provable) | P (Polynomial time) | Both: answer derivable by efficient procedure from input | Derivability P: one answer per task (R*). Complexity P: answer per input instance |
 | Answer verifiable but not efficiently derivable | B (Boundable) | NP (Nondeterministic Polynomial) | Both: given a claimed answer, verification is feasible; finding optimal is hard | Derivability B: bounds from structure. Complexity NP: verification from witness |
 | Answer structurally inaccessible | E (Empirical) | Undecidable | Both: no general algorithm produces the answer | Derivability E: answer exists but isn't derivable. Undecidable: answer may not exist in formal system |
-| Answer gap is the central mystery | B gap (R_upper − R_lower) | P vs NP question | Both: the question of whether the gap can be closed is the deepest open problem | Derivability gap: per-task. P vs NP: for an entire class of problems |
+| Answer gap is the central mystery | B gap (R upper − R lower) | P vs NP question | Both: the question of whether the gap can be closed is the deepest open problem | Derivability gap: per-task. P vs NP: for an entire class of problems |
 | Historical progress narrows gap | B → P transitions | Complexity class separations | Both: structural discoveries move tasks toward more complete understanding | Derivability: transitions are common and productive. Complexity: separations are rare and monumental |
 | Hierarchy is directional | E → B → P (never reverses) | Results are permanent (proofs don't expire) | Both: proven results persist; knowledge accumulates | Derivability: task can change, invalidating proof. Complexity: problem definition is fixed |
-
 ---
 
 ### Table M: Prediction Testing Specifications
@@ -503,10 +494,9 @@ The following remain open.
 | Class P tasks dissolve faster than Class E tasks | Derivability class (P vs E) of task | Dissolution curve rate parameter λ | Measure dissolution curves for matched-difficulty tasks across classes; compare rates | Class P tasks have higher λ (faster dissolution toward R*) | No significant difference in λ between classes after controlling for difficulty |
 | Class P infrastructure closes expert-novice gap completely | Derivability class; presence of provably optimal infrastructure | Expert-novice gap with vs without infrastructure | Measure novice performance with and without Class P infrastructure; compare to expert | Novice with Class P infrastructure matches expert R* | Novice with infrastructure still significantly above R* |
 | Class E infrastructure leaves residual expert-novice gap | Derivability class; presence of best-practice infrastructure | Expert-novice gap with infrastructure | Measure novice with Class E infrastructure vs expert without | Expert outperforms infrastructure-aided novice by measurable margin | Infrastructure-aided novice matches expert |
-| Class B gap narrows correlate with R* precision in training | Bound gap width | Training efficiency (time to reach R_upper) | Compare training outcomes for tasks with narrow vs wide B-gaps | Narrow gap → more efficient training (clearer target) | No correlation between gap width and training efficiency |
+| Class B gap narrows correlate with R* precision in training | Bound gap width | Training efficiency (time to reach R upper) | Compare training outcomes for tasks with narrow vs wide B-gaps | Narrow gap → more efficient training (clearer target) | No correlation between gap width and training efficiency |
 | E → B transitions improve training outcomes | Pre/post transition class | Training efficiency; assessment reliability | Compare training before and after structural discovery changes class from E to B | Post-transition training more efficient; assessment more reliable | No measurable improvement after transition |
 | Class E R* estimates have higher revision frequency than Class B | Derivability class | Frequency of R* estimate revision (improved best-observed performance) | Track R* estimates over time across tasks of known class | Class E R* revises more frequently | No significant difference in revision frequency |
-
 ---
 
 ### Table N: Specification Summary
@@ -527,40 +517,51 @@ The following remain open.
 | Meta-derivability questions posed | 4 |
 | Testable predictions | 6 |
 | Open problems | 6 |
-
 ---
 
 ### Key Equations Summary
 
 **Optimal reduction definition:**
+
 R* = min ops for correct reliable execution of task
 
 **Class P criterion:**
+
 ∃ proof: ∀ correct processors p, ops(p, task) ≥ R*; R* is exact
 
 **Class B criterion:**
+
 ∃ proof: R_lower ≤ R* ≤ R_upper; gap = R_upper − R_lower > 0
 
 **Class E criterion:**
+
 R* = min observed ops(p, task) across all observed processors p; no structural proof
 
 **Information-theoretic lower bound (when applicable):**
+
 R* ≥ ⌈log₂(|input space|) / bits_per_op⌉
 
 **Adversary lower bound (when applicable):**
+
 R* ≥ min ops adversary can force on any correct strategy
 
 **Bound gap:**
+
 gap(task) = R_upper − R_lower (Class B only; zero for P; undefined for E)
 
 **Class hierarchy:**
+
 P ⊂ B (every proven R* is trivially a tight bound)
+
 B and E overlap in practice (empirical estimates exist for B tasks too)
+
 E → B → P transitions driven by structural discovery; never reverse
 
 **Fundamental inequality (from prior work, referenced throughout):**
-Σ ops × d̄ ≤ N
+
+Σ ops  $\times$  d̄ ≤ N
 
 ---
 
 *HOWL-MATH-20-2026. Derivability Classes of Optimal Reduction: The Derivability Spectrum from Proof to Measurement.*
+

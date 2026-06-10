@@ -186,7 +186,7 @@
 | **[HOWL-MATH-17-2026](papers/papers/MATH/HOWL-MATH-17-2026/manuscript.md)** | **Processing Entropy as a Metric Space** | Distance Between Any Two Ways of Doing the Same Thing. |
 | **[HOWL-MATH-18-2026](papers/papers/MATH/HOWL-MATH-18-2026/manuscript.md)** | **Concurrency Tax from System Structure** | A Graph Theory of Processing Overhead. |
 | **[HOWL-MATH-19-2026](papers/papers/MATH/HOWL-MATH-19-2026/manuscript.md)** | **The Mathematics of Processing-Aware Communication** | The Three Costs of Every Message. |
-| **[HOWL-MATH-20-2026](papers/papers/MATH/HOWL-MATH-20-2026/manuscript.md)** | **The ** | The Three Costs of Every Message. |
+| **[HOWL-MATH-20-2026](papers/papers/MATH/HOWL-MATH-20-2026/manuscript.md)** | **Derivability Classes of Optimal Reduction** | The Derivability Spectrum from Proof to Measurement. |
 
 ---
 

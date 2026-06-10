@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "The Geometry of Dissolution and Fragility",
-    "registry_id": "HOWL-MATH-16-2026",
-    "series_path": "[@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-14-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 [@HOWL-MATH-16-2026]",
-    "doi": "10.5281/zenodo.20629792",
+    "title": "Derivability Classes of Optimal Reduction",
+    "registry_id": "HOWL-MATH-20-2026",
+    "series_path": "[@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-14-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 [@HOWL-MATH-16-2026] \u2192 [@HOWL-MATH-17-2026] \u2192 [@HOWL-MATH-18-2026] \u2192 [@HOWL-MATH-19-2026] \u2192 [@HOWL-MATH-20-2026]",
+    "doi": "10.5281/zenodo.zzz",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": "# The Geometry of Dissolution and Fragility ## Predicting Catastrophic Failure from Structural Analysis  **Registry:** [@HOWL-MATH-16-2026]  **Series Path:** [@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026..."
+    "raw_content_preview": "# Derivability Classes of Optimal Reduction ## The Derivability Spectrum from Proof to Measurement  **Registry:** [@HOWL-MATH-20-2026]  **Series Path:** [@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [..."
 }
