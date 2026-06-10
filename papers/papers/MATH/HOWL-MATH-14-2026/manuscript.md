@@ -79,6 +79,8 @@ Where x is the element, p is the processor, g is the goal, and c is the context.
 
 **A3: Action occurs only at state 1. No operation occurs at ∞, 0a, or 0e.**
 
+![Fig. 5: The Four Processing States — Cardinality crossed with manageability produces four cells, each with a distinct prescribed response. Transitions shown: reduction (∞→1), dissolution (1→0a), cascade (0a→1), and boundary classification (→0e).](./figures/math14_05_four_states_grid.png)
+
 ---
 
 ### 4. Reduction
@@ -96,6 +98,8 @@ The processor aggregates within each group, computing a sum. One operation per g
 The processor produces a summary: five categories account for eighty-three percent of volume, the largest is forty-one percent and growing twelve percent monthly.
 
 Now the processor can act. The summary is sufficient for the decision. The reduction is complete.
+
+![Fig. 7: Optimal Reduction Window — Three regions across reduction depth. Insufficient: still at ∞, cannot act. Optimal: R* at minimum k where actionability is satisfied. Over-reduced: information destroyed, actionability lost.](./figures/math14_07_optimal_window.png)
 
 Each step in this chain was itself an operation at One — taking one input and producing one output. The chain is a composition of One-operations whose cumulative effect transforms Infinity into an actionable One. The number of steps is not fixed. It depends on the data, the goal, and the processor's existing knowledge.
 
@@ -128,6 +132,8 @@ This is the processing-side dual of Shannon's source coding theorem. Shannon say
 **A5: The actionability predicate and reduction steps are domain-specific. The structure of reduction is domain-independent.**
 
 This paper does not define what A tests for or what any rᵢ does, the same way Shannon does not define what messages mean. The paper defines the universal structure of reduction — chain composition, goal-relative termination, optimality as minimum sufficiency — that all processing shares regardless of domain.
+
+![Fig. 1: Reduction Convergence — Information volume decreasing across reduction steps, crossing the actionability threshold at R*. Over-reduction destroys actionability beyond the lower boundary.](./figures/math14_01_reduction_convergence.png)
 
 ---
 
@@ -227,6 +233,8 @@ The driver has never experienced a bee in the car. The bee is a novel element en
 
 But the bee does not merely consume the pipeline as a new element at One. It destabilizes the conditions under which the driving skills were dissolved. Lane keeping was dissolved under the assumption that hands remain on the wheel. Speed management was dissolved under the assumption that the driver's foot maintains steady pressure. Mirror checks were dissolved under the assumption that eyes scan the road on a regular pattern. The bee triggers a flinch — a hand leaves the wheel to swat, eyes leave the road to track the bee, the foot shifts. Each of these disruptions invalidates a dissolution condition.
 
+![Fig. 6: Dissolution Validity Envelope — Events inside the boundary are absorbed without cascade. Events crossing the boundary (bee, tire blowout) trigger 0a→1 promotions. Wider envelopes from deeper training produce more robust dissolution.](./figures/math14_06_validity_envelope.png)
+
 Lane keeping promotes from Zero-absent to One. Steering promotes from Zero-absent to One. Speed management promotes from Zero-absent to One. The pipeline that was nearly empty is suddenly overloaded — not by one new element but by one new element plus several formerly dissolved elements that have all lost their dissolution conditions simultaneously.
 
 Formally:
@@ -248,6 +256,8 @@ This predicts who survives the disruption. A driver who has experienced novel st
 This also explains why the same disruption produces different outcomes in different systems. Two servers running identical software experience the same network partition. One fails catastrophically. The other degrades gracefully. The difference is the cascade count — how many automated processes had dissolution conditions that depended on network connectivity. The server with more independent dissolutions — processes that continue operating correctly in the absence of network — has a lower cascade count from the same event.
 
 The cascade model also has a temporal dimension. Consider a driver experiencing a bee for the first time — cascade, potential crash. On day ten, the bee is less novel. The driver has learned that bees generally find their way out, that swatting makes it worse. The bee still promotes to One but triggers fewer cascading promotions because the driver's response no longer involves flinching. By day ninety, a bee enters and the driver opens the far window without conscious thought. The bee's arrival no longer cascades at all. The response has dissolved to Zero-absent. The bee itself remains unmanageable — the driver cannot control where it flies or whether it stings. But the response to the bee has completed its own maturity trajectory through the manageable states. The unmanageable element stays at Zero-external. The response to it independently progresses from One to Zero-absent. The boundary is permanent. The response to the boundary is fully within the processor's domain to develop and dissolve.
+
+![Fig. 2: Cascade Severity — Five driving elements at 0a before event. Bee triggers four simultaneous promotions to 1, exceeding pipeline capacity of 1. Severity = promotion count, not event magnitude.](./figures/math14_02_cascade_severity.png)
 
 ---
 
@@ -307,6 +317,8 @@ Shannon's entropy is a lower bound on encoding. You cannot reliably transmit a m
 
 Maturity, in terms of processing entropy, is the systematic reduction of Hp toward zero across the processor's operational domain. Each dissolution converts an element's Hp from positive to zero. The mature processor is the one whose Hp is zero for most routine elements, leaving processing capacity for the elements where Hp remains high — novel problems, unfamiliar data, genuinely new situations that resist dissolution because they have not been encountered before.
 
+![Fig. 3: Processing Entropy Differential — Same tokens carry identical Shannon H but produce different Hp at expert (near zero) vs novice (high) processors. The gap is the T4 communication cost differential.](./figures/math14_03_hp_differential.png)
+
 ---
 
 ### 11. The Bridge to Shannon
@@ -330,6 +342,8 @@ When both processors have a token at Zero-absent — when both share a dissolved
 This explains phenomena that Shannon's framework alone cannot. Two conversations carrying identical Shannon information — same words, same statistical structure, same channel requirements — can have vastly different total costs depending on the processing states of the endpoints. A meeting where all participants share a dissolved vocabulary processes efficiently. The same presentation to a mixed audience of experts and novices is expensive — not because the channel is different but because the processing entropy differential is large.
 
 The implication for system design is that optimizing the channel is necessary but not sufficient. A system that transmits data efficiently to a receiver that cannot reduce it to actionable form has optimized the wrong term. Dashboards that display real-time data to operators who lack the training to reduce the data to decisions are channel-optimal and processing-suboptimal. The data arrives. The operator stares at it. Hp is high. The data is at Infinity on the operator's screen and remains at Infinity in the operator's pipeline because the reduction chain has not been learned, let alone dissolved.
+
+![Fig. 8: Communication Cost Composition — Total cost decomposed into Hp(sender) + Hs(channel) + Hp(receiver) across four scenarios. Shannon's channel cost (blue) is constant; processing entropy (cyan, magenta) dominates in expert-novice communication.](./figures/math14_08_communication_cost.png)
 
 ---
 
@@ -360,6 +374,8 @@ Proof: By A4, reduction terminates at the first k where actionability is satisfi
 *Total communication cost between two processors equals Shannon's channel cost plus the processing entropy differential between sender and receiver.*
 
 Proof: By Shannon's framework, reliable transmission of a message through a channel requires Hs bits, determined by the source entropy and channel capacity. By the processing entropy definition in Section 10, the sender incurs cost Hp(A) to reduce internal state to a transmissible message, and the receiver incurs cost Hp(B) to reduce the received message to an actionable One. The total cost is Hp(A) + Hs + Hp(B). When both processors share a dissolved codebook for the tokens in the message — when both have Hp = 0 for those tokens — the processing terms vanish and total cost equals Hs, recovering Shannon's framework as a special case. When the processors differ in their processing entropy for the same tokens, the differential |Hp(B) − Hp(A)| appears as additional cost beyond the channel. This term is invisible to Shannon's framework because Shannon's H is a property of the source, not of the receiver. Processing entropy captures the receiver-dependent cost that Shannon excluded by design. The composition follows by addition of independent cost terms across the three stages of the communication pipeline.
+
+![Fig. 4: Throughput Bound — Effective throughput increases nonlinearly as the zero-absent ratio grows. Maturity stages marked: immature systems saturated, wise systems operating with freed pipeline.](./figures/math14_04_throughput_bound.png)
 
 ---
 
