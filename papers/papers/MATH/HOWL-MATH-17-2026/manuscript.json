@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
     "title": "Processing Entropy as a Metric Space",
-    "registry_id": "HOWL-MATH-16-2026",
-    "series_path": "[@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-14-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 [@HOWL-MATH-16-2026]",
-    "doi": "10.5281/zenodo.20629792",
+    "registry_id": "HOWL-MATH-17-2026",
+    "series_path": "[@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-14-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 [@HOWL-MATH-16-2026] \u2192 [@HOWL-MATH-17-2026]",
+    "doi": "10.5281/zenodo.20630189",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": " **Registry:** [@HOWL-MATH-16-2026]  **Series Path:** [@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-14-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 [@HOWL-MATH-16-2026]  **Date:**..."
+    "raw_content_preview": "# Processing Entropy as a Metric Space ## Distance Between Any Two Ways of Doing the Same Thing  **Registry:** [@HOWL-MATH-17-2026]  **Series Path:** [@HOWL-INFO-11-2026] \u2192 [@HOWL-INFO-12-2026] \u2192 [@HO..."
 }

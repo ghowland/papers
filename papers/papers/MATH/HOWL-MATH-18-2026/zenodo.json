@@ -1,5 +1,5 @@
 {
-  "title": "The Geometry of Dissolution and Fragility",
+  "title": "Concurrency Tax from System Structure",
   "upload_type": "publication",
   "publication_type": "article",
   "description": "[Description to be added]",
@@ -12,11 +12,11 @@
     "howland archive",
     "mathematics"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-16-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-18-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-16-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-18-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

@@ -1,14 +1,14 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-06-10 15:42:16 UTC
+**Generated:** 2026-06-10 15:51:19 UTC
 
 ## Summary
 
 - **Total Papers:** 206
-- **Valid:** 198
-- **Invalid:** 8
-- **Total Errors:** 13
-- **Total Warnings:** 468
+- **Valid:** 199
+- **Invalid:** 7
+- **Total Errors:** 11
+- **Total Warnings:** 467
 
 ## By Subject
 
@@ -31,8 +31,8 @@
 
 ## By Status
 
-- **Published (has DOI):** 198
-- **Draft (stub .zzz):** 8
+- **Published (has DOI):** 199
+- **Draft (stub .zzz):** 7
 
 ## Validation Issues
 
@@ -44,10 +44,6 @@
 
 **HOWL-GAME-1-2026**
   - ❌ Missing title (H1)
-
-**HOWL-MATH-18-2026**
-  - ❌ Missing title (H1)
-  - ❌ Missing Registry field in frontmatter
 
 **HOWL-MATH-19-2026**
   - ❌ Missing title (H1)

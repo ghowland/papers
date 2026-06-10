@@ -183,6 +183,7 @@
 | **[HOWL-MATH-14-2026](papers/papers/MATH/HOWL-MATH-14-2026/manuscript.md)** | **A Mathematical Theory of Processing** | Formalizing What Shannon Excluded. |
 | **[HOWL-MATH-15-2026](papers/papers/MATH/HOWL-MATH-15-2026/manuscript.md)** | **A Measurement Theory of Processing** | The Op as the Bit of Processing. |
 | **[HOWL-MATH-16-2026](papers/papers/MATH/HOWL-MATH-16-2026/manuscript.md)** | **The Geometry of Dissolution and Fragility** | Predicting Catastrophic Failure from Structural Analysis. |
+| **[HOWL-MATH-17-2026](papers/papers/MATH/HOWL-MATH-17-2026/manuscript.md)** | **Processing Entropy as a Metric Space** | Distance Between Any Two Ways of Doing the Same Thing. |
 
 ---
 

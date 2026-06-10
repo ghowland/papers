@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-MATH-16-2026,
+@article{ HOWL-MATH-17-2026,
   title={ Processing Entropy as a Metric Space },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20629792},
-  url = {https://zenodo.org/record/20629792},
-  note={Howland Archive: HOWL-MATH-16-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20630189},
+  url = {https://zenodo.org/record/20630189},
+  note={Howland Archive: HOWL-MATH-17-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
