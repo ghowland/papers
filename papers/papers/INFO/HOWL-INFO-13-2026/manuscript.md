@@ -273,4 +273,218 @@ These are not separate theories with separate literatures and separate expertise
 
 ---
 
-*HOWL-INFO-13-2026. The Six States of Information: Every Problem Lives in One of Six Cells — Most Failures Come from Putting It in the Wrong One.*
+# Appendix: Supporting Tables
+
+## HOWL-INFO-13-2026
+
+---
+
+### Table A: The Six-Cell Grid
+
+| Cell | Cardinality | Manageable | Nature | Correct Response | Goal State |
+|------|-------------|------------|--------|-----------------|------------|
+| M∞ | Infinity | Yes | Population of operable elements waiting for reduction | Reduce: enumerate, filter, score, select. Move toward One, then toward Zero-by-absence | Dissolve to M0 |
+| M1 | One | Yes | Single element currently being operated on | Execute: act, complete, release. Promote next element from Infinity | Complete and release |
+| M0 | Zero-by-absence | Yes | Dissolved problem handled by structure | Leave alone: trust the structure, verify dissolution is genuine | Maintain |
+| U∞ | Infinity | No | Unbounded population the system cannot control or enumerate | Make architecturally irrelevant: remove the anatomy through which the population could affect the system | Structural irrelevance |
+| U1 | One | No | Single dependency the system can observe but not control | Build redundancy and contingency: prepare for both availability and loss | Structural resilience |
+| U0 | Zero-by-externality | No | Permanent boundary the system can never manage | Measure, approximate, build resilient responses: accept permanence, engineer the response | Structural coping |
+
+---
+
+### Table B: Failure Modes by Cell
+
+| Cell | Primary Failure Mode | Description | Symptom | Root Cause |
+|------|---------------------|-------------|---------|------------|
+| M∞ | Unreduced accumulation | Manageable population left at Infinity when reduction is possible | Growing backlogs, overwhelm, pipeline saturation | Failure to invest in reduction pipeline |
+| M1 | Lingering | Holding an element at One beyond completion of work | Gold-plating, micro-management, perfectionism | Failure to release completed work |
+| M1 | Premature release | Releasing element from One before work is complete | Rework, regression, production defects | Impatience, pressure to show throughput |
+| M0 | Regression to One | Re-introducing active management to a dissolved problem | Unnecessary approvals, redundant oversight, wasted pipeline | Lack of trust in structure |
+| M0 | Premature dissolution | Classifying element as Zero when structure is incomplete | Silent failures, edge case errors, false confidence | Incomplete automation, partial skill acquisition |
+| U∞ | Enumeration trap | Attempting to manage unmanageable Infinity through exhaustive listing | Perpetually incomplete coverage, resources consumed without convergence | Misclassification as manageable Infinity |
+| U1 | Dependency illusion | Treating observation of dependency as control of dependency | False sense of security, catastrophic failure when dependency fails | Conflation of monitoring with management |
+| U1 | Ignoring | Failing to prepare for dependency loss because it can't be controlled | Total system failure when dependency fails, no contingency | Fatalism, avoidance |
+| U0 | Magical thinking | Searching for manageable cause of unmanageable boundary event | Wasted investigation, blame assignment, no improvement | Misclassification as manageable One |
+| U0 | Fatalism | Treating the response as unmanageable because the boundary is | Inaction, no resilience, preventable damage from boundary events | Conflation of boundary with response |
+
+---
+
+### Table C: Misclassification Patterns
+
+| Actual Cell | Misclassified As | Pattern Name | Description | Example (Human) | Example (Technical) |
+|-------------|-----------------|--------------|-------------|-----------------|---------------------|
+| M∞ | U∞ | Learned helplessness | Treating reducible population as irreducible | "I'll never get organized" when organization is a learnable process | "We can't automate deploys" when deploys are a documentable sequence |
+| U0 | M1 | Control illusion | Treating permanent boundary as manageable element | Parent believing sufficient vigilance prevents all childhood injury | Manager believing better process prevents hardware failure |
+| M0 | M1 | Trust failure | Re-introducing management to a dissolved problem | Expert chef hovering over line cooks executing a perfected recipe | Adding manual approval to a fully automated deploy pipeline |
+| M1 | M0 | Premature dissolution | Declaring work complete when structure is incomplete | New driver stopping conscious attention to highway merging after one month | Calling a feature "done" with known unhandled edge cases |
+| U∞ | M∞ | Enumeration trap | Attempting to enumerate an unbounded population | Anxious person trying to anticipate every possible bad outcome before leaving the house | Security team writing individual firewall rules for every possible attack |
+| U1 | M1 | Dependency illusion | Conflating observation with control | Employee carefully reading unpredictable boss's mood as though reading were influencing | Building elaborate monitoring for upstream API as though dashboards prevent outages |
+
+---
+
+### Table D: Correct Responses by Cell
+
+| Cell | Response Category | Action | Mechanism | End State |
+|------|------------------|--------|-----------|-----------|
+| M∞ | Reduce | Enumerate, filter, score, select | Reduction pipeline ([@HOWL-INFO-12-2026]) | Element promoted to M1 for operation |
+| M∞ | Automate | Build structural handlers for recurring population patterns | Automation, pattern matching, rule engines | Recurring pattern dissolved to M0 |
+| M1 | Execute | Act on element with full pipeline attention | Focused work, single-task processing | Work completed, element released |
+| M1 | Release | Demote completed element, promote next | Context switch, pipeline reallocation | Element moves to M0 or returns to M∞ |
+| M0 | Maintain | Verify dissolution is genuine, do not re-introduce management | Periodic structural audit, not active oversight | Continued dissolution |
+| M0 | Trust | Resist urge to regress to active management | Organizational discipline, confidence in structure | Pipeline capacity preserved |
+| U∞ | Architectural irrelevance | Remove anatomy through which population could affect system | Geometric Security, vocabulary restriction, structural constraints | Population rendered inexpressible |
+| U∞ | Structural commitment | Choose response before Infinity manifests | Pre-computed reductions, default stances, hardened postures | Specific instances made beside the point |
+| U1 | Redundancy | Ensure no single unmanageable dependency is fatal | Multi-provider, alternate routes, diversified dependencies | Dependency loss is survivable |
+| U1 | Contingency | Prepare response plans for both availability and loss | Runbooks, fallback procedures, pre-negotiated alternatives | Response is pre-computed, not improvised |
+| U0 | Measurement | Observe boundary effects with available instrumentation | Sensors, monitors, statistical sampling | Approximation of boundary state |
+| U0 | Resilience | Build structural responses to boundary effects | Redundancy, graceful degradation, capacity margins | Boundary events are survivable |
+| U0 | Acceptance | Recognize permanence of boundary, do not attempt to manage it | Organizational and cognitive discipline | Effort directed to manageable responses |
+
+---
+
+### Table E: Cell Transitions
+
+| From | To | Transition Name | Mechanism | Direction |
+|------|-----|----------------|-----------|-----------|
+| M∞ | M1 | Promotion | Reduction pipeline selects one element from population | Forward (progress) |
+| M1 | M∞ | Demotion (incomplete) | Element released before work is complete, returns to population | Backward (rework risk) |
+| M1 | M0 | Dissolution | Completed work requires no further attention, structure handles it | Forward (goal state) |
+| M0 | M1 | Regression | Active management re-introduced to dissolved problem | Backward (capacity waste) |
+| M∞ | M0 | Full automation | Entire class of work dissolved to structure without individual One-processing | Forward (ideal path) |
+| U∞ | M0 | Architectural elimination | System restructured so unmanageable Infinity cannot affect it | Forward (Geometric Security) |
+| U0 | M0 | Boundary response automation | Response to permanent boundary dissolved into structure | Forward (resilience as structure) |
+| U1 | M0 | Redundancy dissolution | Contingency and redundancy built into structure, no active management needed | Forward (resilient architecture) |
+| M∞ | U∞ | Learned helplessness | System stops attempting reduction of manageable population | Misclassification (failure) |
+| U0 | M1 | Control illusion | System attempts to manage a permanent boundary | Misclassification (failure) |
+| M0 | M1 | Trust failure | System re-introduces management to dissolved problem | Misclassification (failure) |
+| M1 | M0 | Premature dissolution | System declares element dissolved before structure is complete | Misclassification (failure) |
+| U∞ | M∞ | Enumeration trap | System attempts to reduce unbounded population | Misclassification (failure) |
+| U1 | M1 | Dependency illusion | System conflates observation with control | Misclassification (failure) |
+
+---
+
+### Table F: Domain Examples by Cell
+
+| Cell | Domain | Element | Description |
+|------|--------|---------|-------------|
+| M∞ | Kitchen | Dirty dishes after party | Population of messes, each accessible and cleanable, waiting for reduction |
+| M∞ | Operations | Alert queue | Population of alerts, each investigable, waiting for triage pipeline |
+| M∞ | Air traffic | Radar contacts | Population of aircraft, each trackable and directible, continuously reduced |
+| M∞ | Education | Student's untaught curriculum | Population of topics, each learnable, waiting for study pipeline |
+| M∞ | Medicine | Emergency department waiting room | Population of patients, each treatable, waiting for triage and treatment |
+| M1 | Locksmithing | Current pin being set | Single element under direct operation, full attention, releasing on completion |
+| M1 | Surgery | Current patient on table | Single patient receiving focused intervention, all pipeline allocated |
+| M1 | Software | Function currently being written | Single unit of code under active development, releasing on completion |
+| M1 | Conversation | Current sentence being spoken | Single thought being articulated, full conscious pipeline allocated |
+| M1 | Cooking | Onion currently being diced | Single ingredient under knife, full attention, moving to next when complete |
+| M0 | Household | Working plumbing | Water delivery and waste disposal handled by structure, no attention needed |
+| M0 | Driving | Lane keeping on familiar road | Skill dissolved to unconscious competence, no pipeline allocation |
+| M0 | Operations | Automated certificate renewal | Certificates renew before expiration without human involvement |
+| M0 | Civilization | Clean water infrastructure | Water procurement dissolved for urban populations, goal met structurally |
+| M0 | Manufacturing | Interchangeable parts | Hand-fitting of replacement parts dissolved by standardization |
+| U∞ | Security | All possible cyberattacks | Unbounded population of threats, unenumerable, self-modifying |
+| U∞ | Business | All possible competitor moves | Unbounded competitive landscape, unpredictable, unenumerable |
+| U∞ | Sports | All possible penalty kick placements | Effectively infinite shot options, unenumerable in available time |
+| U∞ | Anxiety | All possible future misfortunes | Unbounded worry space, self-generating, enumeration never completes |
+| U∞ | Legal | All possible lawsuits | Unbounded litigation exposure, unpredictable, grows with enumeration effort |
+| U1 | Sailing | The wind | Single force, perfectly observable, completely uncontrollable |
+| U1 | Startup | Single large customer | Single dependency, observable satisfaction signals, uncontrollable decisions |
+| U1 | Medicine | Biopsy result (pending) | Single binary outcome, fully determined, completely outside patient's control |
+| U1 | Operations | Single cloud provider | Single infrastructure dependency, observable status, uncontrollable reliability |
+| U1 | Commuting | Single bridge on route | Single chokepoint, observable status, uncontrollable closures |
+| U0 | Farming | Weather and precipitation | Permanent physical boundary, measureable but never manageable |
+| U0 | Computing | Speed of light (network latency) | Permanent physical boundary, defines minimum latency between locations |
+| U0 | Operations | Hardware degradation over time | Permanent physical process, disks fail on physics' schedule |
+| U0 | Biology | Aging | Permanent biological process, manageable responses but unmanageable boundary |
+| U0 | Operations | Monitoring data aging | All measurements are of the past, never the present, permanently |
+
+---
+
+### Table G: Unified Discipline Mapping
+
+| Conventional Discipline | Primary Cell | Core Activity | Framework Translation |
+|------------------------|-------------|---------------|----------------------|
+| Operations | M∞ → M1 → M0 | Moving classes of work from active management to structural dissolution | Reduce manageable Infinity through One to Zero-by-absence |
+| Automation | M1 → M0 | Converting active work into dormant structure | Dissolve manageable One to manageable Zero-by-absence |
+| Security | U∞ | Handling unbounded uncontrollable threat populations | Make unmanageable Infinity architecturally irrelevant |
+| Resilience Engineering | U0 | Surviving permanent physical and systemic boundaries | Build structural responses to unmanageable Zero-by-externality |
+| Risk Management | U1 | Preparing for loss of singular uncontrollable dependencies | Build redundancy and contingency for unmanageable One |
+| Decision-Making | M∞ → M1 | Selecting what to act on from available options | Reduce manageable Infinity to manageable One via pipeline |
+| Capacity Planning | U0 + M∞ | Sizing resources against uncontrollable demand and manageable fleet | Measure boundary, reduce population |
+| Incident Response | U0 → M1 | Responding to boundary events with focused intervention | Promote unmanageable boundary event's effects to manageable One |
+| Monitoring | U0 + U1 | Observing unmanageable elements to inform manageable responses | Measure boundaries and dependencies, feed data to manageable cells |
+| Project Management | M∞ → M1 → M0 | Converting a backlog of work into completed deliverables | Reduce, execute, dissolve |
+| Training / Education | M∞ → M1 → M0 | Converting unknown skills into unconscious competence | Reduce conscious Infinity through conscious One to unconscious Zero |
+| Quality Assurance | M∞ + U∞ | Testing manageable scenarios while handling untestable space | Reduce manageable test cases, make untestable space architecturally irrelevant |
+| Strategic Planning | U1 + U∞ + M∞ | Preparing for uncontrollable forces while directing controllable resources | Classify dependencies, build resilience, reduce actionable items |
+
+---
+
+### Table H: Maturity Assessment Grid
+
+| Maturity Level | M∞ Distribution | M1 Utilization | M0 Coverage | U∞ Classification | U1 Classification | U0 Classification | Defining Characteristic |
+|---------------|-----------------|----------------|-------------|-------------------|-------------------|-------------------|------------------------|
+| Immature | High: most elements unreduced | Scattered: pipeline thrashing between many elements | Low: few problems dissolved | Poor: confused with M∞, enumeration attempted | Poor: confused with M1, observation treated as control | Poor: confused with M1, management attempted | Everything feels urgent, nothing is dissolved |
+| Developing | Moderate: some elements being reduced | Focused: pipeline allocated to defined processes | Growing: some routine work automated | Improving: some threats addressed architecturally | Improving: some dependencies identified, contingency beginning | Improving: some boundaries recognized | Processes exist but consume attention |
+| Mature | Low: most routine elements dissolved | Efficient: pipeline allocated to novel problems only | High: most routine work structural | Accurate: threats addressed architecturally not enumeratively | Accurate: dependencies have redundancy and contingency | Accurate: boundaries accepted, responses automated | Pipeline is free for novel challenges |
+| Wise | Minimal: only genuinely new elements at Infinity | Precise: pipeline allocated to highest-leverage One available | Comprehensive: verified, not premature | Correct under pressure: classification holds during crisis | Correct under pressure: no dependency illusion during stress | Correct under pressure: no magical thinking during incidents | Classification accuracy maintained under pressure |
+
+---
+
+### Table I: Cell Identification Decision Tree
+
+| Step | Question | If Yes | If No |
+|------|----------|--------|-------|
+| 1 | Can your actions change this element's state or behavior? | Manageable (go to step 2) | Unmanageable (go to step 5) |
+| 2 | Is there more than one instance of this element requiring attention? | Manageable Infinity (M∞) | Go to step 3 |
+| 3 | Is this element currently receiving your active attention and work? | Manageable One (M1) | Go to step 4 |
+| 4 | Does this element require no active attention because structure handles it? | Manageable Zero-by-absence (M0) | Revisit step 2: likely M∞ with one member |
+| 5 | Are there multiple instances or variants of this element you cannot control? | Unmanageable Infinity (U∞) | Go to step 6 |
+| 6 | Is this a single identifiable dependency or force you can observe but not control? | Unmanageable One (U1) | Go to step 7 |
+| 7 | Is this a permanent physical, temporal, or systemic boundary that no amount of effort will change? | Unmanageable Zero-by-externality (U0) | Revisit step 1: reassess manageability |
+
+---
+
+### Table J: Historical Examples of Cell Transitions
+
+| Era | Element | From Cell | To Cell | Transition | Mechanism |
+|-----|---------|-----------|---------|------------|-----------|
+| Pre-alphabet | Written vocabulary | M∞ | M0 | Compression | Alphabet reduced infinity of logograms to ~26 composable letters |
+| Pre-numerals | Arithmetic methods | M∞ | M0 | Compression | Positional notation with zero dissolved per-scale special-case procedures |
+| Pre-plumbing | Household water procurement | M∞ | M0 | Dissolution | Municipal water systems dissolved daily water-fetching as a class of work |
+| Pre-sewage | Household waste disposal | M∞ | M0 | Dissolution | Municipal sewage dissolved daily waste management as a class of work |
+| Pre-refrigeration | Food preservation | M∞ | M0 | Dissolution | Mechanical refrigeration dissolved salting, smoking, pickling as daily tasks |
+| Pre-interchangeable parts | Weapon repair | M1 | M0 | Dissolution | Standardized parts dissolved hand-fitting as a skill category |
+| Pre-automatic transmission | Gear selection while driving | M1 | M0 | Dissolution | Automatic transmission dissolved conscious gear management |
+| Pre-GPS | Route navigation | M1 | M0 | Dissolution | GPS dissolved map-reading and route-planning as active cognitive tasks |
+| Pre-elevator automation | Vertical transport operation | M1 | M0 | Dissolution | Automatic elevators dissolved the entire occupation of elevator operator |
+| Pre-containerization | Cargo handling methods | M∞ | M0 | Dissolution | Standardized container dissolved infinity of per-item handling procedures |
+| Pre-germ theory | Disease explanations | M∞ (misclassified as U∞) | M∞ (correctly classified) | Reclassification | Germ theory made disease a manageable Infinity with one unifying mechanism |
+| Pre-Newton | Terrestrial and celestial motion | M∞ (two separate Infinities) | M∞ (one Infinity, one law) | Compression | Universal gravitation unified two populations under one equation |
+| Pre-time zones | Cross-location time coordination | M∞ | M0 | Dissolution | Standard time zones dissolved active time-conversion as a class of work |
+| 1930s dust bowl | Plains climate variability | U0 (misclassified as stable constant) | U0 (correctly classified, too late) | Reclassification by catastrophe | Drought revealed that climate was unmanageable boundary, not reliable backdrop |
+| Autonomous driving (emerging) | Vehicle control input | U0 (driver as externality) | M1 (system manages driving) | Cardinality promotion | Driver transitioning from Zero-by-externality to system-managed One |
+
+---
+
+### Table K: Specification Summary
+
+| Metric | Count |
+|--------|-------|
+| Cardinality values | 3 |
+| Manageability values | 2 |
+| Cells (cardinality × manageability) | 6 |
+| Failure modes (primary) | 10 |
+| Misclassification patterns | 6 |
+| Correct response categories | 13 |
+| Cell transitions (forward/progress) | 8 |
+| Cell transitions (backward/failure) | 6 |
+| Maturity levels | 4 |
+| Unified disciplines mapped | 13 |
+| Domain examples cataloged | 30 |
+| Historical transitions cataloged | 15 |
+| Decision tree steps | 7 |
+
+---
+
+*HOWL-INFO-13-2026 Appendix. Supporting Tables for The Six States of Information: Every Problem Lives in One of Six Cells — Most Failures Come from Putting It in the Wrong One.*
