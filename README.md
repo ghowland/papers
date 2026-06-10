@@ -37,6 +37,7 @@
 | **[HOWL-INFO-10-2026](papers/papers/INFO/HOWL-INFO-10-2026/manuscript.md)** | **Closing Domains** | A Repeatable Method for Finishing Infrastructure. |
 | **[HOWL-INFO-11-2026](papers/papers/INFO/HOWL-INFO-11-2026/manuscript.md)** | **The Relationship of Zero, One, and Infinity in Information Processing** | The Intrinsic Cardinalities of Computation. |
 | **[HOWL-INFO-12-2026](papers/papers/INFO/HOWL-INFO-12-2026/manuscript.md)** | **Information Processing Requires Reduction to Cardinality One** | The Universal Bottleneck of Information Processing. |
+| **[HOWL-INFO-13-2026](papers/papers/INFO/HOWL-INFO-13-2026/manuscript.md)** | **The Six States of Information** | Cardinality and Manageability as the Complete Coordinate System for Information Processing. |
 
 ---
 

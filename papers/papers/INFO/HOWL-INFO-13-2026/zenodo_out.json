@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-10T04:22:40.123761+00:00",
+  "modified": "2026-06-10T04:22:40.188861+00:00",
+  "id": 20620592,
+  "conceptrecid": "20620591",
+  "metadata": {
+    "title": "The Six States of Information",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-13-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-13-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20620592",
+      "recid": 20620592
+    }
+  },
+  "title": "The Six States of Information",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20620592",
+    "html": "https://zenodo.org/deposit/20620592",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20620592/files",
+    "bucket": "https://zenodo.org/api/files/7f03c3d8-5916-4836-b25b-7c06af387ac4",
+    "thumb250": "https://zenodo.org/record/20620592/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20620592/thumb10",
+      "50": "https://zenodo.org/record/20620592/thumb50",
+      "100": "https://zenodo.org/record/20620592/thumb100",
+      "250": "https://zenodo.org/record/20620592/thumb250",
+      "750": "https://zenodo.org/record/20620592/thumb750",
+      "1200": "https://zenodo.org/record/20620592/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20620592",
+    "latest_draft_html": "https://zenodo.org/deposit/20620592",
+    "publish": "https://zenodo.org/api/deposit/depositions/20620592/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20620592/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20620592/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20620592/actions/newversion"
+  },
+  "record_id": 20620592,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "7beea54b-1d14-4881-ab49-f10a05a58080",
+      "filename": "!manuscript.pdf",
+      "filesize": 88965,
+      "checksum": "4a952a725f7ea8149d330298d6550df4",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20620592/files/7beea54b-1d14-4881-ab49-f10a05a58080",
+        "download": "https://zenodo.org/api/records/20620592/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "1809e78f-e6e9-4593-a74a-540cb1b64f0c",
+      "filename": "HOWL-INFO-13-2026.zip",
+      "filesize": 134620,
+      "checksum": "381e81d3bd74d2404d644c4394ef16c7",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20620592/files/1809e78f-e6e9-4593-a74a-540cb1b64f0c",
+        "download": "https://zenodo.org/api/records/20620592/draft/files/HOWL-INFO-13-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
