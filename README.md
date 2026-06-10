@@ -38,6 +38,7 @@
 | **[HOWL-INFO-11-2026](papers/papers/INFO/HOWL-INFO-11-2026/manuscript.md)** | **The Relationship of Zero, One, and Infinity in Information Processing** | The Intrinsic Cardinalities of Computation. |
 | **[HOWL-INFO-12-2026](papers/papers/INFO/HOWL-INFO-12-2026/manuscript.md)** | **Information Processing Requires Reduction to Cardinality One** | The Universal Bottleneck of Information Processing. |
 | **[HOWL-INFO-13-2026](papers/papers/INFO/HOWL-INFO-13-2026/manuscript.md)** | **The Six States of Information** | Cardinality and Manageability as the Complete Coordinate System for Information Processing. |
+| **[HOWL-INFO-14-2026](papers/papers/INFO/HOWL-INFO-14-2026/manuscript.md)** | **Bits and Ops** | A Complete Theory of Information. |
 
 ---
 
