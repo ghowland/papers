@@ -180,6 +180,8 @@
 | **[HOWL-MATH-11-2026](papers/papers/MATH/HOWL-MATH-11-2026/manuscript.md)** | **β = π/4** | The Metric Conversion Factor Between L1 and L2 on Circular Geometry. |
 | **[HOWL-MATH-12-2026](papers/papers/MATH/HOWL-MATH-12-2026/manuscript.md)** | **β⁰ Has Two Geometries** | The Toroidal Extension of the L1/L2 Framework. |
 | **[HOWL-MATH-13-2026](papers/papers/MATH/HOWL-MATH-13-2026/manuscript.md)** | **The Velocity-Dependent Geometric Ratio** | The L1/L2 Conversion Factor Under Lorentz Contraction. |
+| **[HOWL-MATH-14-2026](papers/papers/MATH/HOWL-MATH-14-2026/manuscript.md)** | **A Mathematical Theory of Processing** | Formalizing What Shannon Excluded. |
+| **[HOWL-MATH-15-2026](papers/papers/MATH/HOWL-MATH-15-2026/manuscript.md)** | **A Measurement Theory of Processing** | The Op as the Bit of Processing. |
 
 ---
 
