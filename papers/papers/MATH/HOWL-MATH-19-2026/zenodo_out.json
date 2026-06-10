@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-10T16:06:35.918706+00:00",
+  "modified": "2026-06-10T16:06:35.982083+00:00",
+  "id": 20630502,
+  "conceptrecid": "20630501",
+  "metadata": {
+    "title": "The Mathematics of Processing-Aware Communication",
+    "publication_date": "2026-04",
+    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "mathematics"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-19-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-19-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20630502",
+      "recid": 20630502
+    }
+  },
+  "title": "The Mathematics of Processing-Aware Communication",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20630502",
+    "html": "https://zenodo.org/deposit/20630502",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20630502/files",
+    "bucket": "https://zenodo.org/api/files/d89cf305-4a5c-49fc-b153-2595859a724b",
+    "thumb250": "https://zenodo.org/record/20630502/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20630502/thumb10",
+      "50": "https://zenodo.org/record/20630502/thumb50",
+      "100": "https://zenodo.org/record/20630502/thumb100",
+      "250": "https://zenodo.org/record/20630502/thumb250",
+      "750": "https://zenodo.org/record/20630502/thumb750",
+      "1200": "https://zenodo.org/record/20630502/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20630502",
+    "latest_draft_html": "https://zenodo.org/deposit/20630502",
+    "publish": "https://zenodo.org/api/deposit/depositions/20630502/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20630502/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20630502/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20630502/actions/newversion"
+  },
+  "record_id": 20630502,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "d355cd67-b09c-4e53-81e7-11a1d8c85da1",
+      "filename": "HOWL-MATH-19-2026.zip",
+      "filesize": 223669,
+      "checksum": "b97763b74905e70f9fe927627c8d55f9",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20630502/files/d355cd67-b09c-4e53-81e7-11a1d8c85da1",
+        "download": "https://zenodo.org/api/records/20630502/draft/files/HOWL-MATH-19-2026.zip/content"
+      }
+    },
+    {
+      "id": "765d48d4-bf94-498a-a279-d0f29aa68191",
+      "filename": "!manuscript.pdf",
+      "filesize": 161914,
+      "checksum": "2156357377ea03f8a8d032e961acef42",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20630502/files/765d48d4-bf94-498a-a279-d0f29aa68191",
+        "download": "https://zenodo.org/api/records/20630502/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

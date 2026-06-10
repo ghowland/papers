@@ -184,6 +184,9 @@
 | **[HOWL-MATH-15-2026](papers/papers/MATH/HOWL-MATH-15-2026/manuscript.md)** | **A Measurement Theory of Processing** | The Op as the Bit of Processing. |
 | **[HOWL-MATH-16-2026](papers/papers/MATH/HOWL-MATH-16-2026/manuscript.md)** | **The Geometry of Dissolution and Fragility** | Predicting Catastrophic Failure from Structural Analysis. |
 | **[HOWL-MATH-17-2026](papers/papers/MATH/HOWL-MATH-17-2026/manuscript.md)** | **Processing Entropy as a Metric Space** | Distance Between Any Two Ways of Doing the Same Thing. |
+| **[HOWL-MATH-18-2026](papers/papers/MATH/HOWL-MATH-18-2026/manuscript.md)** | **Concurrency Tax from System Structure** | A Graph Theory of Processing Overhead. |
+| **[HOWL-MATH-19-2026](papers/papers/MATH/HOWL-MATH-19-2026/manuscript.md)** | **The Mathematics of Processing-Aware Communication** | The Three Costs of Every Message. |
+| **[HOWL-MATH-20-2026](papers/papers/MATH/HOWL-MATH-20-2026/manuscript.md)** | **The ** | The Three Costs of Every Message. |
 
 ---
 

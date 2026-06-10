@@ -1,4 +1,4 @@
-# The Geometry of Dissolution and Fragility
+# The Mathematics of Processing-Aware Communication
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-MATH-16-2026,
-  title={ The Geometry of Dissolution and Fragility },
+@article{ HOWL-MATH-19-2026,
+  title={ The Mathematics of Processing-Aware Communication },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.20629792},
-  url = {https://zenodo.org/record/20629792},
-  note={Howland Archive: HOWL-MATH-16-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.20630502},
+  url = {https://zenodo.org/record/20630502},
+  note={Howland Archive: HOWL-MATH-19-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
