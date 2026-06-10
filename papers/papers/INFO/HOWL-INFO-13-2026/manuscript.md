@@ -275,8 +275,6 @@ These are not separate theories with separate literatures and separate expertise
 
 # Appendix: Supporting Tables
 
-## HOWL-INFO-13-2026
-
 ---
 
 ### Table A: The Six-Cell Grid
