@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-11T08:19:24.252031+00:00",
+  "modified": "2026-06-11T08:19:24.417155+00:00",
+  "id": 20639488,
+  "conceptrecid": "20639487",
+  "metadata": {
+    "title": "Staged Advancement: How Dissolved Knowledge Generates the Next Domain",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-16-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-16-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20639488",
+      "recid": 20639488
+    }
+  },
+  "title": "Staged Advancement: How Dissolved Knowledge Generates the Next Domain",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20639488",
+    "html": "https://zenodo.org/deposit/20639488",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20639488/files",
+    "bucket": "https://zenodo.org/api/files/cc0e5aa5-1d84-40cb-9642-34fe3dc2173e",
+    "thumb250": "https://zenodo.org/record/20639488/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20639488/thumb10",
+      "50": "https://zenodo.org/record/20639488/thumb50",
+      "100": "https://zenodo.org/record/20639488/thumb100",
+      "250": "https://zenodo.org/record/20639488/thumb250",
+      "750": "https://zenodo.org/record/20639488/thumb750",
+      "1200": "https://zenodo.org/record/20639488/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20639488",
+    "latest_draft_html": "https://zenodo.org/deposit/20639488",
+    "publish": "https://zenodo.org/api/deposit/depositions/20639488/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20639488/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20639488/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20639488/actions/newversion"
+  },
+  "record_id": 20639488,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "b2f0e16c-2df1-4118-800a-380f9a2adbb3",
+      "filename": "HOWL-INFO-16-2026.zip",
+      "filesize": 1625396,
+      "checksum": "10bea4580a3b66b53755ace9fe4b0cca",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20639488/files/b2f0e16c-2df1-4118-800a-380f9a2adbb3",
+        "download": "https://zenodo.org/api/records/20639488/draft/files/HOWL-INFO-16-2026.zip/content"
+      }
+    },
+    {
+      "id": "72c29ff0-d18b-4102-a0f7-b464073069b9",
+      "filename": "!manuscript.pdf",
+      "filesize": 123840,
+      "checksum": "54dd6abf250c9e69f4b10f0800afabc1",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20639488/files/72c29ff0-d18b-4102-a0f7-b464073069b9",
+        "download": "https://zenodo.org/api/records/20639488/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
