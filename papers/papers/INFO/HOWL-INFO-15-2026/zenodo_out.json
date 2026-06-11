@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-11T07:28:47.045187+00:00",
+  "modified": "2026-06-11T07:28:47.153493+00:00",
+  "id": 20638565,
+  "conceptrecid": "20638564",
+  "metadata": {
+    "title": "Cross-Domain Learning: How Bits and Ops Transfer Between Domains",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-15-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-15-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20638565",
+      "recid": 20638565
+    }
+  },
+  "title": "Cross-Domain Learning: How Bits and Ops Transfer Between Domains",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20638565",
+    "html": "https://zenodo.org/deposit/20638565",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20638565/files",
+    "bucket": "https://zenodo.org/api/files/47a0ac3f-d8bf-4705-aa84-b2d036f43065",
+    "thumb250": "https://zenodo.org/record/20638565/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20638565/thumb10",
+      "50": "https://zenodo.org/record/20638565/thumb50",
+      "100": "https://zenodo.org/record/20638565/thumb100",
+      "250": "https://zenodo.org/record/20638565/thumb250",
+      "750": "https://zenodo.org/record/20638565/thumb750",
+      "1200": "https://zenodo.org/record/20638565/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20638565",
+    "latest_draft_html": "https://zenodo.org/deposit/20638565",
+    "publish": "https://zenodo.org/api/deposit/depositions/20638565/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20638565/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20638565/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20638565/actions/newversion"
+  },
+  "record_id": 20638565,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "583e9e6f-2529-4c24-872f-3f406674a5fa",
+      "filename": "!manuscript.pdf",
+      "filesize": 116737,
+      "checksum": "21df4818f1e2b09f3379ed6e9b60fba9",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20638565/files/583e9e6f-2529-4c24-872f-3f406674a5fa",
+        "download": "https://zenodo.org/api/records/20638565/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "50de9bf0-7245-4da5-ad1d-550b816548d4",
+      "filename": "HOWL-INFO-15-2026.zip",
+      "filesize": 1615290,
+      "checksum": "59aae3ab40015ab29fa8b79b6d0db8ce",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20638565/files/50de9bf0-7245-4da5-ad1d-550b816548d4",
+        "download": "https://zenodo.org/api/records/20638565/draft/files/HOWL-INFO-15-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -3,7 +3,7 @@
     "title": "Cross-Domain Learning: How Bits and Ops Transfer Between Domains",
     "registry_id": "HOWL-INFO-15-2026",
     "series_path": "[@HOWL-COMP-1-2026] \u2192 ... \u2192 [@HOWL-COMP-12-2026] \u2192 [@HOWL-INFO-11-2026] \u2192 ... \u2192 [@HOWL-INFO-13-2026] \u2192 [@HOWL-MATH-15-2026] \u2192 ... \u2192 [@HOWL-MATH-20-2026] \u2192 [@HOWL-INFO-14-2026] \u2192 [@HOWL-INFO-15-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.20638565",
     "abstract": "",
     "dependencies": [],
     "raw_content_preview": "# Cross-Domain Learning: How Bits and Ops Transfer Between Domains ## The Mechanical Process of Learning New Domains Using What You Already Know  **Registry:** [@HOWL-INFO-15-2026]  **Series Path:** [..."
