@@ -39,6 +39,7 @@
 | **[HOWL-INFO-12-2026](papers/papers/INFO/HOWL-INFO-12-2026/manuscript.md)** | **Information Processing Requires Reduction to Cardinality One** | The Universal Bottleneck of Information Processing. |
 | **[HOWL-INFO-13-2026](papers/papers/INFO/HOWL-INFO-13-2026/manuscript.md)** | **The Six States of Information** | Cardinality and Manageability as the Complete Coordinate System for Information Processing. |
 | **[HOWL-INFO-14-2026](papers/papers/INFO/HOWL-INFO-14-2026/manuscript.md)** | **Bits and Ops** | A Complete Theory of Information. |
+| **[HOWL-INFO-15-2026](papers/papers/INFO/HOWL-INFO-15-2026/manuscript.md)** | **Cross-Domain Learning: How Bits and Ops Transfer Between Domains** | The Mechanical Process of Learning New Domains Using What You Already Know. |
 
 ---
 
