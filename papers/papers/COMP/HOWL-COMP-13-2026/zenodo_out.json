@@ -1,0 +1,130 @@
+{
+  "created": "2026-06-25T12:33:57.483221+00:00",
+  "modified": "2026-06-25T12:33:57.659855+00:00",
+  "id": 20846381,
+  "conceptrecid": "20846380",
+  "metadata": {
+    "title": "Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-13-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-13-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20846381",
+      "recid": 20846381
+    }
+  },
+  "title": "Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20846381",
+    "html": "https://zenodo.org/deposit/20846381",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20846381/files",
+    "bucket": "https://zenodo.org/api/files/04679ad6-986b-4851-a42f-6dcac1f47faa",
+    "thumb250": "https://zenodo.org/record/20846381/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20846381/thumb10",
+      "50": "https://zenodo.org/record/20846381/thumb50",
+      "100": "https://zenodo.org/record/20846381/thumb100",
+      "250": "https://zenodo.org/record/20846381/thumb250",
+      "750": "https://zenodo.org/record/20846381/thumb750",
+      "1200": "https://zenodo.org/record/20846381/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20846381",
+    "latest_draft_html": "https://zenodo.org/deposit/20846381",
+    "publish": "https://zenodo.org/api/deposit/depositions/20846381/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20846381/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20846381/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20846381/actions/newversion"
+  },
+  "record_id": 20846381,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "9302b2f1-6a04-48a9-9675-26c019cd02ff",
+      "filename": "!manuscript.pdf",
+      "filesize": 80144,
+      "checksum": "6e2f78bbc5ebc533c7cac317ef83cde3",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20846381/files/9302b2f1-6a04-48a9-9675-26c019cd02ff",
+        "download": "https://zenodo.org/api/records/20846381/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "0581c034-1542-4db9-8590-0df7b0351530",
+      "filename": "HOWL-COMP-13-2026.zip",
+      "filesize": 1932577,
+      "checksum": "3026fe69d8f0a7ebbcc2227462c975cc",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20846381/files/0581c034-1542-4db9-8590-0df7b0351530",
+        "download": "https://zenodo.org/api/records/20846381/draft/files/HOWL-COMP-13-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,8 +1,8 @@
 {
-  "title": "Closed Loop Architecture",
+  "title": "Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation",
   "upload_type": "publication",
   "publication_type": "article",
-  "description": "[Description to be added]",
+  "description": "Compiled languages discard struct layout information after compilation. Programs that need runtime access to field metadata \u2014 for serialization, property editors, data binding, or path-based navigation \u2014 resort to runtime reflection, code generation, or manual registration. All three scale poorly with struct count. This paper presents a fourth approach: capture struct field metadata at build time into a static descriptor table, then walk arbitrary nested structs at runtime through pointer arithmetic using pre-computed offsets. The technique requires no runtime type information, no generated source files, no dynamic dispatch, and no heap allocation. A working implementation covering 140+ structs reduced compile time from 15 seconds to 2 seconds by eliminating the code generation pipeline it replaced. The approach is portable to any compiled language with access to `offsetof` or equivalent.",
   "version": "1.0",
   "publication_date": "2026-04",
   "access_right": "open",
@@ -12,11 +12,11 @@
     "howland archive",
     "computation"
   ],
-  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-12-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-13-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-12-2026",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-13-2026",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

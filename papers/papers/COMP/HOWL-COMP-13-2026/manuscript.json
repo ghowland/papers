@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "Closed Loop Architecture",
-    "registry_id": "HOWL-COMP-12-2026",
-    "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026] \u2192 [@HOWL-COMP-6-2026] \u2192 [@HOWL-COMP-7-2026] \u2192 [@HOWL-COMP-8-2026] \u2192 [@HOWL-COMP-9-2026] \u2192 [@HOWL-COMP-10-2026] \u2192 [@HOWL-COMP-11-2026] \u2192 [@HOWL-COMP-12-2026]",
-    "doi": "10.5281/zenodo.20615398",
-    "abstract": "",
+    "title": "Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation",
+    "registry_id": "HOWL-COMP-13-2026",
+    "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026] \u2192 [@HOWL-COMP-6-2026] \u2192 [@HOWL-COMP-7-2026] \u2192 [@HOWL-COMP-8-2026] \u2192 [@HOWL-COMP-9-2026] \u2192 [@HOWL-COMP-10-2026] \u2192 [@HOWL-COMP-11-2026] \u2192 [@HOWL-COMP-12-2026] \u2192 [@HOWL-COMP-13-2026]",
+    "doi": "10.5281/zenodo.20846381",
+    "abstract": "Compiled languages discard struct layout information after compilation. Programs that need runtime access to field metadata \u2014 for serialization, property editors, data binding, or path-based navigation \u2014 resort to runtime reflection, code generation, or manual registration. All three scale poorly with struct count. This paper presents a fourth approach: capture struct field metadata at build time into a static descriptor table, then walk arbitrary nested structs at runtime through pointer arithmetic using pre-computed offsets. The technique requires no runtime type information, no generated source files, no dynamic dispatch, and no heap allocation. A working implementation covering 140+ structs reduced compile time from 15 seconds to 2 seconds by eliminating the code generation pipeline it replaced. The approach is portable to any compiled language with access to `offsetof` or equivalent.",
     "dependencies": [],
-    "raw_content_preview": "# Closed Loop Architecture ## A Complete OS in Four Flat Lists  **Registry:** [@HOWL-COMP-12-2026]  **Series Path:** [@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-202..."
+    "raw_content_preview": "# Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation ## Comptime Struct Registry  **Registry:** [@HOWL-COMP-13-2026]  **Series Path:** [@HOWL-COMP-1-2026] \u2192 [@HOWL-C..."
 }
