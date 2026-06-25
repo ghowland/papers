@@ -61,6 +61,7 @@
 | **[HOWL-COMP-10-2026](papers/papers/COMP/HOWL-COMP-10-2026/manuscript.md)** | **Tall-Infra Data-Only Execution** | The End of the Software Layer Is in Sight. |
 | **[HOWL-COMP-11-2026](papers/papers/COMP/HOWL-COMP-11-2026/manuscript.md)** | **Name Driven Development** | Enumeration as Architecture. |
 | **[HOWL-COMP-12-2026](papers/papers/COMP/HOWL-COMP-12-2026/manuscript.md)** | **Closed Loop Architecture** | A Complete OS in Four Flat Lists. |
+| **[HOWL-COMP-13-2026](papers/papers/COMP/HOWL-COMP-13-2026/manuscript.md)** | **Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation** | Comptime Struct Registry. |
 
 ---
 
