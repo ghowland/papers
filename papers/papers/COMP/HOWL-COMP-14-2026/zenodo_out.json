@@ -1,0 +1,100 @@
+{
+  "created": "2026-07-10T09:31:45.435997+00:00",
+  "modified": "2026-07-10T09:31:45.814420+00:00",
+  "id": 21293306,
+  "conceptrecid": "21293305",
+  "metadata": {
+    "title": "Enterprise Toy Composition",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-14-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-14-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.21293306",
+      "recid": 21293306
+    }
+  },
+  "title": "Enterprise Toy Composition",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/21293306",
+    "html": "https://zenodo.org/deposit/21293306",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/21293306/files",
+    "bucket": "https://zenodo.org/api/files/fdf71a8c-3a2f-4776-bbff-e1987b1bc780",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/21293306",
+    "latest_draft_html": "https://zenodo.org/deposit/21293306",
+    "publish": "https://zenodo.org/api/deposit/depositions/21293306/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/21293306/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/21293306/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/21293306/actions/newversion"
+  },
+  "record_id": 21293306,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}

@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Enterprise Toy Composition",
+    "registry_id": "HOWL-COMP-14-2026",
+    "series_path": "[@HOWL-COMP-1-2026] \u2192 [@HOWL-COMP-2-2026] \u2192 [@HOWL-COMP-3-2026] \u2192 [@HOWL-COMP-4-2026] \u2192 [@HOWL-COMP-5-2026] \u2192 [@HOWL-COMP-6-2026] \u2192 [@HOWL-COMP-7-2026] \u2192 [@HOWL-COMP-8-2026] \u2192 [@HOWL-COMP-9-2026] \u2192 [@HOWL-COMP-10-2026] \u2192 [@HOWL-COMP-11-2026] \u2192 [@HOWL-COMP-12-2026] \u2192 [@HOWL-COMP-13-2026] \u2192 [@HOWL-COMP-14-2026]",
+    "doi": "10.5281/zenodo.21293306",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# Enterprise Toy Composition  ## Stillness versus Tumbling: A Production Method for Building and Maintaining Enterprise Software with Pattern-Matching Machines  **Registry:** [@HOWL-COMP-14-2026]  **S..."
+}
