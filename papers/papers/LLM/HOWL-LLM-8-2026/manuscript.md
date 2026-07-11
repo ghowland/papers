@@ -6,7 +6,7 @@
 
 **Series Path:** [@HOWL-LLM-3-2026] → [@HOWL-LLM-7-2026] → [@HOWL-LLM-8-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.21303618
 
 **Date:** July 2026
 
@@ -199,3 +199,306 @@ Everything else built across this registry's LLM and engineering series is machi
 | [@HOWL-LLM-4-2026] Incompatibility by Construction | What cannot be fixed with more LLM | The specific unfixable: no confidence channel, permanent for the architecture |
 | [@HOWL-LLM-7-2026] Agentic Decoherency Tumbler | Repeated modification erodes coherence | The per-token cause of per-edit erosion: every regeneration re-runs the elections |
 | [@HOWL-LLM-1-2026] Integer LLM + Prolog | A neural-symbolic architecture | Names precisely what the symbolic side supplies: the missing rejection step |
+
+---
+
+## Appendix E — Complete Point Enumeration
+
+*Every distinct claim developed on this topic, whether or not it reached the prose. Marked: ✓ in paper, ⊘ cut for flow, ✱ new to appendix.*
+
+### E.1 The One Move and Support (Claims 1–12)
+
+| # | Claim | Status |
+|---|---|---|
+| 1 | An LLM has exactly one operation: distribution over next token, select, append, repeat | ✓ §2 |
+| 2 | Everything higher-level (reasoning, refusing, recalling) is this one move in sequence | ✓ §2 |
+| 3 | Generation quality is entirely the quality of individual selections | ✓ §2 |
+| 4 | Selection quality is governed by *support* — sample size behind the estimate | ✓ §2 |
+| 5 | Support is non-uniform across contexts by many orders of magnitude | ✓ §2 |
+| 6 | The model gives the user no signal about which support regime it is in | ✓ §2 |
+| 7 | Output looks uniform across wildly non-uniform support — where trouble begins | ✓ §2 |
+| 8 | Pair (bigram) statistics are the densest in the corpus — every adjacent pair contributes a sample | ✓ §3 |
+| 9 | Therefore the immediately prior token carries the strongest local conditioning weight | ✓ §3 |
+| 10 | Attention reads the whole window, but the prior token's local pull has the most samples behind it | ✓ §3 |
+| 11 | The landslide: "straw-" → "berry", near-forced, near-always right | ✓ §3 |
+| 12 | Most tokens in most generations are landslides — this is why generation works at all | ✓ §3 |
+| 12a | Support depth and *distance* interact: the prior token dominates locally, but long-range context can still redirect — the landslide is local, not global | ✱ |
+| 12b | "Home ground" framing: on dense support the model is superb; the paper is about what happens when it leaves home ground | ✓ §3 |
+
+### E.2 Determinism (Claims 13–20)
+
+| # | Claim | Status |
+|---|---|---|
+| 13 | The naive fix is "reduce randomness" — set temperature to zero | ✓ §4 |
+| 14 | Deployed temp-0 isn't deterministic: FP non-associativity, batching, MoE routing, serving-stack variance | ✓ §4 |
+| 15 | VDR exact integer-rational arithmetic achieves bit-identical output, transformers and diffusion | ✓ §4 |
+| 16 | Determinism at every level is achievable — the author has achieved it | ✓ §4 |
+| 17 | Determinism makes selection *reproducible*, not the distribution *better estimated* | ✓ §4 |
+| 18 | A deterministic model takes the *same* wrong turn every run — a frozen error | ✓ §4 |
+| 19 | The exact-arithmetic streams contain the same class of failure, now bit-reproducible | ✓ §4 |
+| 20 | Determinism was never the disease | ✓ §4 |
+| 20a | Corollary: reproducibility is a *debugging* asset even though it fixes nothing — the same drainage path can be studied | ✱ |
+| 20b | The temperature knob trades one failure for another: high temp adds exploration noise, low temp freezes the drainage; neither adds a confidence channel | ✱ |
+
+### E.3 The Least-Worst Token (Claims 21–28)
+
+| # | Claim | Status |
+|---|---|---|
+| 21 | Some contexts are rare: your pattern, an unusual constraint combination, a niche corner, a one-repo convention | ✓ §5 |
+| 22 | In rare regions the distribution is a smear: small candidate set, thin evidence, low flat peak | ✓ §5 |
+| 23 | "Does not know" in the only sense a model can — the computed distribution is not concentrated | ✓ §5 |
+| 24 | The architecture has no abstain, no "I am not sure," no clarification from inside the forward pass | ✓ §5 |
+| 25 | It selects the best of a bad shortlist — the least-worst token | ✓ §5 |
+| 26 | Frequently the least-worst token is a *borrowing from a denser region nearby* | ✓ §5 |
+| 27 | A single least-worst token in isolation is survivable; a user may not notice | ✓ §5 |
+| 28 | The problem is not the token; it is everything after it | ✓ §5 |
+| 28a | The least-worst token is *systematically biased toward the dense neighbor*, not randomly wrong — this directionality is what makes drainage directed rather than diffuse | ✱ |
+| 28b | Sparse-region emission is where "hallucination" is manufactured: a confident token with no support is the atom of a confident falsehood | ✱ |
+
+### E.4 The Laundering Step (Claims 29–36)
+
+| # | Claim | Status |
+|---|---|---|
+| 29 | The least-worst token enters the context with *full authority* — the mechanical heart | ✓ §6 |
+| 30 | The context is a sequence of tokens, NOT a sequence of (token, confidence) pairs | ✓ §6 |
+| 31 | No channel exists — any scale, any temperature, any current architecture — for uncertainty to propagate forward | ✓ §6 |
+| 32 | Posterior uncertainty is laundered into prefix fact at the instant of emission | ✓ §6 |
+| 33 | The model forgets its own doubt one token after having it — there was nowhere to store it | ✓ §6 |
+| 34 | The next selection conditions *hardest* on the least-trustworthy token (prior-token dominance) | ✓ §6 |
+| 35 | And conditions on it as certain, because the machine cannot represent it as anything else | ✓ §6 |
+| 36 | A model that could carry uncertainty forward could recover (hedge, hold the door open) — it cannot | ✓ §6 |
+| 36a | Chain-of-thought does NOT solve this: reasoning tokens are also laundered — a low-confidence reasoning step becomes a certain premise for the next step | ✱ |
+| 36b | Sampling *many* times (self-consistency) partially routes around it by averaging over which least-worst token got laundered — but each individual chain still drains | ✱ |
+| 36c | The absence is symmetric to the rejection-step absence: no rejection = cannot refuse a proposal; no confidence channel = cannot doubt one it accepted | ✱ |
+
+### E.5 Sparse-on-Sparse Compounding (Claims 37–43)
+
+| # | Claim | Status |
+|---|---|---|
+| 37 | The context was already sparse — that produced the least-worst token | ✓ §7 |
+| 38 | The pair (wrong-ish token → continuations, in a rare context) is rarer than the region alone | ✓ §7 |
+| 39 | Candidate set narrows, estimates degrade, next least-worst is worse | ✓ §7 |
+| 40 | Tokens following low-choice tokens are worse — they inherit a prefix of low-choice selections | ✓ §7 |
+| 41 | Error compounds because each step conditions most on the previous step's weakest output | ✓ §7 |
+| 42 | Each step's uncertainty is laundered before the next runs — no accumulation of visible doubt | ✓ §7 |
+| 43 | Intuitive form: "if the last turn was good enough, why is this turn different?" — nothing held it | ✓ §7 |
+| 43a | The compounding is super-linear in sparse regions: each laundered token *deepens* the rarity, so degradation accelerates rather than staying constant | ✱ |
+| 43b | There is a recovery case: if long-range context is strong enough, the stream can re-anchor to it — but only where the owned material is dense enough in-context to outvote the drift (this is the mechanism manufactured-density exploits) | ✱ |
+
+### E.6 Drainage (Claims 44–52)
+
+| # | Claim | Status |
+|---|---|---|
+| 44 | The corpus as terrain: dense regions are valleys, sparse regions are ridgelines | ✓ §8 |
+| 45 | A least-worst token is a step off the ridge; every subsequent conditional flows downhill | ✓ §8 |
+| 46 | The stream doesn't fragment — fluency machinery renders any prefix locally coherent | ✓ §8 |
+| 47 | So it *bends*: exits the intended region on a smooth curve, re-enters the nearest dense basin | ✓ §8 |
+| 48 | Recovers confidence without recovering correctness | ✓ §8 |
+| 49 | Reads *better* than the correct output would — the valley holds the most idiomatic text | ✓ §8 |
+| 50 | The signature: starts in your idiom, one soft wrong turn, proceeds fluently in a dialect no longer yours | ✓ §8 |
+| 51 | Named: drainage — directed (toward corpus mass), not random walk | ✓ §8 |
+| 52 | Under exact arithmetic: the *same* drainage path every run — reproducible descent to the mean | ✓ §8 |
+| 52a | Drainage explains why longer generations are more dangerous than shorter ones: more steps = more opportunities to step off a ridge, and no step ever climbs back deliberately | ✱ |
+| 52b | Drainage explains the "regression to tutorial" effect: unusual architectures decay toward the most-tutorialized version of themselves | ✱ |
+| 52c | The valley is not neutral — it is the *median of all public code/text*, which encodes the median's biases, the median's security posture, the median's staleness | ✱ |
+
+### E.7 The Renaming Problem (Claims 53–62)
+
+| # | Claim | Status |
+|---|---|---|
+| 53 | The identifier is reconstructed at every position, not stored as a fact | ✓ §9 |
+| 54 | Each appearance is a fresh election: one-sample context vs. million-repo prior | ✓ §9 |
+| 55 | Copy-from-context (induction) is strong but *statistical* — a weighting, not a rule | ✓ §9 |
+| 56 | Where the name is "wrong" by corpus standards, the election is genuinely contested | ✓ §9 |
+| 57 | Held dozens of times per file; it only has to lose once | ✓ §9 |
+| 58 | After one loss the flip cascades — the median name gains in-context support too | ✓ §9 |
+| 59 | The model isn't "changing it back" — it re-derives at every site with two-sided evidence | ✓ §9 |
+| 60 | Enforcement language fails structurally: rules are tokens, they shift weighting, never remove the election | ✓ §9 |
+| 61 | Installing an invariant through the context window mistakes an evidence channel for an invariant store | ✓ §9 |
+| 62 | Two outcomes only: rename to the median (pay yours-ness) or own the artifact. Rename it, or own it | ✓ §9 |
+| 62a | The same mechanism governs *style* drift, not just names: brace placement, comment density, error-handling idiom — each is an election against the corpus median | ✱ |
+| 62b | It also governs *API surface* drift: the model reaches for the corpus-standard method name over your custom wrapper's name | ✱ |
+| 62c | Larger context windows make this *worse*, not better, past a point: more generated median tokens accumulate in-window to outvote the original owned sample | ✱ |
+
+### E.8 Where Sparse Support Lives (Claims 63–74)
+
+| # | Claim | Status |
+|---|---|---|
+| 63 | Off-manifold is where all value is | ✓ §10 |
+| 64 | Scaling densifies the manifold but cannot reach what's valuable-because-rare | ✓ §10 |
+| 65 | Your codebase exists once; your conventions exist once | ✓ §10 |
+| 66 | A real security fix is off-median by construction (the bug was the dense idiom) | ✓ §10 |
+| 67 | New systems, unprecedented constraints, first-of-kind designs mint fresh off-manifold territory | ✓ §10 |
+| 68 | Specificity generates the sparse tail faster than any training run absorbs it | ✓ §10 |
+| 69 | The tail is continuously replenished by exactly the acts that constitute original work | ✓ §10 |
+| 70 | The machine is strongest where you need it least, weakest at the coordinates of everything yours | ✓ §10 |
+| 71 | The ladder: dense → thin → sparse-on-sparse → off-manifold → zero-support | ✓ §10 |
+| 72 | Zero-support: a self-invented dialect with a corpus of one document (its own definition) | ✓ §10 |
+| 73 | Dense-region inverse blindness: fused units, internal structure invisible (the "strawberry" letters) | ✓ §10 |
+| 74 | Neither regime contains *holding*: no rejection step, no confidence channel — both permanent | ✓ §10 |
+| 74a | There is a *middle* danger zone rarely discussed: "plausible-dense" — regions dense enough to be confident, wrong enough to matter (e.g., a deprecated-but-heavily-tutorialized API) | ✱ |
+| 74b | Retrieval augmentation is a density-manufacture strategy at the corpus level — it works by the same mechanism as §11.1, and fails the same way when the retrieved material is itself median | ✱ |
+| 74c | Fine-tuning on your own code is manufactured density baked into weights — durable, but it moves your convention onto the model's manifold, not the reverse; it is a scaled version of "rename to the median" | ✱ |
+
+### E.9 Containments (Claims 75–84)
+
+| # | Claim | Status |
+|---|---|---|
+| 75 | The mechanism cannot be fixed, only routed around | ✓ §11 |
+| 76 | Manufacture density: pack owned context = manual kernel-density estimation for one generation | ✓ §11.1 |
+| 77 | One carefully-assembled prompt beats a hundred corrections — corrections arrive after drainage | ✓ §11.1 |
+| 78 | One pass: manufactured density is a wasting asset; generated median tokens dilute it | ✓ §11.2 |
+| 79 | Multi-turn = a daily referendum on every identifier against everything ever written | ✓ §11.2 |
+| 80 | External certainty: put every invariant in machinery that holds things (the bolted-on rejection step) | ✓ §11.3 |
+| 81 | Ownership on arrival: integrate until positioned; the artifact exits the sampler's jurisdiction | ✓ §11.4 |
+| 82 | All four are routing, not repair | ✓ §11 |
+| 83 | Scaling improves estimates, recedes sparse regions, changes nothing structural | ✓ §11 |
+| 84 | A rejection step + confidence channel = a different machine (VDR-LLM-Prolog) — the only thing that changes the answer | ✓ §11 |
+| 84a | The four containments compose multiplicatively: density × one-pass × external-verify × ownership; skipping any one reopens the drainage at that layer | ✱ |
+| 84b | Containments have a cost: each pays in human attention (assembly, verification, integration) — the mechanism is not free to route around, which is why "just use the model" underprices real work | ✱ |
+
+### E.10 The Answer (Claims 85–88)
+
+| # | Claim | Status |
+|---|---|---|
+| 85 | The answer: the least-worst continuation of a prefix containing an error costumed as fact — smaller set, thinner support, pulled downhill, delivered with equal fluency | ✓ §12 |
+| 86 | The error is invisible because the output is uniformly confident | ✓ §12 |
+| 87 | The descent is directed because the corpus has a center of mass | ✓ §12 |
+| 88 | Everything in the registry is one intervention: an external memory of certainty around a machine that forgets its doubt one token after having it | ✓ §12 |
+
+---
+
+## Appendix F — The Two Architectural Absences
+
+*The paper's deepest structural claim, tabulated: two missing mechanisms, their consequences, and what would supply each.*
+
+| Property | No Rejection Step | No Confidence Channel |
+|---|---|---|
+| What's missing | A mechanism to check a proposed token against a constraint and refuse violations | A mechanism to carry a selection's uncertainty forward to condition later selections |
+| Where it would live | Between distribution and emission | In the context representation (token → token+confidence) |
+| Failure it causes | Cannot hold an invariant; the renaming problem; smuggled test values; violated rules | Cannot recover from a bad token; laundering; drainage; compounding |
+| User-visible symptom | "It keeps doing the thing I told it not to" | "It was confidently wrong" / "it drifted" |
+| Prompt-level workaround | None (rules are evidence, not constraints) | None (uncertainty has nowhere to go) |
+| Real containment | External verifier (bolt on the rejection step) | Manufactured density + one-pass (prevent the bad token; don't submit it again) |
+| Architectural fix | Symbolic constraint layer ([@HOWL-LLM-1-2026]) | A confidence-carrying representation (open; not in any shipping architecture) |
+| Permanent for transformers? | Yes | Yes |
+
+---
+
+## Appendix G — What Common "Fixes" Actually Do
+
+*Each popular remedy mapped to the mechanism: what it touches, what it cannot.*
+
+| Proposed fix | What it actually does | Touches the mechanism? | Residual failure |
+|---|---|---|---|
+| Lower temperature | Freezes selection to the argmax | No | Frozen drainage; same wrong turn every run |
+| Higher temperature | Adds exploration noise to selection | No | More diverse wrong turns; no confidence added |
+| Bigger model | Densifies the manifold; recedes sparse regions | No | Off-manifold work still drains; tail replenished by new work |
+| Longer context | More room for owned material — *and* more room for generated median to accumulate | Partially (both directions) | Past a point, worsens the renaming problem |
+| Stronger system prompt | Adds evidence tokens that shift weighting | No | Rules are not constraints; election remains |
+| Chain-of-thought | More tokens, more intermediate structure | No | Reasoning tokens are also laundered |
+| Self-consistency (N samples, vote) | Averages over *which* least-worst token got laundered | Partially | Each chain still drains; cost scales with N |
+| RAG / retrieval | Manufactures density at corpus level | Routes around (like §11.1) | Fails when retrieved material is itself median |
+| Fine-tuning on your code | Bakes manufactured density into weights | Routes around, durably | Moves your convention onto the manifold, not the reverse |
+| **External verifier** | **Bolts on the missing rejection step** | **Routes around, at the property level** | **Cost in verifier construction; can't verify what's unpinned** |
+| **Symbolic hybrid (VDR-LLM-Prolog)** | **Supplies rejection step by construction** | **Yes — changes the machine** | **Different architecture; different program** |
+
+---
+
+## Appendix H — Manifestations Across Domains
+
+*The single mechanism, recognized in surface forms that look unrelated.*
+
+| Surface manifestation | Domain | Off-manifold trigger | Drainage direction |
+|---|---|---|---|
+| Renamed variable | Code | Your one-repo convention | Toward corpus-standard names |
+| Style drift | Code | Your idiom (braces, comments, error handling) | Toward the median style |
+| Reverted security fix | Code | The fix is off-median by construction | Back toward the vulnerable idiom |
+| Deprecated-API suggestion | Code | Heavily-tutorialized old API | Toward the most-written, not the current |
+| Confident hallucination | Text/QA | A fact sparsely represented | Toward a plausible dense-neighbor fact |
+| "Regression to tutorial" | Architecture | Your unusual system design | Toward the most-tutorialized version of it |
+| Invented-dialect incoherence | Code | Self-defined macro language (zero-support) | Toward raw base-language corpus |
+| Identity mismatch | Biometrics | A face off the training distribution | Toward "no match" / nearest enrolled pattern |
+| Median cultural default | Any generation | An unusual specified constraint | Toward the statistical center of the corpus |
+
+*The unifying claim: these are not nine problems. They are one mechanism — a least-worst token, laundered, draining toward corpus mass — observed in nine places.*
+
+---
+
+## Appendix I — The Drainage Geometry (Extended Trace)
+
+*A finer-grained walk than the paper's Appendix B, annotating the confidence the model has versus the confidence the context records.*
+
+| Token position | Region | Model's actual confidence | Recorded in context as | Gap | Consequence |
+|---|---|---|---|---|---|
+| n | Owned pattern, packed | High (manufactured) | Certain | None | Correct token |
+| n+1 | Edge of owned pattern | Falling | Certain | Opening | Correct but fragile |
+| n+2 | Off-manifold — the unusual guard | Low (smear) | **Certain** | **Maximal** | Least-worst emitted; laundering occurs here |
+| n+3 | Sparse-on-sparse | Lower | Certain | Compounding | Conditions hard on n+2's error |
+| n+4 | Bending toward basin | Rising (wrong basin) | Certain | Closing — wrongly | Fluent; incorrect |
+| n+5… | Dense basin (wrong dialect) | High | Certain | None | Confident median continuation |
+
+*The "Gap" column is the paper's whole subject: the divergence between what the model actually knew and what the context recorded it as knowing. The gap opens at the off-manifold token, is maximal at the moment of laundering, and closes — falsely — as the stream reaches the wrong valley. The model never sees the gap, because the gap lives in exactly the confidence channel the architecture lacks.*
+
+---
+
+## Appendix J — Diagnostic Signatures
+
+*How to recognize each stage of the mechanism in real output — a field guide.*
+
+| Signature in output | Stage | What it indicates | Response |
+|---|---|---|---|
+| Correct, in-idiom, unremarkable | Landslide | Dense support; safe | Proceed |
+| First unfamiliar-but-plausible token | Thin support | Approaching a ridge | Increase manufactured density if this region matters |
+| A convention or name subtly not-yours | Least-worst emitted | Laundering just occurred | Stop; do not continue the turn |
+| Fluent continuation in a slightly-off dialect | Drainage underway | The stream has bent | Discard from the wrong turn; regenerate with more owned context |
+| Confident, idiomatic, wrong-for-your-system | In the wrong valley | Full drainage complete | Do not correct in-turn (corrections arrive post-drainage); restart one-pass |
+| The model "won't stop" doing X despite instruction | Repeated election loss | Rule-as-evidence failing | Rename to median OR remove from sampler (own it) |
+| Confident wrong fact | Sparse emission in text | Hallucination atom | Verify externally; the model cannot flag it |
+
+---
+
+## Appendix K — The Cost Ledger of Containment
+
+*Routing around the mechanism is not free. Each containment's cost, in the currency it actually charges.*
+
+| Containment | Cost currency | Who pays | Why it can't be automated away |
+|---|---|---|---|
+| Manufacture density | Assembly effort — gathering owned context, worked examples | The human with position | Knowing *what* is load-bearing to include is a judgment (which patterns, which names) |
+| One pass | Foregone convenience — no iterative chat refinement | The human | Requires discipline against the natural multi-turn workflow; the erosion is invisible per-turn |
+| External certainty | Verifier construction — tests, types, invariants, generators | The human, upfront | The verifier encodes what "correct" means; the model can't supply this (it's the missing rejection step) |
+| Ownership on arrival | Integration labor — reading, adjusting, debugging until positioned | The human | Position is built only by contact ([@HOWL-ENG-3-2026]); it cannot be delegated to the tool that lacks it |
+
+*The ledger's summary: every containment charges the same underlying currency — a human holding position and certainty that the machine cannot hold. This is why the low-token/next-token problem is, ultimately, an argument about where humans remain load-bearing, not merely a fact about samplers.*
+
+---
+
+## Appendix L — Boundary Conditions and Honest Limits
+
+*Where the paper's claims stop, stated so they can be tested.*
+
+| Claim | Holds when | Does not claim |
+|---|---|---|
+| Prior-token dominance | Local conditioning, general case | That long-range context never redirects — it can, where in-context evidence is dense enough |
+| Laundering is total | Current transformer architectures | That no future architecture could carry confidence — it could; that's the point of §11's boundary |
+| Drainage is directed toward corpus mass | Off-manifold generation | That every drift is harmful — drift toward the median is *helpful* when the median is what you wanted |
+| Determinism ≠ cure | Proven via exact arithmetic | That determinism is useless — it is a debugging and reproducibility asset |
+| Sparse tail is inexhaustible | As long as original work mints new specificity | That scaling is pointless — it genuinely helps on-manifold work |
+| Permanent for the architecture | Transformer forward pass, no rejection/confidence mechanism | That it's permanent for *all* architectures — VDR-LLM-Prolog is the counter-construction |
+
+---
+
+## Appendix M — Registry Cross-Reference
+
+| Concept in this paper | Nearest treatment elsewhere | Relationship |
+|---|---|---|
+| Ballistic generation (the macro view of drainage) | [@HOWL-LLM-3-2026] | This paper is the token-level cause |
+| Cannot be fixed with more LLM | [@HOWL-LLM-4-2026] | This paper names the specific unfixable (no confidence channel) |
+| What the model cannot do / knows it can't | [@HOWL-LLM-5-2026] | The confidence-channel absence is *why* it cannot know |
+| Session coherence engineering | [@HOWL-LLM-6-2026] | Manufactured density as a session-structuring practice |
+| Decoherency tumbler (per-edit erosion) | [@HOWL-LLM-7-2026] | Per-token cause of per-edit erosion |
+| Rejection step by construction | [@HOWL-LLM-1-2026], VDR-LLM-Prolog series | The architectural fix outside this paper's scope |
+| Exact arithmetic / determinism | [@HOWL-VDR-1-2026]+ | The experiments proving determinism ≠ cure |
+| Regression to the vulnerable mean | [@HOWL-COMP-14-2026] | Drainage applied to security fixes |
+| Manufactured density, one-pass, ownership | [@HOWL-ENG-3-2026] App. F | Full practice specification of §11 |
+| Stillness vs. tumbling | [@HOWL-COMP-14-2026] | Ownership-on-arrival is entry into stillness |

@@ -1,10 +1,10 @@
 {
-  "created": "2026-05-28T15:11:15.522506+00:00",
-  "modified": "2026-05-28T15:11:15.629061+00:00",
-  "id": 20431667,
-  "conceptrecid": "20431666",
+  "created": "2026-07-11T01:20:16.005082+00:00",
+  "modified": "2026-07-11T01:20:16.118476+00:00",
+  "id": 21303618,
+  "conceptrecid": "21303617",
   "metadata": {
-    "title": "The Agentic Decoherency Tumbler Problem",
+    "title": "The Low-Token / Next-Token Problem",
     "publication_date": "2026-04",
     "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-7-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-8-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -69,59 +69,59 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-7-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-8-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20431667",
-      "recid": 20431667
+      "doi": "10.5281/zenodo.21303618",
+      "recid": 21303618
     }
   },
-  "title": "The Agentic Decoherency Tumbler Problem",
+  "title": "The Low-Token / Next-Token Problem",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20431667",
-    "html": "https://zenodo.org/deposit/20431667",
+    "self": "https://zenodo.org/api/deposit/depositions/21303618",
+    "html": "https://zenodo.org/deposit/21303618",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20431667/files",
-    "bucket": "https://zenodo.org/api/files/ed000174-1e60-4c06-bdc8-1fb5b9d3b38f",
-    "thumb250": "https://zenodo.org/record/20431667/thumb250",
+    "files": "https://zenodo.org/api/deposit/depositions/21303618/files",
+    "bucket": "https://zenodo.org/api/files/4081575e-46f7-4411-afd1-f0c5e88e202c",
+    "thumb250": "https://zenodo.org/record/21303618/thumb250",
     "thumbs": {
-      "10": "https://zenodo.org/record/20431667/thumb10",
-      "50": "https://zenodo.org/record/20431667/thumb50",
-      "100": "https://zenodo.org/record/20431667/thumb100",
-      "250": "https://zenodo.org/record/20431667/thumb250",
-      "750": "https://zenodo.org/record/20431667/thumb750",
-      "1200": "https://zenodo.org/record/20431667/thumb1200"
+      "10": "https://zenodo.org/record/21303618/thumb10",
+      "50": "https://zenodo.org/record/21303618/thumb50",
+      "100": "https://zenodo.org/record/21303618/thumb100",
+      "250": "https://zenodo.org/record/21303618/thumb250",
+      "750": "https://zenodo.org/record/21303618/thumb750",
+      "1200": "https://zenodo.org/record/21303618/thumb1200"
     },
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20431667",
-    "latest_draft_html": "https://zenodo.org/deposit/20431667",
-    "publish": "https://zenodo.org/api/deposit/depositions/20431667/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20431667/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20431667/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20431667/actions/newversion"
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/21303618",
+    "latest_draft_html": "https://zenodo.org/deposit/21303618",
+    "publish": "https://zenodo.org/api/deposit/depositions/21303618/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/21303618/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/21303618/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/21303618/actions/newversion"
   },
-  "record_id": 20431667,
+  "record_id": 21303618,
   "owner": 1539729,
   "files": [
     {
-      "id": "9fb87072-b587-404e-8ab5-1f6ad6bd9277",
-      "filename": "!manuscript.pdf",
-      "filesize": 65433,
-      "checksum": "9d45eb63e2f10eede68b1fa9ff697262",
+      "id": "ab9f8e02-31da-41a0-a2f0-497e0b5d9842",
+      "filename": "HOWL-LLM-8-2026.zip",
+      "filesize": 175990,
+      "checksum": "dff8f9a94fea19605fa46e7f3cafc0c3",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20431667/files/9fb87072-b587-404e-8ab5-1f6ad6bd9277",
-        "download": "https://zenodo.org/api/records/20431667/draft/files/!manuscript.pdf/content"
+        "self": "https://zenodo.org/api/deposit/depositions/21303618/files/ab9f8e02-31da-41a0-a2f0-497e0b5d9842",
+        "download": "https://zenodo.org/api/records/21303618/draft/files/HOWL-LLM-8-2026.zip/content"
       }
     },
     {
-      "id": "862d12ff-0c88-4b9a-a02a-84be6cb5f557",
-      "filename": "HOWL-LLM-7-2026.zip",
-      "filesize": 113063,
-      "checksum": "50a855aa328f92efe7a88105e1eb6af1",
+      "id": "34de745a-9789-46ba-9582-1ca345205a7f",
+      "filename": "!manuscript.pdf",
+      "filesize": 125028,
+      "checksum": "35cec3a9bce2bef9ef35d1768b2d1e32",
       "links": {
-        "self": "https://zenodo.org/api/deposit/depositions/20431667/files/862d12ff-0c88-4b9a-a02a-84be6cb5f557",
-        "download": "https://zenodo.org/api/records/20431667/draft/files/HOWL-LLM-7-2026.zip/content"
+        "self": "https://zenodo.org/api/deposit/depositions/21303618/files/34de745a-9789-46ba-9582-1ca345205a7f",
+        "download": "https://zenodo.org/api/records/21303618/draft/files/!manuscript.pdf/content"
       }
     }
   ],
