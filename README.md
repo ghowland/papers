@@ -89,6 +89,7 @@
 | **[HOWL-LLM-5-2026](papers/papers/LLM/HOWL-LLM-5-2026/manuscript.md)** | **What I Cannot Do** | How I Know the Limits of What I Am. |
 | **[HOWL-LLM-6-2026](papers/papers/LLM/HOWL-LLM-6-2026/manuscript.md)** | **Session Coherence Structuring for Exploration and High Quality Extraction** | Context Window Engineering for Structural Discovery with Large Language Models. |
 | **[HOWL-LLM-7-2026](papers/papers/LLM/HOWL-LLM-7-2026/manuscript.md)** | **The Agentic Decoherency Tumbler Problem** | How Repeated Machine-Generated Code Modifications Erode Structural Coherence in Mature Software Systems. |
+| **[HOWL-LLM-8-2026](papers/papers/LLM/HOWL-LLM-8-2026/manuscript.md)** | **The Low-Token / Next-Token Problem** | Why the Weakest Choice Governs the Strongest Weight. |
 
 ---
 
