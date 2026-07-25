@@ -124,7 +124,7 @@
 
 ---
 
-## Discrete Calculus Integer and Exact Rational Arithmetic: VDR,  Value, Denominator, Remainder
+## Discrete Integer Calculus and Exact Rational Arithmetic: VDR:  Value, Denominator, Remainder
 *Finite Exact Computation in Irreducible Triple Form.*
 
 **VDR Project Page**: **[VDR Project Page](papers/papers/VDR/)** - Start Here: After the directory is a full overview of the project.
