@@ -1,0 +1,130 @@
+{
+  "created": "2026-08-12T09:26:02.065309+00:00",
+  "modified": "2026-08-12T09:26:02.284427+00:00",
+  "id": 21901397,
+  "conceptrecid": "21901396",
+  "metadata": {
+    "title": "Human Trust Based Federated Publication",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-15-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-15-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.21901397",
+      "recid": 21901397
+    }
+  },
+  "title": "Human Trust Based Federated Publication",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/21901397",
+    "html": "https://zenodo.org/deposit/21901397",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/21901397/files",
+    "bucket": "https://zenodo.org/api/files/b3530e51-0e56-46e6-ad79-8be9c2ba29cc",
+    "thumb250": "https://zenodo.org/record/21901397/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/21901397/thumb10",
+      "50": "https://zenodo.org/record/21901397/thumb50",
+      "100": "https://zenodo.org/record/21901397/thumb100",
+      "250": "https://zenodo.org/record/21901397/thumb250",
+      "750": "https://zenodo.org/record/21901397/thumb750",
+      "1200": "https://zenodo.org/record/21901397/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/21901397",
+    "latest_draft_html": "https://zenodo.org/deposit/21901397",
+    "publish": "https://zenodo.org/api/deposit/depositions/21901397/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/21901397/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/21901397/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/21901397/actions/newversion"
+  },
+  "record_id": 21901397,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "68f9b451-e4f1-4014-b003-fb1a811c76b5",
+      "filename": "HOWL-COMP-15-2026.zip",
+      "filesize": 2012068,
+      "checksum": "062118e3848270c660c5e38180f0b80d",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/21901397/files/68f9b451-e4f1-4014-b003-fb1a811c76b5",
+        "download": "https://zenodo.org/api/records/21901397/draft/files/HOWL-COMP-15-2026.zip/content"
+      }
+    },
+    {
+      "id": "a3ce992f-fe19-4b2b-8d71-9013fd302082",
+      "filename": "!manuscript.pdf",
+      "filesize": 145339,
+      "checksum": "1c8fd417159a6370a4274f9832ba0b9b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/21901397/files/a3ce992f-fe19-4b2b-8d71-9013fd302082",
+        "download": "https://zenodo.org/api/records/21901397/draft/files/!manuscript.pdf/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
