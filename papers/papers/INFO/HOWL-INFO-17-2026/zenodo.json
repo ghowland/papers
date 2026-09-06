@@ -1,0 +1,70 @@
+{
+  "title": "The General Theory of State Change",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Codd normalized the form of data. He identified what all stored information has in common, made that common structure the only structure, and stated falsifiable rules that test whether a system genuinely realizes the model. The behavioral half of computing never received the equivalent treatment. Applications still consist of bespoke verbs: hand-written functions that each privately validate, mutate, and log state. The costs practitioners treat as inevitable \u2014 duplicated validation, integration defects between features, unauditable state, decision layers that disagree with the rules they act under \u2014 are all costs of verbs being many, private, and mutually ignorant.\n\nThis paper states the missing symmetric theory: a normalization of behavior. The claim divides into three parts of different kinds. The principles are theory: twelve statements about what state change is, culminating in one sentence \u2014 every change of state is a guarded, staged, recorded, scoreable movement of quantities between addresses, interpreted by a single closed engine. The primitive set is engineering: a concrete set of record shapes, presented in full, that realizes the principles and is directly implementable by others. The rules are the test: thirteen falsifiable rules, paralleling Codd's, that determine whether an arbitrary primitive set genuinely realizes the principles rather than realizing them in name. The paper closes by demonstrating that the same primitive set expresses domains as distant as enterprise resource planning, agent simulation at the depth of Dwarf Fortress, and declarative infrastructure orchestration, because under the theory a domain is an assignment of meaning to records, not a body of code.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "information"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-17-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-17-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

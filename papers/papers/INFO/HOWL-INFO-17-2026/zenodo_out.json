@@ -1,0 +1,130 @@
+{
+  "created": "2026-09-06T07:21:00.736579+00:00",
+  "modified": "2026-09-06T07:21:00.791442+00:00",
+  "id": 22493091,
+  "conceptrecid": "22493087",
+  "metadata": {
+    "title": "The General Theory of State Change",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-17-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-17-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.22493091",
+      "recid": 22493091
+    }
+  },
+  "title": "The General Theory of State Change",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/22493091",
+    "html": "https://zenodo.org/deposit/22493091",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/22493091/files",
+    "bucket": "https://zenodo.org/api/files/bc5fb518-d8bb-4f1a-b50d-7e207b48a73f",
+    "thumb250": "https://zenodo.org/record/22493091/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/22493091/thumb10",
+      "50": "https://zenodo.org/record/22493091/thumb50",
+      "100": "https://zenodo.org/record/22493091/thumb100",
+      "250": "https://zenodo.org/record/22493091/thumb250",
+      "750": "https://zenodo.org/record/22493091/thumb750",
+      "1200": "https://zenodo.org/record/22493091/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/22493091",
+    "latest_draft_html": "https://zenodo.org/deposit/22493091",
+    "publish": "https://zenodo.org/api/deposit/depositions/22493091/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/22493091/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/22493091/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/22493091/actions/newversion"
+  },
+  "record_id": 22493091,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "5e6f06d9-77ad-4ec1-b9d5-89766eb35b87",
+      "filename": "!manuscript.pdf",
+      "filesize": 134032,
+      "checksum": "d6419e5a7a6093bf7cde84702bdff516",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/22493091/files/5e6f06d9-77ad-4ec1-b9d5-89766eb35b87",
+        "download": "https://zenodo.org/api/records/22493091/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "6ed09d0c-1c40-46be-9674-00cc151749ba",
+      "filename": "HOWL-INFO-17-2026.zip",
+      "filesize": 195032,
+      "checksum": "623bb69f473190315bce690519f2b03b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/22493091/files/6ed09d0c-1c40-46be-9674-00cc151749ba",
+        "download": "https://zenodo.org/api/records/22493091/draft/files/HOWL-INFO-17-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
