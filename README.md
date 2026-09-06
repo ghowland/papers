@@ -91,6 +91,7 @@
 | **[HOWL-LLM-6-2026](papers/papers/LLM/HOWL-LLM-6-2026/manuscript.md)** | **Session Coherence Structuring for Exploration and High Quality Extraction** | Context Window Engineering for Structural Discovery with Large Language Models. |
 | **[HOWL-LLM-7-2026](papers/papers/LLM/HOWL-LLM-7-2026/manuscript.md)** | **The Agentic Decoherency Tumbler Problem** | How Repeated Machine-Generated Code Modifications Erode Structural Coherence in Mature Software Systems. |
 | **[HOWL-LLM-8-2026](papers/papers/LLM/HOWL-LLM-8-2026/manuscript.md)** | **The Low-Token / Next-Token Problem** | Why the Weakest Choice Governs the Strongest Weight. |
+| **[HOWL-LLM-9-2026](papers/papers/LLM/HOWL-LLM-9-2026/manuscript.md)** | **Softmax Is VDR** | The Partition of Unity Was Exact Before We Rounded It. |
 
 ---
 

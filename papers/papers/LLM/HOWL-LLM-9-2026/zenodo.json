@@ -1,0 +1,70 @@
+{
+  "title": "Softmax Is VDR",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Softmax turns a list of scores into a probability distribution. Every implementation in every deployed language model computes a distribution that sums to approximately one \u2014 0.9999999997, 1.0000000002 \u2014 and the field has treated this as unavoidable, because the exponentials in softmax are transcendental and transcendentals cannot be stored exactly in floating point. This paper shows the near-miss is not a property of softmax. It is a property of floating point. Softmax has an exact partition-of-unity identity that holds regardless of the values of the exponentials, and an exact-arithmetic system that preserves the shared denominator through the sum recovers that identity exactly: the outputs sum to the integer one, structurally, not approximately. We show this is not a coincidence but a structural fact \u2014 softmax is a normalization, normalization is the VDR triple [Value, Denominator, Remainder], and floating point breaks softmax precisely by fragmenting the one shared denominator that makes the identity fire. The result is demonstrated in the vdr-math library, where a full transformer runs in exact arithmetic and every softmax sums to exactly one. The contribution is not a faster or more precise softmax. It is the observation that softmax was already exact, and we had been rounding away the exactness at the last step.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "llm"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-9-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-9-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}
