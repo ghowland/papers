@@ -64,6 +64,8 @@
 | **[HOWL-COMP-12-2026](papers/papers/COMP/HOWL-COMP-12-2026/manuscript.md)** | **Closed Loop Architecture** | A Complete OS in Four Flat Lists. |
 | **[HOWL-COMP-13-2026](papers/papers/COMP/HOWL-COMP-13-2026/manuscript.md)** | **Runtime Struct Navigation in Compiled Languages Without Reflection or Code Generation** | Comptime Struct Registry. |
 | **[HOWL-COMP-14-2026](papers/papers/COMP/HOWL-COMP-14-2026/manuscript.md)** | **Enterprise Toy Composition** | Stillness versus Tumbling: A Production Method for Building and Maintaining Enterprise Software with Pattern-Matching Machines. |
+| **[HOWL-COMP-15-2026](papers/papers/COMP/HOWL-COMP-15-2026/manuscript.md)** | **Human Trust Based Federated Publication** | Text Distribution Without Global Identity. |
+| **[HOWL-COMP-16-2026](papers/papers/COMP/HOWL-COMP-16-2026/manuscript.md)** | **Parallelism as a Consequence of Normalized Behavior** | The Frozen Frame: One Verb, One Window, One Writer. |
 
 ---
 
