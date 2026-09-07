@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-COMP-1-2026] → ... → [@HOWL-COMP-12-2026] → [@HOWL-INFO-11-2026] → ... → [@HOWL-INFO-14-2026] → [@HOWL-INFO-15-2026] → [@HOWL-INFO-16-2026] → [@HOWL-INFO-17-2026] → [@HOWL-COMP-16-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.22585474
 
 **Date:** September 2026
 
@@ -304,4 +304,4 @@ The shared gap, stated once: none of the five has **nonsubversion**. Each guaran
 
 ---
 
-*HOWL-COMP-15-2026. Parallelism as a Consequence of Normalized Behavior: The Frozen Frame — One Verb, One Window, One Writer.*
+*HOWL-COMP-16-2026. Parallelism as a Consequence of Normalized Behavior: The Frozen Frame — One Verb, One Window, One Writer.*

@@ -1,4 +1,4 @@
-# Human Trust Based Federated Publication
+# Parallelism as a Consequence of Normalized Behavior
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,13 +6,9 @@
 
 ## Abstract
 
-Current federated publication systems bind a person to a global identity, carry a record of the path an item travelled, and require a directory or a registry for a server to participate. Each of these properties has a cost. A global identity makes a writer addressable across every server. A path record makes the first server of an item identifiable. A directory makes participation a thing that a third party can grant and withdraw.
+A prior paper in this series, *The General Theory of State Change* [@HOWL-INFO-17-2026], normalized behavior: it reduced all state change to one verb — a guarded, staged, recorded movement of quantities between addresses — applied by a single closed interpreter with no path around it. That paper argued its rules from correctness: whole-set atomicity, a complete audit ledger, validation that cannot be bypassed.
 
-This paper describes Human Trust Based Federated Publication, a protocol in which none of the three properties is present. A link between two servers is made by two people who exchange public keys outside the program. There is no directory and no registry. An item carries the writer handle, a topic string, a subject, a body, and a creation time, and carries nothing else. Loop control uses a hash that each server computes for itself from those fields and never transmits. A server that receives an item and publishes it again offers it onward as its own publication with a new local sequence number, so no path record is needed and none exists.
-
-The result is a network in which the unit of trust is a pair of administrators, the unit of routing is a topic string that nobody owns, and the unit of storage is a fixed window that each server sets for itself. Growth in the number of servers makes the network more selective rather than larger, because each administrator accepts only the topics that the members of that server read.
-
-The protocol requires one HTTP endpoint, one hash construction, one signature construction, one topic grammar, and one integer sequence. This paper gives the complete wire specification, the conformance requirements, and the test vectors necessary for an independent implementation.
+This paper states a consequence the prior paper left implicit. Two of its rules — staged delivery and nonsubversion — jointly determine not only *what* a change is but *when memory changes*. Any realization honoring both rules acquires a two-phase execution structure: a serialized mutation window in which the single executor applies all staged change, followed by a read phase in which the entire world is immutable. This structure, which we name the frozen frame, is a complete memory model, a parallelism strategy, and an elimination of concurrency overhead — obtained as a corollary rather than built as a feature. Four of the five components of the concurrency tax [@HOWL-INFO-14-2026] go to zero structurally; the fifth becomes an explicit, tunable data-layout variable, which is exactly the variable data-oriented design practice knows how to tune. The paper derives the corollary, accounts for the tax, describes the execution strategies the freeze permits, draws the boundary of what does not become data, states the costs honestly, and closes with falsifiable claims. The claims are of three kinds, tagged throughout: the phase structure and its properties are theory, holding for any realization of the rules; the batching, placement, and thread substrate described are engineering, illustrative of one running realization; the closing claims are the test.
 
 ---
 
@@ -52,14 +48,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-COMP-15-2026,
-  title={ Human Trust Based Federated Publication },
+@article{ HOWL-COMP-16-2026,
+  title={ Parallelism as a Consequence of Normalized Behavior },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.21901397},
-  url = {https://zenodo.org/record/21901397},
-  note={Howland Archive: HOWL-COMP-15-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.22585474},
+  url = {https://zenodo.org/record/22585474},
+  note={Howland Archive: HOWL-COMP-16-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
