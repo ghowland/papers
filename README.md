@@ -343,4 +343,5 @@
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[HOWL-GAME-1-2026](papers/papers/GAME/HOWL-GAME-1-2026/manuscript.md)** | **A Structural Taxonomy of Player Experience in Game Design** | First Pass. |
+| **[HOWL-GAME-2-2026](papers/papers/GAME/HOWL-GAME-2-2026/manuscript.md)** | **Increasing True Risk by Banning Jump and Other Corruption Gameplay Verbs** | Why Removing a Verb Can Make Every Other System Stronger. |
 

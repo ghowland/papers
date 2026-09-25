@@ -1,0 +1,129 @@
+{
+  "created": "2026-05-07T04:53:02.060533+00:00",
+  "modified": "2026-05-07T04:53:02.195670+00:00",
+  "id": 20062618,
+  "conceptrecid": "20062438",
+  "conceptdoi": "10.5281/zenodo.20062438",
+  "metadata": {
+    "title": "A Structural Taxonomy of Player Experience in Game Design: First Pass",
+    "description": "<div>\n<div>This document enumerates the structural primitives of player experience in game design. It classifies what the player does, decides, learns, manages, and is gated by &mdash; not what they see, hear, or feel emotionally. Aesthetics (visual style, audio design, narrative content, mood) are out of scope. They matter for the total product but they are not gameplay.</div>\n<br>\n<div>The taxonomy follows a three-axis framework: mechanisms (what the game presents and what the player does), properties (contracts about experience quality), and principles (rules governing design assembly). This framework is adapted from infrastructure systems taxonomy [@HOWL-INFRA-1-2026] and application architecture taxonomy [@HOWL-COMP-9-2026], which demonstrated that the three-axis separation &mdash; mechanism, property, principle as distinct kinds of thing &mdash; prevents the conflation that makes design reasoning imprecise.</div>\n<br>\n<div>Game design vocabulary is in worse shape than infrastructure vocabulary. \"Difficulty\" names a mechanism (a difficulty selector), a property (the game is hard), and a principle (games should be appropriately challenging). \"Progression\" names a mechanism (an XP bar), a property (the player advances), and a principle (reward investment over time). \"Balance\" is used for everything. The qualification discipline from the infrastructure taxonomy &mdash; always say \"difficulty mechanism\" vs \"difficulty property\" vs \"difficulty-related principle\" &mdash; is needed here.</div>\n</div>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "game"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/GAME/HOWL-GAME-1-2026/manuscript.md",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-GAME-1-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.20062618",
+      "recid": 20062618
+    }
+  },
+  "title": "A Structural Taxonomy of Player Experience in Game Design: First Pass",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/20062618",
+    "html": "https://zenodo.org/deposit/20062618",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/20062618/files",
+    "bucket": "https://zenodo.org/api/files/27c06a0c-9206-43ad-8476-bbcb84a7b154",
+    "thumb250": "https://zenodo.org/record/20062618/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/20062618/thumb10",
+      "50": "https://zenodo.org/record/20062618/thumb50",
+      "100": "https://zenodo.org/record/20062618/thumb100",
+      "250": "https://zenodo.org/record/20062618/thumb250",
+      "750": "https://zenodo.org/record/20062618/thumb750",
+      "1200": "https://zenodo.org/record/20062618/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/20062618",
+    "latest_draft_html": "https://zenodo.org/deposit/20062618",
+    "publish": "https://zenodo.org/api/deposit/depositions/20062618/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/20062618/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/20062618/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/20062618/actions/newversion"
+  },
+  "record_id": 20062618,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "0093dff8-4e52-4e19-93b7-82356faac834",
+      "filename": "!manuscript.pdf",
+      "filesize": 1703404,
+      "checksum": "ab142f5ed6e24be87ac78b3076a331bd",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20062618/files/0093dff8-4e52-4e19-93b7-82356faac834",
+        "download": "https://zenodo.org/api/records/20062618/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "d4795ca6-ec41-4d50-8464-07ad976e06be",
+      "filename": "HOWL-GAME-1-2026.zip",
+      "filesize": 3141703,
+      "checksum": "1e2f1f8c2ca9f4ca104f2cc5bc50dfe2",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/20062618/files/d4795ca6-ec41-4d50-8464-07ad976e06be",
+        "download": "https://zenodo.org/api/records/20062618/draft/files/HOWL-GAME-1-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
