@@ -3,11 +3,11 @@
 
 **Registry:** [@HOWL-GAME-2-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.22964296
 
 **Date:** September 2026
 
-**Domain:** Applied Philosophy
+**Domain:** Game Design Theory / Systems Design
 
 **AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.8. 
 
