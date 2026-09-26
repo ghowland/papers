@@ -94,6 +94,7 @@
 | **[HOWL-LLM-7-2026](papers/papers/LLM/HOWL-LLM-7-2026/manuscript.md)** | **The Agentic Decoherency Tumbler Problem** | How Repeated Machine-Generated Code Modifications Erode Structural Coherence in Mature Software Systems. |
 | **[HOWL-LLM-8-2026](papers/papers/LLM/HOWL-LLM-8-2026/manuscript.md)** | **The Low-Token / Next-Token Problem** | Why the Weakest Choice Governs the Strongest Weight. |
 | **[HOWL-LLM-9-2026](papers/papers/LLM/HOWL-LLM-9-2026/manuscript.md)** | **Softmax Is VDR** | The Partition of Unity Was Exact Before We Rounded It. |
+| **[HOWL-LLM-10-2026](papers/papers/LLM/HOWL-LLM-10-2026/manuscript.md)** | **The Cardinality Ceiling** | Why Agentic LLM Output Succeeds on Low-Constraint Requests and Degrades as Constraint Cardinality Rises. |
 
 ---
 

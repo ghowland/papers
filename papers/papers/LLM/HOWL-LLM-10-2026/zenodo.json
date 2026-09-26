@@ -1,0 +1,70 @@
+{
+  "title": "The Cardinality Ceiling",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "This paper describes a process as it is. It makes one descriptive claim: agentic large language model (LLM) output is well-suited to requests that carry few simultaneously-binding constraints, and it degrades in a predictable, enumerable way as the number of such constraints rises. The paper does not argue that practitioners should change their behavior or that products should change their design. It provides a mechanical account of why the degradation occurs, an account of why the degradation is difficult to observe in current practice, and an ordered list of the specific failure modes that appear as constraint cardinality increases. The account is grounded in first-person practitioner experience, including a documented multi-week loss and its later one-day resolution under changed constraints, and in a live design session that produced several of the enumerated failures in real time.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "llm"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-10-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-10-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

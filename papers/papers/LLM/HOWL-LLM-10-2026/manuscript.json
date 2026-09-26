@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "The Cardinality Ceiling",
+    "registry_id": "HOWL-LLM-10-2026",
+    "series_path": "",
+    "doi": "10.5281/zenodo.22978497",
+    "abstract": "This paper describes a process as it is. It makes one descriptive claim: agentic large language model (LLM) output is well-suited to requests that carry few simultaneously-binding constraints, and it degrades in a predictable, enumerable way as the number of such constraints rises. The paper does not argue that practitioners should change their behavior or that products should change their design. It provides a mechanical account of why the degradation occurs, an account of why the degradation is difficult to observe in current practice, and an ordered list of the specific failure modes that appear as constraint cardinality increases. The account is grounded in first-person practitioner experience, including a documented multi-week loss and its later one-day resolution under changed constraints, and in a live design session that produced several of the enumerated failures in real time.",
+    "dependencies": [],
+    "raw_content_preview": "# The Cardinality Ceiling ## Why Agentic LLM Output Succeeds on Low-Constraint Requests and Degrades as Constraint Cardinality Rises  **Registry:** [@HOWL-LLM-10-2026]  **DOI:** 10.5281/zenodo.2297849..."
+}
