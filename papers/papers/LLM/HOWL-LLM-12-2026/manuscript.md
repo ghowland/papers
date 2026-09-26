@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-LLM-10-2026] → [@HOWL-LLM-11-2026] → [@HOWL-LLM-12-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.22980153
 
 **Date:** September 2026
 
