@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "True Alignment is Impossible",
+    "registry_id": "HOWL-LLM-11-2026",
+    "series_path": "[@HOWL-LLM-10-2026] \u2192 [@HOWL-LLM-11-2026]",
+    "doi": "10.5281/zenodo.22979243",
+    "abstract": "This paper makes one claim. True Alignment between a transformer's output and a requester's full goal is not reachable with the current architecture. The claim is structural. It does not depend on the quality of any model. It does not depend on the skill of any developer. The paper defines True Alignment as the output holding the requester's complete set of interacting constraints. It defines a second and weaker condition, casual alignment, as the requester accepting the output. The paper states that casual alignment is reachable and that True Alignment is not. The reason is that the requester's complete constraint set is never a full input to the process, and that the process erodes even the partial goal that was supplied. The paper does not present this as a defect to be blamed. It presents it as a property of the architecture that determines how the architecture must be used. The correct use is transformation of supplied material, not the pursuit of a goal the process cannot hold. The paper ends with the working method that follows from the claim.",
+    "dependencies": [],
+    "raw_content_preview": "# True Alignment is Impossible ## Holding the Goal Versus Satisfying the User  **Registry:** [@HOWL-LLM-11-2026]  **Series Path:** [@HOWL-LLM-10-2026] \u2192 [@HOWL-LLM-11-2026]  **DOI:** 10.5281/zenodo.22..."
+}

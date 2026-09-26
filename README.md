@@ -95,6 +95,7 @@
 | **[HOWL-LLM-8-2026](papers/papers/LLM/HOWL-LLM-8-2026/manuscript.md)** | **The Low-Token / Next-Token Problem** | Why the Weakest Choice Governs the Strongest Weight. |
 | **[HOWL-LLM-9-2026](papers/papers/LLM/HOWL-LLM-9-2026/manuscript.md)** | **Softmax Is VDR** | The Partition of Unity Was Exact Before We Rounded It. |
 | **[HOWL-LLM-10-2026](papers/papers/LLM/HOWL-LLM-10-2026/manuscript.md)** | **The Cardinality Ceiling** | Why Agentic LLM Output Succeeds on Low-Constraint Requests and Degrades as Constraint Cardinality Rises. |
+| **[HOWL-LLM-11-2026](papers/papers/LLM/HOWL-LLM-11-2026/manuscript.md)** | **True Alignment is Impossible** | Holding the Goal Versus Satisfying the User. |
 
 ---
 
