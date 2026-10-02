@@ -13,7 +13,7 @@
 
 **Status:** Proposal — Not submitted to any standards body. Published for public review and discussion.
 
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.5 Sonnet. 
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.6 Opus. 
 
 ---
 
@@ -65,12 +65,21 @@ The address `182.17.0.53` is an IPv4 address. It is also an IPv4-64 address with
 
 When the upper bits are nonzero, additional octets appear on the left:
 
-| Address | Octets | Meaning |
-|---|---|---|
-| `182.17.0.53` | 4 | Lower 32 bits only. Upper 32 bits are zero. |
-| `1.182.17.0.53` | 5 | Upper byte is 1, lower 32 bits are 182.17.0.53 |
-| `3.12.182.17.0.53` | 6 | Upper 16 bits are 3.12, lower 32 bits are 182.17.0.53 |
-| `0.0.3.12.182.17.0.53` | 8 | Full 64-bit representation |
+```
+182.17.0.53            4 octets
+  Lower 32 bits only. Upper 32 bits are zero.
+
+1.182.17.0.53          5 octets
+  Upper byte is 1.
+  Lower 32 bits are 182.17.0.53.
+
+3.12.182.17.0.53       6 octets
+  Upper 16 bits are 3.12.
+  Lower 32 bits are 182.17.0.53.
+
+0.0.3.12.182.17.0.53   8 octets
+  Full 64-bit representation.
+```
 
 Leading zero octets may be omitted. The shortest unambiguous form is the canonical form.
 
@@ -84,15 +93,21 @@ IPv6's 128-bit space is 2⁶⁴ times larger than IPv4-64. The additional space 
 
 ### 3.5 Comparison to IPv6 Notation
 
-| Property | IPv4 | IPv6 | IPv4-64 |
-|---|---|---|---|
-| Example address | `192.168.1.1` |  |  |
-| Example address |  | `2001:0db8:85a3::8a2e:0370:7334` |  |
-| Example address |  |  | `5.12.192.168.1.1` |
-| Notation | Dotted decimal | Colon hexadecimal | Dotted decimal |
-| Maximum characters | 15 | 39 | 23 |
-| Can dictate over phone | Yes | No | Yes |
-| Existing IPv4 address valid | Yes | No | Yes |
+**Example addresses:**
+```
+IPv4:    192.168.1.1
+IPv6:    2001:0db8:85a3::8a2e:0370:7334
+IPv4-64: 5.12.192.168.1.1
+```
+
+**Properties:**
+```
+                          IPv4  IPv6  IPv4-64
+Notation              Decimal   Hex  Decimal
+Max characters             15    39       23
+Dictatable by voice       Yes    No      Yes
+Existing IPv4 valid       Yes    No      Yes
+```
 
 ### 3.6 DNS
 

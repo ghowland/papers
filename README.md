@@ -78,6 +78,16 @@
 | **[HOWL-ENG-2-2026](papers/papers/ENG/HOWL-ENG-2-2026/manuscript.md)** | **What Engineering True Cost Is** | Why Software Can't be Credentialed and the Solution. |
 | **[HOWL-ENG-3-2026](papers/papers/ENG/HOWL-ENG-3-2026/manuscript.md)** | **Dynamic Engineering** | Position, Priority, and the Elimination of Problem Classes. |
 
+
+---
+
+## Networking
+*Networking.*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[HOWL-NET-1-2026](papers/papers/NET/HOWL-NET-1-2026/manuscript.md)** | **IPv4-64: A 64-Bit In-Place Upgrade to IPv4 with Modern Security and Performance** | A proposal for extending IPv4 address space while preserving dotted-decimal notation, backward-compatible addressing, and fixed-header simplicity. |
+
 ---
 
 ## LLM
