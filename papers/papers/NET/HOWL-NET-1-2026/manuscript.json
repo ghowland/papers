@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "IPv4-64: A 64-Bit In-Place Upgrade to IPv4 with Modern Security and Performance",
+    "registry_id": "HOWL-NET-1-2026",
+    "series_path": "[@HOWL-NET-1-2026]",
+    "doi": "10.5281/zenodo.23104391",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# IPv4-64: A 64-Bit In-Place Upgrade to IPv4 with Modern Security and Performance ## A proposal for extending IPv4 address space while preserving dotted-decimal notation, backward-compatible addressin..."
+}
