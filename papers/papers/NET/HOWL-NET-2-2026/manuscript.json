@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "IPv4-64: Security and Performance Analysis",
+    "registry_id": "HOWL-NET-2-2026",
+    "series_path": "[@HOWL-NET-1-2026] \u2192 [@HOWL-NET-2-2026]",
+    "doi": "10.5281/zenodo.23105515",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# IPv4-64: Security and Performance Analysis ## A technical comparison of IPv4-64 security mechanisms and forwarding performance against IPv4, IPv6, and prior address extension proposals  **Registry:*..."
+}
