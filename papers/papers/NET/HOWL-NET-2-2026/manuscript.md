@@ -515,3 +515,459 @@ No existing deployed protocol or prior proposal provides all three categories si
 
 ---
 
+## Appendix A — Attack Surface Comparison Matrix
+
+This table maps each attack class to the specific header field or mechanism that enables or prevents it in each protocol. A dash means the protocol provides no relevant mechanism.
+
+| Attack Class | Attack Mechanism | IPv4 Enabler | IPv4 Defense | IPv6 Enabler | IPv6 Defense | IPv4-64 Enabler | IPv4-64 Defense |
+|---|---|---|---|---|---|---|---|
+| Source spoofing | Forged source address | Source address is unsigned | BCP 38 (voluntary) | Source address is unsigned | BCP 38 (voluntary) | — | SVT (32-bit HMAC at byte 12) |
+| Reflection amplification | Spoofed request to public service | No source verification + optional UDP checksum | — | No source verification | — | — | SVT (source side) + Validated flag (victim side) |
+| SYN flood | State exhaustion via half-open connections | SYN queue allocation before validation | SYN cookies (overloads sequence number) | Same as IPv4 | Same as IPv4 | — | Retry Cookie (dedicated 64-bit field, zero state until verified) |
+| Fragment injection | Forged fragment with guessed Identification | 16-bit Identification (65,536 guesses) | — | Source-only fragmentation (reduces surface) | PMTUD dependency | — | Fragment Token (16-bit keyed hash, 2³² combined guesses) |
+| Fragment overlap | Overlapping offsets produce ambiguous reassembly | No overlap detection required by spec | Implementation-dependent | RFC 8200 Section 4.5 drops overlapping fragments | Specified | — | Drop entire fragment group (specified) |
+| Scanner reconnaissance | Error responses reveal host existence | ICMP Destination Unreachable, TCP RST | Firewall suppression (per-host config) | ICMPv6 responses | Firewall suppression (per-host config) | — | Silent drop (protocol-level, no config required) |
+| OS fingerprinting | Response header variations identify OS | TTL, window size, ICMP format differences | — | Hop Limit, ICMPv6 format differences | — | — | No responses to fingerprint |
+| Parser differential evasion | Firewall and destination disagree on field positions | Variable IHL (20–60 bytes) | — | Extension header chain (unbounded) | — | — | Fixed offsets (no parser exists) |
+| TCP option manipulation | Middlebox interference with option negotiation | Variable-length TCP options at variable offset | — | Same TCP as IPv4 | — | — | No TCP options (WS, SACK-OK are fixed flags) |
+| Connection state probing | RST responses confirm listening state | RST sent on closed ports | — | RST sent on closed ports | — | — | Silent drop on invalid flag combinations |
+| Blind TCP injection | Off-path attacker guesses sequence number | 32-bit sequence space | — | Same TCP as IPv4 | — | — | SVT blocks spoofed source + Retry Cookie validates handshake |
+| UDP zero-checksum corruption | Silent data corruption on unchecked UDP | Optional checksum (zero = skip) | — | — | Mandatory checksum | — | Mandatory checksum (zero = drop) |
+| Routing loop amplification | Packets circulate indefinitely | TTL field | TTL decrement | Hop Limit field | Hop Limit decrement | TTL field | TTL decrement (ICMP Time Exceeded optional, not required) |
+
+---
+
+## Appendix B — Per-Packet Operation Count by Protocol
+
+Each row is one operation the router or host must perform per packet. Operations marked with a clock symbol (⏱) are on the critical forwarding path. Operations marked with a branch symbol (⑂) contain conditional logic.
+
+| Operation | IPv4 | IPv6 | IPv4-64 |
+|---|---|---|---|
+| Read IP version | ⏱ Fixed offset (byte 0, upper nibble) | ⏱ Fixed offset (byte 0, upper nibble) | ⏱ Fixed offset (byte 0, upper nibble) |
+| Determine header length | ⏱⑂ Read IHL (byte 0, lower nibble), multiply by 4 | ⏱ Fixed (40 bytes), but extension headers vary total | ⏱ Fixed (32 bytes) |
+| Locate payload start | ⏱⑂ Computed from IHL | ⏱⑂ Walk extension header chain | ⏱ Fixed (byte 32) |
+| Verify header checksum | ⏱ One's complement sum over IHL×4 bytes (10–30 additions) | Not required | Not required |
+| Decrement TTL / Hop Limit | ⏱ Subtract 1 at variable offset (byte 8 in minimum header) | ⏱ Subtract 1 at fixed offset (byte 7) | ⏱ Subtract 1 at fixed offset |
+| Recompute header checksum | ⏱ Full recomputation after TTL change | Not required | Not required |
+| Read destination address | ⏱ Fixed offset (bytes 16–19) | ⏱ Fixed offset (bytes 24–39) | ⏱ Fixed offset (bytes 24–31) |
+| Route lookup | ⏱ 32-bit prefix match | ⏱ 128-bit prefix match | ⏱ 64-bit prefix match |
+| Parse IP options | ⑂ TLV loop (0–40 bytes, type dispatch per option) | N/A (handled by extension headers) | Not required (no options) |
+| Walk extension header chain | N/A | ⑂ Follow Next Header field, unbounded depth | N/A (no extension headers) |
+| Read transport protocol number | ⏱ Fixed offset (byte 9) | ⏱⑂ Final Next Header in chain (variable offset) | ⏱ Fixed offset (byte 7) |
+| Locate transport header | ⏱⑂ Byte offset = IHL × 4 | ⏱⑂ After last extension header (variable) | ⏱ Fixed (byte 32) |
+| Read source/destination ports | ⏱⑂ Variable offset (depends on IHL) | ⏱⑂ Variable offset (depends on extension chain) | ⏱ Fixed offset (bytes 32–35) |
+| Read TCP flags | ⏱⑂ Variable offset (IHL × 4 + 13) | ⏱⑂ Variable offset | ⏱ Fixed offset (bytes 44–45) |
+| Parse TCP options | ⑂ TLV loop per segment (0–40 bytes) | ⑂ Same TCP as IPv4 | Not required (no TCP options) |
+| Verify SVT | N/A | N/A | Optional (one HMAC comparison at fixed offset) |
+| Verify Fragment Token | N/A | N/A | One comparison at fixed offset (fragmented packets only) |
+| Verify Retry Cookie | N/A | N/A | One HMAC comparison (TCP handshake only) |
+
+**Total conditional branches in forwarding path:**
+
+| Protocol | Branches (minimum header) | Branches (maximum header / worst case) |
+|---|---|---|
+| IPv4 | 4 (version, IHL bounds, checksum, TTL zero) | 4 + N (where N = number of IP options + TCP options) |
+| IPv6 | 3 (version, hop limit zero, next header type) | 3 + M (where M = extension header chain depth, unbounded) |
+| IPv4-64 | 2 (version, payload length) | 2 (same — no variable cases) |
+
+---
+
+## Appendix C — Cache Line Utilization
+
+Modern CPUs read memory in 64-byte cache lines. A cache line miss costs 4–5 nanoseconds (L2) or 50–100 nanoseconds (main memory). At 100 Gbps with 64-byte minimum packets, the per-packet budget is approximately 5.12 nanoseconds. A single L2 cache miss consumes the entire budget.
+
+| Scenario | IPv4 (bytes) | IPv6 (bytes) | IPv4-64 (bytes) | Cache Lines Required |
+|---|---|---|---|---|
+| IP header only (minimum) | 20 | 40 | 32 | IPv4: 1, IPv6: 1, IPv4-64: 1 |
+| IP header only (maximum) | 60 | 40 + extensions (unbounded) | 32 | IPv4: 1, IPv6: 1+, IPv4-64: 1 |
+| IP + TCP headers (minimum) | 40 | 60 | 56 | IPv4: 1, IPv6: 1, IPv4-64: 1 |
+| IP + TCP headers (maximum) | 120 | 100 + extensions | 56 | IPv4: 2, IPv6: 2+, IPv4-64: 1 |
+| IP + UDP headers | 28 | 48 | 42 | IPv4: 1, IPv6: 1, IPv4-64: 1 |
+| IP + TCP headers + first 8 bytes payload | 48–128 | 68–108+ | 64 | IPv4: 1–2, IPv6: 2+, IPv4-64: 1 |
+
+IPv4-64 IP + TCP headers (56 bytes) plus 8 bytes of payload data equals exactly 64 bytes. One cache line contains the complete IP header, the complete TCP header, and the first 8 bytes of application data. The first 8 bytes of payload are significant for protocols like HTTP/2, gRPC, and DNS-over-TCP, where the frame header or message length field is in the first 8 bytes.
+
+---
+
+## Appendix D — Routing Table Prefix Length Comparison
+
+The route lookup is the most time-consuming operation in the forwarding path. Lookup time depends on the address width and the data structure used.
+
+| Property | IPv4 | IPv6 | IPv4-64 |
+|---|---|---|---|
+| Address width | 32 bits | 128 bits | 64 bits |
+| Maximum prefix length | /32 | /128 | /64 |
+| Typical prefix length (global table) | /24 | /48 | /32 (legacy), up to /40 (extended) |
+| Trie depth (binary trie) | 32 levels | 128 levels | 64 levels |
+| TCAM entry width | 32 bits + mask | 128 bits + mask | 64 bits + mask |
+| TCAM entries per unit silicon | Baseline | Approximately 0.25× (4× wider entries) | Approximately 0.5× (2× wider entries) |
+| Compressed trie nodes | 4 bytes per node | 16 bytes per node | 8 bytes per node |
+
+IPv4-64 routing table entries are twice the width of IPv4 entries and half the width of IPv6 entries. A TCAM that holds 1 million IPv4 routes holds approximately 500,000 IPv4-64 routes or approximately 250,000 IPv6 routes. IPv4-64 requires half the TCAM capacity of IPv6 for the same number of routes.
+
+For the legacy address space (upper 32 bits zero), the routing table entry is effectively 32 bits — the upper 32 bits are always zero and can be masked. Existing IPv4 routing table entries carry over without expansion. Only routes to extended addresses require the full 64-bit entry.
+
+---
+
+## Appendix E — SVT Brute-Force Resistance
+
+| Parameter | Value |
+|---|---|
+| SVT width | 32 bits |
+| Possible SVT values | 4,294,967,296 |
+| Epoch duration (N minutes, configurable) | Typical: 5 minutes |
+| Active epochs (current + previous) | 2 |
+| Valid SVT values per source address per moment | 2 (one per active epoch) |
+| Probability of random match per packet | 2 / 2³² ≈ 4.66 × 10⁻¹⁰ |
+| Packets required for 50% probability of one match | ≈ 1.49 × 10⁹ |
+| At 1 Mpps attack rate, time to 50% match probability | ≈ 24.8 minutes |
+| At 10 Mpps attack rate, time to 50% match probability | ≈ 2.48 minutes |
+| At 100 Mpps attack rate, time to 50% match probability | ≈ 14.9 seconds |
+
+At 100 million packets per second (approximately 51 Gbps at minimum packet size), an attacker achieves a single valid SVT match in approximately 15 seconds. However, each match is valid for only one specific source address. The attacker must repeat the process for every source address they want to spoof. To spoof 1,000 different source addresses simultaneously at 100 Mpps total, the expected time per valid match per address increases to approximately 4.1 hours.
+
+The SVT is not designed to resist state-level attackers with unlimited bandwidth. It is designed to make casual spoofing impractical and to raise the cost of volumetric spoofed attacks by orders of magnitude compared to the current cost (zero).
+
+---
+
+## Appendix F — Fragment Token Collision Probability
+
+| Parameter | Value |
+|---|---|
+| Fragment Token width | 16 bits |
+| Identification width | 16 bits |
+| Combined guessing difficulty | 2³² (Identification × Fragment Token) |
+| Hash function | SipHash-2-4 (keyed, non-cryptographic) |
+| Key width | 64 bits (per-connection secret) |
+| Probability of blind match per forged fragment | 1 / 2³² ≈ 2.33 × 10⁻¹⁰ |
+| Fragments required for 50% match probability | ≈ 2.97 × 10⁹ |
+| At 1 Mpps, time to 50% match probability | ≈ 49.5 minutes |
+
+SipHash-2-4 was selected for computational cost, not cryptographic strength. It executes in sub-nanosecond time on modern CPUs. The per-connection secret means that a token valid for one connection is not valid for another. An attacker who observes the token on one connection (on-path) gains no advantage for injecting into a different connection.
+
+Fragment injection requires the target to be receiving fragmented traffic. On the modern internet, fragmented traffic is a small fraction of total traffic. Most paths support 1500-byte MTU. QUIC and HTTP/2 avoid fragmentation by design. The attack applies primarily to legacy UDP applications (DNS with large responses, certain VPN tunnels) that generate fragments.
+
+---
+
+## Appendix G — Retry Cookie Bit Allocation
+
+The 64-bit Retry Cookie field is divided as follows during a SYN-ACK:
+
+| Bit Range | Width | Content |
+|---|---|---|
+| 63–8 | 56 bits | Truncated HMAC-SHA256 output |
+| 7–5 | 3 bits | MSS index (8 possible values) |
+| 4–1 | 4 bits | Window scale factor (0–14) |
+| 0 | 1 bit | SACK-OK (0 = not supported, 1 = supported) |
+
+### MSS Index Mapping
+
+| Index (3 bits) | MSS Value (bytes) | Typical Use |
+|---|---|---|
+| 0 | 536 | Minimum (RFC 879) |
+| 1 | 1220 | IPv6 minimum path MTU minus headers |
+| 2 | 1440 | Common behind PPPoE |
+| 3 | 1452 | Common behind PPPoE with IPv6 |
+| 4 | 1460 | Ethernet standard (1500 MTU minus 40-byte TCP/IP) |
+| 5 | 4312 | IEEE 802.3 jumbo frame class |
+| 6 | 8960 | 9000-byte jumbo frame minus headers |
+| 7 | Reserved | Future use |
+
+### Window Scale Factor Mapping
+
+| Encoded Value (4 bits) | Window Scale Factor | Maximum Window Size |
+|---|---|---|
+| 0 | 0 (no scaling) | 65,535 bytes |
+| 1 | 1 | 131,070 bytes |
+| 2 | 2 | 262,140 bytes |
+| 3 | 3 | 524,280 bytes |
+| 4 | 4 | 1,048,560 bytes |
+| 5 | 5 | 2,097,150 bytes |
+| 6 | 6 | 4,194,300 bytes |
+| 7 | 7 | 8,388,600 bytes |
+| 8 | 8 | 16,777,200 bytes |
+| 9 | 9 | 33,554,430 bytes |
+| 10 | 10 | 67,108,860 bytes |
+| 11 | 11 | 134,217,720 bytes |
+| 12 | 12 | 268,435,440 bytes |
+| 13 | 13 | 536,870,880 bytes |
+| 14 | 14 | 1,073,741,760 bytes (≈1 GB) |
+| 15 | Reserved | Future use |
+
+### Comparison to IPv4 SYN Cookie Bit Budget
+
+| Parameter | IPv4 SYN Cookie (32-bit ISN) | IPv4-64 Retry Cookie (64-bit field) |
+|---|---|---|
+| Total bits available | 32 | 64 |
+| HMAC / hash output | 24 bits (after MSS encoding) | 56 bits |
+| MSS encoding | 3 bits (8 values) | 3 bits (8 values) |
+| Window scale | Not encoded (lost) | 4 bits (15 values) |
+| SACK capability | Not encoded (lost) | 1 bit |
+| Timestamp | Not encoded (lost) | Timestamp is input to HMAC, not carried in cookie |
+| Collision resistance | 2²⁴ ≈ 16.7 million | 2⁵⁶ ≈ 7.2 × 10¹⁶ |
+
+---
+
+## Appendix H — Validated Flag Amplification Factor Reduction
+
+Current amplification factors for common UDP reflection attacks, and the effect of the Validated flag with a rate-limiting middlebox:
+
+| Service | Request Size | Response Size | Amplification Factor | With Validated Flag Rate Limit |
+|---|---|---|---|---|
+| DNS (ANY query) | 60 bytes | 4,000+ bytes | 66× | Unvalidated responses rate-limited to configurable threshold |
+| NTP (monlist) | 234 bytes | 48,000+ bytes | 205× | Same |
+| SSDP (M-SEARCH) | 50 bytes | 30,000+ bytes | 600× | Same |
+| Memcached (stats) | 15 bytes | 750,000+ bytes | 50,000× | Same |
+| CHARGEN | 1 byte | 200+ bytes | 200× | Same |
+| CLDAP | 52 bytes | 4,000+ bytes | 76× | Same |
+
+The Validated flag does not eliminate amplification. It provides a signal that middleboxes use to throttle unvalidated responses. The rate limit threshold is a policy decision made by the middlebox operator. A threshold of zero (drop all unvalidated UDP responses) eliminates amplification entirely but also drops legitimate first-contact UDP responses. A threshold matched to expected baseline traffic rates throttles attack volume while permitting normal operation.
+
+The flag also creates a classification mechanism for traffic during an active attack. A scrubbing service or upstream provider can separate validated and unvalidated UDP traffic into different queues. Validated traffic passes at full rate. Unvalidated traffic is rate-limited or dropped. This separation does not require the scrubbing service to understand DNS, NTP, or memcached protocols.
+
+---
+
+## Appendix I — CV Flag State Discrimination
+
+The TCP CV (Connection Validated) flag is set after the Retry Cookie handshake completes. It allows firewalls and middleboxes to distinguish established connections from unvalidated connection attempts by reading a single bit at a fixed offset.
+
+| Packet Type | SYN Flag | CV Flag | Meaning | Firewall Action |
+|---|---|---|---|---|
+| New connection attempt | 1 | 0 | Unvalidated SYN | Apply SYN rate limiting, connection throttling |
+| Handshake in progress | 0 | 0 | ACK echoing Retry Cookie, not yet verified | Pass to TCP stack for cookie verification |
+| Established connection | 0 | 1 | Handshake complete, cookie verified | Fast-path forwarding, skip connection tracking lookup |
+| Data on established connection | 0 | 1 | Normal data segment | Fast-path forwarding |
+| Connection teardown | 0 (FIN=1) | 1 | Graceful close on established connection | Fast-path forwarding |
+| Spoofed data injection attempt | 0 | 1 | Attacker sets CV without completing handshake | TCP stack verifies: if no matching connection state exists, silent drop |
+
+### Firewall State Table Impact
+
+A traditional IPv4/IPv6 stateful firewall maintains a connection tracking table. For every TCP connection passing through the firewall, the table stores the 5-tuple, sequence numbers, window size, and connection state (SYN_SENT, ESTABLISHED, FIN_WAIT, etc.). The firewall updates this table on every packet. The table consumes memory proportional to the number of concurrent connections. Under a SYN flood, the table grows rapidly and may exhaust memory.
+
+With the CV flag, the firewall can implement a two-tier architecture:
+
+| Tier | CV Flag | Processing |
+|---|---|---|
+| Fast path | CV = 1 | 5-tuple match against a Bloom filter or hash table. If match: forward. No sequence number tracking, no state update. |
+| Slow path | CV = 0 | Full stateful inspection. SYN rate limiting. Retry Cookie verification delegation. |
+
+The fast path handles the majority of traffic (established connections) with minimal per-packet cost. The slow path handles only new connections and handshakes. Under a SYN flood, only the slow path is stressed. Established connections continue to be forwarded at full rate on the fast path.
+
+---
+
+## Appendix J — ASIC Gate Count Estimation
+
+The following estimates compare the relative gate count for header processing logic in each protocol. Absolute gate counts depend on the specific ASIC architecture and fabrication process. These ratios are independent of process node.
+
+| Logic Block | IPv4 | IPv6 | IPv4-64 |
+|---|---|---|---|
+| Header length computation | Multiplexer (11 input, IHL values 5–15) | Fixed + extension chain walker (sequential) | Eliminated (constant) |
+| Payload offset computation | Adder (IHL × 4) | Accumulator (sum of extension header lengths) | Eliminated (constant 32) |
+| Header checksum verification | 16-bit one's complement adder tree (10–30 inputs) | Eliminated | Eliminated |
+| Header checksum recomputation | Same adder tree + TTL increment compensation | Eliminated | Eliminated |
+| Option parser | TLV state machine (type dispatch, length validation, boundary check) | Extension header state machine (next-header dispatch, length validation) | Eliminated |
+| Transport header locator | Multiplexer (selects start byte based on IHL) | Output of extension chain walker | Eliminated (constant byte 32) |
+| TCP option parser | TLV state machine (type dispatch per segment) | Same (identical TCP) | Eliminated |
+| Total header processing state machines | 2 (IP options + TCP options) | 2 (extension chain + TCP options) | 0 |
+| Total multiplexers for variable offsets | 3+ (payload start, transport start, TCP data start) | 2+ (transport start, TCP data start) | 0 |
+
+**Estimated relative gate count for header processing (normalized to IPv4 = 1.0):**
+
+| Protocol | Relative Gate Count |
+|---|---|
+| IPv4 | 1.0 |
+| IPv6 | 0.8–1.2 (checksum removed, but extension chain walker added) |
+| IPv4-64 | 0.3–0.4 (all state machines and multiplexers eliminated) |
+
+The freed silicon area can be allocated to: deeper routing table TCAM, additional packet buffer memory, more queue scheduling logic, or SVT verification units (one HMAC-SHA256 comparator per port).
+
+---
+
+## Appendix K — Software Processing Cycle Estimates
+
+Estimated CPU cycles per packet for header processing on a modern x86-64 processor (3 GHz, out-of-order execution, branch prediction). These estimates exclude the route lookup (which is identical across protocols) and cover only header validation, field extraction, and checksum operations.
+
+| Operation | IPv4 Cycles | IPv6 Cycles | IPv4-64 Cycles |
+|---|---|---|---|
+| Version check | 1 | 1 | 1 |
+| Header length determination | 3 (load IHL, mask, shift, multiply) | 1 (constant) | 0 (constant, compiled out) |
+| Header checksum verification | 12–30 (depends on IHL) | 0 | 0 |
+| TTL/Hop Limit decrement | 1 | 1 | 1 |
+| Header checksum recomputation | 12–30 | 0 | 0 |
+| Payload length validation | 3 | 2 | 2 |
+| IP option parsing (common case: no options) | 2 (branch on IHL == 5) | 0 | 0 |
+| IP option parsing (worst case: 40 bytes options) | 40–80 (loop + type dispatch) | N/A | N/A |
+| Extension header walk (common case: none) | N/A | 2 (branch on Next Header) | N/A |
+| Extension header walk (worst case: 4 extensions) | N/A | 30–60 (loop + dispatch) | N/A |
+| Transport header offset computation | 3 | 3 (after chain walk) | 0 (constant, compiled out) |
+| TCP option parsing (common case: timestamp only) | 8–12 (loop, 2 iterations) | 8–12 (same TCP) | 0 |
+| TCP option parsing (worst case: full options) | 30–50 (loop, multiple iterations) | 30–50 (same TCP) | 0 |
+| **Total (common case, TCP)** | **35–50** | **15–20** | **4–5** |
+| **Total (worst case, TCP)** | **90–170** | **60–120** | **4–5** |
+
+At 10 million packets per second, the cycle savings for IPv4-64 versus IPv4 common case is approximately 300–450 million cycles per second. On a 3 GHz core, this represents 10–15% of one core's total capacity freed for application processing or additional packet throughput.
+
+The critical property is the final row: IPv4-64 worst case equals its common case. The processing time variance is zero. This eliminates jitter in software forwarding performance, which matters for real-time applications (VoIP, gaming, financial trading) where consistent latency is more important than average latency.
+
+---
+
+## Appendix L — Epoch Overlap and Key Rotation Timing
+
+The SVT uses two active secrets (current epoch and previous epoch) to handle in-flight packets during key rotation. The timing parameters are:
+
+| Parameter | Value | Rationale |
+|---|---|---|
+| Epoch duration (N) | Configurable, typical 5 minutes | Balance between rotation frequency (security) and overlap window (operational tolerance) |
+| Active secrets | 2 (current + previous) | Packets stamped in the previous epoch that are still in transit remain valid |
+| Maximum packet lifetime | Defined by TTL (max 255 hops × ~1ms per hop ≈ 255ms typical) | In-flight packets complete transit well within one epoch |
+| Secret generation | CSPRNG, 128 bits | Matches HMAC-SHA256 key size |
+| Rotation trigger | Wall clock crossing epoch boundary | No coordination between routers required — each router rotates independently |
+
+### Key Rotation Failure Modes
+
+| Failure | Effect | Mitigation |
+|---|---|---|
+| Clock skew between stamping router and verifying router | SVT computed with different epoch counter, verification fails | Two-epoch overlap covers skew up to one full epoch duration |
+| Clock skew exceeding one epoch duration | Both active secrets mismatch, all packets from this source dropped | NTP synchronization (already deployed on all production routers) |
+| Secret desynchronization (one peer rotates, other does not update) | Verification failures on all packets from the desynced peer | Secrets are local — each router generates its own. Only the bilateral sharing must stay synchronized. Monitoring alerts on elevated SVT failure rates. |
+| Router reboot during epoch | New secrets generated, old in-flight packets fail verification | Two-epoch overlap covers the transition. Reboots take longer than maximum packet lifetime. |
+
+---
+
+## Appendix M — Bilateral SVT Trust Topology Examples
+
+### Example 1: Two-Peer Exchange
+
+Operator A and Operator B peer at an internet exchange point. They exchange SVT secrets. Each stamps outgoing packets. Each verifies incoming packets from the other.
+
+| Direction | Stamping Router | Verifying Router | SVT Secret Used |
+|---|---|---|---|
+| A → B | A's edge router | B's edge router | A's secret (shared with B) |
+| B → A | B's edge router | A's edge router | B's secret (shared with A) |
+
+Operator C does not participate. Packets from C arrive at A or B with unverifiable SVTs. A and B apply their policy (pass, rate-limit, or drop) to unverified traffic.
+
+### Example 2: Transit Provider Chain
+
+Operator A is a customer of Transit Provider T. T peers with Operator B. A shares its SVT secret with T. T shares its SVT secret with B.
+
+| Path | Stamping Router | Verifying Router | SVT Secret |
+|---|---|---|---|
+| A → T → B | A's edge router | T can verify (has A's secret). B cannot verify A's SVT (does not have A's secret). B can verify T's transit stamp if T re-stamps. | A's secret known to T only |
+
+Two models exist for transit:
+
+**Transparent transit:** T forwards A's SVT unchanged. B cannot verify it. B treats it as unverified traffic from a non-participating network. A's SVT provides value only to T.
+
+**Re-stamping transit:** T verifies A's SVT on ingress, then re-stamps the packet with T's own SVT on egress. B verifies T's SVT. B knows the packet entered the internet through T, which attested the source. B does not know whether T verified the original source. This is equivalent to BCP 38 trust: B trusts T to filter its customers.
+
+The re-stamping model is the practical one. It matches the existing trust hierarchy: customers trust their transit provider, and peers trust each other. The SVT makes this trust verifiable per-packet.
+
+### Example 3: Major Transit Provider Mesh
+
+If the 10 largest transit providers (by global traffic volume) implement bilateral SVT exchange:
+
+| Participating Providers | Bilateral Secrets | Verified Traffic Coverage (approximate) |
+|---|---|---|
+| Top 5 | 10 bilateral pairs | Majority of inter-provider backbone traffic |
+| Top 10 | 45 bilateral pairs | Majority of global internet traffic |
+| Top 20 | 190 bilateral pairs | Near-total coverage of traffic transiting Tier 1/2 providers |
+
+45 bilateral secret exchanges require 45 configuration changes per provider. This is comparable to the number of BGP peering sessions a Tier 1 provider already maintains. The operational overhead is marginal.
+
+---
+
+## Appendix N — Protocol Feature Adoption Lineage
+
+This table traces the origin of each IPv4-64 feature to the protocol or practice that first introduced or validated it.
+
+| IPv4-64 Feature | Origin | Year | How IPv4-64 Differs |
+|---|---|---|---|
+| Flow Label (20 bits) | IPv6 (RFC 2460) | 1998 | Unchanged in function. Placed at fixed offset in a smaller header. |
+| No header checksum | IPv6 (RFC 2460) | 1998 | Same rationale: link and transport checksums are sufficient. |
+| Payload Length (vs Total Length) | IPv6 (RFC 2460) | 1998 | Same rationale: removes dependency on header length. |
+| Mandatory UDP checksum | IPv6 (RFC 2460, enforced in RFC 6936) | 1998/2013 | Same rationale: prevents silent corruption. |
+| Stateless retry handshake | QUIC (RFC 9000) | 2021 | Applied to TCP as a dedicated field. QUIC uses it for QUIC connections only. |
+| SYN cookies | D.J. Bernstein | 1996 | Replaced by Retry Cookie. Dedicated field eliminates sequence number overloading. |
+| Ingress filtering concept | BCP 38 (RFC 2827) | 2000 | Encoded in-packet as SVT. Voluntary ACL configuration replaced by cryptographic stamp. |
+| SipHash for fast keyed hashing | Jean-Philippe Aumasson, Daniel J. Bernstein | 2012 | Used for Fragment Token. Selected for speed (sub-nanosecond per computation). |
+| HMAC-SHA256 for authentication | RFC 4868 | 2007 | Used for SVT and Retry Cookie. Standard construction, truncated to required output width. |
+| Fixed header with no options | Design principle (new) | 2026 | No prior deployed protocol eliminates all variable-length parsing from IP, TCP, and UDP simultaneously. |
+| Silent drop semantics | Partial in various firewall configurations | Varies | Elevated from implementation choice to protocol-level requirement. |
+| Source-only fragmentation | IPv6 (RFC 8200) | 2017 | Not adopted. IPv4-64 preserves transit fragmentation with Fragment Token protection instead. |
+| Extension header chain | IPv6 (RFC 2460) | 1998 | Not adopted. Identified as source of firewall evasion and parser complexity. |
+| Mandatory IPsec | IPv6 (RFC 2460, relaxed in RFC 6434) | 1998/2011 | Not adopted. Encryption is an application/transport-layer decision. |
+| Neighbor Discovery | IPv6 (RFC 4861) | 2007 | Not adopted. ARP extended for 64-bit addresses is simpler. |
+| SLAAC | IPv6 (RFC 4862) | 2007 | Not adopted. DHCP provides stronger administrative control. |
+
+---
+
+## Appendix O — Strict Drop Condition Cross-Reference
+
+Each drop condition from the companion specification [@HOWL-NET-1-2026] Appendix G is listed here with the specific attack it prevents and the IPv4/IPv6 behavior for the same condition.
+
+| # | Condition | Attack Prevented | IPv4 Behavior | IPv6 Behavior | IPv4-64 Behavior |
+|---|---|---|---|---|---|
+| 1 | Payload Length mismatch | Buffer overflow, truncation attacks | Total Length mismatch: implementation-dependent | Payload Length mismatch: drop (RFC 8200) | Silent drop |
+| 2 | Version field wrong | Protocol confusion | Drop or process as different version | Drop | Silent drop |
+| 3 | Reserved bits nonzero | Covert channels, protocol probing | Ignored (Postel's Law) | Ignored for some fields | Silent drop |
+| 4 | Fragment Token mismatch | Fragment injection | N/A (no Fragment Token) | N/A (source-only fragmentation) | Drop all fragments in group |
+| 5 | SVT invalid | Source spoofing | N/A (no SVT) | N/A (no SVT) | Silent drop |
+| 6 | Retry Cookie invalid | SYN flood, connection spoofing | N/A (SYN cookies in sequence number) | N/A (same TCP) | Silent drop |
+| 7 | TTL zero | Routing loop detection | ICMP Time Exceeded (required) | ICMPv6 Time Exceeded (required) | Silent drop (ICMP optional) |
+| 8 | Protocol field unknown | Service probing | ICMP Protocol Unreachable | ICMPv6 Parameter Problem | Silent drop |
+| 9 | Invalid TCP flag combination | Scanner fingerprinting (Xmas scan, null scan) | Implementation-dependent (some respond, some drop) | Implementation-dependent | Silent drop |
+| 10 | Fragment overlap | Ambiguous reassembly exploitation | Implementation-dependent (varies by OS) | Drop (RFC 8200 Section 4.5) | Drop entire fragment group |
+| 11 | Packet smaller than 32 bytes | Malformed packet exploits | Implementation-dependent | Drop (below minimum IPv6 header) | Silent drop |
+| 12 | Packet smaller than transport minimum | Truncated header probing | Implementation-dependent | Implementation-dependent | Silent drop |
+| 13 | Checksum mismatch | Corruption, forged segments | Drop (TCP), implementation-dependent (UDP) | Drop | Silent drop |
+| 14 | UDP checksum zero | Silent corruption | Accepted (checksum optional) | Drop (mandatory since RFC 6936) | Silent drop |
+| 15 | Address octet outside 0–255 | Parse confusion | N/A (binary encoding, not parsed as text at wire level) | N/A | Reject at parse time |
+| 16 | Address fewer than 4 or more than 8 octets | Parse confusion | N/A (fixed 4 octets) | N/A | Reject at parse time |
+
+The column "IPv4 Behavior: Implementation-dependent" identifies conditions where different IPv4 implementations behave differently. These inconsistencies are the source of parser differential attacks (Appendix E of the main analysis, Section 3.6). IPv4-64 eliminates implementation variance by specifying one behavior for every condition: silent drop.
+
+---
+
+## Appendix P — Bandwidth Savings at Scale
+
+Cumulative header size reduction of IPv4-64 versus IPv6 across traffic profiles.
+
+| Traffic Profile | Packets per Second | IPv6 IP+Transport Header | IPv4-64 IP+Transport Header | Savings per Packet | Savings per Second | Savings per Day |
+|---|---|---|---|---|---|---|
+| VoIP (G.711, UDP) | 50 pps per call | 48 bytes | 42 bytes | 6 bytes | 300 bytes/call | 25.9 MB/call |
+| 100,000 concurrent VoIP calls | 5,000,000 pps | 48 bytes | 42 bytes | 6 bytes | 30 MB/s | 2.59 TB |
+| Online gaming (UDP, 64-byte payload) | 60 pps per player | 48 bytes | 42 bytes | 6 bytes | 360 bytes/player | 31.1 MB/player |
+| 1,000,000 concurrent game sessions | 60,000,000 pps | 48 bytes | 42 bytes | 6 bytes | 360 MB/s | 31.1 TB |
+| IoT telemetry (UDP, 32-byte payload) | 1 pps per device | 48 bytes | 42 bytes | 6 bytes | 6 bytes/device | 518 KB/device |
+| 10 billion IoT devices | 10,000,000,000 pps | 48 bytes | 42 bytes | 6 bytes | 60 GB/s | 5.18 PB |
+| HTTP/2 ACK-heavy traffic (TCP, small frames) | 1,000,000 pps per server | 60 bytes | 56 bytes | 4 bytes | 4 MB/s | 345.6 GB |
+| Bulk data transfer (TCP, 1500-byte MTU) | 81,274 pps per Gbps | 60 bytes | 56 bytes | 4 bytes | 325 KB/s/Gbps | 28.1 GB/Gbps |
+
+The savings are most significant on small-packet workloads (VoIP, gaming, IoT) where the header constitutes a large fraction of the total packet. On bulk data transfers, the savings are proportionally small but accumulate at datacenter scale.
+
+---
+
+## References
+
+- RFC 791: Internet Protocol, September 1981
+- RFC 879: TCP Maximum Segment Size and Related Topics, November 1983
+- RFC 2460: Internet Protocol, Version 6 (IPv6) Specification, December 1998
+- RFC 2827 (BCP 38): Network Ingress Filtering, May 2000
+- RFC 4861: Neighbor Discovery for IP version 6 (IPv6), September 2007
+- RFC 4862: IPv6 Stateless Address Autoconfiguration (SLAAC), September 2007
+- RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384, and HMAC-SHA-512 with IPsec, May 2007
+- RFC 6434: IPv6 Node Requirements, December 2011
+- RFC 6936: Applicability Statement for the Use of IPv6 UDP Datagrams with Zero Checksums, April 2013
+- RFC 8200: Internet Protocol, Version 6 (IPv6) Specification, July 2017
+- RFC 9000: QUIC: A UDP-Based Multiplexed and Secure Transport, May 2021
+- Aumasson, J.-P., Bernstein, D.J., "SipHash: a fast short-input PRF," 2012
+- Bernstein, D.J., "SYN cookies," 1996
+- Ptacek, T., Newsham, T., "Insertion, Evasion, and Denial of Service: Eluding Network Intrusion Detection," 1998
+- Valkó, A., Turànyi, Z., "4+4: An Alternative Approach to IPv4 Address Exhaustion," SIGCOMM CCR, 2002
+- draft-chimiak-enhanced-ipv4-03: IPv4 with 64 bit Address Space (EnIP), expired 2016
+- draft-omar-ipv10-13: Internet Protocol version 10 (IPv10), expired 2021
+- CAIDA Spoofer Project, https://spoofer.caida.org/
+- [@HOWL-NET-1-2026]: IPv4-64: A 64-Bit In-Place Upgrade to IPv4 with Modern Security and Performance, October 2026
+
+---
