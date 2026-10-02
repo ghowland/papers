@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "IPv4-64 Corrected Header and Unified Routing Specification",
+    "registry_id": "HOWL-NET-4-2026",
+    "series_path": "[@HOWL-NET-1-2026] \u2192 [@HOWL-NET-2-2026] \u2192 [@HOWL-NET-3-2026] \u2192 [@HOWL-NET-4-2026]",
+    "doi": "10.5281/zenodo.23111922",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# IPv4-64 Corrected Header and Unified Routing Specification ## A 36-byte fixed header that routes native IPv4-64, carries legacy IPv4, and transits IPv6 across one forwarding plane  **Registry:** [@H..."
+}
