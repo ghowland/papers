@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "IPv4-64 Reference Implementation on P4 Programmable Hardware",
+    "registry_id": "HOWL-NET-3-2026",
+    "series_path": "[@HOWL-NET-1-2026] \u2192 [@HOWL-NET-2-2026] \u2192 [@HOWL-NET-3-2026]",
+    "doi": "10.5281/zenodo.zzz",
+    "abstract": "This document specifies a complete P4 forwarding plane for IPv4-64 as defined in [@HOWL-NET-1-2026]. It covers packet parsing, validation, authentication, classification, routing, load balancing, firewall policy, QoS marking, metering, connection tracking, and egress transformation. It includes an IPv4 edge conversion system that allows a carrier to run IPv4-64 as the internal core protocol while accepting and emitting standard IPv4 at network boundaries.\n\nThe specification targets P4-programmable DPUs (NVIDIA BlueField-3, AMD Pensando Elba, Intel IPU E2100) and FPGA-based SmartNICs (AMD/Xilinx Alveo SN1000). A carrier that deploys these devices can load the IPv4-64 forwarding plane as a P4 program without replacing hardware, without coordinating with other carriers, and without waiting for industry-wide adoption.",
+    "dependencies": [],
+    "raw_content_preview": "# IPv4-64 Reference Implementation on P4 Programmable Hardware ## A carrier-deployable forwarding plane specification for IPv4-64 using P4-programmable DPUs, with IPv4 edge conversion for backward-com..."
+}
