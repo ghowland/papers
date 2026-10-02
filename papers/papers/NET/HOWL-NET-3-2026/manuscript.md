@@ -563,3 +563,110 @@ control/dhcp_64.c            DHCP for 64-bit addresses
 control/telemetry.c          Counter export and alerting
 control/diagnostic.c         Authenticated diagnostic server
 ```
+
+---
+
+## Appendix G — Supplementary P4 Source Code
+
+The `supplementary/p4/` directory contains a complete reference implementation of the IPv4-64 forwarding plane as a P4 program targeting the V1Model architecture.
+
+### File Manifest
+
+```
+File                    Purpose                              Lines
+──────────────────────────────────────────────────────────────────
+ipv4_64.p4              Main program. Includes all modules.
+                        Instantiates the seven-phase pipeline
+                        and the V1Model switch.
+
+constants.p4            Protocol version, flag masks, protocol
+                        numbers, drop reason codes, connection
+                        classes, traffic classes, threat levels,
+                        meter colors, and header sizes.
+
+headers.p4              Struct definitions for all headers:
+                        IPv4-64 IP/TCP/UDP, IPv4 legacy
+                        IP/TCP/UDP, Ethernet, ICMP, and the
+                        collected headers_t struct.
+
+metadata.p4             Internal metadata struct carrying
+                        classification results, drop state,
+                        conversion flags, and routing decisions
+                        across pipeline phases.
+
+externs.p4              Extern function declarations for
+                        HMAC-SHA256, SipHash-2-4, CRC32, meters,
+                        counters, and checksum computation.
+                        Implementations are target-specific.
+
+parser.p4               Three-state parser for native IPv4-64.
+                        Additional states for IPv4 legacy
+                        ingress conversion. Variable-length
+                        parsing exists only in the legacy path.
+
+validate.p4             Phase 2. Fixed-offset field checks.
+                        Version, payload length, reserved bits,
+                        TTL, TCP flag combinations, UDP checksum
+                        mandatory, fragment runt detection.
+
+authenticate.p4         Phase 3. SVT verification with two-epoch
+                        overlap. Fragment Token verification via
+                        SipHash. Retry Cookie verification with
+                        parameter recovery from lower 8 bits.
+
+classify.p4             Phase 4. Connection state table (Bloom
+                        filter backed). Traffic type by port and
+                        protocol. Threat level from SVT result
+                        and connection state. Firewall policy
+                        table (ternary, TCAM-mapped). SYN rate
+                        limiting per source prefix.
+
+route_balance.p4        Phase 5. 64-bit LPM route lookup. ECMP
+                        group selection. Weighted ECMP for
+                        graceful draining. Next hop resolution.
+                        LAG group selection. All use consistent
+                        CRC32 hash over flow_label + 5-tuple.
+
+tables.p4               Table inventory documentation for
+                        control plane integration. All table
+                        definitions live in their phase modules.
+
+counters.p4             Counter and meter definitions. Per-port
+                        bytes/packets, per-class, per-drop-reason,
+                        per-prefix, SVT/cookie pass/fail, edge
+                        conversion events. Firewall meter,
+                        UDP unvalidated meter, SYN rate meter.
+
+transform.p4            Phase 6. TTL decrement (no checksum).
+                        SVT stamping. MAC rewrite. QoS DSCP
+                        marking with ECN CE on yellow meter.
+                        Firewall rate-limit meter execution.
+                        UDP unvalidated meter. Connection
+                        tracking updates via digest to ARM.
+                        Accounting counter increments.
+
+convert_ingress.p4      IPv4 → IPv4-64 edge conversion. Address
+                        mapping (upper 32 = 0). Option stripping.
+                        Flow label computation from 5-tuple.
+                        Fragment token generation. TCP flag
+                        mapping with SACK-OK and WS promotion.
+                        Checksum recomputation. Ethertype update.
+
+convert_egress.p4       IPv4-64 → IPv4 edge conversion. Address
+                        range check (upper must be zero). Flag
+                        mapping. Fragment offset unit conversion.
+                        TCP/UDP checksum recomputation over IPv4
+                        pseudo-header. Header size reduction.
+                        Ethertype update.
+
+port_config.p4          Ingress and egress port type tables.
+                        Core ports accept only IPv4-64. Edge
+                        ports accept IPv4 and trigger conversion.
+                        Default is edge (safe for incremental
+                        deployment).
+
+deparser.p4             Phase 7. Fixed-length emit. Emits either
+                        IPv4-64 or IPv4 legacy headers depending
+                        on which are valid after egress conversion.
+```
+

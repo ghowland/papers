@@ -1,12 +1,12 @@
 {
   "created": "2026-10-02T15:40:02.013709+00:00",
-  "modified": "2026-10-02T15:40:02.098157+00:00",
+  "modified": "2026-10-02T15:41:12.454982+00:00",
   "id": 23105972,
   "conceptrecid": "23105971",
   "metadata": {
-    "title": "IPv4-64 Reference Implementation on P4 Programmable Hardware",
-    "publication_date": "2026-04",
-    "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "title": "IPv4-64 Reference Implementation on P4 Programmable Hardware: A carrier-deployable forwarding plane specification for IPv4-64 using P4-programmable DPUs",
+    "publication_date": "2026-10",
+    "description": "<div>\n<div>This document specifies a complete P4 forwarding plane for IPv4-64 as defined in [@HOWL-NET-1-2026]. It covers packet parsing, validation, authentication, classification, routing, load balancing, firewall policy, QoS marking, metering, connection tracking, and egress transformation. It includes an IPv4 edge conversion system that allows a carrier to run IPv4-64 as the internal core protocol while accepting and emitting standard IPv4 at network boundaries.</div>\n<br>\n<div>The specification targets P4-programmable DPUs (NVIDIA BlueField-3, AMD Pensando Elba, Intel IPU E2100) and FPGA-based SmartNICs (AMD/Xilinx Alveo SN1000). A carrier that deploys these devices can load the IPv4-64 forwarding plane as a P4 program without replacing hardware, without coordinating with other carriers, and without waiting for industry-wide adoption.</div>\n</div>",
     "access_right": "open",
     "creators": [
       {
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/NET/HOWL-NET-3-2026",
+        "identifier": "https://github.com/ghowland/papers/blob/main/papers/papers/NET/HOWL-NET-3-2026/manuscript.md",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -78,13 +78,22 @@
       "recid": 23105972
     }
   },
-  "title": "IPv4-64 Reference Implementation on P4 Programmable Hardware",
+  "title": "IPv4-64 Reference Implementation on P4 Programmable Hardware: A carrier-deployable forwarding plane specification for IPv4-64 using P4-programmable DPUs",
   "links": {
     "self": "https://zenodo.org/api/deposit/depositions/23105972",
     "html": "https://zenodo.org/deposit/23105972",
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/23105972/files",
     "bucket": "https://zenodo.org/api/files/f18a6b79-5a15-45e1-878e-76f511bcf7f3",
+    "thumb250": "https://zenodo.org/record/23105972/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/23105972/thumb10",
+      "50": "https://zenodo.org/record/23105972/thumb50",
+      "100": "https://zenodo.org/record/23105972/thumb100",
+      "250": "https://zenodo.org/record/23105972/thumb250",
+      "750": "https://zenodo.org/record/23105972/thumb750",
+      "1200": "https://zenodo.org/record/23105972/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/23105972",
     "latest_draft_html": "https://zenodo.org/deposit/23105972",
     "publish": "https://zenodo.org/api/deposit/depositions/23105972/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 23105972,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "54f5e9a2-5626-49cd-bc9a-3b49aeac475d",
+      "filename": "!manuscript.pdf",
+      "filesize": 89469,
+      "checksum": "e9da8f19db58596d6d2d6d112a130ed0",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23105972/files/54f5e9a2-5626-49cd-bc9a-3b49aeac475d",
+        "download": "https://zenodo.org/api/records/23105972/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "42d37659-b4bc-46a4-bf42-5cce5182c884",
+      "filename": "HOWL-NET-3-2026.zip",
+      "filesize": 162585,
+      "checksum": "5e3fc328caadeab285a7c8b8b46c6cc1",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23105972/files/42d37659-b4bc-46a4-bf42-5cce5182c884",
+        "download": "https://zenodo.org/api/records/23105972/draft/files/HOWL-NET-3-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
