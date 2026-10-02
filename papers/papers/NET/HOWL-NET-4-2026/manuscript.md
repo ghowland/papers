@@ -13,7 +13,7 @@
 
 **Status:** Proposal — Not submitted to any standards body. Published for public review and discussion.
 
-**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.6 Opus. 
+**AI Usage Disclosure:** Only the top metadata, figures, refs and final copyright sections and one biographical note were edited by the author. All paper content was LLM-generated using Anthropic's Claude 4.8 Opus. 
 
 **License:** Open specification. No patent claims. Free to implement, extend, and reference.
 
