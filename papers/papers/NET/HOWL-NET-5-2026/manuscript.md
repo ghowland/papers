@@ -5,7 +5,7 @@
 
 **Series Path:** [@HOWL-NET-1-2026] → [@HOWL-NET-2-2026] → [@HOWL-NET-3-2026] → [@HOWL-NET-4-2026] → [@HOWL-NET-5-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.23112692
 
 **Date:** October 2026
 

@@ -3,7 +3,7 @@
     "title": "NQDP: A Query-Based Diagnostic Protocol for IPv4-64",
     "registry_id": "HOWL-NET-5-2026",
     "series_path": "[@HOWL-NET-1-2026] \u2192 [@HOWL-NET-2-2026] \u2192 [@HOWL-NET-3-2026] \u2192 [@HOWL-NET-4-2026] \u2192 [@HOWL-NET-5-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.23112692",
     "abstract": "",
     "dependencies": [],
     "raw_content_preview": "# NQDP: A Query-Based Diagnostic Protocol for IPv4-64 ## Replacing ICMP's diagnostic role with a fixed-size, trust-gated, carrier-controlled query service that reveals nothing to attackers and everyth..."
