@@ -1,14 +1,14 @@
 # HOWL Papers Audit Report
 
-**Generated:** 2026-10-02 22:33:44 UTC
+**Generated:** 2026-10-03 00:13:59 UTC
 
 ## Summary
 
-- **Total Papers:** 225
-- **Valid:** 220
+- **Total Papers:** 226
+- **Valid:** 221
 - **Invalid:** 5
 - **Total Errors:** 7
-- **Total Warnings:** 511
+- **Total Warnings:** 515
 
 ## By Subject
 
@@ -24,7 +24,7 @@
 - **LLM:** 12 papers
 - **LYRIC:** 2 papers
 - **MATH:** 20 papers
-- **NET:** 4 papers
+- **NET:** 5 papers
 - **NEURO:** 2 papers
 - **PHYS:** 58 papers
 - **SOPH:** 3 papers
@@ -33,7 +33,7 @@
 ## By Status
 
 - **Published (has DOI):** 220
-- **Draft (stub .zzz):** 5
+- **Draft (stub .zzz):** 6
 
 ## Validation Issues
 
@@ -57,7 +57,7 @@
   - ❌ Missing Registry field in frontmatter
 
 
-### Papers with Warnings (210 total)
+### Papers with Warnings (211 total)
 
 **HOWL-BODY-1-2026**
   - ⚠️  Missing ## References section
@@ -100,4 +100,4 @@
 **HOWL-COMP-4-2026**
   - ⚠️  No abstract section found
 
-... and 200 more papers with warnings
+... and 201 more papers with warnings
