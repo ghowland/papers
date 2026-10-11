@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Direct Data Indexing",
+    "registry_id": "HOWL-COMP-17-2026",
+    "series_path": "",
+    "doi": "10.5281/zenodo.23297692",
+    "abstract": "",
+    "dependencies": [],
+    "raw_content_preview": "# Direct Data Indexing ### Comptime-Compiled Integer Path Resolution for In-Memory Multi-Database Struct Access  **Registry:** [@HOWL-COMP-17-2026]  **DOI:** 10.5281/zenodo.23297692  **Date:** October..."
+}

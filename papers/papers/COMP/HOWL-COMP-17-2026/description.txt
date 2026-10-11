@@ -1,0 +1,12 @@
+SiloSec Protocol Specification
+
+The Definitive Blueprint for Silo-to-Silo Encrypted Communication
+
+A simple secure host-to-host protocol.
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+**Status:** Architectural Blueprint for Independent Implementation
+
