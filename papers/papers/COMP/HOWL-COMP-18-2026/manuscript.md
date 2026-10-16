@@ -73,6 +73,8 @@ Social systems map through the same framework: social pressure maps to voltage, 
 
 These are not metaphors. They are mathematical isomorphisms. The differential equations governing current flow through an RLC circuit are identical to the differential equations governing money flow through an economy with capital storage and population inertia. The resonance formula ω₀ = 1/√(LC) applies to both. The damping ratio ζ = (g/2)√(L/C) applies to both. The quality factor Q = (1/g)√(C/L) applies to both.
 
+![Figure 0](figures/figure_sec_2_1.png)
+
 ### 2.2 Why Circuits Model Everything
 
 The universality of the circuit model follows from the universality of the conservation and coupling laws it expresses:
@@ -110,6 +112,8 @@ The middle is code: programmability, flexibility, but unbounded complexity growt
 The right point is the data-only circuit: universal modelling power regained, analytical predictability regained, exact deterministic evaluation regained, plus programmability (data records are modifiable), debuggability (transaction ledger records every value change), and scalability (compiled infrastructure dispatches across N cores).
 
 The middle of the football is where the work is. The middle is code. The middle must be traversed because analog circuits cannot solve the engineering problems that software was invented to solve: conditional execution, state machines, failure recovery, platform-specific hardware access, text processing, pathfinding, sorting, searching, mesh extraction, UI rendering, network protocol handling, memory management, thread synchronisation.
+
+![Figure 0](figures/figure_sec_3_1.png)
 
 ### 3.2 The Exhaustion Requirement
 
@@ -183,6 +187,8 @@ If the system used f64 for everything, states stored as floating-point values wo
 
 One exact numeric type is not an optimisation. It is a precondition for closure.
 
+![Figure 0](figures/figure_sec_4_1.png)
+
 ### 4.2 One Address Type: Fixed-Width, Constant-Time
 
 Every record reference, every resource group identifier, every array index, every cross-struct reference uses i32. The i32 is an address into the data space. It names a record. It does not carry magnitude. No i32 ever enters the simulation as a value. No Fixed ever serves as an address. The partition is absolute.
@@ -202,6 +208,8 @@ A sealed infrastructure must solve every engineering problem that code would oth
 **Why specific.** A generic infrastructure (handles "any operation" through a universal evaluator) is either Turing-complete (which reintroduces the code complexity problem through a different syntax) or insufficiently expressive (cannot handle specific engineering problems like DMA ring buffer management, TCP state machines, or marching cubes mesh extraction). The operations must be specific: FieldOperation.Spread solves spatial propagation with authored parameters. TextOpType.FindRegex solves pattern matching with authored parameters. HwOpType.PciBarMap solves memory-mapped device register access with authored parameters. Each is a specific coded solution to a specific engineering problem, parameterised for data-only invocation.
 
 **Why sealed.** If the infrastructure accepts new operation types after compilation (plugin architecture, scripting language, visual programming), the new operations are code. Code has the unbounded interaction surface that the entire architecture exists to eliminate. The seal is the boundary between the code that was written (once, tested, frozen) and the data that is authored (repeatedly, safely, without regression). The seal must hold for the closure property to hold.
+
+![Figure 0](figures/figure_sec_4_3.png)
 
 ### 4.4 The Infrastructure Must Be Extensible After Sealing
 
@@ -236,6 +244,8 @@ The data records are not generic key-value pairs (the EAV trap). They are not st
 This structure gives the data records the analytical properties of analog circuits. The decay rate on a sequence predicts the time constant. The growth rate predicts the steady state. The gain factors on parent calculations predict the amplification. The threshold values on triggers predict the firing points. The feedback paths through obligations predict the stability. A designer can analyse the behaviour of a social circuit, an economic network, or a spatial simulation from its parameter values without running it.
 
 This structure also gives the data records the composability of analog circuits. A conversion set authored for social interaction composes with a calculation authored for economic amplification through the parent_a field — both are circuit elements connected through a gain stage reference. No integration code. The composition is structural.
+
+![Figure 0](figures/figure_sec_4_6.png)
 
 ---
 
@@ -284,6 +294,8 @@ No single discipline produces the complete system. Each discipline's contributio
 
 A value in the system simultaneously serves all six disciplines: it is a circuit node voltage (analog circuit), a signal sample in a processing chain (DSP), a packet header field for match-action routing (networking), a database column value for analytical queries (database), a work payload transferred between threads (distributed systems), and an entity component updated within the frame's phase ordering (game engine). One value. Six interpretations. One storage format. Zero conversion between disciplines.
 
+![Figure 0](figures/figure_sec_5_7.png)
+
 ---
 
 ## 6 The Closure Mechanism
@@ -313,6 +325,8 @@ The spiral converges toward a closure point where every value in the system is a
 ### 6.3 The Closure Test
 
 Closure is verifiable by a specific test: for every module, remove its implementation and replace it with data records achieving the same result using only unified mechanisms. If possible for every module, the system is closed. If any module's behaviour requires private code that cannot be replicated by data records on unified mechanisms, that module has capability that has not been unified.
+
+![Figure 0](figures/figure_sec_6_2.png)
 
 ---
 
@@ -366,6 +380,8 @@ The decisions are ordered by constraint propagation. Each decision constrains th
 
 **Decision 9: Seal.** Stop adding code. Compile the binary. Do not add new struct fields. Do not add new operation types. Do not add new evaluation phases. Every future application, every future domain, every future requirement is addressed by data records on the sealed infrastructure. If a requirement cannot be addressed, the exhaustion was incomplete — go back to Decision 5 and add the missing operation type before sealing.
 
+![Figure 0](figures/figure_sec_8_1.png)
+
 ### 8.2 Common Failure Modes
 
 **Choosing floating-point.** Seems reasonable because floating-point is the default numeric type in every language. Fails because epsilon accumulation makes the system nondeterministic, state comparisons unreliable, hashing broken, serialisation platform-dependent, and transaction deltas inexact. The entire closure property depends on exact arithmetic. Floating-point is not exact.
@@ -402,38 +418,7 @@ The middle had to be fully stuffed. Every engineering problem coded once, parame
 
 ## Appendix A — The Football Diagram
 
-```
-     Analog                                                Data-Only
-     Circuit                                                Circuit
-       ·                                                      ·
-      / \                                                    / \
-     /   \                                                  /   \
-    /     \                                                /     \
-   /       \                                              /       \
-  / Universal\          CODE: The Middle                 / Universal\
- /  Modelling \________________________________________/  Modelling  \
- \   Power   /  Conditionals, state machines,          \   Power     /
-  \  Exact  /   failure recovery, hardware access,      \  Exact    /
-   \ Eval  /    text processing, spatial algorithms,     \ Eval    /
-    \     /     sorting, searching, rendering, audio,     \       /
-     \   /      networking, memory, threads, UI,           \     /
-      \ /       drivers, protocols, analytics               \   /
-       ·        ─────────────────────────────────            · 
-                    Every engineering problem                  
-                    coded ONCE, parameterised                  
-                    through struct fields,                    
-                    sealed at final compilation               
-
-  Hard to          Programmable but                    Programmable
-  engineer.        unbounded complexity.               through data.
-  Physical         Interaction surface                 Zero complexity
-  components.      grows with every                    growth. Exact.
-  No software.     line of code.                       Deterministic.
-                   70 years of managing                Transaction
-                   the consequences.                   ledger validates.
-                                                       Sealed binary.
-                                                       LLM-authorable.
-```
+![Figure 0](figures/figure_sec_A.png)
 
 ---
 
