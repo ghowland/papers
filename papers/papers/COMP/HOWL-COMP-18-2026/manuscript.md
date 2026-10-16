@@ -559,15 +559,68 @@ The insult REDUCES rage by 86,400 because polarity inverted the sign and the cap
 
 Each identified feedback loop is a closed-loop control system with specific stability properties derivable from the circuit parameters.
 
-| Loop ID | Loop Type | Plant | Sensor | Controller | Actuator | Loop Gain | Stability Condition | Termination/Equilibrium |
-|---|---|---|---|---|---|---|---|
-| NF-1 Social need | Negative feedback | Loneliness accumulator (integrator) | Loneliness Activation calculation (comparator) | Socialise goal (UAI controller) | Chitchat/Praise conversion set (discharge pulse) | Growth_rate / Decay_rate | Stable when discharge per interaction > growth per turn | Loneliness oscillates around activation threshold 200,000 |
-| NF-5 Debt reciprocate | Negative feedback | Debt accumulator (capacitor) | Debt Activation calculation (comparator) | Reciprocate goal (UAI controller) | Gift conversion set (charge transfer) | Debt_shift / Gift_magnitude | Stable when gifts occur faster than debt accumulates | Debt oscillates around FIXED_HALF |
-| PF-1 Hostility spiral | Positive feedback | Hostility accumulator (capacitor) | UAI consideration reading hostility (sensor) | Socialise goal selects hostile interaction (controller) | Insult conversion set (charge pulse) | Hostility_gain × Insult_frequency | Unstable when insult frequency × hostility gain > hostility decay rate | Terminates at mental break, actor destruction, or actors leave proximity |
-| PF-2 Polarity ratchet | Positive feedback | Polarity accumulator (integrator, very slow) | Conversion set requirements gating on polarity (comparator) | Event selection biased by polarity (controller) | Personality drift conversion costs (micro-charge) | Drift_magnitude × Event_frequency | Always unstable (no negative feedback on polarity drift) | Terminates at FIXED_ONE rail (polarity saturates) |
-| PF-5 Betrayal-distrust lock | Positive feedback | Distrust accumulator (high-R capacitor) | UAI consideration reading distrust (sensor) | Interaction selection biased by distrust (controller) | Hostile interaction costs (charge pulse) | Distrust_charge / Distrust_decay = 800:1 | Unstable for 800 turns after betrayal (discharge cannot keep up with sustained hostile bias) | Equilibrium after ~800 turns of sustained positive interaction |
-| PF-7 Captive radicalisation | Positive feedback | Polarity accumulator + Stress accumulator | Enslavement conversion (charge injector) | Polarity gates hostile goals (comparator) | Tantrum drift (+0.001 aggression), escape attempts | Enslavement_stress × Polarity_drift_rate | Unstable: enslavement continuously charges stress and drifts polarity toward hostile threshold | Terminates at escape, liberation, or actor destruction |
-| NF-7 Obligation compliance | Negative feedback | Affinity accumulator (capacitor) | Obligation success event (sensor) | Beneficiary relationship modification (controller) | Affinity +20,000 per successful obligation (charge pulse) | Success_rate × Affinity_gain / Affinity_decay | Stable when obligation success frequency × affinity gain > affinity decay rate (-3,000/turn) | Affinity saturates at FIXED_ONE |
+**NF-1 Social need regulation (Negative feedback)**
+- Plant: Loneliness accumulator (integrator)
+- Sensor: Loneliness Activation calculation (comparator)
+- Controller: Socialise goal (UAI controller)
+- Actuator: Chitchat/Praise conversion set (discharge pulse)
+- Loop Gain: Growth_rate / Decay_rate
+- Stability: Stable when discharge per interaction > growth per turn
+- Equilibrium: Loneliness oscillates around activation threshold 200,000
+
+**NF-5 Debt reciprocation (Negative feedback)**
+- Plant: Debt accumulator (capacitor)
+- Sensor: Debt Activation calculation (comparator)
+- Controller: Reciprocate goal (UAI controller)
+- Actuator: Gift conversion set (charge transfer)
+- Loop Gain: Debt_shift / Gift_magnitude
+- Stability: Stable when gifts occur faster than debt accumulates
+- Equilibrium: Debt oscillates around FIXED_HALF
+
+**NF-7 Obligation compliance (Negative feedback)**
+- Plant: Affinity accumulator (capacitor)
+- Sensor: Obligation success event
+- Controller: Beneficiary relationship modification
+- Actuator: Affinity +20,000 per successful obligation (charge pulse)
+- Loop Gain: Success_rate × Affinity_gain / Affinity_decay
+- Stability: Stable when obligation success frequency × affinity gain > affinity decay rate (-3,000/turn)
+- Equilibrium: Affinity saturates at FIXED_ONE
+
+**PF-1 Hostility spiral (Positive feedback)**
+- Plant: Hostility accumulator (capacitor)
+- Sensor: UAI consideration reading hostility
+- Controller: Socialise goal selects hostile interaction
+- Actuator: Insult conversion set (charge pulse)
+- Loop Gain: Hostility_gain × Insult_frequency
+- Instability: Unstable when insult frequency × hostility gain > hostility decay rate
+- Termination: Mental break, actor destruction, or actors leave proximity
+
+**PF-2 Polarity ratchet (Positive feedback)**
+- Plant: Polarity accumulator (integrator, very slow)
+- Sensor: Conversion set requirements gating on polarity (comparator)
+- Controller: Event selection biased by polarity
+- Actuator: Personality drift conversion costs (micro-charge)
+- Loop Gain: Drift_magnitude × Event_frequency
+- Instability: Always unstable (no negative feedback on polarity drift)
+- Termination: Polarity hits FIXED_ONE rail (saturates)
+
+**PF-5 Betrayal-distrust lock (Positive feedback)**
+- Plant: Distrust accumulator (high-R capacitor)
+- Sensor: UAI consideration reading distrust
+- Controller: Interaction selection biased by distrust
+- Actuator: Hostile interaction costs (charge pulse)
+- Loop Gain: Distrust_charge / Distrust_decay = 800:1
+- Instability: Unstable for 800 turns after betrayal (discharge cannot keep up with sustained hostile bias)
+- Termination: Equilibrium after ~800 turns of sustained positive interaction
+
+**PF-7 Captive radicalisation (Positive feedback)**
+- Plant: Polarity accumulator + Stress accumulator
+- Sensor: Enslavement conversion (charge injector)
+- Controller: Polarity gates hostile goals (comparator)
+- Actuator: Tantrum drift (+0.001 aggression), escape attempts
+- Loop Gain: Enslavement_stress × Polarity_drift_rate
+- Instability: Enslavement continuously charges stress and drifts polarity toward hostile threshold
+- Termination: Escape, liberation, or actor destruction
 
 ---
 
