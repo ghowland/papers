@@ -80,6 +80,7 @@
 | **[HOWL-COMP-15-2026](papers/papers/COMP/HOWL-COMP-15-2026/manuscript.md)** | **Human Trust Based Federated Publication** | Text Distribution Without Global Identity. |
 | **[HOWL-COMP-16-2026](papers/papers/COMP/HOWL-COMP-16-2026/manuscript.md)** | **Direct Data Indexing** | The Frozen Frame: One Verb, One Window, One Writer. |
 | **[HOWL-COMP-17-2026](papers/papers/COMP/HOWL-COMP-17-2026/manuscript.md)** | **Parallelism as a Consequence of Normalized Behavior** | Comptime-Compiled Integer Path Resolution for In-Memory Multi-Database Struct Access. |
+| **[HOWL-COMP-18-2026](papers/papers/COMP/HOWL-COMP-18-2026/manuscript.md)** | **Data-Only Execution and Analog Circuit Theory Closing Software Development** | Tracing the Necessary Path From Integrated Circuits to Data-Only Simulation. |
 
 ---
 
