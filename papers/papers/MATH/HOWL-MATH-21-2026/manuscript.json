@@ -3,7 +3,7 @@
     "title": "The Representation Problem: 0.999... as Engineering Convention, Not Mathematical Identity",
     "registry_id": "HOWL-MATH-21-2026",
     "series_path": "",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.23491537",
     "abstract": "The standard mathematical claim that 0.999... = 1 is widely accepted and supported by multiple proof methods within real analysis. This paper argues that the claim is not a valid equality in the strict sense that mathematics defines equality. Instead, it is a type coercion between a base-dependent series function and a base-independent number. The limit convention that resolves the gap between these two objects is an engineering solution to a deficiency in base-10 positional encoding. It is not a mathematical property derivable from first principles. The paper further argues that positional notation itself embeds base-10 assumptions into all bases, making cross-base verification of such claims circular.",
     "dependencies": [],
     "raw_content_preview": "# The Representation Problem: 0.999... as Engineering Convention, Not Mathematical Identity ## A Critique of 0.999... = 1 from Representation Theory and Type Consistency  **Registry:** [@HOWL-MATH-21-..."

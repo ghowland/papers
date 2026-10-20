@@ -216,6 +216,7 @@
 | **[HOWL-MATH-18-2026](papers/papers/MATH/HOWL-MATH-18-2026/manuscript.md)** | **Concurrency Tax from System Structure** | A Graph Theory of Processing Overhead. |
 | **[HOWL-MATH-19-2026](papers/papers/MATH/HOWL-MATH-19-2026/manuscript.md)** | **The Mathematics of Processing-Aware Communication** | The Three Costs of Every Message. |
 | **[HOWL-MATH-20-2026](papers/papers/MATH/HOWL-MATH-20-2026/manuscript.md)** | **Derivability Classes of Optimal Reduction** | The Derivability Spectrum from Proof to Measurement. |
+| **[HOWL-MATH-21-2026](papers/papers/MATH/HOWL-MATH-21-2026/manuscript.md)** | **The Representation Problem: 0.999... as Engineering Convention, Not Mathematical Identity** | A Critique of 0.999... = 1 from Representation Theory and Type Consistency. |
 
 ---
 

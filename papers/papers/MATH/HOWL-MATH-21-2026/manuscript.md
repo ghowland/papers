@@ -5,7 +5,7 @@
 
 **Date:** June 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.23491537
 
 **Domain:** Foundations of Mathematics / Mathematical Representation Theory / Philosophy of Mathematics
 
@@ -354,15 +354,6 @@ It is not equality. Equality requires that both sides be the same object. The le
 
 ---
 
-# Addendum to [@HOWL-MATH-21-2026-C1]
-
-## A Standard Challenge to the 0.999... Problem
-### Five Standard Objections to the Representation Problem, Exposed Through Base Translation
-
-**Addendum Date:** October 2026
-
----
-
 ## Addendum A: Clarification on Alternative Frameworks (Section 7)
 
 Section 7 of this paper cites Egyptian fractions, finitist mathematics, and constructive mathematics as frameworks that do not produce the repeating decimal problem. A reader may object that these frameworks are not equivalent replacements for real analysis. Egyptian fractions cannot represent irrational numbers. Finitist mathematics rejects completed infinities, which disables large portions of analysis. Constructive mathematics imposes requirements on existence proofs that exclude standard results.
@@ -412,3 +403,277 @@ Both systems make a trade-off. Egyptian fractions give up scope. Real analysis g
 Egyptian fractions do not claim their representations cover all values. The system's limitations are visible and stated. Real analysis declares epsilon equivalence to be equality through the limit convention. The system's limitation in these specific cases is not visible. It is concealed by a notational convention that uses the equals sign for an operation that is mechanically an evaluation, not a comparison of identical objects.
 
 The reader who dismisses Egyptian fractions as limited while defending real analysis as complete is applying different standards to the same structural issue. Both frameworks have design choices that constrain what they can represent exactly. The original paper identifies one such constraint in real analysis. The constraint is real, the trade-off is real, and the terminology used to describe the result of that trade-off — "equality" rather than "evaluation" — is imprecise.
+
+---
+
+## Addendum D: What the Distinction Means
+
+The preceding sections of this paper and its companion identify a mechanical difference between two operations that mathematical notation represents with a single symbol. This addendum states the full scope of the claim and its consequences.
+
+---
+
+**D.1. Scope**
+
+This paper does not dispute that the series denoted by 0.999... converges to 1 under the standard definitions of real analysis. It does not claim that the limit definition is wrong. It does not claim that calculus, continuous mathematics, or the applied sciences that depend on them are invalidated. It does not propose an alternative number system.
+
+The paper identifies one problem: the equals sign in mathematical notation performs two mechanically distinct operations, and the notation does not distinguish between them.
+
+---
+
+**D.2. Two Operations**
+
+The first operation is identity. In the equation 1 + 1 = 2, both sides refer to the same object in every representation system. In base 10, the left side is 1 + 1 and the right side is 2. In base 7, the left side is 1 + 1 and the right side is 2. In base 2, the left side is 1 + 1 and the right side is 10. The objects on both sides are preserved under translation. The numbers are the same. The operations on them are the same. Only the glyphs change. The equals sign reports that the left side and the right side are the same object.
+
+The second operation is evaluation. In the equation 0.999... = 1, the left side is a series defined in base 10 with coefficient 9 and base 10. In base 7, the analogous statement is 0.666... = 1, which is a different series with coefficient 6 and base 7. The left side is a different function with different inputs in every base. The right side is the same object in every base. The equals sign does not report that the left side and the right side are the same object. It reports that the left side, when evaluated, produces the right side.
+
+These two operations have different mechanical properties. Identity preserves both sides under translation. Evaluation preserves only the output.
+
+---
+
+**D.3. The Operational Test**
+
+The distinction between identity and evaluation can be tested mechanically. Translate both sides of an equation into a different base.
+
+If both sides are preserved — the same objects, the same operations, the same values at every intermediate step — the equation is identity.
+
+If the left side is replaced by a different function with different coefficients, different partial sums, and different gaps, and only the final output is invariant, the equation is evaluation.
+
+The equation 1 + 1 = 2 passes the identity test in every base. The equation 0.999... = 1 fails the identity test in every base other than 10. In base 7, the left side becomes a different series. In base 2, it becomes a different series. In every base, the left side is a different computation. In every base, the right side is the same number. This is the mechanical signature of evaluation.
+
+---
+
+**D.4. What Changes**
+
+If the distinction between identity and evaluation were adopted in mathematical notation, no theorem would change. No proof would be invalidated. No computation would produce a different result. Every result that real analysis has produced would remain valid.
+
+What would change is visibility. The mechanical difference between identity and evaluation currently exists in the structure of the mathematics. It is detectable by the operational test described in D.3. It is not reflected in the notation. The equals sign conceals a type conversion that occurs every time a convergent series is equated with its limit.
+
+Making the distinction explicit in notation would make the type conversion visible. A reader would see that the left side of the equation is a function being evaluated, not a number being compared. The operation would be described accurately rather than described with a symbol that implies a different operation.
+
+---
+
+**D.5. What the Limit Convention Is**
+
+The limit convention is an evaluation mechanism. It takes a convergent series as input and produces a number as output. It is licensed by the completeness axiom of the real number system. It is valid within that system. It is operationally essential to calculus, analysis, and every domain of mathematics and science that depends on continuous functions.
+
+It is not a proof that two objects are identical. It is a procedure that converts one type of object — a function — into another type of object — a number. The conversion is well-defined, consistent, and productive. It is also a conversion, and the notation should reflect this.
+
+---
+
+**D.6. The Precision Claim**
+
+The series denoted by 0.999... evaluates to 1. This is a true and useful statement. The limit convention that produces this result is valid and essential.
+
+Calling this result "equality" is imprecise. The left side is not the same object as the right side. It is a different object in every base. It becomes the right side only after evaluation. The relationship between the series and the number is the relationship between an input and an output, not between two names for the same thing.
+
+Calling this result "evaluation" is precise. It describes what the limit convention mechanically does. It does not diminish the convention's validity or utility. It labels the operation accurately.
+
+This paper asks mathematics to label its own operations with the same precision it demands of its theorems. The distinction between identity and evaluation exists in the structure of the mathematics. It should exist in the notation.
+
+---
+
+# Addendum E: The Base Transposition Problem
+## Non-Integer Bases and the Structural Limits of Positional Encoding
+
+---
+
+## E.1. Purpose
+
+The preceding sections of this paper and its companion [@HOWL-MATH-21-2026] identify a base-10 dependency in positional encoding and in the notation used to write mathematical values. This addendum tests a deeper assumption: that any valid number can serve as a base for positional encoding, and that any base can be transposed to any other base.
+
+This assumption underlies the claim that positional encoding is a universal method of representing numbers. If the assumption holds, then positional encoding is a general tool that works for all bases and all values, and its conventions — including the limit convention that resolves repeating decimals — are universal features of number representation. If the assumption fails, then positional encoding is a constrained system that works within specific boundaries, and its conventions are engineering solutions to problems created by those constraints.
+
+Three non-integer bases are tested. Each is transposed to base 3. The test determines whether the base can be finitely defined in the target base, whether the transposition arithmetic can be performed within the target base, and whether the result is a functional positional encoding system.
+
+---
+
+## E.2. The Assumption
+
+Positional encoding is treated in standard mathematical practice as a universal method. The method is as follows: choose a base b greater than 1. Define a digit set of symbols from 0 to some maximum value determined by the base. Represent any value as a series of coefficients multiplied by powers of b. The integer part uses non-negative powers. The fractional part uses negative powers. The value is the sum of the series.
+
+This method is presented as base-independent. The choice of b is arbitrary. Any valid number greater than 1 should work. The resulting representations should be transposable between any two bases through arithmetic conversion. The values represented are numbers, and numbers are base-independent, so the system should be universal.
+
+This assumption is rarely tested against non-integer bases. Standard mathematical practice uses integer bases almost exclusively: base 10, base 2, base 8, base 16, and occasionally others. Non-integer bases are discussed in specialized contexts but are not part of standard education or standard notation. The assumption of universality rests on a narrow range of tested cases.
+
+This addendum tests the assumption against three cases selected to expose different failure modes.
+
+---
+
+## E.3. The Three Test Cases
+
+Three bases are selected. Each tests a different aspect of the universality assumption.
+
+**Base 6/7.** A rational number less than 1. This tests whether all rational numbers greater than zero qualify as bases for positional encoding. The value 6/7 is a valid number. If positional encoding is universal, it should function as a base.
+
+**Base 13/7.** A rational number greater than 1 that is not an integer. This tests whether non-integer rational bases can be defined and transposed to an independent integer base. The value 13/7 is greater than 1 and should produce convergent positional powers.
+
+**Base 1.1.** A non-integer value expressed in base-10 positional notation. This is the decimal value 11/10. This tests whether a base defined using base-10 positional notation can be transposed to a base that does not share the prime factors of 10.
+
+All transpositions target base 3. Base 3 is selected because it shares no prime factors with 10 (the base in which 1.1 is natively expressed) and does not contain 7 as a factor (which would trivially simplify the 13/7 and 6/7 cases). Base 3 is independent of both the source bases and the notation system used to define them.
+
+---
+
+## E.4. Base 6/7 — Eliminated Mechanically
+
+Base 6/7 is less than 1. In positional encoding, each position after the radix point represents a successive negative power of the base. For a base b, the first fractional position represents b⁻¹, the second represents b⁻², and so on.
+
+For base 6/7:
+
+(6/7)⁻¹ = 7/6
+
+(6/7)⁻² = 49/36
+
+(6/7)⁻³ = 343/216
+
+The powers grow rather than shrink. Each successive fractional position represents a larger value than the previous one. The series of positional values diverges. A digit placed in the third fractional position contributes a larger quantity than a digit placed in the second fractional position. This is the opposite of what positional encoding requires. Fractional representation depends on each successive position contributing a smaller quantity so that the series converges.
+
+No transposition is attempted because the base does not function as a positional encoding system at all. The failure is not in the transposition. The failure is in the base itself. Positional encoding requires bases greater than 1. This is a structural constraint of the method.
+
+This constraint is rarely stated explicitly. Textbooks define positional encoding with a base b and proceed with integer examples. The requirement that b must be greater than 1 is implicit in the convergence of the geometric series but is not typically identified as a limitation of the method. It is a limitation. Not all valid numbers can serve as bases. The set of valid bases is a proper subset of the positive reals.
+
+---
+
+## E.5. Base 13/7 — The Base Becomes an Infinite Series
+
+13/7 is greater than 1. Its value in base 10 is approximately 1.857. The positional powers converge:
+
+(13/7)⁻¹ = 7/13 ≈ 0.538
+
+(13/7)⁻² = 49/169 ≈ 0.290
+
+(13/7)⁻³ = 343/2197 ≈ 0.156
+
+The system is mechanically functional. The digit set contains 0 and 1, since the integer part of the base is 1. Values can be represented as series of coefficients from this digit set multiplied by powers of 13/7.
+
+Transpose this base to base 3.
+
+In base 3, the integer 13 is 111 (one unit of 9, one unit of 3, one unit of 1). The integer 7 is 21 (two units of 3, one unit of 1). The base can be expressed as the fraction 111/21 in base 3. This fraction is a finite, exact representation. No limit is needed to state the base as a ratio.
+
+However, positional encoding does not use ratios. It uses positional decimals. To use base 13/7 within the positional encoding system, the base must be expressible as a positional value in the target base. This requires computing the positional expansion of 13/7 in base 3.
+
+The computation proceeds by long division:
+
+13 divided by 7: integer part is 1, remainder 6.
+
+6 × 3 = 18. 18 divided by 7 = 2, remainder 4.
+
+4 × 3 = 12. 12 divided by 7 = 1, remainder 5.
+
+5 × 3 = 15. 15 divided by 7 = 2, remainder 1.
+
+1 × 3 = 3. 3 divided by 7 = 0, remainder 3.
+
+3 × 3 = 9. 9 divided by 7 = 1, remainder 2.
+
+2 × 3 = 6. 6 divided by 7 = 0, remainder 6.
+
+The remainder 6 appeared at the first step. The cycle repeats. The expansion of 13/7 in base-3 positional notation is:
+
+1.212010212010... repeating with period 6.
+
+The base itself is a repeating decimal in base 3. It cannot be finitely expressed in base-3 positional notation. To define this base in base 3 using positional encoding, you must complete an infinite repeating series. Completing that series requires the limit convention. The evaluation mechanism is needed to define the base itself before any values are written in that base.
+
+This creates a recursive dependency. The base requires evaluation to define. Values written in the base require evaluation to compute. The limit convention is not a tool applied once to resolve a repeating decimal within an established base. It is a tool required at the foundational level to establish the base itself.
+
+---
+
+## E.6. Base 1.1 — Three Compounding Failures
+
+1.1 in base 10 is the fraction 11/10. It is greater than 1. The positional powers converge:
+
+(11/10)⁻¹ = 10/11 ≈ 0.909
+
+(11/10)⁻² = 100/121 ≈ 0.826
+
+(11/10)⁻³ = 1000/1331 ≈ 0.751
+
+The system is mechanically functional. The digit set contains 0 and 1. Values can be represented as series of coefficients multiplied by powers of 11/10.
+
+Transpose this base to base 3.
+
+In base 3, the integer 11 is 102 (one unit of 9, zero units of 3, two units of 1). The integer 10 is 101 (one unit of 9, zero units of 3, one unit of 1). The base can be expressed as the fraction 102/101 in base 3.
+
+Compute the positional expansion of 11/10 in base 3:
+
+11 divided by 10: integer part is 1, remainder 1.
+
+1 × 3 = 3. 3 divided by 10 = 0, remainder 3.
+
+3 × 3 = 9. 9 divided by 10 = 0, remainder 9.
+
+9 × 3 = 27. 27 divided by 10 = 2, remainder 7.
+
+7 × 3 = 21. 21 divided by 10 = 2, remainder 1.
+
+The remainder 1 appeared at the first fractional step. The cycle repeats. The expansion of 11/10 in base-3 positional notation is:
+
+1.00220022... repeating with period 4.
+
+The base is a repeating decimal in base 3. Three distinct problems compound in this case.
+
+**First: the base requires evaluation to define.** The positional expansion of 11/10 in base 3 is infinite. The limit convention is required to complete the definition of the base. As with base 13/7, the evaluation mechanism is needed at the foundational level.
+
+**Second: the convergence rate is impractical.** The base 11/10 is close to 1. Each positional power reduces the contribution by approximately 9 percent. For comparison, base 3 reduces each contribution by 67 percent per position. In base 11/10, ten fractional positions contribute values ranging from 0.909 down to approximately 0.385. One hundred positions are needed before the positional contribution drops below 0.0001. Any practical representation of a value in base 11/10 requires digit strings orders of magnitude longer than the same value in an integer base. The system is mechanically valid and practically unusable.
+
+**Third: the base is a base-10 artifact.** The notation "1.1" is a base-10 positional expression. The digit 1 after the decimal point means 1 × 10⁻¹. This notation has no finite positional form in base 3. It has no finite positional form in any base that does not share the prime factors of 10 (2 and 5). The base is defined using the encoding system of base 10 and cannot be finitely restated in positional notation in most other bases. The base is not a number that happens to be written in base 10. It is a value whose finite positional expression exists only in bases compatible with 10.
+
+---
+
+## E.7. The Computation Dependency
+
+A problem common to all transpositions in the preceding sections must be stated explicitly. The long division used to compute the positional expansion of each base in base 3 produces intermediate values that exceed the base-3 digit set.
+
+Base 3 uses digits 0, 1, and 2. No value greater than 2 can be represented by a single base-3 digit.
+
+In the transposition of 13/7 to base 3, the long division produces intermediate values of 6, 18, 12, 15, 9. None of these are base-3 quantities. The value 18, for example, requires three digits in base 3 (200). The value 6 requires two digits (20). These intermediate values appear in the steps of the division algorithm but cannot be expressed as single quantities within the base-3 digit set.
+
+In the transposition of 11/10 to base 3, the intermediate values include 3, 9, 27, 21. The value 27 in base 3 is 1000. The value 9 is 100. These are multi-digit base-3 values that cannot be handled as single-digit quantities in the division algorithm.
+
+The long division algorithm, as performed, uses base-10 arithmetic. The multiplication steps (6 × 3 = 18, 9 × 3 = 27) are base-10 computations. The division steps (18 divided by 7 = 2 remainder 4) are base-10 operations. The results are then transcribed into base-3 digit sequences.
+
+The transposition does not occur between the source base and base 3 directly. It occurs from the source base through base-10 arithmetic to base 3. Base 10 is the computational intermediary. The transposition is not independent of base 10 even when neither the source base nor the target base is base 10.
+
+To perform the transposition in base-3 arithmetic natively would require a long division algorithm that operates on multi-digit base-3 values at each step. This is possible in principle. Multi-digit arithmetic is well-defined in any base. But the standard practice of writing and performing the computation uses base-10 arithmetic throughout and then expresses the output in base-3 notation. The base-10 dependency is not in the result. It is in the process of computing the result.
+
+---
+
+## E.8. What the Tests Reveal
+
+The three test cases expose four structural constraints of positional encoding.
+
+**Constraint 1: Bases must be greater than 1.** Bases less than 1 produce divergent positional powers. The fractional positions grow instead of shrinking. Positional encoding cannot represent fractional values in a base less than 1. This excludes all positive reals between 0 and 1 from serving as bases. The set of valid bases is not the full set of positive reals. It is a proper subset.
+
+**Constraint 2: Non-integer bases cannot be finitely defined in all integer bases.** A non-integer rational base, when expressed in positional notation in an integer base that does not share its denominator's factors, produces a repeating decimal. The base itself requires the limit convention to define. The evaluation mechanism is needed not at the level of values within a base but at the level of defining the base. This is a recursive dependency: evaluation is needed to define the system within which further evaluation occurs.
+
+**Constraint 3: The arithmetic of transposition may exceed the target base's digit set.** The long division algorithm for computing a positional expansion in a target base produces intermediate values that may require more digits than the target base provides for a single position. The computation must be performed in a base with a sufficient digit set and the results transcribed to the target base. The computation is not performed within the target base. It is performed through a base with a larger digit set.
+
+**Constraint 4: Base 10 serves as the universal intermediary.** In standard mathematical practice, the base with the sufficient digit set is always base 10. The notation is base 10. The arithmetic is base 10. The digit symbols are base 10. The transposition between any two bases routes through base 10 at the level of the computation itself, not just at the level of writing the result. Base 10 is not a neutral choice of notation. It is a structural dependency embedded in the arithmetic of base transposition.
+
+---
+
+## E.9. The Missing Tools
+
+The constraints identified in the preceding section are not solved problems presented here as open questions. They are unsolved problems that are invisible in standard practice.
+
+No notation exists for non-integer bases that does not depend on an integer base to define them. A non-integer base can be expressed as a ratio of two integers (13/7, 11/10), which is a finite, exact representation. But positional encoding does not use ratios. It uses positional expansions. The positional expansion of a non-integer base in a target integer base may be infinite. No convention exists for defining a base using a representation that requires the evaluation mechanism the base is supposed to support.
+
+No method exists in standard practice for performing base transposition arithmetic entirely within the target base when intermediate values exceed its digit set. The algorithm is well-defined in principle — multi-digit arithmetic works in any base — but the standard practice of performing the computation in base 10 and transcribing the results conceals the fact that the computation has not been performed in the target base. No standard notation or pedagogy supports performing the transposition natively.
+
+No framework exists for positional encoding that is genuinely base-independent. Every positional base borrows its notation from base 10. Every non-integer base may require evaluation to define in the target base. Every transposition computation in standard practice routes through base 10. The system is presented as universal but functions within a specific set of constraints centered on base 10.
+
+These problems are not visible in standard practice because standard practice operates within the boundaries where the system works: integer bases greater than 1, with all notation and arithmetic in base 10. The problems become visible only when the assumption of universality is tested against cases the system was not designed to handle. The three test cases in this addendum are such cases. They are valid numbers used as bases and transposed to a valid target base. The system fails at the level of defining the base, at the level of performing the arithmetic, and at the level of writing the results.
+
+---
+
+## E.10. Connection to the Original Claim
+
+The original paper [@HOWL-MATH-21-2026] identifies a specific problem: the equals sign in 0.999... = 1 performs evaluation, not equality. The left side is a base-dependent series. The right side is a base-independent number. The limit convention converts one to the other. This conversion is valid and useful but is not equality in the strict sense.
+
+This addendum identifies the same problem at a deeper level. The limit convention is not only used to resolve repeating decimals within an established base. It is used to define non-integer bases themselves when those bases are expressed in positional notation in a target base. The evaluation mechanism operates at the foundational level of the encoding system, not just at the level of individual values.
+
+The base-10 dependency identified in [@HOWL-MATH-21-2026] is not limited to notation. It extends to the arithmetic of transposition. The computation required to convert between bases routes through base 10 in standard practice. The intermediate values in the computation exceed the digit sets of small target bases and must be handled in a base with a larger digit set. In practice, that base is always base 10.
+
+The assumption that positional encoding is universal — that any base is valid and any base is transposable to any other — is false in the general case. It holds for integer bases greater than 1, with the caveat that all notation and arithmetic are conducted through base 10. It fails for bases less than 1, which are mechanically excluded. It fails for non-integer bases, which may require infinite series to define in the target base. And even where it holds, the computation is not base-independent. It is dependent on base 10 at every level.
+
+The 0.999... problem is the surface-level symptom. The structural limitations of positional encoding — constrained valid bases, recursive evaluation dependencies, computation routing through base 10 — are the underlying condition. The original paper identifies the symptom. This addendum identifies the condition. They are the same problem at different depths.
+

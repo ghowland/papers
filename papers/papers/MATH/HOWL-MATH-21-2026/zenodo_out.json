@@ -1,10 +1,10 @@
 {
-  "created": "2026-06-10T16:23:52.164218+00:00",
-  "modified": "2026-06-10T16:23:52.259840+00:00",
-  "id": 20630720,
-  "conceptrecid": "20630719",
+  "created": "2026-10-20T06:10:31.685365+00:00",
+  "modified": "2026-10-20T06:10:31.776232+00:00",
+  "id": 23491537,
+  "conceptrecid": "23491536",
   "metadata": {
-    "title": "Derivability Classes of Optimal Reduction",
+    "title": "The Representation Problem: 0.999... as Engineering Convention, Not Mathematical Identity",
     "publication_date": "2026-04",
     "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-20-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/MATH/HOWL-MATH-21-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -69,30 +69,30 @@
         "identifier": "howland-archive"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-20-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-MATH-21-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.20630720",
-      "recid": 20630720
+      "doi": "10.5281/zenodo.23491537",
+      "recid": 23491537
     }
   },
-  "title": "Derivability Classes of Optimal Reduction",
+  "title": "The Representation Problem: 0.999... as Engineering Convention, Not Mathematical Identity",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/20630720",
-    "html": "https://zenodo.org/deposit/20630720",
+    "self": "https://zenodo.org/api/deposit/depositions/23491537",
+    "html": "https://zenodo.org/deposit/23491537",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/20630720/files",
-    "bucket": "https://zenodo.org/api/files/692abed8-c90d-474d-94c5-e29ed514c836",
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/20630720",
-    "latest_draft_html": "https://zenodo.org/deposit/20630720",
-    "publish": "https://zenodo.org/api/deposit/depositions/20630720/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/20630720/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/20630720/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/20630720/actions/newversion"
+    "files": "https://zenodo.org/api/deposit/depositions/23491537/files",
+    "bucket": "https://zenodo.org/api/files/8b2aee68-5bd9-4114-9027-7723223f30b7",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/23491537",
+    "latest_draft_html": "https://zenodo.org/deposit/23491537",
+    "publish": "https://zenodo.org/api/deposit/depositions/23491537/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/23491537/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/23491537/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/23491537/actions/newversion"
   },
-  "record_id": 20630720,
+  "record_id": 23491537,
   "owner": 1539729,
   "files": [],
   "state": "unsubmitted",
