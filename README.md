@@ -133,6 +133,7 @@
 | :--- | :--- | :--- |
 | **[HOWL-NEURO-1-2026](papers/papers/NEURO/HOWL-NEURO-1-2026/manuscript.md)** | **Elimination of Classical Carriers for Sub-Millisecond Motor Coordination** | An Engineering Analysis of Timing Requirements Across Human and Animal Motor Tasks. |
 | **[HOWL-NEURO-2-2026](papers/papers/NEURO/HOWL-NEURO-2-2026/manuscript.md)** | **Fuel and Frame** | Nervous System Resource Allocation as a Contributing Mechanism to SSH Type Formation. |
+| **[HOWL-NEURO-3-2026](papers/papers/NEURO/HOWL-NEURO-3-2026/manuscript.md)** | **Developmental Motor Coordination in RF-Shielded Versus Standard Electromagnetic Environments** | A Controlled Mouse Study Proposal. |
 
 ---
 
