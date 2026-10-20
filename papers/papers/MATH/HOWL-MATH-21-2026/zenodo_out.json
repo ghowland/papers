@@ -85,6 +85,15 @@
     "badge": "https://zenodo.org/badge/doi/.svg",
     "files": "https://zenodo.org/api/deposit/depositions/23491537/files",
     "bucket": "https://zenodo.org/api/files/8b2aee68-5bd9-4114-9027-7723223f30b7",
+    "thumb250": "https://zenodo.org/record/23491537/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/23491537/thumb10",
+      "50": "https://zenodo.org/record/23491537/thumb50",
+      "100": "https://zenodo.org/record/23491537/thumb100",
+      "250": "https://zenodo.org/record/23491537/thumb250",
+      "750": "https://zenodo.org/record/23491537/thumb750",
+      "1200": "https://zenodo.org/record/23491537/thumb1200"
+    },
     "latest_draft": "https://zenodo.org/api/deposit/depositions/23491537",
     "latest_draft_html": "https://zenodo.org/deposit/23491537",
     "publish": "https://zenodo.org/api/deposit/depositions/23491537/actions/publish",
@@ -94,7 +103,28 @@
   },
   "record_id": 23491537,
   "owner": 1539729,
-  "files": [],
+  "files": [
+    {
+      "id": "ca99aad0-27c4-44b0-a4a8-d8ce1c8c3b1d",
+      "filename": "!manuscript.pdf",
+      "filesize": 108930,
+      "checksum": "4b5506a04f358ef5ee1aee02972f0079",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23491537/files/ca99aad0-27c4-44b0-a4a8-d8ce1c8c3b1d",
+        "download": "https://zenodo.org/api/records/23491537/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "1493da8c-9a67-4f09-a029-0f2c46767ece",
+      "filename": "HOWL-MATH-21-2026.zip",
+      "filesize": 164947,
+      "checksum": "5553ed3f48aae25faa0e72a3f7f143b1",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23491537/files/1493da8c-9a67-4f09-a029-0f2c46767ece",
+        "download": "https://zenodo.org/api/records/23491537/draft/files/HOWL-MATH-21-2026.zip/content"
+      }
+    }
+  ],
   "state": "unsubmitted",
   "submitted": false
 }
