@@ -1,4 +1,4 @@
-# Increasing True Risk by Banning Jump and Other Corruption Gameplay Verbs
+# The Circuit System Method of Game Design
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,9 @@
 
 ## Abstract
 
+This paper presents a method for designing interactive worlds where every game element — items, quests, characters, relationships, narrative structures, and settings — operates as a component in one interconnected circuit. Instead of designing separate systems for combat, economy, dialogue, and exploration, the designer authors components with signal pins, connects them through shared buses, and lets the engine evaluate the resulting circuit. Emergent gameplay, proportional narrative consequences, and cross-system interactions arise from the circuit's operation without scripted bridges between systems.
 
+The method is grounded in six design domains: Inventory, Quest, Relationship, Character, Narrative, and Setting. Each domain contributes components, connections, and signal sources to a shared circuit board. The paper maps each domain to established game design methodologies, demonstrates how the circuit model extends existing practice, and provides practical guidance for designers adopting the approach.
 
 ---
 
@@ -46,14 +48,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-GAME-2-2026,
-  title={ Increasing True Risk by Banning Jump and Other Corruption Gameplay Verbs },
+@article{ HOWL-GAME-3-2026,
+  title={ The Circuit System Method of Game Design },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.22964296},
-  url = {https://zenodo.org/record/22964296},
-  note={Howland Archive: HOWL-GAME-2-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.23552222},
+  url = {https://zenodo.org/record/23552222},
+  note={Howland Archive: HOWL-GAME-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

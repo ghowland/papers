@@ -1,9 +1,9 @@
 # The Circuit System Method of Game Design
 ## A Unified Framework for Interactive World Construction Through Signal Composition
 
-**Registry:** [@HOWL-GAME-4-2026]
+**Registry:** [@HOWL-GAME-3-2026]
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.23552222
 
 **Date:** October 2026
 
