@@ -1,4 +1,4 @@
-# The Circuit System Method of Game Design
+# Op Cost Analysis of Player-Facing Tool Selection Interfaces in Simulation Games
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,9 +6,7 @@
 
 ## Abstract
 
-This paper presents a method for designing interactive worlds where every game element — items, quests, characters, relationships, narrative structures, and settings — operates as a component in one interconnected circuit. Instead of designing separate systems for combat, economy, dialogue, and exploration, the designer authors components with signal pins, connects them through shared buses, and lets the engine evaluate the resulting circuit. Emergent gameplay, proportional narrative consequences, and cross-system interactions arise from the circuit's operation without scripted bridges between systems.
-
-The method is grounded in six design domains: Inventory, Quest, Relationship, Character, Narrative, and Setting. Each domain contributes components, connections, and signal sources to a shared circuit board. The paper maps each domain to established game design methodologies, demonstrates how the circuit model extends existing practice, and provides practical guidance for designers adopting the approach.
+No standard unit exists for measuring the cost of player actions in game user interfaces. Design discussions rely on subjective preference, playtester sentiment, or A/B testing without a shared unit of measurement. This paper applies the op — the universal unit of information under action, defined in HOWL-INFO-14-2026 — to the specific domain of tool selection interfaces in simulation games. The op counts every discrete cognitive and physical action a player must perform to complete a task. Six domain-specific op categories are defined (look-at, read, scan, hover, move, click), each with fixed counting rules calibrated to game UI patterns. A library of compound actions provides pre-computed op costs for common UI interactions. Twelve benchmark tasks provide a standardized measurement surface for cross-game comparison. Measurements are taken across six commercial titles in two genres: colony simulation (Oxygen Not Included, Dwarf Fortress Steam Edition, RimWorld) and grand strategy (Europa Universalis IV, Crusader Kings III, Total War: Warhammer III). Results show that text-labeled hierarchical menus with keyboard acceleration produce the lowest combined new-player and expert interaction cost. Icon-only hierarchies produce the lowest expert cost but the highest new-player cost. Persistent icon grids produce the lowest within-category switching cost but the highest regression vulnerability. The framework makes these tradeoffs quantifiable, reproducible, and falsifiable.
 
 ---
 
@@ -48,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-GAME-3-2026,
-  title={ The Circuit System Method of Game Design },
+@article{ HOWL-GAME-4-2026,
+  title={ Op Cost Analysis of Player-Facing Tool Selection Interfaces in Simulation Games },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.23552222},
-  url = {https://zenodo.org/record/23552222},
-  note={Howland Archive: HOWL-GAME-3-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.23647485},
+  url = {https://zenodo.org/record/23647485},
+  note={Howland Archive: HOWL-GAME-4-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

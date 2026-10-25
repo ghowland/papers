@@ -7,7 +7,7 @@
 
 **Date:** October 2026
 
-**DOI:** 10.5281/zenodo.XXXXXXXX
+**DOI:** 10.5281/zenodo.23647485
 
 **Domain:** Information Processing Theory / Game Interface Design
 
