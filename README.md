@@ -365,3 +365,5 @@
 | **[HOWL-GAME-1-2026](papers/papers/GAME/HOWL-GAME-1-2026/manuscript.md)** | **A Structural Taxonomy of Player Experience in Game Design** | First Pass. |
 | **[HOWL-GAME-2-2026](papers/papers/GAME/HOWL-GAME-2-2026/manuscript.md)** | **Increasing True Risk by Banning Jump and Other Corruption Gameplay Verbs** | Why Removing a Verb Can Make Every Other System Stronger. |
 | **[HOWL-GAME-3-2026](papers/papers/GAME/HOWL-GAME-3-2026/manuscript.md)** | **The Circuit System Method of Game Design** | A Unified Framework for Interactive World Construction Through Signal Composition. |
+| **[HOWL-GAME-4-2026](papers/papers/GAME/HOWL-GAME-4-2026/manuscript.md)** | **Op Cost Analysis of Player-Facing Tool Selection Interfaces in Simulation Games** | A Measurement Framework for Quantifying Interaction Cost Across UI Architectures. |
+
