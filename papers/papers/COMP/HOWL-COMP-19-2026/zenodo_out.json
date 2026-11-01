@@ -1,0 +1,130 @@
+{
+  "created": "2026-11-01T04:33:32.256840+00:00",
+  "modified": "2026-11-01T04:33:32.354173+00:00",
+  "id": 23852190,
+  "conceptrecid": "23852189",
+  "metadata": {
+    "title": "Building Ungameable Trust Networks for Curated Directories",
+    "publication_date": "2026-04",
+    "description": "SiloSec Protocol Specification\n\nThe Definitive Blueprint for Silo-to-Silo Encrypted Communication\n\nA simple secure host-to-host protocol.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "computation"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/COMP/HOWL-COMP-19-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "zenodo"
+      },
+      {
+        "identifier": "howland-archive"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-COMP-18-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.23852190",
+      "recid": 23852190
+    }
+  },
+  "title": "Building Ungameable Trust Networks for Curated Directories",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/23852190",
+    "html": "https://zenodo.org/deposit/23852190",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/23852190/files",
+    "bucket": "https://zenodo.org/api/files/cbc7cfb2-8d1e-4506-be1b-806d1771a2f6",
+    "thumb250": "https://zenodo.org/record/23852190/thumb250",
+    "thumbs": {
+      "10": "https://zenodo.org/record/23852190/thumb10",
+      "50": "https://zenodo.org/record/23852190/thumb50",
+      "100": "https://zenodo.org/record/23852190/thumb100",
+      "250": "https://zenodo.org/record/23852190/thumb250",
+      "750": "https://zenodo.org/record/23852190/thumb750",
+      "1200": "https://zenodo.org/record/23852190/thumb1200"
+    },
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/23852190",
+    "latest_draft_html": "https://zenodo.org/deposit/23852190",
+    "publish": "https://zenodo.org/api/deposit/depositions/23852190/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/23852190/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/23852190/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/23852190/actions/newversion"
+  },
+  "record_id": 23852190,
+  "owner": 1539729,
+  "files": [
+    {
+      "id": "d60e7055-ec9b-4802-a0da-43ebaeee78a1",
+      "filename": "!manuscript.pdf",
+      "filesize": 92565,
+      "checksum": "babd94b736ff99ee77fbcbd5f4668e8b",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23852190/files/d60e7055-ec9b-4802-a0da-43ebaeee78a1",
+        "download": "https://zenodo.org/api/records/23852190/draft/files/!manuscript.pdf/content"
+      }
+    },
+    {
+      "id": "5b9a32a5-0d1a-43a7-92ee-805dcb780774",
+      "filename": "HOWL-COMP-19-2026.zip",
+      "filesize": 5478193,
+      "checksum": "3cfc2720235a96db460655c1744b1e1e",
+      "links": {
+        "self": "https://zenodo.org/api/deposit/depositions/23852190/files/5b9a32a5-0d1a-43a7-92ee-805dcb780774",
+        "download": "https://zenodo.org/api/records/23852190/draft/files/HOWL-COMP-19-2026.zip/content"
+      }
+    }
+  ],
+  "state": "unsubmitted",
+  "submitted": false
+}
