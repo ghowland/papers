@@ -1003,3 +1003,23 @@ Detailed operation count for the manual palette construction workflow, broken do
 ---
 
 *HOWL-USER-3-2026 Appendix Tables. Dynamic Palette Creation.*
+
+---
+
+### Figures
+
+![Palette 0: Western-derived warm brown theme](figures/pal_0.PNG)
+
+**Figure 1: Warm Brown Palette (Western-derived).** Base hue 33, saturation 0.92, brightness 0.14. The entire application renders in warm amber tones. The SV field shows the hue at 27 degrees. Accent colors are complementary — shifted 180 degrees to teal-cyan, visible in the Accent swatches and the Badge highlight. The derivation editor on the right shows BG Raised selected, with a hue shift of 354 degrees (six degrees counter-clockwise from the base), saturation offset near zero, and brightness offset of 0.50 — lifting the raised surface above the dark primary background. All 25 theme swatches are visible in the Theme Palette section. The bottom half of the screen shows the data editor panels, all rendering with colors drawn from this palette through live sync. Borders, text, section headers, and interactive elements all derive from the same three base slider values.
+
+![Palette 1: Cyan-teal dark theme](figures/pal_1.PNG)
+
+**Figure 2: Cyan-Teal Dark Palette.** Base hue 179, saturation 0.92, brightness 0.14. The same application, the same derivation table, the same UI layout — only the base hue slider moved from 33 to 179. Every surface shifted from warm brown to dark teal. The accent colors rotated to the complement: warm orange tones visible in the Accent Primary, Hover, and Pressed swatches. Text remains legible against all surfaces because the contrast enforcement step adjusted text brightness automatically. The data editor panels in the lower half show the same content rendered in the new palette. No manual per-color adjustment was performed. The hue slider moved, the generation function ran, live sync pushed the 25 colors to the active theme, and the entire interface updated in one frame.
+
+![Palette 2: Magenta-pink dark theme](figures/pal_2.PNG)
+
+**Figure 3: Magenta-Pink Dark Palette.** Base hue 309, saturation 0.92, brightness 0.14. The base hue moved to the magenta region of the color wheel. All surfaces are deep magenta-purple. The complementary accent shifted to green, visible in the Badge highlight swatch. The Warning swatch shows a warm tone consistent with the hue offset defined in the derivation table. Section headers, borders, and interactive controls all followed the base shift. The SV field in the color picker shows the magenta hue space. The derivation editor displays BG Primary selected with hue shift 0, saturation offset 0.10, and brightness offset 0.10 — the identity derivation with minor adjustments. The entire 25-color palette is coherent at this hue position without any per-color editing.
+
+![Palette 3: Yellow-green light theme](figures/pal_3.PNG)
+
+**Figure 4: Yellow-Green Light Palette.** Base hue 97, saturation 0.12, brightness 0.93. This palette demonstrates the system operating on a light base rather than a dark base. The high brightness value (0.93) produces a near-white yellow-green background. The low saturation (0.12) keeps the surfaces subtle. The derivation table's text colors, which use negative brightness offsets, produce dark text on the light surface — the contrast enforcement confirms legibility automatically. The accent swatches show green tones with visible hover and pressed state differentiation. The data editor panels render with dark text on light surfaces, reversing the polarity of the three dark-base palettes above without any change to the derivation table structure. The same 25 derivation records that produced legible dark themes produce a legible light theme when the base brightness crosses the midpoint, because the contrast enforcer switches push direction based on surface lightness.
