@@ -367,6 +367,7 @@
 | **[HOWL-USER-2-2026](papers/papers/USER/HOWL-USER-2-2026/manuscript.md)** | **Enhancing Your User Experience** | The Systematic Destruction of Professional Software Expertise Through Interface Redesign Cycles. |
 | **[HOWL-USER-3-2026](papers/papers/USER/HOWL-USER-3-2026/manuscript.md)** | **Dynamic Palette Creation** | How a Single Base Value and a Flat Derivation Table Generate Coherent UI Palettes of Any Size. |
 | **[HOWL-USER-4-2026](papers/papers/USER/HOWL-USER-4-2026/manuscript.md)** | **Tools, Not Options** | How Maximally Expressive Controls Eliminate the Abdication Pattern in Professional Software. |
+| **[HOWL-USER-5-2026](papers/papers/USER/HOWL-USER-5-2026/manuscript.md)** | **The Only Winning Move Is Not to Play** | How Configuration Impermanence Teaches Power Users to Invest Nothing. |
 
 ---
 
