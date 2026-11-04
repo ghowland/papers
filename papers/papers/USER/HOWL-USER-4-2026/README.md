@@ -1,4 +1,4 @@
-# manuscript.md
+# Tools, Not Options
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -47,12 +47,12 @@ If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
 @article{ HOWL-USER-4-2026,
-  title={ manuscript.md },
+  title={ Tools, Not Options },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.zzz},
-  url = {https://zenodo.org/record/zzz},
+  doi = {10.5281/zenodo.23941791},
+  url = {https://zenodo.org/record/23941791},
   note={Howland Archive: HOWL-USER-4-2026. Prerequisites: None (foundation paper) }
 }
 ```

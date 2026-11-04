@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
-    "title": "manuscript.md",
+    "title": "Tools, Not Options",
     "registry_id": "HOWL-USER-4-2026",
     "series_path": "[@HOWL-INFO-14-2026] \u2192 [@HOWL-USER-1-2026] \u2192 [@HOWL-USER-2-2026] \u2192 [@HOWL-USER-3-2026] \u2192 [@HOWL-USER-4-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.23941791",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": " **Registry:** [@HOWL-USER-4-2026]  **Series Path:** [@HOWL-INFO-14-2026] \u2192 [@HOWL-USER-1-2026] \u2192 [@HOWL-USER-2-2026] \u2192 [@HOWL-USER-3-2026] \u2192 [@HOWL-USER-4-2026]  **DOI:** 10.5281/zenodo.zzz  **Date:*..."
+    "raw_content_preview": "# Tools, Not Options ## How Maximally Expressive Controls Eliminate the Abdication Pattern in Professional Software  **Registry:** [@HOWL-USER-4-2026]  **Series Path:** [@HOWL-INFO-14-2026] \u2192 [@HOWL-U..."
 }
