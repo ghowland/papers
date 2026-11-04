@@ -358,13 +358,13 @@
 
 ---
 
-
 ## User
 *User Interface (UI) and User Exeperience (UX).*
 
 | ID | Title | Description |
 | :--- | :--- | :--- |
 | **[HOWL-USER-1-2026](papers/papers/USER/HOWL-USER-1-2026/manuscript.md)** | **Layout Is Not a Feature** | Why Universal Docking Fails Power Users and How Fixed Panel Architectures Eliminate the Cost. |
+| **[HOWL-USER-2-2026](papers/papers/USER/HOWL-USER-2-2026/manuscript.md)** | **Enhancing Your User Experience** | The Systematic Destruction of Professional Software Expertise Through Interface Redesign Cycles. |
 
 ---
 
