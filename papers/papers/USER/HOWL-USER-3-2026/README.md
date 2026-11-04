@@ -1,4 +1,4 @@
-# Enhancing Your User Experience
+# Dynamic Palette Creation
 
 **AI Usage Disclosure:** Only the top metadata, figures, MD to PDF conversion formatting, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Claude Opus 4.6.
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Professional software interfaces change on release cycles that have no correlation with changes to the underlying functional capabilities. The phrase "enhancing your user experience" signals the replacement of a user's accumulated operational expertise with a new interface that serves the production metrics of a UI design team. This paper documents the pattern across seven major professional tools spanning 27 years, quantifies the retraining cost imposed on users, identifies the organizational incentive structure that drives the pattern, and demonstrates that the functional kernels of these applications have been stable for 10-25 years while their interfaces have been reorganized 3-8 times per decade. The paper concludes that the only structural defense against this pattern is to make the interface a user-owned data layer rather than a designer-shipped artifact.
+
 
 ---
 
@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-USER-2-2026,
-  title={ Enhancing Your User Experience },
+@article{ HOWL-USER-3-2026,
+  title={ Dynamic Palette Creation },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  doi = {10.5281/zenodo.23939676},
-  url = {https://zenodo.org/record/23939676},
-  note={Howland Archive: HOWL-USER-2-2026. Prerequisites: None (foundation paper) }
+  doi = {10.5281/zenodo.23940835},
+  url = {https://zenodo.org/record/23940835},
+  note={Howland Archive: HOWL-USER-3-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---
