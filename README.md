@@ -55,6 +55,7 @@
 | **[HOWL-INFO-15-2026](papers/papers/INFO/HOWL-INFO-15-2026/manuscript.md)** | **Cross-Domain Learning: How Bits and Ops Transfer Between Domains** | The Mechanical Process of Learning New Domains Using What You Already Know. |
 | **[HOWL-INFO-16-2026](papers/papers/INFO/HOWL-INFO-16-2026/manuscript.md)** | **Staged Advancement: How Dissolved Knowledge Generates the Next Domain** | The Mechanism by Which Each Stage of Knowledge Creates the Conditions for the Next. |
 | **[HOWL-INFO-17-2026](papers/papers/INFO/HOWL-INFO-17-2026/manuscript.md)** | **The General Theory of State Change** | The Normalization of Behavior. |
+| **[HOWL-INFO-18-2026](papers/papers/INFO/HOWL-INFO-18-2026/manuscript.md)** | **The Universal Elimination Method** | Producing Structural Findings Through Exhaustive Enumeration and Constraint-Based Elimination. |
 
 ---
 
