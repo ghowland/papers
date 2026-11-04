@@ -1,0 +1,100 @@
+{
+  "created": "2026-11-04T10:43:13.033258+00:00",
+  "modified": "2026-11-04T10:43:13.706505+00:00",
+  "id": 23944114,
+  "conceptrecid": "23944113",
+  "metadata": {
+    "title": "The Universal Elimination Method",
+    "publication_date": "2026-04",
+    "description": "Howland's Axiom of Information Locality\n\n\"For a unique set of information, if a decision needs to be made and accuracy is critical, all non-local data is invalid.\"\n\nA unique set of information is created any time you abstact any state into a single entity.  This could be an environment in a moment of time (fixed state for that moment), or it could be a physical unit (such as a hard drive) in a given moment.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "orcid": "0009-0009-7752-341X"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Howland, Geoffrey",
+        "affiliation": "Independent Researcher",
+        "type": "ContactPerson"
+      },
+      {
+        "name": "Claude Opus 4.6",
+        "affiliation": "Anthropic PBC",
+        "type": "Researcher"
+      }
+    ],
+    "keywords": [
+      "HOWL framework",
+      "howland archive",
+      "information"
+    ],
+    "subjects": [
+      {
+        "term": "Computer Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+        "scheme": "url"
+      },
+      {
+        "term": "Information Theory",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+        "scheme": "url"
+      },
+      {
+        "term": "Philosophy of Science",
+        "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+        "scheme": "url"
+      }
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/INFO/HOWL-INFO-18-2026",
+        "relation": "isSupplementedBy",
+        "resource_type": "software",
+        "scheme": "url"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "license": "cc-zero",
+    "imprint_publisher": "Zenodo",
+    "communities": [
+      {
+        "identifier": "howland-archive"
+      },
+      {
+        "identifier": "zenodo"
+      }
+    ],
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-INFO-18-2026.\n\nDependencies: HOWL Foundation Only.",
+    "method": "Dependencies: HOWL Foundation Only.",
+    "upload_type": "publication",
+    "publication_type": "article",
+    "prereserve_doi": {
+      "doi": "10.5281/zenodo.23944114",
+      "recid": 23944114
+    }
+  },
+  "title": "The Universal Elimination Method",
+  "links": {
+    "self": "https://zenodo.org/api/deposit/depositions/23944114",
+    "html": "https://zenodo.org/deposit/23944114",
+    "badge": "https://zenodo.org/badge/doi/.svg",
+    "files": "https://zenodo.org/api/deposit/depositions/23944114/files",
+    "bucket": "https://zenodo.org/api/files/1a25cfe4-b41d-4959-ba5a-6a6bb959c336",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/23944114",
+    "latest_draft_html": "https://zenodo.org/deposit/23944114",
+    "publish": "https://zenodo.org/api/deposit/depositions/23944114/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/23944114/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/23944114/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/23944114/actions/newversion"
+  },
+  "record_id": 23944114,
+  "owner": 1539729,
+  "files": [],
+  "state": "unsubmitted",
+  "submitted": false
+}

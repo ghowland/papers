@@ -7,7 +7,7 @@
 
 **Date:** November 2026
 
-**DOI:** 10.5281/zenodo.zzz
+**DOI:** 10.5281/zenodo.23944114
 
 **Domain:** Information Theory / Information Processing Theory
 
@@ -512,3 +512,294 @@ A blank template for constructing the generous table.
 
 ---
 
+# Extended Appendices to HOWL-INFO-18-2026
+
+*These appendices support the paper without repeating it. They collect the material that the paper's argument implies but does not enumerate: the full cross-reference of the method against every known application, the mechanical relationship between the UEM and the processing theory, the diagnostic tools for practitioners, and the boundary analysis that locates the method's scope precisely.*
+
+---
+
+## Table I: The Reduction Pipeline Correspondence
+
+The UEM maps onto the four-stage reduction pipeline that governs all information processing. This table gives the exact correspondence, including where the mapping is structural and where it is analogical.
+
+| Reduction Stage | Definition | UEM Step | UEM Operation | Mapping Quality | What Fails If Skipped |
+|---|---|---|---|---|---|
+| Enumerate | Make the population explicit and finite | Step 2 | List every element in the domain | Exact — both convert unknown cardinality to known finite list | The population remains unbounded; no elimination is possible because the candidates are not identified |
+| Filter | Eliminate candidates that do not meet relevance criteria | Step 4 | Apply the inarguable constraint to every element | Exact — both remove elements that fail a criterion, producing a smaller set | All elements remain; no differentiation occurs; the finding is buried in the undifferentiated list |
+| Score | Evaluate remaining candidates against weighted considerations | Step 4 (demand matrix) | Compare survivors at multiple constraint levels (measured, generous, extreme) | Analogical — the demand matrix ranks survivors by robustness rather than by weighted score | Survivors are identified but their robustness is unknown; the generous table cannot be constructed |
+| Select | Commit the highest-scored candidate as One | Step 5 | Name the surviving structure | Exact — both produce an actionable singular result from the reduced set | The finding exists as an unnamed residual; it does not propagate or get built upon |
+
+**Setup correspondence:**
+
+| Reduction Prerequisite | UEM Step | Operation |
+|---|---|---|
+| Define the processor's goal | Step 1a | Select the question |
+| Define what counts as a candidate | Step 1b | Identify the element type |
+| Define the relevance criterion | Step 3 | State the inarguable constraint |
+
+**Reading note.** The scoring stage has an analogical rather than exact mapping because the UEM's demand matrix does not assign numerical scores. It assigns categorical results (PASS/FAIL/MARGINAL) at multiple constraint levels. The function is equivalent — differentiation among survivors — but the mechanism is categorical rather than continuous.
+
+---
+
+## Table J: Cardinality Transitions in the UEM
+
+Every step of the UEM performs a cardinality transition. This table tracks the domain's cardinality at each step, using the three intrinsic cardinalities from the processing theory: Infinity (population, no element selected), One (single element under operation), and Zero (outside operational boundary).
+
+| Before Step | Cardinality of Domain | After Step | Cardinality of Domain | What Changed |
+|---|---|---|---|---|
+| Before Step 1 | Infinity — the domain is an unbounded space of possible elements with no defined population | After Step 1 | Infinity — the domain is still a population, but the element type is now defined, making the population enumerable | The population became enumerable; the question determined what counts as an element |
+| Before Step 2 | Infinity — the population is enumerable but not enumerated | After Step 2 | Finite Infinity — the population is a known finite list; every element is identified | The population became explicit and finite; cardinality is known |
+| Before Step 3 | Finite Infinity — the list exists but no differentiation criterion has been stated | After Step 3 | Finite Infinity — the list exists and the criterion is stated but not yet applied | The filter criterion is defined; the list has not changed |
+| Before Step 4 | Finite Infinity — the list and the criterion both exist | After Step 4 | Reduced set — the surviving elements are identified; the eliminated elements are at Zero (outside the finding's boundary) | The population was filtered; non-survivors moved to Zero; survivors remain |
+| Before Step 5 | Reduced set — survivors are identified but unnamed | After Step 5 | One — the surviving structure has a name and is the finding | The survivors were committed as the actionable result; the finding is at One |
+
+**The eliminated elements' status.** Elements that fail the constraint move to Zero-external — they are permanently outside the finding's boundary for the stated constraint. They can be observed (they are in the elimination record) but cannot be acted upon (they do not contribute to the finding). If the constraint changes, their status can change — a new constraint produces a new elimination and elements may move from Zero back to the candidate population.
+
+---
+
+## Table K: Processing Entropy of the UEM Itself
+
+Applying the UEM to a domain has a processing cost. This cost decreases with experience through dissolution — the mechanism by which repeated processing chains collapse to zero cost. This table tracks the processing entropy (op count) of each UEM step for a first-time user versus an experienced practitioner.
+
+| Step | First Application (Novice) | Operation Count | After Multiple Applications (Experienced) | Operation Count | What Dissolved |
+|---|---|---|---|---|---|
+| Step 1: Select question and element type | Deliberate reasoning about what to investigate; uncertain about what counts as an element; may false-start with wrong element type | 15-30 ops | Immediate recognition of element type from question structure; the mapping from question to element type is structural | 1-3 ops | The question-to-element-type mapping dissolved through repeated successful applications |
+| Step 2: Enumerate | Slow, uncertain, requires checking multiple sources; high risk of incomplete enumeration | 50-200 ops per element found | Rapid enumeration using known domain structure; completeness checks are automatic | 5-20 ops per element found | Domain knowledge dissolved; the investigator knows where elements live and what forms they take |
+| Step 3: State constraint | Extended search for an inarguable bound; may try and reject multiple constraints before finding one that works | 20-50 ops | Constraint identification is fast; the investigator recognizes constraint types from prior applications | 2-5 ops | Constraint-type recognition dissolved; the taxonomy of inarguable bounds is internalized |
+| Step 4: Eliminate | Careful, element-by-element, with frequent re-checking of the constraint's application | 3-10 ops per element | Mechanical; each element is checked once; no re-checking needed | 1 op per element | The elimination procedure dissolved; applying the constraint is structural |
+| Step 5: Name | Difficult; the investigator may not recognize the structure or may struggle to articulate it | 10-30 ops | Fast; the naming act is familiar; the investigator recognizes common structural patterns | 1-5 ops | Naming patterns dissolved; the investigator has a vocabulary of structural types from prior findings |
+| Total (20-element domain) | | 155-510 ops | | 30-125 ops | Method cost decreased by 60-80% through dissolution |
+
+**The asymmetry.** Step 2 (enumerate) does not dissolve as completely as the other steps because each new domain has different elements. What dissolves is the enumeration skill, not the specific enumeration. Step 4 (eliminate) dissolves most completely because the procedure is identical regardless of domain — apply the constraint, record the result.
+
+---
+
+## Table L: Dissolution of Findings Across Investigations
+
+Each UEM finding dissolves into the investigator's working knowledge and becomes available as input to subsequent investigations. This table traces how specific findings from one investigation become elements, constraints, or foundations in later investigations.
+
+| Original Investigation | Finding | How It Entered a Later Investigation | Later Investigation | Role in Later Investigation |
+|---|---|---|---|---|
+| Circular cross-section equations (nine departments) | β = π/4 is the universal geometric invariant | Named constant available for reference in any equation involving circular geometry | Physics measurement anomalies | Named element in the soliton boundary hierarchy; β appears in the n-ball remainder sequence across dimensions |
+| Information theory completeness | The op is the unit of processing; dissolution is the mechanism of expertise | Processing cost framework available for analyzing any system that processes information | The UEM itself (this paper) | The processing theory provides the framework for understanding why the UEM's cost decreases with experience |
+| Carrier elimination for motor coordination | EMF is the only carrier fast enough for demanding motor tasks | Constraint established: any coordination mechanism must operate at EMF speed | Developmental motor coordination study design | The carrier elimination result becomes the theoretical basis for the experimental prediction |
+| Nervous system fuel allocation | Surplus determines outward attention capacity; threat assessment consumes fuel | Fuel model available as a framework for understanding behavioral variation | Training intervention design | The fuel model determines the training sequence: reduce threat load first, then build surplus, then engage socially |
+| Software state change enumeration | Complete event list as system specification | Enumeration method available for any system with discrete state changes | Operating system specification via four flat lists | The event list becomes List 2 of the four-list specification method |
+| Body-response food evaluation | Frequency-dependent category assignment; same substance can be food or not-food | Evaluation framework available for any intake decision | Ongoing personal practice | The four-question decision rule becomes a dissolved daily practice |
+| Exact arithmetic representation | The triple [V, D, R] preserves exact equality; the remainder is not error | Arithmetic substrate available for any computation requiring zero drift | Physics derivation chains | VDR-compatible exact fractions become the substrate for the Q335 number system, which becomes the substrate for the QED integer chain |
+| Number system for physical computation | Q335 provides 100-digit fraction precision exceeding Planck by 37 orders | Precision substrate available for any physical computation | QED coefficient assembly and alpha extraction | Q335 transcendentals become named pool nodes consumed by the derivation chain |
+| Behavioral normalization | All behavior is one verb: guarded, staged, recorded, scoreable movement of quantities between addresses | Architectural principle available for any system design | Any new software domain | The new domain enters as rows in existing tables, not as new code |
+
+**Reading note.** The dissolution chain is not linear. Findings from distant investigations connect when the investigator recognizes that a finding from domain A is an element or a constraint in domain B. This recognition is itself a dissolved skill — the investigator who has performed many UEM applications develops the pattern recognition to see where prior findings fit into new investigations.
+
+---
+
+## Table M: Element Type Selection Guide
+
+The most common error in the UEM is selecting the wrong element type (Step 1 failure). This table provides guidance for identifying the correct element type from the question's structure.
+
+| Question Pattern | Element Type | Why This Element Type | Wrong Element Type (Common Error) | Why It Is Wrong |
+|---|---|---|---|---|
+| "What can do X?" | Mechanisms or agents capable of X | The question asks which candidates can perform a function; candidates are the elements | Properties of X | Properties describe X but do not answer which mechanism performs it |
+| "What is common across these instances?" | The instances themselves, or their structural components | The question asks for shared structure; the instances must be enumerated so shared structure can be identified | The shared structure itself | The shared structure is the finding, not the element; assuming it in advance is fitting |
+| "Is this [thing] a [category]?" | The thing and its comparators in the category space | The question asks for classification; the thing must be tested against the category's constraint alongside other members | The category's definition | The definition is the constraint, not the element |
+| "Why does this system fail?" | Potential failure points in the system | The question asks which component fails; components are the elements | Symptoms of failure | Symptoms are observations, not testable elements; the constraint tests components, not symptoms |
+| "What state changes can this system undergo?" | Events (state transitions) | The question asks for a complete behavioral inventory; each transition is one element | Components or modules | Components are nouns, not verbs; the question asks about verbs |
+| "What is the structure of this equation/formula?" | Terms in the equation | The question asks for decomposition; each term is one element | Variables in the equation | Variables are symbols; terms are the structural units that decomposition operates on |
+| "What should I eat?" | Ingestible substances | The question asks for classification of inputs; each substance is one element | Nutrients | Nutrients are what substances contain; the body responds to substances, not to isolated nutrients |
+| "What representation preserves X?" | Representation systems | The question asks which format satisfies a requirement; formats are the elements | Properties of X | Properties are what the constraint tests for; representations are what get tested |
+
+---
+
+## Table N: Constraint Strength Hierarchy
+
+Not all inarguable constraints are equally strong. This table ranks constraint types by the strength of the elimination they produce, from strongest (most resistant to challenge) to weakest (most susceptible to revision).
+
+| Rank | Constraint Type | Strength | Basis | Revision Condition | Example |
+|---|---|---|---|---|---|
+| 1 | Mathematical identity | Strongest — cannot be revised | Follows from definitions and axioms; true in all possible worlds | Never, unless the axiom system changes | β = π/4 from the ratio of circle area to bounding square area |
+| 2 | Logical necessity | Very strong — revision requires changing the system's definition | Follows from the structure of the system being analyzed | Only if the system's definition changes | A specification must express every known behavior to be complete |
+| 3 | Physical constant | Strong — supported by independent measurement across laboratories | Measured by multiple groups with convergent results | New measurement with higher precision or new physics changing the value | Speed of light, Planck constant, electron mass |
+| 4 | SI definition | Strong — exact by international convention | Defined, not measured; zero uncertainty | Redefinition by international standards body (historically rare) | c = 299,792,458 m/s exactly |
+| 5 | Engineering bound | Strong — derived from physical laws applied to specific geometry | Follows from control theory, materials science, or thermodynamics applied to a known configuration | Revision of the underlying physical law or discovery of a new configuration | Control theory stability margin for a feedback loop with known delay |
+| 6 | Measured biological parameter | Moderate — supported by published measurements but subject to biological variation | Measured in laboratory conditions; may vary across individuals, species, or conditions | New measurement under different conditions; discovery of biological enhancement mechanism | Myelinated axon conduction velocity: 80-120 m/s |
+| 7 | Clinical observation | Moderate — supported by accumulated evidence but not always precisely quantified | Observed across populations; mechanism may not be fully characterized | New evidence contradicting the observation; refined measurement changing the magnitude | Blood glucose regulation destabilizes under sustained high-glycemic load |
+| 8 | Estimated parameter | Weakest inarguable — based on analysis rather than direct measurement | Derived from mechanical analysis, dimensional reasoning, or expert estimation | Direct measurement replacing the estimate | Correction frequency for bipedal balance: estimated 40-80 Hz from mechanical analysis |
+
+**Reading note.** The generous table is most important for constraints at ranks 6-8, where the exact value is uncertain. Constraints at ranks 1-5 rarely need generous treatment because their values are exact or very precisely known. The investigator should match the level of generosity to the constraint's rank: mathematical identities need no generosity; estimated parameters need the full generous table.
+
+---
+
+## Table O: The UEM Applied to Itself
+
+The UEM can be applied reflexively — to the question of what investigation methods produce structural findings.
+
+| Step | Application to Investigation Methods |
+|---|---|
+| Question | What investigation methods reliably produce structural findings that are auditable and falsifiable? |
+| Element type | Investigation methods |
+| Enumeration | Hypothesis-driven experimentation, inductive generalization, deductive proof, statistical correlation, case study, thought experiment, dimensional analysis, exhaustive enumeration with constraint-based elimination, expert consensus, literature review, simulation, machine learning pattern recognition |
+| Constraint | The method must produce findings that are (a) auditable by a reader who does not trust the investigator, (b) falsifiable by specific stated criteria, and (c) independent of the investigator's credentials |
+| Elimination record | |
+
+| Method | Auditable? | Falsifiable? | Credential-independent? | Result |
+|---|---|---|---|---|
+| Hypothesis-driven experimentation | Yes — protocol is published | Yes — predictions can fail | Partially — peer review often depends on credentials | PASS with caveat |
+| Inductive generalization | Partially — premises visible but generalization step is judgment | Partially — counterexample falsifies | Yes | MARGINAL |
+| Deductive proof | Yes — every step checkable | Yes — counterexample or logical error falsifies | Yes | PASS |
+| Statistical correlation | Yes — data and method published | Partially — correlation does not establish structure | Partially — statistical expertise required to audit | MARGINAL |
+| Case study | Partially — the case is visible but generalizability is judgment | Partially — additional cases can contradict | Yes | MARGINAL |
+| Thought experiment | No — depends on the reader accepting the premises and the reasoning | Partially | Yes | FAIL on auditability |
+| Dimensional analysis | Yes — the algebra is checkable | Yes — a dimensionally inconsistent equation is falsified | Yes | PASS (within its scope) |
+| Exhaustive enumeration with constraint-based elimination (UEM) | Yes — enumeration and constraint are published; every elimination is checkable | Yes — falsification criteria are stated in advance | Yes — the finding depends on the enumeration and constraint, not on who performed them | PASS |
+| Expert consensus | No — the reasoning behind the consensus is often unpublished | Partially — new evidence can shift consensus | No — consensus is defined by who participates | FAIL |
+| Literature review | Partially — sources are cited but selection and synthesis are judgment | Partially — new literature can change conclusions | Partially — selection bias depends on the reviewer | MARGINAL |
+| Simulation | Partially — code and parameters can be published | Yes — predictions can fail against measurement | Yes (if code is published) | PASS with caveat |
+| Machine learning pattern recognition | Partially — model and data can be published but interpretation is often opaque | Partially — new data can fail the pattern | Yes (if model is published) | MARGINAL |
+
+| Survivors | Deductive proof, dimensional analysis, UEM, and (with caveats) hypothesis-driven experimentation and simulation |
+|---|---|
+| Finding | Methods that satisfy all three criteria share one structural property: the reader can re-derive the finding independently from published inputs without relying on the investigator's authority. The UEM is the most general of the survivors — it applies to any domain with enumerable elements and inarguable constraints, while deductive proof requires formal axiom systems and dimensional analysis requires physical quantities. |
+
+---
+
+## Table P: Scope Boundary — What the UEM Does and Does Not Cover
+
+| Category | Inside or Outside UEM Scope | Reasoning |
+|---|---|---|
+| Domains with enumerable elements and inarguable constraints | Inside | The method's definition: enumerate, constrain, eliminate, name |
+| Domains with enumerable elements but no inarguable constraint available | Outside | Without an inarguable constraint, the elimination is debatable and the finding is not structural |
+| Domains with inarguable constraints but non-enumerable elements | Outside | Without exhaustive enumeration, the elimination is incomplete and the finding may miss survivors |
+| Continuous domains (fluid dynamics, field theory) where elements are not discrete | Outside unless discretized | The method requires enumerable elements; continuous domains must be discretized into testable units before the UEM applies |
+| Creative domains (art, music composition, narrative) | Outside for the creative act; inside for structural analysis of the output | Creating a painting is not an elimination problem; analyzing what structural properties paintings share is |
+| Ethical and moral questions | Outside | No inarguable constraint exists for most ethical questions; the constraint depends on the ethical framework, which is debatable |
+| Questions of taste or preference | Outside | No inarguable constraint exists; the constraint is subjective by definition |
+| Historical questions of fact | Inside if evidence is enumerable | "What caused X?" can be addressed by enumerating candidate causes and eliminating those inconsistent with evidence |
+| Prediction of future events | Outside directly; inside indirectly | The UEM does not predict; it produces findings from which theories generate predictions |
+| Questions requiring statistical inference | Adjacent — UEM and statistics serve different functions | UEM produces structural findings from complete enumeration; statistics produces probabilistic findings from samples; they apply to different question types |
+
+---
+
+## Table Q: The UEM and Adjacent Methods — Differentiation
+
+| Method | Shared Property | Distinguishing Property | When UEM Is Better | When the Other Method Is Better |
+|---|---|---|---|---|
+| Deductive proof | Both produce findings checkable by any reader | Proof derives from axioms; UEM derives from enumeration | When the domain lacks formal axiom systems but has enumerable elements | When the domain has formal axioms and the finding can be derived from them |
+| Dimensional analysis (Buckingham Pi) | Both identify structural invariants | Buckingham Pi identifies dimensionless groups within one problem; UEM identifies invariants across problems | When the question spans multiple problems or the invariant is not dimensionless | When the question is about the dimensionless groups governing a single physical system |
+| Statistical hypothesis testing | Both test claims against evidence | Statistics tests hypotheses against sampled data; UEM tests elements against inarguable constraints across complete enumerations | When the population is enumerable and the constraint is inarguable — sampling is unnecessary when you can test everything | When the population is too large to enumerate or the constraint is probabilistic rather than binary |
+| Systematic review (medicine, policy) | Both enumerate across sources | Systematic review evaluates evidence quality and synthesizes conclusions; UEM eliminates against a structural constraint | When the question is structural (what survives?) rather than evidential (what does the evidence support?) | When the question requires weighing evidence quality across heterogeneous studies |
+| Design of experiments | Both produce knowledge through structured investigation | DOE varies factors to identify effects; UEM enumerates candidates to identify survivors | When the question is "which candidates survive?" rather than "which factors matter?" | When the question is about causal relationships between controllable variables |
+| Root cause analysis | Both eliminate candidates | RCA works backward from a failure; UEM works forward from a question | When the question is forward-looking (what can do X?) rather than backward-looking (what caused Y?) | When a specific failure has occurred and the cause must be identified |
+| Process of elimination (informal) | Both eliminate candidates | Informal elimination skips exhaustive enumeration, uses debatable criteria, and often does not name the result | Always — the UEM is the formalized version | Never — informal elimination is the UEM with Steps 2, 3, and 5 skipped, which voids the finding |
+
+---
+
+## Table R: Glossary of the UEM's Vocabulary
+
+For readers applying the method. Terms are defined by their role in the UEM, with cross-references to where they are used.
+
+| Term | Definition | Where Used |
+|---|---|---|
+| Element | The atomic unit the investigation operates on; determined by the question | Steps 1, 2, 4 |
+| Element type | The category of elements being enumerated; must be testable by the constraint | Step 1 |
+| Enumeration | The complete list of every element in the domain | Step 2 |
+| Exhaustive | Every element included; no sampling, no exclusion by judgment | Step 2 |
+| Constraint | The inarguable bound that separates survivors from non-survivors | Step 3 |
+| Inarguable | The constraint's application to any element produces a result that any reader can verify independently | Step 3 |
+| Generous constraint | The constraint value shifted in the opponent's favor beyond measured values, with no empirical basis for the shift | Section 4 |
+| Elimination | The mechanical application of the constraint to every element, producing pass or fail | Step 4 |
+| Elimination record | The documented result of every element's test, including the specific reason for pass or fail | Step 4 |
+| Survivor | An element that passes the constraint | Steps 4, 5 |
+| Finding | The named surviving structure; the output of the method | Step 5 |
+| Demand matrix | A table with elements as rows, constraint levels as columns, and PASS/FAIL as cell values | Section 5 |
+| Demand gradient | The pattern of increasing failure as the constraint tightens; the signature of a real structural boundary | Section 5 |
+| PASS | The element satisfies the constraint at this level | Sections 5, 6, 7 |
+| FAIL | The element does not satisfy the constraint at this level | Sections 5, 6, 7 |
+| MARGINAL | The element's value falls within measurement uncertainty of the constraint boundary | Section 5 |
+| Gap | An absence revealed by the enumeration — something the domain should contain but does not | Section 8 |
+| Falsification boundary | The specific condition under which the finding would be revised or retracted | Section 8 |
+| Dissolution | The mechanism by which repeated processing chains collapse to zero cost through practice | Section 10 |
+| Processing entropy | The operation count a specific processor requires to reduce a specific element to an actionable result | Section 10 |
+| Reduction pipeline | The four-stage process (enumerate, filter, score, select) that moves information from unbounded population to actionable element | Section 10 |
+| Cardinality | The intrinsic population size of an element relative to a processor: Zero (outside boundary), One (under operation), Infinity (population awaiting reduction) | Table J |
+
+---
+
+## Table S: Checklist for a Complete UEM Application
+
+A practitioner completing a UEM investigation can use this checklist to verify that every step was performed correctly and completely.
+
+| Check | Question | Pass Criterion | If Fail |
+|---|---|---|---|
+| 1 | Is the question stated explicitly? | The question is written down in one sentence | Write the question before proceeding |
+| 2 | Is the element type identified? | The element type is named and the reason it matches the question is stated | Return to Step 1; restate the question until the element type is clear |
+| 3 | Is the enumeration complete? | Every known element of the identified type is in the list; no element was excluded by judgment | Add missing elements; verify against published references, domain experts, or independent enumeration |
+| 4 | Is the constraint stated in writing? | The constraint is documented before the elimination begins; the document has a date or version | Write the constraint and date it before proceeding to elimination |
+| 5 | Is the constraint inarguable? | Two independent readers applying the constraint to the same element get the same result | Replace debatable constraints with mechanical ones; tighten until application is binary |
+| 6 | Was the constraint stated before the elimination? | The constraint document's date precedes the elimination record's date | If not, discard the finding and restart with the constraint stated in advance |
+| 7 | Is the elimination complete? | Every element in the enumeration has a recorded result (PASS or FAIL) with a specific reason | Apply the constraint to any untested elements |
+| 8 | Was the elimination mechanical? | No judgment calls were made during Step 4; every result follows directly from the element's data and the constraint | If judgment calls occurred, return to Step 3 and tighten the constraint |
+| 9 | Is the generous table constructed (if applicable)? | For constraints with uncertain values: measured, generous, and extreme levels are computed; the finding is stated at each level | Construct the generous table for any constraint at ranks 6-8 in Table N |
+| 10 | Are the survivors named? | The surviving structure has a specific label that can be stated in one sentence | Name the result; write the name down; verify that the name covers the surviving set without exceeding it |
+| 11 | Is the finding auditable? | A reader with the enumeration and the constraint can re-derive the finding independently | Ensure the enumeration, constraint, and elimination record are all published together |
+| 12 | Are falsification criteria stated? | Specific conditions under which the finding would be revised or retracted are listed | Write the falsification criteria before publishing |
+| 13 | Are gaps documented? | Absences revealed by the enumeration are listed as areas for future work | Review the enumeration for missing elements, missing constraints, and empty categories |
+
+---
+
+## Table T: Historical Precedents and Relationship to the UEM
+
+The UEM did not emerge from nothing. Several historical methods share structural properties with it. This table identifies the shared properties and the distinctions.
+
+| Historical Method | Originator | Shared Property | Distinction from UEM | What UEM Adds |
+|---|---|---|---|---|
+| Proof by exhaustion | Ancient Greek mathematics | Complete enumeration of cases with verification of each | Applies to mathematical propositions with finite case sets; the constraint is a theorem to prove | The UEM generalizes to non-mathematical domains and uses inarguable constraints rather than theorem-proving |
+| Falsificationism | Karl Popper, 1934 | Findings must be falsifiable; stated before evidence is examined | Popper specifies the epistemological criterion; does not specify the enumeration and elimination procedure | The UEM provides the operational procedure that produces falsifiable findings |
+| Process of elimination | Informal logic | Eliminate candidates until one remains | Informal; does not require exhaustive enumeration, inarguable constraints, or naming | The UEM formalizes the process: exhaustive enumeration is required, the constraint must be inarguable, and the result must be named |
+| Sherlock Holmes' method | Arthur Conan Doyle, 1890 | "When you have eliminated the impossible, whatever remains, however improbable, must be the truth" | Fictional; does not specify how to enumerate or how to determine what is "impossible" | The UEM operationalizes the principle: "impossible" is defined by the inarguable constraint, and the enumeration must be exhaustive |
+| Relational normalization | E.F. Codd, 1970 | Exhaustive enumeration of data dependencies; elimination of redundancy through normal forms | Applies to data storage; the constraint is functional dependency | The UEM applies the same structural move to any domain; Codd normalized data, the UEM can normalize behavior, measurement, or any other domain |
+| Behavioral normalization | INFO-17, 2026 | Exhaustive enumeration of behavioral verbs; elimination through the twelve principles; one verb survives | Specific to software behavior; the constraint is the twelve principles of state change | Behavioral normalization is a specific application of the UEM to the domain of software behavior |
+| Dimensional analysis | Buckingham, 1914 | Identifies structural invariants through systematic analysis | Operates within a single physical problem; identifies dimensionless groups | The UEM operates across problems and domains; identifies any surviving structure, not only dimensionless groups |
+| Systematic review | Evidence-based medicine, 1990s | Exhaustive search of literature; quality assessment of each source | The constraint is evidence quality (risk of bias, statistical power); the finding is an evidence synthesis | The UEM's constraint is structural rather than evidential; the finding is what survives rather than what the evidence supports |
+
+---
+
+## Table U: Output Types and Their Uses
+
+The UEM produces three types of output. This table expands each type with specific examples of how the output is used after the investigation.
+
+| Output Type | Definition | How It Is Used | Example |
+|---|---|---|---|
+| Structural finding | A named statement about what survives elimination | Becomes a premise in subsequent investigations; becomes a constraint or element in future UEM applications; becomes a building block for theories | "β = π/4 is the geometric invariant" becomes a named constant referenced in physics investigations |
+| Visible gap | An absence revealed by the enumeration | Directs future work; identifies where the next investigation should start; becomes Step 1 of a new UEM application | "Shannon's theory does not cover processing" becomes the question for a new UEM application that produces the processing theory |
+| Falsification boundary | A specific condition under which the finding would be revised | Protects the finding against dogmatism; provides a permanent revision mechanism; tells other investigators what evidence would matter | "If a classical carrier is discovered above 1,000 m/s in soft tissue, revise the carrier elimination" tells experimentalists what to look for |
+
+| Output Combination | What It Means | Example |
+|---|---|---|
+| Finding + gap | The finding reveals what is present; the gap reveals what is absent; together they constitute a complete structural map of the domain at the constraint used | The carrier elimination finds EMF survives (finding) and identifies that the EMF coordination architecture is uncharacterized (gap) |
+| Finding + falsification boundary | The finding is stated with its own expiration conditions; it is designed to be replaced by better findings when evidence warrants | Every finding in the corpus carries falsification criteria; no finding claims permanence |
+| Gap + falsification boundary | The gap is identified with conditions under which it would be filled; the gap is not a permanent absence but a current absence with a testable boundary | "If tauonic hydrogen spectroscopy becomes feasible, the proton radius depth trend gets a third data point" |
+| All three | The complete output of a UEM application: what is here, what is not here yet, and what would change the picture | A full UEM application produces all three and documents them together |
+
+---
+
+## Table V: The UEM in One Page
+
+A condensed reference for practitioners who have read the paper and need a reminder, not a tutorial.
+
+| Component | Content |
+|---|---|
+| **Method** | Enumerate every element. Eliminate what fails an inarguable constraint. Name what survives. |
+| **Five steps** | (1) Select question and element type. (2) Enumerate exhaustively. (3) State inarguable constraint before elimination. (4) Eliminate mechanically; record every result. (5) Name surviving structure. |
+| **Three outputs** | Structural finding. Visible gap. Falsification boundary. |
+| **Generous table** | When constraint value is uncertain: compute elimination at measured, 2× generous, 4× extreme. If finding holds at extreme, it is robust. |
+| **Demand matrix** | Rows: elements. Columns: constraint levels. Cells: PASS/FAIL. Read across for element robustness. Read down for surviving set at each level. |
+| **Within-domain** | Apply to your own domain. Structure is revealed that expertise alone does not surface. |
+| **Cross-domain** | Enumerate across domains. Shared structure between domains is revealed when elements from different domains survive the same constraint. |
+| **Does not produce** | Theories. Predictions. Domain expertise. Findings in domains without inarguable constraints. Guarantees of interesting results. |
+| **Falsified by** | Known universal result rediscovered (F1). Incomplete enumeration artifact (F2). Fitted constraint artifact (F3). Correct execution producing wrong finding (F4). Alternative method matching findings without exhaustive enumeration (F5). |
+| **Start here** | Pick your domain. Pick your question. Identify elements. Enumerate all. State constraint. Eliminate. Name. Write it up. |
+
+---
+
+**END Appendices to HOWL-INFO-18-2026**
