@@ -3,7 +3,7 @@
     "title": "Enhancing Your User Experience",
     "registry_id": "HOWL-USER-2-2026",
     "series_path": "[@HOWL-INFO-14-2026] \u2192 [@HOWL-USER-1-2026] \u2192 [@HOWL-USER-2-2026]",
-    "doi": "10.5281/zenodo.zzz",
+    "doi": "10.5281/zenodo.23939676",
     "abstract": "Professional software interfaces change on release cycles that have no correlation with changes to the underlying functional capabilities. The phrase \"enhancing your user experience\" signals the replacement of a user's accumulated operational expertise with a new interface that serves the production metrics of a UI design team. This paper documents the pattern across seven major professional tools spanning 27 years, quantifies the retraining cost imposed on users, identifies the organizational incentive structure that drives the pattern, and demonstrates that the functional kernels of these applications have been stable for 10-25 years while their interfaces have been reorganized 3-8 times per decade. The paper concludes that the only structural defense against this pattern is to make the interface a user-owned data layer rather than a designer-shipped artifact.",
     "dependencies": [],
     "raw_content_preview": "# Enhancing Your User Experience ## The Systematic Destruction of Professional Software Expertise Through Interface Redesign Cycles  **Registry:** [@HOWL-USER-2-2026]  **Series Path:** [@HOWL-INFO-14-..."

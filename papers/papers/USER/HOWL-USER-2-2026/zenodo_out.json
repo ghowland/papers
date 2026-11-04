@@ -1,10 +1,10 @@
 {
-  "created": "2026-11-04T06:14:01.221874+00:00",
-  "modified": "2026-11-04T06:14:01.333671+00:00",
-  "id": 23938873,
-  "conceptrecid": "23938872",
+  "created": "2026-11-04T06:45:21.277835+00:00",
+  "modified": "2026-11-04T06:45:21.381646+00:00",
+  "id": 23939676,
+  "conceptrecid": "23939675",
   "metadata": {
-    "title": "Layout Is Not a Feature",
+    "title": "Enhancing Your User Experience",
     "publication_date": "2026-04",
     "description": "Paternal Operationalism: A Philosophy Born from Necessity\n\nThe Five Pillars and Their Distinction from Established Frameworks\n\nPaternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach\u2014it starts with concrete necessity and extracts principles from what actually works.\n\nThe foundational axiom is deceptively simple: \"I am a man with children to feed.\" This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground\u2014he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.\n\nPackage Contents:\n* `manuscript.md`: Paper\n* `README.md`: Overview\n\n**Status:** Architectural Blueprint for Independent Implementation",
     "access_right": "open",
@@ -51,7 +51,7 @@
     ],
     "related_identifiers": [
       {
-        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/USER/HOWL-USER-1-2026",
+        "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/USER/HOWL-USER-2-2026",
         "relation": "isSupplementedBy",
         "resource_type": "software",
         "scheme": "url"
@@ -69,30 +69,30 @@
         "identifier": "zenodo"
       }
     ],
-    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-USER-1-2026.\n\nDependencies: HOWL Foundation Only.",
+    "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-USER-2-2026.\n\nDependencies: HOWL Foundation Only.",
     "method": "Dependencies: HOWL Foundation Only.",
     "upload_type": "publication",
     "publication_type": "article",
     "prereserve_doi": {
-      "doi": "10.5281/zenodo.23938873",
-      "recid": 23938873
+      "doi": "10.5281/zenodo.23939676",
+      "recid": 23939676
     }
   },
-  "title": "Layout Is Not a Feature",
+  "title": "Enhancing Your User Experience",
   "links": {
-    "self": "https://zenodo.org/api/deposit/depositions/23938873",
-    "html": "https://zenodo.org/deposit/23938873",
+    "self": "https://zenodo.org/api/deposit/depositions/23939676",
+    "html": "https://zenodo.org/deposit/23939676",
     "badge": "https://zenodo.org/badge/doi/.svg",
-    "files": "https://zenodo.org/api/deposit/depositions/23938873/files",
-    "bucket": "https://zenodo.org/api/files/ad1d1434-4ca4-4bba-b82a-91c92ad596de",
-    "latest_draft": "https://zenodo.org/api/deposit/depositions/23938873",
-    "latest_draft_html": "https://zenodo.org/deposit/23938873",
-    "publish": "https://zenodo.org/api/deposit/depositions/23938873/actions/publish",
-    "edit": "https://zenodo.org/api/deposit/depositions/23938873/actions/edit",
-    "discard": "https://zenodo.org/api/deposit/depositions/23938873/actions/discard",
-    "newversion": "https://zenodo.org/api/deposit/depositions/23938873/actions/newversion"
+    "files": "https://zenodo.org/api/deposit/depositions/23939676/files",
+    "bucket": "https://zenodo.org/api/files/50ea487e-2c6b-49bf-80bb-66728314e40c",
+    "latest_draft": "https://zenodo.org/api/deposit/depositions/23939676",
+    "latest_draft_html": "https://zenodo.org/deposit/23939676",
+    "publish": "https://zenodo.org/api/deposit/depositions/23939676/actions/publish",
+    "edit": "https://zenodo.org/api/deposit/depositions/23939676/actions/edit",
+    "discard": "https://zenodo.org/api/deposit/depositions/23939676/actions/discard",
+    "newversion": "https://zenodo.org/api/deposit/depositions/23939676/actions/newversion"
   },
-  "record_id": 23938873,
+  "record_id": 23939676,
   "owner": 1539729,
   "files": [],
   "state": "unsubmitted",
