@@ -358,6 +358,16 @@
 
 ---
 
+
+## User
+*User Interface (UI) and User Exeperience (UX).*
+
+| ID | Title | Description |
+| :--- | :--- | :--- |
+| **[HOWL-USER-1-2026](papers/papers/USER/HOWL-USER-1-2026/manuscript.md)** | **Layout Is Not a Feature** | Why Universal Docking Fails Power Users and How Fixed Panel Architectures Eliminate the Cost. |
+
+---
+
 ## Game
 *Game design.*
 
