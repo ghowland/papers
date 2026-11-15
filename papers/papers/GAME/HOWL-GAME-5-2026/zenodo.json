@@ -1,0 +1,70 @@
+{
+  "title": "Shoot, Solve, Watch",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Every game asks the player to do one of three things: shoot, solve, or watch. These are the three primitive interaction verbs. Shoot is motor \u2014 the player's body acts on the game state in real time. Solve is cognitive \u2014 the player's mind reasons about the game state and selects a transformation. Watch is systemic \u2014 the player shapes conditions and observes autonomous agents respond. Every game ever made is a composition of one, two, or all three of these verbs. This paper defines each verb, examines its pure form, maps the hybrid compositions across the history of games, identifies the structural constraints each verb imposes on design, and examines how games break when they violate their own verb contract.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "game"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-GAME-5-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/GAME/HOWL-GAME-5-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "Shoot, Solve, Watch",
+    "registry_id": "HOWL-GAME-5-2026",
+    "series_path": "[@HOWL-GAME-1-2026] \u2192 [@HOWL-GAME-5-2026]",
+    "doi": "10.5281/zenodo.24237953",
+    "abstract": "Every game asks the player to do one of three things: shoot, solve, or watch. These are the three primitive interaction verbs. Shoot is motor \u2014 the player's body acts on the game state in real time. Solve is cognitive \u2014 the player's mind reasons about the game state and selects a transformation. Watch is systemic \u2014 the player shapes conditions and observes autonomous agents respond. Every game ever made is a composition of one, two, or all three of these verbs. This paper defines each verb, examines its pure form, maps the hybrid compositions across the history of games, identifies the structural constraints each verb imposes on design, and examines how games break when they violate their own verb contract.",
+    "dependencies": [],
+    "raw_content_preview": "# Shoot, Solve, Watch ## Three Verbs That Compose Every Game  **Registry:** [@HOWL-GAME-5-2026]  **Series Path:** [@HOWL-GAME-1-2026] \u2192 [@HOWL-GAME-5-2026]  **Date:** November 2026  **DOI:** 10.5281/z..."
+}

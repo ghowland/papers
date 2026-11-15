@@ -1,0 +1,13 @@
+Paternal Operationalism: A Philosophy Born from Necessity
+
+The Five Pillars and Their Distinction from Established Frameworks
+
+Paternal Operationalism emerged from forty-three years of operational practice under a singular constraint: the immediate responsibility to provide for dependent children. Unlike most philosophical frameworks that begin with abstract principles and derive applications to reality, this philosophy inverts the traditional approach—it starts with concrete necessity and extracts principles from what actually works.
+
+The foundational axiom is deceptively simple: "I am a man with children to feed." This statement establishes a unique philosophical position between two extremes. Kings, who control everything and have others provide for them, can afford the luxury of detachment from outcomes. Slaves, who control nothing and cannot change their circumstances, must accept powerlessness. A man with children occupies the middle ground—he controls some things but not everything, cannot afford detachment because his children's hunger is physically real, and cannot accept powerlessness because he possesses the capability to provide. This is the position where philosophy must demonstrate practical efficacy rather than theoretical elegance.
+
+Package Contents:
+* `manuscript.md`: Paper
+* `README.md`: Overview
+
+**Status:** Architectural Blueprint for Independent Implementation
