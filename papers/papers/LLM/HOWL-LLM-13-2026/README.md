@@ -46,14 +46,14 @@ zenodo_package/
 If you use this work in a pedagogical or research context, please cite:
 
 ```bibtex
-@article{ HOWL-LLM-12-2026,
+@article{ HOWL-LLM-13-2026,
   title={ The End of the LLM Demo and the Benefits of Transformers },
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
   doi = {10.5281/zenodo.24247452},
   url = {https://zenodo.org/record/24247452},
-  note={Howland Archive: HOWL-LLM-12-2026. Prerequisites: None (foundation paper) }
+  note={Howland Archive: HOWL-LLM-13-2026. Prerequisites: None (foundation paper) }
 }
 ```
 ---

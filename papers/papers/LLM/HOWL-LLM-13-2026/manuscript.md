@@ -1,7 +1,7 @@
 # The End of the LLM Demo and the Benefits of Transformers
 ## On the Architectural Impossibility of Autonomous Knowledge Work Through Probabilistic Text Generation
 
-**Registry:** [@HOWL-LLM-12-2026]
+**Registry:** [@HOWL-LLM-13-2026]
 
 **DOI:** 10.5281/zenodo.24247452
 

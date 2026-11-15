@@ -1,10 +1,10 @@
 {
     "file_name": "manuscript.md",
     "title": "The End of the LLM Demo and the Benefits of Transformers",
-    "registry_id": "HOWL-LLM-12-2026",
+    "registry_id": "HOWL-LLM-13-2026",
     "series_path": "",
     "doi": "10.5281/zenodo.24247452",
     "abstract": "",
     "dependencies": [],
-    "raw_content_preview": "# The End of the LLM Demo and the Benefits of Transformers ## On the Architectural Impossibility of Autonomous Knowledge Work Through Probabilistic Text Generation  **Registry:** [@HOWL-LLM-12-2026]  ..."
+    "raw_content_preview": "# The End of the LLM Demo and the Benefits of Transformers ## On the Architectural Impossibility of Autonomous Knowledge Work Through Probabilistic Text Generation  **Registry:** [@HOWL-LLM-13-2026]  ..."
 }
