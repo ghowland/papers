@@ -34,7 +34,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302651+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983893+00:00"
   },
   {
     "file_path": "papers/BODY/HOWL-BODY-2-2026/manuscript.md",
@@ -69,7 +69,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.302698+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983931+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-1-2026/manuscript.md",
@@ -109,7 +109,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.302714+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983948+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-10-2026/manuscript.md",
@@ -156,7 +156,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302727+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983962+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-11-2026/manuscript.md",
@@ -204,7 +204,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302740+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983975+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-12-2026/manuscript.md",
@@ -253,7 +253,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302753+00:00"
+    "extracted_at": "2026-11-15T13:52:26.983988+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-13-2026/manuscript.md",
@@ -302,7 +302,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302766+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984001+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-14-2026/manuscript.md",
@@ -353,7 +353,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302779+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984015+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-15-2026/manuscript.md",
@@ -388,7 +388,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302792+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984027+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-16-2026/manuscript.md",
@@ -432,7 +432,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302806+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984040+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-17-2026/manuscript.md",
@@ -468,7 +468,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302819+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984053+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-18-2026/manuscript.md",
@@ -513,7 +513,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302832+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984066+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-19-2026/manuscript.md",
@@ -549,7 +549,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302844+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984078+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-2-2026/manuscript.md",
@@ -589,7 +589,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.302859+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984091+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-3-2026/manuscript.md",
@@ -631,7 +631,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302874+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984104+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-4-2026/manuscript.md",
@@ -673,7 +673,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302889+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984117+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-5-2026/manuscript.md",
@@ -713,7 +713,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.302902+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984129+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-6-2026/manuscript.md",
@@ -756,7 +756,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302915+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984142+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-7-2026/manuscript.md",
@@ -800,7 +800,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302927+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984154+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-8-2026/manuscript.md",
@@ -843,7 +843,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.302939+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984166+00:00"
   },
   {
     "file_path": "papers/COMP/HOWL-COMP-9-2026/manuscript.md",
@@ -889,7 +889,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302951+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984178+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-1-2026/manuscript.md",
@@ -929,7 +929,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302963+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984190+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-10-2026/manuscript.md",
@@ -967,7 +967,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302976+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984202+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-11-2026/manuscript.md",
@@ -1004,7 +1004,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.302989+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984214+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-12-2026/manuscript.md",
@@ -1054,7 +1054,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303001+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984227+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-13-2026/manuscript.md",
@@ -1103,7 +1103,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303014+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984239+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-14-2026/manuscript.md",
@@ -1152,7 +1152,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303026+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984251+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-15-2026/manuscript.md",
@@ -1203,7 +1203,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303039+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984263+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-16-2026/manuscript.md",
@@ -1255,7 +1255,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303052+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984275+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-17-2026/manuscript.md",
@@ -1309,7 +1309,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303063+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984287+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-18-2026/manuscript.md",
@@ -1365,7 +1365,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303076+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984299+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-2-2026/manuscript.md",
@@ -1406,7 +1406,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303088+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984312+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-3-2026/manuscript.md",
@@ -1449,7 +1449,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303100+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984323+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-4-2026/manuscript.md",
@@ -1493,7 +1493,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303112+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984336+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-5-2026/manuscript.md",
@@ -1538,7 +1538,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303125+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984348+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-6-2026/manuscript.md",
@@ -1584,7 +1584,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303137+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984360+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-7-2026/manuscript.md",
@@ -1632,7 +1632,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303150+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984372+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-8-2026/manuscript.md",
@@ -1682,7 +1682,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303161+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984384+00:00"
   },
   {
     "file_path": "papers/CULT/HOWL-CULT-9-2026/manuscript.md",
@@ -1733,7 +1733,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303174+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984396+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-1-2026/manuscript.md",
@@ -1772,7 +1772,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303186+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984408+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-2-2026/manuscript.md",
@@ -1811,7 +1811,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303198+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984420+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-3-2026/manuscript.md",
@@ -1851,7 +1851,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303211+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984432+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-4-2026/manuscript.md",
@@ -1893,7 +1893,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303223+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984444+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-5-2026/manuscript.md",
@@ -1935,7 +1935,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303235+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984456+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-6-2026/manuscript.md",
@@ -1988,7 +1988,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303247+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984469+00:00"
   },
   {
     "file_path": "papers/DATA/HOWL-DATA-7-2026/manuscript.md",
@@ -2032,7 +2032,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303259+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984481+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-1-2026/manuscript.md",
@@ -2069,7 +2069,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303271+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984492+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-10-2026/manuscript.md",
@@ -2109,7 +2109,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303283+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984505+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-11-2026/manuscript.md",
@@ -2150,7 +2150,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303295+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984517+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-12-2026/manuscript.md",
@@ -2193,7 +2193,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303307+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984608+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-13-2026/manuscript.md",
@@ -2234,7 +2234,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303319+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984628+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-14-2026/manuscript.md",
@@ -2275,7 +2275,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303330+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984642+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-2-2026/manuscript.md",
@@ -2311,7 +2311,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303342+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984654+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-3-2026/manuscript.md",
@@ -2353,7 +2353,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303354+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984667+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-4-2026/manuscript.md",
@@ -2397,7 +2397,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303368+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984679+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-5-2026/manuscript.md",
@@ -2441,7 +2441,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303380+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984690+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-6-2026/manuscript.md",
@@ -2484,7 +2484,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303392+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984702+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-7-2026/manuscript.md",
@@ -2525,7 +2525,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303404+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984714+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-8-2026/manuscript.md",
@@ -2567,7 +2567,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303416+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984726+00:00"
   },
   {
     "file_path": "papers/DISC/HOWL-DISC-9-2026/manuscript.md",
@@ -2610,7 +2610,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303428+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984738+00:00"
   },
   {
     "file_path": "papers/ENG/HOWL-ENG-1-2026/manuscript.md",
@@ -2647,7 +2647,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303440+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984750+00:00"
   },
   {
     "file_path": "papers/ENG/HOWL-ENG-2-2026/manuscript.md",
@@ -2687,7 +2687,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303452+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984762+00:00"
   },
   {
     "file_path": "papers/ENG/HOWL-ENG-3-2026/manuscript.md",
@@ -2727,7 +2727,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303463+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984821+00:00"
   },
   {
     "file_path": "papers/GAME/HOWL-GAME-1-2026/manuscript.md",
@@ -2768,7 +2768,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303475+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984847+00:00"
   },
   {
     "file_path": "papers/GAME/HOWL-GAME-2-2026/manuscript.md",
@@ -2804,7 +2804,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303487+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984861+00:00"
   },
   {
     "file_path": "papers/GAME/HOWL-GAME-3-2026/manuscript.md",
@@ -2839,7 +2839,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303499+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984874+00:00"
   },
   {
     "file_path": "papers/GAME/HOWL-GAME-4-2026/manuscript.md",
@@ -2876,7 +2876,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303511+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984886+00:00"
   },
   {
     "file_path": "papers/GAME/HOWL-GAME-5-2026/manuscript.md",
@@ -2914,7 +2914,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303523+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984898+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-1-2026/manuscript.md",
@@ -2953,7 +2953,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303535+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984911+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-10-2026/manuscript.md",
@@ -2998,7 +2998,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303546+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984923+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-11-2026/manuscript.md",
@@ -3047,7 +3047,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303558+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984935+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-12-2026/manuscript.md",
@@ -3097,7 +3097,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303570+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984948+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-13-2026/manuscript.md",
@@ -3147,7 +3147,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303582+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984962+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-14-2026/manuscript.md",
@@ -3191,7 +3191,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303594+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984974+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-15-2026/manuscript.md",
@@ -3236,7 +3236,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303605+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984986+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-16-2026/manuscript.md",
@@ -3282,7 +3282,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303617+00:00"
+    "extracted_at": "2026-11-15T13:52:26.984998+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-17-2026/manuscript.md",
@@ -3328,7 +3328,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303628+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985010+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-18-2026/manuscript.md",
@@ -3367,7 +3367,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303640+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985026+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-2-2026/manuscript.md",
@@ -3406,7 +3406,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303678+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985038+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-3-2026/manuscript.md",
@@ -3484,7 +3484,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303697+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985049+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-4-2026/manuscript.md",
@@ -3524,7 +3524,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303710+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985061+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-5-2026/manuscript.md",
@@ -3568,7 +3568,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303722+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985072+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-6-2026/manuscript.md",
@@ -3607,7 +3607,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303735+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985084+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-7-2026/manuscript.md",
@@ -3647,7 +3647,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303747+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985096+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-8-2026/manuscript.md",
@@ -3688,7 +3688,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303760+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985107+00:00"
   },
   {
     "file_path": "papers/INFO/HOWL-INFO-9-2026/manuscript.md",
@@ -3730,7 +3730,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.303772+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985119+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-1-2026/manuscript.md",
@@ -3766,7 +3766,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303784+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985131+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-2-2026/manuscript.md",
@@ -3805,7 +3805,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303796+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985142+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-3-2026/manuscript.md",
@@ -3845,7 +3845,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303808+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985154+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-4-2026/manuscript.md",
@@ -3886,7 +3886,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303822+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985166+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-5-2026/manuscript.md",
@@ -3928,7 +3928,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303835+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985178+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-6-2026/manuscript.md",
@@ -3971,7 +3971,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303848+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985190+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-7-2026/manuscript.md",
@@ -4015,7 +4015,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303860+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985201+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-8-2026/manuscript.md",
@@ -4060,7 +4060,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303873+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985213+00:00"
   },
   {
     "file_path": "papers/INFRA/HOWL-INFRA-9-2026/manuscript.md",
@@ -4106,7 +4106,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303889+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985225+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-1-2026/manuscript.md",
@@ -4150,7 +4150,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303901+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985237+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-10-2026/manuscript.md",
@@ -4185,7 +4185,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303913+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985249+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-11-2026/manuscript.md",
@@ -4223,7 +4223,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303925+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985261+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-12-2026/manuscript.md",
@@ -4264,7 +4264,46 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303937+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985273+00:00"
+  },
+  {
+    "file_path": "papers/LLM/HOWL-LLM-13-2026/manuscript.md",
+    "paper_id": "HOWL-LLM-13-2026",
+    "subject": "LLM",
+    "number": 13,
+    "year": 2026,
+    "title": "The End of the LLM Demo and the Benefits of Transformers",
+    "key_result": null,
+    "skip": false,
+    "subtitle": "On the Architectural Impossibility of Autonomous Knowledge Work Through Probabilistic Text Generation",
+    "doi": {
+      "raw": "10.5281/zenodo.24247452",
+      "is_stub": false,
+      "zenodo_id": "24247452",
+      "status": "published"
+    },
+    "frontmatter": {
+      "Registry": "[@HOWL-LLM-12-2026]",
+      "DOI": "10.5281/zenodo.24247452",
+      "Date": "September 2026",
+      "Domain": "Machine Learning / Human-AI Interaction / Software Engineering Process / Constraint Satisfaction / Political Economy of Technology / Epistemology of Automated Systems",
+      "AI Usage Disclosure": "Only the top metadata, figures, refs and final copyright sections were edited by the author. All paper content was LLM-generated using Anthropic's Opus 4.6."
+    },
+    "abstract": null,
+    "dependencies": [
+      "HOWL-LLM-12-2026"
+    ],
+    "validation": {
+      "is_valid": true,
+      "errors": [],
+      "warnings": [
+        "Registry mismatch: path=HOWL-LLM-13-2026, content=HOWL-LLM-12-2026",
+        "Missing ## References section",
+        "Missing ::: {#refs} ::: delimiter",
+        "No abstract section found"
+      ]
+    },
+    "extracted_at": "2026-11-15T13:52:26.985284+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-2-2026/manuscript.md",
@@ -4299,7 +4338,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303949+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985296+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-3-2026/manuscript.md",
@@ -4338,7 +4377,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303961+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985308+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-4-2026/manuscript.md",
@@ -4377,7 +4416,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303973+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985320+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-5-2026/manuscript.md",
@@ -4417,7 +4456,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303985+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985331+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-6-2026/manuscript.md",
@@ -4459,7 +4498,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.303997+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985343+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-7-2026/manuscript.md",
@@ -4501,7 +4540,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304009+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985354+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-8-2026/manuscript.md",
@@ -4550,7 +4589,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304021+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985366+00:00"
   },
   {
     "file_path": "papers/LLM/HOWL-LLM-9-2026/manuscript.md",
@@ -4590,7 +4629,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304033+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985378+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-1-2026/manuscript.md",
@@ -4630,7 +4669,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304045+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985390+00:00"
   },
   {
     "file_path": "papers/LYRIC/HOWL-LYRIC-2-2026/manuscript.md",
@@ -4671,7 +4710,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304057+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985401+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-1-2026/manuscript.md",
@@ -4711,7 +4750,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304068+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985413+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-10-2026/manuscript.md",
@@ -4754,7 +4793,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304080+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985424+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-11-2026/manuscript.md",
@@ -4795,7 +4834,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304092+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985437+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-12-2026/manuscript.md",
@@ -4835,7 +4874,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304181+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985449+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-13-2026/manuscript.md",
@@ -4877,7 +4916,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304207+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985461+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-14-2026/manuscript.md",
@@ -4917,7 +4956,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304222+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985473+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-15-2026/manuscript.md",
@@ -4958,7 +4997,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304234+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985485+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-16-2026/manuscript.md",
@@ -5001,7 +5040,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304247+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985497+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-17-2026/manuscript.md",
@@ -5045,7 +5084,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304259+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985509+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-18-2026/manuscript.md",
@@ -5090,7 +5129,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304271+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985521+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-19-2026/manuscript.md",
@@ -5136,7 +5175,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304283+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985532+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-2-2026/manuscript.md",
@@ -5177,7 +5216,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304295+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985544+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-20-2026/manuscript.md",
@@ -5224,7 +5263,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304306+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985556+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-21-2026/manuscript.md",
@@ -5259,7 +5298,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304318+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985568+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-3-2026/manuscript.md",
@@ -5303,7 +5342,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304331+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985599+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-4-2026/manuscript.md",
@@ -5344,7 +5383,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304342+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985619+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-5-2026/manuscript.md",
@@ -5386,7 +5425,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304354+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985632+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-6-2026/manuscript.md",
@@ -5429,7 +5468,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304366+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985646+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-7-2026/manuscript.md",
@@ -5470,7 +5509,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304378+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985658+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-8-2026/manuscript.md",
@@ -5512,7 +5551,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304390+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985671+00:00"
   },
   {
     "file_path": "papers/MATH/HOWL-MATH-9-2026/manuscript.md",
@@ -5554,7 +5593,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304402+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985683+00:00"
   },
   {
     "file_path": "papers/NET/HOWL-NET-1-2026/manuscript.md",
@@ -5592,7 +5631,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304414+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985696+00:00"
   },
   {
     "file_path": "papers/NET/HOWL-NET-2-2026/manuscript.md",
@@ -5631,7 +5670,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304427+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985708+00:00"
   },
   {
     "file_path": "papers/NET/HOWL-NET-3-2026/manuscript.md",
@@ -5671,7 +5710,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304439+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985720+00:00"
   },
   {
     "file_path": "papers/NET/HOWL-NET-4-2026/manuscript.md",
@@ -5714,7 +5753,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304452+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985731+00:00"
   },
   {
     "file_path": "papers/NET/HOWL-NET-5-2026/manuscript.md",
@@ -5758,7 +5797,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304464+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985743+00:00"
   },
   {
     "file_path": "papers/NEURO/HOWL-NEURO-1-2026/manuscript.md",
@@ -5794,7 +5833,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304476+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985755+00:00"
   },
   {
     "file_path": "papers/NEURO/HOWL-NEURO-2-2026/manuscript.md",
@@ -5830,7 +5869,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304488+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985766+00:00"
   },
   {
     "file_path": "papers/NEURO/HOWL-NEURO-3-2026/manuscript.md",
@@ -5869,7 +5908,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304501+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985778+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-1-2026/manuscript.md",
@@ -5906,7 +5945,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304514+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985789+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-10-2026/manuscript.md",
@@ -5949,7 +5988,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304526+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985800+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-11-2026/manuscript.md",
@@ -5995,7 +6034,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304538+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985812+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-12-2026/manuscript.md",
@@ -6041,7 +6080,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304550+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985823+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-13-2026/manuscript.md",
@@ -6088,7 +6127,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304563+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985835+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-14-2026/manuscript.md",
@@ -6136,7 +6175,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304574+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985847+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-15-2026/manuscript.md",
@@ -6184,7 +6223,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304586+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985858+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-16-2026/manuscript.md",
@@ -6235,7 +6274,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304599+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985870+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-17-2026/manuscript.md",
@@ -6286,7 +6325,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304611+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985881+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-18-2026/manuscript.md",
@@ -6338,7 +6377,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304623+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985893+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-19-2026/manuscript.md",
@@ -6391,7 +6430,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304652+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985905+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-2-2026/manuscript.md",
@@ -6429,7 +6468,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304682+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985916+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-20-2026/manuscript.md",
@@ -6483,7 +6522,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304712+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985928+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-21-2026/manuscript.md",
@@ -6538,7 +6577,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304729+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985940+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-22-2026/manuscript.md",
@@ -6594,7 +6633,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304745+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985954+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-23-2026/manuscript.md",
@@ -6651,7 +6690,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304759+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985967+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-24-2026/manuscript.md",
@@ -6693,7 +6732,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304771+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985979+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-25-2026/manuscript.md",
@@ -6736,7 +6775,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304785+00:00"
+    "extracted_at": "2026-11-15T13:52:26.985991+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-26-2026/manuscript.md",
@@ -6780,7 +6819,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304798+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986002+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-27-2026/manuscript.md",
@@ -6825,7 +6864,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304812+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986014+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-28-2026/manuscript.md",
@@ -6871,7 +6910,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304826+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986026+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-29-2026/manuscript.md",
@@ -6918,7 +6957,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304838+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986037+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-3-2026/manuscript.md",
@@ -6959,7 +6998,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304850+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986049+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-30-2026/manuscript.md",
@@ -7007,7 +7046,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304862+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986060+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-31-2026/manuscript.md",
@@ -7052,7 +7091,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304875+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986072+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-32-2026/manuscript.md",
@@ -7095,7 +7134,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304887+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986083+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-33-2026/manuscript.md",
@@ -7136,7 +7175,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304899+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986095+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-34-2026/manuscript.md",
@@ -7180,7 +7219,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304911+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986106+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-35-2026/manuscript.md",
@@ -7223,7 +7262,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304923+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986118+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-36-2026/manuscript.md",
@@ -7263,7 +7302,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304935+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986129+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-37-2026/manuscript.md",
@@ -7304,7 +7343,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304947+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986141+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-38-2026/manuscript.md",
@@ -7346,7 +7385,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304959+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986153+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-39-2026/manuscript.md",
@@ -7389,7 +7428,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.304971+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986165+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-4-2026/manuscript.md",
@@ -7431,7 +7470,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305025+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986177+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-40-2026/manuscript.md",
@@ -7476,7 +7515,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305053+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986189+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-41-2026/manuscript.md",
@@ -7519,7 +7558,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305066+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986201+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-42-2026/manuscript.md",
@@ -7560,7 +7599,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305079+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986213+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-43-2026/manuscript.md",
@@ -7601,7 +7640,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305092+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986225+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-44-2026/manuscript.md",
@@ -7643,7 +7682,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305104+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986237+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-45-2026/manuscript.md",
@@ -7686,7 +7725,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305116+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986249+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-46-2026/manuscript.md",
@@ -7727,7 +7766,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305128+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986261+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-47-2026/manuscript.md",
@@ -7769,7 +7808,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305141+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986273+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-48-2026/manuscript.md",
@@ -7811,7 +7850,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305152+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986285+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-49-2026/manuscript.md",
@@ -7855,7 +7894,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305164+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986297+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-5-2026/manuscript.md",
@@ -7899,7 +7938,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305176+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986309+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-50-2026/manuscript.md",
@@ -7940,7 +7979,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305188+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986321+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-51-2026/manuscript.md",
@@ -7981,7 +8020,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305200+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986333+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-52-2026/manuscript.md",
@@ -8022,7 +8061,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305211+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986347+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-53-2026/manuscript.md",
@@ -8063,7 +8102,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305224+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986359+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-54-2026/manuscript.md",
@@ -8101,7 +8140,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305236+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986370+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-55-2026/manuscript.md",
@@ -8148,7 +8187,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305247+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986382+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-56-2026/manuscript.md",
@@ -8194,7 +8233,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305259+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986394+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-57-2026/manuscript.md",
@@ -8232,7 +8271,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305271+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986406+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-58-2026/manuscript.md",
@@ -8277,7 +8316,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305284+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986418+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-6-2026/manuscript.md",
@@ -8322,7 +8361,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305296+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986429+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-7-2026/manuscript.md",
@@ -8364,7 +8403,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305308+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986441+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-8-2026/manuscript.md",
@@ -8406,7 +8445,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305320+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986452+00:00"
   },
   {
     "file_path": "papers/PHYS/HOWL-PHYS-9-2026/manuscript.md",
@@ -8450,7 +8489,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305332+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986464+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-1-2026/manuscript.md",
@@ -8483,7 +8522,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.305344+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986475+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-2-2026/manuscript.md",
@@ -8526,7 +8565,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305357+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986487+00:00"
   },
   {
     "file_path": "papers/SOPH/HOWL-SOPH-3-2026/manuscript.md",
@@ -8558,7 +8597,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.305368+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986498+00:00"
   },
   {
     "file_path": "papers/USER/HOWL-USER-1-2026/manuscript.md",
@@ -8602,7 +8641,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305380+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986510+00:00"
   },
   {
     "file_path": "papers/USER/HOWL-USER-2-2026/manuscript.md",
@@ -8642,7 +8681,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305392+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986521+00:00"
   },
   {
     "file_path": "papers/USER/HOWL-USER-3-2026/manuscript.md",
@@ -8683,7 +8722,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305404+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986534+00:00"
   },
   {
     "file_path": "papers/USER/HOWL-USER-4-2026/manuscript.md",
@@ -8725,7 +8764,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305416+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986545+00:00"
   },
   {
     "file_path": "papers/USER/HOWL-USER-5-2026/manuscript.md",
@@ -8768,7 +8807,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305427+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986557+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-1-2026/manuscript.md",
@@ -8802,7 +8841,7 @@
         "Missing ## References section"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305439+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986581+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-10-2026/manuscript.md",
@@ -8851,7 +8890,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305451+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986612+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-11-2026/manuscript.md",
@@ -8902,7 +8941,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305463+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986640+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-12-2026/manuscript.md",
@@ -8954,7 +8993,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305475+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986661+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-13-2026/manuscript.md",
@@ -9007,7 +9046,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305486+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986675+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-14-2026/manuscript.md",
@@ -9060,7 +9099,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305498+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986688+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-15-2026/manuscript.md",
@@ -9114,7 +9153,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305510+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986701+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-16-2026/manuscript.md",
@@ -9169,7 +9208,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305522+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986715+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-17-2026/manuscript.md",
@@ -9212,7 +9251,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305535+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986728+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-18-2026/manuscript.md",
@@ -9257,7 +9296,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305547+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986740+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-19-2026/manuscript.md",
@@ -9303,7 +9342,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305560+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986752+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-2-2026/manuscript.md",
@@ -9338,7 +9377,7 @@
       "errors": [],
       "warnings": []
     },
-    "extracted_at": "2026-11-15T03:06:14.305573+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986764+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-20-2026/manuscript.md",
@@ -9384,7 +9423,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305585+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986776+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-21-2026/manuscript.md",
@@ -9428,7 +9467,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305597+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986788+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-22-2026/manuscript.md",
@@ -9474,7 +9513,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305609+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986801+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-23-2026/manuscript.md",
@@ -9521,7 +9560,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305621+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986813+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-24-2026/manuscript.md",
@@ -9567,7 +9606,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305633+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986825+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-25-2026/manuscript.md",
@@ -9618,7 +9657,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305660+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986837+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-26-2026/manuscript.md",
@@ -9665,7 +9704,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305687+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986849+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-27-2026/manuscript.md",
@@ -9713,7 +9752,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305700+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986861+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-28-2026/manuscript.md",
@@ -9762,7 +9801,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305713+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986873+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-29-2026/manuscript.md",
@@ -9812,7 +9851,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305726+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986885+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-3-2026/manuscript.md",
@@ -9853,7 +9892,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305738+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986896+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-30-2026/manuscript.md",
@@ -9904,7 +9943,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305750+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986908+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-31-2026/manuscript.md",
@@ -9956,7 +9995,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305762+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986920+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-32-2026/manuscript.md",
@@ -10010,7 +10049,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305775+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986932+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-33-2026/manuscript.md",
@@ -10063,7 +10102,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305788+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986945+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-34-2026/manuscript.md",
@@ -10126,7 +10165,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305802+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986957+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-35-2026/manuscript.md",
@@ -10185,7 +10224,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305814+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986968+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-36-2026/manuscript.md",
@@ -10239,7 +10278,7 @@
         "No abstract section found"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305825+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986981+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-4-2026/manuscript.md",
@@ -10281,7 +10320,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305838+00:00"
+    "extracted_at": "2026-11-15T13:52:26.986994+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-5-2026/manuscript.md",
@@ -10325,7 +10364,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305850+00:00"
+    "extracted_at": "2026-11-15T13:52:26.987006+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-6-2026/manuscript.md",
@@ -10370,7 +10409,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305862+00:00"
+    "extracted_at": "2026-11-15T13:52:26.987019+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-7-2026/manuscript.md",
@@ -10416,7 +10455,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305874+00:00"
+    "extracted_at": "2026-11-15T13:52:26.987031+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-8-2026/manuscript.md",
@@ -10463,7 +10502,7 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305885+00:00"
+    "extracted_at": "2026-11-15T13:52:26.987043+00:00"
   },
   {
     "file_path": "papers/VDR/HOWL-VDR-9-2026/manuscript.md",
@@ -10511,6 +10550,6 @@
         "Missing ::: {#refs} ::: delimiter"
       ]
     },
-    "extracted_at": "2026-11-15T03:06:14.305897+00:00"
+    "extracted_at": "2026-11-15T13:52:26.987056+00:00"
   }
 ]
