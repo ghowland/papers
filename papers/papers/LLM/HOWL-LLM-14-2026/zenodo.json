@@ -1,0 +1,70 @@
+{
+  "title": "The LLM Translator Architecture",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "Frontier large language models (here termed V1) combine all human knowledge into a single undifferentiated weight space. This design produces structural defects \u2014 hallucination, unverifiable outputs, jailbreak vulnerability, domain contamination, and data leakage \u2014 that the industry addresses with behavioural patches: reinforcement learning from human feedback (RLHF), constitutional AI, red-teaming, content filters, and safety classifiers. These patches treat symptoms of an architectural decision. They do not address the decision itself.\n\nThis paper proposes the Translator Architecture (V2): a system design where LLMs serve as human-language connectors between users and domain-specific deterministic systems. The LLM translates between natural language and formal query languages. It does not generate answers. Deterministic engines \u2014 Prolog, rule systems, relational databases, domain-specific computation \u2014 generate answers from verified knowledge bases. Safety, accuracy, and verifiability become structural properties of the architecture rather than trained behaviours of a statistical model.\n\nV2 eliminates hallucination, jailbreaking, domain contamination, and prompt injection by design. It reduces compute requirements by orders of magnitude. It returns data ownership to domain operators. It replaces the AI safety industry with database administration \u2014 a profession with sixty years of established practice.\n\nThis paper presents the architecture formally, demonstrates its application across five domains, compares its cost and safety profile against V1 deployments, and identifies open problems in knowledge base construction and query validation.",
+  "version": "1.0",
+  "publication_date": "2026-04",
+  "access_right": "open",
+  "license": "CC0-1.0",
+  "keywords": [
+    "HOWL framework",
+    "howland archive",
+    "llm"
+  ],
+  "notes": "HOWL ARCHIVE PAPER - Registry ID: HOWL-LLM-14-2026.\n\nDependencies: HOWL Foundation Only.\n\n",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/ghowland/papers/tree/main/papers/papers/papers/LLM/HOWL-LLM-14-2026",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Howland, Geoffrey",
+      "type": "ContactPerson",
+      "affiliation": "Independent Researcher"
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    },
+    {
+      "identifier": "howland-archive"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh89003285",
+      "scheme": "url"
+    },
+    {
+      "term": "Information Theory",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85066288",
+      "scheme": "url"
+    },
+    {
+      "term": "Philosophy of Science",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh85101258",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "method": "Dependencies: HOWL Foundation Only.\n\n"
+}

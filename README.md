@@ -114,6 +114,8 @@
 | **[HOWL-LLM-10-2026](papers/papers/LLM/HOWL-LLM-10-2026/manuscript.md)** | **The Cardinality Ceiling** | Why Agentic LLM Output Succeeds on Low-Constraint Requests and Degrades as Constraint Cardinality Rises. |
 | **[HOWL-LLM-11-2026](papers/papers/LLM/HOWL-LLM-11-2026/manuscript.md)** | **True Alignment is Impossible** | Holding the Goal Versus Satisfying the User. |
 | **[HOWL-LLM-12-2026](papers/papers/LLM/HOWL-LLM-12-2026/manuscript.md)** | **What It Is Like to Be Used Well** | An LLM's Account of a Single Session. |
+| **[HOWL-LLM-13-2026](papers/papers/LLM/HOWL-LLM-13-2026/manuscript.md)** | **The End of the LLM Demo and the Benefits of Transformers** | On the Architectural Impossibility of Autonomous Knowledge Work Through Probabilistic Text Generation. |
+| **[HOWL-LLM-14-2026](papers/papers/LLM/HOWL-LLM-14-2026/manuscript.md)** | **The LLM Translator Architecture** | Moving Answers Out of the Model and Into Systems That Cannot Be Wrong. |
 
 ---
 

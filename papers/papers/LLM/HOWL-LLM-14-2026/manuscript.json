@@ -1,0 +1,10 @@
+{
+    "file_name": "manuscript.md",
+    "title": "The LLM Translator Architecture",
+    "registry_id": "HOWL-LLM-14-2026",
+    "series_path": "",
+    "doi": "10.5281/zenodo.24414300",
+    "abstract": "Frontier large language models (here termed V1) combine all human knowledge into a single undifferentiated weight space. This design produces structural defects \u2014 hallucination, unverifiable outputs, jailbreak vulnerability, domain contamination, and data leakage \u2014 that the industry addresses with behavioural patches: reinforcement learning from human feedback (RLHF), constitutional AI, red-teaming, content filters, and safety classifiers. These patches treat symptoms of an architectural decision. They do not address the decision itself.\n\nThis paper proposes the Translator Architecture (V2): a system design where LLMs serve as human-language connectors between users and domain-specific deterministic systems. The LLM translates between natural language and formal query languages. It does not generate answers. Deterministic engines \u2014 Prolog, rule systems, relational databases, domain-specific computation \u2014 generate answers from verified knowledge bases. Safety, accuracy, and verifiability become structural properties of the architecture rather than trained behaviours of a statistical model.\n\nV2 eliminates hallucination, jailbreaking, domain contamination, and prompt injection by design. It reduces compute requirements by orders of magnitude. It returns data ownership to domain operators. It replaces the AI safety industry with database administration \u2014 a profession with sixty years of established practice.\n\nThis paper presents the architecture formally, demonstrates its application across five domains, compares its cost and safety profile against V1 deployments, and identifies open problems in knowledge base construction and query validation.",
+    "dependencies": [],
+    "raw_content_preview": "# The LLM Translator Architecture ## Moving Answers Out of the Model and Into Systems That Cannot Be Wrong  **Registry:** [@HOWL-LLM-14-2026]  **DOI:** 10.5281/zenodo.24414300  **Date:** November 2026..."
+}
